@@ -1,0 +1,18 @@
+TODO:
+-> Make blocks breakable again.
+-> Make collectibles appear again.
+-> Make mobs work again.
+-> Make weapon animation work again.
+-> Make main menu text input work again.
+-> Create main menu again.
+-> Create saving/loading for all important data.
+
+
+
+
+
+
+FIXME:
+-> Collision detection beyond initial chunks is broken
+-> Collision detection when hitting multiple blocks glitches a bit
+-> When chunk sizes get too big, it can't handle it. Also slow.

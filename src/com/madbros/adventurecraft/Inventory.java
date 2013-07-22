@@ -130,10 +130,10 @@ public class Inventory {
 	}
 	
 	public void toggleInventoryState() {
-		if(Game.currentState.type == State.DEBUG_INVENTORY) {
-			Game.currentState = new DebugMainState();
+		if(Game.currentState.type == State.INVENTORY) {
+			Game.currentState = new MainState();
 		} else {
-			Game.currentState = new DebugInventoryState();
+			Game.currentState = new InventoryState();
 		}
 	}
 	
