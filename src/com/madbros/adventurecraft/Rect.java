@@ -29,29 +29,17 @@ public class Rect {
 		this(c.sRect.x - (c.aRect.x - aRect.x), c.sRect.y - (c.aRect.y - aRect.y), aRect.w, aRect.h);
 	}
 	
-	public int x1() {
-		return x;
-	}
+	public int x1() { return x; }
 	
-	public int y1() {
-		return y;
-	}
+	public int y1() { return y; }
 	
-	public int x2() {
-		return x + w;
-	}
+	public int x2() { return x + w; }
 	
-	public int y2() {
-		return y + h;
-	}
+	public int y2() { return y + h; }
 	
-	public int w() {
-		return w;
-	}
+	public int w() { return w; }
 	
-	public int h() {
-		return h;
-	}
+	public int h() { return h; }
 	
 	public boolean detectCollision(Rect r) {
 		if(!(x1() >= r.x2() || x2() <= r.x1() || y2() <= r.y1() || y1() >= r.y2())) {

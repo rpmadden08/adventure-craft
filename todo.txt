@@ -7,12 +7,104 @@ TODO:
 -> Create main menu again.
 -> Create saving/loading for all important data.
 
-
-
-
-
+-> Particle Engine
+-> Farming
+-> Lighting System-
+-> Character Selection Screen
+-> Audio
 
 FIXME:
 -> Collision detection beyond initial chunks is broken
 -> Collision detection when hitting multiple blocks glitches a bit
--> When chunk sizes get too big, it can't handle it. Also slow.
+
+
+TODO (extended):
+> Particle Engine
+    -vectors and angles, blah blah blah...
+    
+> Farming
+    -Create wheat tile and an array of all "growable" tiles in "active" area (3x3 chunk area around player)
+    -Each time wheat grows, it effectively changes its tile and the fully grown wheat's boolean "growable" value is false
+    -Create Time class that keeps track of game days, hours, minutes, maybe seconds
+    -Loop through all growable tiles in "active" area at every game minute
+    -Random num to determine if tile grows or not - take it out of growable array if it's fully grown.
+    
+    -Give each mob type a max spawnable number (this will later be determined by the current biome)
+    -Use Timer class to have a random chance to spawn a mob every game minute (unless max spawnable number is reached)
+    -Delete mobs if they've been inactive for a while or if you move far enough away
+    -Have mobs wander around in the "active" area (9 chunks worth)
+    -Balance the wandering so it looks natural
+    
+> Combat
+    -Focus on slime mob and chicken mob
+    -Create and display character health
+    -Create combat state system for mobs
+    -Chicken is a passive mob that starts in "wander" state and turns into "run away" state when hit *See Chicken Mob States
+    -Create combat and wander state for slime mob
+    -Slime combat state: determine direction of player, hop towards that direction
+    -Slime wander state: random direction every few seconds.
+    -Slime explode state: slime stops, starts glowing and explodes after a few seconds
+    -Slime explosion causes damage to player if in range and slime dies
+    -Combat mode activates when slime is within so many tiles (say 10) of player <- determining distance is the hard part
+    -Wander mode activates when player gets far enough away from slime (say 10 tiles)
+    -Slime explode state activates when slime's health is low (say 10 hp left) slime health is checked in combat mode tick.
+
+> Lighting System
+    -Make underground mostly dark (light circle around player)
+    -Make torch or whatever lighten the underground up entirely (at least for now)
+
+> Character Selection Screen
+    -Create screen with character walk animation
+    -Make character rotatable (copy code from inventory menu)
+    -Add hair tab, face tab, etc which all display corresponding features as icons
+    -Every time you click on a feature, character changes accordingly
+    
+> Audio
+    -Create audio system to load all sound effects we might need
+    -Activate audio files given certain actions (digging, hitting enemies, etc)
+
+> Title Menu / Settings
+    -Create Title Menu
+        -New Game (Loads new game screen to select game name and character selection)
+          -Creates save folder with game name and includes character file info, random map seed, etc
+        -Continue Game (continues most recent game)
+        -Load Game (loads load game screen to select a game to load) (game thumbnail??)
+        -Settings (if we have any...)
+        -Exit
+    -Create Settings Menu (if we have settings...)
+
+
+
+
+OPTIONAL:
+> Resize Screen / Full Screen Mode
+> Infinite Map
+> Weather System
+> Day/Night System
+> Map (to view a pixel per tile map that you can use to view all visited areas)
+> Mini-map and compass
+> More sophisticated magic system
+> Class system?
+> Biomes...
+
+*Chicken Mob States:
+Mobs have states. States are changed by events/timers (like when you hit a chicken). Code for states might look like this pseudocode: {
+  CHICKEN_WANDER_STATE = 0;
+  CHICKEN_RUN_STATE = 1;
+  Chicken Class {
+    state = CHICKEN_WANDER_STATE;
+    tick() {
+      if state == CHICKEN_WANDER_STATE {
+        moveRandomly();
+      } else if state == CHICKEN_RUN_STATE {
+        moveAwayFromCharacter();
+      }
+    }
+  }
+}
+
+WanderState:
+In wander state, there's a random chance every tick that the chicken walks a random number of steps (say, 4-10) in a random direction
+
+RunAway State:
+Determine direction of character relative to chicken and move chicken opposite direction every tick. A runaway timer is activated at start of RunAway state and it goes up after each tick. After so many ticks (say 1000) chicken goes back to WanderState. Starts over if the chicken is hit again.

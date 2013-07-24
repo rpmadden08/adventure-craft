@@ -39,7 +39,7 @@ public class MainState extends GameState {
 				Game.character.startMoving(RIGHT);
 				break;
 			case Keyboard.KEY_9:
-				System.out.println(Game.level.chunkRect.x + ", " + Game.level.chunkRect.y);	//print debug info here
+				System.out.println(Game.debugger.getTimeDiff());	//print debug info here
 				break;
 			}
 		else {

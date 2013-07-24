@@ -57,8 +57,9 @@ public class Constants {
 	public static final int CRAFTED = 3;
 	
 	//level constants
-	public static final int CHUNK_SIZE = 16;
-	public static final int NUMBER_OF_CHUNKS_ON_ONE_SIDE = 3;
+	public static final int CHUNK_SIZE = 16;	//keep between 12 and 16
+	public static final int CHUNKS_IN_A_ROW = 5;	//also columns
+	public static final int TILES_PER_ROW = CHUNK_SIZE*CHUNKS_IN_A_ROW;	//also columns
 	
 	//game states
 	public static enum State {

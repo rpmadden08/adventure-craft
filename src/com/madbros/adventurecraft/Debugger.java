@@ -17,11 +17,15 @@ public class Debugger {
 	private long lastFPS;
 	private long fps;
 	
+	public String tempVar = "Temp";	//for random temporary debugging
+	
 	private long startOfFrameTime;
 	private int numberOfFramesAddedToTheRenderStoreArray;
 	private int numberOfFramesAddedToTheUpdateStoreArray;
 	private long[] renderTimeStore;
 	private long[] updateTimeStore;
+	private long startTime = 0;
+	private long endTime = 0;
 	
 	private Font font;
 	private Color fontColor;
@@ -94,6 +98,18 @@ public class Debugger {
 			updateMemoryUsage();
 			updateFPS();
 		}
+	}
+	
+	public void startTimer() {
+		startTime = Time.getTimeNano();
+	}
+	
+	public void endTimer() {
+		endTime = Time.getTimeNano();
+	}
+	
+	public long getTimeDiff() {
+		return (endTime - startTime) / 1000000;
 	}
 	
 	public void start() {

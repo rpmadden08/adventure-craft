@@ -20,8 +20,8 @@ public class Character {
 	Margin margin = new Margin(4, 4, 12, 0); //left, right, top, bottom
 	
 	//absolute position of upper left corner
-	Rect aRect = new Rect(CHUNK_SIZE*TILE_SIZE + CHUNK_SIZE*TILE_SIZE/2 - CHARACTER_SIZE/2,
-						  CHUNK_SIZE*TILE_SIZE + CHUNK_SIZE*TILE_SIZE/2 - CHARACTER_SIZE/2,
+	Rect aRect = new Rect(TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
+						  TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
 						  CHARACTER_SIZE, CHARACTER_SIZE);
 	Rect sRect = new Rect(Game.centerScreenX, Game.centerScreenY, CHARACTER_SIZE, CHARACTER_SIZE);
 	
@@ -203,28 +203,28 @@ public class Character {
 	}
 	
 	public void xMove(int moveX) {
-		//if Game.level.offsetX is more than double the tile size, this movement won't work
-		//because activeBlockPosX/Y would need to be changed by more than 1
 		Game.level.offsetX += moveX;
 		aRect.x += moveX;
-		if(Game.level.offsetX >= TILE_SIZE) {
+		while(Game.level.offsetX >= TILE_SIZE) {
 			Game.level.offsetX -= TILE_SIZE;
-			Game.level.renderRect.x++; //activeBlockPosX++;
-		} else if(Game.level.offsetX < 0) {
+			Game.level.renderRect.x++;
+		} 
+		while(Game.level.offsetX < 0) {
 			Game.level.offsetX += TILE_SIZE;
-			Game.level.renderRect.x--;//activeBlockPosX--;
+			Game.level.renderRect.x--;
 		}
 	}
 	
 	public void yMove(int moveY) {
 		Game.level.offsetY += moveY;
 		aRect.y += moveY;
-		if(Game.level.offsetY >= TILE_SIZE) {
+		while(Game.level.offsetY >= TILE_SIZE) {
 			Game.level.offsetY -= TILE_SIZE;
-			Game.level.renderRect.y++;//activeBlockPosY++;
-		} else if(Game.level.offsetY < 0) {
+			Game.level.renderRect.y++;
+		} 
+		while(Game.level.offsetY < 0) {
 			Game.level.offsetY += TILE_SIZE;
-			Game.level.renderRect.y--;//activeBlockPosY--;
+			Game.level.renderRect.y--;
 		}
 	}
 	
@@ -233,7 +233,7 @@ public class Character {
 		
 		getCollisionBlocks();
 		if(isMovingLeft) {
-			moveX = Math.round(-currentSpeed * delta);
+			moveX = Math.round(-currentSpeed * delta);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
 			xMove(moveX);
 			getCollision(HORIZONTAL, moveX);
 		} else if(isMovingRight) {

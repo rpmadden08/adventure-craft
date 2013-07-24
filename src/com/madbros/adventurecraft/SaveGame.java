@@ -23,18 +23,24 @@ public class SaveGame {
 			}
 		}
 		
+		
+		
 		try {
 			File f = new File("saves");
 			if(!f.exists()) {
 				f.mkdir();
 			}
 			FileWriter file = new FileWriter("saves/" + chunkX + "-" + chunkY + ".sv");
-			file.write(obj.toJSONString());
-			file.flush();
-			file.close();
+			BufferedWriter bw = new BufferedWriter(file);
+			bw.write(obj.toJSONString());
+			
+			bw.flush();
+			bw.close();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public Block[][] loadChunk(int chunkX, int chunkY) {
@@ -66,7 +72,6 @@ public class SaveGame {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
 		return chunk;
 	}
 }

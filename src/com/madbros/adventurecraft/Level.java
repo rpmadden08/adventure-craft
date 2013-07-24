@@ -12,8 +12,8 @@ public class Level {
 	public SaveGame saveGame = new SaveGame();
 	
 	//Keeps track of what part of the activeBlocks array we're rendering. Starts off in the very center.
-	public Rect renderRect = new Rect(CHUNK_SIZE+CHUNK_SIZE/2 - Game.centerScreenX/TILE_SIZE - 2,
-			  						  CHUNK_SIZE+CHUNK_SIZE/2 - Game.centerScreenY/TILE_SIZE - 2,
+	public Rect renderRect = new Rect(TILES_PER_ROW/2- Game.centerScreenX/TILE_SIZE - 2,
+			  						  TILES_PER_ROW/2 - Game.centerScreenY/TILE_SIZE - 2,
 			  						  (int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
 			  						  (int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
@@ -21,34 +21,34 @@ public class Level {
 	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public int size = 100;
 	
-	public Rect chunkRect = new Rect(0, 0, 3, 3);	//keeps track of the chunk we're on
+	public Rect chunkRect = new Rect(0, 0, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);	//keeps track of the chunk we're on
 	public int offsetX = (TILE_SIZE * 2 - CHARACTER_SIZE) / 2;
 	public int offsetY = (TILE_SIZE * 2 - CHARACTER_SIZE) / 2;
 
 	public boolean isLoading = false;
 	
 	public Level() {
-		activeBlocks = new Block[CHUNK_SIZE*3][CHUNK_SIZE*3];
+		activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
 		
-		for(int i = 0; i < 3; i++) {
-			for(int j = 0; j < 3; j++) {
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
 				createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
 			}
 		}
 		
-		autoTileNewArea(1, 1, CHUNK_SIZE*3-1, CHUNK_SIZE*3-1);
+		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 	}
 	
 	public void update() {
-		if(renderRect.y2() <= CHUNK_SIZE) {
+		if(renderRect.y <= CHUNK_SIZE/2) {
 			getNorthernChunks();
-		} else if(renderRect.y >= CHUNK_SIZE*2 - 1) {
+		} else if(renderRect.y2() >= TILES_PER_ROW-CHUNK_SIZE/2 - 1) {
 			getSouthernChunks();
 		}
 		
-		if(renderRect.x2() <= CHUNK_SIZE) {
+		if(renderRect.x <= CHUNK_SIZE/2) {
 			getWesternChunks();
-		} else if(renderRect.x >= CHUNK_SIZE*2 - 1) {
+		} else if(renderRect.x2() >= TILES_PER_ROW-CHUNK_SIZE/2 - 1) {
 			getEasternChunks();
 		}
 	}
@@ -60,12 +60,10 @@ public class Level {
 					activeBlocks[x][y].render(TILE_SIZE * (x-renderRect.x) - offsetX - TILE_SIZE, 
 								  TILE_SIZE * (y-renderRect.y) - offsetY - TILE_SIZE);
 					if(Game.debugger.chunkBoundariesAreOn) {
-						if(x == CHUNK_SIZE || x == CHUNK_SIZE*2) {
-							Textures.pixel.draw(TILE_SIZE * (x-renderRect.x) - offsetX - TILE_SIZE,
-									TILE_SIZE * (y-renderRect.y) - offsetY - TILE_SIZE, 1, TILE_SIZE);
-						}
-						if(y == CHUNK_SIZE || y == CHUNK_SIZE*2) Textures.pixel.draw(TILE_SIZE * (x-renderRect.x) - offsetX - TILE_SIZE,
-								TILE_SIZE * (y-renderRect.y) - offsetY - TILE_SIZE, TILE_SIZE, 1);
+						if(x % CHUNK_SIZE == 0) Textures.pixel.draw(TILE_SIZE * (x-renderRect.x) - offsetX - TILE_SIZE,
+												TILE_SIZE * (y-renderRect.y) - offsetY - TILE_SIZE, 1, TILE_SIZE);
+						if(y % CHUNK_SIZE == 0) Textures.pixel.draw(TILE_SIZE * (x-renderRect.x) - offsetX - TILE_SIZE,
+												TILE_SIZE * (y-renderRect.y) - offsetY - TILE_SIZE, TILE_SIZE, 1);
 					}
 				}
 			}
@@ -73,56 +71,52 @@ public class Level {
 	}
 
 	public void getNorthernChunks() {
-		System.out.println("North chunk change!");
 		renderRect.y += CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(DOWN);
 		chunkRect.y--;
 		
-		for(int i = 0; i < 3; i++) {
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			createNewChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
 		}
 		
-		autoTileNewArea(1, 1, CHUNK_SIZE*3-1, CHUNK_SIZE+1);
+		autoTileNewArea(1, 1, TILES_PER_ROW-1, CHUNK_SIZE+1);
 	}
 	
 	public void getSouthernChunks() {
-		System.out.println("South chunk change!");
 		renderRect.y -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(UP);
 		chunkRect.y++;
 		
-		for(int i = 0; i < 3; i++) {
-			createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*2, chunkRect.x + i, chunkRect.y);
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			createNewChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
 		}
-		autoTileNewArea(1, CHUNK_SIZE*2-1, CHUNK_SIZE*3-1, CHUNK_SIZE*3-1);
+		autoTileNewArea(1, TILES_PER_ROW-CHUNK_SIZE-1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 	}
 	
 	public void getEasternChunks() {
-		System.out.println("East chunk change!");
 		renderRect.x -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(LEFT);
 		chunkRect.x++;
 		
-		for(int i = 0; i < 3; i++) {
-			createNewChunk(CHUNK_SIZE*2, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			createNewChunk(TILES_PER_ROW-CHUNK_SIZE, CHUNK_SIZE*i, chunkRect.x2(), chunkRect.y + i);
 		}
-		autoTileNewArea(CHUNK_SIZE*2-1, 1, CHUNK_SIZE*3-1, CHUNK_SIZE*3-1);
+		autoTileNewArea(TILES_PER_ROW-CHUNK_SIZE-1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 	}
 
 	public void getWesternChunks() {
-		System.out.println("West chunk change!");
 		renderRect.x += CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(RIGHT);
 		chunkRect.x--;
 		
-		for(int i = 0; i < 3; i++) {
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			createNewChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
 		}
-		autoTileNewArea(1, 1, CHUNK_SIZE+1, CHUNK_SIZE*3-1);
+		autoTileNewArea(1, 1, CHUNK_SIZE+1, TILES_PER_ROW-1);
 	}
 	
 	public void shiftActiveBlocksArray(int dir) {
@@ -200,7 +194,7 @@ public class Level {
 			int i = 0; int j = 0;
 			for(int x = startX; x < startX+CHUNK_SIZE; x++) {
 				for(int y = startY; y < startY+CHUNK_SIZE; y++) {
-					Block block = createNewBlock(x, y, chunkX, chunkY);
+					Block block = createNewBlock(i, j, chunkX, chunkY);
 					chunk[i][j] = block;
 	            	activeBlocks[x][y] = block;
 	            	j++;

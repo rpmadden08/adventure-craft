@@ -74,13 +74,13 @@ public class Game {
 		new Textures();
 		new Helpers();
 		
+		debugger = new Debugger();
+
 		batch = new SpriteBatch(Textures.atlas);
 		
 		level = new Level();
 		character = new Character();
 		inventory = new Inventory();
-		
-		debugger = new Debugger();
 	}
 	
 	public void gameLoop() {
