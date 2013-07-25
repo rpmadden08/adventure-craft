@@ -40,10 +40,10 @@ public class Debugger {
 	
 	private Runtime runtime;
 	
-	public boolean collisionTilesAreOn = false;			//displays tiles used for collision detection
+	public boolean collisionTilesAreOn = true;			//displays tiles used for collision detection
 	public boolean collisionRectsAreOn = false;			//displays rectangles around collidable objects
 	public boolean chunkBoundariesAreOn = true;		//displays chunk boundaries
-	public boolean collisionDetectionIsOn = false;		//turns collision detection on/off
+	public boolean collisionDetectionIsOn = true;		//turns collision detection on/off
 	
 	public boolean menuIsActive = false;
 	public DebuggerMenuButton[] menuButtons;
@@ -55,11 +55,14 @@ public class Debugger {
 		lastFPS = Time.getTime();
 		fps = 0;
 		
-		menuButtons = new DebuggerMenuButton[4];
+		menuButtons = new DebuggerMenuButton[6];
 		menuButtons[0] = new CollisionDetectionButton(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, 0, collisionDetectionIsOn);
 		menuButtons[1] = new CollisionRectanglesButton(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY, collisionRectsAreOn);
 		menuButtons[2] = new CollisionTilesButton(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY*2, collisionTilesAreOn);
 		menuButtons[3] = new ChunkBoundariesButton(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY*3, chunkBoundariesAreOn);
+		menuButtons[4] = new CharacterSpeedDownButton(Game.currentScreenSizeX-DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY*4);
+		menuButtons[5] = new CharacterSpeedUpButton(Game.currentScreenSizeX-DEBUG_MENU_SIZEX/2, DEBUG_MENU_SIZEY*4);
+		
 		
 		numberOfFramesAddedToTheRenderStoreArray = 0;
 		numberOfFramesAddedToTheUpdateStoreArray = 0;

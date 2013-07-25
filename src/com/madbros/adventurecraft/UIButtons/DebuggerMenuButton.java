@@ -12,6 +12,12 @@ public class DebuggerMenuButton extends UIButton {
 		marginY = 5;
 	}
 	
+	public DebuggerMenuButton(int x, int y, int w, int h, String s) {
+		super(x, y, w, h, s);
+		marginX = 10;
+		marginY = 5;
+	}
+	
 	public void didPressUp(Debugger d) {
 		
 	}

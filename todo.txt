@@ -13,11 +13,6 @@ TODO:
 -> Character Selection Screen
 -> Audio
 
-FIXME:
--> Collision detection beyond initial chunks is broken
--> Collision detection when hitting multiple blocks glitches a bit
-
-
 TODO (extended):
 > Particle Engine
     -vectors and angles, blah blah blah...

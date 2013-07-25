@@ -142,14 +142,16 @@ public class Level {
 	public Block createNewBlock(int x, int y, int chunkX, int chunkY) {
 		Block block;
 		float noise = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+x) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+y) / (float)size, 0);
-
+		int absX = x*TILE_SIZE+chunkX*CHUNK_SIZE*TILE_SIZE;
+		int absY = y*TILE_SIZE+chunkY*CHUNK_SIZE*TILE_SIZE;
+		
 		if(noise < -0.1) {
-    		block = new Block(new WaterTile(), x*TILE_SIZE, y*TILE_SIZE);
+    		block = new Block(new WaterTile(), absX, absY);
     	} else if(noise > 0.1 && noise < 0.105) {
     		Tile[] treeTile = {new GrassTile(), new TreeTile()};
-    		block = new Block(treeTile, x*TILE_SIZE, y*TILE_SIZE);
+    		block = new Block(treeTile, absX, absY);
     	} else {
-    		block = new Block(new GrassTile(), x*TILE_SIZE, y*TILE_SIZE);
+    		block = new Block(new GrassTile(), absX, absY);
     	}
 		block.mapHeight = noise;
 		

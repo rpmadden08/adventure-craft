@@ -28,7 +28,7 @@ public class Character {
 	boolean isMovingLeft = false, isMovingRight = false, isMovingUp = false, isMovingDown = false;
 	boolean isMoving = false, isAttacking = false;
 	
-	float currentSpeed = 0.9f;
+	public float currentSpeed = 0.09f;
 	
 	Block[] collisionDetectionBlocks = new Block[9];
 		
@@ -153,15 +153,13 @@ public class Character {
 	}
 
 	public void getCollisionBlocks() {
-		//FIXME: needs to account for different chunks...
 		//get position in activeBlocks array
-		int x = (aRect.x - TILE_SIZE / 4) / TILE_SIZE;	//not sure why I have to subtract tile_size/4, but it makes it look a little better
-		int y = aRect.y / TILE_SIZE;
+		int x = Game.level.renderRect.x2() - (sRect.x + margin.left) / TILE_SIZE - 1;//(aRect.x + margin.left) / TILE_SIZE;
+		int y = Game.level.renderRect.y2() - (sRect.y) / TILE_SIZE - 1;//(aRect.y) / TILE_SIZE;
 		
 		int j = 0;
 		for(int i = 0; i < collisionDetectionBlocks.length; i++) {
 			if(x+i/3 >= 0 && x+i/3 < Game.level.activeBlocks.length && y+j >= 0 && y+j < Game.level.activeBlocks[0].length) {
-//				collisionDetectionBlocks[i] = Game.level.chunks[4].blocks[0][0];
 				collisionDetectionBlocks[i] = Game.level.activeBlocks[x+i/3][y+j]; //3x3 grid of blocks around the character
 			}
 			j++;
@@ -177,6 +175,7 @@ public class Character {
 				if(collisionDetectionBlocks[i] != null) {
 					if(collisionDetectionBlocks[i].isCollidable) {		
 						int dir = 0;
+						boolean didDetectCollision = false;
 						if(isVerticalMovement) {
 							if(charCRect.detectCollision(collisionDetectionBlocks[i].cRect)) {
 								if(isMovingDown) {
@@ -184,6 +183,7 @@ public class Character {
 								} else if(isMovingUp) {
 									dir = UP;
 								}
+								didDetectCollision = true;
 							}
 						} else {
 							if(charCRect.detectCollision(collisionDetectionBlocks[i].cRect)) {
@@ -192,10 +192,12 @@ public class Character {
 								} else if(isMovingRight) {
 									dir = RIGHT;
 								}
+								didDetectCollision = true;
 							}
 						}
 						collisionDetectionBlocks[i].collisionTile.characterDidCollide(dir, move, charCRect, collisionDetectionBlocks[i].cRect, this);
 						collisionDetectionBlocks[i].sRect = new Rect(collisionDetectionBlocks[i].cRect, this);	//for debug mode
+						if(didDetectCollision) break;
 					}
 				}
 			}
