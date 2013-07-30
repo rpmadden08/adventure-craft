@@ -65,7 +65,7 @@ public class LoadGameMenu extends Menu {
 		for(int i = 0; i < selectUIButtons.length; i++) {
 			boolean didPressDown = selectUIButtons[i].handleMouseInput(leftMouseButtonPressed, leftMouseButtonUp);
 			if(didPressDown) {
-				if(currentlySelectedButton != null) currentlySelectedButton.buttonIsPressedDown = false;
+				if(currentlySelectedButton != null && currentlySelectedButton != selectUIButtons[i]) currentlySelectedButton.buttonIsPressedDown = false;
 				currentlySelectedButton = selectUIButtons[i];
 			}
 		}
