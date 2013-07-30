@@ -5,8 +5,8 @@ import static com.madbros.adventurecraft.Constants.*;
 import org.lwjgl.input.Keyboard;
 
 import com.madbros.adventurecraft.Cells.*;
-import com.madbros.adventurecraft.GameStates.*;
 import com.madbros.adventurecraft.Items.*;
+import com.madbros.adventurecraft.Utils.Helpers;
 
 public class Inventory {
 	private Sprite selectTexture = Textures.selectTexture;
@@ -71,23 +71,6 @@ public class Inventory {
 		menuTextures[1][1].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2); //middle
 	}
 	
-	public void renderFont() {
-		Cell[][] cells;
-		if(Game.currentState.type == State.DEBUG_INVENTORY) {
-			cells = new Cell[][]{invBar, invBag, invCrafting, invCrafted};
-		} else {
-			cells = new Cell[][]{invBar};
-		}
-		for(int i = 0; i < cells.length; i++) {
-			for(int j = 0; j < cells[i].length; j++) {
-				cells[i][j].item.renderFont(cells[i][j].cellRect.x2()-INV_CELL_SIZE/2, cells[i][j].cellRect.y2()-INV_CELL_SIZE/2);
-			}
-		}
-		if(heldItem.id != EMPTY && Game.currentState.type == State.DEBUG_INVENTORY) {
-			heldItem.renderFont(Helpers.getX(), Helpers.getY());
-		}
-	}
-	
 	public void render() {
 		for(int i=0;i < invBar.length; i++) {			
 			invBar[i].render();
@@ -97,9 +80,18 @@ public class Inventory {
 		}
 	}
 	
+	public void renderText() {
+		Cell[][] cells = {invBar};
+		
+		for(int i = 0; i < cells.length; i++) {
+			for(int j = 0; j < cells[i].length; j++) {
+				cells[i][j].item.renderFont(cells[i][j].cellRect.x2()-INV_CELL_SIZE/2, cells[i][j].cellRect.y2()-INV_CELL_SIZE/2);
+			}
+		}
+	}
+	
 	public void renderFull() {
 		renderBackdrop();
-		render();
 		
 		Cell[][] cells = {invBag, invCrafting, invCrafted};
 		for(int i = 0; i < cells.length; i++) {
@@ -111,6 +103,18 @@ public class Inventory {
 		Game.character.render(WALK_DOWN, INV_CHAR_RECT.x, INV_CHAR_RECT.y, INV_CHAR_RECT.w, INV_CHAR_RECT.h);
 		
 		heldItem.render(Helpers.getX(), Helpers.getY());
+	}
+	
+	public void renderTextFull() {
+		Cell[][] cells = new Cell[][]{invBag, invCrafting, invCrafted};
+
+		for(int i = 0; i < cells.length; i++) {
+			for(int j = 0; j < cells[i].length; j++) {
+				cells[i][j].item.renderFont(cells[i][j].cellRect.x2()-INV_CELL_SIZE/2, cells[i][j].cellRect.y2()-INV_CELL_SIZE/2);
+			}
+		}
+		
+		if(heldItem.id != EMPTY) heldItem.renderFont(Helpers.getX(), Helpers.getY());
 	}
 	
 	public void mouseWheelDidIncrement() {
@@ -129,13 +133,13 @@ public class Inventory {
 		}
 	}
 	
-	public void toggleInventoryState() {
-		if(Game.currentState.type == State.INVENTORY) {
-			Game.currentState = new MainState();
-		} else {
-			Game.currentState = new InventoryState();
-		}
-	}
+//	public void toggleInventoryState() {
+//		if(Game.currentState.type == State.INVENTORY) {
+//			Game.currentState = new MainState();
+//		} else {
+//			Game.currentState = new InventoryState(this);
+//		}
+//	}
 	
 	public void useActiveItem(int dir) {
 		if(dir == RIGHT) {

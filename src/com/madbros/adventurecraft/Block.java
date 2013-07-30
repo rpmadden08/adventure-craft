@@ -7,6 +7,8 @@ import java.util.Arrays;
 import org.newdawn.slick.Color;
 
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
+import com.madbros.adventurecraft.TileTypes.Tile;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class Block {
 	Tile[] tiles;
@@ -44,14 +46,14 @@ public class Block {
 			tiles[i].render(x, y);
 		}
 		
-		if(Game.debugger.collisionTilesAreOn && Arrays.asList(Game.character.collisionDetectionBlocks).contains(this)) {
+		if(Game.debugMenu.collisionTilesAreOn && Arrays.asList(Game.character.collisionDetectionBlocks).contains(this)) {
 			Color highlightColor = new Color(1, 1, 1, 0.2f);
 			highlightColor.bind();
 			Textures.collisionDebugger.draw(x, y, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
 			Color.white.bind();
 		}
 		
-		if(Game.debugger.collisionRectsAreOn && isCollidable) {
+		if(Game.debugMenu.collisionRectsAreOn && isCollidable) {
 			Rect r = new Rect((int)x, (int)y);
 			r = new Rect(r, collisionTile.margin);
 			

@@ -3,6 +3,8 @@ package com.madbros.adventurecraft.Items;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Cells.Cell;
+import com.madbros.adventurecraft.Utils.Helpers;
 
 public class Plank extends CraftItem {
 	public Plank() {

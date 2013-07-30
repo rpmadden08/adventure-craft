@@ -1,9 +1,12 @@
 package com.madbros.adventurecraft;
 
+import java.io.File;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.*;
 
 import com.madbros.adventurecraft.GameStates.*;
+import com.madbros.adventurecraft.Menus.*;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -18,14 +21,14 @@ public class Game {
 	public static int currentScreenSizeX = INITIAL_WINDOW_WIDTH;
 	public static int currentScreenSizeY = INITIAL_WINDOW_HEIGHT;
 	
-	public static GameState currentState = new MainState();
-	
-	Block tile;
+	public static GameState currentState;
+	public static String locOfSavedGame = null;
 	
 	public static SpriteBatch batch;
 	public static Debugger debugger;
+	public static DebugMenu debugMenu;
 	public static Level level;
-	public static Character character;
+	public static Hero character;
 	public static Inventory inventory;
 	
 	protected void createWindow() {
@@ -69,18 +72,15 @@ public class Game {
 	}
  
 	protected void setupGame() {
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		new Constants();
 		new Textures();
-		new Helpers();
 		
 		debugger = new Debugger();
-
 		batch = new SpriteBatch(Textures.atlas);
+		debugMenu = new DebugMenu();
 		
-		level = new Level();
-		character = new Character();
-		inventory = new Inventory();
+		currentState = new MainMenuState();
+//		currentState = new MainState(true);
 	}
 	
 	public void gameLoop() {
@@ -93,6 +93,7 @@ public class Game {
 	
 	public void quit() {
 		Display.destroy();
+		System.exit(0);
 	}
 
 /*#########################################################*/
@@ -114,5 +115,37 @@ public class Game {
 		glViewport(0, 0, Display.getWidth(), Display.getHeight());
 		// ... update our projection matrices here ...
 		//
+	}
+	
+	public static void toggleInventoryState() {
+		if(currentState.type == State.INVENTORY) currentState = new MainState();
+		else currentState = new InventoryState();
+	}
+	
+	public static void createSavesFolderIfNecessary() {
+		File f = new File(SAVE_LOC);
+		if(!f.exists()) f.mkdir();
+	}
+	
+	public static void createDefaultSaveGameIfNecessary() {
+		createNewGameAtLoc(SAVE_LOC + "default/");
+	}
+	
+	public static void createNewGameAtLoc(String loc) {
+		createSavesFolderIfNecessary();
+		locOfSavedGame = loc;
+		
+		File f = new File(loc);
+		if(!f.exists()) f.mkdir();
+		
+		f = new File(Game.locOfSavedGame + CHUNKS_FOLDER);
+		if(!f.exists()) f.mkdir();
+		//make other folders...
+		
+		level = new Level();
+		character = new Hero();
+		inventory = new Inventory();
+		
+		Game.currentState = new MainState();
 	}
 }

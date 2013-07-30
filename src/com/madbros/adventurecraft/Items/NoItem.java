@@ -1,7 +1,7 @@
 package com.madbros.adventurecraft.Items;
 
 import com.madbros.adventurecraft.Item;
-import com.madbros.adventurecraft.Rect;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class NoItem extends Item {
 	@Override

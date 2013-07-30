@@ -5,6 +5,7 @@ import static com.madbros.adventurecraft.Constants.*;
 import java.io.File;
 
 import com.madbros.adventurecraft.TileTypes.*;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class Level {
 	public Block[][] activeBlocks;
@@ -59,7 +60,7 @@ public class Level {
 				if(x < activeBlocks.length && y < activeBlocks[0].length && x >= 0 && y >= 0) {
 					activeBlocks[x][y].render(TILE_SIZE * (x-renderRect.x) - offsetX - TILE_SIZE, 
 								  TILE_SIZE * (y-renderRect.y) - offsetY - TILE_SIZE);
-					if(Game.debugger.chunkBoundariesAreOn) {
+					if(Game.debugMenu.chunkBoundariesAreOn) {
 						if(x % CHUNK_SIZE == 0) Textures.pixel.draw(TILE_SIZE * (x-renderRect.x) - offsetX - TILE_SIZE,
 												TILE_SIZE * (y-renderRect.y) - offsetY - TILE_SIZE, 1, TILE_SIZE);
 						if(y % CHUNK_SIZE == 0) Textures.pixel.draw(TILE_SIZE * (x-renderRect.x) - offsetX - TILE_SIZE,
@@ -170,17 +171,18 @@ public class Level {
 			if(blocks[x][y+1].baseTile.id == block.baseTile.id) bottom = 64;
 			if(blocks[x+1][y+1].baseTile.id == block.baseTile.id) bottomRight = 128;
 			
-			block.baseTile.topLeftAutoTile = Helpers.topLeftAutoTileHash.get(left + topLeft + top);
-			block.baseTile.topRightAutoTile = Helpers.topRightAutoTileHash.get(right + topRight + top);
-			block.baseTile.bottomLeftAutoTile = Helpers.bottomLeftAutoTileHash.get(left + bottomLeft + bottom);
-			block.baseTile.bottomRightAutoTile = Helpers.bottomRightAutoTileHash.get(right + bottomRight + bottom);
+			block.baseTile.topLeftAutoTile = TOP_LEFT_AUTO_TILE_HASH.get(left + topLeft + top);
+			block.baseTile.topRightAutoTile = TOP_RIGHT_AUTO_TILE_HASH.get(right + topRight + top);
+			block.baseTile.bottomLeftAutoTile = BOTTOM_LEFT_AUTO_TILE_HASH.get(left + bottomLeft + bottom);
+			block.baseTile.bottomRightAutoTile = BOTTOM_RIGHT_AUTO_TILE_HASH.get(right + bottomRight + bottom);
 		}
 		return block;
 	}
 	
 	public void createNewChunk(int startX, int startY, int chunkX, int chunkY) {
 		isLoading = true;
-		File f = new File("saves/" + chunkX + "-" + chunkY + ".sv");
+		
+		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv");
 		if(f.exists()) { 
 			Block[][] chunk = saveGame.loadChunk(chunkX, chunkY);
 			int i = 0; int j = 0;

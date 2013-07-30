@@ -1,6 +1,8 @@
-package com.madbros.adventurecraft;
+package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
+
+import com.madbros.adventurecraft.Sprite;
 
 public abstract class Tile {
 	public Sprite[] textures;

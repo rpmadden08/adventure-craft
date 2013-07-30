@@ -1,14 +1,9 @@
 package com.madbros.adventurecraft.GameStates;
 
 import static com.madbros.adventurecraft.Constants.*;
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.glClear;
-
-import org.newdawn.slick.*;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
 
 import com.madbros.adventurecraft.*;
 
@@ -18,194 +13,93 @@ public class MainState extends GameState {
 		type = State.MAIN;
 	}
 	
-	//the following four functions are altered in the inventory state
-	public void handleOtherKeyboardInput(boolean eventState, int key) {
+	public MainState(boolean isQuickLoad) {
+		type = State.MAIN;
+		if(isQuickLoad) Game.createDefaultSaveGameIfNecessary();
+	}
+	
+	protected void getAdditionalKeyboardInput(boolean eventState, int key) {
 		if(eventState)
 			switch(key) {
-			case Keyboard.KEY_E:
-				Game.inventory.toggleInventoryState();
-				Game.character.turnWalkingOff();
-				break;
-			case Keyboard.KEY_W:
-				Game.character.startMoving(UP);
-				break;
-			case Keyboard.KEY_A:
-				Game.character.startMoving(LEFT);
-				break;
-			case Keyboard.KEY_S:
-				Game.character.startMoving(DOWN);
-				break;
-			case Keyboard.KEY_D:
-				Game.character.startMoving(RIGHT);
-				break;
-			case Keyboard.KEY_9:
-				System.out.println(Game.debugger.getTimeDiff());	//print debug info here
-				break;
+				case Keyboard.KEY_E: Game.toggleInventoryState(); Game.character.turnWalkingOff(); break;
+				case Keyboard.KEY_W: Game.character.startMoving(UP); break;
+				case Keyboard.KEY_A: Game.character.startMoving(LEFT); break;
+				case Keyboard.KEY_S: Game.character.startMoving(DOWN); break;
+				case Keyboard.KEY_D: Game.character.startMoving(RIGHT); break;
+				case Keyboard.KEY_U: System.out.println(Game.debugger.getTimeDiff()); break;	//for debugging stuff
 			}
 		else {
 			switch(key) {
-			case Keyboard.KEY_W:
-				Game.character.stopMoving(UP);
-				break;
-			case Keyboard.KEY_A:
-				Game.character.stopMoving(LEFT);
-				break;
-			case Keyboard.KEY_S:
-				Game.character.stopMoving(DOWN);
-				break;
-			case Keyboard.KEY_D:
-				Game.character.stopMoving(RIGHT);
-				break;
+				case Keyboard.KEY_W: Game.character.stopMoving(UP); break;
+				case Keyboard.KEY_A: Game.character.stopMoving(LEFT); break;
+				case Keyboard.KEY_S: Game.character.stopMoving(DOWN); break;
+				case Keyboard.KEY_D: Game.character.stopMoving(RIGHT); break;
 			}
 		}
 	}
 	
-	public void handleOtherMouseInput(boolean eventState, int key) {
-		if(eventState) {
-			switch(key) {
-			case LEFT_MOUSE_BUTTON:
-				Game.inventory.useActiveItem(LEFT);
-				break;
-			case RIGHT_MOUSE_BUTTON:
-				Game.inventory.useActiveItem(RIGHT);
-				break;
-			}
-		}
-		
-		//level check mouse input for block highlighting...
-	}
-	
-	public void handleOtherInput(boolean leftMouseButtonPressed, boolean rightMouseButtonPressed) {
-		
-	}
-	
-	public void updateOther() {
-		
+	protected void getAdditionalMouseInput() {
+		if(leftMouseButtonPressed) Game.inventory.useActiveItem(LEFT);
+		else if(rightMouseButtonPressed) Game.inventory.useActiveItem(RIGHT);
+
+		//level check mouse input for block highlightinGame...
 	}
 	
 	@Override
-	public void getInput() {
+	protected void getKeyboardInput() {
 		while(Keyboard.next()) {
 			boolean eventState = Keyboard.getEventKeyState();
 			int key = Keyboard.getEventKey();
 			
 			if(eventState) {
 				switch(key) {
-				case Keyboard.KEY_M:
-					Game.debugger.toggle();
-					break;
-				case Keyboard.KEY_P:
-					Game.debugger.toggleMenu();
-					break;
-				case Keyboard.KEY_1:
-					Game.inventory.changeSelectedItemTo(key);
-					break;
-				case Keyboard.KEY_2:
-					Game.inventory.changeSelectedItemTo(key);
-					break;
-				case Keyboard.KEY_3:
-					Game.inventory.changeSelectedItemTo(key);
-					break;
-				case Keyboard.KEY_4:
-					Game.inventory.changeSelectedItemTo(key);
-					break;
-				case Keyboard.KEY_5:
-					Game.inventory.changeSelectedItemTo(key);
-					break;
-				case Keyboard.KEY_6:
-					Game.inventory.changeSelectedItemTo(key);
-					break;
-				case Keyboard.KEY_7:
-					Game.inventory.changeSelectedItemTo(key);
-					break;
-				case Keyboard.KEY_8:
-					Game.inventory.changeSelectedItemTo(key);
-					break;
+					case Keyboard.KEY_M: Game.debugger.toggle(); break;
+					case Keyboard.KEY_P: Game.debugMenu.toggleMenu(); break;
+					case Keyboard.KEY_1: Game.inventory.changeSelectedItemTo(key); break;
+					case Keyboard.KEY_2: Game.inventory.changeSelectedItemTo(key); break;
+					case Keyboard.KEY_3: Game.inventory.changeSelectedItemTo(key); break;
+					case Keyboard.KEY_4: Game.inventory.changeSelectedItemTo(key); break;
+					case Keyboard.KEY_5: Game.inventory.changeSelectedItemTo(key); break;
+					case Keyboard.KEY_6: Game.inventory.changeSelectedItemTo(key); break;
+					case Keyboard.KEY_7: Game.inventory.changeSelectedItemTo(key); break;
+					case Keyboard.KEY_8: Game.inventory.changeSelectedItemTo(key); break;
+					//9
+					//0
 				}
 			}
-			handleOtherKeyboardInput(eventState, key);
+			getAdditionalKeyboardInput(eventState, key);
 		}
-		
-		boolean leftMouseButtonPressed = false;
-		boolean rightMouseButtonPressed = false;
-		boolean leftMouseButtonUp = false;
-		
-		while(Mouse.next()) {
-			boolean eventState = Mouse.getEventButtonState();
-			int key = Mouse.getEventButton();
-			
-			if(eventState) {
-				switch(key) {
-				case LEFT_MOUSE_BUTTON:
-					leftMouseButtonPressed = true;
-					break;
-				case MIDDLE_MOUSE_BUTTON:
-					break;
-				case RIGHT_MOUSE_BUTTON:
-					rightMouseButtonPressed = true;
-					break;
-				}
-			} else {
-				switch(key) {
-				case LEFT_MOUSE_BUTTON:
-					leftMouseButtonUp = true;
-				}
-			}
-			
-			handleOtherMouseInput(eventState, key);
-		}
-		
-		if(Game.debugger.menuIsActive) {
-			Game.debugger.checkMouseInput(leftMouseButtonPressed, leftMouseButtonUp);
-		}
-		
-		int mouseD = Mouse.getDWheel();
-		if(mouseD > 0) {
-			Game.inventory.mouseWheelDidIncrement();
-		} else if(mouseD < 0) {
-			Game.inventory.mouseWheelDidDecrement();
-		}
-		
-		handleOtherInput(leftMouseButtonPressed, rightMouseButtonPressed);
 	}
 	
 	@Override
-	public void update() {
-		Game.debugger.start();
+	protected void getMouseButtonInput() {
+		super.getMouseButtonInput();
 		
-		int delta = Time.getDelta();
+		int mouseD = Mouse.getDWheel();
+		if(mouseD > 0) Game.inventory.mouseWheelDidIncrement();
+		else if(mouseD < 0) Game.inventory.mouseWheelDidDecrement();
+		
+		if(Game.debugMenu.menuIsActive) Game.debugMenu.handleMouseInput(leftMouseButtonPressed, leftMouseButtonUp);
+		
+		getAdditionalMouseInput();
+	}
+	
+	@Override
+	protected void updateStates() {
 		Game.character.update(delta);
 		Game.level.update();
 		Game.debugger.update();
-		updateOther();
-		
-		Game.debugger.stopUpdateTime();
 	}
 		
 	@Override
-	public void render() { 
-		Game.debugger.start();
-		
-		glClear(GL_COLOR_BUFFER_BIT);
-		
-		Game.batch.begin();
-			Color.white.bind();
-			Game.level.render();
-			Game.character.render();
-			renderMenu();
-			Game.debugger.render();
-		Game.batch.end();
-
-		Game.inventory.renderFont();
-		Game.debugger.renderFont();
-		
-		Game.debugger.stopRenderTime();
-		
-		Display.update();
-		Display.sync(FRAME_RATE);
+	protected void renderTextures() {
+		Game.level.render();
+		Game.character.render();
+		Game.inventory.render();
 	}
 	
-	public void renderMenu() {
-		Game.inventory.render();
+	@Override
+	protected void renderText() {
+		Game.inventory.renderText();
 	}
 }

@@ -1,10 +1,16 @@
-package com.madbros.adventurecraft;
+package com.madbros.adventurecraft.Cells;
 
 import static com.madbros.adventurecraft.Constants.*;
 
 import org.newdawn.slick.*;
 
+import com.madbros.adventurecraft.Inventory;
+import com.madbros.adventurecraft.Item;
+import com.madbros.adventurecraft.Sprite;
+import com.madbros.adventurecraft.Textures;
 import com.madbros.adventurecraft.Items.*;
+import com.madbros.adventurecraft.Utils.Helpers;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class Cell {
 	private Sprite cellTexture = Textures.cellTexture;
@@ -58,7 +64,7 @@ public class Cell {
 	public void handleRightClick(Inventory inv) {
 		if(inv.heldItem.id != EMPTY && this.item.id == EMPTY) {
 			inv.heldItem.stackSize -= 1;
-			this.item = Helpers.itemHash.get(inv.heldItem.id).createNew();
+			this.item = ITEM_HASH.get(inv.heldItem.id).createNew();
 			if(inv.heldItem.stackSize < 1) inv.heldItem = new NoItem();
 		} else if(inv.heldItem.id != EMPTY && inv.heldItem.id == this.item.id) {
 			if(this.item.stackSize < this.item.maxStackSize) {
@@ -67,7 +73,7 @@ public class Cell {
 				if(inv.heldItem.stackSize < 1) inv.heldItem = new NoItem();
 			}
 		} else if(inv.heldItem.id == EMPTY && this.item.stackSize > 1) {
-			inv.heldItem = Helpers.itemHash.get(this.item.id).createNew();
+			inv.heldItem = ITEM_HASH.get(this.item.id).createNew();
 			inv.heldItem.stackSize = (int)Math.ceil(this.item.stackSize / 2f);
 			this.item.stackSize = this.item.stackSize / 2;
 		} else {
@@ -112,7 +118,7 @@ public class Cell {
 	
 	public void craftAnItemFromThisListIfPossible(Cell[] invCrafting, Cell[] invCrafted, int[] itemsPossiblyCraftable) {
 		for(int i = 0; i < itemsPossiblyCraftable.length; i++) {
-			Item possiblyCraftableItem = Helpers.itemHash.get(itemsPossiblyCraftable[i]);
+			Item possiblyCraftableItem = ITEM_HASH.get(itemsPossiblyCraftable[i]);
 			if(possiblyCraftableItem.isValidRecipe(invCrafting)) {
 				invCrafted[0].item = possiblyCraftableItem.createNew();
 				invCrafted[0].item.stackSize = invCrafted[0].item.numberProducedByCrafting;

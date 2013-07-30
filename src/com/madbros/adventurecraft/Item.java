@@ -4,6 +4,9 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import org.newdawn.slick.Color;
 
+import com.madbros.adventurecraft.Cells.Cell;
+import com.madbros.adventurecraft.Utils.Rect;
+
 public abstract class Item {
 	public int id = EMPTY;
 	public int stackSize = 1;
@@ -23,9 +26,13 @@ public abstract class Item {
 	}
 	
 	public void renderFont(int x, int y) {
-		if(stackSize > 1) {
-			Textures.font.drawString(x + 2, y + 2, String.valueOf(stackSize), Color.white);
-		}
+		Color c = new Color(1.0f, 1.0f, 1.0f, 0.8f);
+		int adjX = x - 2; int adjY = y - 2;
+		if(stackSize < 10) adjX += 4;
+		
+		if(stackSize > 1) Textures.font.drawString(adjX, adjY, String.valueOf(stackSize), c);
+		
+		Color.white.bind();
 	}
 	
 	public void useRight() {

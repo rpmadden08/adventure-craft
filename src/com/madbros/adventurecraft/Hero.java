@@ -4,9 +4,13 @@ import static com.madbros.adventurecraft.Constants.TILE_SIZE;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
+
+import com.madbros.adventurecraft.Utils.Margin;
+import com.madbros.adventurecraft.Utils.Rect;
+
 import static com.madbros.adventurecraft.Constants.*;
 
-public class Character {
+public class Hero {
 	//animations
 	Sprite[] animations;
 	
@@ -20,19 +24,19 @@ public class Character {
 	Margin margin = new Margin(4, 4, 12, 0); //left, right, top, bottom
 	
 	//absolute position of upper left corner
-	Rect aRect = new Rect(TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
+	public Rect aRect = new Rect(TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
 						  TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
 						  CHARACTER_SIZE, CHARACTER_SIZE);
-	Rect sRect = new Rect(Game.centerScreenX, Game.centerScreenY, CHARACTER_SIZE, CHARACTER_SIZE);
+	public Rect sRect = new Rect(Game.centerScreenX, Game.centerScreenY, CHARACTER_SIZE, CHARACTER_SIZE);
 	
 	boolean isMovingLeft = false, isMovingRight = false, isMovingUp = false, isMovingDown = false;
 	boolean isMoving = false, isAttacking = false;
 	
-	public float currentSpeed = 0.09f;
+	public static float currentSpeed = 0.09f;
 	
 	Block[] collisionDetectionBlocks = new Block[9];
 		
-	public Character() {
+	public Hero() {
 		animations = Textures.characterAnimations;
 		walkingAnimationCycle[0] = 0;
 	}
@@ -168,7 +172,7 @@ public class Character {
 	}
 	
 	public void getCollision(boolean isVerticalMovement, int move) {
-		if(Game.debugger.collisionDetectionIsOn) {
+		if(Game.debugMenu.collisionDetectionIsOn) {
 			Rect charCRect = new Rect(aRect, this.margin);
 			
 			for(int i = 0; i < collisionDetectionBlocks.length; i++) {
@@ -195,7 +199,7 @@ public class Character {
 								didDetectCollision = true;
 							}
 						}
-						collisionDetectionBlocks[i].collisionTile.characterDidCollide(dir, move, charCRect, collisionDetectionBlocks[i].cRect, this);
+						collisionDetectionBlocks[i].collisionTile.characterDidCollide(dir, move, charCRect, collisionDetectionBlocks[i].cRect);
 						collisionDetectionBlocks[i].sRect = new Rect(collisionDetectionBlocks[i].cRect, this);	//for debug mode
 						if(didDetectCollision) break;
 					}
@@ -266,7 +270,7 @@ public class Character {
 	
 	public void render() {
 		animations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect);
-		if(Game.debugger.collisionRectsAreOn) {
+		if(Game.debugMenu.collisionRectsAreOn) {
 			Color.red.bind();
 			Textures.pixel.draw(new Rect(sRect, margin));
 			
@@ -285,5 +289,21 @@ public class Character {
 	//for inventory menu...
 	public void render(int a, int x, int y, int w, int h) {
 		animations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, w, h);
+	}
+	
+	public static float getCurrentSpeed() {
+		return currentSpeed;
+	}
+	
+	public static void setCurrentSpeed(float speed) {
+		currentSpeed = speed;
+	}
+	
+	public void increaseSpeed() {
+		if(currentSpeed > 0.09f) currentSpeed -= 0.1f;
+	}
+	
+	public void decreaseSpeed() {
+		if(currentSpeed < 0.9f) currentSpeed += 0.1f;
 	}
 }

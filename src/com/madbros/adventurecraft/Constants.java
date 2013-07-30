@@ -1,17 +1,32 @@
 package com.madbros.adventurecraft;
 
-//com.madbros.adventurecraft.Items.*;
+import java.util.HashMap;
+
+import com.madbros.adventurecraft.Items.*;
+import com.madbros.adventurecraft.TileTypes.*;
+import com.madbros.adventurecraft.Utils.*;
 
 public class Constants {
+	public static HashMap<Integer, Item> ITEM_HASH = new HashMap<Integer, Item>();
+	public static HashMap<Integer, Tile> TILE_HASH = new HashMap<Integer, Tile>(); 
+	
+	public static HashMap<Integer, Integer> TOP_LEFT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
+	public static HashMap<Integer, Integer> TOP_RIGHT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
+	public static HashMap<Integer, Integer> BOTTOM_LEFT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
+	public static HashMap<Integer, Integer> BOTTOM_RIGHT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
+	
 	//game constants
 	public static final int INITIAL_WINDOW_WIDTH = 640;
 	public static final int INITIAL_WINDOW_HEIGHT = 480;
 	public static final int RENDER_MARGIN = 2;
 	public static final int FRAME_RATE = 60;
-	public static final String GAME_TITLE = "Block Game";
+	public static final String GAME_TITLE = "Adventure Craft";
 	
 	public static final int PIXEL_MIN = 0;
 	public static final int PIXEL_MAX = 32;
+	
+	public static final String SAVE_LOC = "saves/";
+	public static final String CHUNKS_FOLDER = "chunks/";
 	
 	//character constants
 	public static final int CHARACTER_SIZE = 24;
@@ -63,7 +78,7 @@ public class Constants {
 	
 	//game states
 	public static enum State {
-		MAIN, INVENTORY, MAIN_MENU, DEBUG_MAIN, DEBUG_INVENTORY;
+		MAIN, INVENTORY, MAIN_MENU, NEW_GAME_MENU;
 	}
 	
 	//Blocks
@@ -132,16 +147,61 @@ public class Constants {
 	public static final int BOTTOM_RIGHT_TILE = 10;
 	public static final int UL_TOP_LEFT_CORNER_TILE = 11;
 	
-	//Generic
-	public static final boolean OFF = false;
-	public static final boolean ON = true;
-}
-			
-//	public static final int UL_TOP_TILE = 5;
-//	public static final int UL_LEFT_TILE = 3;
-//	public static final int UL_TOP_LEFT_TILE = 1;
-//	public static final int UL_TOP_LEFT_CORNER_TILE = 2;
-//	
-//	public static final int UR_TOP_TILE = 7;
-//	public static final int UR_RIGHT_TILE = 3;
+	//Main Menu
+	public static final int MAIN_MENU_WIDTH = 100;
+	public static final int MAIN_MENU_HEIGHT = 30;
+	public static final int MAIN_MENU_STARTX = Game.centerScreenX - MAIN_MENU_WIDTH / 2;
+	public static final int MAIN_MENU_STARTY = 40;
+	
+	public Constants() {
+		ITEM_HASH.put(NONE, new NoItem());
+		ITEM_HASH.put(GRASS_SEED, new GrassSeed());
+		ITEM_HASH.put(EARTH_CLUMP, new EarthClump());
+		ITEM_HASH.put(SAND_CLUMP, new SandClump());
+		ITEM_HASH.put(LOG, new Log());
+		ITEM_HASH.put(PLANK, new Plank());
+		ITEM_HASH.put(SHOVEL, new Shovel());
+		ITEM_HASH.put(SWORD, new Sword());
+		
+		TILE_HASH.put(GRASS, new GrassTile());
+		TILE_HASH.put(DIRT, new DirtTile());
+		TILE_HASH.put(WATER, new WaterTile());
+		TILE_HASH.put(TREE, new TreeTile());
+		
+		TOP_LEFT_AUTO_TILE_HASH.put(0, SINGLE_TILE);
+		TOP_LEFT_AUTO_TILE_HASH.put(1, SINGLE_TILE);
+		TOP_LEFT_AUTO_TILE_HASH.put(2, LEFT_TILE);
+		TOP_LEFT_AUTO_TILE_HASH.put(3, LEFT_TILE);
+		TOP_LEFT_AUTO_TILE_HASH.put(8, TOP_TILE);
+		TOP_LEFT_AUTO_TILE_HASH.put(9, TOP_TILE);
+		TOP_LEFT_AUTO_TILE_HASH.put(10, MERGE_TILE);
+		TOP_LEFT_AUTO_TILE_HASH.put(11, MIDDLE_TILE);
+		
+		TOP_RIGHT_AUTO_TILE_HASH.put(0, SINGLE_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(2, RIGHT_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(4, SINGLE_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(6, RIGHT_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(16, TOP_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(18, MERGE_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(20, TOP_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(22, MIDDLE_TILE);
 
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(0, SINGLE_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(8, BOTTOM_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(32, SINGLE_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(40, BOTTOM_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(64, LEFT_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(72, MERGE_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(96, LEFT_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(104, MIDDLE_TILE);
+
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(0, SINGLE_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(16, BOTTOM_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(64, RIGHT_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(80, MERGE_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(128, SINGLE_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(144, BOTTOM_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(192, RIGHT_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(208, MIDDLE_TILE);
+	}
+}

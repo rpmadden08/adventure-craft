@@ -3,6 +3,8 @@ package com.madbros.adventurecraft;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 
+import com.madbros.adventurecraft.Utils.Rect;
+
 public class Sprite {
 	private float originalX, originalY;
 	private float textureW1, textureW2;

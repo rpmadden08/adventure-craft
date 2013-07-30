@@ -35,6 +35,9 @@ public class Textures {
 	public static Sprite swordTexture;
 	public static Sprite shovelTexture;
 	
+	public static Sprite buttonTexture;
+	public static Sprite pressedButtonTexture;
+	
 	//for debugging
 	public static Sprite collisionDebugger;
 	public static Sprite pixel;
@@ -90,6 +93,8 @@ public class Textures {
 			cellTexture = new Sprite(atlas, 1024-INV_MENU_TILE_SIZE*3-INV_CELL_SIZE, 1024-INV_CELL_SIZE, INV_CELL_SIZE, INV_CELL_SIZE);
 			selectTexture = new Sprite(atlas, 1024-INV_MENU_TILE_SIZE*3-INV_CELL_SIZE-4, 1024-INV_CELL_SIZE*2-4, INV_CELL_SIZE+4, INV_CELL_SIZE+4);
 			
+			buttonTexture = new Sprite(atlas, 1024-189, 1024-64, 66, 32);
+			pressedButtonTexture = new Sprite(atlas, 1024-189, 1024-32, 66, 32);
 			
 			collisionDebugger = new Sprite(atlas, 336, 0, TILE_SIZE, TILE_SIZE);
 			pixel = new Sprite(atlas, 1023, 0, 1, 1);

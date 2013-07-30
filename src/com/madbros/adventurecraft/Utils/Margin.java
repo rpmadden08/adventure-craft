@@ -1,7 +1,7 @@
-package com.madbros.adventurecraft;
+package com.madbros.adventurecraft.Utils;
 
 public class Margin {
-	int left, right, top, bottom;
+	public int left, right, top, bottom;
 	
 	public Margin(int left, int right, int top, int bottom) {
 		this.left = left;

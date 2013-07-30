@@ -1,14 +1,14 @@
 package com.madbros.adventurecraft;
 
 import java.text.*;
-import org.lwjgl.input.*;
 import org.newdawn.slick.*;
-import com.madbros.adventurecraft.UIButtons.*;
+
+import com.madbros.adventurecraft.Utils.Rect;
 
 import static com.madbros.adventurecraft.Constants.*;
 
 public class Debugger {
-	private boolean isDebugging = false;
+	public boolean isDebugging = false;
 	private long gameStartTime;
 	private long timeSpentInGame;    // in seconds
 
@@ -40,30 +40,13 @@ public class Debugger {
 	
 	private Runtime runtime;
 	
-	public boolean collisionTilesAreOn = true;			//displays tiles used for collision detection
-	public boolean collisionRectsAreOn = false;			//displays rectangles around collidable objects
-	public boolean chunkBoundariesAreOn = true;		//displays chunk boundaries
-	public boolean collisionDetectionIsOn = true;		//turns collision detection on/off
-	
-	public boolean menuIsActive = false;
-	public DebuggerMenuButton[] menuButtons;
-	
 	public Debugger() {
 		font = Textures.font;
 		fontColor = Color.white;
 		
 		lastFPS = Time.getTime();
 		fps = 0;
-		
-		menuButtons = new DebuggerMenuButton[6];
-		menuButtons[0] = new CollisionDetectionButton(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, 0, collisionDetectionIsOn);
-		menuButtons[1] = new CollisionRectanglesButton(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY, collisionRectsAreOn);
-		menuButtons[2] = new CollisionTilesButton(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY*2, collisionTilesAreOn);
-		menuButtons[3] = new ChunkBoundariesButton(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY*3, chunkBoundariesAreOn);
-		menuButtons[4] = new CharacterSpeedDownButton(Game.currentScreenSizeX-DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY*4);
-		menuButtons[5] = new CharacterSpeedUpButton(Game.currentScreenSizeX-DEBUG_MENU_SIZEX/2, DEBUG_MENU_SIZEY*4);
-		
-		
+			
 		numberOfFramesAddedToTheRenderStoreArray = 0;
 		numberOfFramesAddedToTheUpdateStoreArray = 0;
 		renderTimeStore = new long[NUMBER_OF_FRAMES_USED_FOR_SAMPLE_MEAN];
@@ -74,7 +57,7 @@ public class Debugger {
 		gameStartTime = Time.getTime();
 		timeSpentInGame = 0;
 	}
-
+	
 	private void updateFPS() {
 		long timeNow = Time.getTime();
 		timeSpentInGame = (long) ((timeNow - gameStartTime)/1000);  // ms --> secs
@@ -147,56 +130,22 @@ public class Debugger {
 		}
 	}
 	
-	public void render() {
-		if(menuIsActive) {
-			for(int i = 0; i < menuButtons.length; i++) {
-				menuButtons[i].render();
-			}
-		}
-	}
-	
-	public void renderFont() {
-		if (isDebugging) {
-			font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*0, "Time Spent In Game: " + displayedGameTime + " seconds", fontColor);
-			
-			font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*2, "Current fps: " + displayedFPS + " fps", fontColor);
-			font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*3, "Average ms for update: " + displayedMillisecondsPerUpdate, fontColor);
-			font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*4, "Average ms for render: " + displayedMillisecondsPerRender, fontColor);
-			
-			font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*6, "Free Memory: " + displayedFreeMemory + " mb", fontColor);
-			font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*7, "Used Memory: " + displayedUsedMemory + " mb", fontColor);
-			font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*8, "Memory Left: " + displayedPercentOfMemoryLeft + "%", fontColor);
-			font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*10, "Character Position: (" + Game.character.aRect.x + ", " +
-																									 Game.character.aRect.y + ")", fontColor);
-			font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*12, "Extra Debugger: " + displayedExtra, fontColor);
-		}
+	public void renderText(Rect charRect) {
+		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*0, "Time Spent In Game: " + displayedGameTime + " seconds", fontColor);
 		
-		if(menuIsActive) {
-			for(int i = 0; i < menuButtons.length; i++) {
-				menuButtons[i].renderFont();
-			}
-		}
+		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*2, "Current fps: " + displayedFPS + " fps", fontColor);
+		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*3, "Average ms for update: " + displayedMillisecondsPerUpdate, fontColor);
+		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*4, "Average ms for render: " + displayedMillisecondsPerRender, fontColor);
+		
+		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*6, "Free Memory: " + displayedFreeMemory + " mb", fontColor);
+		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*7, "Used Memory: " + displayedUsedMemory + " mb", fontColor);
+		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*8, "Memory Left: " + displayedPercentOfMemoryLeft + "%", fontColor);
+		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*10, "Character Position: (" + charRect.x + ", " + charRect.y + ")", fontColor);
+		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*12, "Extra Debugger: " + displayedExtra, fontColor);
 	}
 	
 	public void toggle() {
 		if (isDebugging) isDebugging = false;
 		else isDebugging = true;
-	}
-	
-	public void toggleMenu() {
-		if(menuIsActive) menuIsActive = false;
-		else menuIsActive = true;
-	}
-	
-	public void checkMouseInput(boolean leftMousePressedDown, boolean leftMousePressedUp) {
-		for(int i = 0; i < menuButtons.length; i++) {
-			menuButtons[i].setMouseIsHovering();
-			menuButtons[i].setMouseIsPressedDown();
-			
-			if(leftMousePressedDown && menuButtons[i].mouseIsHovering) menuButtons[i].mousePressedDown = true;
-			
-			if(menuButtons[i].mouseIsHovering && leftMousePressedUp && menuButtons[i].mousePressedDown) menuButtons[i].didPressUp(this);
-			if(!Mouse.isButtonDown(LEFT_MOUSE_BUTTON)) menuButtons[i].mousePressedDown = false;
-		}
 	}
 }

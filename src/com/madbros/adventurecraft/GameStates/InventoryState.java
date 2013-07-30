@@ -5,13 +5,26 @@ import static com.madbros.adventurecraft.Constants.*;
 import org.lwjgl.input.Keyboard;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Cells.Cell;
+import com.madbros.adventurecraft.Utils.Helpers;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class InventoryState extends MainState {
 	public InventoryState() {
 		type = State.INVENTORY;
 	}
 	
-	public void checkHover(boolean leftMouseButtonPressed, boolean rightMouseButtonPressed) {
+	@Override
+	protected void getAdditionalKeyboardInput(boolean eventState, int key) {
+		if(eventState) {
+			switch(key) {
+				case Keyboard.KEY_E: Game.toggleInventoryState(); break; //TODO: Game.inventory.dropItemsInCraftingGrid();
+			}
+		}
+	}
+	
+	@Override
+	protected void getAdditionalMouseInput() {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
 		Cell[][] cells = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted};
 		
@@ -19,11 +32,9 @@ public class InventoryState extends MainState {
 			for(int j = 0; j < cells[i].length; j++) {
 				if(mouseRect.detectCollision(cells[i][j].cellRect)) {
 					cells[i][j].isHighlighted = true;
-					if(leftMouseButtonPressed) {
-						cells[i][j].handleLeftClick(Game.inventory);
-					} else if(rightMouseButtonPressed) {
-						cells[i][j].handleRightClick(Game.inventory);
-					}
+					
+					if(leftMouseButtonPressed) cells[i][j].handleLeftClick(Game.inventory);
+					else if(rightMouseButtonPressed) cells[i][j].handleRightClick(Game.inventory);
 				} else {
 					cells[i][j].isHighlighted = false;
 				}
@@ -32,34 +43,20 @@ public class InventoryState extends MainState {
 	}
 	
 	@Override
-	public void handleOtherKeyboardInput(boolean eventState, int key) {
-		if(eventState) {
-			switch(key) {
-			case Keyboard.KEY_E:
-				Game.inventory.toggleInventoryState();
-				//TODO: Game.inventory.dropItemsInCraftingGrid();
-				break;
-			}
-		}
-	}
-	
-	@Override
-	public void handleOtherMouseInput(boolean eventState, int key) {
-		
-	}
-	
-	@Override
-	public void handleOtherInput(boolean leftMouseButtonPressed, boolean rightMouseButtonPressed) {
-		checkHover(leftMouseButtonPressed, rightMouseButtonPressed);
-	}
-	
-	@Override
-	public void updateOther() {
+	protected void updateStates() {
+		super.updateStates();
 		Game.character.cycleWalkAnimation();
 	}
 	
 	@Override
-	public void renderMenu() {
+	protected void renderTextures() {
+		super.renderTextures();
 		Game.inventory.renderFull();
+	}
+	
+	@Override
+	protected void renderText() {
+		super.renderText();
+		Game.inventory.renderTextFull();
 	}
 }
