@@ -11,24 +11,24 @@ public abstract class CollisionTile extends Tile {
 		isCollidable = true;
 	}
 	
-	public void characterDidCollide(int dir, int move, Rect charCRect, Rect tileRect) {
+	public void heroDidCollide(int dir, int move, Rect charCRect, Rect tileRect) {
 		int extra;
 		switch(dir) {
 		case DOWN:
 			extra = move - charCRect.getBottomCollisionDiff(tileRect);
-			Game.character.yMove(-move + extra);
+			Game.hero.yMove(-move + extra);
 			break;
 		case UP:
 			extra = move - charCRect.getTopCollisionDiff(tileRect);
-			Game.character.yMove(-move + extra);
+			Game.hero.yMove(-move + extra);
 			break;
 		case LEFT:
 			extra = move - charCRect.getLeftCollisionDiff(tileRect);
-			Game.character.xMove(-move + extra);
+			Game.hero.xMove(-move + extra);
 			break;
 		case RIGHT:
 			extra = move - charCRect.getRightCollisionDiff(tileRect);
-			Game.character.xMove(-move + extra);
+			Game.hero.xMove(-move + extra);
 			break;
 		}
 	}

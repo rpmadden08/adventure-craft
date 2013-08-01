@@ -18,7 +18,7 @@ public class Constants {
 	//game constants
 	public static final int INITIAL_WINDOW_WIDTH = 640;
 	public static final int INITIAL_WINDOW_HEIGHT = 480;
-	public static final int RENDER_MARGIN = 2;
+	public static final int RENDER_MARGIN = 1;
 	public static final int FRAME_RATE = 60;
 	public static final String GAME_TITLE = "Adventure Craft";
 	
@@ -29,21 +29,22 @@ public class Constants {
 	public static final String CHUNKS_FOLDER = "chunks/";
 	
 	//character constants
-	public static final int CHARACTER_SIZE = 24;
+	public static final int CHARACTER_SIZE = 64;
 	public static final int UP = 1;
 	public static final int DOWN = 2;
 	public static final int LEFT = 3;
 	public static final int RIGHT = 4;
 	public static final int WALK_DOWN = 0;
-	public static final int WALK_RIGHT = 3;
-	public static final int WALK_UP = 6;
-	public static final int WALK_LEFT = 9;
+	public static final int WALK_RIGHT = 9;
+	public static final int WALK_UP = 18;
+	public static final int WALK_LEFT = 27;
 	public static final boolean VERTICAL = true;
 	public static final boolean HORIZONTAL = false;
 	
 	
 	//block constants
-	public static final int TILE_SIZE = 16;
+	public static final int TILE_SIZE = 64;
+	public static final int TEXTURE_SIZE = 32;
 	
 	//inventory constants
 	public static final int INV_MENU_TILE_SIZE = 32;
@@ -72,7 +73,7 @@ public class Constants {
 	public static final int CRAFTED = 3;
 	
 	//level constants
-	public static final int CHUNK_SIZE = 16;	//keep between 12 and 16
+	public static final int CHUNK_SIZE = 8;	//keep between 12 and 16
 	public static final int CHUNKS_IN_A_ROW = 5;	//also columns
 	public static final int TILES_PER_ROW = CHUNK_SIZE*CHUNKS_IN_A_ROW;	//also columns
 	
@@ -90,6 +91,13 @@ public class Constants {
 	public static final int WATER = 5;
 	public static final int TREE = 6;
 	public static final int HOLE = 7;
+	public static final int DARK_DIRT = 8;
+	
+	//Block Layers
+	public static final int DARK_DIRT_LAYER = 0;
+	public static final int LIGHT_DIRT_LAYER = 1;
+	public static final int GRASS_LAYER = 2;
+	public static final int WATER_LAYER = 3;
 	
 	//Collisions
 	public static enum Collision {
@@ -134,18 +142,20 @@ public class Constants {
 	public static final int COLLISION_DETECTION_BUTTON = 3;
 	
 	//Auto Tiling
-	public static final int SINGLE_TILE = 0;
-	public static final int MERGE_TILE = 1;
-	public static final int TOP_LEFT_TILE= 2;
-	public static final int TOP_TILE = 3;
-	public static final int TOP_RIGHT_TILE= 4;
-	public static final int LEFT_TILE = 5;
-	public static final int MIDDLE_TILE = 6;
-	public static final int RIGHT_TILE = 7;
-	public static final int BOTTOM_LEFT_TILE = 8;
-	public static final int BOTTOM_TILE = 9;
-	public static final int BOTTOM_RIGHT_TILE = 10;
-	public static final int UL_TOP_LEFT_CORNER_TILE = 11;
+	public static final int TOP_LEFT_TILE= 0;
+	public static final int TOP_TILE = 1;
+	public static final int TOP_RIGHT_TILE= 2;
+	public static final int LEFT_TILE = 3;
+	public static final int MIDDLE_TILE = 4;
+	public static final int RIGHT_TILE = 5;
+	public static final int BOTTOM_LEFT_TILE = 6;
+	public static final int BOTTOM_TILE = 7;
+	public static final int BOTTOM_RIGHT_TILE = 8;
+	
+	public static final int MERGE_TILE_TOP_LEFT = 9;
+	public static final int MERGE_TILE_TOP_RIGHT = 10;
+	public static final int MERGE_TILE_BOTTOM_LEFT = 11;
+	public static final int MERGE_TILE_BOTTOM_RIGHT = 12;
 	
 	//Main Menu
 	public static final int MAIN_MENU_WIDTH = 100;
@@ -167,39 +177,41 @@ public class Constants {
 		TILE_HASH.put(DIRT, new DirtTile());
 		TILE_HASH.put(WATER, new WaterTile());
 		TILE_HASH.put(TREE, new TreeTile());
+		TILE_HASH.put(DARK_DIRT, new DarkDirtTile());
+		TILE_HASH.put(AIR, new NoTile());
 		
-		TOP_LEFT_AUTO_TILE_HASH.put(0, SINGLE_TILE);
-		TOP_LEFT_AUTO_TILE_HASH.put(1, SINGLE_TILE);
+		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);
+		TOP_LEFT_AUTO_TILE_HASH.put(1, TOP_LEFT_TILE);
 		TOP_LEFT_AUTO_TILE_HASH.put(2, LEFT_TILE);
 		TOP_LEFT_AUTO_TILE_HASH.put(3, LEFT_TILE);
 		TOP_LEFT_AUTO_TILE_HASH.put(8, TOP_TILE);
 		TOP_LEFT_AUTO_TILE_HASH.put(9, TOP_TILE);
-		TOP_LEFT_AUTO_TILE_HASH.put(10, MERGE_TILE);
+		TOP_LEFT_AUTO_TILE_HASH.put(10, MERGE_TILE_BOTTOM_RIGHT);	//MERGE_TILE_TOP_LEFT);
 		TOP_LEFT_AUTO_TILE_HASH.put(11, MIDDLE_TILE);
 		
-		TOP_RIGHT_AUTO_TILE_HASH.put(0, SINGLE_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(0, TOP_RIGHT_TILE);
 		TOP_RIGHT_AUTO_TILE_HASH.put(2, RIGHT_TILE);
-		TOP_RIGHT_AUTO_TILE_HASH.put(4, SINGLE_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(4, TOP_RIGHT_TILE);
 		TOP_RIGHT_AUTO_TILE_HASH.put(6, RIGHT_TILE);
 		TOP_RIGHT_AUTO_TILE_HASH.put(16, TOP_TILE);
-		TOP_RIGHT_AUTO_TILE_HASH.put(18, MERGE_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(18, MERGE_TILE_BOTTOM_LEFT);	//MERGE_TILE_TOP_RIGHT);
 		TOP_RIGHT_AUTO_TILE_HASH.put(20, TOP_TILE);
 		TOP_RIGHT_AUTO_TILE_HASH.put(22, MIDDLE_TILE);
 
-		BOTTOM_LEFT_AUTO_TILE_HASH.put(0, SINGLE_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(0, BOTTOM_LEFT_TILE);
 		BOTTOM_LEFT_AUTO_TILE_HASH.put(8, BOTTOM_TILE);
-		BOTTOM_LEFT_AUTO_TILE_HASH.put(32, SINGLE_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(32, BOTTOM_LEFT_TILE);
 		BOTTOM_LEFT_AUTO_TILE_HASH.put(40, BOTTOM_TILE);
 		BOTTOM_LEFT_AUTO_TILE_HASH.put(64, LEFT_TILE);
-		BOTTOM_LEFT_AUTO_TILE_HASH.put(72, MERGE_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(72, MERGE_TILE_TOP_RIGHT);	//MERGE_TILE_BOTTOM_LEFT);
 		BOTTOM_LEFT_AUTO_TILE_HASH.put(96, LEFT_TILE);
 		BOTTOM_LEFT_AUTO_TILE_HASH.put(104, MIDDLE_TILE);
 
-		BOTTOM_RIGHT_AUTO_TILE_HASH.put(0, SINGLE_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(0, BOTTOM_RIGHT_TILE);
 		BOTTOM_RIGHT_AUTO_TILE_HASH.put(16, BOTTOM_TILE);
 		BOTTOM_RIGHT_AUTO_TILE_HASH.put(64, RIGHT_TILE);
-		BOTTOM_RIGHT_AUTO_TILE_HASH.put(80, MERGE_TILE);
-		BOTTOM_RIGHT_AUTO_TILE_HASH.put(128, SINGLE_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(80, MERGE_TILE_TOP_LEFT);	//MERGE_TILE_BOTTOM_RIGHT);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(128, BOTTOM_RIGHT_TILE);
 		BOTTOM_RIGHT_AUTO_TILE_HASH.put(144, BOTTOM_TILE);
 		BOTTOM_RIGHT_AUTO_TILE_HASH.put(192, RIGHT_TILE);
 		BOTTOM_RIGHT_AUTO_TILE_HASH.put(208, MIDDLE_TILE);

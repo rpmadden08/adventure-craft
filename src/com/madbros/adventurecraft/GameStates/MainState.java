@@ -21,29 +21,24 @@ public class MainState extends GameState {
 	protected void getAdditionalKeyboardInput(boolean eventState, int key) {
 		if(eventState)
 			switch(key) {
-				case Keyboard.KEY_E: Game.toggleInventoryState(); Game.character.turnWalkingOff(); break;
-				case Keyboard.KEY_W: Game.character.startMoving(UP); break;
-				case Keyboard.KEY_A: Game.character.startMoving(LEFT); break;
-				case Keyboard.KEY_S: Game.character.startMoving(DOWN); break;
-				case Keyboard.KEY_D: Game.character.startMoving(RIGHT); break;
+				case Keyboard.KEY_E: Game.toggleInventoryState(); Game.hero.turnWalkingOff(); break;
+				case Keyboard.KEY_W: Game.hero.startMoving(UP); break;
+				case Keyboard.KEY_A: Game.hero.startMoving(LEFT); break;
+				case Keyboard.KEY_S: Game.hero.startMoving(DOWN); break;
+				case Keyboard.KEY_D: Game.hero.startMoving(RIGHT); break;
 				case Keyboard.KEY_U: System.out.println(Game.debugger.getTimeDiff()); break;	//for debugging stuff
 			}
 		else {
 			switch(key) {
-				case Keyboard.KEY_W: Game.character.stopMoving(UP); break;
-				case Keyboard.KEY_A: Game.character.stopMoving(LEFT); break;
-				case Keyboard.KEY_S: Game.character.stopMoving(DOWN); break;
-				case Keyboard.KEY_D: Game.character.stopMoving(RIGHT); break;
+				case Keyboard.KEY_W: Game.hero.stopMoving(UP); break;
+				case Keyboard.KEY_A: Game.hero.stopMoving(LEFT); break;
+				case Keyboard.KEY_S: Game.hero.stopMoving(DOWN); break;
+				case Keyboard.KEY_D: Game.hero.stopMoving(RIGHT); break;
 			}
 		}
 	}
 	
-	protected void getAdditionalMouseInput() {
-		if(leftMouseButtonPressed) Game.inventory.useActiveItem(LEFT);
-		else if(rightMouseButtonPressed) Game.inventory.useActiveItem(RIGHT);
-
-		//level check mouse input for block highlightinGame...
-	}
+	protected void getAdditionalMouseInput() {}
 	
 	@Override
 	protected void getKeyboardInput() {
@@ -86,15 +81,16 @@ public class MainState extends GameState {
 	
 	@Override
 	protected void updateStates() {
-		Game.character.update(delta);
+		Game.hero.update(delta);
 		Game.level.update();
+		Game.inventory.update();
 		Game.debugger.update();
 	}
 		
 	@Override
 	protected void renderTextures() {
 		Game.level.render();
-		Game.character.render();
+		Game.hero.render();
 		Game.inventory.render();
 	}
 	

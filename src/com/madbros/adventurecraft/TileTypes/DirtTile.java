@@ -6,7 +6,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 public class DirtTile extends Tile {
 	public DirtTile() {
-		isBaseTile = true;
+		layer = LIGHT_DIRT_LAYER;
 		isCollidable = false;
 		currentTexture = 0;
 		textures = Textures.dirtTextures;

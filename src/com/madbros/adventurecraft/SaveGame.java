@@ -17,8 +17,8 @@ public class SaveGame {
 		for(int x = 0; x < CHUNK_SIZE; x++) {
 			for(int y = 0; y < CHUNK_SIZE; y++) {
 				JSONArray tiles = new JSONArray();
-				for(int i = 0; i < chunk[x][y].tiles.length; i++) {
-					tiles.add(chunk[x][y].tiles[i].id);
+				for(int i = 0; i < chunk[x][y].layers.length; i++) {
+					tiles.add(chunk[x][y].layers[i].id);
 				}
 				obj.put("tiles" + x + "-" + y, tiles);
 				obj.put("x" + x + "-" + y, chunk[x][y].aRect.x);

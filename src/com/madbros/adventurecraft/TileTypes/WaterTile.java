@@ -9,9 +9,9 @@ public class WaterTile extends CollisionTile {
 	public WaterTile() {
 		super();
 		currentTexture = 0;
-		isBaseTile = true;
+		layer = WATER_LAYER;
 		textures = Textures.waterTextures;
-		margin = new Margin(1, 1, 0, 0);
+		margin = new Margin(14, 14, 14, 14);
 		id = WATER;
 	}
 	

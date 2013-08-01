@@ -5,6 +5,7 @@ import static com.madbros.adventurecraft.Constants.TILE_SIZE;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 
+import com.madbros.adventurecraft.TileTypes.CollisionTile;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -14,25 +15,26 @@ public class Hero {
 	//animations
 	Sprite[] animations;
 	
-	int[] walkingAnimationCycle = {0, 1, 0, 2};
+//	int[] walkingAnimationCycle = {0, 1, 0, 2};
+	int[] walkingAnimationCycle = {1, 2, 3, 4, 5, 6, 7, 8};
 	int currentAnimation = WALK_DOWN; //where the animation begins in the sprite animations array
 	int currentWalkingAnimationPos = 0;	//what part of the walk animation cycle are we in (0 through 3)
 	
 	int timeSinceLastAnimation = 0;
-	int animationTimePerFrame = 10;
+	int animationTimePerFrame = 5;
 
-	Margin margin = new Margin(4, 4, 12, 0); //left, right, top, bottom
+	Margin margin = new Margin(17, 17, 29, 1); //new Margin(17, 17, 45, 1); //left, right, top, bottom
 	
 	//absolute position of upper left corner
 	public Rect aRect = new Rect(TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
 						  TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
 						  CHARACTER_SIZE, CHARACTER_SIZE);
-	public Rect sRect = new Rect(Game.centerScreenX, Game.centerScreenY, CHARACTER_SIZE, CHARACTER_SIZE);
+	public Rect sRect = new Rect(Game.centerScreenX - CHARACTER_SIZE/2, Game.centerScreenY - CHARACTER_SIZE/2, CHARACTER_SIZE, CHARACTER_SIZE);
 	
 	boolean isMovingLeft = false, isMovingRight = false, isMovingUp = false, isMovingDown = false;
 	boolean isMoving = false, isAttacking = false;
 	
-	public static float currentSpeed = 0.09f;
+	public static float currentSpeed = 0.19f;
 	
 	Block[] collisionDetectionBlocks = new Block[9];
 		
@@ -158,8 +160,8 @@ public class Hero {
 
 	public void getCollisionBlocks() {
 		//get position in activeBlocks array
-		int x = Game.level.renderRect.x2() - (sRect.x + margin.left) / TILE_SIZE - 1;//(aRect.x + margin.left) / TILE_SIZE;
-		int y = Game.level.renderRect.y2() - (sRect.y) / TILE_SIZE - 1;//(aRect.y) / TILE_SIZE;
+		int x = Game.level.renderRect.x2() - (sRect.x2() - margin.right) / TILE_SIZE - 2;//(aRect.x + margin.left) / TILE_SIZE;
+		int y = Game.level.renderRect.y2() - (sRect.y2() - margin.bottom) / TILE_SIZE - 2;//(aRect.y) / TILE_SIZE;
 		
 		int j = 0;
 		for(int i = 0; i < collisionDetectionBlocks.length; i++) {
@@ -177,7 +179,7 @@ public class Hero {
 			
 			for(int i = 0; i < collisionDetectionBlocks.length; i++) {
 				if(collisionDetectionBlocks[i] != null) {
-					if(collisionDetectionBlocks[i].isCollidable) {		
+					if(collisionDetectionBlocks[i].isCollidable()) {		
 						int dir = 0;
 						boolean didDetectCollision = false;
 						if(isVerticalMovement) {
@@ -199,8 +201,9 @@ public class Hero {
 								didDetectCollision = true;
 							}
 						}
-						collisionDetectionBlocks[i].collisionTile.characterDidCollide(dir, move, charCRect, collisionDetectionBlocks[i].cRect);
-						collisionDetectionBlocks[i].sRect = new Rect(collisionDetectionBlocks[i].cRect, this);	//for debug mode
+						CollisionTile t = (CollisionTile)(collisionDetectionBlocks[i].layers[WATER_LAYER]);
+						t.heroDidCollide(dir, move, charCRect, collisionDetectionBlocks[i].cRect);
+						collisionDetectionBlocks[i].sRect = new Rect(collisionDetectionBlocks[i].cRect, this);	//yellow block in debug mode
 						if(didDetectCollision) break;
 					}
 				}
@@ -277,7 +280,7 @@ public class Hero {
 			Color.yellow.bind();
 			if(collisionDetectionBlocks[0] != null) {
 				for(int i = 0; i < collisionDetectionBlocks.length; i++) {
-					if(collisionDetectionBlocks[i].sRect != null) {
+					if(collisionDetectionBlocks[i].sRect != null && collisionDetectionBlocks[i].isCollidable()) {
 						Textures.pixel.draw(collisionDetectionBlocks[i].sRect);
 					}
 				}

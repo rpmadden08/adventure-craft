@@ -22,9 +22,9 @@ public class DebugMenu extends Menu {
 	
 	@Override
 	public void setupMenu() {
-		collisionTilesAreOn = true;
+		collisionTilesAreOn = false;
 		collisionRectsAreOn = false;
-		chunkBoundariesAreOn = true;
+		chunkBoundariesAreOn = false;
 		collisionDetectionIsOn = true;
 		menuIsActive = false;
 		

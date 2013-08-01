@@ -39,4 +39,15 @@ public class Helpers {
 		}
 		return false;
 	}
+
+	public static void drawRect(Rect r) {
+		Textures.pixel.draw(r.x, r.y, r.w, 1);
+		Textures.pixel.draw(r.x, r.y, 1, r.h);
+		Textures.pixel.draw(r.x2()-1, r.y, 1, r.h);
+		Textures.pixel.draw(r.x, r.y2()-1, r.w, 1);
+	}
+	
+//	public Rect sRectToARect(Rect sRect) {
+//		return new Rect(Game.hero.aRect.x - (Game.hero.sRect.x - sRect.x), Game.hero.aRect.y - (Game.hero.sRect.y - sRect.y), sRect.w, sRect.h);
+//	}
 }

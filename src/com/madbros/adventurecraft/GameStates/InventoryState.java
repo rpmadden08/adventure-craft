@@ -44,8 +44,10 @@ public class InventoryState extends MainState {
 	
 	@Override
 	protected void updateStates() {
-		super.updateStates();
-		Game.character.cycleWalkAnimation();
+		Game.hero.update(delta);
+		Game.level.update();
+		Game.debugger.update();
+		Game.hero.cycleWalkAnimation();
 	}
 	
 	@Override

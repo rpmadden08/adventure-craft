@@ -1,7 +1,8 @@
 package com.madbros.adventurecraft.Utils;
 
 import static com.madbros.adventurecraft.Constants.*;
-import com.madbros.adventurecraft.Hero;
+
+import com.madbros.adventurecraft.*;
 
 public class Rect {
 	public int x;

@@ -16,8 +16,8 @@ public class Game {
 	public static int renderWidth = (int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN;
 	public static int renderHeight = (int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN;
 	public static int pixelModifier = 1;
-	public static int centerScreenX = (int)Math.floor(INITIAL_WINDOW_WIDTH/2);
-	public static int centerScreenY = (int)Math.floor(INITIAL_WINDOW_HEIGHT/2);
+	public static int centerScreenX = (int)Math.floor(INITIAL_WINDOW_WIDTH/2);	//640/2
+	public static int centerScreenY = (int)Math.floor(INITIAL_WINDOW_HEIGHT/2);	//480/2
 	public static int currentScreenSizeX = INITIAL_WINDOW_WIDTH;
 	public static int currentScreenSizeY = INITIAL_WINDOW_HEIGHT;
 	
@@ -28,7 +28,7 @@ public class Game {
 	public static Debugger debugger;
 	public static DebugMenu debugMenu;
 	public static Level level;
-	public static Hero character;
+	public static Hero hero;
 	public static Inventory inventory;
 	
 	protected void createWindow() {
@@ -79,8 +79,8 @@ public class Game {
 		batch = new SpriteBatch(Textures.atlas);
 		debugMenu = new DebugMenu();
 		
-		currentState = new MainMenuState();
-//		currentState = new MainState(true);
+//		currentState = new MainMenuState();
+		currentState = new MainState(true);
 	}
 	
 	public void gameLoop() {
@@ -143,7 +143,7 @@ public class Game {
 		//make other folders...
 		
 		level = new Level();
-		character = new Hero();
+		hero = new Hero();
 		inventory = new Inventory();
 		
 		Game.currentState = new MainState();

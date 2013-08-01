@@ -10,9 +10,9 @@ public class TreeTile extends CollisionTile {
 		super();
 		currentTexture = 0;
 		textures = Textures.treeTextures;
-		margin = new Margin(1, 1, 0, 0);
+		margin = new Margin(9, 9, 12, 11);
 		id = TREE;
-		isBaseTile = false;
+		layer = WATER_LAYER;
 	}
 	
 	@Override

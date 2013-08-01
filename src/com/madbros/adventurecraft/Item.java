@@ -36,11 +36,11 @@ public abstract class Item {
 	}
 	
 	public void useRight() {
-		
+		//place 
 	}
 	
 	public void useLeft() {
-		
+		//attack
 	}
 	
 	public boolean isValidRecipe(Cell[] craftingSlots) {
