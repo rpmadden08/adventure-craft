@@ -16,8 +16,8 @@ public class Constants {
 	public static HashMap<Integer, Integer> BOTTOM_RIGHT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
 	
 	//game constants
-	public static final int INITIAL_WINDOW_WIDTH = 640;
-	public static final int INITIAL_WINDOW_HEIGHT = 480;
+	public static final int INITIAL_WINDOW_WIDTH = 1280;// 640
+	public static final int INITIAL_WINDOW_HEIGHT = 800;//480
 	public static final int RENDER_MARGIN = 1;
 	public static final int FRAME_RATE = 60;
 	public static final String GAME_TITLE = "Adventure Craft";
@@ -48,10 +48,10 @@ public class Constants {
 	
 	//inventory constants
 	public static final int INV_MENU_TILE_SIZE = 32;
-	public static final int INV_CELL_SIZE = 25;
-	public static final int ITEM_SIZE = 16;
+	public static final int INV_CELL_SIZE = 50;
+	public static final int ITEM_SIZE =32;
 	
-	public static final int INV_LENGTH = 8;
+	public static final int INV_LENGTH = 10;
 	public static final int INV_HEIGHT = 4;
 	
 	public static final Margin INV_MENU_MARGIN = new Margin(50, 50, 20, 100);
@@ -73,7 +73,7 @@ public class Constants {
 	public static final int CRAFTED = 3;
 	
 	//level constants
-	public static final int CHUNK_SIZE = 8;	//keep between 12 and 16
+	public static final int CHUNK_SIZE = 16;	//keep between 12 and 16
 	public static final int CHUNKS_IN_A_ROW = 5;	//also columns
 	public static final int TILES_PER_ROW = CHUNK_SIZE*CHUNKS_IN_A_ROW;	//also columns
 	
