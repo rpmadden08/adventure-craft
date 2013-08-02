@@ -61,8 +61,8 @@ public class Constants {
 														  INITIAL_WINDOW_WIDTH - INV_MENU_MARGIN.getHorizontalLength(),
 														  INITIAL_WINDOW_HEIGHT - INV_MENU_MARGIN.getVerticalLength());
 	public static final Rect INV_BAR_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_CELL_SIZE + INV_CELL_MARGIN.right) * INV_LENGTH + INV_CELL_SIZE) / 2, INITIAL_WINDOW_HEIGHT-50);
-	public static final Rect INV_BAG_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_CELL_SIZE + INV_CELL_MARGIN.right) * INV_LENGTH + INV_CELL_SIZE) / 2, INV_BACKDROP_RECT.y2()-150);
-	public static final Rect INV_CHAR_RECT = new Rect(INV_BACKDROP_RECT.x2() - 104, INV_BACKDROP_RECT.y + 30, CHARACTER_SIZE*4, CHARACTER_SIZE*4);
+	public static final Rect INV_BAG_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_CELL_SIZE + INV_CELL_MARGIN.right) * INV_LENGTH + INV_CELL_SIZE) / 2, INV_BACKDROP_RECT.y2()- INV_BAR_RECT.h*4);
+	public static final Rect INV_CHAR_RECT = new Rect(INV_BACKDROP_RECT.x2() - CHARACTER_SIZE*4, INV_BACKDROP_RECT.y + 30, CHARACTER_SIZE*4, CHARACTER_SIZE*4);
 	public static final Rect INV_CRAFTING_RECT = new Rect(130, 50, 2*(INV_CELL_SIZE+2), 2*(INV_CELL_SIZE+2));
 	
 	//item/cell constants
