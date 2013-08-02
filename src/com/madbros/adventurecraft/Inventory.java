@@ -59,6 +59,8 @@ public class Inventory {
 		invBar[4].item.stackSize = 99;
 		invBar[5].item = new EarthClump();
 		invBar[5].item.stackSize = 99;
+		invBar[6].item = new Shovel();
+		invBar[6].item.stackSize = 1;
 	}
 	
 	public void update() {
@@ -84,7 +86,7 @@ public class Inventory {
 		for(int i=0;i < invBar.length; i++) {			
 			invBar[i].render();
 			if(i == itemSelected) {
-				selectTexture.draw(invBar[i].cellRect.x - 2, invBar[i].cellRect.y -2, invBar[i].cellRect.w + 2, invBar[i].cellRect.h + 2);
+				selectTexture.draw(invBar[i].cellRect.x - 2, invBar[i].cellRect.y -2, invBar[i].cellRect.w + 3, invBar[i].cellRect.h + 3);
 			}
 		}
 	}
