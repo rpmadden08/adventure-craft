@@ -30,6 +30,7 @@ public class Game {
 	public static Level level;
 	public static Hero hero;
 	public static Inventory inventory;
+	public static MiniMap map;
 	
 	protected void createWindow() {
 		try {
@@ -145,6 +146,7 @@ public class Game {
 		level = new Level();
 		hero = new Hero();
 		inventory = new Inventory();
+		map = new MiniMap();
 		
 		Game.currentState = new MainState();
 	}
