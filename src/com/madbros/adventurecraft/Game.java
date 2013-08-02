@@ -1,5 +1,5 @@
 package com.madbros.adventurecraft;
-
+//I'm a git master!aslkdfjas;ldkfj
 import java.io.File;
 
 import org.lwjgl.LWJGLException;
@@ -31,12 +31,30 @@ public class Game {
 	public static Hero hero;
 	public static Inventory inventory;
 	public static MiniMap map;
+
+	//public static DisplayMode displayMode = new DisplayMode(2048, 1280);
 	
 	protected void createWindow() {
 		try {
-			Display.setDisplayMode(new DisplayMode(INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT));
-			Display.setTitle(GAME_TITLE);
+//			Display.setDisplayMode(new DisplayMode(INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT));
+//			Display.setTitle(GAME_TITLE);
 			
+			//Chris' fullscreen display.
+			//Display.setDisplayMode(new DisplayMode(INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT));
+			DisplayMode[] modes = Display.getAvailableDisplayModes();
+
+			for (int i=0;i<modes.length;i++) {
+			    DisplayMode current = modes[i];
+			    System.out.println(current.getWidth() + "x" + current.getHeight() + "x" +
+			                        current.getBitsPerPixel() + " " + current.getFrequency() + "Hz");
+			}
+			
+			setDisplayMode(INITIAL_WINDOW_WIDTH,INITIAL_WINDOW_HEIGHT, true);
+			
+			//Display.setFullscreen(true);
+			
+
+
 			// limit video card to refresh rate of screen (60 Hertz on most LCDs)
 			Display.setVSyncEnabled(true);
  
@@ -52,6 +70,60 @@ public class Game {
 		} catch(LWJGLException e) {
 			throw new RuntimeException("Could not initiate LWJGL.", e);
 		}
+	}
+	
+	public static void setDisplayMode(int width, int height, boolean fullscreen) {
+
+	    // return if requested DisplayMode is already set
+	    if ((Display.getDisplayMode().getWidth() == width) && 
+	        (Display.getDisplayMode().getHeight() == height) && 
+		(Display.isFullscreen() == fullscreen)) {
+		    return;
+	    }
+
+	    try {
+	        DisplayMode targetDisplayMode = null;
+			
+		if (fullscreen) {
+		    DisplayMode[] modes = Display.getAvailableDisplayModes();
+		    int freq = 0;
+					
+		    for (int i=0;i<modes.length;i++) {
+		        DisplayMode current = modes[i];
+						
+			if ((current.getWidth() == width) && (current.getHeight() == height)) {
+			    if ((targetDisplayMode == null) || (current.getFrequency() >= freq)) {
+			        if ((targetDisplayMode == null) || (current.getBitsPerPixel() > targetDisplayMode.getBitsPerPixel())) {
+				    targetDisplayMode = current;
+				    freq = targetDisplayMode.getFrequency();
+	                        }
+	                    }
+
+			    // if we've found a match for bpp and frequence against the 
+			    // original display mode then it's probably best to go for this one
+			    // since it's most likely compatible with the monitor
+			    if ((current.getBitsPerPixel() == Display.getDesktopDisplayMode().getBitsPerPixel()) &&
+	                        (current.getFrequency() == Display.getDesktopDisplayMode().getFrequency())) {
+	                            targetDisplayMode = current;
+	                            break;
+	                    }
+	                }
+	            }
+	        } else {
+	            targetDisplayMode = new DisplayMode(width,height);
+	        }
+
+	        if (targetDisplayMode == null) {
+	            System.out.println("Failed to find value mode: "+width+"x"+height+" fs="+fullscreen);
+	            return;
+	        }
+
+	        Display.setDisplayMode(targetDisplayMode);
+	        Display.setFullscreen(fullscreen);
+				
+	    } catch (LWJGLException e) {
+	        System.out.println("Unable to setup mode "+width+"x"+height+" fullscreen="+fullscreen + e);
+	    }
 	}
 	
 	protected void initGL() {
