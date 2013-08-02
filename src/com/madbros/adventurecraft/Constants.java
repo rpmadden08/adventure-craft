@@ -48,7 +48,7 @@ public class Constants {
 	
 	//inventory constants
 	public static final int INV_MENU_TILE_SIZE = 32;
-	public static final int INV_CELL_SIZE = 50;
+	public static final int INV_CELL_SIZE = 41;
 	public static final int ITEM_SIZE =32;
 	
 	public static final int INV_LENGTH = 10;
