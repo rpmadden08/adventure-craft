@@ -8,6 +8,7 @@ public class NoTile extends Tile {
 		currentTexture = 0;
 		layer = 0;
 		isCollidable = false;
+		isDiggable = false;
 		id = AIR;
 		isMiddleTile = true;
 		topLeftAutoTile = MIDDLE_TILE;

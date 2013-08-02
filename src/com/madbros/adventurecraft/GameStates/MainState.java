@@ -58,6 +58,7 @@ public class MainState extends GameState {
 					case Keyboard.KEY_6: Game.inventory.changeSelectedItemTo(key); break;
 					case Keyboard.KEY_7: Game.inventory.changeSelectedItemTo(key); break;
 					case Keyboard.KEY_8: Game.inventory.changeSelectedItemTo(key); break;
+					case Keyboard.KEY_ESCAPE: Game.debugMenu.tester();
 					//9
 					//0
 				}

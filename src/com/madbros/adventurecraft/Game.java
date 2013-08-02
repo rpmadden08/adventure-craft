@@ -1,5 +1,5 @@
 package com.madbros.adventurecraft;
-//I'm a git master!aslkdfjas;ldkfj
+
 import java.io.File;
 
 import org.lwjgl.LWJGLException;
@@ -16,8 +16,6 @@ public class Game {
 	public static int renderWidth = (int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN;
 	public static int renderHeight = (int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN;
 	public static int pixelModifier = 1;
-	public static int centerScreenX = (int)Math.floor(INITIAL_WINDOW_WIDTH/2);	//640/2
-	public static int centerScreenY = (int)Math.floor(INITIAL_WINDOW_HEIGHT/2);	//480/2
 	public static int currentScreenSizeX = INITIAL_WINDOW_WIDTH;
 	public static int currentScreenSizeY = INITIAL_WINDOW_HEIGHT;
 	
@@ -52,7 +50,7 @@ public class Game {
 			setDisplayMode(INITIAL_WINDOW_WIDTH,INITIAL_WINDOW_HEIGHT, true);
 			
 			//Display.setFullscreen(true);
-			
+			Display.setResizable(true);
 
 
 			// limit video card to refresh rate of screen (60 Hertz on most LCDs)
@@ -161,6 +159,7 @@ public class Game {
 			currentState.getInput();
 			currentState.update();
 			currentState.render();
+			resizeIfNecessary();
 		}
 	}
 	
@@ -184,10 +183,30 @@ public class Game {
 	
 /*#########################################################*/
 	
-	protected void resize() {
-		glViewport(0, 0, Display.getWidth(), Display.getHeight());
-		// ... update our projection matrices here ...
-		//
+	protected void resizeIfNecessary() {
+		if(Display.wasResized()) {
+//			int diffX = Display.getWidth() - currentScreenSizeX;
+//			int diffY = Display.getHeight() - currentScreenSizeY;
+//			currentScreenSizeX = Display.getWidth(); currentScreenSizeY = Display.getHeight();
+//			hero.sRect = new Rect(getCenterScreenX() - CHARACTER_SIZE/2, getCenterScreenY() - CHARACTER_SIZE/2, CHARACTER_SIZE, CHARACTER_SIZE);
+//			
+//			level.offsetX -= diffX;
+//			while(Game.level.offsetX >= TILE_SIZE) {
+//				Game.level.offsetX -= TILE_SIZE;
+//				Game.level.renderRect.x++;
+//			} 
+//			while(Game.level.offsetX < 0) {
+//				Game.level.offsetX += TILE_SIZE;
+//				Game.level.renderRect.x--;
+//			}
+//			level.offsetY -= diffY;
+//			
+//			glViewport(0, 0, Display.getWidth(), Display.getHeight());
+//			glMatrixMode(GL_PROJECTION);
+//			glLoadIdentity();
+//			glOrtho(0, currentScreenSizeX, currentScreenSizeY, 0, 1, -1);
+//			glMatrixMode(GL_MODELVIEW);
+		}
 	}
 	
 	public static void toggleInventoryState() {
@@ -221,5 +240,13 @@ public class Game {
 		map = new MiniMap();
 		
 		Game.currentState = new MainState();
+	}
+	
+	public static int getCenterScreenX() {
+		return (int)Math.floor(currentScreenSizeX/2);
+	}
+	
+	public static int getCenterScreenY() {
+		return (int)Math.floor(currentScreenSizeY/2);
 	}
 }

@@ -3,14 +3,14 @@ package com.madbros.adventurecraft.Items;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.Block;
-import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Textures;
 import com.madbros.adventurecraft.TileTypes.*;
 
-public class GrassSeed extends SeedItem {
+public class GrassSeed extends BlockItem {
 	public GrassSeed() {
 		id = GRASS_SEED;
-		tileID = GRASS;
+		tileId = GRASS;
+		placeableTileIds = new int[]{DIRT, DARK_DIRT};
 		texture = Textures.grassSeedTexture;
 	}
 	
@@ -20,15 +20,7 @@ public class GrassSeed extends SeedItem {
 	}
 	
 	@Override
-	public void useRight() {
-		Tile tile = TILE_HASH.get(tileID).createNew();
-		Block hB = Game.level.highlightedBlock;
-		if(tile.id != hB.layers[GRASS_LAYER].id && (hB.layers[DARK_DIRT_LAYER].id == DIRT || hB.layers[LIGHT_DIRT_LAYER].id == DIRT) && 
-			(!hB.layers[WATER_LAYER].isMiddleTile || hB.layers[WATER_LAYER].id == AIR)) {
-			hB.layers[GRASS_LAYER] = tile;
-			stackSize -= 1;
-			Game.inventory.deleteItemIfNecessary();
-			Game.level.autoTileHighlightedBlock();
-		}
+	public void placeTile(Block hB, Tile tile) {
+		hB.layers[GRASS_LAYER] = tile;
 	}
 }

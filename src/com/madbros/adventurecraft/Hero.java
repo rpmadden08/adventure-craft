@@ -29,7 +29,7 @@ public class Hero {
 	public Rect aRect = new Rect(TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
 						  TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
 						  CHARACTER_SIZE, CHARACTER_SIZE);
-	public Rect sRect = new Rect(Game.centerScreenX - CHARACTER_SIZE/2, Game.centerScreenY - CHARACTER_SIZE/2, CHARACTER_SIZE, CHARACTER_SIZE);
+	public Rect sRect = new Rect(Game.getCenterScreenX() - CHARACTER_SIZE/2, Game.getCenterScreenY() - CHARACTER_SIZE/2, CHARACTER_SIZE, CHARACTER_SIZE);
 	
 	boolean isMovingLeft = false, isMovingRight = false, isMovingUp = false, isMovingDown = false;
 	boolean isMoving = false, isAttacking = false;
@@ -201,7 +201,7 @@ public class Hero {
 								didDetectCollision = true;
 							}
 						}
-						CollisionTile t = (CollisionTile)(collisionDetectionBlocks[i].layers[WATER_LAYER]);
+						CollisionTile t = collisionDetectionBlocks[i].collisionTile;
 						t.heroDidCollide(dir, move, charCRect, collisionDetectionBlocks[i].cRect);
 						collisionDetectionBlocks[i].sRect = new Rect(collisionDetectionBlocks[i].cRect, this);	//yellow block in debug mode
 						if(didDetectCollision) break;

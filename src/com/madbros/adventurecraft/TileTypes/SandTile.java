@@ -4,18 +4,18 @@ import com.madbros.adventurecraft.*;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-public class DirtTile extends Tile {
-	public DirtTile() {
-		maxHp = 20;
-		currentHp = 20;
-		layer = LIGHT_DIRT_LAYER;
+public class SandTile extends Tile {
+	public SandTile() {
+		maxHp = 10;
+		currentHp = 10;
+		layer = GRASS_LAYER;
 		isCollidable = false;
 		currentTexture = 0;
-		textures = Textures.dirtTextures;
-		id = DIRT;
+		textures = Textures.sandTextures;
+		id = SAND;
 	}
 	
 	public Tile createNew() {
-		return new DirtTile();
+		return new SandTile();
 	}
 }

@@ -7,14 +7,23 @@ import com.madbros.adventurecraft.Textures;
 public class DarkDirtTile extends Tile{
 
 	public DarkDirtTile() {
+		maxHp = 20;
+		currentHp = maxHp;
 		layer = DARK_DIRT_LAYER;
 		isCollidable = false;
+		isMiddleTile = true;
 		currentTexture = 0;
-		textures = Textures.darkDirtTextures;
+		textures = Textures.darkDirtTexture;
 		id = DARK_DIRT;
+		isDiggable = true;
 	}
 	
 	public Tile createNew() {
 		return new DarkDirtTile();
+	}
+	
+	@Override
+	public void render(int x, int y) {
+		textures[0].draw(x, y, TILE_SIZE, TILE_SIZE);
 	}
 }

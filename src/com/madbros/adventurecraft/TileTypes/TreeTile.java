@@ -13,6 +13,7 @@ public class TreeTile extends CollisionTile {
 		margin = new Margin(9, 9, 12, 11);
 		id = TREE;
 		layer = WATER_LAYER;
+		isDiggable = false;
 	}
 	
 	@Override

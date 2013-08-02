@@ -5,18 +5,18 @@ import com.madbros.adventurecraft.Utils.Margin;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-public class WaterTile extends CollisionTile {
-	public WaterTile() {
+public class HoleTile extends CollisionTile {
+	public HoleTile() {
 		super();
 		currentTexture = 0;
 		layer = WATER_LAYER;
-		textures = Textures.waterTextures;
+		textures = Textures.holeTextures;
 		margin = new Margin(14, 14, 14, 14);
-		id = WATER;
+		id = HOLE;
 		isDiggable = false;
 	}
 	
 	public Tile createNew() {
-		return new WaterTile();
+		return new HoleTile();
 	}
 }

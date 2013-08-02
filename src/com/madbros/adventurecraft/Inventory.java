@@ -52,13 +52,14 @@ public class Inventory {
 		invBar[1].item = new Log();
 		invBar[1].item.stackSize = 10;
 		invBar[2].item = new Log();
-		invBar[2].item.stackSize = 10;
-		invBar[3].item = new Log();
-		invBar[3].item.stackSize = 50;
+		invBar[2].item.stackSize = 99;
+		invBar[3].item = new SandClump();
+		invBar[3].item.stackSize = 99;
 		invBar[4].item = new GrassSeed();
 		invBar[4].item.stackSize = 99;
 		invBar[5].item = new EarthClump();
 		invBar[5].item.stackSize = 99;
+		invBar[6].item = new Shovel();
 	}
 	
 	public void update() {

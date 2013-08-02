@@ -6,6 +6,8 @@ import com.madbros.adventurecraft.*;
 
 public class GrassTile extends Tile {
 	public GrassTile() {
+		maxHp = 20;
+		currentHp = 20;
 		layer = GRASS_LAYER;
 		isCollidable = false;
 		currentTexture = 0;

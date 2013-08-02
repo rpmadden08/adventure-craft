@@ -4,7 +4,6 @@ TODO:
 -> Make mobs work again.
 -> Make weapon animation work again.
 -> Make main menu text input work again.
--> Create main menu again.
 -> Create saving/loading for all important data.
 
 -> Particle Engine
@@ -73,7 +72,6 @@ TODO (extended):
 
 OPTIONAL:
 > Resize Screen / Full Screen Mode
-> Infinite Map
 > Weather System
 > Day/Night System
 > Map (to view a pixel per tile map that you can use to view all visited areas)

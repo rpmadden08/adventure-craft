@@ -73,7 +73,7 @@ public class Constants {
 	public static final int CRAFTED = 3;
 	
 	//level constants
-	public static final int CHUNK_SIZE = 16;	//keep between 12 and 16
+	public static final int CHUNK_SIZE = 16;
 	public static final int CHUNKS_IN_A_ROW = 5;	//also columns
 	public static final int TILES_PER_ROW = CHUNK_SIZE*CHUNKS_IN_A_ROW;	//also columns
 	
@@ -98,6 +98,7 @@ public class Constants {
 	public static final int LIGHT_DIRT_LAYER = 1;
 	public static final int GRASS_LAYER = 2;
 	public static final int WATER_LAYER = 3;
+	public static final int OBJECT_LAYER = 4;
 	
 	//Collisions
 	public static enum Collision {
@@ -160,7 +161,7 @@ public class Constants {
 	//Main Menu
 	public static final int MAIN_MENU_WIDTH = 100;
 	public static final int MAIN_MENU_HEIGHT = 30;
-	public static final int MAIN_MENU_STARTX = Game.centerScreenX - MAIN_MENU_WIDTH / 2;
+	public static final int MAIN_MENU_STARTX = INITIAL_WINDOW_WIDTH/2 - MAIN_MENU_WIDTH / 2;
 	public static final int MAIN_MENU_STARTY = 40;
 	
 	public Constants() {
@@ -178,6 +179,7 @@ public class Constants {
 		TILE_HASH.put(WATER, new WaterTile());
 		TILE_HASH.put(TREE, new TreeTile());
 		TILE_HASH.put(DARK_DIRT, new DarkDirtTile());
+		TILE_HASH.put(SAND, new SandTile());
 		TILE_HASH.put(AIR, new NoTile());
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);

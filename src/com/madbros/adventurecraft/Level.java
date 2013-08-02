@@ -11,14 +11,15 @@ import com.madbros.adventurecraft.Utils.Rect;
 public class Level {
 	public Block[][] activeBlocks;
 	public Block highlightedBlock;
+	public Tile tileBeingAttacked = new NoTile();
 	public int highlightedBlockX = 0;
 	public int highlightedBlockY = 0;
 	public String gameName;
 	public SaveGame saveGame = new SaveGame();
 	
 	//Keeps track of what part of the activeBlocks array we're rendering. Starts off in the very center.
-	public Rect renderRect = new Rect(TILES_PER_ROW / 2 - (int)Math.ceil(Game.centerScreenX * 1.0 /TILE_SIZE),
-			  						  TILES_PER_ROW / 2 - (int)Math.ceil(Game.centerScreenY * 1.0 / TILE_SIZE),
+	public Rect renderRect = new Rect(TILES_PER_ROW / 2 - (int)Math.ceil(Game.getCenterScreenX() * 1.0 /TILE_SIZE),
+			  						  TILES_PER_ROW / 2 - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
 			  						  (int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
 			  						  (int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
@@ -33,8 +34,8 @@ public class Level {
 	public boolean isLoading = false;
 	
 	public Level() {
-		if(Game.centerScreenX % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.centerScreenX % TILE_SIZE;
-		if(Game.centerScreenY % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.centerScreenY % TILE_SIZE;
+		if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
+		if(Game.getCenterScreenY() % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.getCenterScreenY() % TILE_SIZE;
 		
 		activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
 		
@@ -54,6 +55,11 @@ public class Level {
 		
 		highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
 		highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
+		
+		if(tileBeingAttacked != highlightedBlock.getTopTile()) {
+			tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
+			tileBeingAttacked = highlightedBlock.getTopTile();
+		}
 		highlightedBlock.isHighlighted = true;
 	}
 	
@@ -168,13 +174,13 @@ public class Level {
 		int absY = y*TILE_SIZE+chunkY*CHUNK_SIZE*TILE_SIZE;
 		
 		if(noise < -0.1) {
-			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile()};
+			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile()};
     		block = new Block(waterTile, absX, absY);
     	} else if(noise > 0.1 && noise < 0.105) {
-    		Tile[] treeTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new TreeTile()};
+    		Tile[] treeTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile()};
     		block = new Block(treeTile, absX, absY);
     	} else {
-    		Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile()};
+    		Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile()};
     		block = new Block(grassTile, absX, absY);
     	}
 //		block.mapHeight = noise;
@@ -183,7 +189,7 @@ public class Level {
 	}
 	
 	public Block autoTile(Block[][] blocks, Block block, int x, int y) {
-		for(int i = 0; i < blocks[x][y].layers.length; i++) {
+		for(int i = LIGHT_DIRT_LAYER; i < blocks[x][y].layers.length; i++) {
 			int left = 0, topLeft = 0, top = 0, topRight = 0, right = 0, bottomRight = 0, bottom = 0, bottomLeft = 0;
 			if(blocks[x-1][y-1].layers[i].id == block.layers[i].id) topLeft = 1;
 			if(blocks[x][y-1].layers[i].id == block.layers[i].id) top = 2;

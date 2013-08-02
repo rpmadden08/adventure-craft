@@ -24,7 +24,6 @@ public class DebugMenu extends Menu {
 	
 	public DebugMenu() {
 		super();
-		
 	}
 	
 	@Override
@@ -52,8 +51,6 @@ public class DebugMenu extends Menu {
 		if(collisionTilesAreOn) s3 = "Collision Tiles Are On"; else s3 = "Collision Tiles Are Off";
 		if(chunkBoundariesAreOn) s4 = "Chunk Boundaries Are On"; else s4 = "Chunk Boundaries Are Off";
 		if(fullscreenIsOn) s5 = "Fullscreen Is On"; else s5 = "Fullscreen Is Off";
-		
-		
 
 		String[] strings = {s1, s2, s3, s4, "Speed-", "Speed+", s5};
 		ButtonFunction[] functions = {collisionDetection, collisionRectangles, collisionTiles, chunkBoundaries, characterSpeedDown, characterSpeedUp, tester};

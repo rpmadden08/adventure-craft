@@ -33,9 +33,7 @@ public class Helpers {
 	
 	public static boolean arrayDoesContainInt(int[] a, int b) {
 		for(int i = 0; i < a.length; i++) {
-			if(a[i] == b) {
-				return true;
-			}
+			if(a[i] == b) return true;
 		}
 		return false;
 	}
@@ -47,6 +45,9 @@ public class Helpers {
 		Textures.pixel.draw(r.x, r.y2()-1, r.w, 1);
 	}
 	
+	public static void println(String s) {
+		Game.debugger.displayedExtra = s;
+	}
 //	public Rect sRectToARect(Rect sRect) {
 //		return new Rect(Game.hero.aRect.x - (Game.hero.sRect.x - sRect.x), Game.hero.aRect.y - (Game.hero.sRect.y - sRect.y), sRect.w, sRect.h);
 //	}
