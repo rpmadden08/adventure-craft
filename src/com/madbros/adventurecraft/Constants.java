@@ -92,6 +92,7 @@ public class Constants {
 	public static final int TREE = 6;
 	public static final int HOLE = 7;
 	public static final int DARK_DIRT = 8;
+	public static final int SAPLING = 9;
 	
 	//Block Layers
 	public static final int DARK_DIRT_LAYER = 0;
@@ -126,6 +127,7 @@ public class Constants {
 	public static final int SHOVEL = 6;
 	
 	public static final int SWORD = 7;
+	public static final int SAPLING_ITEM = 8;
 	
 	//Debugger
 	public static final int	BYTES_IN_MEGABYTE = 1048576;
@@ -173,6 +175,7 @@ public class Constants {
 		ITEM_HASH.put(PLANK, new Plank());
 		ITEM_HASH.put(SHOVEL, new Shovel());
 		ITEM_HASH.put(SWORD, new Sword());
+		ITEM_HASH.put(SAPLING_ITEM, new Sapling());
 		
 		TILE_HASH.put(GRASS, new GrassTile());
 		TILE_HASH.put(DIRT, new DirtTile());
@@ -181,6 +184,7 @@ public class Constants {
 		TILE_HASH.put(DARK_DIRT, new DarkDirtTile());
 		TILE_HASH.put(SAND, new SandTile());
 		TILE_HASH.put(AIR, new NoTile());
+		TILE_HASH.put(SAPLING, new SaplingTile());
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);
 		TOP_LEFT_AUTO_TILE_HASH.put(1, TOP_LEFT_TILE);

@@ -6,6 +6,7 @@ import org.newdawn.slick.Color;
 
 import com.madbros.adventurecraft.Sprite;
 import com.madbros.adventurecraft.Textures;
+import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -18,6 +19,7 @@ public abstract class Tile {
 	public boolean isCollidable = false;
 	public boolean isDiggable = true;
 	public boolean isChoppable = false;
+	public long timeCreated = Time.getTime();
 	
 	public int id = AIR;
 	public boolean isMiddleTile = true;
@@ -45,4 +47,8 @@ public abstract class Tile {
 	}
 	
 	public abstract Tile createNew();
+	
+	public void update(int x, int y) {
+		
+	}
 }

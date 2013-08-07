@@ -26,6 +26,7 @@ public class Textures {
 	public static Sprite[] waterTextures;
 	public static Sprite[] holeTextures;
 	public static Sprite[] sandTextures;
+	public static Sprite[] saplingTexture;
 	
 	public static Sprite[] characterAnimations;
 	public static Sprite[] fireAnimationTextures;
@@ -33,6 +34,8 @@ public class Textures {
 	public static Sprite[][] menuTextures;
 	public static Sprite cellTexture;
 	public static Sprite selectTexture;
+	public static Sprite saplingItemTexture;
+
 	
 	public static Sprite grassSeedTexture;
 	public static Sprite earthClumpTexture;
@@ -92,8 +95,9 @@ public class Textures {
 				}
 			}
 			
+			saplingTexture = new Sprite[]{new Sprite(atlas, 96, 608, 64, 64)};
 			treeTextures = new Sprite[1];
-			treeTextures[0] = new Sprite(atlas, 0, 352, 64, 64);
+			treeTextures[0] = new Sprite(atlas, 160, 608, 64, 64);
 			
 			menuTextures = new Sprite[3][3];
 			for(int i = 0; i < 3; i++) {
@@ -137,6 +141,7 @@ public class Textures {
 			sandClumpTexture = new Sprite(atlas, TEXTURE_SIZE*2, 480, TEXTURE_SIZE, TEXTURE_SIZE);
 			logTexture = new Sprite(atlas, TEXTURE_SIZE*3, 480, TEXTURE_SIZE, TEXTURE_SIZE);
 			plankTexture = new Sprite(atlas, TEXTURE_SIZE*4, 480, TEXTURE_SIZE, TEXTURE_SIZE);
+			saplingItemTexture = new Sprite(atlas, 112, 624, TEXTURE_SIZE, TEXTURE_SIZE);
 			
 			swordTexture = new Sprite(atlas, TEXTURE_SIZE*0, 512, TEXTURE_SIZE, TEXTURE_SIZE);
 			shovelTexture = new Sprite(atlas, TEXTURE_SIZE*1, 512, TEXTURE_SIZE, TEXTURE_SIZE);

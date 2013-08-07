@@ -77,6 +77,11 @@ public class Level {
 		} else if(renderRect.x2() >= TILES_PER_ROW-CHUNK_SIZE/2 - 1) {
 			getEasternChunks();
 		}
+		for(int x = renderRect.x; x < renderRect.x2(); x++) {
+			for(int y = renderRect.y; y < renderRect.y2(); y++) {
+				activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
+			}
+		}
 	}
 	
 	public void render() {

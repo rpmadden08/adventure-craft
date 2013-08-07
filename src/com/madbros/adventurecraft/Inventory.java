@@ -60,6 +60,7 @@ public class Inventory {
 		invBar[5].item = new EarthClump();
 		invBar[5].item.stackSize = 99;
 		invBar[6].item = new Shovel();
+		invBar[7].item = new Sapling();
 	}
 	
 	public void update() {
