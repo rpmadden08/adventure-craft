@@ -15,6 +15,8 @@ public class Block {
 	public Rect sRect;	//screen rect positions - only used for collision detection debugging (see character collision)
 	public Rect aRect;	//absolute rect positions
 	public Rect cRect;	//the collision detection rect for colidable blocks (this rect acounts for any offsets)
+	public boolean canPlace = true;
+	public Long timePlaced= Time.getTime();
 	
 	public boolean isHighlighted = false;
 	
