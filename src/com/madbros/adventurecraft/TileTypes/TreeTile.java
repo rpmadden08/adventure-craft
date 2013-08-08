@@ -10,7 +10,7 @@ public class TreeTile extends CollisionTile {
 		super();
 		currentTexture = 0;
 		textures = Textures.treeTextures;
-		margin = new Margin(9, 9, 12, 11);
+		margin = new Margin(3, 3, 0, 12);
 		id = TREE;
 		layer = WATER_LAYER;
 		isDiggable = false;

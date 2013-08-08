@@ -79,6 +79,12 @@ public class Block {
 			Color.white.bind();
 		}
 	}
+	public void renderAbove(int x, int y) {
+		Tile[] renderTiles = getAboveRenderTiles();
+		for(int i = 0; i < renderTiles.length;i++) {
+			renderTiles[i].render(x, y);
+		}
+	}
 	
 	public boolean isCollidable() {
 		return collisionTile != null;
@@ -113,8 +119,7 @@ public class Block {
 	
 	//returns all visable layers
 	public Tile[] getRenderTiles() {
-		Tile[] tiles = new Tile[6];
-		tiles[ABOVE_LAYER_1] = layers[ABOVE_LAYER_1];
+		Tile[] tiles = new Tile[5];
 		tiles[OBJECT_LAYER] = layers[OBJECT_LAYER];
 		
 		boolean middleTileReached = false;
@@ -128,4 +133,11 @@ public class Block {
 		}
 		return tiles;
 	}
+	public Tile[] getAboveRenderTiles() {
+		Tile[] tiles = new Tile[1];
+		tiles[0] = layers[ABOVE_LAYER_1];
+		//System.out.println(tiles[0].id);
+		return tiles;
+	}
+	
 }

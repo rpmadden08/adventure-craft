@@ -2,6 +2,7 @@ package com.madbros.adventurecraft;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+
 import java.io.File;
 
 import com.madbros.adventurecraft.TileTypes.*;
@@ -90,6 +91,25 @@ public class Level {
 			for(int y = renderRect.y; y < renderRect.y2(); y++) {
 				if(x < activeBlocks.length && y < activeBlocks[0].length && x >= 0 && y >= 0) {
 					activeBlocks[x][y].render(TILE_SIZE * i - offsetX, TILE_SIZE * j - offsetY);
+					if(Game.debugMenu.chunkBoundariesAreOn) {
+						if(x % CHUNK_SIZE == 0) Textures.pixel.draw(TILE_SIZE * i - offsetX,
+												TILE_SIZE * j - offsetY, 1, TILE_SIZE);
+						if(y % CHUNK_SIZE == 0) Textures.pixel.draw(TILE_SIZE * i - offsetX,
+												TILE_SIZE * j - offsetY, TILE_SIZE, 1);
+					}
+				}
+				j++;
+			}
+			i++; j = 0;
+		}
+	}
+	
+	public void renderAbove() {
+		int i = 0; int j = 0;
+		for(int x = renderRect.x; x < renderRect.x2(); x++) {
+			for(int y = renderRect.y; y < renderRect.y2(); y++) {
+				if(x < activeBlocks.length && y < activeBlocks[0].length && x >= 0 && y >= 0) {
+					activeBlocks[x][y].renderAbove(TILE_SIZE * i - offsetX, TILE_SIZE * j - offsetY);
 					if(Game.debugMenu.chunkBoundariesAreOn) {
 						if(x % CHUNK_SIZE == 0) Textures.pixel.draw(TILE_SIZE * i - offsetX,
 												TILE_SIZE * j - offsetY, 1, TILE_SIZE);
