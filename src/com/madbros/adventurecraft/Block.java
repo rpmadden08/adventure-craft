@@ -27,12 +27,13 @@ public class Block {
 	public Block(Tile[] t, int absX, int absY) {
 		aRect = new Rect(absX, absY);
 		
-		layers = new Tile[5];
+		layers = new Tile[6];
 			layers[DARK_DIRT_LAYER] = t[DARK_DIRT_LAYER];
 			layers[LIGHT_DIRT_LAYER] = t[LIGHT_DIRT_LAYER];
 			layers[GRASS_LAYER] = t[GRASS_LAYER];
 			layers[WATER_LAYER] = t[WATER_LAYER];
 			layers[OBJECT_LAYER] = t[OBJECT_LAYER];
+			layers[ABOVE_LAYER_1] = t[ABOVE_LAYER_1];
 			
 			if(t[WATER_LAYER].isCollidable) {
 				collisionTile = (CollisionTile)t[WATER_LAYER];
@@ -112,8 +113,8 @@ public class Block {
 	
 	//returns all visable layers
 	public Tile[] getRenderTiles() {
-		Tile[] tiles = new Tile[5];
-		
+		Tile[] tiles = new Tile[6];
+		tiles[ABOVE_LAYER_1] = layers[ABOVE_LAYER_1];
 		tiles[OBJECT_LAYER] = layers[OBJECT_LAYER];
 		
 		boolean middleTileReached = false;

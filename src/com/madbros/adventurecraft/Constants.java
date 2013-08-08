@@ -100,6 +100,11 @@ public class Constants {
 	public static final int GRASS_LAYER = 2;
 	public static final int WATER_LAYER = 3;
 	public static final int OBJECT_LAYER = 4;
+	public static final int ABOVE_LAYER_1 = 5;
+	public static final int ABOVE_LAYER_2 = 6;
+	public static final int ABOVE_LAYER_3 = 7;
+	
+	
 	
 	//Collisions
 	public static enum Collision {

@@ -96,8 +96,14 @@ public class Textures {
 			}
 			
 			saplingTexture = new Sprite[]{new Sprite(atlas, 96, 608, 64, 64)};
-			treeTextures = new Sprite[1];
-			treeTextures[0] = new Sprite(atlas, 160, 608, 64, 64);
+			
+			treeTextures = new Sprite[6];
+			treeTextures[0] = new Sprite(atlas, 16, 608, 64, 64);
+			treeTextures[1] = new Sprite(atlas, -48, 608, 64, 64);
+			treeTextures[2] = new Sprite(atlas, -48, 544, 64, 64);
+			treeTextures[3] = new Sprite(atlas, 16, 544, 64, 64);
+			treeTextures[4] = new Sprite(atlas, 80, 544, 64, 64);
+			treeTextures[5] = new Sprite(atlas, 80, 608, 64, 64);
 			
 			menuTextures = new Sprite[3][3];
 			for(int i = 0; i < 3; i++) {

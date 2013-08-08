@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Utils.Margin;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class SaplingTile extends CollisionTile {
 	
@@ -28,8 +29,25 @@ public class SaplingTile extends CollisionTile {
 	
 	@Override
 	public void update(int x, int y) {
-		if(Time.getTime() - timeCreated > 3000) {
+		if(Time.getTime() - timeCreated > 30) {// 3000
 			Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new TreeTile();
+			Game.level.activeBlocks[x][y].collisionTile = new TreeTile();
+			Game.level.activeBlocks[x][y].cRect = new Rect(Game.level.activeBlocks[x][y].aRect, Game.level.activeBlocks[x][y].collisionTile.margin);
+			
+			Game.level.activeBlocks[x-1][y].layers[ABOVE_LAYER_1] = new TreeTile(); 
+			Game.level.activeBlocks[x-1][y].layers[ABOVE_LAYER_1].currentTexture = 1;
+			
+			Game.level.activeBlocks[x-1][y-1].layers[ABOVE_LAYER_1] = new TreeTile(); 
+			Game.level.activeBlocks[x-1][y-1].layers[ABOVE_LAYER_1].currentTexture = 2;
+			
+			Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new TreeTile(); 
+			Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1].currentTexture = 3;
+			
+			Game.level.activeBlocks[x+1][y-1].layers[ABOVE_LAYER_1] = new TreeTile(); 
+			Game.level.activeBlocks[x+1][y-1].layers[ABOVE_LAYER_1].currentTexture = 4;
+			
+			Game.level.activeBlocks[x+1][y].layers[ABOVE_LAYER_1] = new TreeTile(); 
+			Game.level.activeBlocks[x+1][y].layers[ABOVE_LAYER_1].currentTexture = 5;
 		}
 		
 	}
