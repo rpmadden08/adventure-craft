@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 
 import java.io.File;
+import java.util.ArrayList;
 
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
@@ -11,6 +12,7 @@ import com.madbros.adventurecraft.Utils.Rect;
 
 public class Level {
 	public Block[][] activeBlocks;
+	public ArrayList<Block> collisionBlocks;
 	public Block highlightedBlock;
 	public Tile tileBeingAttacked = new NoTile();
 	public int highlightedBlockX = 0;
@@ -290,5 +292,9 @@ public class Level {
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX-1][highlightedBlockY+1], highlightedBlockX-1, highlightedBlockY+1);
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY+1], highlightedBlockX, highlightedBlockY+1);
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX+1][highlightedBlockY+1], highlightedBlockX+1, highlightedBlockY+1);
+	}
+	
+	public void handleCollisions() {
+		
 	}
 }

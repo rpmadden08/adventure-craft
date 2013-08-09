@@ -11,7 +11,7 @@ public class SandClump extends BlockItem {
 	public SandClump() {
 		id = SAND_CLUMP;
 		tileId = SAND;
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, WATER, HOLE};
+		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, WATER};
 		texture = Textures.sandClumpTexture;
 	}
 	

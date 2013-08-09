@@ -1,30 +1,58 @@
-TODO:
--> Make blocks breakable again.
--> Make collectibles appear again.
--> Make mobs work again.
--> Make weapon animation work again.
--> Make main menu text input work again.
--> Create saving/loading for all important data.
-
--> Particle Engine
--> Farming
--> Lighting System-
--> Character Selection Screen
+TODO UNCLAIMED:
+-> Finish save/load features
+-> Character Selection Screen + Armor/Hair System
 -> Audio
+-> Text input system (primarily for creating new games)
+-> Aggressive mobs
+-> Passive mobs
+-> Attack animations and collision
+-> Knock-back
+-> Resize screen
+
+TODO RYAN:
+-> Fix hole-related bugs INFO NEEDED PRIOR TO COMPLETION: what to do when a player digs holes all around the hero?
+-> Fix collision detection system to be able to handle mobs and collectibles
+-> Create particle system for collectibles, digging/chopping/mining tiles, and other systems
+-> Create lighting system
+
+TODO CHRIS:
+-> Design blog and web site
+-> Fire sword logo
+-> Farming Plants(see below)
+
+
+
 
 TODO (extended):
+> Farming Plants
+    -Start with something like potatoes (avoid wheat until a more standard farmable item is working right)
+    -Start with planting potatoes (nothing randomly generated)
+    
+    -Placing a PotatoItem on a TilledSoilTile adds the PotatoTile to the OBJECT_LAYER of the Block class
+    -Placing a PotatoItem also adds the same PotatoTile instance to the growingTiles array in the Level class
+    
+    -Level class has a startGrowthTime variable
+    -Every tick, level.update() checks startGrowthTime to see if 30 seconds have passed (30 seconds should be a constant called GAME_HOUR)
+    -If 30 seconds have passed, reset startGrowthTime and loop through the growingTiles array
+    -There is a random chance that a PotatoTile will grow during this loop
+    -The chance is determined by a float value in the PotatoTile class called chanceOfGrowth
+    
+    -When the PotatoTile grows, it simply updates its Texture accordingly
+    
+    -If the PotatoTile is fully grown, remove it from the growingTiles array and set boolean isFullyGrown to true
+    -When you move over a chunk, delete all the tiles from growingTiles that no longer exist in the activeBlocks array
+    
+    
+    -When you hit a PotatoTile, it will produce a single PotatoCollectible or nothing if isFullyGrown is false, and multiple potatoes if true
+        
+        
+OLD STUFF:
 > Particle Engine
     -vectors and angles, blah blah blah...
     
-> Farming
-    -Create wheat tile and an array of all "growable" tiles in "active" area (3x3 chunk area around player)
-    -Each time wheat grows, it effectively changes its tile and the fully grown wheat's boolean "growable" value is false
-    -Create Time class that keeps track of game days, hours, minutes, maybe seconds
-    -Loop through all growable tiles in "active" area at every game minute
-    -Random num to determine if tile grows or not - take it out of growable array if it's fully grown.
-    
+> Passive Mobs
     -Give each mob type a max spawnable number (this will later be determined by the current biome)
-    -Use Timer class to have a random chance to spawn a mob every game minute (unless max spawnable number is reached)
+    -Use Timer class to have a random chance to spawn a mob every GAME_HOUR (unless max spawnable number is reached)
     -Delete mobs if they've been inactive for a while or if you move far enough away
     -Have mobs wander around in the "active" area (9 chunks worth)
     -Balance the wandering so it looks natural

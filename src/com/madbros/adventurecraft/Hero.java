@@ -15,7 +15,6 @@ public class Hero {
 	//animations
 	Sprite[] animations;
 	
-//	int[] walkingAnimationCycle = {0, 1, 0, 2};
 	int[] walkingAnimationCycle = {1, 2, 3, 4, 5, 6, 7, 8};
 	int currentAnimation = WALK_DOWN; //where the animation begins in the sprite animations array
 	int currentWalkingAnimationPos = 0;	//what part of the walk animation cycle are we in (0 through 3)

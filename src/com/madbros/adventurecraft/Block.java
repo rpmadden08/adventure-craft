@@ -2,6 +2,7 @@ package com.madbros.adventurecraft;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.newdawn.slick.Color;
@@ -15,8 +16,7 @@ public class Block {
 	public Rect sRect;	//screen rect positions - only used for collision detection debugging (see character collision)
 	public Rect aRect;	//absolute rect positions
 	public Rect cRect;	//the collision detection rect for colidable blocks (this rect acounts for any offsets)
-	public boolean canPlace = true;
-	public Long timePlaced= Time.getTime();
+	public ArrayList<Entity> collidableEntities;
 	
 	public boolean isHighlighted = false;
 	
@@ -27,13 +27,12 @@ public class Block {
 	public Block(Tile[] t, int absX, int absY) {
 		aRect = new Rect(absX, absY);
 		
-		layers = new Tile[6];
+		layers = new Tile[5];
 			layers[DARK_DIRT_LAYER] = t[DARK_DIRT_LAYER];
 			layers[LIGHT_DIRT_LAYER] = t[LIGHT_DIRT_LAYER];
 			layers[GRASS_LAYER] = t[GRASS_LAYER];
 			layers[WATER_LAYER] = t[WATER_LAYER];
 			layers[OBJECT_LAYER] = t[OBJECT_LAYER];
-			layers[ABOVE_LAYER_1] = t[ABOVE_LAYER_1];
 			
 			if(t[WATER_LAYER].isCollidable) {
 				collisionTile = (CollisionTile)t[WATER_LAYER];
@@ -79,12 +78,6 @@ public class Block {
 			Color.white.bind();
 		}
 	}
-	public void renderAbove(int x, int y) {
-		Tile[] renderTiles = getAboveRenderTiles();
-		for(int i = 0; i < renderTiles.length;i++) {
-			renderTiles[i].render(x, y);
-		}
-	}
 	
 	public boolean isCollidable() {
 		return collisionTile != null;
@@ -120,6 +113,7 @@ public class Block {
 	//returns all visable layers
 	public Tile[] getRenderTiles() {
 		Tile[] tiles = new Tile[5];
+		
 		tiles[OBJECT_LAYER] = layers[OBJECT_LAYER];
 		
 		boolean middleTileReached = false;
@@ -133,11 +127,9 @@ public class Block {
 		}
 		return tiles;
 	}
-	public Tile[] getAboveRenderTiles() {
-		Tile[] tiles = new Tile[1];
-		tiles[0] = layers[ABOVE_LAYER_1];
-		//System.out.println(tiles[0].id);
-		return tiles;
-	}
 	
+	public void detectCollisions() {
+		//if this block is collidabe, add it to the collidableEntities array
+		//loop through all collidableEntities to detect collisions
+	}
 }
