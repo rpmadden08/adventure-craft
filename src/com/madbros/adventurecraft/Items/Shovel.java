@@ -4,7 +4,6 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Textures;
-import com.madbros.adventurecraft.TileTypes.*;
 
 public class Shovel extends ToolItem {
 	public Shovel() {

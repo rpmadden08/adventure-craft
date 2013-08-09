@@ -82,9 +82,14 @@ public class MainState extends GameState {
 	
 	@Override
 	protected void updateStates() {
+		//clear moved entities from level
+		//movement phase
+		//collision phase
+		//update chunks if necessary phase
+		//debug stuff
 		Game.hero.update(delta);
 		Game.level.update();
-		Game.inventory.update();
+		Game.inventory.update();	//should be in input
 		Game.debugger.update();
 	}
 		

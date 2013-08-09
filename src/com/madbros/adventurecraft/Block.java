@@ -2,6 +2,7 @@ package com.madbros.adventurecraft;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.newdawn.slick.Color;
@@ -15,6 +16,7 @@ public class Block {
 	public Rect sRect;	//screen rect positions - only used for collision detection debugging (see character collision)
 	public Rect aRect;	//absolute rect positions
 	public Rect cRect;	//the collision detection rect for colidable blocks (this rect acounts for any offsets)
+	public ArrayList<Entity> collidableEntities;
 	
 	public boolean isHighlighted = false;
 	
@@ -124,5 +126,10 @@ public class Block {
 			}
 		}
 		return tiles;
+	}
+	
+	public void detectCollisions() {
+		//if this block is collidabe, add it to the collidableEntities array
+		//loop through all collidableEntities to detect collisions
 	}
 }
