@@ -79,6 +79,11 @@ public class Level {
 		} else if(renderRect.x2() >= TILES_PER_ROW-CHUNK_SIZE/2 - 1) {
 			getEasternChunks();
 		}
+		for(int x = renderRect.x; x < renderRect.x2(); x++) {
+			for(int y = renderRect.y; y < renderRect.y2(); y++) {
+				activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
+			}
+		}
 	}
 	
 	public void render() {
@@ -176,13 +181,13 @@ public class Level {
 		int absY = y*TILE_SIZE+chunkY*CHUNK_SIZE*TILE_SIZE;
 		
 		if(noise < -0.1) {
-			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile()};
+			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile()};
     		block = new Block(waterTile, absX, absY);
     	} else if(noise > 0.1 && noise < 0.105) {
-    		Tile[] treeTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile()};
+    		Tile[] treeTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile()};
     		block = new Block(treeTile, absX, absY);
     	} else {
-    		Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile()};
+    		Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile()};
     		block = new Block(grassTile, absX, absY);
     	}
 //		block.mapHeight = noise;
