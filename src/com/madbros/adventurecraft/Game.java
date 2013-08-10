@@ -131,10 +131,10 @@ public class Game {
 		
 		glEnable(GL_DEPTH_TEST);	//we don't need depth for 2d unless we want advanced layers
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);	//clear screen color
-		glClearDepth(1.0f);                   // et background depth to farthest
-		glDepthFunc(GL_LEQUAL);    // Set the type of depth-test
-		glShadeModel(GL_SMOOTH);   // Enable smooth shading
-		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // Nice perspective corrections   
+		glClearDepth(1.0f);                   // set background depth to farthest
+		glDepthFunc(GL_LEQUAL);    // set the type of depth-test
+		glShadeModel(GL_SMOOTH);   // enable smooth shading
+		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // nice perspective corrections   
 		
 
 
