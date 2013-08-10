@@ -18,7 +18,7 @@ public class MiniMap {
 						if(aBlocks[x][y].layers[layer].id == TREE) darkGreen.bind();
 						if(aBlocks[x][y].layers[layer].id == WATER) Color.blue.bind();
 						if(aBlocks[x][y].layers[layer].id == DIRT) brown.bind();
-						Textures.pixel.draw(sX + x, sY + y, 1, 1);
+						Textures.pixel.draw(sX + x, sY + y, Z_MINIMAP, 1, 1);
 						Color.white.bind();
 						break;
 					}

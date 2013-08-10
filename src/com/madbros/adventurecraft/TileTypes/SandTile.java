@@ -9,6 +9,7 @@ public class SandTile extends Tile {
 		maxHp = 10;
 		currentHp = 10;
 		layer = GRASS_LAYER;
+		z = Z_GRASS;
 		isCollidable = false;
 		currentTexture = 0;
 		textures = Textures.sandTextures;

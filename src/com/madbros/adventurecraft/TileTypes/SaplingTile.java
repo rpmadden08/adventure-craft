@@ -15,12 +15,13 @@ public class SaplingTile extends CollisionTile {
 		margin = new Margin(9, 9, 12, 11);
 		id = SAPLING;
 		layer = OBJECT_LAYER;
+		z = Z_OBJECT;
 		isDiggable = false;
 	}
 	
 	@Override
 	public void render(int x, int y) {
-		textures[currentTexture].draw(x, y, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+		textures[currentTexture].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
 	}
 	
 	public Tile createNew() {
@@ -36,18 +37,23 @@ public class SaplingTile extends CollisionTile {
 			
 			Game.level.activeBlocks[x-1][y].layers[ABOVE_LAYER_1] = new TreeTile(); 
 			Game.level.activeBlocks[x-1][y].layers[ABOVE_LAYER_1].currentTexture = 1;
+			Game.level.activeBlocks[x-1][y].layers[ABOVE_LAYER_1].z = Z_ABOVE_LAYER;
 			
 			Game.level.activeBlocks[x-1][y-1].layers[ABOVE_LAYER_1] = new TreeTile(); 
 			Game.level.activeBlocks[x-1][y-1].layers[ABOVE_LAYER_1].currentTexture = 2;
+			Game.level.activeBlocks[x-1][y-1].layers[ABOVE_LAYER_1].z = Z_ABOVE_LAYER;
 			
 			Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new TreeTile(); 
 			Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1].currentTexture = 3;
+			Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1].z = Z_ABOVE_LAYER;
 			
 			Game.level.activeBlocks[x+1][y-1].layers[ABOVE_LAYER_1] = new TreeTile(); 
 			Game.level.activeBlocks[x+1][y-1].layers[ABOVE_LAYER_1].currentTexture = 4;
+			Game.level.activeBlocks[x+1][y-1].layers[ABOVE_LAYER_1].z = Z_ABOVE_LAYER;
 			
 			Game.level.activeBlocks[x+1][y].layers[ABOVE_LAYER_1] = new TreeTile(); 
 			Game.level.activeBlocks[x+1][y].layers[ABOVE_LAYER_1].currentTexture = 5;
+			Game.level.activeBlocks[x+1][y].layers[ABOVE_LAYER_1].z = Z_ABOVE_LAYER;
 		}
 		
 	}

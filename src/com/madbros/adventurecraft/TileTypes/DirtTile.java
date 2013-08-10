@@ -9,6 +9,7 @@ public class DirtTile extends Tile {
 		maxHp = 20;
 		currentHp = 20;
 		layer = LIGHT_DIRT_LAYER;
+		z = Z_LIGHT_DIRT;
 		isCollidable = false;
 		currentTexture = 0;
 		textures = Textures.dirtTextures;

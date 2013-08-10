@@ -3,6 +3,7 @@ package com.madbros.adventurecraft.UI;
 import org.newdawn.slick.Color;
 
 import com.madbros.adventurecraft.*;
+import static com.madbros.adventurecraft.Constants.*;
 import com.madbros.adventurecraft.Utils.*;
 
 public class SelectUIButton {
@@ -26,10 +27,10 @@ public class SelectUIButton {
 	
 	public void render() {
 		buttonColor.bind();
-		texture.draw(rect);
+		texture.draw(rect, Z_BUTTONS);
 		if(buttonIsPressedDown) {
 			pressedColor.bind();
-			texture.draw(rect);
+			texture.draw(rect, Z_BUTTONS);
 		}
 		Color.white.bind();
 	}

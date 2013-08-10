@@ -10,6 +10,7 @@ public class HoleTile extends CollisionTile {
 		super();
 		currentTexture = 0;
 		layer = WATER_LAYER;
+		z = Z_WATER;
 		textures = Textures.holeTextures;
 		margin = new Margin(14, 14, 14, 14);
 		id = HOLE;

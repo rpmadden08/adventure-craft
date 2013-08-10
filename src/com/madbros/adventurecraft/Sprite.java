@@ -3,7 +3,6 @@ package com.madbros.adventurecraft;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 
-//import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class Sprite {
@@ -30,23 +29,23 @@ public class Sprite {
 		this.normalizedHeight = height / texture.getImageHeight() * texture.getHeight();
 	}
 
-	public void draw(float x, float y) {
-		this.draw(x, y, this.width, this.height);
+	public void draw(float x, float y, float z) {
+		this.draw(x, y, z, this.width, this.height);
 	}
 	
-	public void draw(float x, float y, float w, float h) {
-		GL11.glTexCoord2f(textureOffsetX, textureOffsetY); //TOP LEFT
-		GL11.glVertex2f(x, y); 
-		GL11.glTexCoord2f(textureOffsetX, textureOffsetY+normalizedHeight); //BOTTOM LEFT
-		GL11.glVertex2f(x, y+h);         
-		GL11.glTexCoord2f(textureOffsetX+normalizedWidth, textureOffsetY+normalizedHeight); //BOTTOM RIGHT 
-		GL11.glVertex2f(x+w, y+h); 
-		GL11.glTexCoord2f(textureOffsetX+normalizedWidth, textureOffsetY); //TOP RIGHT
-		GL11.glVertex2f(x+w, y);
+	public void draw(float x, float y, float z, float w, float h) {
+		GL11.glTexCoord3f(textureOffsetX, textureOffsetY, z); //TOP LEFT
+		GL11.glVertex3f(x, y, z); 
+		GL11.glTexCoord3f(textureOffsetX, textureOffsetY+normalizedHeight, z); //BOTTOM LEFT
+		GL11.glVertex3f(x, y+h, z);         
+		GL11.glTexCoord3f(textureOffsetX+normalizedWidth, textureOffsetY+normalizedHeight, z); //BOTTOM RIGHT 
+		GL11.glVertex3f(x+w, y+h, z); 
+		GL11.glTexCoord3f(textureOffsetX+normalizedWidth, textureOffsetY, z); //TOP RIGHT
+		GL11.glVertex3f(x+w, y, z);
 	}
-	
-	public void draw(Rect r) {
-		this.draw(r.x, r.y, r.w, r.h);
+
+	public void draw(Rect r, float zLayer) {
+		this.draw(r.x, r.y, zLayer, r.w, r.h);
 	}
 }
 

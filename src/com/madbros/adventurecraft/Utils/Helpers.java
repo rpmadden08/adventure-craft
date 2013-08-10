@@ -38,11 +38,11 @@ public class Helpers {
 		return false;
 	}
 
-	public static void drawRect(Rect r) {
-		Textures.pixel.draw(r.x, r.y, r.w, 1);
-		Textures.pixel.draw(r.x, r.y, 1, r.h);
-		Textures.pixel.draw(r.x2()-1, r.y, 1, r.h);
-		Textures.pixel.draw(r.x, r.y2()-1, r.w, 1);
+	public static void drawRect(Rect r, float zLayer) {
+		Textures.pixel.draw(r.x, r.y, zLayer, r.w, 1);
+		Textures.pixel.draw(r.x, r.y, zLayer, 1, r.h);
+		Textures.pixel.draw(r.x2()-1, r.y, zLayer, 1, r.h);
+		Textures.pixel.draw(r.x, r.y2()-1, zLayer, r.w, 1);
 	}
 	
 	public static void println(String s) {

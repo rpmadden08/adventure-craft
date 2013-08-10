@@ -3,6 +3,7 @@ package com.madbros.adventurecraft.UI;
 import org.newdawn.slick.Color;
 
 import com.madbros.adventurecraft.*;
+import static com.madbros.adventurecraft.Constants.*;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -27,13 +28,13 @@ public class PlainUIButton extends UIButton{
 	@Override
 	public void render() {
 		buttonColor.bind();
-		texture.draw(rect);
+		texture.draw(rect, Z_BUTTONS);
 		if(mouseIsHovering && buttonIsPressedDown) {
 			pressedColor.bind();
-			texture.draw(rect);
+			texture.draw(rect, Z_BUTTONS);
 		} else if(mouseIsHovering) {
 			highlight.bind();
-			texture.draw(rect);
+			texture.draw(rect, Z_BUTTONS_HIGHLIGHT);
 		}
 		Color.white.bind();
 	}

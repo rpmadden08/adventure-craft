@@ -2,7 +2,6 @@ package com.madbros.adventurecraft;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.newdawn.slick.Color;
@@ -17,7 +16,6 @@ public class Block {
 	public Rect aRect;	//absolute rect positions
 	public Rect cRect;	//the collision detection rect for colidable blocks (this rect acounts for any offsets)
 
-	public ArrayList<Entity> collidableEntities;
 	public boolean canPlace = true;
 	public Long timePlaced= Time.getTime();
 	
@@ -55,19 +53,19 @@ public class Block {
 		}
 		
 		Tile topTile = getTopTile();
-		if(isHighlighted && topTile.currentHp < topTile.maxHp) topTile.renderHp(x, y);
 		
 		if(isHighlighted) {
+			if(topTile.currentHp < topTile.maxHp) topTile.renderHp(x, y);
 			Color highlightColor = new Color(0.8f, 0.8f, 0.8f, 1.0f);
 			highlightColor.bind();
-			Helpers.drawRect(new Rect(x, y, TILE_SIZE, TILE_SIZE));
+			Helpers.drawRect(new Rect(x, y, TILE_SIZE, TILE_SIZE), Z_TILE_HIGHLIGHT);
 			Color.white.bind();
 		}
 		
 		if(Game.debugMenu.collisionTilesAreOn && Arrays.asList(Game.hero.collisionDetectionBlocks).contains(this)) {
 			Color highlightColor = new Color(1, 1, 1, 0.2f);
 			highlightColor.bind();
-			Textures.collisionDebugger.draw(x, y, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+			Textures.collisionDebugger.draw(x, y, Z_COLLISION_TILES, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
 			Color.white.bind();
 		}
 		
@@ -77,7 +75,7 @@ public class Block {
 			
 			Color highlightColor = new Color(0, 0, 1f, 0.6f);
 			highlightColor.bind();
-			Textures.pixel.draw(r);
+			Textures.pixel.draw(r, Z_COLLISION_RECTS);
 			
 			Color.white.bind();
 		}

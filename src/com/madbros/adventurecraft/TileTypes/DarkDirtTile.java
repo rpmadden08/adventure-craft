@@ -10,6 +10,7 @@ public class DarkDirtTile extends Tile{
 		maxHp = 20;
 		currentHp = maxHp;
 		layer = DARK_DIRT_LAYER;
+		z = Z_DARK_DIRT;
 		isCollidable = false;
 		isMiddleTile = true;
 		currentTexture = 0;
@@ -24,6 +25,6 @@ public class DarkDirtTile extends Tile{
 	
 	@Override
 	public void render(int x, int y) {
-		textures[0].draw(x, y, TILE_SIZE, TILE_SIZE);
+		textures[0].draw(x, y, z, TILE_SIZE, TILE_SIZE);
 	}
 }

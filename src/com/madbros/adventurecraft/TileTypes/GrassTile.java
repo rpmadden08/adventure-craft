@@ -9,6 +9,7 @@ public class GrassTile extends Tile {
 		maxHp = 20;
 		currentHp = 20;
 		layer = GRASS_LAYER;
+		z = Z_GRASS;
 		isCollidable = false;
 		currentTexture = 0;
 		textures = Textures.grassTextures;

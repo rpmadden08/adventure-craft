@@ -271,16 +271,16 @@ public class Hero {
 	}
 	
 	public void render() {
-		animations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect);
+		animations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER);
 		if(Game.debugMenu.collisionRectsAreOn) {
 			Color.red.bind();
-			Textures.pixel.draw(new Rect(sRect, margin));
+			Textures.pixel.draw(new Rect(sRect, margin), Z_CHARACTER + 0.01f);
 			
 			Color.yellow.bind();
 			if(collisionDetectionBlocks[0] != null) {
 				for(int i = 0; i < collisionDetectionBlocks.length; i++) {
 					if(collisionDetectionBlocks[i].sRect != null && collisionDetectionBlocks[i].isCollidable()) {
-						Textures.pixel.draw(collisionDetectionBlocks[i].sRect);
+						Textures.pixel.draw(collisionDetectionBlocks[i].sRect, Z_COLLISION_RECTS + 0.01f);
 					}
 				}
 			}
@@ -290,7 +290,7 @@ public class Hero {
 	
 	//for inventory menu...
 	public void render(int a, int x, int y, int w, int h) {
-		animations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, w, h);
+		animations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
 	}
 	
 	public static float getCurrentSpeed() {

@@ -35,10 +35,11 @@ public class Game {
 	protected void createWindow() {
 		try {
 //			Display.setDisplayMode(new DisplayMode(INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT));
-//			Display.setTitle(GAME_TITLE);
 			
 			//Chris' fullscreen display.
 			//Display.setDisplayMode(new DisplayMode(INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT));
+			
+			Display.setTitle(GAME_TITLE);
 			DisplayMode[] modes = Display.getAvailableDisplayModes();
 
 			for (int i=0;i<modes.length;i++) {
@@ -128,17 +129,28 @@ public class Game {
 		// Initialize OpenGL to be able to draw to the window
 		glViewport(0, 0, Display.getDisplayMode().getWidth(), Display.getDisplayMode().getHeight());
 		
-		glDisable(GL_DEPTH_TEST);	//we don't need depth for 2d unless we want advanced layers
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);	//clear screen color
+		glEnable(GL_DEPTH_TEST);	//we don't need depth for 2d unless we want advanced layers
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);	//clear screen color
+		glClearDepth(1.0f);                   // et background depth to farthest
+		glDepthFunc(GL_LEQUAL);    // Set the type of depth-test
+		glShadeModel(GL_SMOOTH);   // Enable smooth shading
+		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // Nice perspective corrections   
+		
+
 
 		// enable alpha blending and 2d texture binding
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_TEXTURE_2D);
 		
+		//discards pixels with less than ref alpha value 
+		float ref = 0.1f;
+		glEnable(GL_ALPHA_TEST);
+		glAlphaFunc(GL_GREATER, ref);
+		
 		glMatrixMode(GL_PROJECTION);	//applies matrix operations to the projection matrix stack
 		glLoadIdentity();	//resets the matrix to default state
-		glOrtho(0, INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT, 0, 1, -1);	//essentially sets up the perspective the matrix is viewed from
+		glOrtho(0, INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT, 0, -1, 1);	//essentially sets up the perspective the matrix is viewed from
 		glMatrixMode(GL_MODELVIEW); //applies matrix operations to the modelview matrix stack
 	}
  

@@ -18,11 +18,11 @@ public abstract class Item {
 	public Sprite texture;
 	
 	public void render(Rect cellRect) {
-		texture.draw(cellRect.x + ITEM_OFFSET, cellRect.y + ITEM_OFFSET, ITEM_SIZE, ITEM_SIZE);
+		texture.draw(cellRect.x + ITEM_OFFSET, cellRect.y + ITEM_OFFSET, Z_INV_ITEMS, ITEM_SIZE, ITEM_SIZE);
 	}
 	
 	public void render(int x, int y) {
-		texture.draw(x-ITEM_SIZE/2, y-ITEM_SIZE/2, ITEM_SIZE, ITEM_SIZE);
+		texture.draw(x-ITEM_SIZE/2, y-ITEM_SIZE/2, Z_INV_ITEMS, ITEM_SIZE, ITEM_SIZE);
 	}
 	
 	public void renderFont(int x, int y) {
