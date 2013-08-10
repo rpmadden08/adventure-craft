@@ -20,7 +20,7 @@ public class TreeTile extends CollisionTile {
 	@Override
 	public void render(int x, int y) {
 		float z;
-		if(y > Game.hero.sRect.y) z = this.z + 0.3f;	//FIXME: this is a random float increase and not an ideal conditional
+		if(y > Game.hero.sRect.y) z = Z_ABOVE_LAYER;	//FIXME: not an ideal conditional
 		else z = this.z;
 		textures[currentTexture].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
 	}
