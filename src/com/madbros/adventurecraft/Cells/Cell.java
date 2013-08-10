@@ -32,15 +32,17 @@ public class Cell {
 	}
 	
 	public void render() {
-		cellTexture.draw(cellRect);
-		
-		item.render(cellRect);
+		cellTexture.draw(cellRect, Z_INV_CELLS);
 		
 		if(isHighlighted) {
 			highlightColor.bind();
-			highlighter.draw(cellRect);
+			highlighter.draw(cellRect, Z_INV_HIGHLIGHT);
 			Color.white.bind();
 		}
+		
+		item.render(cellRect);
+		
+		
 	}
 	
 	/* Handle Events */

@@ -10,6 +10,7 @@ public class WaterTile extends CollisionTile {
 		super();
 		currentTexture = 0;
 		layer = WATER_LAYER;
+		z = Z_WATER;
 		textures = Textures.waterTextures;
 		margin = new Margin(14, 14, 14, 14);
 		id = WATER;

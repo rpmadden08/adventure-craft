@@ -13,12 +13,16 @@ public class TreeTile extends CollisionTile {
 		margin = new Margin(3, 3, 0, 12);
 		id = TREE;
 		layer = WATER_LAYER;
+		z = Z_WATER;
 		isDiggable = false;
 	}
 	
 	@Override
 	public void render(int x, int y) {
-		textures[currentTexture].draw(x, y, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+		float z;
+		if(y > Game.hero.sRect.y) z = this.z + 0.3f;	//FIXME: this is a random float increase and not an ideal conditional
+		else z = this.z;
+		textures[currentTexture].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
 	}
 	
 	public Tile createNew() {

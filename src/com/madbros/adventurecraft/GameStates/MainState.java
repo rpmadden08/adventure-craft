@@ -95,9 +95,9 @@ public class MainState extends GameState {
 		
 	@Override
 	protected void renderTextures() {
-		Game.level.render();
 		Game.hero.render();
-		Game.level.renderAbove();
+		Game.level.render();
+		
 //		Game.map.render(Game.level.activeBlocks);
 		Game.inventory.render();
 	}

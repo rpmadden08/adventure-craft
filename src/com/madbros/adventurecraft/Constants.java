@@ -94,7 +94,7 @@ public class Constants {
 	public static final int DARK_DIRT = 8;
 	public static final int SAPLING = 9;
 	
-	//Block Layers
+	//Layers
 	public static final int DARK_DIRT_LAYER = 0;
 	public static final int LIGHT_DIRT_LAYER = 1;
 	public static final int GRASS_LAYER = 2;
@@ -103,7 +103,32 @@ public class Constants {
 	public static final int ABOVE_LAYER_1 = 5;
 	public static final int ABOVE_LAYER_2 = 6;
 	public static final int ABOVE_LAYER_3 = 7;
+
+	//z-depth
+	public static final float Z_DARK_DIRT = -0.9f;
+	public static final float Z_LIGHT_DIRT = -0.89f;
+	public static final float Z_GRASS = -0.88f;
+	public static final float Z_WATER = -0.87f;
+	public static final float Z_OBJECT = -0.86f;
 	
+	public static final float Z_COLLISION_TILES = -0.85f;
+	public static final float Z_TILE_HIGHLIGHT = -0.7f;
+	public static final float Z_CHARACTER = -0.6f;
+	public static final float Z_COLLISION_RECTS = -0.57f;
+	public static final float Z_ABOVE_LAYER = -0.55f;
+	public static final float Z_BOUNDARIES = -0.53f;
+	
+	public static final float Z_HEALTHBAR = -0.52f;
+	
+	public static final float Z_INV_BACKDROP = -0.5f;
+	public static final float Z_INV_CELLS = -0.4f;
+	public static final float Z_INV_HIGHLIGHT = -0.35f;
+	public static final float Z_INV_SELECT = -0.3f;
+	public static final float Z_INV_ITEMS = -0.25f;
+	public static final float Z_INV_CHARACTER = -0.23f;
+	public static final float Z_BUTTONS = -0.2f;
+	public static final float Z_BUTTONS_HIGHLIGHT = -0.1f;
+	public static final float Z_MINIMAP = 0f;
 	
 	
 	//Collisions

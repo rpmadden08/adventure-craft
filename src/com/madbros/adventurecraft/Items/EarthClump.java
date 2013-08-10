@@ -46,12 +46,12 @@ public class EarthClump extends BlockItem {
 	public void placeTile(Block hB, Tile tile) {
 		System.out.println(hB.canPlace);
 		
-		if(hB.layers[WATER_LAYER].id == HOLE) {
+		if(hB.layers[WATER_LAYER].id == HOLE || hB.layers[WATER_LAYER].id == WATER) {
 			hB.canPlace = false;
 			hB.timePlaced = Time.getTime();
 			hB.layers[GRASS_LAYER] = new NoTile();
 			hB.layers[WATER_LAYER] = new NoTile();
-			hB.layers[LIGHT_DIRT_LAYER] = new NoTile();
+//			hB.layers[LIGHT_DIRT_LAYER] = new NoTile();
 			
 			hB.collisionTile = null;
 			hB.cRect = null;
