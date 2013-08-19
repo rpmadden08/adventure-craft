@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
+import com.madbros.adventurecraft.Utils.Point;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class Level {
@@ -18,6 +19,7 @@ public class Level {
 	public int highlightedBlockY = 0;
 	public String gameName;
 	public SaveGame saveGame = new SaveGame();
+	public Point test = new Point(0, 0);
 	
 	//Keeps track of what part of the activeBlocks array we're rendering. Starts off in the very center.
 	public Rect renderRect = new Rect(TILES_PER_ROW / 2 - (int)Math.ceil(Game.getCenterScreenX() * 1.0 /TILE_SIZE),
@@ -88,8 +90,11 @@ public class Level {
 	
 	public void render() {
 		int i = 0; int j = 0;
+		test.x = 0;
+		test.y = 0;
 		for(int x = renderRect.x; x < renderRect.x2(); x++) {
 			for(int y = renderRect.y; y < renderRect.y2(); y++) {
+				test.y += 1;
 				if(x < activeBlocks.length && y < activeBlocks[0].length && x >= 0 && y >= 0) {
 					activeBlocks[x][y].render(TILE_SIZE * i - offsetX, TILE_SIZE * j - offsetY);
 					if(Game.debugMenu.chunkBoundariesAreOn) {
@@ -101,6 +106,7 @@ public class Level {
 				}
 				j++;
 			}
+			test.x += 1; test.y = 0;
 			i++; j = 0;
 		}
 	}
@@ -181,13 +187,13 @@ public class Level {
 		int absY = y*TILE_SIZE+chunkY*CHUNK_SIZE*TILE_SIZE;
 		
 		if(noise < -0.1) {
-			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile()};
+			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
     		block = new Block(waterTile, absX, absY);
     	} else if(noise > 0.1 && noise < 0.105) {
-    		Tile[] treeTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile()};
+    		Tile[] treeTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
     		block = new Block(treeTile, absX, absY);
     	} else {
-    		Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile()};
+    		Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
     		block = new Block(grassTile, absX, absY);
     	}
 //		block.mapHeight = noise;

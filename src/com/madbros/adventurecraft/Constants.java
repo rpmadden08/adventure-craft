@@ -93,6 +93,7 @@ public class Constants {
 	public static final int HOLE = 7;
 	public static final int DARK_DIRT = 8;
 	public static final int SAPLING = 9;
+	public static final int TREE_LEAF = 10;
 	
 	//Layers
 	public static final int DARK_DIRT_LAYER = 0;
@@ -103,6 +104,9 @@ public class Constants {
 	public static final int ABOVE_LAYER_1 = 5;
 	public static final int ABOVE_LAYER_2 = 6;
 	public static final int ABOVE_LAYER_3 = 7;
+	public static final int ABOVE_LAYER_4 = 8;
+	public static final int ABOVE_LAYER_5 = 9;
+	public static final int ABOVE_LAYER_6 = 10;
 
 	//z-depth
 	public static final float Z_DARK_DIRT = -0.9f;
@@ -116,6 +120,7 @@ public class Constants {
 	public static final float Z_CHARACTER = -0.6f;
 	public static final float Z_COLLISION_RECTS = -0.57f;
 	public static final float Z_ABOVE_LAYER = -0.55f;
+	public static final float Z_ABOVE_LAYER2 = -0.54f;
 	public static final float Z_BOUNDARIES = -0.53f;
 	
 	public static final float Z_HEALTHBAR = -0.52f;

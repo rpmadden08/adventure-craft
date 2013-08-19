@@ -12,6 +12,7 @@ public class Sapling extends BlockItem {
 	public Sapling() {
 		id = SAPLING_ITEM;
 		tileId = SAPLING;
+		
 		placeableTileIds = new int[]{GRASS};
 		texture = Textures.saplingItemTexture;
 	}

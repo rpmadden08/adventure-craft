@@ -10,7 +10,6 @@ TODO UNCLAIMED:
 -> Resize screen
 
 TODO RYAN:
--> Fix hole-related bugs INFO NEEDED PRIOR TO COMPLETION: what to do when a player digs holes all around the hero?
 -> Fix collision detection system to be able to handle mobs and collectibles
 -> Create particle system for collectibles, digging/chopping/mining tiles, and other systems
 -> Create lighting system
