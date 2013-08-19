@@ -95,7 +95,7 @@ public class Textures {
 				}
 			}
 			
-			saplingTexture = new Sprite[]{new Sprite(atlas, 96, 608, 64, 64)};
+			saplingTexture = new Sprite[]{new Sprite(atlas, 224, 608, 64, 64)};
 			
 			treeTextures = new Sprite[6];
 			treeTextures[0] = new Sprite(atlas, 16, 608, 64, 64);
@@ -147,7 +147,7 @@ public class Textures {
 			sandClumpTexture = new Sprite(atlas, TEXTURE_SIZE*2, 480, TEXTURE_SIZE, TEXTURE_SIZE);
 			logTexture = new Sprite(atlas, TEXTURE_SIZE*3, 480, TEXTURE_SIZE, TEXTURE_SIZE);
 			plankTexture = new Sprite(atlas, TEXTURE_SIZE*4, 480, TEXTURE_SIZE, TEXTURE_SIZE);
-			saplingItemTexture = new Sprite(atlas, 112, 624, TEXTURE_SIZE, TEXTURE_SIZE);
+			saplingItemTexture = new Sprite(atlas, 240, 624, TEXTURE_SIZE, TEXTURE_SIZE);
 			
 			swordTexture = new Sprite(atlas, TEXTURE_SIZE*0, 512, TEXTURE_SIZE, TEXTURE_SIZE);
 			shovelTexture = new Sprite(atlas, TEXTURE_SIZE*1, 512, TEXTURE_SIZE, TEXTURE_SIZE);
