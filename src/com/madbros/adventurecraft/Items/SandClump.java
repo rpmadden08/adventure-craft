@@ -22,10 +22,9 @@ public class SandClump extends BlockItem {
 
 	@Override
 	public void placeTile(Block hB, Tile tile) {
-		if(hB.layers[WATER_LAYER].id == HOLE) {
+		if(hB.layers[WATER_LAYER].id == WATER) {
 			hB.layers[GRASS_LAYER] = tile;
 			hB.layers[WATER_LAYER] = new NoTile();
-			hB.layers[LIGHT_DIRT_LAYER] = new NoTile();
 			hB.collisionTile = null;
 			hB.cRect = null;
 		} else {

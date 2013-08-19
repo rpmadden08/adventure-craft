@@ -28,28 +28,34 @@ public class Block {
 	public Block(Tile[] t, int absX, int absY) {
 		aRect = new Rect(absX, absY);
 		
-		layers = new Tile[6];
-			layers[DARK_DIRT_LAYER] = t[DARK_DIRT_LAYER];
-			layers[LIGHT_DIRT_LAYER] = t[LIGHT_DIRT_LAYER];
-			layers[GRASS_LAYER] = t[GRASS_LAYER];
-			layers[WATER_LAYER] = t[WATER_LAYER];
-			layers[OBJECT_LAYER] = t[OBJECT_LAYER];
-			layers[ABOVE_LAYER_1] = t[ABOVE_LAYER_1];
-			
-			if(t[WATER_LAYER].isCollidable) {
-				collisionTile = (CollisionTile)t[WATER_LAYER];
-				cRect = new Rect(aRect, collisionTile.margin);
-			} else if(t[OBJECT_LAYER].isCollidable) {
-				collisionTile = (CollisionTile)t[OBJECT_LAYER];
-				cRect = new Rect(aRect, collisionTile.margin);
-			}
+		layers = new Tile[11];
+		layers[DARK_DIRT_LAYER] = t[DARK_DIRT_LAYER];
+		layers[LIGHT_DIRT_LAYER] = t[LIGHT_DIRT_LAYER];
+		layers[GRASS_LAYER] = t[GRASS_LAYER];
+		layers[WATER_LAYER] = t[WATER_LAYER];
+		layers[OBJECT_LAYER] = t[OBJECT_LAYER];
+		layers[ABOVE_LAYER_1] = t[ABOVE_LAYER_1];
+		layers[ABOVE_LAYER_2] = t[ABOVE_LAYER_2];
+		layers[ABOVE_LAYER_3] = t[ABOVE_LAYER_3];
+		layers[ABOVE_LAYER_4] = t[ABOVE_LAYER_4];
+		layers[ABOVE_LAYER_5] = t[ABOVE_LAYER_5];
+		layers[ABOVE_LAYER_6] = t[ABOVE_LAYER_6];
+		
+		if(t[WATER_LAYER].isCollidable) {
+			collisionTile = (CollisionTile)t[WATER_LAYER];
+			cRect = new Rect(aRect, collisionTile.margin);
+		} else if(t[OBJECT_LAYER].isCollidable) {
+			collisionTile = (CollisionTile)t[OBJECT_LAYER];
+			cRect = new Rect(aRect, collisionTile.margin);
+		}
 	}
 	
 	public void render(int x, int y) {
 		Tile[] renderTiles = getRenderTiles();
 		
 		for(int i = 0; i < renderTiles.length;i++) {
-			renderTiles[i].render(x, y);
+			if(renderTiles[i].id == TREE_LEAF) ((TreeLeafTile)renderTiles[i]).render(x, y, i);
+			else renderTiles[i].render(x, y);
 		}
 		
 		Tile topTile = getTopTile();
@@ -114,7 +120,12 @@ public class Block {
 	
 	//returns all visable layers
 	public Tile[] getRenderTiles() {
-		Tile[] tiles = new Tile[6];
+		Tile[] tiles = new Tile[11];
+		tiles[ABOVE_LAYER_6] = layers[ABOVE_LAYER_6];
+		tiles[ABOVE_LAYER_5] = layers[ABOVE_LAYER_5];
+		tiles[ABOVE_LAYER_4] = layers[ABOVE_LAYER_4];
+		tiles[ABOVE_LAYER_3] = layers[ABOVE_LAYER_3];
+		tiles[ABOVE_LAYER_2] = layers[ABOVE_LAYER_2];
 		tiles[ABOVE_LAYER_1] = layers[ABOVE_LAYER_1];
 		tiles[OBJECT_LAYER] = layers[OBJECT_LAYER];
 		

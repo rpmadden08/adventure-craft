@@ -61,6 +61,7 @@ public class Inventory {
 		invBar[5].item.stackSize = 99;
 		invBar[6].item = new Shovel();
 		invBar[7].item = new Sapling();
+		invBar[7].item.stackSize = 99;
 	}
 	
 	public void update() {

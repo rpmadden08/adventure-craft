@@ -35,26 +35,23 @@ public class SaplingTile extends CollisionTile {
 			Game.level.activeBlocks[x][y].collisionTile = new TreeTile();
 			Game.level.activeBlocks[x][y].cRect = new Rect(Game.level.activeBlocks[x][y].aRect, Game.level.activeBlocks[x][y].collisionTile.margin);
 			
-			Game.level.activeBlocks[x-1][y].layers[ABOVE_LAYER_1] = new TreeTile(); 
-			Game.level.activeBlocks[x-1][y].layers[ABOVE_LAYER_1].currentTexture = 1;
-			Game.level.activeBlocks[x-1][y].layers[ABOVE_LAYER_1].z = Z_ABOVE_LAYER;
+			int layer;
+			Block b;
+			int[] xs = {x, x-1, x-1, x, x+1, x+1};
+			int[] ys = {y, y, y-1, y-1, y-1, y};
 			
-			Game.level.activeBlocks[x-1][y-1].layers[ABOVE_LAYER_1] = new TreeTile(); 
-			Game.level.activeBlocks[x-1][y-1].layers[ABOVE_LAYER_1].currentTexture = 2;
-			Game.level.activeBlocks[x-1][y-1].layers[ABOVE_LAYER_1].z = Z_ABOVE_LAYER;
-			
-			Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new TreeTile(); 
-			Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1].currentTexture = 3;
-			Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1].z = Z_ABOVE_LAYER;
-			
-			Game.level.activeBlocks[x+1][y-1].layers[ABOVE_LAYER_1] = new TreeTile(); 
-			Game.level.activeBlocks[x+1][y-1].layers[ABOVE_LAYER_1].currentTexture = 4;
-			Game.level.activeBlocks[x+1][y-1].layers[ABOVE_LAYER_1].z = Z_ABOVE_LAYER;
-			
-			Game.level.activeBlocks[x+1][y].layers[ABOVE_LAYER_1] = new TreeTile(); 
-			Game.level.activeBlocks[x+1][y].layers[ABOVE_LAYER_1].currentTexture = 5;
-			Game.level.activeBlocks[x+1][y].layers[ABOVE_LAYER_1].z = Z_ABOVE_LAYER;
+			for(int i = 0; i < 6; i++) {
+				b = Game.level.activeBlocks[xs[i]][ys[i]];
+				if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR && b.layers[ABOVE_LAYER_3].id != AIR && b.layers[ABOVE_LAYER_4].id != AIR && b.layers[ABOVE_LAYER_5].id != AIR) layer = ABOVE_LAYER_6;
+				else if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR && b.layers[ABOVE_LAYER_3].id != AIR && b.layers[ABOVE_LAYER_4].id != AIR) layer = ABOVE_LAYER_5;
+				else if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR && b.layers[ABOVE_LAYER_3].id != AIR) layer = ABOVE_LAYER_4;
+				else if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR) layer = ABOVE_LAYER_3;
+				else if(b.layers[ABOVE_LAYER_1].id != AIR) layer = ABOVE_LAYER_2;
+				else layer = ABOVE_LAYER_1;
+				b.layers[layer] = new TreeLeafTile(); 
+				b.layers[layer].currentTexture = i;
+				b.layers[layer].z = Z_ABOVE_LAYER;
+			}
 		}
-		
 	}
 }

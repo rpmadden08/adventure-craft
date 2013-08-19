@@ -23,6 +23,7 @@ public class Textures {
 	public static Sprite[] grassTextures;
 	public static Sprite[] dirtTextures;
 	public static Sprite[] treeTextures;
+	public static Sprite[] treeLeafTextures;
 	public static Sprite[] waterTextures;
 	public static Sprite[] holeTextures;
 	public static Sprite[] sandTextures;
@@ -97,13 +98,16 @@ public class Textures {
 			
 			saplingTexture = new Sprite[]{new Sprite(atlas, 224, 608, 64, 64)};
 			
-			treeTextures = new Sprite[6];
-			treeTextures[0] = new Sprite(atlas, 16, 608, 64, 64);
-			treeTextures[1] = new Sprite(atlas, -48, 608, 64, 64);
-			treeTextures[2] = new Sprite(atlas, -48, 544, 64, 64);
-			treeTextures[3] = new Sprite(atlas, 16, 544, 64, 64);
-			treeTextures[4] = new Sprite(atlas, 80, 544, 64, 64);
-			treeTextures[5] = new Sprite(atlas, 80, 608, 64, 64);
+			treeLeafTextures = new Sprite[6];
+			treeLeafTextures[0] = new Sprite(atlas, 16, 608, 64, 64);
+			treeLeafTextures[1] = new Sprite(atlas, -48, 608, 64, 64);
+			treeLeafTextures[2] = new Sprite(atlas, -48, 544, 64, 64);
+			treeLeafTextures[3] = new Sprite(atlas, 16, 544, 64, 64);
+			treeLeafTextures[4] = new Sprite(atlas, 80, 544, 64, 64);
+			treeLeafTextures[5] = new Sprite(atlas, 80, 608, 64, 64);
+			
+			treeTextures = new Sprite[1];
+			treeTextures[0] = new Sprite(atlas, 16, 672, 64, 64);
 			
 			menuTextures = new Sprite[3][3];
 			for(int i = 0; i < 3; i++) {
