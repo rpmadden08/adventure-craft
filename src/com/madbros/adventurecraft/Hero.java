@@ -15,12 +15,12 @@ public class Hero {
 	//animations
 	Sprite[] animations;
 	
-	int[] walkingAnimationCycle = {1, 2, 3, 4, 5, 6, 7, 8};
+	int[] walkingAnimationCycle = {0, 1, 2, 1};
 	int currentAnimation = WALK_DOWN; //where the animation begins in the sprite animations array
 	int currentWalkingAnimationPos = 0;	//what part of the walk animation cycle are we in (0 through 3)
 	
 	int timeSinceLastAnimation = 0;
-	int animationTimePerFrame = 5;
+	int animationTimePerFrame = 8;
 
 	Margin margin = new Margin(17, 17, 29, 1); //new Margin(17, 17, 45, 1); //left, right, top, bottom
 	
