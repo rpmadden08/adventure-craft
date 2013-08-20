@@ -35,9 +35,9 @@ public class Constants {
 	public static final int LEFT = 3;
 	public static final int RIGHT = 4;
 	public static final int WALK_DOWN = 0;
-	public static final int WALK_RIGHT = 9;
-	public static final int WALK_UP = 18;
-	public static final int WALK_LEFT = 27;
+	public static final int WALK_RIGHT = 3;
+	public static final int WALK_UP = 6;
+	public static final int WALK_LEFT = 9;
 	public static final boolean VERTICAL = true;
 	public static final boolean HORIZONTAL = false;
 	
@@ -117,7 +117,12 @@ public class Constants {
 	
 	public static final float Z_COLLISION_TILES = -0.85f;
 	public static final float Z_TILE_HIGHLIGHT = -0.7f;
-	public static final float Z_CHARACTER = -0.6f;
+	
+	
+	public static final float Z_CHARACTER = -0.65f;
+	public static final float Z_CHARACTER_PANTS = -0.64f;
+	public static final float Z_CHARACTER_ARMOR = -0.63f;
+	
 	public static final float Z_COLLISION_RECTS = -0.57f;
 	public static final float Z_ABOVE_LAYER = -0.55f;
 	public static final float Z_ABOVE_LAYER2 = -0.54f;

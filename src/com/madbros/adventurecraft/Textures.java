@@ -30,6 +30,9 @@ public class Textures {
 	public static Sprite[] saplingTexture;
 	
 	public static Sprite[] characterAnimations;
+	public static Sprite[] pantsAnimations;
+	public static Sprite[] armorAnimations;
+
 	public static Sprite[] fireAnimationTextures;
 	
 	public static Sprite[][] menuTextures;
@@ -128,16 +131,41 @@ public class Textures {
 			collisionDebugger = new Sprite(atlas, 0, 32, TEXTURE_SIZE, TEXTURE_SIZE);
 			pixel = new Sprite(atlas, 1023, 0, 1, 1);
 			
-			characterAnimations = new Sprite[36];
+			characterAnimations = new Sprite[12];
+			pantsAnimations = new Sprite[12];
+			armorAnimations = new Sprite[12];
 
 			int sX = 0; int sY = 96;
 			k = 0;
 			for(int i = 0; i < 4; i ++) {
-				for(int j = 0; j < 9; j++) {
+				for(int j = 0; j < 3; j++) {
 					characterAnimations[k] = new Sprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
 					k++;
 				}
 			}
+			//192,384
+
+			
+			
+			sX = 384; sY = 96;
+			k = 0;
+			for(int i = 0; i < 4; i ++) {
+				for(int j = 0; j < 3; j++) {
+					pantsAnimations[k] = new Sprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+					k++;
+				}
+			}
+			
+			
+			sX = 192; sY = 96;
+			k = 0;
+			for(int i = 0; i < 4; i ++) {
+				for(int j = 0; j < 3; j++) {
+					armorAnimations[k] = new Sprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+					k++;
+				}
+			}
+			
 			
 			fireAnimationTextures = new Sprite[4];
 			fireAnimationTextures[0] = new Sprite(atlas, 0, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4);
