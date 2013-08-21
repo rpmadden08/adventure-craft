@@ -4,7 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import org.newdawn.slick.Color;
 
-import com.madbros.adventurecraft.Cells.Cell;
+import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public abstract class Item {
@@ -15,10 +15,10 @@ public abstract class Item {
 	public int[] itemsPossiblyCraftable = {};
 	public int[] craftCost = {};
 	
-	public Sprite texture;
+	public StaticSprite texture;
 	
-	public void render(Rect cellRect) {
-		texture.draw(cellRect.x + ITEM_OFFSET, cellRect.y + ITEM_OFFSET, Z_INV_ITEMS, ITEM_SIZE, ITEM_SIZE);
+	public void render(Rect slotRect) {
+		texture.draw(slotRect.x + ITEM_OFFSET, slotRect.y + ITEM_OFFSET, Z_INV_ITEMS, ITEM_SIZE, ITEM_SIZE);
 	}
 	
 	public void render(int x, int y) {
@@ -43,7 +43,7 @@ public abstract class Item {
 		//attack
 	}
 	
-	public boolean isValidRecipe(Cell[] craftingSlots) {
+	public boolean isValidRecipe(Slot[] craftingSlots) {
 		return false;
 	}
 	

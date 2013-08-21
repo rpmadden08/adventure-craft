@@ -1,0 +1,61 @@
+{
+  "atlasName": "atlas",
+  
+  "baseDirt" : {
+    "type": "static",
+    "x": "0",
+    "y": "0",
+    "width": "32",
+    "height": "32",
+    "margin": {
+      "left": "0",
+      "right": "0",
+      "top": "0",
+      "bottom": "0"
+    }
+  },
+  
+  "hero" : {
+    "type": "animated",
+    "animations": [
+      {
+        "name": "walkDown",
+        "animation": [
+          {
+            "x": "100",
+            "y": "100",
+            "width": "32",
+            "height": "32",
+            "frameTimeInMilliseconds": "20"
+          }, {
+            "x": "100",
+            "y": "100",
+            "width": "32",
+            "height": "32",
+            "frameTimeInMilliseconds": "20"
+          }
+        ]
+      },
+      {
+        "name": "walkLeft",
+        "animation":
+        [
+          {
+            "x": "100",
+            "y": "100",
+            "width": "32",
+            "height": "32",
+            "frameTimeInMilliseconds": "20"
+          },
+          {
+            "x": "100",
+            "y": "100",
+            "width": "32",
+            "height": "32",
+            "frameTimeInMilliseconds": "20"
+          }
+        ]
+      }
+    ]
+  }
+}

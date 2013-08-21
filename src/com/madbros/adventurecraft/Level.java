@@ -3,23 +3,22 @@ package com.madbros.adventurecraft;
 import static com.madbros.adventurecraft.Constants.*;
 
 import java.io.File;
-import java.util.ArrayList;
 
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
-import com.madbros.adventurecraft.Utils.Point;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class Level {
+	public Cell[][] cells;
+	public Cell[] potentialCollisionCells;	//resets to empty every frame and includes only cells that something has moved in
+	
 	public Block[][] activeBlocks;
-	public ArrayList<Block> collisionBlocks;
 	public Block highlightedBlock;
 	public Tile tileBeingAttacked = new NoTile();
 	public int highlightedBlockX = 0;
 	public int highlightedBlockY = 0;
-	public String gameName;
+	
 	public SaveGame saveGame = new SaveGame();
-	public Point test = new Point(0, 0);
 	
 	//Keeps track of what part of the activeBlocks array we're rendering. Starts off in the very center.
 	public Rect renderRect = new Rect(TILES_PER_ROW / 2 - (int)Math.ceil(Game.getCenterScreenX() * 1.0 /TILE_SIZE),
@@ -90,13 +89,11 @@ public class Level {
 	
 	public void render() {
 		int i = 0; int j = 0;
-		test.x = 0;
-		test.y = 0;
 		for(int x = renderRect.x; x < renderRect.x2(); x++) {
 			for(int y = renderRect.y; y < renderRect.y2(); y++) {
-				test.y += 1;
 				if(x < activeBlocks.length && y < activeBlocks[0].length && x >= 0 && y >= 0) {
 					activeBlocks[x][y].render(TILE_SIZE * i - offsetX, TILE_SIZE * j - offsetY);
+					
 					if(Game.debugMenu.chunkBoundariesAreOn) {
 						if(x % CHUNK_SIZE == 0) Textures.pixel.draw(TILE_SIZE * i - offsetX,
 												TILE_SIZE * j - offsetY, Z_BOUNDARIES, 1, TILE_SIZE);
@@ -106,7 +103,6 @@ public class Level {
 				}
 				j++;
 			}
-			test.x += 1; test.y = 0;
 			i++; j = 0;
 		}
 	}

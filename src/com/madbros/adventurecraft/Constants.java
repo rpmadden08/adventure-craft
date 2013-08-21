@@ -48,24 +48,24 @@ public class Constants {
 	
 	//inventory constants
 	public static final int INV_MENU_TILE_SIZE = 32;
-	public static final int INV_CELL_SIZE = 41;
+	public static final int INV_SLOT_SIZE = 41;
 	public static final int ITEM_SIZE =32;
 	
 	public static final int INV_LENGTH = 10;
 	public static final int INV_HEIGHT = 4;
 	
 	public static final Margin INV_MENU_MARGIN = new Margin(50, 50, 20, 100);
-	public static final Margin INV_CELL_MARGIN = new Margin(0, 20, 0, 8);
+	public static final Margin INV_SLOT_MARGIN = new Margin(0, 20, 0, 8);
 	
 	public static final Rect INV_BACKDROP_RECT = new Rect(INV_MENU_MARGIN.left, INV_MENU_MARGIN.top, 
 														  INITIAL_WINDOW_WIDTH - INV_MENU_MARGIN.getHorizontalLength(),
 														  INITIAL_WINDOW_HEIGHT - INV_MENU_MARGIN.getVerticalLength());
-	public static final Rect INV_BAR_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_CELL_SIZE + INV_CELL_MARGIN.right) * INV_LENGTH + INV_CELL_SIZE) / 2, INITIAL_WINDOW_HEIGHT-50);
-	public static final Rect INV_BAG_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_CELL_SIZE + INV_CELL_MARGIN.right) * INV_LENGTH + INV_CELL_SIZE) / 2, INV_BACKDROP_RECT.y2()- INV_BAR_RECT.h*4);
+	public static final Rect INV_BAR_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INITIAL_WINDOW_HEIGHT-50);
+	public static final Rect INV_BAG_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INV_BACKDROP_RECT.y2()- INV_BAR_RECT.h*4);
 	public static final Rect INV_CHAR_RECT = new Rect(INV_BACKDROP_RECT.x2() - CHARACTER_SIZE*4, INV_BACKDROP_RECT.y + 30, CHARACTER_SIZE*4, CHARACTER_SIZE*4);
-	public static final Rect INV_CRAFTING_RECT = new Rect(130, 50, 2*(INV_CELL_SIZE+2), 2*(INV_CELL_SIZE+2));
+	public static final Rect INV_CRAFTING_RECT = new Rect(130, 50, 2*(INV_SLOT_SIZE+2), 2*(INV_SLOT_SIZE+2));
 	
-	//item/cell constants
+	//item/slot constants
 	public static final int ITEM_OFFSET = 5;
 	public static final int BAR = 0;
 	public static final int BAG = 1;
@@ -126,7 +126,7 @@ public class Constants {
 	public static final float Z_HEALTHBAR = -0.52f;
 	
 	public static final float Z_INV_BACKDROP = -0.5f;
-	public static final float Z_INV_CELLS = -0.4f;
+	public static final float Z_INV_SLOTS = -0.4f;
 	public static final float Z_INV_HIGHLIGHT = -0.35f;
 	public static final float Z_INV_SELECT = -0.3f;
 	public static final float Z_INV_ITEMS = -0.25f;

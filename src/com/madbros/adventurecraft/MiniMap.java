@@ -6,7 +6,7 @@ import org.newdawn.slick.Color;
 
 public class MiniMap {
 	public void render(Block[][] aBlocks) {
-		int sX = Game.currentScreenSizeX - 50;
+		int sX = Game.currentScreenSizeX - 100;
 		int sY = 10;
 		Color brown = new Color(100, 100, 100);
 		Color darkGreen = new Color(0, 150, 0);

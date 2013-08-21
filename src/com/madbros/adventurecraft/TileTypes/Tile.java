@@ -4,14 +4,12 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import org.newdawn.slick.Color;
 
-import com.madbros.adventurecraft.Sprite;
-import com.madbros.adventurecraft.Textures;
-import com.madbros.adventurecraft.Time;
+import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public abstract class Tile {
-	public Sprite[] textures;
+	public StaticSprite[] textures;
 	public int maxHp = 10;
 	public int currentHp = 10;
 	public int currentTexture = 0;

@@ -21,8 +21,8 @@ public class SaveGame {
 					tiles.add(chunk[x][y].layers[i].id);
 				}
 				obj.put("tiles" + x + "-" + y, tiles);
-				obj.put("x" + x + "-" + y, chunk[x][y].aRect.x);
-				obj.put("y" + x + "-" + y, chunk[x][y].aRect.y);
+				obj.put("x" + x + "-" + y, chunk[x][y].absRect.x);
+				obj.put("y" + x + "-" + y, chunk[x][y].absRect.y);
 			}
 		}
 		

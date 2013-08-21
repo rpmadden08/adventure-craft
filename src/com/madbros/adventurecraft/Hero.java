@@ -3,7 +3,6 @@ package com.madbros.adventurecraft;
 import static com.madbros.adventurecraft.Constants.TILE_SIZE;
 
 import org.lwjgl.input.Keyboard;
-import org.newdawn.slick.Color;
 
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
 import com.madbros.adventurecraft.Utils.Margin;
@@ -12,15 +11,7 @@ import com.madbros.adventurecraft.Utils.Rect;
 import static com.madbros.adventurecraft.Constants.*;
 
 public class Hero {
-	//animations
-	Sprite[] animations;
-	
-	int[] walkingAnimationCycle = {1, 2, 3, 4, 5, 6, 7, 8};
-	int currentAnimation = WALK_DOWN; //where the animation begins in the sprite animations array
-	int currentWalkingAnimationPos = 0;	//what part of the walk animation cycle are we in (0 through 3)
-	
-	int timeSinceLastAnimation = 0;
-	int animationTimePerFrame = 5;
+	public AnimatedSprite sprite;
 
 	Margin margin = new Margin(17, 17, 29, 1); //new Margin(17, 17, 45, 1); //left, right, top, bottom
 	
@@ -31,24 +22,16 @@ public class Hero {
 	public Rect sRect = new Rect(Game.getCenterScreenX() - CHARACTER_SIZE/2, Game.getCenterScreenY() - CHARACTER_SIZE/2, CHARACTER_SIZE, CHARACTER_SIZE);
 	
 	boolean isMovingLeft = false, isMovingRight = false, isMovingUp = false, isMovingDown = false;
-	boolean isMoving = false, isAttacking = false;
+	boolean isAttacking = false;
 	
 	public static float currentSpeed = 0.19f;
 	
 	Block[] collisionDetectionBlocks = new Block[9];
 		
 	public Hero() {
-		animations = Textures.characterAnimations;
-		walkingAnimationCycle[0] = 0;
+		sprite = Textures.animatedSprites.get("heroTemp");
 	}
-	
-	public int getX() {
-		return aRect.x;
-	}
-	
-	public int getY() {
-		return aRect.y;
-	}
+
 //	public void startAttacking() {
 //		timeSinceLastAnimation = 0;	//getTime()
 //		isAttacking = true;
@@ -58,105 +41,76 @@ public class Hero {
 //		isAttacking = false;
 //	}
 	
-	public void turnWalkingOff() {
-		currentWalkingAnimationPos = 0;
-		isMoving = false;
+	/************************** Movement **************************/
+	public boolean isMoving() {
+		return (isMovingDown || isMovingUp || isMovingLeft || isMovingRight);
 	}
 	
-	public void startMoving(int dir) {
-		switch(dir) {
-		case UP:
-			if(!isMoving || isMovingDown) {
-				currentAnimation = WALK_UP;
-			}
-			isMovingUp = true;
-			isMovingDown = false;
-			break;
-		case DOWN:
-			if(!isMoving || isMovingUp) {
-				currentAnimation = WALK_DOWN;
-			}
-			isMovingUp = false;
-			isMovingDown = true;
-			break;
-		case LEFT:
-			if(!isMoving || isMovingRight) {
-				currentAnimation = WALK_LEFT;
-			}
-			isMovingLeft = true;
-			isMovingRight = false;
-			break;
-		case RIGHT:
-			if(!isMoving || isMovingLeft) {
-				currentAnimation = WALK_RIGHT;
-			}
-			isMovingLeft = false;
-			isMovingRight = true;
-			break;
-		}
-
-		timeSinceLastAnimation = 0;	//getTime()
-		isMoving = true;
+	public void moveUp() {
+		if(!isMoving() || isMovingDown) sprite.changeAnimationTo("walkUp");
+		isMovingUp = true;
+		isMovingDown = false;
 	}
 	
-	public void stopMoving(int dir) {
-		if(dir == UP || dir == DOWN) {
-			if(isMovingRight) {
-				currentAnimation = WALK_RIGHT;
-			} else if(isMovingLeft) {
-				currentAnimation = WALK_LEFT;
-			} else {
-				turnWalkingOff();
-			}
-			
-			if(dir == UP) {
-				isMovingUp = false;
-				if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
-					startMoving(DOWN);
-				}
-			} else {
-				isMovingDown = false;
-				if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
-					startMoving(UP);
-				}
-			}
-		}
-		
-		else {
-			if(isMovingUp) {
-				currentAnimation = WALK_UP;
-			} else if(isMovingDown) {
-				currentAnimation = WALK_DOWN;
-			} else {
-				turnWalkingOff();
-			}
-			
-			if(dir == LEFT) {
-				isMovingLeft = false;
-				if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
-					startMoving(RIGHT);
-				}
-			} else {
-				isMovingRight = false;
-				if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
-					startMoving(LEFT);
-				}
-			}
-		}
-	}	
-	
-	public void cycleWalkAnimation() {
-		//System.out.println(timeSinceLastAnimation);
-		timeSinceLastAnimation++;	//if(getTime() - timeSinceLastAnimation > MAX_ANIMATION_TIME) {
-		if(timeSinceLastAnimation > animationTimePerFrame) {
-			timeSinceLastAnimation = 0; //timeSinceLastAnimation = getTime();
-			currentWalkingAnimationPos++;
-			if(currentWalkingAnimationPos >= walkingAnimationCycle.length) {
-				currentWalkingAnimationPos = 0;
-			}
-		}
+	public void moveDown() {
+		if(!isMoving() || isMovingUp) sprite.changeAnimationTo("walkDown");
+		isMovingUp = false;
+		isMovingDown = true;
 	}
-
+	
+	public void moveLeft() {
+		if(!isMoving() || isMovingRight) sprite.changeAnimationTo("walkLeft");
+		isMovingLeft = true;
+		isMovingRight = false;
+	}
+	
+	public void moveRight() {
+		if(!isMoving() || isMovingLeft) sprite.changeAnimationTo("walkRight");
+		isMovingLeft = false;
+		isMovingRight = true;
+	}
+	
+	public void stop() {
+		if(isMovingDown) sprite.changeAnimationTo("standDown");
+		if(isMovingUp) sprite.changeAnimationTo("standUp");
+		if(isMovingLeft) sprite.changeAnimationTo("standLeft");
+		if(isMovingRight) sprite.changeAnimationTo("standRight");
+		isMovingDown = false; isMovingUp = false; isMovingLeft = false; isMovingRight = false;
+	}
+	
+	public void stopUp() {
+		if(isMovingRight) sprite.changeAnimationTo("walkRight");
+		else if(isMovingLeft) sprite.changeAnimationTo("walkLeft");
+		else if(!isMovingDown) sprite.changeAnimationTo("standUp");
+		isMovingUp = false;
+		if(Keyboard.isKeyDown(Keyboard.KEY_S)) moveDown();
+	}
+	
+	public void stopDown() {
+		if(isMovingRight) sprite.changeAnimationTo("walkRight");
+		else if(isMovingLeft) sprite.changeAnimationTo("walkLeft");
+		else if(!isMovingUp) sprite.changeAnimationTo("standDown");
+		isMovingDown = false;
+		if(Keyboard.isKeyDown(Keyboard.KEY_W)) moveUp();
+	}
+	
+	public void stopLeft() {
+		if(isMovingUp) sprite.changeAnimationTo("walkUp");
+		else if(isMovingDown) sprite.changeAnimationTo("walkDown");
+		else if(!isMovingRight) sprite.changeAnimationTo("standLeft");
+		isMovingLeft = false;
+		if(Keyboard.isKeyDown(Keyboard.KEY_D)) moveRight();
+	}
+	
+	public void stopRight() {
+		if(isMovingUp) sprite.changeAnimationTo("walkUp");
+		else if(isMovingDown) sprite.changeAnimationTo("walkDown");
+		else if(!isMovingLeft) sprite.changeAnimationTo("standRight");
+		isMovingRight = false;
+		if(Keyboard.isKeyDown(Keyboard.KEY_A)) moveLeft();
+	}
+	
+	/************************** Collision Detection **************************/
 	public void getCollisionBlocks() {
 		//get position in activeBlocks array
 		int x = Game.level.renderRect.x2() - (sRect.x2() - margin.right) / TILE_SIZE - 2;//(aRect.x + margin.left) / TILE_SIZE;
@@ -182,7 +136,7 @@ public class Hero {
 						int dir = 0;
 						boolean didDetectCollision = false;
 						if(isVerticalMovement) {
-							if(charCRect.detectCollision(collisionDetectionBlocks[i].cRect)) {
+							if(charCRect.detectCollision(collisionDetectionBlocks[i].collisionTile.cRect)) {
 								if(isMovingDown) {
 									dir = DOWN;
 								} else if(isMovingUp) {
@@ -191,7 +145,7 @@ public class Hero {
 								didDetectCollision = true;
 							}
 						} else {
-							if(charCRect.detectCollision(collisionDetectionBlocks[i].cRect)) {
+							if(charCRect.detectCollision(collisionDetectionBlocks[i].collisionTile.cRect)) {
 								if(isMovingLeft) {
 									dir = LEFT;
 								} else if(isMovingRight) {
@@ -201,8 +155,8 @@ public class Hero {
 							}
 						}
 						CollisionTile t = collisionDetectionBlocks[i].collisionTile;
-						t.heroDidCollide(dir, move, charCRect, collisionDetectionBlocks[i].cRect);
-						collisionDetectionBlocks[i].sRect = new Rect(collisionDetectionBlocks[i].cRect, this);	//yellow block in debug mode
+						t.heroDidCollide(dir, move, charCRect, collisionDetectionBlocks[i].collisionTile.cRect);
+						collisionDetectionBlocks[i].sRect = new Rect(collisionDetectionBlocks[i].collisionTile.cRect, this);	//yellow block in debug mode
 						if(didDetectCollision) break;
 					}
 				}
@@ -236,7 +190,7 @@ public class Hero {
 		}
 	}
 	
-	public void walkForward(int delta) {
+	public void moveForward(int delta) {
 		int moveX = 0, moveY = 0;
 		
 		getCollisionBlocks();
@@ -262,35 +216,11 @@ public class Hero {
 	}
 	
 	public void update(int delta) {
-		if(isMoving && !isAttacking) {
-			cycleWalkAnimation();
-			walkForward(delta);
+		if(isMoving() && !isAttacking) {
+			moveForward(delta);
 		} else if(isAttacking) {
 			
 		}
-	}
-	
-	public void render() {
-		animations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER);
-		if(Game.debugMenu.collisionRectsAreOn) {
-			Color.red.bind();
-			Textures.pixel.draw(new Rect(sRect, margin), Z_CHARACTER + 0.01f);
-			
-			Color.yellow.bind();
-			if(collisionDetectionBlocks[0] != null) {
-				for(int i = 0; i < collisionDetectionBlocks.length; i++) {
-					if(collisionDetectionBlocks[i].sRect != null && collisionDetectionBlocks[i].isCollidable()) {
-						Textures.pixel.draw(collisionDetectionBlocks[i].sRect, Z_COLLISION_RECTS + 0.01f);
-					}
-				}
-			}
-			Color.white.bind();
-		}
-	}
-	
-	//for inventory menu...
-	public void render(int a, int x, int y, int w, int h) {
-		animations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
 	}
 	
 	public static float getCurrentSpeed() {

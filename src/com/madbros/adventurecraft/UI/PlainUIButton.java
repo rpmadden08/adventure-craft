@@ -8,7 +8,7 @@ import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class PlainUIButton extends UIButton{
-	Sprite texture = Textures.pixel;
+	StaticSprite texture = Textures.pixel;
 	Color buttonColor = Color.darkGray;
 	Color highlight = new Color(1.0f, 1.0f, 1.0f, 0.3f);
 	Color pressedColor = new Color(0.0f, 0.0f, 0.0f, 0.3f);

@@ -51,10 +51,7 @@ public class EarthClump extends BlockItem {
 			hB.timePlaced = Time.getTime();
 			hB.layers[GRASS_LAYER] = new NoTile();
 			hB.layers[WATER_LAYER] = new NoTile();
-//			hB.layers[LIGHT_DIRT_LAYER] = new NoTile();
-			
 			hB.collisionTile = null;
-			hB.cRect = null;
 		} else if(hB.canPlace == true) {
 			hB.layers[GRASS_LAYER] = new NoTile();
 			hB.layers[WATER_LAYER] = new NoTile();

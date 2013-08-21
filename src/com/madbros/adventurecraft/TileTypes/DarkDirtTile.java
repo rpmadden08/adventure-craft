@@ -2,6 +2,7 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.madbros.adventurecraft.StaticSprite;
 import com.madbros.adventurecraft.Textures;
 
 public class DarkDirtTile extends Tile{
@@ -14,7 +15,7 @@ public class DarkDirtTile extends Tile{
 		isCollidable = false;
 		isMiddleTile = true;
 		currentTexture = 0;
-		textures = Textures.darkDirtTexture;
+		textures = new StaticSprite[]{Textures.staticSprites.get("baseDirt")};
 		id = DARK_DIRT;
 		isDiggable = true;
 	}

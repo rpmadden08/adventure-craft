@@ -13,7 +13,7 @@ public class SelectUIButton {
 	
 	Color fontColor = Color.white;
 	
-	Sprite texture = Textures.pixel;
+	StaticSprite texture = Textures.pixel;
 	Color buttonColor = Color.darkGray;
 	Color pressedColor = new Color(0.0f, 0.0f, 0.0f, 0.3f);
 	

@@ -29,6 +29,9 @@ public class Game {
 	public static Hero hero;
 	public static Inventory inventory;
 	public static MiniMap map;
+	public static RenderSystem renderSystem;
+	public static CollisionDetectionSystem collisionDetectionSystem;
+	
 
 	//public static DisplayMode displayMode = new DisplayMode(2048, 1280);
 	
@@ -134,7 +137,7 @@ public class Game {
 		glClearDepth(1.0f);                   // set background depth to farthest
 		glDepthFunc(GL_LEQUAL);    // set the type of depth-test
 		glShadeModel(GL_SMOOTH);   // enable smooth shading
-		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // nice perspective corrections   
+		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // nice perspective corrections
 		
 
 
@@ -222,8 +225,15 @@ public class Game {
 	}
 	
 	public static void toggleInventoryState() {
-		if(currentState.type == State.INVENTORY) currentState = new MainState();
-		else currentState = new InventoryState();
+		if(currentState.type == State.INVENTORY) {
+			currentState = new MainState();
+			hero.stop();
+			inventory.close();
+		} else {
+			currentState = new InventoryState();
+			hero.stop();
+			inventory.open();
+		}
 	}
 	
 	public static void createSavesFolderIfNecessary() {
@@ -250,6 +260,8 @@ public class Game {
 		hero = new Hero();
 		inventory = new Inventory();
 		map = new MiniMap();
+		renderSystem = new RenderSystem();
+		collisionDetectionSystem = new CollisionDetectionSystem();
 		
 		Game.currentState = new MainState();
 	}

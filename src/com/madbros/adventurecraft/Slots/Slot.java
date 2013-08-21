@@ -1,4 +1,4 @@
-package com.madbros.adventurecraft.Cells;
+package com.madbros.adventurecraft.Slots;
 
 import static com.madbros.adventurecraft.Constants.*;
 
@@ -6,47 +6,47 @@ import org.newdawn.slick.*;
 
 import com.madbros.adventurecraft.Inventory;
 import com.madbros.adventurecraft.Item;
-import com.madbros.adventurecraft.Sprite;
+import com.madbros.adventurecraft.StaticSprite;
 import com.madbros.adventurecraft.Textures;
 import com.madbros.adventurecraft.Items.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class Cell {
-	private Sprite cellTexture = Textures.cellTexture;
-	private Sprite highlighter = Textures.pixel;
+public class Slot {
+	private StaticSprite slotTexture = Textures.slotTexture;
+	private StaticSprite highlighter = Textures.pixel;
 	
 	private Color highlightColor = new Color(1.0f, 1.0f, 1.0f, 0.2f);
 	
-	public Rect cellRect;
+	public Rect slotRect;
 	
 	public Item item = new NoItem();
 	public int type;
 	
 	public boolean isHighlighted = false;
 	
-	public Cell(int x, int y, int type) {
-		Rect r = new Rect(x, y, INV_CELL_SIZE, INV_CELL_SIZE);
-		cellRect = r;
+	public Slot(int x, int y, int type) {
+		Rect r = new Rect(x, y, INV_SLOT_SIZE, INV_SLOT_SIZE);
+		slotRect = r;
 		this.type = type;
 	}
 	
 	public void render() {
-		cellTexture.draw(cellRect, Z_INV_CELLS);
+		slotTexture.draw(slotRect, Z_INV_SLOTS);
 		
 		if(isHighlighted) {
 			highlightColor.bind();
-			highlighter.draw(cellRect, Z_INV_HIGHLIGHT);
+			highlighter.draw(slotRect, Z_INV_HIGHLIGHT);
 			Color.white.bind();
 		}
 		
-		item.render(cellRect);
+		item.render(slotRect);
 		
 		
 	}
 	
 	/* Handle Events */
-	public void handleLeftClick(Inventory inv) {//Item heldItem, Cell[] invCrafting, Cell[]invCrafted, Inventory inv) {
+	public void handleLeftClick(Inventory inv) {//Item heldItem, Slot[] invCrafting, Slot[]invCrafted, Inventory inv) {
 		if(inv.heldItem.id == this.item.id && this.item.id != EMPTY) {
 			int total = inv.heldItem.stackSize + this.item.stackSize;
 			if(total > inv.heldItem.maxStackSize) {
@@ -85,7 +85,7 @@ public class Cell {
 		handleAdditional(inv.invCrafting, inv.invCrafted);
 	}
 	
-	public void handleAdditional(Cell[] invCrafting, Cell[] invCrafted) { }
+	public void handleAdditional(Slot[] invCrafting, Slot[] invCrafted) { }
 	
 	/* Helpers */
 	public void swapItems(Inventory inv) {
@@ -94,7 +94,7 @@ public class Cell {
 		this.item = temp;
 	}
 	
-	public void removeRecipeItemsFromCraftingCells(int[] recipeCost, Cell[] invCrafting) {
+	public void removeRecipeItemsFromCraftingSlots(int[] recipeCost, Slot[] invCrafting) {
 		int[] itemPositionsRemovedAlready = new int[recipeCost.length];	//so you don't remove two planks from the same stack, for example
 		for(int i = 0; i < recipeCost.length; i++) {
 			for(int j = 0; j < invCrafting.length; j++) {
@@ -108,7 +108,7 @@ public class Cell {
 		}
 	}
 	
-	public void craftAnotherItemIfPossible(Cell[] invCrafting, Cell[] invCrafted) {
+	public void craftAnotherItemIfPossible(Slot[] invCrafting, Slot[] invCrafted) {
 		for(int i = 0; i < invCrafting.length; i++) {
 			if(invCrafting[i].item.id != EMPTY) {
 				craftAnItemFromThisListIfPossible(invCrafting, invCrafted, invCrafting[i].item.itemsPossiblyCraftable);
@@ -118,7 +118,7 @@ public class Cell {
 		invCrafted[0].item = new NoItem();
 	}
 	
-	public void craftAnItemFromThisListIfPossible(Cell[] invCrafting, Cell[] invCrafted, int[] itemsPossiblyCraftable) {
+	public void craftAnItemFromThisListIfPossible(Slot[] invCrafting, Slot[] invCrafted, int[] itemsPossiblyCraftable) {
 		for(int i = 0; i < itemsPossiblyCraftable.length; i++) {
 			Item possiblyCraftableItem = ITEM_HASH.get(itemsPossiblyCraftable[i]);
 			if(possiblyCraftableItem.isValidRecipe(invCrafting)) {

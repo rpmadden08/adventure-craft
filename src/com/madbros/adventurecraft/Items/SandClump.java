@@ -26,7 +26,6 @@ public class SandClump extends BlockItem {
 			hB.layers[GRASS_LAYER] = tile;
 			hB.layers[WATER_LAYER] = new NoTile();
 			hB.collisionTile = null;
-			hB.cRect = null;
 		} else {
 			hB.layers[GRASS_LAYER] = tile;
 		}

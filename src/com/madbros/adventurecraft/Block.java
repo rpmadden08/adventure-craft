@@ -13,10 +13,9 @@ public class Block {
 	public Tile[] layers;
 	public CollisionTile collisionTile;
 	public Rect sRect;	//screen rect positions - only used for collision detection debugging (see character collision)
-	public Rect aRect;	//absolute rect positions
-	public Rect cRect;	//the collision detection rect for colidable blocks (this rect acounts for any offsets)
+	public Rect absRect;	//absolute rect positions
 
-	public boolean canPlace = true;
+	public boolean canPlace = true;		//FIXME: if we scrap dark dirt, do we still need this?
 	public Long timePlaced= Time.getTime();
 	
 	public boolean isHighlighted = false;
@@ -26,7 +25,7 @@ public class Block {
 	}
 	
 	public Block(Tile[] t, int absX, int absY) {
-		aRect = new Rect(absX, absY);
+		absRect = new Rect(absX, absY);
 		
 		layers = new Tile[11];
 		layers[DARK_DIRT_LAYER] = t[DARK_DIRT_LAYER];
@@ -41,13 +40,8 @@ public class Block {
 		layers[ABOVE_LAYER_5] = t[ABOVE_LAYER_5];
 		layers[ABOVE_LAYER_6] = t[ABOVE_LAYER_6];
 		
-		if(t[WATER_LAYER].isCollidable) {
-			collisionTile = (CollisionTile)t[WATER_LAYER];
-			cRect = new Rect(aRect, collisionTile.margin);
-		} else if(t[OBJECT_LAYER].isCollidable) {
-			collisionTile = (CollisionTile)t[OBJECT_LAYER];
-			cRect = new Rect(aRect, collisionTile.margin);
-		}
+		if(t[WATER_LAYER].isCollidable) setCollisionTile((CollisionTile)t[WATER_LAYER]);
+		else if(t[OBJECT_LAYER].isCollidable) setCollisionTile((CollisionTile)t[OBJECT_LAYER]);
 	}
 	
 	public void render(int x, int y) {
@@ -112,8 +106,7 @@ public class Block {
 				return;
 			} else if(layers[i].id == DARK_DIRT) {
 				layers[WATER_LAYER] = new HoleTile();
-				collisionTile = (CollisionTile)layers[WATER_LAYER];
-				cRect = new Rect(aRect, collisionTile.margin);
+				setCollisionTile((CollisionTile)layers[WATER_LAYER]);
 			}
 		}
 	}
@@ -131,14 +124,18 @@ public class Block {
 		
 		boolean middleTileReached = false;
 		for(int i = WATER_LAYER; i > -1; i--) {
-			if(layers[i].id == AIR || middleTileReached) {
-				tiles[i] = new NoTile();
-			} else {
+			if(layers[i].id == AIR || middleTileReached) tiles[i] = new NoTile();
+			else {
 				tiles[i] = layers[i];
 				if(layers[i].isMiddleTile) middleTileReached = true;
 			}
 		}
 		return tiles;
+	}
+	
+	public void setCollisionTile(CollisionTile t) {
+		collisionTile = t;
+		collisionTile.setCollisionRect(absRect);
 	}
 	
 	public void detectCollisions() {

@@ -4,7 +4,6 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Utils.Margin;
-import com.madbros.adventurecraft.Utils.Rect;
 
 public class SaplingTile extends CollisionTile {
 	
@@ -31,12 +30,11 @@ public class SaplingTile extends CollisionTile {
 	@Override
 	public void update(int x, int y) {
 		if(Time.getTime() - timeCreated > 30) {// 3000
-			Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new TreeTile();
-			Game.level.activeBlocks[x][y].collisionTile = new TreeTile();
-			Game.level.activeBlocks[x][y].cRect = new Rect(Game.level.activeBlocks[x][y].aRect, Game.level.activeBlocks[x][y].collisionTile.margin);
+			Block b = 	Game.level.activeBlocks[x][y];
+			b.layers[OBJECT_LAYER] = new TreeTile();
+			b.setCollisionTile(new TreeTile());
 			
 			int layer;
-			Block b;
 			int[] xs = {x, x-1, x-1, x, x+1, x+1};
 			int[] ys = {y, y, y-1, y-1, y-1, y};
 			
