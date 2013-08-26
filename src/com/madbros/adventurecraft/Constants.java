@@ -71,6 +71,12 @@ public class Constants {
 	public static final int BAG = 1;
 	public static final int CRAFTING = 2;
 	public static final int CRAFTED = 3;
+	public static final int CLOTHING = 4;
+	public static final int HELMET_CELL = 5;
+	public static final int ARMOR_CELL = 6;
+	public static final int LEGGINGS_CELL = 7;
+	public static final int BOOTS_CELL = 8;
+	
 	
 	//level constants
 	public static final int CHUNK_SIZE = 16;
@@ -167,7 +173,19 @@ public class Constants {
 	public static final int SHOVEL = 6;
 	
 	public static final int SWORD = 7;
+	
 	public static final int SAPLING_ITEM = 8;
+	
+	public static final int IRON_HELMET = 9;
+	public static final int IRON_ARMOR = 10;
+	public static final int IRON_LEGGINGS = 11;
+	public static final int IRON_BOOTS = 12;
+	
+	//Clothing Types
+	public static final int HELMET = 0;
+	public static final int ARMOR = 1;
+	public static final int LEGGINGS = 2;
+	public static final int BOOTS = 3;
 	
 	//Debugger
 	public static final int	BYTES_IN_MEGABYTE = 1048576;

@@ -14,8 +14,10 @@ import static com.madbros.adventurecraft.Constants.*;
 public class Hero {
 	//animations
 	Sprite[] animations;
+	Sprite[] helmetAnimations;
 	Sprite[] armorAnimations;
-	Sprite[] pantsAnimations;
+	Sprite[] leggingsAnimations;
+	Sprite[] feetAnimations;
 	
 	int[] walkingAnimationCycle = {0, 1, 2, 1};
 	int currentAnimation = WALK_DOWN; //where the animation begins in the sprite animations array
@@ -41,8 +43,10 @@ public class Hero {
 		
 	public Hero() {
 		animations = Textures.characterAnimations;
+		helmetAnimations = Textures.helmetAnimations;
 		armorAnimations = Textures.armorAnimations;
-		pantsAnimations = Textures.pantsAnimations;
+		leggingsAnimations = Textures.leggingsAnimations;
+		feetAnimations = Textures.feetAnimations;
 		walkingAnimationCycle[0] = 0;
 	}
 	
@@ -276,8 +280,12 @@ public class Hero {
 	
 	public void render() {
 		animations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER);
-		pantsAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_PANTS);
-		//armorAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_ARMOR);
+		feetAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_PANTS);
+		leggingsAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_PANTS);
+		armorAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_ARMOR);
+		helmetAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_PANTS);
+		
+		
 		
 		
 		if(Game.debugMenu.collisionRectsAreOn) {
@@ -299,8 +307,10 @@ public class Hero {
 	//for inventory menu...
 	public void render(int a, int x, int y, int w, int h) {
 		animations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
-		pantsAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
+		feetAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
+		leggingsAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
 		armorAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
+		helmetAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
 	}
 	
 	public static float getCurrentSpeed() {

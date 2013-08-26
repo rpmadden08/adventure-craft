@@ -17,6 +17,7 @@ public class Inventory {
 	public Cell[] invBag= new Cell[INV_LENGTH * INV_HEIGHT];
 	public CraftingCell[] invCrafting= new CraftingCell[2 * 2];
 	public CraftedCell[] invCrafted = new CraftedCell[1];
+	public ClothingCell[] invClothing = new ClothingCell[4];
 	
 	public Item heldItem = new NoItem();
 	private int itemSelected = 0;
@@ -46,11 +47,15 @@ public class Inventory {
 			}
 		}
 		
+		invClothing[0] = new ClothingCell(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +60,HELMET_CELL);
+		invClothing[1] = new ClothingCell(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +110,ARMOR_CELL);
+		invClothing[2] = new ClothingCell(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +160,LEGGINGS_CELL);
+		invClothing[3] = new ClothingCell(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +210,BOOTS_CELL);
+		
 		invCrafted[0] = new CraftedCell(INV_CRAFTING_RECT.x2() + 5, INV_CRAFTING_RECT.y, CRAFTED);
 		
-		invBar[0].item = new Sword();
-		invBar[1].item = new Log();
-		invBar[1].item.stackSize = 10;
+		invBar[0].item = new IronBoots();
+		invBar[1].item = new IronArmor();
 		invBar[2].item = new Log();
 		invBar[2].item.stackSize = 99;
 		invBar[3].item = new SandClump();
@@ -59,9 +64,11 @@ public class Inventory {
 		invBar[4].item.stackSize = 99;
 		invBar[5].item = new EarthClump();
 		invBar[5].item.stackSize = 99;
-		invBar[6].item = new Shovel();
+		invBar[6].item = new IronLeggings();
 		invBar[7].item = new Sapling();
 		invBar[7].item.stackSize = 99;
+		invClothing[0].item = new IronHelmet();
+		invBar[8].item = new IronHelmet();
 	}
 	
 	public void update() {
@@ -105,7 +112,7 @@ public class Inventory {
 	public void renderFull() {
 		renderBackdrop();
 		
-		Cell[][] cells = {invBag, invCrafting, invCrafted};
+		Cell[][] cells = {invBag, invCrafting, invCrafted, invClothing};
 		for(int i = 0; i < cells.length; i++) {
 			for(int j = 0; j < cells[i].length; j++) {
 				cells[i][j].render();

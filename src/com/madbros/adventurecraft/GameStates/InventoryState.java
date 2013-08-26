@@ -26,7 +26,7 @@ public class InventoryState extends MainState {
 	@Override
 	protected void getAdditionalMouseInput() {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
-		Cell[][] cells = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted};
+		Cell[][] cells = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing};
 		
 		for(int i = 0; i < cells.length; i++) {
 			for(int j = 0; j < cells[i].length; j++) {

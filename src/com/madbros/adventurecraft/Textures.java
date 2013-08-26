@@ -29,9 +29,12 @@ public class Textures {
 	public static Sprite[] sandTextures;
 	public static Sprite[] saplingTexture;
 	
+	
 	public static Sprite[] characterAnimations;
-	public static Sprite[] pantsAnimations;
+	public static Sprite[] helmetAnimations;
 	public static Sprite[] armorAnimations;
+	public static Sprite[] leggingsAnimations;
+	public static Sprite[] feetAnimations;
 
 	public static Sprite[] fireAnimationTextures;
 	
@@ -48,6 +51,10 @@ public class Textures {
 	public static Sprite plankTexture;
 	public static Sprite swordTexture;
 	public static Sprite shovelTexture;
+	public static Sprite ironHelmetTexture;
+	public static Sprite ironArmorTexture;
+	public static Sprite ironLeggingsTexture;
+	public static Sprite ironBootsTexture;
 	
 	public static Sprite buttonTexture;
 	public static Sprite pressedButtonTexture;
@@ -99,7 +106,7 @@ public class Textures {
 				}
 			}
 			
-			saplingTexture = new Sprite[]{new Sprite(atlas, 224, 608, 64, 64)};
+			saplingTexture = new Sprite[]{new Sprite(atlas, 96, 608, 64, 64)};
 			
 			treeLeafTextures = new Sprite[6];
 			treeLeafTextures[0] = new Sprite(atlas, 16, 608, 64, 64);
@@ -132,8 +139,10 @@ public class Textures {
 			pixel = new Sprite(atlas, 1023, 0, 1, 1);
 			
 			characterAnimations = new Sprite[12];
-			pantsAnimations = new Sprite[12];
+			helmetAnimations = new Sprite[12];
 			armorAnimations = new Sprite[12];
+			feetAnimations = new Sprite[12];
+			leggingsAnimations = new Sprite[12];
 
 			int sX = 0; int sY = 96;
 			k = 0;
@@ -151,7 +160,7 @@ public class Textures {
 			k = 0;
 			for(int i = 0; i < 4; i ++) {
 				for(int j = 0; j < 3; j++) {
-					pantsAnimations[k] = new Sprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+					armorAnimations[k] = new Sprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
 					k++;
 				}
 			}
@@ -161,7 +170,25 @@ public class Textures {
 			k = 0;
 			for(int i = 0; i < 4; i ++) {
 				for(int j = 0; j < 3; j++) {
-					armorAnimations[k] = new Sprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+					helmetAnimations[k] = new Sprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+					k++;
+				}
+			}
+			
+			sX = 576; sY = 96;
+			k = 0;
+			for(int i = 0; i < 4; i ++) {
+				for(int j = 0; j < 3; j++) {
+					leggingsAnimations[k] = new Sprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+					k++;
+				}
+			}
+			
+			sX = 768; sY = 96;
+			k = 0;
+			for(int i = 0; i < 4; i ++) {
+				for(int j = 0; j < 3; j++) {
+					feetAnimations[k] = new Sprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
 					k++;
 				}
 			}
@@ -179,7 +206,11 @@ public class Textures {
 			sandClumpTexture = new Sprite(atlas, TEXTURE_SIZE*2, 480, TEXTURE_SIZE, TEXTURE_SIZE);
 			logTexture = new Sprite(atlas, TEXTURE_SIZE*3, 480, TEXTURE_SIZE, TEXTURE_SIZE);
 			plankTexture = new Sprite(atlas, TEXTURE_SIZE*4, 480, TEXTURE_SIZE, TEXTURE_SIZE);
-			saplingItemTexture = new Sprite(atlas, 240, 624, TEXTURE_SIZE, TEXTURE_SIZE);
+			ironHelmetTexture = new Sprite(atlas, TEXTURE_SIZE*5, 480, TEXTURE_SIZE, TEXTURE_SIZE);
+			ironArmorTexture = new Sprite(atlas, TEXTURE_SIZE*6, 480, TEXTURE_SIZE, TEXTURE_SIZE);
+			ironLeggingsTexture = new Sprite(atlas, TEXTURE_SIZE*7, 480, TEXTURE_SIZE, TEXTURE_SIZE);
+			ironBootsTexture = new Sprite(atlas, TEXTURE_SIZE*8, 480, TEXTURE_SIZE, TEXTURE_SIZE);
+			saplingItemTexture = new Sprite(atlas, 112, 624, TEXTURE_SIZE, TEXTURE_SIZE);
 			
 			swordTexture = new Sprite(atlas, TEXTURE_SIZE*0, 512, TEXTURE_SIZE, TEXTURE_SIZE);
 			shovelTexture = new Sprite(atlas, TEXTURE_SIZE*1, 512, TEXTURE_SIZE, TEXTURE_SIZE);
