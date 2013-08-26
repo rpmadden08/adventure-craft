@@ -280,10 +280,18 @@ public class Hero {
 	
 	public void render() {
 		animations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER);
-		feetAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_PANTS);
-		leggingsAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_PANTS);
-		armorAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_ARMOR);
-		helmetAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_PANTS);
+		if(Game.inventory.invClothing[3].item.id != EMPTY) {
+			feetAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_PANTS);
+		}
+		if(Game.inventory.invClothing[2].item.id != EMPTY) {
+			leggingsAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_PANTS);
+		}
+		if(Game.inventory.invClothing[1].item.id != EMPTY) {
+			armorAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_ARMOR);
+		}
+		if(Game.inventory.invClothing[0].item.id != EMPTY) {
+			helmetAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+currentAnimation].draw(sRect, Z_CHARACTER_PANTS);
+		}
 		
 		
 		
@@ -307,10 +315,18 @@ public class Hero {
 	//for inventory menu...
 	public void render(int a, int x, int y, int w, int h) {
 		animations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
-		feetAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
-		leggingsAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
-		armorAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
-		helmetAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
+		if(Game.inventory.invClothing[3].item.id != EMPTY) {
+			feetAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
+		}
+		if(Game.inventory.invClothing[2].item.id != EMPTY) {
+			leggingsAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
+		}
+		if(Game.inventory.invClothing[1].item.id != EMPTY) {
+			armorAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
+		}
+		if(Game.inventory.invClothing[0].item.id != EMPTY) {
+			helmetAnimations[walkingAnimationCycle[currentWalkingAnimationPos]+a].draw(x, y, Z_INV_CHARACTER, w, h);
+		}
 	}
 	
 	public static float getCurrentSpeed() {
