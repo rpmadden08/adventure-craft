@@ -48,7 +48,7 @@ public class Game {
 			                        current.getBitsPerPixel() + " " + current.getFrequency() + "Hz");
 			}
 			
-			setDisplayMode(INITIAL_WINDOW_WIDTH,INITIAL_WINDOW_HEIGHT, true);
+			setDisplayMode(INITIAL_WINDOW_WIDTH,INITIAL_WINDOW_HEIGHT, false);
 			
 			//Display.setFullscreen(true);
 			Display.setResizable(true);

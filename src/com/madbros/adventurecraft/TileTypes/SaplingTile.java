@@ -41,6 +41,7 @@ public class SaplingTile extends CollisionTile {
 			int[] ys = {y, y, y-1, y-1, y-1, y};
 			
 			for(int i = 0; i < 6; i++) {
+				System.out.println(xs[i]+" "+ys[i]);
 				b = Game.level.activeBlocks[xs[i]][ys[i]];
 				if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR && b.layers[ABOVE_LAYER_3].id != AIR && b.layers[ABOVE_LAYER_4].id != AIR && b.layers[ABOVE_LAYER_5].id != AIR) layer = ABOVE_LAYER_6;
 				else if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR && b.layers[ABOVE_LAYER_3].id != AIR && b.layers[ABOVE_LAYER_4].id != AIR) layer = ABOVE_LAYER_5;

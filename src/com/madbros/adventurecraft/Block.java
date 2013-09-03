@@ -15,17 +15,19 @@ public class Block {
 	public Rect sRect;	//screen rect positions - only used for collision detection debugging (see character collision)
 	public Rect aRect;	//absolute rect positions
 	public Rect cRect;	//the collision detection rect for colidable blocks (this rect acounts for any offsets)
+	public float noise;
+	public boolean isUnfinished = false;
 
 	public boolean canPlace = true;
 	public Long timePlaced= Time.getTime();
 	
 	public boolean isHighlighted = false;
 	
-	public Block(Tile tile, int absX, int absY) {
-		this(new Tile[]{tile}, absX, absY);
+	public Block(Tile tile, int absX, int absY, boolean isUnfinished) {
+		this(new Tile[]{tile}, absX, absY, false);
 	}
 	
-	public Block(Tile[] t, int absX, int absY) {
+	public Block(Tile[] t, int absX, int absY, boolean isUnfinished) {
 		aRect = new Rect(absX, absY);
 		
 		layers = new Tile[11];

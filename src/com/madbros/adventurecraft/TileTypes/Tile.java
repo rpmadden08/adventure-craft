@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import org.newdawn.slick.Color;
 
+import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Sprite;
 import com.madbros.adventurecraft.Textures;
 import com.madbros.adventurecraft.Time;
@@ -44,6 +45,10 @@ public abstract class Tile {
 		Textures.pixel.draw(sX+1, sY+1, Z_HEALTHBAR, Math.round((currentHp * 1.0f / maxHp) * w-2), h-2);
 		Color.white.bind();
 		Helpers.drawRect(new Rect(sX, sY, w, h), Z_HEALTHBAR);
+	}
+	
+	public void bloom(int x,int y, Block[][] activeBlocks) {
+		
 	}
 	
 	public abstract Tile createNew();

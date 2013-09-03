@@ -16,13 +16,21 @@ public class SaveGame {
 		
 		for(int x = 0; x < CHUNK_SIZE; x++) {
 			for(int y = 0; y < CHUNK_SIZE; y++) {
-				JSONArray tiles = new JSONArray();
+				JSONArray tilesID = new JSONArray();
 				for(int i = 0; i < chunk[x][y].layers.length; i++) {
-					tiles.add(chunk[x][y].layers[i].id);
+					tilesID.add(chunk[x][y].layers[i].id);
 				}
-				obj.put("tiles" + x + "-" + y, tiles);
+				
+				JSONArray tilesCurrentTexture = new JSONArray();
+				for(int i = 0; i < chunk[x][y].layers.length; i++) {
+					tilesCurrentTexture.add(chunk[x][y].layers[i].currentTexture);
+				}
+				
+				obj.put("tilesID" + x + "-" + y, tilesID);
+				obj.put("tilesCurrentTexture" + x + "-" + y, tilesCurrentTexture);
 				obj.put("x" + x + "-" + y, chunk[x][y].aRect.x);
 				obj.put("y" + x + "-" + y, chunk[x][y].aRect.y);
+				obj.put("isUnfinished" + x + "-" + y,new Boolean (chunk[x][y].isUnfinished));
 			}
 		}
 		
@@ -51,17 +59,27 @@ public class SaveGame {
 			
 			for(int x = 0; x < CHUNK_SIZE; x++) {
 				for(int y = 0; y < CHUNK_SIZE; y++) {
-					JSONArray tiles = (JSONArray) jO.get("tiles" + x + "-" + y);
-					Tile[] t = new Tile[tiles.size()];
-					for(int i = 0; i < tiles.size(); i++) {
-						long id = (Long) tiles.get(i);
+					JSONArray tilesID = (JSONArray) jO.get("tilesID" + x + "-" + y);
+					Tile[] t = new Tile[tilesID.size()];
+					for(int i = 0; i < tilesID.size(); i++) {
+						long id = (Long) tilesID.get(i);						
 						t[i] = TILE_HASH.get((int)id).createNew();
+					}
+					
+					JSONArray tilesCurrentTexture = (JSONArray) jO.get("tilesCurrentTexture" + x + "-" + y);
+					//Tile[] t = new Tile[tiles.size()];
+					for(int i = 0; i < tilesCurrentTexture.size(); i++) {
+						long currentTexture = (Long) tilesCurrentTexture.get(i);
+						t[i].currentTexture = (int)currentTexture;
+						
 					}
 					
 					long absX = (Long) jO.get("x" + x + "-" + y);
 					long absY = (Long) jO.get("y" + x + "-" + y); 
-				
-					chunk[x][y] = new Block(t, (int)absX, (int)absY);
+					boolean isUnfinished = (Boolean) jO.get("isUnfinished" + x + "-" + y);
+					chunk[x][y] = new Block(t, (int)absX, (int)absY, isUnfinished);
+					chunk[x][y].isUnfinished = isUnfinished;
+					
 				}
 			}
 		} catch (FileNotFoundException e) {

@@ -34,6 +34,6 @@ public class TreeLeafTile extends CollisionTile {
 	}
 	
 	public Tile createNew() {
-		return new TreeTile();
+		return new TreeLeafTile();
 	}
 }

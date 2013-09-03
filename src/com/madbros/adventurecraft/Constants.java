@@ -16,8 +16,8 @@ public class Constants {
 	public static HashMap<Integer, Integer> BOTTOM_RIGHT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
 	
 	//game constants
-	public static final int INITIAL_WINDOW_WIDTH = 1280;// 640
-	public static final int INITIAL_WINDOW_HEIGHT = 800;//480
+	public static final int INITIAL_WINDOW_WIDTH = 1280;// 640 1280
+	public static final int INITIAL_WINDOW_HEIGHT = 800;//480 800
 	public static final int RENDER_MARGIN = 1;
 	public static final int FRAME_RATE = 60;
 	public static final String GAME_TITLE = "Adventure Craft";
@@ -132,7 +132,7 @@ public class Constants {
 	public static final float Z_COLLISION_RECTS = -0.57f;
 	public static final float Z_ABOVE_LAYER = -0.55f;
 	public static final float Z_ABOVE_LAYER2 = -0.54f;
-	public static final float Z_BOUNDARIES = -0.53f;
+	public static final float Z_BOUNDARIES = -0.0f;
 	
 	public static final float Z_HEALTHBAR = -0.52f;
 	
@@ -243,6 +243,7 @@ public class Constants {
 		TILE_HASH.put(SAND, new SandTile());
 		TILE_HASH.put(AIR, new NoTile());
 		TILE_HASH.put(SAPLING, new SaplingTile());
+		TILE_HASH.put(TREE_LEAF, new TreeLeafTile());
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);
 		TOP_LEFT_AUTO_TILE_HASH.put(1, TOP_LEFT_TILE);
