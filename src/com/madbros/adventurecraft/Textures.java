@@ -27,6 +27,8 @@ public class Textures {
 	public static Sprite[] waterTextures;
 	public static Sprite[] holeTextures;
 	public static Sprite[] sandTextures;
+	public static Sprite[] dirtMountainBottomTextures;
+	public static Sprite[] dirtMountainTopTextures;
 	public static Sprite[] saplingTexture;
 	
 	
@@ -81,11 +83,13 @@ public class Textures {
 			waterTextures = new Sprite[13]; Point pWater = new Point(11*TEXTURE_SIZE, 0);
 			holeTextures = new Sprite[13]; Point pHole = new Point(21*TEXTURE_SIZE, 0);
 			sandTextures = new Sprite[13]; Point pSand = new Point(26*TEXTURE_SIZE, 0);
+			dirtMountainBottomTextures = new Sprite[13]; Point pMountainBottom = new Point(0, 23*TEXTURE_SIZE);
+			dirtMountainTopTextures = new Sprite[13]; Point pMountainTop = new Point(5*TEXTURE_SIZE, 23*TEXTURE_SIZE);
 			
 			
 			
-			Sprite[][] t = {grassTextures, dirtTextures, waterTextures, holeTextures, sandTextures};
-			Point[] pts = {pGrass, pDirt, pWater, pHole, pSand};
+			Sprite[][] t = {grassTextures, dirtTextures, waterTextures, holeTextures, sandTextures, dirtMountainBottomTextures, dirtMountainTopTextures};
+			Point[] pts = {pGrass, pDirt, pWater, pHole, pSand, pMountainBottom, pMountainTop};
 			
 			int k = 0;
 			for(int i = 0; i < 3; i++) {

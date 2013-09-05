@@ -71,7 +71,7 @@ public class Level {
 			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
 				if(activeBlocks[x][y].isUnfinished == true) {
 					//System.out.println("SOMETHING");
-					System.out.println(x+","+y);
+					//System.out.println(x+","+y);
 					activeBlocks[x][y].layers[OBJECT_LAYER].bloom(x,y, activeBlocks);	
 				}	
 			}
@@ -98,7 +98,9 @@ public class Level {
 		highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
 		highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
 		
-		System.out.println("HILITE: "+highlightedBlockX+","+highlightedBlockY);
+		//autoTileHighlightedBlock();
+		System.out.println(activeBlocks[highlightedBlockX][highlightedBlockY].layers[OBJECT_LAYER].textures);
+		//System.out.println("HILITE: "+highlightedBlockX+","+highlightedBlockY);
 		
 		if(tileBeingAttacked != highlightedBlock.getTopTile()) {
 			tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
@@ -253,10 +255,10 @@ public class Level {
 		if(noise < -0.1) {
 			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
     		block = new Block(waterTile, absX, absY, false);
-    	//} else if(noise > 0.1 && noise < 0.105) {
-		} else if(noise < 3000 && noise >-0.1) {
-	    	Tile[] treeTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
-	    	block = new Block(treeTile, absX, absY, true);
+    	} else if(noise > 0.1) {
+		//} else if(noise < 3000 && noise >-0.1) {
+	    	Tile[] dirtMountainTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
+	    	block = new Block(dirtMountainTile, absX, absY, true);
 	    	block.isUnfinished = true;
     	} 
 		else {
