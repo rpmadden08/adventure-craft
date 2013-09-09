@@ -2,13 +2,12 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.madbros.adventurecraft.Game;
-import com.madbros.adventurecraft.Textures;
+import com.madbros.adventurecraft.*;
 
 public class Shovel extends ToolItem {
 	public Shovel() {
 		id = SHOVEL;
-		texture = Textures.shovelTexture;
+		sprite = Sprites.shovelSprite;
 		attackPower = 1;
 	}
 	

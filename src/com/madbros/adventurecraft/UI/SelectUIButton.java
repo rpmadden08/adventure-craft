@@ -13,7 +13,7 @@ public class SelectUIButton {
 	
 	Color fontColor = Color.white;
 	
-	StaticSprite texture = Textures.pixel;
+	StaticSprite sprite = Sprites.pixel;
 	Color buttonColor = Color.darkGray;
 	Color pressedColor = new Color(0.0f, 0.0f, 0.0f, 0.3f);
 	
@@ -22,15 +22,15 @@ public class SelectUIButton {
 	
 	public SelectUIButton(int x, int y, int w, int h, String s) {
 		rect = new Rect(x, y, w, h);
-		text = new Text(Textures.font, s);
+		text = new Text(Sprites.font, s);
 	}
 	
 	public void render() {
 		buttonColor.bind();
-		texture.draw(rect, Z_BUTTONS);
+		sprite.draw(rect, Z_BUTTONS);
 		if(buttonIsPressedDown) {
 			pressedColor.bind();
-			texture.draw(rect, Z_BUTTONS);
+			sprite.draw(rect, Z_BUTTONS);
 		}
 		Color.white.bind();
 	}

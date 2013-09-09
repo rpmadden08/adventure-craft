@@ -2,12 +2,12 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.madbros.adventurecraft.Textures;
+import com.madbros.adventurecraft.*;
 
 public class Log extends CraftItem {
 	public Log() {
 		id = LOG;
-		texture = Textures.logTexture;
+		sprite = Sprites.logSprite;
 		itemsPossiblyCraftable = new int[]{PLANK};
 	}
 	

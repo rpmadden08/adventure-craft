@@ -9,7 +9,7 @@ import com.madbros.adventurecraft.Utils.Helpers;
 public class Plank extends CraftItem {
 	public Plank() {
 		id = PLANK;
-		texture = Textures.plankTexture;
+		sprite = Sprites.plankSprite;
 		numberProducedByCrafting = 4;
 		craftCost = new int[]{LOG};
 		//set recipes

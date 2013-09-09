@@ -2,6 +2,12 @@ package com.madbros.adventurecraft;
 
 public class Time {
 	private static long lastFrame = 0;
+	private static int delta;
+	
+	public Time() {
+		lastFrame = getTime();
+		setDelta();
+	}
 	
 	public static long getTime() {
 		return System.nanoTime() / 1000000; //<- time in milliseconds
@@ -12,12 +18,12 @@ public class Time {
 	}
 	
 	public static int getDelta() {
-		long time = getTime();
-		int delta = (int) (time - lastFrame);
-		
-		lastFrame = time;
-	
 		return delta;
-
+	}
+	
+	public static void setDelta() {
+		long time = getTime();
+		delta = (int) (time - lastFrame);
+		lastFrame = time;
 	}
 }

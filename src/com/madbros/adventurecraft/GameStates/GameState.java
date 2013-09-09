@@ -10,7 +10,7 @@ import com.madbros.adventurecraft.*;
 
 public abstract class GameState {
 	public State type;
-	protected int delta;
+//	protected int delta;
 	protected boolean leftMouseButtonPressed, rightMouseButtonPressed, leftMouseButtonUp, rightMouseButtonUp, middleMouseButtonPressed, middleMouseButtonUp;
 	
 	protected void getKeyboardInput() {}
@@ -50,7 +50,8 @@ public abstract class GameState {
 	
 	public void update() {
 		Game.debugger.start();
-		delta = Time.getDelta();
+		Time.setDelta();
+//		delta = Time.getDelta();
 		updateStates();
 		
 		Game.debugger.stopUpdateTime();

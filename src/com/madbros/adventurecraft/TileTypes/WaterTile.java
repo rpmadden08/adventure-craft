@@ -8,13 +8,13 @@ import static com.madbros.adventurecraft.Constants.*;
 public class WaterTile extends CollisionTile {
 	public WaterTile() {
 		super();
-		currentTexture = 0;
+		currentSpriteId = 0;
 		layer = WATER_LAYER;
 		z = Z_WATER;
-		textures = Textures.waterTextures;
 		margin = new Margin(14, 14, 14, 14);
 		id = WATER;
 		isDiggable = false;
+		sprites = Sprites.waterSprites;
 	}
 	
 	public Tile createNew() {

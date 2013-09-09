@@ -34,10 +34,14 @@ public class Constants {
 	public static final int DOWN = 2;
 	public static final int LEFT = 3;
 	public static final int RIGHT = 4;
-	public static final int WALK_DOWN = 0;
-	public static final int WALK_RIGHT = 9;
-	public static final int WALK_UP = 18;
-	public static final int WALK_LEFT = 27;
+	public static final int STAND_UP = 0;
+	public static final int STAND_DOWN = 1;
+	public static final int STAND_RIGHT = 2;
+	public static final int STAND_LEFT = 3;
+	public static final int WALK_UP = 4;
+	public static final int WALK_DOWN = 5;
+	public static final int WALK_RIGHT = 6;
+	public static final int WALK_LEFT = 7;
 	public static final boolean VERTICAL = true;
 	public static final boolean HORIZONTAL = false;
 	
@@ -64,6 +68,7 @@ public class Constants {
 	public static final Rect INV_BAG_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INV_BACKDROP_RECT.y2()- INV_BAR_RECT.h*4);
 	public static final Rect INV_CHAR_RECT = new Rect(INV_BACKDROP_RECT.x2() - CHARACTER_SIZE*4, INV_BACKDROP_RECT.y + 30, CHARACTER_SIZE*4, CHARACTER_SIZE*4);
 	public static final Rect INV_CRAFTING_RECT = new Rect(130, 50, 2*(INV_SLOT_SIZE+2), 2*(INV_SLOT_SIZE+2));
+	public static final int INV_ANIMATION_CHANGE = 100;
 	
 	//item/slot constants
 	public static final int ITEM_OFFSET = 5;
@@ -200,6 +205,11 @@ public class Constants {
 	public static final int MAIN_MENU_HEIGHT = 30;
 	public static final int MAIN_MENU_STARTX = INITIAL_WINDOW_WIDTH/2 - MAIN_MENU_WIDTH / 2;
 	public static final int MAIN_MENU_STARTY = 40;
+	
+	//Sprite Ids
+	public static final int DARK_DIRT_SPRITE = 0;
+	public static final int HERO_SPRITE = 1;
+	public static final int TEMP_HERO_SPRITE = 2;
 	
 	public Constants() {
 		ITEM_HASH.put(NONE, new NoItem());

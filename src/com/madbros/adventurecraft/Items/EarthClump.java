@@ -2,18 +2,15 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.madbros.adventurecraft.Block;
-import com.madbros.adventurecraft.Game;
-import com.madbros.adventurecraft.Textures;
-import com.madbros.adventurecraft.Time;
+import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.TileTypes.*;
-import com.madbros.adventurecraft.Utils.Helpers;
+import com.madbros.adventurecraft.Utils.*;
 
 public class EarthClump extends BlockItem {
 	public EarthClump() {
 		id = EARTH_CLUMP;
 		tileId = DIRT;
-		texture = Textures.earthClumpTexture;
+		sprite = Sprites.earthClumpSprite;
 		placeableTileIds = new int[]{WATER, SAND, DARK_DIRT, HOLE};
 	}
 	

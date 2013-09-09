@@ -9,10 +9,10 @@ import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public abstract class Tile {
-	public StaticSprite[] textures;
+	public Sprite[] sprites;
 	public int maxHp = 10;
 	public int currentHp = 10;
-	public int currentTexture = 0;
+	public int currentSpriteId = 0;
 	public int layer = DARK_DIRT_LAYER;
 	public float z = Z_DARK_DIRT;
 	public boolean isCollidable = false;
@@ -28,18 +28,17 @@ public abstract class Tile {
 	public int bottomLeftAutoTile = MIDDLE_TILE;
 	
 	public void render(int x, int y) {
-		int size = TILE_SIZE/2;		
-		textures[topLeftAutoTile].draw(x, y, z, size, size);
-		textures[topRightAutoTile].draw(x+size, y, z, size, size);
-		textures[bottomLeftAutoTile].draw(x, y+size, z, size, size);
-		textures[bottomRightAutoTile].draw(x+size, y+size, z, size, size);
+		sprites[topLeftAutoTile].draw(x, y, z);
+		sprites[topRightAutoTile].draw(x+TEXTURE_SIZE, y, z);
+		sprites[bottomLeftAutoTile].draw(x, y+TEXTURE_SIZE, z);
+		sprites[bottomRightAutoTile].draw(x+TEXTURE_SIZE, y+TEXTURE_SIZE, z);
 	}
 	
 	public void renderHp(int x, int y) {
 		int w = 20; int h = 4;
 		int sX = x+TEXTURE_SIZE - 10; int sY = y - h*2;
 		new Color(0.0f, 1.0f, 0.0f).bind();
-		Textures.pixel.draw(sX+1, sY+1, Z_HEALTHBAR, Math.round((currentHp * 1.0f / maxHp) * w-2), h-2);
+		Sprites.pixel.draw(sX+1, sY+1, Z_HEALTHBAR, Math.round((currentHp * 1.0f / maxHp) * w-2), h-2);
 		Color.white.bind();
 		Helpers.drawRect(new Rect(sX, sY, w, h), Z_HEALTHBAR);
 	}

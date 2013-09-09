@@ -11,8 +11,8 @@ public class SandTile extends Tile {
 		layer = GRASS_LAYER;
 		z = Z_GRASS;
 		isCollidable = false;
-		currentTexture = 0;
-		textures = Textures.sandTextures;
+		currentSpriteId = 0;
+		sprites = Sprites.sandSprites;
 		id = SAND;
 	}
 	

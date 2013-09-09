@@ -4,7 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 public class NoTile extends Tile {
 	public NoTile() {
-		currentTexture = 0;
+		currentSpriteId = 0;
 		layer = DARK_DIRT_LAYER;
 		z = Z_DARK_DIRT;
 		isCollidable = false;

@@ -65,7 +65,7 @@ public class Block {
 		if(Game.debugMenu.collisionTilesAreOn && Arrays.asList(Game.hero.collisionDetectionBlocks).contains(this)) {
 			Color highlightColor = new Color(1, 1, 1, 0.2f);
 			highlightColor.bind();
-			Textures.collisionDebugger.draw(x, y, Z_COLLISION_TILES, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+			Sprites.collisionDebugger.draw(x, y, Z_COLLISION_TILES, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
 			Color.white.bind();
 		}
 		
@@ -75,7 +75,7 @@ public class Block {
 			
 			Color highlightColor = new Color(0, 0, 1f, 0.6f);
 			highlightColor.bind();
-			Textures.pixel.draw(r, Z_COLLISION_RECTS);
+			Sprites.pixel.draw(r, Z_COLLISION_RECTS);
 			
 			Color.white.bind();
 		}

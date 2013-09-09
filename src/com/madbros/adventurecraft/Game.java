@@ -30,6 +30,7 @@ public class Game {
 	public static Inventory inventory;
 	public static MiniMap map;
 	public static RenderSystem renderSystem;
+	public static AnimationSystem animationSystem;
 	public static CollisionDetectionSystem collisionDetectionSystem;
 	
 
@@ -138,8 +139,6 @@ public class Game {
 		glDepthFunc(GL_LEQUAL);    // set the type of depth-test
 		glShadeModel(GL_SMOOTH);   // enable smooth shading
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // nice perspective corrections
-		
-
 
 		// enable alpha blending and 2d texture binding
 		glEnable(GL_BLEND);
@@ -158,11 +157,11 @@ public class Game {
 	}
  
 	protected void setupGame() {
+		new Sprites();
 		new Constants();
-		new Textures();
 		
 		debugger = new Debugger();
-		batch = new SpriteBatch(Textures.atlas);
+		batch = new SpriteBatch(Sprites.atlas);
 		debugMenu = new DebugMenu();
 		
 //		currentState = new MainMenuState();
@@ -261,6 +260,8 @@ public class Game {
 		inventory = new Inventory();
 		map = new MiniMap();
 		renderSystem = new RenderSystem();
+		animationSystem = new AnimationSystem();
+		
 		collisionDetectionSystem = new CollisionDetectionSystem();
 		
 		Game.currentState = new MainState();

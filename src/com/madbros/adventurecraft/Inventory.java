@@ -9,10 +9,10 @@ import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Items.*;
 
 public class Inventory {
-	public StaticSprite selectTexture = Textures.selectTexture;
-	public StaticSprite[][] menuTextures = Textures.menuTextures;
-	public AnimatedSprite heroSprite = Textures.animatedSprites.get("heroTemp");
-	public String formerHeroAnimation;
+	public StaticSprite selectSprite = Sprites.selectSprite;
+	public StaticSprite[][] menuSprites = {Sprites.menuSprites1, Sprites.menuSprites2, Sprites.menuSprites3};
+	public CompoundAnimatedSprite heroSprite;
+	public Animation formerHeroAnimation;
 	
 	public Slot[] invBar= new Slot[INV_LENGTH];
 	public Slot[] invBag= new Slot[INV_LENGTH * INV_HEIGHT];
@@ -25,6 +25,10 @@ public class Inventory {
 	public boolean isUsingItemLeft = false;
 	
 	public Inventory() {
+		heroSprite = (CompoundAnimatedSprite) Sprites.sprites.get(TEMP_HERO_SPRITE);
+		heroSprite = heroSprite.getCopy();
+		heroSprite.changeFrameTimesBy(INV_ANIMATION_CHANGE);
+		
 		for(int i = 0; i < INV_LENGTH; i++) {
 			invBar[i] = new Slot(INV_BAR_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * i, INV_BAR_RECT.y, BAR);
 		}
@@ -71,19 +75,13 @@ public class Inventory {
 	}
 
 	public void mouseWheelDidIncrement() {
-		if(itemSelected > 0) {
-			itemSelected -= 1;
-		} else {
-			itemSelected = invBar.length - 1;
-		}
+		if(itemSelected > 0) itemSelected -= 1;
+		else itemSelected = invBar.length - 1;
 	}
 	
 	public void mouseWheelDidDecrement() {
-		if(itemSelected < invBar.length - 1) {
-			itemSelected += 1;
-		} else {
-			itemSelected = 0;
-		}
+		if(itemSelected < invBar.length - 1) itemSelected += 1;
+		else itemSelected = 0;
 	}
 	
 	public void changeSelectedItemTo(int key) {
@@ -102,13 +100,10 @@ public class Inventory {
 	}
 	
 	public void open() {
-		formerHeroAnimation = heroSprite.getCurrentAnimationName();
-		heroSprite.changeAnimationTo("walkDown");
-		heroSprite.changeFrameTimesBy(200);
+		heroSprite.changeAnimationTo(WALK_DOWN);
 	}
 	
 	public void close() {
-		heroSprite.changeFrameTimesBy(-200);
-		heroSprite.changeAnimationTo(formerHeroAnimation);
+		//if anything needs to happen on inventory close, it goes in this function
 	}
 }

@@ -11,7 +11,6 @@ public abstract class CollisionTile extends Tile {
 	
 	public CollisionTile() {
 		isCollidable = true;
-		
 	}
 	
 	public void heroDidCollide(int dir, int move, Rect charCRect, Rect tileRect) {

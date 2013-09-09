@@ -8,8 +8,8 @@ import com.madbros.adventurecraft.Utils.Margin;
 public class TreeTile extends CollisionTile {
 	public TreeTile() {
 		super();
-		currentTexture = 0;
-		textures = Textures.treeTextures;
+		currentSpriteId = 0;
+		sprites = Sprites.treeSprites;
 		margin = new Margin(9, 9, 12, 11);
 		id = TREE;
 		layer = OBJECT_LAYER;
@@ -19,7 +19,7 @@ public class TreeTile extends CollisionTile {
 	
 	@Override
 	public void render(int x, int y) {
-		textures[currentTexture].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+		sprites[currentSpriteId].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
 	}
 	
 	public Tile createNew() {

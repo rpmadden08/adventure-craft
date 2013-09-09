@@ -95,9 +95,9 @@ public class Level {
 					activeBlocks[x][y].render(TILE_SIZE * i - offsetX, TILE_SIZE * j - offsetY);
 					
 					if(Game.debugMenu.chunkBoundariesAreOn) {
-						if(x % CHUNK_SIZE == 0) Textures.pixel.draw(TILE_SIZE * i - offsetX,
+						if(x % CHUNK_SIZE == 0) Sprites.pixel.draw(TILE_SIZE * i - offsetX,
 												TILE_SIZE * j - offsetY, Z_BOUNDARIES, 1, TILE_SIZE);
-						if(y % CHUNK_SIZE == 0) Textures.pixel.draw(TILE_SIZE * i - offsetX,
+						if(y % CHUNK_SIZE == 0) Sprites.pixel.draw(TILE_SIZE * i - offsetX,
 												TILE_SIZE * j - offsetY, Z_BOUNDARIES, TILE_SIZE, 1);
 					}
 				}

@@ -39,10 +39,10 @@ public class Helpers {
 	}
 
 	public static void drawRect(Rect r, float zLayer) {
-		Textures.pixel.draw(r.x, r.y, zLayer, r.w, 1);
-		Textures.pixel.draw(r.x, r.y, zLayer, 1, r.h);
-		Textures.pixel.draw(r.x2()-1, r.y, zLayer, 1, r.h);
-		Textures.pixel.draw(r.x, r.y2()-1, zLayer, r.w, 1);
+		Sprites.pixel.draw(r.x, r.y, zLayer, r.w, 1);
+		Sprites.pixel.draw(r.x, r.y, zLayer, 1, r.h);
+		Sprites.pixel.draw(r.x2()-1, r.y, zLayer, 1, r.h);
+		Sprites.pixel.draw(r.x, r.y2()-1, zLayer, r.w, 1);
 	}
 	
 	public static void println(String s) {

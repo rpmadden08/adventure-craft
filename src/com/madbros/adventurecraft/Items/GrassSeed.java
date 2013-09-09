@@ -2,8 +2,7 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.madbros.adventurecraft.Block;
-import com.madbros.adventurecraft.Textures;
+import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.TileTypes.*;
 
 public class GrassSeed extends BlockItem {
@@ -11,7 +10,7 @@ public class GrassSeed extends BlockItem {
 		id = GRASS_SEED;
 		tileId = GRASS;
 		placeableTileIds = new int[]{DIRT, DARK_DIRT};
-		texture = Textures.grassSeedTexture;
+		sprite = Sprites.grassSeedSprite;
 	}
 	
 	@Override

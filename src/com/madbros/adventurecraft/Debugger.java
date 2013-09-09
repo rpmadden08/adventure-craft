@@ -41,7 +41,7 @@ public class Debugger {
 	private Runtime runtime;
 	
 	public Debugger() {
-		font = Textures.font;
+		font = Sprites.font;
 		fontColor = Color.white;
 		
 		lastFPS = Time.getTime();

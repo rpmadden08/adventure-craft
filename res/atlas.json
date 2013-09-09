@@ -1,25 +1,26 @@
 {
   "atlasName": "atlas",
   
-  "baseDirt" : {
+  "0" : {
     "type": "static",
-    "x": "0",
-    "y": "0",
-    "width": "32",
-    "height": "32",
-    "margin": {
-      "left": "0",
-      "right": "0",
-      "top": "0",
-      "bottom": "0"
-    }
+    "sprites": [
+      {
+        "x": "0",
+        "y": "0",
+        "width": "32",
+        "height": "32",
+        "leftRenderOffset": "0",
+        "topRenderOffset": "0"
+      }
+    ],
+
   },
   
-  "hero" : {
+  "1" : {
     "type": "animated",
     "animations": [
       {
-        "name": "walkDown",
+        "id": "0",
         "animation": [
           {
             "x": "100",
@@ -37,7 +38,7 @@
         ]
       },
       {
-        "name": "walkLeft",
+        "id": "1",
         "animation":
         [
           {
@@ -53,6 +54,96 @@
             "width": "32",
             "height": "32",
             "frameTimeInMilliseconds": "20"
+          }
+        ]
+      }
+    ]
+  }
+  
+  "2" : {
+    "type": "compoundAnimated",
+    "animatedSprites": [
+      {
+        "animations": [
+          {
+            "id": "0",
+            "animation": [
+              {
+                "x": "100",
+                "y": "100",
+                "width": "32",
+                "height": "32",
+                "frameTimeInMilliseconds": "20"
+              }, {
+                "x": "100",
+                "y": "100",
+                "width": "32",
+                "height": "32",
+                "frameTimeInMilliseconds": "20"
+              }
+            ]
+          },
+          {
+            "id": "1",
+            "animation":
+            [
+              {
+                "x": "100",
+                "y": "100",
+                "width": "32",
+                "height": "32",
+                "frameTimeInMilliseconds": "20"
+              },
+              {
+                "x": "100",
+                "y": "100",
+                "width": "32",
+                "height": "32",
+                "frameTimeInMilliseconds": "20"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "animations": [
+          {
+            "id": "0",
+            "animation": [
+              {
+                "x": "100",
+                "y": "100",
+                "width": "32",
+                "height": "32",
+                "frameTimeInMilliseconds": "20"
+              }, {
+                "x": "100",
+                "y": "100",
+                "width": "32",
+                "height": "32",
+                "frameTimeInMilliseconds": "20"
+              }
+            ]
+          },
+          {
+            "id": "1",
+            "animation":
+            [
+              {
+                "x": "100",
+                "y": "100",
+                "width": "32",
+                "height": "32",
+                "frameTimeInMilliseconds": "20"
+              },
+              {
+                "x": "100",
+                "y": "100",
+                "width": "32",
+                "height": "32",
+                "frameTimeInMilliseconds": "20"
+              }
+            ]
           }
         ]
       }

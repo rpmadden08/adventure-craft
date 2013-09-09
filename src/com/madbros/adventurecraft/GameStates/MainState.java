@@ -82,7 +82,8 @@ public class MainState extends GameState {
 	
 	@Override
 	protected void updateStates() {
-		Game.hero.update(delta);
+		Game.animationSystem.updateMain(Game.hero);	//a list of mobs will also be passed to this system
+		Game.hero.update();
 		Game.level.update();
 		Game.inventory.update();	//should be in input...
 		Game.debugger.update();
@@ -91,7 +92,7 @@ public class MainState extends GameState {
 	@Override
 	protected void renderTextures() {
 		Game.renderSystem.renderWorld(Game.level);
-		Game.renderSystem.renderHero(Game.hero, Game.getCenterScreenX() - CHARACTER_SIZE/2, Game.getCenterScreenY() - CHARACTER_SIZE/2, delta);
+		Game.renderSystem.renderHero(Game.hero, Game.getCenterScreenX() - CHARACTER_SIZE/2, Game.getCenterScreenY() - CHARACTER_SIZE/2);
 		Game.renderSystem.renderHud(Game.inventory);
 
 //		Game.map.render(Game.level.activeBlocks);

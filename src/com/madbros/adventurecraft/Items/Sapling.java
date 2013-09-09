@@ -3,10 +3,8 @@ package com.madbros.adventurecraft.Items;
 import static com.madbros.adventurecraft.Constants.*;
 
 
-import com.madbros.adventurecraft.Block;
-import com.madbros.adventurecraft.Textures;
-//import com.madbros.adventurecraft.TileTypes.NoTile;
-import com.madbros.adventurecraft.TileTypes.Tile;
+import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.TileTypes.*;
 
 public class Sapling extends BlockItem {
 	public Sapling() {
@@ -14,7 +12,7 @@ public class Sapling extends BlockItem {
 		tileId = SAPLING;
 		
 		placeableTileIds = new int[]{GRASS};
-		texture = Textures.saplingItemTexture;
+		sprite = Sprites.saplingItemSprite;
 	}
 	
 	@Override

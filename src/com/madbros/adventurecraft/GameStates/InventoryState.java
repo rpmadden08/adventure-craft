@@ -44,7 +44,8 @@ public class InventoryState extends MainState {
 	
 	@Override
 	protected void updateStates() {
-		Game.hero.update(delta);
+		Game.animationSystem.updateInventory(Game.inventory);
+		Game.hero.update();
 		Game.level.update();
 		Game.debugger.update();
 	}
@@ -52,7 +53,7 @@ public class InventoryState extends MainState {
 	@Override
 	protected void renderTextures() {
 		super.renderTextures();
-		Game.renderSystem.renderInventory(Game.inventory, delta);
+		Game.renderSystem.renderInventory(Game.inventory);
 	}
 	
 	@Override

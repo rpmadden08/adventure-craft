@@ -2,44 +2,72 @@ package com.madbros.adventurecraft;
 
 import java.util.HashMap;
 
+import com.madbros.adventurecraft.Utils.*;
+
 public class AnimatedSprite extends Sprite {
-	private HashMap<String, Animation> animations = new HashMap<String, Animation>();
+	private HashMap<Integer, Animation> animations = new HashMap<Integer, Animation>();
 	private Animation currentAnimation;
-	private String currentAnimationName;
 	
-	public AnimatedSprite(String[] animationNames, Animation[] animations) {
-		for(int i = 0; i < animationNames.length; i++) {
-			addAnimation(animationNames[i], animations[i]);
+	/*********************************** Constructors ***********************************/
+	public AnimatedSprite(Animation animation) {
+		this(new Animation[]{animation});
+	}
+	
+	public AnimatedSprite(Animation[] animations) {
+		for(int i = 0; i < animations.length; i++) {
+			addAnimation(animations[i]);
 		}
 		currentAnimation = animations[0];
-		currentAnimationName = animationNames[0];
 	}
 	
-	public void addAnimation(String animationName, Animation animation) {
-		animations.put(animationName, animation);
+	/*********************************** Drawing ***********************************/
+	@Override
+	public void draw(float x, float y, float z) {
+		currentAnimation.draw(x, y, z);
 	}
 	
-	public void changeAnimationTo(String animationName) {
-		currentAnimationName = animationName;
+	@Override
+	public void draw(Rect r, float z) {
+		currentAnimation.draw(r, z);
+	}
+	
+	@Override
+	public void draw(float x, float y, float z, float w, float h) {
+		currentAnimation.draw(x, y, z, w, h);
+	}
+	
+	@Override
+	public void draw(float x, float y, float z, float scale) {
+		currentAnimation.draw(x, y, z, scale);
+	}
+	
+	/*********************************** Other ***********************************/
+	private void addAnimation(Animation animation) {
+		animations.put(animation.id, animation);
+	}
+	
+	public void changeAnimationTo(int animationId) {
 		currentAnimation.resetFrame();
-		currentAnimation = animations.get(animationName);
-	}
-
-	public void draw(float x, float y, float z, float delta) {
-		currentAnimation.draw(x, y, z, delta);
+		currentAnimation = animations.get(animationId);
 	}
 	
-	public void draw(float x, float y, float z, float w, float h, float delta) {
-		currentAnimation.draw(x, y, z, w, h, delta);
-	}
-	
-	public String getCurrentAnimationName() {
-		return currentAnimationName;
+	public void updateCurrentAnimation() {
+		currentAnimation.updateFrame();
 	}
 	
 	public void changeFrameTimesBy(int n) {
-		for (String key : animations.keySet()) {
+		for (int key : animations.keySet()) {
 		    animations.get(key).changeFrameTimesBy(n);
 		}
+	}
+	
+	public AnimatedSprite getCopy() {
+		Animation[] anims = new Animation[animations.size()];
+		int i = 0;
+		for (int key : animations.keySet()) {
+		    anims[i] = animations.get(key).getCopy();
+		    i++;
+		}
+		return new AnimatedSprite(anims);
 	}
 }

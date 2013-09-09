@@ -11,7 +11,7 @@ import com.madbros.adventurecraft.Utils.Rect;
 import static com.madbros.adventurecraft.Constants.*;
 
 public class Hero {
-	public AnimatedSprite sprite;
+	public CompoundAnimatedSprite sprite;
 
 	Margin margin = new Margin(17, 17, 29, 1); //new Margin(17, 17, 45, 1); //left, right, top, bottom
 	
@@ -29,7 +29,8 @@ public class Hero {
 	Block[] collisionDetectionBlocks = new Block[9];
 		
 	public Hero() {
-		sprite = Textures.animatedSprites.get("heroTemp");
+		sprite = (CompoundAnimatedSprite) Sprites.sprites.get(TEMP_HERO_SPRITE);
+		sprite.getCopy();
 	}
 
 //	public void startAttacking() {
@@ -47,65 +48,65 @@ public class Hero {
 	}
 	
 	public void moveUp() {
-		if(!isMoving() || isMovingDown) sprite.changeAnimationTo("walkUp");
+		if(!isMoving() || isMovingDown) sprite.changeAnimationTo(WALK_UP);
 		isMovingUp = true;
 		isMovingDown = false;
 	}
 	
 	public void moveDown() {
-		if(!isMoving() || isMovingUp) sprite.changeAnimationTo("walkDown");
+		if(!isMoving() || isMovingUp) sprite.changeAnimationTo(WALK_DOWN);
 		isMovingUp = false;
 		isMovingDown = true;
 	}
 	
 	public void moveLeft() {
-		if(!isMoving() || isMovingRight) sprite.changeAnimationTo("walkLeft");
+		if(!isMoving() || isMovingRight) sprite.changeAnimationTo(WALK_LEFT);
 		isMovingLeft = true;
 		isMovingRight = false;
 	}
 	
 	public void moveRight() {
-		if(!isMoving() || isMovingLeft) sprite.changeAnimationTo("walkRight");
+		if(!isMoving() || isMovingLeft) sprite.changeAnimationTo(WALK_RIGHT);
 		isMovingLeft = false;
 		isMovingRight = true;
 	}
 	
 	public void stop() {
-		if(isMovingDown) sprite.changeAnimationTo("standDown");
-		if(isMovingUp) sprite.changeAnimationTo("standUp");
-		if(isMovingLeft) sprite.changeAnimationTo("standLeft");
-		if(isMovingRight) sprite.changeAnimationTo("standRight");
+		if(isMovingDown) sprite.changeAnimationTo(STAND_DOWN);
+		if(isMovingUp) sprite.changeAnimationTo(STAND_UP);
+		if(isMovingLeft) sprite.changeAnimationTo(STAND_LEFT);
+		if(isMovingRight) sprite.changeAnimationTo(STAND_RIGHT);
 		isMovingDown = false; isMovingUp = false; isMovingLeft = false; isMovingRight = false;
 	}
 	
 	public void stopUp() {
-		if(isMovingRight) sprite.changeAnimationTo("walkRight");
-		else if(isMovingLeft) sprite.changeAnimationTo("walkLeft");
-		else if(!isMovingDown) sprite.changeAnimationTo("standUp");
+		if(isMovingRight) sprite.changeAnimationTo(WALK_RIGHT);
+		else if(isMovingLeft) sprite.changeAnimationTo(WALK_LEFT);
+		else if(!isMovingDown) sprite.changeAnimationTo(STAND_UP);
 		isMovingUp = false;
 		if(Keyboard.isKeyDown(Keyboard.KEY_S)) moveDown();
 	}
 	
 	public void stopDown() {
-		if(isMovingRight) sprite.changeAnimationTo("walkRight");
-		else if(isMovingLeft) sprite.changeAnimationTo("walkLeft");
-		else if(!isMovingUp) sprite.changeAnimationTo("standDown");
+		if(isMovingRight) sprite.changeAnimationTo(WALK_RIGHT);
+		else if(isMovingLeft) sprite.changeAnimationTo(WALK_LEFT);
+		else if(!isMovingUp) sprite.changeAnimationTo(STAND_DOWN);
 		isMovingDown = false;
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) moveUp();
 	}
 	
 	public void stopLeft() {
-		if(isMovingUp) sprite.changeAnimationTo("walkUp");
-		else if(isMovingDown) sprite.changeAnimationTo("walkDown");
-		else if(!isMovingRight) sprite.changeAnimationTo("standLeft");
+		if(isMovingUp) sprite.changeAnimationTo(WALK_UP);
+		else if(isMovingDown) sprite.changeAnimationTo(WALK_DOWN);
+		else if(!isMovingRight) sprite.changeAnimationTo(STAND_LEFT);
 		isMovingLeft = false;
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)) moveRight();
 	}
 	
 	public void stopRight() {
-		if(isMovingUp) sprite.changeAnimationTo("walkUp");
-		else if(isMovingDown) sprite.changeAnimationTo("walkDown");
-		else if(!isMovingLeft) sprite.changeAnimationTo("standRight");
+		if(isMovingUp) sprite.changeAnimationTo(WALK_UP);
+		else if(isMovingDown) sprite.changeAnimationTo(WALK_DOWN);
+		else if(!isMovingLeft) sprite.changeAnimationTo(STAND_RIGHT);
 		isMovingRight = false;
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) moveLeft();
 	}
@@ -215,9 +216,9 @@ public class Hero {
 		}
 	}
 	
-	public void update(int delta) {
+	public void update() {
 		if(isMoving() && !isAttacking) {
-			moveForward(delta);
+			moveForward(Time.getDelta());
 		} else if(isAttacking) {
 			
 		}

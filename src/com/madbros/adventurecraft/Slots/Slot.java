@@ -4,17 +4,13 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import org.newdawn.slick.*;
 
-import com.madbros.adventurecraft.Inventory;
-import com.madbros.adventurecraft.Item;
-import com.madbros.adventurecraft.StaticSprite;
-import com.madbros.adventurecraft.Textures;
+import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Items.*;
-import com.madbros.adventurecraft.Utils.Helpers;
-import com.madbros.adventurecraft.Utils.Rect;
+import com.madbros.adventurecraft.Utils.*;
 
 public class Slot {
-	private StaticSprite slotTexture = Textures.slotTexture;
-	private StaticSprite highlighter = Textures.pixel;
+	private StaticSprite slotSprite = Sprites.slotSprite;
+	private StaticSprite highlighter = Sprites.pixel;
 	
 	private Color highlightColor = new Color(1.0f, 1.0f, 1.0f, 0.2f);
 	
@@ -32,7 +28,7 @@ public class Slot {
 	}
 	
 	public void render() {
-		slotTexture.draw(slotRect, Z_INV_SLOTS);
+		slotSprite.draw(slotRect, Z_INV_SLOTS);
 		
 		if(isHighlighted) {
 			highlightColor.bind();

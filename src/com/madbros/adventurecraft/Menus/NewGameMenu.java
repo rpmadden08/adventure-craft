@@ -37,7 +37,7 @@ public class NewGameMenu extends Menu {
 		}
 		
 		textRect = new Rect(0, 0, Game.currentScreenSizeX, Game.currentScreenSizeY-100);
-		gameName = new Text(Textures.font, "Game Name: " + fileName);
+		gameName = new Text(Sprites.font, "Game Name: " + fileName);
 		
 		ButtonFunction create = new ButtonFunction() { public void invoke() { create(); } };
 		ButtonFunction cancel = new ButtonFunction() { public void invoke() { cancel(); } };

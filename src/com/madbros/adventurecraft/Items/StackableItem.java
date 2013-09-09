@@ -1,6 +1,5 @@
 package com.madbros.adventurecraft.Items;
 
-import com.madbros.adventurecraft.Item;
 
 public abstract class StackableItem extends Item {
 	public StackableItem() {

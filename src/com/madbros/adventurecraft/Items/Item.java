@@ -1,11 +1,12 @@
-package com.madbros.adventurecraft;
+package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
 import org.newdawn.slick.Color;
 
-import com.madbros.adventurecraft.Slots.Slot;
-import com.madbros.adventurecraft.Utils.Rect;
+import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Slots.*;
+import com.madbros.adventurecraft.Utils.*;
 
 public abstract class Item {
 	public int id = EMPTY;
@@ -15,14 +16,14 @@ public abstract class Item {
 	public int[] itemsPossiblyCraftable = {};
 	public int[] craftCost = {};
 	
-	public StaticSprite texture;
+	public StaticSprite sprite;
 	
 	public void render(Rect slotRect) {
-		texture.draw(slotRect.x + ITEM_OFFSET, slotRect.y + ITEM_OFFSET, Z_INV_ITEMS, ITEM_SIZE, ITEM_SIZE);
+		sprite.draw(slotRect.x + ITEM_OFFSET, slotRect.y + ITEM_OFFSET, Z_INV_ITEMS, ITEM_SIZE, ITEM_SIZE);
 	}
 	
 	public void render(int x, int y) {
-		texture.draw(x-ITEM_SIZE/2, y-ITEM_SIZE/2, Z_INV_ITEMS, ITEM_SIZE, ITEM_SIZE);
+		sprite.draw(x-ITEM_SIZE/2, y-ITEM_SIZE/2, Z_INV_ITEMS, ITEM_SIZE, ITEM_SIZE);
 	}
 	
 	public void renderFont(int x, int y) {
@@ -30,7 +31,7 @@ public abstract class Item {
 		int adjX = x - 2; int adjY = y - 2;
 		if(stackSize < 10) adjX += 4;
 		
-		if(stackSize > 1) Textures.font.drawString(adjX, adjY, String.valueOf(stackSize), c);
+		if(stackSize > 1) Sprites.font.drawString(adjX, adjY, String.valueOf(stackSize), c);
 		
 		Color.white.bind();
 	}

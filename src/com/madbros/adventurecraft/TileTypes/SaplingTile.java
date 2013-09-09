@@ -9,8 +9,8 @@ public class SaplingTile extends CollisionTile {
 	
 	public SaplingTile() {
 		super();
-		currentTexture = 0;
-		textures = Textures.saplingTexture;
+		currentSpriteId = 0;
+		sprites = Sprites.saplingSprite;
 		margin = new Margin(9, 9, 12, 11);
 		id = SAPLING;
 		layer = OBJECT_LAYER;
@@ -20,7 +20,7 @@ public class SaplingTile extends CollisionTile {
 	
 	@Override
 	public void render(int x, int y) {
-		textures[currentTexture].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+		sprites[currentSpriteId].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
 	}
 	
 	public Tile createNew() {
@@ -30,7 +30,7 @@ public class SaplingTile extends CollisionTile {
 	@Override
 	public void update(int x, int y) {
 		if(Time.getTime() - timeCreated > 30) {// 3000
-			Block b = 	Game.level.activeBlocks[x][y];
+			Block b = Game.level.activeBlocks[x][y];
 			b.layers[OBJECT_LAYER] = new TreeTile();
 			b.setCollisionTile(new TreeTile());
 			
@@ -47,7 +47,7 @@ public class SaplingTile extends CollisionTile {
 				else if(b.layers[ABOVE_LAYER_1].id != AIR) layer = ABOVE_LAYER_2;
 				else layer = ABOVE_LAYER_1;
 				b.layers[layer] = new TreeLeafTile(); 
-				b.layers[layer].currentTexture = i;
+				b.layers[layer].currentSpriteId = i;
 				b.layers[layer].z = Z_ABOVE_LAYER;
 			}
 		}

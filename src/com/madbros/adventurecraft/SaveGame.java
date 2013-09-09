@@ -22,7 +22,6 @@ public class SaveGame {
 				}
 				obj.put("tiles" + x + "-" + y, tiles);
 				obj.put("x" + x + "-" + y, chunk[x][y].absRect.x);
-				obj.put("y" + x + "-" + y, chunk[x][y].absRect.y);
 			}
 		}
 		
@@ -59,7 +58,7 @@ public class SaveGame {
 					}
 					
 					long absX = (Long) jO.get("x" + x + "-" + y);
-					long absY = (Long) jO.get("y" + x + "-" + y); 
+					long absY = (Long) jO.get("y" + x + "-" + y);
 				
 					chunk[x][y] = new Block(t, (int)absX, (int)absY);
 				}

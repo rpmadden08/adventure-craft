@@ -24,7 +24,7 @@ public abstract class UIButton {
 	
 	public UIButton(int x, int y, int w, int h, String s, ButtonFunction func) {
 		rect = new Rect(x, y, w, h);
-		text = new Text(Textures.font, s);
+		text = new Text(Sprites.font, s);
 		buttonFunction = func;
 	}
 	
