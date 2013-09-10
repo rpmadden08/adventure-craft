@@ -68,7 +68,7 @@ public abstract class GameState {
 		Game.batch.end();
 
 		renderText();
-		if(Game.debugger.isDebugging) Game.debugger.renderText(Game.hero.aRect);
+		if(Game.debugger.isDebugging) Game.debugger.renderText(Game.hero.absRect);
 		if(Game.debugMenu.menuIsActive) Game.debugMenu.renderText();
 		
 		Game.debugger.stopRenderTime();

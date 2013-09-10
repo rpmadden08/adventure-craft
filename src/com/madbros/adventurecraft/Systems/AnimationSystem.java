@@ -1,7 +1,7 @@
 package com.madbros.adventurecraft.Systems;
 
-import com.madbros.adventurecraft.Hero;
 import com.madbros.adventurecraft.Inventory;
+import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.Sprites.Sprites;
 
 public class AnimationSystem {

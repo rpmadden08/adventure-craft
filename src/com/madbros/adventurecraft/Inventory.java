@@ -7,6 +7,7 @@ import org.lwjgl.input.Mouse;
 
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.*;
+import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.Items.*;
 
 public class Inventory {

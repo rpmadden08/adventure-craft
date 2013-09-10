@@ -5,6 +5,7 @@ import java.io.File;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.*;
 
+import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.GameStates.*;
 import com.madbros.adventurecraft.Menus.*;
 import com.madbros.adventurecraft.Sprites.SpriteBatch;

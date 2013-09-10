@@ -94,6 +94,7 @@ public class Sprites {
 			
 			int[] ids = {DARK_DIRT, HUMAN_BASE, 2};
 
+			//not finished yet...
 			try {
 				JSONParser parser = new JSONParser();
 				Object f = parser.parse(new FileReader("res/atlas.json"));
@@ -183,7 +184,7 @@ public class Sprites {
 			holeSprites = new StaticSprite[13]; Point pHole = new Point(21*TEXTURE_SIZE, 0);
 			sandSprites = new StaticSprite[13]; Point pSand = new Point(26*TEXTURE_SIZE, 0);
 			StaticSprite[] waterSprites1 = new StaticSprite[13]; Point pWater = new Point(11*TEXTURE_SIZE, 0);
-			StaticSprite[] waterSprites2 = new StaticSprite[13]; Point pAltWater = new Point(26*TEXTURE_SIZE, 3*TEXTURE_SIZE);
+			StaticSprite[] waterSprites2 = new StaticSprite[13]; Point pAltWater = new Point(26*TEXTURE_SIZE, 13*TEXTURE_SIZE);
 			dirtMountainBottomSprites = new StaticSprite[13]; Point pMountainBottom = new Point(0, 23*TEXTURE_SIZE);
 			dirtMountainTopSprites = new StaticSprite[13]; Point pMountainTop = new Point(5*TEXTURE_SIZE, 23*TEXTURE_SIZE);
 

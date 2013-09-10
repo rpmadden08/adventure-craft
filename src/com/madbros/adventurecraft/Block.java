@@ -2,15 +2,18 @@ package com.madbros.adventurecraft;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.newdawn.slick.Color;
 
+import com.madbros.adventurecraft.GameObjects.GameObject;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.*;
 
 public class Block {
+	public ArrayList<GameObject> objects = new ArrayList<GameObject>();
 	public Tile[] layers;
 	public CollisionTile collisionTile;
 	public Rect sRect;	//screen rect positions - only used for collision detection debugging (see character collision)
