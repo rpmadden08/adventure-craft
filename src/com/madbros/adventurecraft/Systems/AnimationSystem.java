@@ -1,4 +1,8 @@
-package com.madbros.adventurecraft;
+package com.madbros.adventurecraft.Systems;
+
+import com.madbros.adventurecraft.Hero;
+import com.madbros.adventurecraft.Inventory;
+import com.madbros.adventurecraft.Sprites.Sprites;
 
 public class AnimationSystem {
 	private void updateTiles() {
@@ -13,8 +17,8 @@ public class AnimationSystem {
 		if(hero.isMoving()) hero.sprite.updateCurrentAnimation();
 	}
 	
-	public void updateInventory(Inventory inventory) {
+	public void updateInventory(Hero hero, Inventory inventory) {
 		updateTiles();
-		inventory.heroSprite.updateCurrentAnimation();
+		hero.sprite.updateCurrentAnimation();
 	}
 }

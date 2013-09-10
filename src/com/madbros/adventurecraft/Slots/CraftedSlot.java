@@ -1,13 +1,14 @@
 package com.madbros.adventurecraft.Slots;
 
-import static com.madbros.adventurecraft.Constants.EMPTY;
+import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Items.*;
 
 public class CraftedSlot extends Slot{
-	public CraftedSlot(int x, int y, int type) {
-		super(x, y, type);
+	public CraftedSlot(int x, int y) {
+		super(x, y);
+		type = CRAFTED_SLOT;
 	}
 	
 	@Override

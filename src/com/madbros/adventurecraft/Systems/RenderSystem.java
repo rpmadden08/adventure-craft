@@ -1,10 +1,15 @@
-package com.madbros.adventurecraft;
+package com.madbros.adventurecraft.Systems;
 
 import static com.madbros.adventurecraft.Constants.*;
 
 import org.newdawn.slick.Color;
 
+import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.Hero;
+import com.madbros.adventurecraft.Inventory;
+import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.Slots.Slot;
+import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -50,7 +55,7 @@ public class RenderSystem {
 	}
 	
 	/******************************************* Inventory State Rendering *******************************************/
-	public void renderInventory(Inventory inv) {
+	public void renderInventory(Hero hero, Inventory inv) {
 		inv.menuSprites[0][0].draw(INV_BACKDROP_RECT.x, INV_BACKDROP_RECT.y, Z_INV_BACKDROP);	//top left
 		inv.menuSprites[0][2].draw(INV_BACKDROP_RECT.x2()-INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y, Z_INV_BACKDROP); //top right
 		inv.menuSprites[2][0].draw(INV_BACKDROP_RECT.x, INV_BACKDROP_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP);	//bottom left
@@ -63,14 +68,14 @@ public class RenderSystem {
 		
 		inv.menuSprites[1][1].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2); //middle
 		
-		Slot[][] slots = {inv.invBag, inv.invCrafting, inv.invCrafted};
+		Slot[][] slots = {inv.invBag, inv.invCrafting, inv.invCrafted, inv.invClothing};
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
 				slots[i][j].render();
 			}
 		}
 
-		inv.heroSprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
+		hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
 		
 		inv.heldItem.render(Helpers.getX(), Helpers.getY());
 	}

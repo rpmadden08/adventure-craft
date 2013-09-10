@@ -1,7 +1,6 @@
 package com.madbros.adventurecraft.TileTypes;
 
-import com.madbros.adventurecraft.*;
-
+import com.madbros.adventurecraft.Sprites.*;
 import static com.madbros.adventurecraft.Constants.*;
 
 public class SandTile extends Tile {

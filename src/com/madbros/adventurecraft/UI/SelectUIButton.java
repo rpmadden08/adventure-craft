@@ -2,8 +2,9 @@ package com.madbros.adventurecraft.UI;
 
 import org.newdawn.slick.Color;
 
-import com.madbros.adventurecraft.*;
 import static com.madbros.adventurecraft.Constants.*;
+
+import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.*;
 
 public class SelectUIButton {
@@ -27,6 +28,7 @@ public class SelectUIButton {
 	
 	public void render() {
 		buttonColor.bind();
+
 		sprite.draw(rect, Z_BUTTONS);
 		if(buttonIsPressedDown) {
 			pressedColor.bind();

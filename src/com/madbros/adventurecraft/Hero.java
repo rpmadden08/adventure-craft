@@ -1,19 +1,20 @@
 package com.madbros.adventurecraft;
 
-import static com.madbros.adventurecraft.Constants.TILE_SIZE;
+import static com.madbros.adventurecraft.Constants.*;
 
 import org.lwjgl.input.Keyboard;
 
+import com.madbros.adventurecraft.Items.ClothingItem;
+import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
+import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-import static com.madbros.adventurecraft.Constants.*;
-
 public class Hero {
 	public CompoundAnimatedSprite sprite;
 
-	Margin margin = new Margin(17, 17, 29, 1); //new Margin(17, 17, 45, 1); //left, right, top, bottom
+	public Margin margin = new Margin(17, 17, 29, 1); //new Margin(17, 17, 45, 1); //left, right, top, bottom
 	
 	//absolute position of upper left corner
 	public Rect aRect = new Rect(TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
@@ -26,11 +27,10 @@ public class Hero {
 	
 	public static float currentSpeed = 0.19f;
 	
-	Block[] collisionDetectionBlocks = new Block[9];
+	public Block[] collisionDetectionBlocks = new Block[9];
 		
 	public Hero() {
-		sprite = (CompoundAnimatedSprite) Sprites.sprites.get(TEMP_HERO_SPRITE);
-		sprite.getCopy();
+		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_BASE));
 	}
 
 //	public void startAttacking() {
@@ -223,7 +223,7 @@ public class Hero {
 			
 		}
 	}
-	
+
 	public static float getCurrentSpeed() {
 		return currentSpeed;
 	}
@@ -238,5 +238,16 @@ public class Hero {
 	
 	public void decreaseSpeed() {
 		if(currentSpeed < 0.9f) currentSpeed += 0.1f;
+	}
+	
+	public void addClothingItem(ClothingItem clothingItem) {
+		sprite.addSprite(clothingItem.animatedSprite);
+		sprite.changeAnimationTo(WALK_DOWN);
+		//increase armor rating and add special effects
+	}
+	
+	public void removeClothingItem(ClothingItem clothingItem) {
+		sprite.removeSprite(clothingItem.animatedSprite);
+		sprite.changeAnimationTo(WALK_DOWN);
 	}
 }

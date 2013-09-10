@@ -86,6 +86,7 @@ public class MainState extends GameState {
 		Game.hero.update();
 		Game.level.update();
 		Game.inventory.update();	//should be in input...
+		
 		Game.debugger.update();
 	}
 		

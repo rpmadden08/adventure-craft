@@ -3,6 +3,7 @@ package com.madbros.adventurecraft;
 import java.text.*;
 import org.newdawn.slick.*;
 
+import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Rect;
 
 import static com.madbros.adventurecraft.Constants.*;

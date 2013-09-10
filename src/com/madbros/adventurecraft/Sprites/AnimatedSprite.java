@@ -1,4 +1,4 @@
-package com.madbros.adventurecraft;
+package com.madbros.adventurecraft.Sprites;
 
 import java.util.HashMap;
 
@@ -47,8 +47,12 @@ public class AnimatedSprite extends Sprite {
 	}
 	
 	public void changeAnimationTo(int animationId) {
-		currentAnimation.resetFrame();
+		resetFrame();
 		currentAnimation = animations.get(animationId);
+	}
+	
+	public void resetFrame() {
+		currentAnimation.resetFrame();
 	}
 	
 	public void updateCurrentAnimation() {
@@ -59,6 +63,10 @@ public class AnimatedSprite extends Sprite {
 		for (int key : animations.keySet()) {
 		    animations.get(key).changeFrameTimesBy(n);
 		}
+	}
+	
+	public int getCurrentAnimation() {
+		return currentAnimation.id;
 	}
 	
 	public AnimatedSprite getCopy() {

@@ -6,18 +6,20 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import com.madbros.adventurecraft.Slots.*;
+import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Items.*;
 
 public class Inventory {
 	public StaticSprite selectSprite = Sprites.selectSprite;
 	public StaticSprite[][] menuSprites = {Sprites.menuSprites1, Sprites.menuSprites2, Sprites.menuSprites3};
-	public CompoundAnimatedSprite heroSprite;
-	public Animation formerHeroAnimation;
+	public int formerHeroAnimation;
 	
 	public Slot[] invBar= new Slot[INV_LENGTH];
 	public Slot[] invBag= new Slot[INV_LENGTH * INV_HEIGHT];
 	public CraftingSlot[] invCrafting= new CraftingSlot[2 * 2];
 	public CraftedSlot[] invCrafted = new CraftedSlot[1];
+	public ClothingSlot[] invClothing = new ClothingSlot[4];
+
 	
 	public Item heldItem = new NoItem();
 	public int itemSelected = 0;
@@ -25,19 +27,15 @@ public class Inventory {
 	public boolean isUsingItemLeft = false;
 	
 	public Inventory() {
-		heroSprite = (CompoundAnimatedSprite) Sprites.sprites.get(TEMP_HERO_SPRITE);
-		heroSprite = heroSprite.getCopy();
-		heroSprite.changeFrameTimesBy(INV_ANIMATION_CHANGE);
-		
 		for(int i = 0; i < INV_LENGTH; i++) {
-			invBar[i] = new Slot(INV_BAR_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * i, INV_BAR_RECT.y, BAR);
+			invBar[i] = new Slot(INV_BAR_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * i, INV_BAR_RECT.y);
 		}
 		
 		int k = 0;
 		for(int x = 0; x < INV_LENGTH; x++) {
 			for(int y = 0; y < INV_HEIGHT; y++) {
 				invBag[k] = new Slot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x,
-									 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.bottom) * y, BAG);
+									 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.bottom) * y);
 				k++;
 			}
 		}
@@ -46,16 +44,20 @@ public class Inventory {
 		for(int x = 0; x < 2; x++) {	
 			for(int y = 0; y < 2; y++) {
 				invCrafting[k] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE + 2) * x,
-										  INV_CRAFTING_RECT.y + (INV_SLOT_SIZE + 2) * y, CRAFTING);
+										  INV_CRAFTING_RECT.y + (INV_SLOT_SIZE + 2) * y);
 				k++;
 			}
 		}
 		
-		invCrafted[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 5, INV_CRAFTING_RECT.y, CRAFTED);
+		invCrafted[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 5, INV_CRAFTING_RECT.y);
+
+		invClothing[0] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +60, HELMET_SLOT);
+		invClothing[1] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +110,ARMOR_SLOT);
+		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +160,LEGGINGS_SLOT);
+		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +210,BOOTS_SLOT);
 		
-		invBar[0].item = new Sword();
-		invBar[1].item = new Log();
-		invBar[1].item.stackSize = 10;
+		invBar[0].item = new IronBoots();
+		invBar[1].item = new IronArmor();
 		invBar[2].item = new Log();
 		invBar[2].item.stackSize = 99;
 		invBar[3].item = new SandClump();
@@ -64,9 +66,14 @@ public class Inventory {
 		invBar[4].item.stackSize = 99;
 		invBar[5].item = new EarthClump();
 		invBar[5].item.stackSize = 99;
-		invBar[6].item = new Shovel();
+		invBar[6].item = new IronLeggings();
 		invBar[7].item = new Sapling();
 		invBar[7].item.stackSize = 99;
+
+		invClothing[0].item = new IronHelmet();
+		Game.hero.addClothingItem((ClothingItem)invClothing[0].item);
+		invBar[8].item = new IronHelmet();
+
 	}
 	
 	public void update() {
@@ -99,11 +106,12 @@ public class Inventory {
 		if(invBar[itemSelected].item.stackSize < 1) invBar[itemSelected].item = new NoItem();
 	}
 	
-	public void open() {
-		heroSprite.changeAnimationTo(WALK_DOWN);
+	public void open(Hero hero) {
+		formerHeroAnimation = hero.sprite.getCurrentAnimation();
+		hero.sprite.changeAnimationTo(WALK_DOWN);
 	}
 	
-	public void close() {
-		//if anything needs to happen on inventory close, it goes in this function
+	public void close(Hero hero) {
+		hero.sprite.changeAnimationTo(formerHeroAnimation);
 	}
 }

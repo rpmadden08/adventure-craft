@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import org.newdawn.slick.Color;
 
+import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.*;
 
@@ -16,17 +17,22 @@ public class Block {
 	public Rect absRect;	//absolute rect positions
 
 	public boolean canPlace = true;		//FIXME: if we scrap dark dirt, do we still need this?
+	
+	public Rect cRect;	//the collision detection rect for colidable blocks (this rect acounts for any offsets)
+	public float noise;
+	public boolean isUnfinished = false;
+
 	public Long timePlaced= Time.getTime();
 	
 	public boolean isHighlighted = false;
 	
-	public Block(Tile tile, int absX, int absY) {
-		this(new Tile[]{tile}, absX, absY);
+	public Block(Tile tile, int absX, int absY, boolean isUnfinished) {
+		this(new Tile[]{tile}, absX, absY, false);
 	}
 	
-	public Block(Tile[] t, int absX, int absY) {
+	public Block(Tile[] t, int absX, int absY, boolean isUnfinished) {
 		absRect = new Rect(absX, absY);
-		
+
 		layers = new Tile[11];
 		layers[DARK_DIRT_LAYER] = t[DARK_DIRT_LAYER];
 		layers[LIGHT_DIRT_LAYER] = t[LIGHT_DIRT_LAYER];
@@ -42,6 +48,14 @@ public class Block {
 		
 		if(t[WATER_LAYER].isCollidable) setCollisionTile((CollisionTile)t[WATER_LAYER]);
 		else if(t[OBJECT_LAYER].isCollidable) setCollisionTile((CollisionTile)t[OBJECT_LAYER]);
+
+		if(t[WATER_LAYER].isCollidable) {
+			collisionTile = (CollisionTile)t[WATER_LAYER];
+			cRect = new Rect(absRect, collisionTile.margin);
+		} else if(t[OBJECT_LAYER].isCollidable) {
+			collisionTile = (CollisionTile)t[OBJECT_LAYER];
+			cRect = new Rect(absRect, collisionTile.margin);
+		}
 	}
 	
 	public void render(int x, int y) {
@@ -66,6 +80,7 @@ public class Block {
 			Color highlightColor = new Color(1, 1, 1, 0.2f);
 			highlightColor.bind();
 			Sprites.collisionDebugger.draw(x, y, Z_COLLISION_TILES, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+
 			Color.white.bind();
 		}
 		
@@ -75,8 +90,9 @@ public class Block {
 			
 			Color highlightColor = new Color(0, 0, 1f, 0.6f);
 			highlightColor.bind();
-			Sprites.pixel.draw(r, Z_COLLISION_RECTS);
 			
+			Sprites.pixel.draw(r, Z_COLLISION_RECTS);
+
 			Color.white.bind();
 		}
 	}
@@ -137,7 +153,7 @@ public class Block {
 		collisionTile = t;
 		collisionTile.setCollisionRect(absRect);
 	}
-	
+
 	public void detectCollisions() {
 		//if this block is collidabe, add it to the collidableEntities array
 		//loop through all collidableEntities to detect collisions

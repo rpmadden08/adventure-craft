@@ -5,6 +5,9 @@ import static com.madbros.adventurecraft.Constants.*;
 import org.newdawn.slick.Color;
 
 import com.madbros.adventurecraft.*;
+
+import com.madbros.adventurecraft.Sprites.Sprite;
+import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -12,6 +15,7 @@ public abstract class Tile {
 	public Sprite[] sprites;
 	public int maxHp = 10;
 	public int currentHp = 10;
+
 	public int currentSpriteId = 0;
 	public int layer = DARK_DIRT_LAYER;
 	public float z = Z_DARK_DIRT;
@@ -38,9 +42,14 @@ public abstract class Tile {
 		int w = 20; int h = 4;
 		int sX = x+TEXTURE_SIZE - 10; int sY = y - h*2;
 		new Color(0.0f, 1.0f, 0.0f).bind();
+		
 		Sprites.pixel.draw(sX+1, sY+1, Z_HEALTHBAR, Math.round((currentHp * 1.0f / maxHp) * w-2), h-2);
 		Color.white.bind();
 		Helpers.drawRect(new Rect(sX, sY, w, h), Z_HEALTHBAR);
+	}
+	
+	public void bloom(int x,int y, Block[][] activeBlocks) {
+		
 	}
 	
 	public abstract Tile createNew();

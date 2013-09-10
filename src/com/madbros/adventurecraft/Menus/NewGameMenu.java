@@ -7,6 +7,7 @@ import org.newdawn.slick.Color;
 import com.madbros.adventurecraft.*;
 import static com.madbros.adventurecraft.Constants.*;
 import com.madbros.adventurecraft.GameStates.*;
+import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.UI.*;
 import com.madbros.adventurecraft.Utils.*;
 

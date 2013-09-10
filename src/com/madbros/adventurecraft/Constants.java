@@ -16,8 +16,8 @@ public class Constants {
 	public static HashMap<Integer, Integer> BOTTOM_RIGHT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
 	
 	//game constants
-	public static final int INITIAL_WINDOW_WIDTH = 1280;// 640
-	public static final int INITIAL_WINDOW_HEIGHT = 800;//480
+	public static final int INITIAL_WINDOW_WIDTH = 1280;// 640 1280
+	public static final int INITIAL_WINDOW_HEIGHT = 800;//480 800
 	public static final int RENDER_MARGIN = 1;
 	public static final int FRAME_RATE = 60;
 	public static final String GAME_TITLE = "Adventure Craft";
@@ -34,6 +34,7 @@ public class Constants {
 	public static final int DOWN = 2;
 	public static final int LEFT = 3;
 	public static final int RIGHT = 4;
+
 	public static final int STAND_UP = 0;
 	public static final int STAND_DOWN = 1;
 	public static final int STAND_RIGHT = 2;
@@ -42,6 +43,7 @@ public class Constants {
 	public static final int WALK_DOWN = 5;
 	public static final int WALK_RIGHT = 6;
 	public static final int WALK_LEFT = 7;
+
 	public static final boolean VERTICAL = true;
 	public static final boolean HORIZONTAL = false;
 	
@@ -72,10 +74,15 @@ public class Constants {
 	
 	//item/slot constants
 	public static final int ITEM_OFFSET = 5;
-	public static final int BAR = 0;
-	public static final int BAG = 1;
-	public static final int CRAFTING = 2;
-	public static final int CRAFTED = 3;
+	public static final int STANDARD_SLOT = 0;
+	public static final int CRAFTING_SLOT = 1;
+	public static final int CRAFTED_SLOT = 2;
+	public static final int CLOTHING_SLOT = 3;
+	public static final int HELMET_SLOT = 5;
+	public static final int ARMOR_SLOT = 6;
+	public static final int LEGGINGS_SLOT = 7;
+	public static final int BOOTS_SLOT = 8;
+	
 	
 	//level constants
 	public static final int CHUNK_SIZE = 16;
@@ -99,6 +106,8 @@ public class Constants {
 	public static final int DARK_DIRT = 8;
 	public static final int SAPLING = 9;
 	public static final int TREE_LEAF = 10;
+	public static final int DIRT_MOUNTAIN_BOTTOM = 11;
+	public static final int DIRT_MOUNTAIN_TOP = 12;
 	
 	//Layers
 	public static final int DARK_DIRT_LAYER = 0;
@@ -122,16 +131,22 @@ public class Constants {
 	
 	public static final float Z_COLLISION_TILES = -0.85f;
 	public static final float Z_TILE_HIGHLIGHT = -0.7f;
-	public static final float Z_CHARACTER = -0.6f;
+
+	
+	public static final float Z_CHARACTER = -0.65f;
+	public static final float Z_CHARACTER_PANTS = -0.64f;
+	public static final float Z_CHARACTER_ARMOR = -0.63f;
+	
 	public static final float Z_COLLISION_RECTS = -0.57f;
 	public static final float Z_ABOVE_LAYER = -0.55f;
 	public static final float Z_ABOVE_LAYER2 = -0.54f;
-	public static final float Z_BOUNDARIES = -0.53f;
+	public static final float Z_BOUNDARIES = -0.0f;
 	
 	public static final float Z_HEALTHBAR = -0.52f;
 	
 	public static final float Z_INV_BACKDROP = -0.5f;
 	public static final float Z_INV_SLOTS = -0.4f;
+
 	public static final float Z_INV_HIGHLIGHT = -0.35f;
 	public static final float Z_INV_SELECT = -0.3f;
 	public static final float Z_INV_ITEMS = -0.25f;
@@ -167,7 +182,19 @@ public class Constants {
 	public static final int SHOVEL = 6;
 	
 	public static final int SWORD = 7;
+	
 	public static final int SAPLING_ITEM = 8;
+	
+	public static final int IRON_HELMET = 9;
+	public static final int IRON_ARMOR = 10;
+	public static final int IRON_LEGGINGS = 11;
+	public static final int IRON_BOOTS = 12;
+	
+	//Clothing Types
+	public static final int HELMET = 0;
+	public static final int ARMOR = 1;
+	public static final int LEGGINGS = 2;
+	public static final int BOOTS = 3;
 	
 	//Debugger
 	public static final int	BYTES_IN_MEGABYTE = 1048576;
@@ -206,11 +233,6 @@ public class Constants {
 	public static final int MAIN_MENU_STARTX = INITIAL_WINDOW_WIDTH/2 - MAIN_MENU_WIDTH / 2;
 	public static final int MAIN_MENU_STARTY = 40;
 	
-	//Sprite Ids
-	public static final int DARK_DIRT_SPRITE = 0;
-	public static final int HERO_SPRITE = 1;
-	public static final int TEMP_HERO_SPRITE = 2;
-	
 	public Constants() {
 		ITEM_HASH.put(NONE, new NoItem());
 		ITEM_HASH.put(GRASS_SEED, new GrassSeed());
@@ -230,6 +252,9 @@ public class Constants {
 		TILE_HASH.put(SAND, new SandTile());
 		TILE_HASH.put(AIR, new NoTile());
 		TILE_HASH.put(SAPLING, new SaplingTile());
+		TILE_HASH.put(TREE_LEAF, new TreeLeafTile());
+		TILE_HASH.put(DIRT_MOUNTAIN_BOTTOM, new DirtMountainBottomTile());
+		TILE_HASH.put(DIRT_MOUNTAIN_TOP, new DirtMountainTopTile());
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);
 		TOP_LEFT_AUTO_TILE_HASH.put(1, TOP_LEFT_TILE);

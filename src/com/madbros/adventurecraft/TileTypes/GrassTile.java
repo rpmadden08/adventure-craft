@@ -1,8 +1,7 @@
 package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
-
-import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Sprites.*;
 
 public class GrassTile extends Tile {
 	public GrassTile() {

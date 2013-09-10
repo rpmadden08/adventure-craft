@@ -6,6 +6,7 @@ import org.newdawn.slick.*;
 
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Items.*;
+import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.*;
 
 public class Slot {
@@ -16,15 +17,15 @@ public class Slot {
 	
 	public Rect slotRect;
 	
-	public Item item = new NoItem();
+	public Item item;
 	public int type;
 	
 	public boolean isHighlighted = false;
 	
-	public Slot(int x, int y, int type) {
+	public Slot(int x, int y) {
+		item = new NoItem();
 		Rect r = new Rect(x, y, INV_SLOT_SIZE, INV_SLOT_SIZE);
 		slotRect = r;
-		this.type = type;
 	}
 	
 	public void render() {
@@ -37,8 +38,6 @@ public class Slot {
 		}
 		
 		item.render(slotRect);
-		
-		
 	}
 	
 	/* Handle Events */

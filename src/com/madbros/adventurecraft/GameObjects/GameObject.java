@@ -1,4 +1,4 @@
-package com.madbros.adventurecraft;
+package com.madbros.adventurecraft.GameObjects;
 
 import com.madbros.adventurecraft.Utils.*;
 

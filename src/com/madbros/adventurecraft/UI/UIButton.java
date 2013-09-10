@@ -3,7 +3,7 @@ package com.madbros.adventurecraft.UI;
 import org.lwjgl.input.*;
 import org.newdawn.slick.*;
 
-import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;

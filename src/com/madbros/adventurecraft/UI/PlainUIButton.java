@@ -2,8 +2,9 @@ package com.madbros.adventurecraft.UI;
 
 import org.newdawn.slick.Color;
 
-import com.madbros.adventurecraft.*;
 import static com.madbros.adventurecraft.Constants.*;
+
+import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -28,6 +29,7 @@ public class PlainUIButton extends UIButton{
 	@Override
 	public void render() {
 		buttonColor.bind();
+
 		sprite.draw(rect, Z_BUTTONS);
 		if(mouseIsHovering && buttonIsPressedDown) {
 			pressedColor.bind();

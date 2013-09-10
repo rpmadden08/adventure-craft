@@ -3,6 +3,7 @@ package com.madbros.adventurecraft.TileTypes;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 
 public class SaplingTile extends CollisionTile {
@@ -35,10 +36,12 @@ public class SaplingTile extends CollisionTile {
 			b.setCollisionTile(new TreeTile());
 			
 			int layer;
+
 			int[] xs = {x, x-1, x-1, x, x+1, x+1};
 			int[] ys = {y, y, y-1, y-1, y-1, y};
 			
 			for(int i = 0; i < 6; i++) {
+
 				b = Game.level.activeBlocks[xs[i]][ys[i]];
 				if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR && b.layers[ABOVE_LAYER_3].id != AIR && b.layers[ABOVE_LAYER_4].id != AIR && b.layers[ABOVE_LAYER_5].id != AIR) layer = ABOVE_LAYER_6;
 				else if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR && b.layers[ABOVE_LAYER_3].id != AIR && b.layers[ABOVE_LAYER_4].id != AIR) layer = ABOVE_LAYER_5;
@@ -47,7 +50,9 @@ public class SaplingTile extends CollisionTile {
 				else if(b.layers[ABOVE_LAYER_1].id != AIR) layer = ABOVE_LAYER_2;
 				else layer = ABOVE_LAYER_1;
 				b.layers[layer] = new TreeLeafTile(); 
+
 				b.layers[layer].currentSpriteId = i;
+
 				b.layers[layer].z = Z_ABOVE_LAYER;
 			}
 		}

@@ -4,8 +4,8 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import org.newdawn.slick.Color;
 
-import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Slots.*;
+import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.*;
 
 public abstract class Item {

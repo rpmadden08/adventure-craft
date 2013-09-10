@@ -4,6 +4,8 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import org.newdawn.slick.Color;
 
+import com.madbros.adventurecraft.Sprites.Sprites;
+
 public class MiniMap {
 	public void render(Block[][] aBlocks) {
 		int sX = Game.currentScreenSizeX - 100;
@@ -18,7 +20,9 @@ public class MiniMap {
 						if(aBlocks[x][y].layers[layer].id == TREE) darkGreen.bind();
 						if(aBlocks[x][y].layers[layer].id == WATER) Color.blue.bind();
 						if(aBlocks[x][y].layers[layer].id == DIRT) brown.bind();
+
 						Sprites.pixel.draw(sX + x, sY + y, Z_MINIMAP, 1, 1);
+
 						Color.white.bind();
 						break;
 					}

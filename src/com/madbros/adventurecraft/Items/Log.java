@@ -2,7 +2,7 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Sprites.*;
 
 public class Log extends CraftItem {
 	public Log() {

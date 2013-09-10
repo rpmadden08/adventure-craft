@@ -7,6 +7,11 @@ import org.lwjgl.opengl.*;
 
 import com.madbros.adventurecraft.GameStates.*;
 import com.madbros.adventurecraft.Menus.*;
+import com.madbros.adventurecraft.Sprites.SpriteBatch;
+import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.Systems.AnimationSystem;
+import com.madbros.adventurecraft.Systems.CollisionDetectionSystem;
+import com.madbros.adventurecraft.Systems.RenderSystem;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -52,7 +57,7 @@ public class Game {
 			                        current.getBitsPerPixel() + " " + current.getFrequency() + "Hz");
 			}
 			
-			setDisplayMode(INITIAL_WINDOW_WIDTH,INITIAL_WINDOW_HEIGHT, true);
+			setDisplayMode(INITIAL_WINDOW_WIDTH,INITIAL_WINDOW_HEIGHT, false);
 			
 			//Display.setFullscreen(true);
 			Display.setResizable(true);
@@ -138,7 +143,7 @@ public class Game {
 		glClearDepth(1.0f);                   // set background depth to farthest
 		glDepthFunc(GL_LEQUAL);    // set the type of depth-test
 		glShadeModel(GL_SMOOTH);   // enable smooth shading
-		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // nice perspective corrections
+		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // nice perspective corrections   
 
 		// enable alpha blending and 2d texture binding
 		glEnable(GL_BLEND);
@@ -227,11 +232,11 @@ public class Game {
 		if(currentState.type == State.INVENTORY) {
 			currentState = new MainState();
 			hero.stop();
-			inventory.close();
+			inventory.close(hero);
 		} else {
 			currentState = new InventoryState();
 			hero.stop();
-			inventory.open();
+			inventory.open(hero);
 		}
 	}
 	

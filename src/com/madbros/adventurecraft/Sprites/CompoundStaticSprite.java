@@ -1,5 +1,6 @@
-package com.madbros.adventurecraft;
+package com.madbros.adventurecraft.Sprites;
 
+import com.madbros.adventurecraft.Sprites.StaticSprite;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class CompoundStaticSprite extends CompoundSprite{

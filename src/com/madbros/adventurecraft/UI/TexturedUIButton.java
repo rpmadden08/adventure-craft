@@ -1,7 +1,8 @@
 package com.madbros.adventurecraft.UI;
 
-import com.madbros.adventurecraft.*;
 import static com.madbros.adventurecraft.Constants.*;
+
+import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Rect;
 

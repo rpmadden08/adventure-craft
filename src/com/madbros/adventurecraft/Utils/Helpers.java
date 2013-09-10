@@ -4,6 +4,7 @@ import org.lwjgl.input.Mouse;
 
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Slots.*;
+import com.madbros.adventurecraft.Sprites.Sprites;
 
 public class Helpers {		
 	//wrappers for mouse stuff since display thinks y starts at the bottom...

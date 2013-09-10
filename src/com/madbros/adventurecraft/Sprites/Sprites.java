@@ -1,4 +1,4 @@
-package com.madbros.adventurecraft;
+package com.madbros.adventurecraft.Sprites;
 
 import java.awt.Font;
 
@@ -24,6 +24,13 @@ import org.json.simple.parser.*;
 public class Sprites {
 	public static Texture atlas;
 	public static Texture atlas2;
+	
+	public static final int DARK_DIRT = 0;
+	public static final int HUMAN_BASE = 1;
+	public static final int IRON_HELMET = 2;
+	public static final int IRON_ARMOR = 3;
+	public static final int IRON_LEGGINGS = 4;
+	public static final int IRON_BOOTS = 5;
 
 	public static AnimatedSprite[] waterSprites;
 	public static StaticSprite[] treeLeafSprites;
@@ -33,6 +40,13 @@ public class Sprites {
 	public static StaticSprite[] holeSprites;
 	public static StaticSprite[] sandSprites;
 	public static StaticSprite[] saplingSprite;
+	public static Sprite[] dirtMountainBottomSprites;
+	public static Sprite[] dirtMountainTopSprites;
+	
+	public static AnimatedSprite[] helmetAnimations;
+	public static AnimatedSprite[] armorAnimations;
+	public static AnimatedSprite[] leggingsAnimations;
+	public static AnimatedSprite[] feetAnimations;
 	
 	public static StaticSprite[] fireAnimationSprites;
 	
@@ -51,6 +65,10 @@ public class Sprites {
 	public static StaticSprite plankSprite;
 	public static StaticSprite swordSprite;
 	public static StaticSprite shovelSprite;
+	public static StaticSprite ironHelmetSprite;
+	public static StaticSprite ironArmorSprite;
+	public static StaticSprite ironLeggingsSprite;
+	public static StaticSprite ironBootsSprite;
 	
 	public static StaticSprite buttonSprite;
 	public static StaticSprite pressedButtonSprite;
@@ -64,7 +82,7 @@ public class Sprites {
 	public static HashMap<Integer, Sprite[]> spriteCollections = new HashMap<Integer, Sprite[]>();
 	public static HashMap<Integer, AnimatedSprite> animatedSprites = new HashMap<Integer, AnimatedSprite>();
 	public static HashMap<Integer, AnimatedSprite[]> animatedSpriteCollections = new HashMap<Integer, AnimatedSprite[]>();
-	public static HashMap<Integer, CompoundAnimatedSprite> compoundAnimatedSprite = new HashMap<Integer, CompoundAnimatedSprite>();
+//	public static HashMap<Integer, CompoundAnimatedSprite> compoundAnimatedSprite = new HashMap<Integer, CompoundAnimatedSprite>();
 	
 	//Sprite hash (sprites)
 	//ArrayList<Sprite> hash (sprite collections)
@@ -74,7 +92,7 @@ public class Sprites {
 			atlas = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/atlas.png"), GL11.GL_NEAREST);
 			//atlas2 = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/atlas2.png"), GL11.GL_NEAREST);
 			
-			int[] ids = {DARK_DIRT_SPRITE, HERO_SPRITE, 2};
+			int[] ids = {DARK_DIRT, HUMAN_BASE, 2};
 
 			try {
 				JSONParser parser = new JSONParser();
@@ -166,9 +184,11 @@ public class Sprites {
 			sandSprites = new StaticSprite[13]; Point pSand = new Point(26*TEXTURE_SIZE, 0);
 			StaticSprite[] waterSprites1 = new StaticSprite[13]; Point pWater = new Point(11*TEXTURE_SIZE, 0);
 			StaticSprite[] waterSprites2 = new StaticSprite[13]; Point pAltWater = new Point(26*TEXTURE_SIZE, 3*TEXTURE_SIZE);
-			
-			Sprite[][] t = {grassSprites, dirtSprites, waterSprites1, holeSprites, sandSprites, waterSprites2};
-			Point[] pts = {pGrass, pDirt, pWater, pHole, pSand, pAltWater};
+			dirtMountainBottomSprites = new StaticSprite[13]; Point pMountainBottom = new Point(0, 23*TEXTURE_SIZE);
+			dirtMountainTopSprites = new StaticSprite[13]; Point pMountainTop = new Point(5*TEXTURE_SIZE, 23*TEXTURE_SIZE);
+
+			Sprite[][] t = {grassSprites, dirtSprites, waterSprites1, holeSprites, sandSprites, waterSprites2, dirtMountainBottomSprites, dirtMountainTopSprites};
+			Point[] pts = {pGrass, pDirt, pWater, pHole, pSand, pAltWater, pMountainBottom, pMountainTop};
 			
 			int k = 0;
 			for(int i = 0; i < 3; i++) {
@@ -231,14 +251,6 @@ public class Sprites {
 											INV_MENU_TILE_SIZE, INV_MENU_TILE_SIZE);
 			}
 			
-//			for(int i = 0; i < 3; i++) {
-//				for(int j = 0; j < 3; j++) {
-//					menuSprites[i][j] = new StaticSprite(atlas, 1024-INV_MENU_TILE_SIZE*3+i*INV_MENU_TILE_SIZE,
-//													1024-INV_MENU_TILE_SIZE*3+j*INV_MENU_TILE_SIZE,
-//													INV_MENU_TILE_SIZE, INV_MENU_TILE_SIZE);
-//				}
-//			}
-			
 			buttonSprite = new StaticSprite(atlas, 1024-189, 1024-64, 66, 32);
 			pressedButtonSprite = new StaticSprite(atlas, 1024-189, 1024-32, 66, 32);
 			
@@ -251,37 +263,63 @@ public class Sprites {
 			
 			int[] animationIds = {STAND_DOWN, STAND_RIGHT, STAND_UP, STAND_LEFT, WALK_DOWN, WALK_RIGHT, WALK_UP, WALK_LEFT};
 			Animation[] animations = new Animation[animationIds.length];
-			Animation[] animations2 = new Animation[animationIds.length];
+			Animation[] helmet = new Animation[animationIds.length];
+			Animation[] chest = new Animation[animationIds.length];
+			Animation[] pants = new Animation[animationIds.length];
+			Animation[] boots = new Animation[animationIds.length];
 			
 			int sX = 0; int sY = 96;
-			k = 0;
+			
 			for(int i = 0; i < 4; i ++) {
-				StaticSprite[] frames = new StaticSprite[8];
-				StaticSprite[] frames2 = new StaticSprite[8];
-				for(int j = 0; j < 9; j++) {
-					if(j == 0) {
-						animations[i] = new Animation(new StaticSprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE/2), 80, animationIds[i]);
-						StaticSprite temp = new StaticSprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i + CHARACTER_SIZE/2, CHARACTER_SIZE, CHARACTER_SIZE/2);
-						temp.updateOffsets(0, CHARACTER_SIZE/2);
-						animations2[i] = new Animation(temp, 80, animationIds[i]);
+				StaticSprite[] frames = new StaticSprite[4];
+				StaticSprite[] helmetFrames = new StaticSprite[4];
+				StaticSprite[] chestFrames = new StaticSprite[4];
+				StaticSprite[] pantFrames = new StaticSprite[4];
+				StaticSprite[] bootFrames = new StaticSprite[4];
+				
+
+				for(int j = 0; j < 4; j++) {
+					if(j == 1) {
+						animations[i] = new Animation(new StaticSprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
+						helmet[i] = new Animation(new StaticSprite(atlas, sX+192 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
+						chest[i] = new Animation(new StaticSprite(atlas, sX+384 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
+						pants[i] = new Animation(new StaticSprite(atlas, sX+576 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
+						boots[i] = new Animation(new StaticSprite(atlas, sX+768 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
+					} 
+					
+					if(j == 1 || j == 3) {
+						frames[j] = new StaticSprite(atlas, sX + CHARACTER_SIZE, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+						helmetFrames[j] = new StaticSprite(atlas, sX+192 + CHARACTER_SIZE, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+						chestFrames[j] = new StaticSprite(atlas, sX+384 + CHARACTER_SIZE, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+						pantFrames[j] = new StaticSprite(atlas, sX+576 + CHARACTER_SIZE, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+						bootFrames[j] = new StaticSprite(atlas, sX+768 + CHARACTER_SIZE, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
 					}
 					else {
-						frames[j-1] = new StaticSprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE/2);
-						StaticSprite temp = new StaticSprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i + CHARACTER_SIZE/2, CHARACTER_SIZE, CHARACTER_SIZE/2);
-						temp.updateOffsets(0, CHARACTER_SIZE/2);
-						frames2[j-1] = temp;
+						frames[j] = new StaticSprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+						helmetFrames[j] = new StaticSprite(atlas, sX+192 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+						chestFrames[j] = new StaticSprite(atlas, sX+384 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+						pantFrames[j] = new StaticSprite(atlas, sX+576 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
+						bootFrames[j] = new StaticSprite(atlas, sX+768 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
 					}
-					k++;
 				}
 				animations[i+4] = new Animation(frames, 100, animationIds[i+4]);
-				animations2[i+4] = new Animation(frames2, 100, animationIds[i+4]);
+				helmet[i+4] = new Animation(helmetFrames, 100, animationIds[i+4]);
+				chest[i+4] = new Animation(chestFrames, 100, animationIds[i+4]);
+				pants[i+4] = new Animation(pantFrames, 100, animationIds[i+4]);
+				boots[i+4] = new Animation(bootFrames, 100, animationIds[i+4]);
 			}
 			
-			AnimatedSprite animatedSprite1 = new AnimatedSprite(animations);
-			AnimatedSprite animatedSprite2 = new AnimatedSprite(animations2);
+			AnimatedSprite animatedSprite = new AnimatedSprite(animations);
+			AnimatedSprite animatedHelmet = new AnimatedSprite(helmet);
+			AnimatedSprite animatedChest = new AnimatedSprite(chest);
+			AnimatedSprite animatedPants = new AnimatedSprite(pants);
+			AnimatedSprite animatedBoots = new AnimatedSprite(boots);
 			
-			sprites.put(TEMP_HERO_SPRITE, new CompoundAnimatedSprite(new AnimatedSprite[]{animatedSprite1}));//, animatedSprite2}));
-			((CompoundAnimatedSprite)sprites.get(TEMP_HERO_SPRITE)).addSprite(animatedSprite2);
+			animatedSprites.put(HUMAN_BASE, animatedSprite);
+			animatedSprites.put(IRON_HELMET, animatedHelmet);
+			animatedSprites.put(IRON_ARMOR, animatedChest);
+			animatedSprites.put(IRON_LEGGINGS, animatedPants);
+			animatedSprites.put(IRON_BOOTS, animatedBoots);
 			
 			fireAnimationSprites = new StaticSprite[4];
 			fireAnimationSprites[0] = new StaticSprite(atlas, 0, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4);
@@ -295,7 +333,12 @@ public class Sprites {
 			sandClumpSprite = new StaticSprite(atlas, TEXTURE_SIZE*2, 480, TEXTURE_SIZE, TEXTURE_SIZE);
 			logSprite = new StaticSprite(atlas, TEXTURE_SIZE*3, 480, TEXTURE_SIZE, TEXTURE_SIZE);
 			plankSprite = new StaticSprite(atlas, TEXTURE_SIZE*4, 480, TEXTURE_SIZE, TEXTURE_SIZE);
-			saplingItemSprite = new StaticSprite(atlas, 112, 624, TEXTURE_SIZE, TEXTURE_SIZE);
+			
+			saplingItemSprite = new StaticSprite(atlas, 234, 624, TEXTURE_SIZE, TEXTURE_SIZE);
+			ironHelmetSprite = new StaticSprite(atlas, TEXTURE_SIZE*5, 480, TEXTURE_SIZE, TEXTURE_SIZE);
+			ironArmorSprite = new StaticSprite(atlas, TEXTURE_SIZE*6, 480, TEXTURE_SIZE, TEXTURE_SIZE);
+			ironLeggingsSprite = new StaticSprite(atlas, TEXTURE_SIZE*7, 480, TEXTURE_SIZE, TEXTURE_SIZE);
+			ironBootsSprite = new StaticSprite(atlas, TEXTURE_SIZE*8, 480, TEXTURE_SIZE, TEXTURE_SIZE);
 			
 			swordSprite = new StaticSprite(atlas, TEXTURE_SIZE*0, 512, TEXTURE_SIZE, TEXTURE_SIZE);
 			shovelSprite = new StaticSprite(atlas, TEXTURE_SIZE*1, 512, TEXTURE_SIZE, TEXTURE_SIZE);

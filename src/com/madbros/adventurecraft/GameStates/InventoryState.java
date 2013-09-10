@@ -26,7 +26,8 @@ public class InventoryState extends MainState {
 	@Override
 	protected void getAdditionalMouseInput() {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
-		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted};
+
+		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing};
 		
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
@@ -44,7 +45,7 @@ public class InventoryState extends MainState {
 	
 	@Override
 	protected void updateStates() {
-		Game.animationSystem.updateInventory(Game.inventory);
+		Game.animationSystem.updateInventory(Game.hero, Game.inventory);
 		Game.hero.update();
 		Game.level.update();
 		Game.debugger.update();
@@ -53,7 +54,7 @@ public class InventoryState extends MainState {
 	@Override
 	protected void renderTextures() {
 		super.renderTextures();
-		Game.renderSystem.renderInventory(Game.inventory);
+		Game.renderSystem.renderInventory(Game.hero, Game.inventory);
 	}
 	
 	@Override
