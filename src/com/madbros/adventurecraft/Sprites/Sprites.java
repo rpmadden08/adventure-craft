@@ -281,11 +281,11 @@ public class Sprites {
 
 				for(int j = 0; j < 4; j++) {
 					if(j == 1) {
-						animations[i] = new Animation(new StaticSprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
-						helmet[i] = new Animation(new StaticSprite(atlas, sX+192 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
-						chest[i] = new Animation(new StaticSprite(atlas, sX+384 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
-						pants[i] = new Animation(new StaticSprite(atlas, sX+576 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
-						boots[i] = new Animation(new StaticSprite(atlas, sX+768 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
+						animations[i] = new Animation(new StaticSprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
+						helmet[i] = new Animation(new StaticSprite(atlas, sX+192 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
+						chest[i] = new Animation(new StaticSprite(atlas, sX+384 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
+						pants[i] = new Animation(new StaticSprite(atlas, sX+576 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
+						boots[i] = new Animation(new StaticSprite(atlas, sX+768 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
 					} 
 					
 					if(j == 1 || j == 3) {
@@ -303,11 +303,11 @@ public class Sprites {
 						bootFrames[j] = new StaticSprite(atlas, sX+768 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
 					}
 				}
-				animations[i+4] = new Animation(frames, 100, animationIds[i+4]);
-				helmet[i+4] = new Animation(helmetFrames, 100, animationIds[i+4]);
-				chest[i+4] = new Animation(chestFrames, 100, animationIds[i+4]);
-				pants[i+4] = new Animation(pantFrames, 100, animationIds[i+4]);
-				boots[i+4] = new Animation(bootFrames, 100, animationIds[i+4]);
+				animations[i+4] = new Animation(frames, 200, animationIds[i+4]);
+				helmet[i+4] = new Animation(helmetFrames, 200, animationIds[i+4]);
+				chest[i+4] = new Animation(chestFrames, 200, animationIds[i+4]);
+				pants[i+4] = new Animation(pantFrames, 200, animationIds[i+4]);
+				boots[i+4] = new Animation(bootFrames, 200, animationIds[i+4]);
 			}
 			
 			AnimatedSprite animatedSprite = new AnimatedSprite(animations);
