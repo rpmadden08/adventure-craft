@@ -1,21 +1,6 @@
 package com.madbros.adventurecraft.GameObjects;
 
-import static com.madbros.adventurecraft.Constants.CHARACTER_SIZE;
-import static com.madbros.adventurecraft.Constants.DOWN;
-import static com.madbros.adventurecraft.Constants.HORIZONTAL;
-import static com.madbros.adventurecraft.Constants.LEFT;
-import static com.madbros.adventurecraft.Constants.RIGHT;
-import static com.madbros.adventurecraft.Constants.STAND_DOWN;
-import static com.madbros.adventurecraft.Constants.STAND_LEFT;
-import static com.madbros.adventurecraft.Constants.STAND_RIGHT;
-import static com.madbros.adventurecraft.Constants.STAND_UP;
-import static com.madbros.adventurecraft.Constants.TILE_SIZE;
-import static com.madbros.adventurecraft.Constants.UP;
-import static com.madbros.adventurecraft.Constants.VERTICAL;
-import static com.madbros.adventurecraft.Constants.WALK_DOWN;
-import static com.madbros.adventurecraft.Constants.WALK_LEFT;
-import static com.madbros.adventurecraft.Constants.WALK_RIGHT;
-import static com.madbros.adventurecraft.Constants.WALK_UP;
+import static com.madbros.adventurecraft.Constants.*;
 
 import org.lwjgl.input.Keyboard;
 
