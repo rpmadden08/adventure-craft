@@ -2,17 +2,16 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.madbros.adventurecraft.Block;
-import com.madbros.adventurecraft.Textures;
-import com.madbros.adventurecraft.TileTypes.NoTile;
-import com.madbros.adventurecraft.TileTypes.Tile;
+import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.TileTypes.*;
 
 public class SandClump extends BlockItem {
 	public SandClump() {
 		id = SAND_CLUMP;
 		tileId = SAND;
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, WATER};
-		texture = Textures.sandClumpTexture;
+		sprite = Sprites.sandClumpSprite;
 	}
 	
 	@Override
@@ -26,7 +25,6 @@ public class SandClump extends BlockItem {
 			hB.layers[GRASS_LAYER] = tile;
 			hB.layers[WATER_LAYER] = new NoTile();
 			hB.collisionTile = null;
-			hB.cRect = null;
 		} else {
 			hB.layers[GRASS_LAYER] = tile;
 		}

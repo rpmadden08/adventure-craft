@@ -1,27 +1,28 @@
-package com.madbros.adventurecraft.Cells;
+package com.madbros.adventurecraft.Slots;
 
-import static com.madbros.adventurecraft.Constants.EMPTY;
+import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Items.*;
 
-public class CraftedCell extends Cell{
-	public CraftedCell(int x, int y, int type) {
-		super(x, y, type);
+public class CraftedSlot extends Slot{
+	public CraftedSlot(int x, int y) {
+		super(x, y);
+		type = CRAFTED_SLOT;
 	}
 	
 	@Override
-	public void handleLeftClick(Inventory inv) { //Item inv.heldItem, Cell[] inv.invCrafting, Cell[]invCrafted) {
+	public void handleLeftClick(Inventory inv) { //Item inv.heldItem, Slot[] inv.invCrafting, Slot[]invCrafted) {
 		if(inv.heldItem.id == EMPTY) {
 			swapItems(inv);
-			removeRecipeItemsFromCraftingCells(inv.heldItem.craftCost, inv.invCrafting);
+			removeRecipeItemsFromCraftingSlots(inv.heldItem.craftCost, inv.invCrafting);
 			craftAnotherItemIfPossible(inv.invCrafting, inv.invCrafted);
 		} else if (inv.heldItem.id == this.item.id) {
 			int total = inv.heldItem.stackSize + this.item.stackSize;
 			if(total <= inv.heldItem.maxStackSize) {
 				inv.heldItem.stackSize = total;
 				this.item = new NoItem();
-				removeRecipeItemsFromCraftingCells(inv.heldItem.craftCost, inv.invCrafting);
+				removeRecipeItemsFromCraftingSlots(inv.heldItem.craftCost, inv.invCrafting);
 				craftAnotherItemIfPossible(inv.invCrafting, inv.invCrafted);
 			}
 		}

@@ -3,7 +3,8 @@ package com.madbros.adventurecraft.Utils;
 import org.lwjgl.input.Mouse;
 
 import com.madbros.adventurecraft.*;
-import com.madbros.adventurecraft.Cells.*;
+import com.madbros.adventurecraft.Slots.*;
+import com.madbros.adventurecraft.Sprites.Sprites;
 
 public class Helpers {		
 	//wrappers for mouse stuff since display thinks y starts at the bottom...
@@ -19,10 +20,10 @@ public class Helpers {
 		return new Rect(getX(), getY(), 1, 1);
 	}
 	
-	public static boolean containsXNumberOfItemsInCells(int x, int itemId, Cell[] cells) {
+	public static boolean containsXNumberOfItemsInSlots(int x, int itemId, Slot[] slots) {
 		int count = 0;
-		for(int i = 0; i < cells.length; i++) {
-			if(cells[i].item.id == itemId) count++;
+		for(int i = 0; i < slots.length; i++) {
+			if(slots[i].item.id == itemId) count++;
 		}
 		
 		if(count == x) {
@@ -39,10 +40,10 @@ public class Helpers {
 	}
 
 	public static void drawRect(Rect r, float zLayer) {
-		Textures.pixel.draw(r.x, r.y, zLayer, r.w, 1);
-		Textures.pixel.draw(r.x, r.y, zLayer, 1, r.h);
-		Textures.pixel.draw(r.x2()-1, r.y, zLayer, 1, r.h);
-		Textures.pixel.draw(r.x, r.y2()-1, zLayer, r.w, 1);
+		Sprites.pixel.draw(r.x, r.y, zLayer, r.w, 1);
+		Sprites.pixel.draw(r.x, r.y, zLayer, 1, r.h);
+		Sprites.pixel.draw(r.x2()-1, r.y, zLayer, 1, r.h);
+		Sprites.pixel.draw(r.x, r.y2()-1, zLayer, r.w, 1);
 	}
 	
 	public static void println(String s) {

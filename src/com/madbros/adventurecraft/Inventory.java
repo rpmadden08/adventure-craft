@@ -5,35 +5,38 @@ import static com.madbros.adventurecraft.Constants.*;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-import com.madbros.adventurecraft.Cells.*;
+import com.madbros.adventurecraft.Slots.*;
+import com.madbros.adventurecraft.Sprites.*;
+import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.Items.*;
-import com.madbros.adventurecraft.Utils.Helpers;
 
 public class Inventory {
-	private Sprite selectTexture = Textures.selectTexture;
-	private Sprite[][] menuTextures = Textures.menuTextures;
+	public StaticSprite selectSprite = Sprites.selectSprite;
+	public StaticSprite[][] menuSprites = {Sprites.menuSprites1, Sprites.menuSprites2, Sprites.menuSprites3};
+	public int formerHeroAnimation;
 	
-	public Cell[] invBar= new Cell[INV_LENGTH];
-	public Cell[] invBag= new Cell[INV_LENGTH * INV_HEIGHT];
-	public CraftingCell[] invCrafting= new CraftingCell[2 * 2];
-	public CraftedCell[] invCrafted = new CraftedCell[1];
-	public ClothingCell[] invClothing = new ClothingCell[4];
+	public Slot[] invBar= new Slot[INV_LENGTH];
+	public Slot[] invBag= new Slot[INV_LENGTH * INV_HEIGHT];
+	public CraftingSlot[] invCrafting= new CraftingSlot[2 * 2];
+	public CraftedSlot[] invCrafted = new CraftedSlot[1];
+	public ClothingSlot[] invClothing = new ClothingSlot[4];
+
 	
 	public Item heldItem = new NoItem();
-	private int itemSelected = 0;
+	public int itemSelected = 0;
 	public boolean isUsingItemRight = false;
 	public boolean isUsingItemLeft = false;
 	
 	public Inventory() {
 		for(int i = 0; i < INV_LENGTH; i++) {
-			invBar[i] = new Cell(INV_BAR_RECT.x + (INV_CELL_SIZE + INV_CELL_MARGIN.right) * i, INV_BAR_RECT.y, BAR);
+			invBar[i] = new Slot(INV_BAR_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * i, INV_BAR_RECT.y);
 		}
 		
 		int k = 0;
 		for(int x = 0; x < INV_LENGTH; x++) {
 			for(int y = 0; y < INV_HEIGHT; y++) {
-				invBag[k] = new Cell(INV_BAG_RECT.x + (INV_CELL_SIZE + INV_CELL_MARGIN.right) * x,
-									 INV_BAG_RECT.y + (INV_CELL_SIZE + INV_CELL_MARGIN.bottom) * y, BAG);
+				invBag[k] = new Slot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x,
+									 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.bottom) * y);
 				k++;
 			}
 		}
@@ -41,18 +44,18 @@ public class Inventory {
 		k = 0;
 		for(int x = 0; x < 2; x++) {	
 			for(int y = 0; y < 2; y++) {
-				invCrafting[k] = new CraftingCell(INV_CRAFTING_RECT.x + (INV_CELL_SIZE + 2) * x,
-										  INV_CRAFTING_RECT.y + (INV_CELL_SIZE + 2) * y, CRAFTING);
+				invCrafting[k] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE + 2) * x,
+										  INV_CRAFTING_RECT.y + (INV_SLOT_SIZE + 2) * y);
 				k++;
 			}
 		}
 		
-		invClothing[0] = new ClothingCell(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +60,HELMET_CELL);
-		invClothing[1] = new ClothingCell(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +110,ARMOR_CELL);
-		invClothing[2] = new ClothingCell(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +160,LEGGINGS_CELL);
-		invClothing[3] = new ClothingCell(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +210,BOOTS_CELL);
-		
-		invCrafted[0] = new CraftedCell(INV_CRAFTING_RECT.x2() + 5, INV_CRAFTING_RECT.y, CRAFTED);
+		invCrafted[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 5, INV_CRAFTING_RECT.y);
+
+		invClothing[0] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +60, HELMET_SLOT);
+		invClothing[1] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +110,ARMOR_SLOT);
+		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +160,LEGGINGS_SLOT);
+		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +210,BOOTS_SLOT);
 		
 		invBar[0].item = new IronBoots();
 		invBar[1].item = new IronArmor();
@@ -67,89 +70,26 @@ public class Inventory {
 		invBar[6].item = new IronLeggings();
 		invBar[7].item = new Sapling();
 		invBar[7].item.stackSize = 99;
+
 		invClothing[0].item = new IronHelmet();
+		Game.hero.addClothingItem((ClothingItem)invClothing[0].item);
 		invBar[8].item = new IronHelmet();
+
 	}
 	
 	public void update() {
 		if(Mouse.isButtonDown(LEFT_MOUSE_BUTTON)) invBar[itemSelected].item.useLeft();
 		if(Mouse.isButtonDown(RIGHT_MOUSE_BUTTON)) invBar[itemSelected].item.useRight();
 	}
-	
-	public void renderBackdrop() {
-		menuTextures[0][0].draw(INV_BACKDROP_RECT.x, INV_BACKDROP_RECT.y, Z_INV_BACKDROP);	//top left
-		menuTextures[2][0].draw(INV_BACKDROP_RECT.x2()-INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y, Z_INV_BACKDROP); //top right
-		menuTextures[0][2].draw(INV_BACKDROP_RECT.x, INV_BACKDROP_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP);	//bottom left
-		menuTextures[2][2].draw(INV_BACKDROP_RECT.x2()-INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP);	//bottom right
-		
-		menuTextures[1][0].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_MENU_TILE_SIZE);	//top
-		menuTextures[1][2].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_MENU_TILE_SIZE);	//bottom
-		menuTextures[0][1].draw(INV_BACKDROP_RECT.x, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2);	//left
-		menuTextures[2][1].draw(INV_BACKDROP_RECT.x2()-INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2);	//right
-		
-		menuTextures[1][1].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2); //middle
-	}
-	
-	public void render() {
-		for(int i=0;i < invBar.length; i++) {			
-			invBar[i].render();
-			if(i == itemSelected) {
-				selectTexture.draw(invBar[i].cellRect.x - 2, invBar[i].cellRect.y -2, Z_INV_SELECT, invBar[i].cellRect.w + 3, invBar[i].cellRect.h + 3);
-			}
-		}
-	}
-	
-	public void renderText() {
-		Cell[][] cells = {invBar};
-		
-		for(int i = 0; i < cells.length; i++) {
-			for(int j = 0; j < cells[i].length; j++) {
-				cells[i][j].item.renderFont(cells[i][j].cellRect.x2()-INV_CELL_SIZE/2, cells[i][j].cellRect.y2()-INV_CELL_SIZE/2);
-			}
-		}
-	}
-	
-	public void renderFull() {
-		renderBackdrop();
-		
-		Cell[][] cells = {invBag, invCrafting, invCrafted, invClothing};
-		for(int i = 0; i < cells.length; i++) {
-			for(int j = 0; j < cells[i].length; j++) {
-				cells[i][j].render();
-			}
-		}
 
-		Game.hero.render(WALK_DOWN, INV_CHAR_RECT.x, INV_CHAR_RECT.y, INV_CHAR_RECT.w, INV_CHAR_RECT.h);
-		
-		heldItem.render(Helpers.getX(), Helpers.getY());
-	}
-	
-	public void renderTextFull() {
-		Cell[][] cells = new Cell[][]{invBag, invCrafting, invCrafted};
-
-		for(int i = 0; i < cells.length; i++) {
-			for(int j = 0; j < cells[i].length; j++) {
-				cells[i][j].item.renderFont(cells[i][j].cellRect.x2()-INV_CELL_SIZE/2, cells[i][j].cellRect.y2()-INV_CELL_SIZE/2);
-			}
-		}
-		
-		if(heldItem.id != EMPTY) heldItem.renderFont(Helpers.getX(), Helpers.getY());
-	}
-	
 	public void mouseWheelDidIncrement() {
-		if(itemSelected > 0) {
-			itemSelected -= 1;
-		} else {
-			itemSelected = invBar.length - 1;
-		}
+		if(itemSelected > 0) itemSelected -= 1;
+		else itemSelected = invBar.length - 1;
 	}
 	
 	public void mouseWheelDidDecrement() {
-		if(itemSelected < invBar.length - 1) {
-			itemSelected += 1;
-		} else {
-			itemSelected = 0;
-		}
+		if(itemSelected < invBar.length - 1) itemSelected += 1;
+		else itemSelected = 0;
 	}
 	
 	public void changeSelectedItemTo(int key) {
@@ -165,5 +105,14 @@ public class Inventory {
 	
 	public void deleteItemIfNecessary() {
 		if(invBar[itemSelected].item.stackSize < 1) invBar[itemSelected].item = new NoItem();
+	}
+	
+	public void open(Hero hero) {
+		formerHeroAnimation = hero.sprite.getCurrentAnimation();
+		hero.sprite.changeAnimationTo(WALK_DOWN);
+	}
+	
+	public void close(Hero hero) {
+		hero.sprite.changeAnimationTo(formerHeroAnimation);
 	}
 }

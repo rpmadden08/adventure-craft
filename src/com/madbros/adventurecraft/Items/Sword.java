@@ -1,12 +1,12 @@
 package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
-import com.madbros.adventurecraft.Textures;
+import com.madbros.adventurecraft.Sprites.Sprites;
 
 public class Sword extends WeaponItem {
 	public Sword() {
 		id = SWORD;
-		texture = Textures.swordTexture;
+		sprite = Sprites.swordSprite;
 	}
 	
 	@Override

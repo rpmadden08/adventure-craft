@@ -5,8 +5,14 @@ import java.io.File;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.*;
 
+import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.GameStates.*;
 import com.madbros.adventurecraft.Menus.*;
+import com.madbros.adventurecraft.Sprites.SpriteBatch;
+import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.Systems.AnimationSystem;
+import com.madbros.adventurecraft.Systems.CollisionDetectionSystem;
+import com.madbros.adventurecraft.Systems.RenderSystem;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -29,6 +35,10 @@ public class Game {
 	public static Hero hero;
 	public static Inventory inventory;
 	public static MiniMap map;
+	public static RenderSystem renderSystem;
+	public static AnimationSystem animationSystem;
+	public static CollisionDetectionSystem collisionDetectionSystem;
+	
 
 	//public static DisplayMode displayMode = new DisplayMode(2048, 1280);
 	
@@ -135,8 +145,6 @@ public class Game {
 		glDepthFunc(GL_LEQUAL);    // set the type of depth-test
 		glShadeModel(GL_SMOOTH);   // enable smooth shading
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // nice perspective corrections   
-		
-
 
 		// enable alpha blending and 2d texture binding
 		glEnable(GL_BLEND);
@@ -155,11 +163,11 @@ public class Game {
 	}
  
 	protected void setupGame() {
+		new Sprites();
 		new Constants();
-		new Textures();
 		
 		debugger = new Debugger();
-		batch = new SpriteBatch(Textures.atlas);
+		batch = new SpriteBatch(Sprites.atlas);
 		debugMenu = new DebugMenu();
 		
 //		currentState = new MainMenuState();
@@ -222,8 +230,15 @@ public class Game {
 	}
 	
 	public static void toggleInventoryState() {
-		if(currentState.type == State.INVENTORY) currentState = new MainState();
-		else currentState = new InventoryState();
+		if(currentState.type == State.INVENTORY) {
+			currentState = new MainState();
+			hero.stop();
+			inventory.close(hero);
+		} else {
+			currentState = new InventoryState();
+			hero.stop();
+			inventory.open(hero);
+		}
 	}
 	
 	public static void createSavesFolderIfNecessary() {
@@ -250,6 +265,10 @@ public class Game {
 		hero = new Hero();
 		inventory = new Inventory();
 		map = new MiniMap();
+		renderSystem = new RenderSystem();
+		animationSystem = new AnimationSystem();
+		
+		collisionDetectionSystem = new CollisionDetectionSystem();
 		
 		Game.currentState = new MainState();
 	}

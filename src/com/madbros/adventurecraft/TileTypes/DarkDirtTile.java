@@ -2,7 +2,7 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.madbros.adventurecraft.Textures;
+import com.madbros.adventurecraft.Sprites.*;
 
 public class DarkDirtTile extends Tile{
 
@@ -13,10 +13,14 @@ public class DarkDirtTile extends Tile{
 		z = Z_DARK_DIRT;
 		isCollidable = false;
 		isMiddleTile = true;
-		currentTexture = 0;
-		textures = Textures.darkDirtTexture;
+		currentSpriteId= 0;
+		sprites = new StaticSprite[]{(StaticSprite)Sprites.sprites.get(Sprites.DARK_DIRT)};
 		id = DARK_DIRT;
 		isDiggable = true;
+		topLeftAutoTile = 0;
+		topRightAutoTile = 0;
+		bottomRightAutoTile = 0;
+		bottomLeftAutoTile = 0;
 	}
 	
 	public Tile createNew() {
@@ -25,6 +29,6 @@ public class DarkDirtTile extends Tile{
 	
 	@Override
 	public void render(int x, int y) {
-		textures[0].draw(x, y, z, TILE_SIZE, TILE_SIZE);
+		sprites[0].draw(x, y, z, TILE_SIZE, TILE_SIZE);
 	}
 }

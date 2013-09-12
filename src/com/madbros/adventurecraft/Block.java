@@ -2,23 +2,29 @@ package com.madbros.adventurecraft;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.newdawn.slick.Color;
 
+import com.madbros.adventurecraft.GameObjects.GameObject;
+import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.*;
 
 public class Block {
+	public ArrayList<GameObject> objects = new ArrayList<GameObject>();
 	public Tile[] layers;
 	public CollisionTile collisionTile;
 	public Rect sRect;	//screen rect positions - only used for collision detection debugging (see character collision)
-	public Rect aRect;	//absolute rect positions
+	public Rect absRect;	//absolute rect positions
+
+	public boolean canPlace = true;		//FIXME: if we scrap dark dirt, do we still need this?
+	
 	public Rect cRect;	//the collision detection rect for colidable blocks (this rect acounts for any offsets)
 	public float noise;
 	public boolean isUnfinished = false;
 
-	public boolean canPlace = true;
 	public Long timePlaced= Time.getTime();
 	
 	public boolean isHighlighted = false;
@@ -28,8 +34,8 @@ public class Block {
 	}
 	
 	public Block(Tile[] t, int absX, int absY, boolean isUnfinished) {
-		aRect = new Rect(absX, absY);
-		
+		absRect = new Rect(absX, absY);
+
 		layers = new Tile[11];
 		layers[DARK_DIRT_LAYER] = t[DARK_DIRT_LAYER];
 		layers[LIGHT_DIRT_LAYER] = t[LIGHT_DIRT_LAYER];
@@ -43,12 +49,15 @@ public class Block {
 		layers[ABOVE_LAYER_5] = t[ABOVE_LAYER_5];
 		layers[ABOVE_LAYER_6] = t[ABOVE_LAYER_6];
 		
+		if(t[WATER_LAYER].isCollidable) setCollisionTile((CollisionTile)t[WATER_LAYER]);
+		else if(t[OBJECT_LAYER].isCollidable) setCollisionTile((CollisionTile)t[OBJECT_LAYER]);
+
 		if(t[WATER_LAYER].isCollidable) {
 			collisionTile = (CollisionTile)t[WATER_LAYER];
-			cRect = new Rect(aRect, collisionTile.margin);
+			cRect = new Rect(absRect, collisionTile.margin);
 		} else if(t[OBJECT_LAYER].isCollidable) {
 			collisionTile = (CollisionTile)t[OBJECT_LAYER];
-			cRect = new Rect(aRect, collisionTile.margin);
+			cRect = new Rect(absRect, collisionTile.margin);
 		}
 	}
 	
@@ -73,7 +82,8 @@ public class Block {
 		if(Game.debugMenu.collisionTilesAreOn && Arrays.asList(Game.hero.collisionDetectionBlocks).contains(this)) {
 			Color highlightColor = new Color(1, 1, 1, 0.2f);
 			highlightColor.bind();
-			Textures.collisionDebugger.draw(x, y, Z_COLLISION_TILES, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+			Sprites.collisionDebugger.draw(x, y, Z_COLLISION_TILES, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+
 			Color.white.bind();
 		}
 		
@@ -83,8 +93,9 @@ public class Block {
 			
 			Color highlightColor = new Color(0, 0, 1f, 0.6f);
 			highlightColor.bind();
-			Textures.pixel.draw(r, Z_COLLISION_RECTS);
 			
+			Sprites.pixel.draw(r, Z_COLLISION_RECTS);
+
 			Color.white.bind();
 		}
 	}
@@ -114,8 +125,7 @@ public class Block {
 				return;
 			} else if(layers[i].id == DARK_DIRT) {
 				layers[WATER_LAYER] = new HoleTile();
-				collisionTile = (CollisionTile)layers[WATER_LAYER];
-				cRect = new Rect(aRect, collisionTile.margin);
+				setCollisionTile((CollisionTile)layers[WATER_LAYER]);
 			}
 		}
 	}
@@ -133,9 +143,8 @@ public class Block {
 		
 		boolean middleTileReached = false;
 		for(int i = WATER_LAYER; i > -1; i--) {
-			if(layers[i].id == AIR || middleTileReached) {
-				tiles[i] = new NoTile();
-			} else {
+			if(layers[i].id == AIR || middleTileReached) tiles[i] = new NoTile();
+			else {
 				tiles[i] = layers[i];
 				if(layers[i].isMiddleTile) middleTileReached = true;
 			}
@@ -143,6 +152,11 @@ public class Block {
 		return tiles;
 	}
 	
+	public void setCollisionTile(CollisionTile t) {
+		collisionTile = t;
+		collisionTile.setCollisionRect(absRect);
+	}
+
 	public void detectCollisions() {
 		//if this block is collidabe, add it to the collidableEntities array
 		//loop through all collidableEntities to detect collisions

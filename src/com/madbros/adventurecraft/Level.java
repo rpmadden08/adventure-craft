@@ -6,19 +6,23 @@ import static com.madbros.adventurecraft.Constants.*;
 import java.io.File;
 import java.util.ArrayList;
 
+import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Point;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class Level {
+	public Cell[][] cells;
+	public Cell[] potentialCollisionCells;	//resets to empty every frame and includes only cells that something has moved in
+	
 	public Block[][] activeBlocks;
 	public ArrayList<Block> collisionBlocks;
 	public Block highlightedBlock;
 	public Tile tileBeingAttacked = new NoTile();
 	public int highlightedBlockX = 0;
 	public int highlightedBlockY = 0;
-	public String gameName;
+	
 	public SaveGame saveGame = new SaveGame();
 	public Point test = new Point(0, 0);
 	public float noise;
@@ -99,7 +103,7 @@ public class Level {
 		highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
 		
 		//autoTileHighlightedBlock();
-		System.out.println(activeBlocks[highlightedBlockX][highlightedBlockY].layers[OBJECT_LAYER].textures);
+//		System.out.println(activeBlocks[highlightedBlockX][highlightedBlockY].layers[OBJECT_LAYER].sprites);
 		//System.out.println("HILITE: "+highlightedBlockX+","+highlightedBlockY);
 		
 		if(tileBeingAttacked != highlightedBlock.getTopTile()) {
@@ -139,10 +143,11 @@ public class Level {
 				test.y += 1;
 				if(x < activeBlocks.length && y < activeBlocks[0].length && x >= 0 && y >= 0) {
 					activeBlocks[x][y].render(TILE_SIZE * i - offsetX, TILE_SIZE * j - offsetY);
+					
 					if(Game.debugMenu.chunkBoundariesAreOn) {
-						if(x % CHUNK_SIZE == 0) Textures.pixel.draw(TILE_SIZE * i - offsetX,
+						if(x % CHUNK_SIZE == 0) Sprites.pixel.draw(TILE_SIZE * i - offsetX,
 												TILE_SIZE * j - offsetY, Z_BOUNDARIES, 1, TILE_SIZE);
-						if(y % CHUNK_SIZE == 0) Textures.pixel.draw(TILE_SIZE * i - offsetX,
+						if(y % CHUNK_SIZE == 0) Sprites.pixel.draw(TILE_SIZE * i - offsetX,
 												TILE_SIZE * j - offsetY, Z_BOUNDARIES, TILE_SIZE, 1);
 					}
 				}

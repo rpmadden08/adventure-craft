@@ -7,6 +7,8 @@ import com.madbros.adventurecraft.Utils.Rect;
 
 public abstract class CollisionTile extends Tile {
 	public Margin margin;
+	public Rect cRect;
+	
 	public CollisionTile() {
 		isCollidable = true;
 	}
@@ -33,5 +35,9 @@ public abstract class CollisionTile extends Tile {
 		}
 	}
 
+	public void setCollisionRect(Rect absRect) {
+		cRect = new Rect(absRect, margin);
+	}
+	
 	public abstract Tile createNew();
 }

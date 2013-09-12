@@ -3,6 +3,7 @@ package com.madbros.adventurecraft.TileTypes;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 
 
@@ -10,9 +11,10 @@ public class TreeTile extends CollisionTile {
 	
 	public TreeTile() {
 		super();
-		currentTexture = 0;
-		textures = Textures.treeTextures;
-		margin = new Margin(3, 3, 0, 12);
+		currentSpriteId = 0;
+		sprites = Sprites.treeSprites;
+		margin = new Margin(9, 9, 12, 11);	//3, 3, 0, 12
+
 		id = TREE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
@@ -21,7 +23,7 @@ public class TreeTile extends CollisionTile {
 	
 	@Override
 	public void render(int x, int y) {
-		textures[currentTexture].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+		sprites[currentSpriteId].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
 	}
 	
 	public Tile createNew() {
@@ -50,7 +52,7 @@ public class TreeTile extends CollisionTile {
 				else if(b.layers[ABOVE_LAYER_1].id != AIR) layer = ABOVE_LAYER_2;
 				else layer = ABOVE_LAYER_1;
 				b.layers[layer] = new TreeLeafTile(); 
-				b.layers[layer].currentTexture = i;
+				b.layers[layer].currentSpriteId = i;
 				b.layers[layer].z = Z_ABOVE_LAYER;
 			}
 			

@@ -7,6 +7,7 @@ import org.newdawn.slick.Color;
 import com.madbros.adventurecraft.*;
 import static com.madbros.adventurecraft.Constants.*;
 import com.madbros.adventurecraft.GameStates.*;
+import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.UI.*;
 import com.madbros.adventurecraft.Utils.*;
 
@@ -37,7 +38,7 @@ public class NewGameMenu extends Menu {
 		}
 		
 		textRect = new Rect(0, 0, Game.currentScreenSizeX, Game.currentScreenSizeY-100);
-		gameName = new Text(Textures.font, "Game Name: " + fileName);
+		gameName = new Text(Sprites.font, "Game Name: " + fileName);
 		
 		ButtonFunction create = new ButtonFunction() { public void invoke() { create(); } };
 		ButtonFunction cancel = new ButtonFunction() { public void invoke() { cancel(); } };

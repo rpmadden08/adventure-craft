@@ -5,7 +5,7 @@ import static com.madbros.adventurecraft.Constants.*;
 import org.lwjgl.input.Keyboard;
 
 import com.madbros.adventurecraft.*;
-import com.madbros.adventurecraft.Cells.Cell;
+import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -26,17 +26,18 @@ public class InventoryState extends MainState {
 	@Override
 	protected void getAdditionalMouseInput() {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
-		Cell[][] cells = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing};
+
+		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing};
 		
-		for(int i = 0; i < cells.length; i++) {
-			for(int j = 0; j < cells[i].length; j++) {
-				if(mouseRect.detectCollision(cells[i][j].cellRect)) {
-					cells[i][j].isHighlighted = true;
+		for(int i = 0; i < slots.length; i++) {
+			for(int j = 0; j < slots[i].length; j++) {
+				if(mouseRect.detectCollision(slots[i][j].slotRect)) {
+					slots[i][j].isHighlighted = true;
 					
-					if(leftMouseButtonPressed) cells[i][j].handleLeftClick(Game.inventory);
-					else if(rightMouseButtonPressed) cells[i][j].handleRightClick(Game.inventory);
+					if(leftMouseButtonPressed) slots[i][j].handleLeftClick(Game.inventory);
+					else if(rightMouseButtonPressed) slots[i][j].handleRightClick(Game.inventory);
 				} else {
-					cells[i][j].isHighlighted = false;
+					slots[i][j].isHighlighted = false;
 				}
 			}
 		}
@@ -44,21 +45,21 @@ public class InventoryState extends MainState {
 	
 	@Override
 	protected void updateStates() {
-		Game.hero.update(delta);
+		Game.animationSystem.updateInventory(Game.hero, Game.inventory);
+		Game.hero.update();
 		Game.level.update();
 		Game.debugger.update();
-		Game.hero.cycleWalkAnimation();
 	}
 	
 	@Override
 	protected void renderTextures() {
 		super.renderTextures();
-		Game.inventory.renderFull();
+		Game.renderSystem.renderInventory(Game.hero, Game.inventory);
 	}
 	
 	@Override
 	protected void renderText() {
 		super.renderText();
-		Game.inventory.renderTextFull();
+		Game.renderSystem.renderInventoryText(Game.inventory);
 	}
 }

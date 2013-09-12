@@ -21,19 +21,19 @@ public class MainState extends GameState {
 	protected void getAdditionalKeyboardInput(boolean eventState, int key) {
 		if(eventState)
 			switch(key) {
-				case Keyboard.KEY_E: Game.toggleInventoryState(); Game.hero.turnWalkingOff(); break;
-				case Keyboard.KEY_W: Game.hero.startMoving(UP); break;
-				case Keyboard.KEY_A: Game.hero.startMoving(LEFT); break;
-				case Keyboard.KEY_S: Game.hero.startMoving(DOWN); break;
-				case Keyboard.KEY_D: Game.hero.startMoving(RIGHT); break;
+				case Keyboard.KEY_E: Game.toggleInventoryState(); break;
+				case Keyboard.KEY_W: Game.hero.moveUp(); break;
+				case Keyboard.KEY_A: Game.hero.moveLeft(); break;
+				case Keyboard.KEY_S: Game.hero.moveDown(); break;
+				case Keyboard.KEY_D: Game.hero.moveRight(); break;
 				case Keyboard.KEY_U: System.out.println(Game.debugger.getTimeDiff()); break;	//for debugging stuff
 			}
 		else {
 			switch(key) {
-				case Keyboard.KEY_W: Game.hero.stopMoving(UP); break;
-				case Keyboard.KEY_A: Game.hero.stopMoving(LEFT); break;
-				case Keyboard.KEY_S: Game.hero.stopMoving(DOWN); break;
-				case Keyboard.KEY_D: Game.hero.stopMoving(RIGHT); break;
+				case Keyboard.KEY_W: Game.hero.stopUp(); break;
+				case Keyboard.KEY_A: Game.hero.stopLeft(); break;
+				case Keyboard.KEY_S: Game.hero.stopDown(); break;
+				case Keyboard.KEY_D: Game.hero.stopRight(); break;
 			}
 		}
 	}
@@ -82,28 +82,25 @@ public class MainState extends GameState {
 	
 	@Override
 	protected void updateStates() {
-		//clear moved entities from level
-		//movement phase
-		//collision phase
-		//update chunks if necessary phase
-		//debug stuff
-		Game.hero.update(delta);
+		Game.animationSystem.updateMain(Game.hero);	//a list of mobs will also be passed to this system
+		Game.hero.update();
 		Game.level.update();
-		Game.inventory.update();	//should be in input
+		Game.inventory.update();	//should be in input...
+		
 		Game.debugger.update();
 	}
 		
 	@Override
 	protected void renderTextures() {
-		Game.hero.render();
-		Game.level.render();
-		
+		Game.renderSystem.renderWorld(Game.level);
+		Game.renderSystem.renderHero(Game.hero, Game.getCenterScreenX() - CHARACTER_SIZE/2, Game.getCenterScreenY() - CHARACTER_SIZE/2);
+		Game.renderSystem.renderHud(Game.inventory);
+
 //		Game.map.render(Game.level.activeBlocks);
-		Game.inventory.render();
 	}
 	
 	@Override
 	protected void renderText() {
-		Game.inventory.renderText();
+		Game.renderSystem.renderText(Game.inventory);
 	}
 }

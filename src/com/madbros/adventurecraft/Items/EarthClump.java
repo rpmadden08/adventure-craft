@@ -2,18 +2,16 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.madbros.adventurecraft.Block;
-import com.madbros.adventurecraft.Game;
-import com.madbros.adventurecraft.Textures;
-import com.madbros.adventurecraft.Time;
+import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
-import com.madbros.adventurecraft.Utils.Helpers;
+import com.madbros.adventurecraft.Utils.*;
 
 public class EarthClump extends BlockItem {
 	public EarthClump() {
 		id = EARTH_CLUMP;
 		tileId = DIRT;
-		texture = Textures.earthClumpTexture;
+		sprite = Sprites.earthClumpSprite;
 		placeableTileIds = new int[]{WATER, SAND, DARK_DIRT, HOLE};
 	}
 	
@@ -51,10 +49,8 @@ public class EarthClump extends BlockItem {
 			hB.timePlaced = Time.getTime();
 			hB.layers[GRASS_LAYER] = new NoTile();
 			hB.layers[WATER_LAYER] = new NoTile();
-//			hB.layers[LIGHT_DIRT_LAYER] = new NoTile();
-			
+
 			hB.collisionTile = null;
-			hB.cRect = null;
 		} else if(hB.canPlace == true) {
 			hB.layers[GRASS_LAYER] = new NoTile();
 			hB.layers[WATER_LAYER] = new NoTile();

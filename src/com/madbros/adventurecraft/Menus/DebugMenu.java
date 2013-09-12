@@ -6,7 +6,6 @@ import static com.madbros.adventurecraft.Constants.DEBUG_MENU_SIZEY;
 import static com.madbros.adventurecraft.Constants.INITIAL_WINDOW_HEIGHT;
 import static com.madbros.adventurecraft.Constants.INITIAL_WINDOW_WIDTH;
 
-import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.UI.PlainUIButton;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -119,13 +118,13 @@ public class DebugMenu extends Menu {
 	}
 	
 	private void characterSpeedDown() {
-		float s = Hero.getCurrentSpeed();
-		if(s > 0.09f) Hero.setCurrentSpeed(s - 0.1f);
+		float s = Game.hero.getCurrentSpeed();
+		if(s > 0.09f) Game.hero.setCurrentSpeed(s - 0.1f);
 	}
 	
 	private void characterSpeedUp() {
-		float s = Hero.getCurrentSpeed();
-		if(s < 0.9f) Hero.setCurrentSpeed(s + 0.1f);
+		float s = Game.hero.getCurrentSpeed();
+		if(s < 0.9f) Game.hero.setCurrentSpeed(s + 0.1f);
 	}
 
 }

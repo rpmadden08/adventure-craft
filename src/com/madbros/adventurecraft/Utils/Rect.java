@@ -2,7 +2,7 @@ package com.madbros.adventurecraft.Utils;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.GameObjects.Actor;
 
 public class Rect {
 	public int x;
@@ -27,8 +27,8 @@ public class Rect {
 	}
 	
 	//for getting screen rects from absolute/collision rects
-	public Rect(Rect aRect, Hero c) {
-		this(c.sRect.x - (c.aRect.x - aRect.x), c.sRect.y - (c.aRect.y - aRect.y), aRect.w, aRect.h);
+	public Rect(Rect aRect, Actor c) {
+		this(c.sRect.x - (c.absRect.x - aRect.x), c.sRect.y - (c.absRect.y - aRect.y), aRect.w, aRect.h);
 	}
 	
 	public int x1() { return x; }

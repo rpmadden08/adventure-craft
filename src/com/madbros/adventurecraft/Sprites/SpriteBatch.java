@@ -1,4 +1,4 @@
-package com.madbros.adventurecraft;
+package com.madbros.adventurecraft.Sprites;
 
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;

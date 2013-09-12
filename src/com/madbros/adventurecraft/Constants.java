@@ -34,10 +34,16 @@ public class Constants {
 	public static final int DOWN = 2;
 	public static final int LEFT = 3;
 	public static final int RIGHT = 4;
-	public static final int WALK_DOWN = 0;
-	public static final int WALK_RIGHT = 3;
-	public static final int WALK_UP = 6;
-	public static final int WALK_LEFT = 9;
+
+	public static final int STAND_UP = 0;
+	public static final int STAND_DOWN = 1;
+	public static final int STAND_RIGHT = 2;
+	public static final int STAND_LEFT = 3;
+	public static final int WALK_UP = 4;
+	public static final int WALK_DOWN = 5;
+	public static final int WALK_RIGHT = 6;
+	public static final int WALK_LEFT = 7;
+
 	public static final boolean VERTICAL = true;
 	public static final boolean HORIZONTAL = false;
 	
@@ -48,34 +54,34 @@ public class Constants {
 	
 	//inventory constants
 	public static final int INV_MENU_TILE_SIZE = 32;
-	public static final int INV_CELL_SIZE = 41;
+	public static final int INV_SLOT_SIZE = 41;
 	public static final int ITEM_SIZE =32;
 	
 	public static final int INV_LENGTH = 10;
 	public static final int INV_HEIGHT = 4;
 	
 	public static final Margin INV_MENU_MARGIN = new Margin(50, 50, 20, 100);
-	public static final Margin INV_CELL_MARGIN = new Margin(0, 20, 0, 8);
+	public static final Margin INV_SLOT_MARGIN = new Margin(0, 20, 0, 8);
 	
 	public static final Rect INV_BACKDROP_RECT = new Rect(INV_MENU_MARGIN.left, INV_MENU_MARGIN.top, 
 														  INITIAL_WINDOW_WIDTH - INV_MENU_MARGIN.getHorizontalLength(),
 														  INITIAL_WINDOW_HEIGHT - INV_MENU_MARGIN.getVerticalLength());
-	public static final Rect INV_BAR_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_CELL_SIZE + INV_CELL_MARGIN.right) * INV_LENGTH + INV_CELL_SIZE) / 2, INITIAL_WINDOW_HEIGHT-50);
-	public static final Rect INV_BAG_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_CELL_SIZE + INV_CELL_MARGIN.right) * INV_LENGTH + INV_CELL_SIZE) / 2, INV_BACKDROP_RECT.y2()- INV_BAR_RECT.h*4);
+	public static final Rect INV_BAR_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INITIAL_WINDOW_HEIGHT-50);
+	public static final Rect INV_BAG_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INV_BACKDROP_RECT.y2()- INV_BAR_RECT.h*4);
 	public static final Rect INV_CHAR_RECT = new Rect(INV_BACKDROP_RECT.x2() - CHARACTER_SIZE*4, INV_BACKDROP_RECT.y + 30, CHARACTER_SIZE*4, CHARACTER_SIZE*4);
-	public static final Rect INV_CRAFTING_RECT = new Rect(130, 50, 2*(INV_CELL_SIZE+2), 2*(INV_CELL_SIZE+2));
+	public static final Rect INV_CRAFTING_RECT = new Rect(130, 50, 2*(INV_SLOT_SIZE+2), 2*(INV_SLOT_SIZE+2));
+	public static final int INV_ANIMATION_CHANGE = 100;
 	
-	//item/cell constants
+	//item/slot constants
 	public static final int ITEM_OFFSET = 5;
-	public static final int BAR = 0;
-	public static final int BAG = 1;
-	public static final int CRAFTING = 2;
-	public static final int CRAFTED = 3;
-	public static final int CLOTHING = 4;
-	public static final int HELMET_CELL = 5;
-	public static final int ARMOR_CELL = 6;
-	public static final int LEGGINGS_CELL = 7;
-	public static final int BOOTS_CELL = 8;
+	public static final int STANDARD_SLOT = 0;
+	public static final int CRAFTING_SLOT = 1;
+	public static final int CRAFTED_SLOT = 2;
+	public static final int CLOTHING_SLOT = 3;
+	public static final int HELMET_SLOT = 5;
+	public static final int ARMOR_SLOT = 6;
+	public static final int LEGGINGS_SLOT = 7;
+	public static final int BOOTS_SLOT = 8;
 	
 	
 	//level constants
@@ -125,7 +131,7 @@ public class Constants {
 	
 	public static final float Z_COLLISION_TILES = -0.85f;
 	public static final float Z_TILE_HIGHLIGHT = -0.7f;
-	
+
 	
 	public static final float Z_CHARACTER = -0.65f;
 	public static final float Z_CHARACTER_PANTS = -0.64f;
@@ -139,7 +145,8 @@ public class Constants {
 	public static final float Z_HEALTHBAR = -0.52f;
 	
 	public static final float Z_INV_BACKDROP = -0.5f;
-	public static final float Z_INV_CELLS = -0.4f;
+	public static final float Z_INV_SLOTS = -0.4f;
+
 	public static final float Z_INV_HIGHLIGHT = -0.35f;
 	public static final float Z_INV_SELECT = -0.3f;
 	public static final float Z_INV_ITEMS = -0.25f;

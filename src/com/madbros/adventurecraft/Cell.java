@@ -1,5 +1,6 @@
 package com.madbros.adventurecraft;
 
-public class GameObject {
-//absRect
+public class Cell {
+	
+
 }

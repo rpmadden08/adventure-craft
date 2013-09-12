@@ -3,13 +3,14 @@ package com.madbros.adventurecraft.TileTypes;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 
 public class DirtMountainBottomTile extends CollisionTile {
 	public DirtMountainBottomTile() {
 		super();
-		currentTexture = 0;
-		textures = Textures.dirtMountainBottomTextures;
+		currentSpriteId = 0;
+		sprites = Sprites.dirtMountainBottomSprites;
 		margin = new Margin(3, 3, 0, 12);
 		id = DIRT_MOUNTAIN_BOTTOM;
 		layer = OBJECT_LAYER;
@@ -18,7 +19,7 @@ public class DirtMountainBottomTile extends CollisionTile {
 	}
 	
 	public void render(int x, int y, int layer) {
-		textures[currentTexture].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+		sprites[currentSpriteId].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
 	}
 	
 	public Tile createNew() {
@@ -43,7 +44,7 @@ public class DirtMountainBottomTile extends CollisionTile {
 			else if(b.layers[ABOVE_LAYER_1].id != AIR) layer = ABOVE_LAYER_2;
 			else layer = ABOVE_LAYER_1;
 			b.layers[layer] = new DirtMountainTopTile(); 
-			b.layers[layer].currentTexture = 0;
+			b.layers[layer].currentSpriteId = 0;
 			b.layers[layer].z = Z_ABOVE_LAYER;
 			
 			

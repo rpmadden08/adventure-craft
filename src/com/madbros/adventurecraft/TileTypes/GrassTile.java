@@ -1,8 +1,7 @@
 package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
-
-import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Sprites.*;
 
 public class GrassTile extends Tile {
 	public GrassTile() {
@@ -11,8 +10,8 @@ public class GrassTile extends Tile {
 		layer = GRASS_LAYER;
 		z = Z_GRASS;
 		isCollidable = false;
-		currentTexture = 0;
-		textures = Textures.grassTextures;
+		currentSpriteId = 0;
+		sprites = Sprites.grassSprites;
 		id = GRASS;
 	}
 
