@@ -29,6 +29,9 @@ public class Hero extends Actor {
 //		isAttacking = false;
 //	}
 	
+	@Override
+	public void checkCollisions() {};
+	
 	public void xMove(int moveX) {
 		super.xMove(moveX);
 		Game.level.offsetX += moveX;

@@ -11,7 +11,7 @@ public class DirtMountainTopTile extends CollisionTile {
 	public DirtMountainTopTile() {
 		super();
 		currentSpriteId = 0;
-		sprites = Sprites.dirtMountainTopSprites;
+		sprites = Sprites.spriteCollections.get(Sprites.MOUNTAIN_TOP);
 		margin = new Margin(9, 9, 12, 11);
 		id = DIRT_MOUNTAIN_TOP;
 		layer = ABOVE_LAYER_1;

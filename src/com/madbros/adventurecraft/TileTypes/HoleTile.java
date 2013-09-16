@@ -12,7 +12,7 @@ public class HoleTile extends CollisionTile {
 		layer = WATER_LAYER;
 		z = Z_WATER;
 
-		sprites = Sprites.holeSprites;
+		sprites = Sprites.spriteCollections.get(Sprites.HOLE);
 
 		margin = new Margin(14, 14, 14, 14);
 		id = HOLE;

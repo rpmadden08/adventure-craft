@@ -11,7 +11,7 @@ public class EarthClump extends BlockItem {
 	public EarthClump() {
 		id = EARTH_CLUMP;
 		tileId = DIRT;
-		sprite = Sprites.earthClumpSprite;
+		sprite = Sprites.sprites.get(Sprites.DIRT_ITEM);
 		placeableTileIds = new int[]{WATER, SAND, DARK_DIRT, HOLE};
 	}
 	

@@ -6,7 +6,7 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 public class Sword extends WeaponItem {
 	public Sword() {
 		id = SWORD;
-		sprite = Sprites.swordSprite;
+		sprite = Sprites.sprites.get(Sprites.SWORD_ITEM);
 	}
 	
 	@Override

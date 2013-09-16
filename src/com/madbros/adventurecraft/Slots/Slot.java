@@ -10,8 +10,8 @@ import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.*;
 
 public class Slot {
-	private StaticSprite slotSprite = Sprites.slotSprite;
-	private StaticSprite highlighter = Sprites.pixel;
+	private StaticSprite slotSprite = Sprites.sprites.get(Sprites.INVENTORY_MENU_SLOT);
+	private StaticSprite highlighter = Sprites.sprites.get(Sprites.PIXEL);
 	
 	private Color highlightColor = new Color(1.0f, 1.0f, 1.0f, 0.2f);
 	

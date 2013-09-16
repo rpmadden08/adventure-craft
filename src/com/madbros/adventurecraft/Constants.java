@@ -213,18 +213,18 @@ public class Constants {
 	
 	//Auto Tiling
 	public static final int TOP_LEFT_TILE= 0;
-	public static final int TOP_TILE = 1;
-	public static final int TOP_RIGHT_TILE= 2;
-	public static final int LEFT_TILE = 3;
+	public static final int TOP_TILE = 3;
+	public static final int TOP_RIGHT_TILE= 6;
+	public static final int LEFT_TILE = 1;
 	public static final int MIDDLE_TILE = 4;
-	public static final int RIGHT_TILE = 5;
-	public static final int BOTTOM_LEFT_TILE = 6;
-	public static final int BOTTOM_TILE = 7;
+	public static final int RIGHT_TILE = 7;
+	public static final int BOTTOM_LEFT_TILE = 2;
+	public static final int BOTTOM_TILE = 5;
 	public static final int BOTTOM_RIGHT_TILE = 8;
 	
 	public static final int MERGE_TILE_TOP_LEFT = 9;
-	public static final int MERGE_TILE_TOP_RIGHT = 10;
-	public static final int MERGE_TILE_BOTTOM_LEFT = 11;
+	public static final int MERGE_TILE_TOP_RIGHT = 11;
+	public static final int MERGE_TILE_BOTTOM_LEFT = 10;
 	public static final int MERGE_TILE_BOTTOM_RIGHT = 12;
 	
 	//Main Menu

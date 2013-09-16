@@ -11,7 +11,7 @@ public class DirtTile extends Tile {
 		z = Z_LIGHT_DIRT;
 		isCollidable = false;
 		currentSpriteId = 0;
-		sprites = Sprites.dirtSprites;
+		sprites = Sprites.spriteCollections.get(Sprites.LIGHT_DIRT);
 		id = DIRT;
 	}
 	

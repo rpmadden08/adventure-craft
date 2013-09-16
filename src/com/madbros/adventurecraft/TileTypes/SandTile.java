@@ -11,7 +11,7 @@ public class SandTile extends Tile {
 		z = Z_GRASS;
 		isCollidable = false;
 		currentSpriteId = 0;
-		sprites = Sprites.sandSprites;
+		sprites = Sprites.spriteCollections.get(Sprites.DESERT);
 		id = SAND;
 	}
 	

@@ -82,8 +82,11 @@ public class MainState extends GameState {
 	
 	@Override
 	protected void updateStates() {
-		Game.animationSystem.updateMain(Game.hero);	//a list of mobs will also be passed to this system
+		Game.animationSystem.updateMain(Game.hero, Game.mob);	//a list of mobs will also be passed to this system
 		Game.hero.update();
+		Game.mob.updateAI();
+		Game.mob.update();
+		Game.mob.checkCollisions();
 		Game.level.update();
 		Game.inventory.update();	//should be in input...
 		
@@ -94,6 +97,7 @@ public class MainState extends GameState {
 	protected void renderTextures() {
 		Game.renderSystem.renderWorld(Game.level);
 		Game.renderSystem.renderHero(Game.hero, Game.getCenterScreenX() - CHARACTER_SIZE/2, Game.getCenterScreenY() - CHARACTER_SIZE/2);
+		Game.renderSystem.renderMob(Game.mob);
 		Game.renderSystem.renderHud(Game.inventory);
 
 //		Game.map.render(Game.level.activeBlocks);

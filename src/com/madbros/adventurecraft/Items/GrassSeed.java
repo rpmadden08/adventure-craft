@@ -11,7 +11,7 @@ public class GrassSeed extends BlockItem {
 		id = GRASS_SEED;
 		tileId = GRASS;
 		placeableTileIds = new int[]{DIRT, DARK_DIRT};
-		sprite = Sprites.grassSeedSprite;
+		sprite = Sprites.sprites.get(Sprites.GRASS_ITEM);
 	}
 	
 	@Override

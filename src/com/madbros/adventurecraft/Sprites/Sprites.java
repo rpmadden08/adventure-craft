@@ -14,8 +14,6 @@ import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
-import com.madbros.adventurecraft.Utils.Point;
-
 import static com.madbros.adventurecraft.Constants.*;
 
 import org.json.simple.*;
@@ -23,153 +21,205 @@ import org.json.simple.parser.*;
 
 public class Sprites {
 	public static Texture atlas;
-	public static Texture atlas2;
 	
-	public static final int DARK_DIRT = 0;
-	public static final int HUMAN_BASE = 1;
-	public static final int IRON_HELMET = 2;
-	public static final int IRON_ARMOR = 3;
-	public static final int IRON_LEGGINGS = 4;
-	public static final int IRON_BOOTS = 5;
+	public static final String HUMAN_BASE = "1";
+	
+	//singles
+	public static final String DARK_DIRT = "darkDirtSingle";
+	public static final String COLLISION_DETECTION = "collisionDetection";
+	public static final String INVENTORY_MENU_SELECTOR = "inventoryMenuSelector";
+	public static final String INVENTORY_MENU_SLOT = "inventoryMenuSlot";
+	public static final String PIXEL = "pixel";
+	public static final String SAPLING = "sapling";
+	public static final String STUMP = "stump";
+	public static final String GRASS_ITEM = "grassItem";
+	public static final String DIRT_ITEM = "dirtItem";
+	public static final String SAND_ITEM = "sandItem";
+	public static final String LOG_ITEM = "logItem";
+	public static final String PLANK_ITEM = "plankItem";
+	public static final String PLATE_HELMET_ITEM = "plateHelmetItem";
+	public static final String PLATE_TORSO_ITEM = "plateTorsoItem";
+	public static final String PLATE_LEGS_ITEM = "plateLegsItem";
+	public static final String PLATE_FEET_ITEM = "plateFeetItem";
+	public static final String SWORD_ITEM = "swordItem";
+	public static final String SHOVEL_ITEM = "shovelItem";
+	
+	//static collections
+//	public static final String GEM = "Gem Blue";
+	public static final String DESERT = "desert";
+	public static final String GRASS = "grass";
+	public static final String HOLE = "hole";
+	public static final String LIGHT_DIRT = "lightDirt";
+	public static final String MOUNTAIN_BOTTOM = "mountainBottom";
+	public static final String MOUNTAIN_TOP = "mountainTop";
+	public static final String TREE = "tree";
+	public static final String WATER1 = "water";
+	public static final String WATER2 = "waterTwo";
+	public static final String INVENTORY_MENU = "inventoryMenu";
+	
+	//animated collections
+	public static final String CAMPFIRE_ANIMATION = "campfire";
+	public static final String MALE_WALK_DOWN = "maleWalkDown";
+	public static final String MALE_WALK_LEFT = "maleWalkLeft";
+	public static final String MALE_WALK_RIGHT = "maleWalkRight";
+	public static final String MALE_WALK_UP = "maleWalkUp";
+	public static final String MALE_STAND_DOWN = "maleStandDown";
+	public static final String MALE_STAND_LEFT = "maleStandLeft";
+	public static final String MALE_STAND_RIGHT = "maleStandRight";
+	public static final String MALE_STAND_UP = "maleStandUp";
+	
+	public static final String PLATE_FEET_WALK_DOWN = "plateFeetWalkDown";
+	public static final String PLATE_FEET_WALK_LEFT = "plateFeetWalkLeft";
+	public static final String PLATE_FEET_WALK_RIGHT = "plateFeetWalkRight";
+	public static final String PLATE_FEET_WALK_UP = "plateFeetWalkUp";
+	public static final String PLATE_FEET_STAND_DOWN = "plateFeetStandDown";
+	public static final String PLATE_FEET_STAND_LEFT = "plateFeetStandLeft";
+	public static final String PLATE_FEET_STAND_RIGHT = "plateFeetStandRight";
+	public static final String PLATE_FEET_STAND_UP = "plateFeetStandUp";
+	
+	public static final String PLATE_LEGS_WALK_DOWN = "plateLegsWalkDown";
+	public static final String PLATE_LEGS_WALK_LEFT = "plateLegsWalkLeft";
+	public static final String PLATE_LEGS_WALK_RIGHT = "plateLegsWalkRight";
+	public static final String PLATE_LEGS_WALK_UP = "plateLegsWalkUp";
+	public static final String PLATE_LEGS_STAND_DOWN = "plateLegsStandDown";
+	public static final String PLATE_LEGS_STAND_LEFT = "plateLegsStandLeft";
+	public static final String PLATE_LEGS_STAND_RIGHT = "plateLegsStandRight";
+	public static final String PLATE_LEGS_STAND_UP = "plateLegsStandUp";
+	
+	public static final String PLATE_HELMET_WALK_DOWN = "plateHelmetWalkDown";
+	public static final String PLATE_HELMET_WALK_LEFT = "plateHelmetWalkLeft";
+	public static final String PLATE_HELMET_WALK_RIGHT = "plateHelmetWalkRight";
+	public static final String PLATE_HELMET_WALK_UP = "plateHelmetWalkUp";
+	public static final String PLATE_HELMET_STAND_DOWN = "plateHelmetStandDown";
+	public static final String PLATE_HELMET_STAND_LEFT = "plateHelmetStandLeft";
+	public static final String PLATE_HELMET_STAND_RIGHT = "plateHelmetStandRight";
+	public static final String PLATE_HELMET_STAND_UP = "plateHelmetStandUp";
+	
+	public static final String PLATE_TORSO_WALK_DOWN = "plateTorsoWalkDown";
+	public static final String PLATE_TORSO_WALK_LEFT = "plateTorsoWalkLeft";
+	public static final String PLATE_TORSO_WALK_RIGHT = "plateTorsoWalkRight";
+	public static final String PLATE_TORSO_WALK_UP = "plateTorsoWalkUp";
+	public static final String PLATE_TORSO_STAND_DOWN = "plateTorsoStandDown";
+	public static final String PLATE_TORSO_STAND_LEFT = "plateTorsoStandLeft";
+	public static final String PLATE_TORSO_STAND_RIGHT = "plateTorsoStandRight";
+	public static final String PLATE_TORSO_STAND_UP = "plateTorsoStandUp";
+	
+	public static final String SKELETON_WALK_DOWN = "skeletonWalkDown";
+	public static final String SKELETON_WALK_RIGHT = "skeletonWalkRight";
+	public static final String SKELETON_WALK_LEFT = "skeletonWalkLeft";
+	public static final String SKELETON_WALK_UP = "skeletonWalkUp";
+	public static final String SKELETON_STAND_DOWN = "skeletonStandDown";
+	public static final String SKELETON_STAND_RIGHT = "skeletonStandRight";
+	public static final String SKELETON_STAND_LEFT = "skeletonStandLeft";
+	public static final String SKELETON_STAND_UP = "skeletonStandUp";
 
-	public static AnimatedSprite[] waterSprites;
-	public static StaticSprite[] treeLeafSprites;
-	public static StaticSprite[] grassSprites;
-	public static StaticSprite[] dirtSprites;
-	public static StaticSprite[] treeSprites;
-	public static StaticSprite[] holeSprites;
-	public static StaticSprite[] sandSprites;
-	public static StaticSprite[] saplingSprite;
-	public static Sprite[] dirtMountainBottomSprites;
-	public static Sprite[] dirtMountainTopSprites;
-	
-	public static AnimatedSprite[] helmetAnimations;
-	public static AnimatedSprite[] armorAnimations;
-	public static AnimatedSprite[] leggingsAnimations;
-	public static AnimatedSprite[] feetAnimations;
-	
 	public static StaticSprite[] fireAnimationSprites;
-	
-	public static StaticSprite[] menuSprites1;
-	public static StaticSprite[] menuSprites2;
-	public static StaticSprite[] menuSprites3;
-	public static StaticSprite slotSprite;
-	public static StaticSprite selectSprite;
-	public static StaticSprite saplingItemSprite;
-
-	
-	public static StaticSprite grassSeedSprite;
-	public static StaticSprite earthClumpSprite;
-	public static StaticSprite sandClumpSprite;
-	public static StaticSprite logSprite;
-	public static StaticSprite plankSprite;
-	public static StaticSprite swordSprite;
-	public static StaticSprite shovelSprite;
-	public static StaticSprite ironHelmetSprite;
-	public static StaticSprite ironArmorSprite;
-	public static StaticSprite ironLeggingsSprite;
-	public static StaticSprite ironBootsSprite;
 	
 	public static StaticSprite buttonSprite;
 	public static StaticSprite pressedButtonSprite;
+	
+	public static AnimatedSprite[] waterSprites;
+	public static StaticSprite[] saplingSprite;
+	public static StaticSprite[] treeSprites;
+	public static StaticSprite[] treeLeafSprites;
 	
 	//for debugging
 	public static StaticSprite collisionDebugger;
 	public static StaticSprite pixel;
 	
 	public static TrueTypeFont font;
-	public static HashMap<Integer, Sprite> sprites = new HashMap<Integer, Sprite>();
-	public static HashMap<Integer, Sprite[]> spriteCollections = new HashMap<Integer, Sprite[]>();
-	public static HashMap<Integer, AnimatedSprite> animatedSprites = new HashMap<Integer, AnimatedSprite>();
-	public static HashMap<Integer, AnimatedSprite[]> animatedSpriteCollections = new HashMap<Integer, AnimatedSprite[]>();
+	public static HashMap<String, StaticSprite> sprites = new HashMap<String, StaticSprite>();
+	public static HashMap<String, StaticSprite[]> spriteCollections = new HashMap<String, StaticSprite[]>();
+	public static HashMap<String, Animation> animations = new HashMap<String, Animation>();
+	
+	public static HashMap<String, AnimatedSprite> animatedSprites = new HashMap<String, AnimatedSprite>();
+	public static HashMap<String, AnimatedSprite[]> animatedSpriteCollections = new HashMap<String, AnimatedSprite[]>();
 //	public static HashMap<Integer, CompoundAnimatedSprite> compoundAnimatedSprite = new HashMap<Integer, CompoundAnimatedSprite>();
 	
 	//Sprite hash (sprites)
 	//ArrayList<Sprite> hash (sprite collections)
+	
+	public int getInteger(Object o) {
+		return Integer.valueOf((String) o); 
+	}
 	
 	public Sprites() {
 		try {
 			atlas = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/atlas.png"), GL11.GL_NEAREST);
 			//atlas2 = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/atlas2.png"), GL11.GL_NEAREST);
 			
-			int[] ids = {DARK_DIRT, HUMAN_BASE, 2};
+			String[] names = {DARK_DIRT, INVENTORY_MENU, INVENTORY_MENU_SELECTOR, 
+					INVENTORY_MENU_SLOT, PIXEL, SHOVEL_ITEM, LOG_ITEM, PLANK_ITEM,
+					GRASS, LIGHT_DIRT, MOUNTAIN_BOTTOM, MOUNTAIN_TOP, WATER1, WATER2, HOLE,
+					MALE_WALK_DOWN, MALE_WALK_LEFT, MALE_WALK_RIGHT, MALE_WALK_UP,
+					MALE_STAND_DOWN, MALE_STAND_LEFT, MALE_STAND_RIGHT, MALE_STAND_UP,
+					PLATE_FEET_ITEM, PLATE_HELMET_ITEM, PLATE_TORSO_ITEM, PLATE_LEGS_ITEM,
+					GRASS_ITEM, DIRT_ITEM, SAND_ITEM, SWORD_ITEM, SAPLING,
+					PLATE_HELMET_WALK_DOWN, PLATE_HELMET_WALK_LEFT, PLATE_HELMET_WALK_RIGHT,
+					PLATE_HELMET_WALK_UP, PLATE_HELMET_STAND_DOWN, PLATE_HELMET_STAND_LEFT,
+					PLATE_HELMET_STAND_RIGHT, PLATE_HELMET_STAND_UP, PLATE_FEET_WALK_DOWN,
+					PLATE_FEET_WALK_LEFT, PLATE_FEET_WALK_RIGHT, PLATE_FEET_WALK_UP,
+					PLATE_FEET_STAND_DOWN, PLATE_FEET_STAND_LEFT, PLATE_FEET_STAND_RIGHT,
+					PLATE_FEET_STAND_UP, PLATE_LEGS_WALK_DOWN, PLATE_LEGS_WALK_LEFT,
+					PLATE_LEGS_WALK_RIGHT, PLATE_LEGS_WALK_UP, PLATE_LEGS_STAND_DOWN,
+					PLATE_LEGS_STAND_LEFT, PLATE_LEGS_STAND_RIGHT, PLATE_LEGS_STAND_UP,
+					PLATE_TORSO_WALK_DOWN, PLATE_TORSO_WALK_LEFT, PLATE_TORSO_WALK_RIGHT,
+					PLATE_TORSO_WALK_UP, PLATE_TORSO_STAND_DOWN, PLATE_TORSO_STAND_LEFT,
+					PLATE_TORSO_STAND_RIGHT, PLATE_TORSO_STAND_UP, TREE, STUMP
+			};
 
-			//not finished yet...
 			try {
 				JSONParser parser = new JSONParser();
 				Object f = parser.parse(new FileReader("res/atlas.json"));
 				JSONObject obj = (JSONObject) f;
 				
-				for(int i = 0; i < obj.size() - 1; i++) {
-					JSONObject sprite = (JSONObject) obj.get(Integer.toString(ids[i]));
+				for(String name : names) {
+					JSONObject sprite = (JSONObject) obj.get(name);
+					if(sprite.get("type").equals("single")) {
+						StaticSprite s = new StaticSprite(atlas,
+								getInteger(sprite.get("x")), getInteger(sprite.get("y")),
+								getInteger(sprite.get("width")), getInteger(sprite.get("height")),
+								getInteger(sprite.get("offsetX")), getInteger(sprite.get("offsetY"))
+							);
+						
+						sprites.put(name, s);
+					}
 					
 					if(sprite.get("type").equals("static")) {
-						JSONArray sprts = (JSONArray) sprite.get("sprites");
+						JSONArray spts = (JSONArray) sprite.get("sprites");
+						StaticSprite[] sList = new StaticSprite[spts.size()];
 						
-						if(sprts.size() == 1) {
-							for(Object sprt : sprts) {
-								JSONObject staticSprite = (JSONObject) sprt;
-								int x = Integer.parseInt((String)staticSprite.get("x"));
-								int y = Integer.parseInt((String)staticSprite.get("y"));
-								int width = Integer.parseInt((String)staticSprite.get("width"));
-								int height = Integer.parseInt((String)staticSprite.get("height"));
-								int leftRenderOffset = Integer.parseInt((String)staticSprite.get("leftRenderOffset"));
-								int topRenderOffset = Integer.parseInt((String)staticSprite.get("topRenderOffset"));
-								
-								sprites.put(ids[i], new StaticSprite(atlas, x, y, width, height, leftRenderOffset, topRenderOffset));
-							}
-						} else {
-							StaticSprite[] list = new StaticSprite[sprts.size()];
-							for(int j = 0; j < sprts.size(); j++) {
-								JSONObject staticSprite = (JSONObject) sprts.get(j);
-								int x = Integer.parseInt((String)staticSprite.get("x"));
-								int y = Integer.parseInt((String)staticSprite.get("y"));
-								int width = Integer.parseInt((String)staticSprite.get("width"));
-								int height = Integer.parseInt((String)staticSprite.get("height"));
-								int leftRenderOffset = Integer.parseInt((String)staticSprite.get("leftRenderOffset"));
-								int topRenderOffset = Integer.parseInt((String)staticSprite.get("topRenderOffset"));
-								
-								list[i] = new StaticSprite(atlas, x, y, width, height, leftRenderOffset, topRenderOffset);
-								spriteCollections.put(ids[i], list);
-							}
+						for(int i = 0; i < sList.length; i++) {
+							JSONObject s = (JSONObject) spts.get(i);
+							sList[i] = new StaticSprite(atlas,
+									getInteger(s.get("x")), getInteger(s.get("y")),
+									getInteger(s.get("width")), getInteger(s.get("height")),
+									getInteger(s.get("offsetX")), getInteger(s.get("offsetY"))
+								);
 						}
+						
+						spriteCollections.put(name, sList);
 					}
 					
-					else if(sprite.get("type").equals("animated")) {
-						JSONArray animations = (JSONArray) sprite.get("animations");
+					if(sprite.get("type").equals("animated")) {
+						JSONArray spts = (JSONArray) sprite.get("sprites");
+						StaticSprite[] sList = new StaticSprite[spts.size()];
+						int[] frameTimes = new int[spts.size()];
 						
-						Animation[] spriteAnimations = new Animation[animations.size()];
-						int[] animationIds = new int[animations.size()];
-						
-						for(int j = 0; j < animations.size(); j++) {
-							JSONObject animation = (JSONObject) animations.get(j);
-							int id = Integer.parseInt((String)animation.get("id"));
-							JSONArray animationArray = (JSONArray) animation.get("animation");
-							
-							StaticSprite[] sprites = new StaticSprite[animationArray.size()];
-							int[] frameTimesInMilliseconds = new int[animationArray.size()];
-		
-							for(int k = 0; k < animationArray.size(); k++) {
-								JSONObject frame = (JSONObject) animationArray.get(k);
-								int x = Integer.parseInt((String)frame.get("x"));
-								int y = Integer.parseInt((String)frame.get("y"));
-								int width = Integer.parseInt((String)frame.get("width"));
-								int height = Integer.parseInt((String)frame.get("height"));
-								int frameTimeInMilliseconds = Integer.parseInt((String)frame.get("frameTimeInMilliseconds"));
-								
-								sprites[k] = new StaticSprite(atlas, x, y, width, height);
-								frameTimesInMilliseconds[k] = frameTimeInMilliseconds;
-							}
-							
-							animationIds[j] = id;
-							spriteAnimations[j] = new Animation(sprites, frameTimesInMilliseconds, animationIds[j]);
+						for(int i = 0; i < sList.length; i++) {
+							JSONObject s = (JSONObject) spts.get(i);
+							sList[i] = new StaticSprite(atlas,
+									getInteger(s.get("x")), getInteger(s.get("y")),
+									getInteger(s.get("width")), getInteger(s.get("height")),
+									getInteger(s.get("offsetX")), getInteger(s.get("offsetY"))
+								);
+							frameTimes[i] = getInteger(sprite.get("frameTime"));
 						}
 						
 						
-						animatedSprites.put(ids[i], new AnimatedSprite(spriteAnimations));
+						animations.put(name, new Animation(sList, frameTimes, 0));
+						spriteCollections.put(name, sList);
 					}
-					
-					
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -179,48 +229,17 @@ public class Sprites {
 				e.printStackTrace();
 			}
 			
-			grassSprites = new StaticSprite[13]; Point pGrass = new Point(1*TEXTURE_SIZE, 0);	//where does the grass texture begin
-			dirtSprites = new StaticSprite[13]; Point pDirt = new Point(6*TEXTURE_SIZE, 0);
-			holeSprites = new StaticSprite[13]; Point pHole = new Point(21*TEXTURE_SIZE, 0);
-			sandSprites = new StaticSprite[13]; Point pSand = new Point(26*TEXTURE_SIZE, 0);
-			StaticSprite[] waterSprites1 = new StaticSprite[13]; Point pWater = new Point(11*TEXTURE_SIZE, 0);
-			StaticSprite[] waterSprites2 = new StaticSprite[13]; Point pAltWater = new Point(26*TEXTURE_SIZE, 13*TEXTURE_SIZE);
-			dirtMountainBottomSprites = new StaticSprite[13]; Point pMountainBottom = new Point(0, 23*TEXTURE_SIZE);
-			dirtMountainTopSprites = new StaticSprite[13]; Point pMountainTop = new Point(5*TEXTURE_SIZE, 23*TEXTURE_SIZE);
-
-			Sprite[][] t = {grassSprites, dirtSprites, waterSprites1, holeSprites, sandSprites, waterSprites2, dirtMountainBottomSprites, dirtMountainTopSprites};
-			Point[] pts = {pGrass, pDirt, pWater, pHole, pSand, pAltWater, pMountainBottom, pMountainTop};
-			
-			int k = 0;
-			for(int i = 0; i < 3; i++) {
-				for(int j = 0; j < 3; j++) {
-					for(int tex = 0; tex < pts.length; tex++) {
-						t[tex][k] = new StaticSprite(atlas, pts[tex].x+j*TEXTURE_SIZE, pts[tex].y+i*TEXTURE_SIZE, TEXTURE_SIZE, TEXTURE_SIZE);
-					}
-					k++;
-				}
-			}
-			
-			for(int i = 0; i < 2; i++) {
-				for(int j = 0; j < 2; j++) {
-					for(int tex = 0; tex < pts.length; tex++) {
-						t[tex][k] = new StaticSprite(atlas, pts[tex].x+TEXTURE_SIZE*3+j*TEXTURE_SIZE, pts[tex].y+i*TEXTURE_SIZE, TEXTURE_SIZE, TEXTURE_SIZE);
-					}
-					k++;
-				}
-			}
-			
 			waterSprites = new AnimatedSprite[13];
 			for(int i = 0; i < waterSprites.length; i++) {
-//				waterSprites1[i].id = 0;
-//				waterSprites2[i].id = 1;
-				Animation waterAnimation = new Animation(new StaticSprite[]{waterSprites1[i], waterSprites2[i]}, 800, i);
+				Animation waterAnimation = new Animation(new StaticSprite[]{spriteCollections.get(WATER1)[i], spriteCollections.get(WATER2)[i]}, 800, i);
 				waterSprites[i] = new AnimatedSprite(waterAnimation);
 			}
 			
+			pixel = sprites.get(PIXEL);
+			
 //			sprites.put(0, waterSprites);
 			
-			saplingSprite = new StaticSprite[]{new StaticSprite(atlas, 96, 608, 64, 64)};
+			saplingSprite = new StaticSprite[]{Sprites.sprites.get(STUMP)};
 			
 			treeLeafSprites = new StaticSprite[6];
 			treeLeafSprites[0] = new StaticSprite(atlas, 16, 608, 64, 31);
@@ -233,34 +252,10 @@ public class Sprites {
 			treeSprites = new StaticSprite[1];
 			treeSprites[0] = new StaticSprite(atlas, 16, 672, 64, 64);
 			
-			menuSprites1 = new StaticSprite[3]; menuSprites2 = new StaticSprite[3]; menuSprites3 = new StaticSprite[3];
-			for(int i = 0; i < 3; i++) {
-				menuSprites1[i] = new StaticSprite(atlas, 1024-INV_MENU_TILE_SIZE*3+i*INV_MENU_TILE_SIZE,
-											1024-INV_MENU_TILE_SIZE*3+0*INV_MENU_TILE_SIZE,
-											INV_MENU_TILE_SIZE, INV_MENU_TILE_SIZE);
-			}
-			
-			for(int i = 0; i < 3; i++) {
-				menuSprites2[i] = new StaticSprite(atlas, 1024-INV_MENU_TILE_SIZE*3+i*INV_MENU_TILE_SIZE,
-											1024-INV_MENU_TILE_SIZE*3+1*INV_MENU_TILE_SIZE,
-											INV_MENU_TILE_SIZE, INV_MENU_TILE_SIZE);
-			}
-			
-			for(int i = 0; i < 3; i++) {
-				menuSprites3[i] =new StaticSprite(atlas, 1024-INV_MENU_TILE_SIZE*3+i*INV_MENU_TILE_SIZE,
-											1024-INV_MENU_TILE_SIZE*3+2*INV_MENU_TILE_SIZE,
-											INV_MENU_TILE_SIZE, INV_MENU_TILE_SIZE);
-			}
-			
 			buttonSprite = new StaticSprite(atlas, 1024-189, 1024-64, 66, 32);
 			pressedButtonSprite = new StaticSprite(atlas, 1024-189, 1024-32, 66, 32);
 			
-			slotSprite = new StaticSprite(atlas, 1024-INV_MENU_TILE_SIZE*3-INV_SLOT_SIZE, 1024-INV_SLOT_SIZE, INV_SLOT_SIZE, INV_SLOT_SIZE);
-			selectSprite = new StaticSprite(atlas, 1024-INV_MENU_TILE_SIZE*3-INV_SLOT_SIZE-4, 1024-INV_SLOT_SIZE*2-4, INV_SLOT_SIZE+4, INV_SLOT_SIZE+4);
-			
-			
 			collisionDebugger = new StaticSprite(atlas, 0, 32, TEXTURE_SIZE, TEXTURE_SIZE);
-			pixel = new StaticSprite(atlas, 1023, 0, 1, 1);
 			
 			int[] animationIds = {STAND_DOWN, STAND_RIGHT, STAND_UP, STAND_LEFT, WALK_DOWN, WALK_RIGHT, WALK_UP, WALK_LEFT};
 			Animation[] animations = new Animation[animationIds.length];
@@ -281,11 +276,11 @@ public class Sprites {
 
 				for(int j = 0; j < 4; j++) {
 					if(j == 1) {
-						animations[i] = new Animation(new StaticSprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
-						helmet[i] = new Animation(new StaticSprite(atlas, sX+192 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
-						chest[i] = new Animation(new StaticSprite(atlas, sX+384 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
-						pants[i] = new Animation(new StaticSprite(atlas, sX+576 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
-						boots[i] = new Animation(new StaticSprite(atlas, sX+768 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 130, animationIds[i]);
+						animations[i] = new Animation(new StaticSprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
+						helmet[i] = new Animation(new StaticSprite(atlas, sX+192 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
+						chest[i] = new Animation(new StaticSprite(atlas, sX+384 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
+						pants[i] = new Animation(new StaticSprite(atlas, sX+576 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
+						boots[i] = new Animation(new StaticSprite(atlas, sX+768 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
 					} 
 					
 					if(j == 1 || j == 3) {
@@ -303,11 +298,75 @@ public class Sprites {
 						bootFrames[j] = new StaticSprite(atlas, sX+768 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
 					}
 				}
-				animations[i+4] = new Animation(frames, 100, animationIds[i+4]);
-				helmet[i+4] = new Animation(helmetFrames, 100, animationIds[i+4]);
-				chest[i+4] = new Animation(chestFrames, 100, animationIds[i+4]);
-				pants[i+4] = new Animation(pantFrames, 100, animationIds[i+4]);
-				boots[i+4] = new Animation(bootFrames, 100, animationIds[i+4]);
+
+				animations[i+4] = new Animation(frames, 200, animationIds[i+4]);
+				helmet[i+4] = new Animation(helmetFrames, 200, animationIds[i+4]);
+				chest[i+4] = new Animation(chestFrames, 200, animationIds[i+4]);
+				pants[i+4] = new Animation(pantFrames, 200, animationIds[i+4]);
+				boots[i+4] = new Animation(bootFrames, 200, animationIds[i+4]);
+			}
+			
+			animations = new Animation[]{
+					Sprites.animations.get(MALE_STAND_UP),
+					Sprites.animations.get(MALE_STAND_DOWN),
+					Sprites.animations.get(MALE_STAND_RIGHT),
+					Sprites.animations.get(MALE_STAND_LEFT),
+					Sprites.animations.get(MALE_WALK_UP),
+					Sprites.animations.get(MALE_WALK_DOWN),
+					Sprites.animations.get(MALE_WALK_RIGHT),
+					Sprites.animations.get(MALE_WALK_LEFT)
+			};
+			
+			helmet = new Animation[] {
+					Sprites.animations.get(PLATE_HELMET_STAND_UP),
+					Sprites.animations.get(PLATE_HELMET_STAND_DOWN),
+					Sprites.animations.get(PLATE_HELMET_STAND_RIGHT),
+					Sprites.animations.get(PLATE_HELMET_STAND_LEFT),
+					Sprites.animations.get(PLATE_HELMET_WALK_UP),
+					Sprites.animations.get(PLATE_HELMET_WALK_DOWN),
+					Sprites.animations.get(PLATE_HELMET_WALK_RIGHT),
+					Sprites.animations.get(PLATE_HELMET_WALK_LEFT),
+			};
+			
+			chest = new Animation[] {
+					Sprites.animations.get(PLATE_TORSO_STAND_UP),
+					Sprites.animations.get(PLATE_TORSO_STAND_DOWN),
+					Sprites.animations.get(PLATE_TORSO_STAND_RIGHT),
+					Sprites.animations.get(PLATE_TORSO_STAND_LEFT),
+					Sprites.animations.get(PLATE_TORSO_WALK_UP),
+					Sprites.animations.get(PLATE_TORSO_WALK_DOWN),
+					Sprites.animations.get(PLATE_TORSO_WALK_RIGHT),
+					Sprites.animations.get(PLATE_TORSO_WALK_LEFT),
+			};
+			
+			pants = new Animation[] {
+					Sprites.animations.get(PLATE_LEGS_STAND_UP),
+					Sprites.animations.get(PLATE_LEGS_STAND_DOWN),
+					Sprites.animations.get(PLATE_LEGS_STAND_RIGHT),
+					Sprites.animations.get(PLATE_LEGS_STAND_LEFT),
+					Sprites.animations.get(PLATE_LEGS_WALK_UP),
+					Sprites.animations.get(PLATE_LEGS_WALK_DOWN),
+					Sprites.animations.get(PLATE_LEGS_WALK_RIGHT),
+					Sprites.animations.get(PLATE_LEGS_WALK_LEFT),
+			};
+			
+			boots = new Animation[] {
+					Sprites.animations.get(PLATE_FEET_STAND_UP),
+					Sprites.animations.get(PLATE_FEET_STAND_DOWN),
+					Sprites.animations.get(PLATE_FEET_STAND_RIGHT),
+					Sprites.animations.get(PLATE_FEET_STAND_LEFT),
+					Sprites.animations.get(PLATE_FEET_WALK_UP),
+					Sprites.animations.get(PLATE_FEET_WALK_DOWN),
+					Sprites.animations.get(PLATE_FEET_WALK_RIGHT),
+					Sprites.animations.get(PLATE_FEET_WALK_LEFT),
+			};
+			
+			for(int i = 0; i < animations.length; i++) {
+				animations[i].id = i;
+				helmet[i].id = i;
+				chest[i].id = i;
+				pants[i].id = i;
+				boots[i].id = i;
 			}
 			
 			AnimatedSprite animatedSprite = new AnimatedSprite(animations);
@@ -317,10 +376,10 @@ public class Sprites {
 			AnimatedSprite animatedBoots = new AnimatedSprite(boots);
 			
 			animatedSprites.put(HUMAN_BASE, animatedSprite);
-			animatedSprites.put(IRON_HELMET, animatedHelmet);
-			animatedSprites.put(IRON_ARMOR, animatedChest);
-			animatedSprites.put(IRON_LEGGINGS, animatedPants);
-			animatedSprites.put(IRON_BOOTS, animatedBoots);
+			animatedSprites.put(PLATE_HELMET_ITEM, animatedHelmet);
+			animatedSprites.put(PLATE_TORSO_ITEM, animatedChest);
+			animatedSprites.put(PLATE_LEGS_ITEM, animatedPants);
+			animatedSprites.put(PLATE_FEET_ITEM, animatedBoots);
 			
 			fireAnimationSprites = new StaticSprite[4];
 			fireAnimationSprites[0] = new StaticSprite(atlas, 0, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4);
@@ -328,22 +387,6 @@ public class Sprites {
 			fireAnimationSprites[2] = new StaticSprite(atlas, 128, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4);
 			fireAnimationSprites[3] = new StaticSprite(atlas, 192, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4);
 
-			
-			grassSeedSprite = new StaticSprite(atlas, TEXTURE_SIZE*0, 480, TEXTURE_SIZE, TEXTURE_SIZE);
-			earthClumpSprite = new StaticSprite(atlas, TEXTURE_SIZE*1, 480, TEXTURE_SIZE, TEXTURE_SIZE);
-			sandClumpSprite = new StaticSprite(atlas, TEXTURE_SIZE*2, 480, TEXTURE_SIZE, TEXTURE_SIZE);
-			logSprite = new StaticSprite(atlas, TEXTURE_SIZE*3, 480, TEXTURE_SIZE, TEXTURE_SIZE);
-			plankSprite = new StaticSprite(atlas, TEXTURE_SIZE*4, 480, TEXTURE_SIZE, TEXTURE_SIZE);
-			
-			saplingItemSprite = new StaticSprite(atlas, 234, 624, TEXTURE_SIZE, TEXTURE_SIZE);
-			ironHelmetSprite = new StaticSprite(atlas, TEXTURE_SIZE*5, 480, TEXTURE_SIZE, TEXTURE_SIZE);
-			ironArmorSprite = new StaticSprite(atlas, TEXTURE_SIZE*6, 480, TEXTURE_SIZE, TEXTURE_SIZE);
-			ironLeggingsSprite = new StaticSprite(atlas, TEXTURE_SIZE*7, 480, TEXTURE_SIZE, TEXTURE_SIZE);
-			ironBootsSprite = new StaticSprite(atlas, TEXTURE_SIZE*8, 480, TEXTURE_SIZE, TEXTURE_SIZE);
-			
-			swordSprite = new StaticSprite(atlas, TEXTURE_SIZE*0, 512, TEXTURE_SIZE, TEXTURE_SIZE);
-			shovelSprite = new StaticSprite(atlas, TEXTURE_SIZE*1, 512, TEXTURE_SIZE, TEXTURE_SIZE);
-			
 		} catch (IOException e) {
 			throw new RuntimeException("Couldn't load sprites.");
 		}

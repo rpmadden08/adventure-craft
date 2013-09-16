@@ -13,7 +13,7 @@ public class Sapling extends BlockItem {
 		tileId = SAPLING;
 		
 		placeableTileIds = new int[]{GRASS};
-		sprite = Sprites.saplingItemSprite;
+		sprite = Sprites.sprites.get(Sprites.SAPLING);
 	}
 	
 	@Override

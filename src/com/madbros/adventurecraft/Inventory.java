@@ -11,8 +11,8 @@ import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.Items.*;
 
 public class Inventory {
-	public StaticSprite selectSprite = Sprites.selectSprite;
-	public StaticSprite[][] menuSprites = {Sprites.menuSprites1, Sprites.menuSprites2, Sprites.menuSprites3};
+	public StaticSprite selectSprite = Sprites.sprites.get(Sprites.INVENTORY_MENU_SELECTOR);
+	public StaticSprite[] menuSprites = Sprites.spriteCollections.get(Sprites.INVENTORY_MENU); // {Sprites.menuSprites1, Sprites.menuSprites2, Sprites.menuSprites3};
 	public int formerHeroAnimation;
 	
 	public Slot[] invBar= new Slot[INV_LENGTH];
@@ -70,9 +70,10 @@ public class Inventory {
 		invBar[6].item = new IronLeggings();
 		invBar[7].item = new Sapling();
 		invBar[7].item.stackSize = 99;
+		invBar[9].item = new Shovel();
 
-		invClothing[0].item = new IronHelmet();
-		Game.hero.addClothingItem((ClothingItem)invClothing[0].item);
+//		invClothing[0].item = new IronHelmet();
+//		Game.hero.addClothingItem((ClothingItem)invClothing[0].item);
 		invBar[8].item = new IronHelmet();
 
 	}

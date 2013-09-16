@@ -13,7 +13,6 @@ import com.madbros.adventurecraft.TileTypes.CollisionTile;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-
 public class Actor extends GameObject {
 	public CompoundAnimatedSprite sprite;
 	public Rect absRect;
@@ -98,8 +97,10 @@ public class Actor extends GameObject {
 	/************************** Collision Detection **************************/
 	public void getCollisionBlocks() {
 		//get position in activeBlocks array
-		int x = Game.level.renderRect.x2() - (sRect.x2() - margin.right) / TILE_SIZE - 2;//(aRect.x + margin.left) / TILE_SIZE;
-		int y = Game.level.renderRect.y2() - (sRect.y2() - margin.bottom) / TILE_SIZE - 2;//(aRect.y) / TILE_SIZE;
+		int x = (absRect.x - Game.level.activeBlocks[0][0].absRect.x) / TILE_SIZE;
+		int y = (absRect.y - Game.level.activeBlocks[0][0].absRect.y) / TILE_SIZE;
+//		int x = Game.level.renderRect.x2() - (sRect.x2() - margin.right) / TILE_SIZE - 2;//(aRect.x + margin.left) / TILE_SIZE;
+//		int y = Game.level.renderRect.y2() - (sRect.y2() - margin.bottom) / TILE_SIZE - 2;//(aRect.y) / TILE_SIZE;
 		
 		int j = 0;
 		for(int i = 0; i < collisionDetectionBlocks.length; i++) {
@@ -108,6 +109,16 @@ public class Actor extends GameObject {
 			}
 			j++;
 			if(j > 2) j = 0;
+		}
+	}
+	
+	public void didCollide() {};
+	
+	public void checkCollisions() {
+		Rect charCRect = new Rect(Game.hero.absRect, Game.hero.margin);
+		Rect cRect = new Rect(absRect, margin);
+		if(cRect.detectCollision(charCRect)) {
+			didCollide();
 		}
 	}
 	
@@ -140,7 +151,7 @@ public class Actor extends GameObject {
 							}
 						}
 						CollisionTile t = collisionDetectionBlocks[i].collisionTile;
-						t.heroDidCollide(dir, move, charCRect, collisionDetectionBlocks[i].collisionTile.cRect);
+						t.heroDidCollide(this, dir, move, charCRect, collisionDetectionBlocks[i].collisionTile.cRect);
 						collisionDetectionBlocks[i].sRect = new Rect(collisionDetectionBlocks[i].collisionTile.cRect, this);	//yellow block in debug mode
 						if(didDetectCollision) break;
 					}

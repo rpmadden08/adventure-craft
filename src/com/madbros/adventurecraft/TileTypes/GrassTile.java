@@ -11,7 +11,7 @@ public class GrassTile extends Tile {
 		z = Z_GRASS;
 		isCollidable = false;
 		currentSpriteId = 0;
-		sprites = Sprites.grassSprites;
+		sprites = Sprites.spriteCollections.get(Sprites.GRASS);
 		id = GRASS;
 	}
 

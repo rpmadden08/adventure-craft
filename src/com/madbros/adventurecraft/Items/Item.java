@@ -19,11 +19,11 @@ public abstract class Item {
 	public StaticSprite sprite;
 	
 	public void render(Rect slotRect) {
-		sprite.draw(slotRect.x + ITEM_OFFSET, slotRect.y + ITEM_OFFSET, Z_INV_ITEMS, ITEM_SIZE, ITEM_SIZE);
+		sprite.draw(slotRect.x + ITEM_OFFSET, slotRect.y + ITEM_OFFSET, Z_INV_ITEMS);
 	}
 	
 	public void render(int x, int y) {
-		sprite.draw(x-ITEM_SIZE/2, y-ITEM_SIZE/2, Z_INV_ITEMS, ITEM_SIZE, ITEM_SIZE);
+		sprite.draw(x-ITEM_SIZE/2, y-ITEM_SIZE/2, Z_INV_ITEMS);
 	}
 	
 	public void renderFont(int x, int y) {
