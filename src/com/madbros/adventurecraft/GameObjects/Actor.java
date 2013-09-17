@@ -19,7 +19,7 @@ public class Actor extends GameObject {
 	public Rect sRect = new Rect(Game.getCenterScreenX() - CHARACTER_SIZE/2, Game.getCenterScreenY() - CHARACTER_SIZE/2, CHARACTER_SIZE, CHARACTER_SIZE);
 	public Margin margin = new Margin();
 	
-	public static float currentSpeed;
+	public float currentSpeed;
 	public Block[] collisionDetectionBlocks;
 	
 	boolean isMovingLeft = false, isMovingRight = false, isMovingUp = false, isMovingDown = false;

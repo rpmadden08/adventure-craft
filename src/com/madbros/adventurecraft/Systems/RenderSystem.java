@@ -2,15 +2,23 @@ package com.madbros.adventurecraft.Systems;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 //import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.lwjgl.opengl.ARBFragmentShader;
+import org.lwjgl.opengl.ARBShaderObjects;
+import org.lwjgl.opengl.ARBVertexShader;
+import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Inventory;
 import com.madbros.adventurecraft.Level;
+import com.madbros.adventurecraft.MobController;
 import com.madbros.adventurecraft.GameObjects.Actor;
 import com.madbros.adventurecraft.GameObjects.GameObject;
 import com.madbros.adventurecraft.GameObjects.Hero;
@@ -26,7 +34,134 @@ public class RenderSystem {
 //	private ArrayList<GameObject> alreadyRenderedObjects;
 	private int startX;
 	private int startY;
+	public boolean useShader;
+	public int program = 0;
 	
+	private int createShader(String filename, int shaderType) throws Exception {
+    	int shader = 0;
+    	try {
+	        shader = ARBShaderObjects.glCreateShaderObjectARB(shaderType);
+	        
+	        if(shader == 0)
+	        	return 0;
+	        
+	        ARBShaderObjects.glShaderSourceARB(shader, readFileAsString(filename));
+	        ARBShaderObjects.glCompileShaderARB(shader);
+	        
+	        if (ARBShaderObjects.glGetObjectParameteriARB(shader, ARBShaderObjects.GL_OBJECT_COMPILE_STATUS_ARB) == GL11.GL_FALSE)
+	            throw new RuntimeException("Error creating shader: " + getLogInfo(shader));
+	        
+	        return shader;
+    	}
+    	catch(Exception exc) {
+    		ARBShaderObjects.glDeleteObjectARB(shader);
+    		throw exc;
+    	}
+    }
+	
+	private static String getLogInfo(int obj) {
+        return ARBShaderObjects.glGetInfoLogARB(obj, ARBShaderObjects.glGetObjectParameteriARB(obj, ARBShaderObjects.GL_OBJECT_INFO_LOG_LENGTH_ARB));
+    }
+	
+	private String readFileAsString(String filename) throws Exception {
+        StringBuilder source = new StringBuilder();
+        
+        FileInputStream in = new FileInputStream(filename);
+        
+        Exception exception = null;
+        
+        BufferedReader reader;
+        try{
+            reader = new BufferedReader(new InputStreamReader(in,"UTF-8"));
+            
+            Exception innerExc= null;
+            try {
+            	String line;
+                while((line = reader.readLine()) != null)
+                    source.append(line).append('\n');
+            }
+            catch(Exception exc) {
+            	exception = exc;
+            }
+            finally {
+            	try {
+            		reader.close();
+            	}
+            	catch(Exception exc) {
+            		if(innerExc == null)
+            			innerExc = exc;
+            		else
+            			exc.printStackTrace();
+            	}
+            }
+            
+            if(innerExc != null)
+            	throw innerExc;
+        }
+        catch(Exception exc) {
+        	exception = exc;
+        }
+        finally {
+        	try {
+        		in.close();
+        	}
+        	catch(Exception exc) {
+        		if(exception == null)
+        			exception = exc;
+        		else
+					exc.printStackTrace();
+        	}
+        	
+        	if(exception != null)
+        		throw exception;
+        }
+        
+        return source.toString();
+    }
+	
+	public RenderSystem() {
+    	int vertShader = 0, fragShader = 0;
+    	
+    	try {
+            vertShader = createShader("res/screen.vert",ARBVertexShader.GL_VERTEX_SHADER_ARB);
+            fragShader = createShader("res/screen.frag",ARBFragmentShader.GL_FRAGMENT_SHADER_ARB);
+    	}
+    	catch(Exception exc) {
+    		exc.printStackTrace();
+    		return;
+    	}
+    	finally {
+    		if(vertShader == 0 || fragShader == 0)
+    			return;
+    	}
+    	
+    	program = ARBShaderObjects.glCreateProgramObjectARB();
+    	
+    	if(program == 0)
+    		return;
+        
+        /*
+        * if the vertex and fragment shaders setup sucessfully,
+        * attach them to the shader program, link the sahder program
+        * (into the GL context I suppose), and validate
+        */
+        ARBShaderObjects.glAttachObjectARB(program, vertShader);
+        ARBShaderObjects.glAttachObjectARB(program, fragShader);
+        
+        ARBShaderObjects.glLinkProgramARB(program);
+        if (ARBShaderObjects.glGetObjectParameteriARB(program, ARBShaderObjects.GL_OBJECT_LINK_STATUS_ARB) == GL11.GL_FALSE) {
+            System.err.println(getLogInfo(program));
+            return;
+        }
+        
+        ARBShaderObjects.glValidateProgramARB(program);
+        if (ARBShaderObjects.glGetObjectParameteriARB(program, ARBShaderObjects.GL_OBJECT_VALIDATE_STATUS_ARB) == GL11.GL_FALSE) {
+        	System.err.println(getLogInfo(program));
+        	return;
+        }
+        
+        useShader = true;
+	}
 	/******************************************* Main State Rendering *******************************************/
 	public void renderWorld(Level lv) {
 //		alreadyRenderedObjects = new ArrayList<GameObject>();
@@ -76,11 +211,13 @@ public class RenderSystem {
 		renderCollisionRects(hero, x, y);
 	}
 	
-	public void renderMob(Mob mob) {
-		int x = mob.absRect.x - startX;
-		int y = mob.absRect.y - startY;
-		mob.sprite.draw(x, y, Z_CHARACTER);
-		renderCollisionRects(mob, x, y);
+	public void renderMobs(MobController mobController) {
+		for(Mob mob : mobController.mobs) {
+			int x = mob.absRect.x - startX;
+			int y = mob.absRect.y - startY;
+			mob.sprite.draw(x, y, Z_CHARACTER);
+			renderCollisionRects(mob, x, y);
+		}
 	}
 	
 	public void renderHud(Inventory inv) {
@@ -99,6 +236,34 @@ public class RenderSystem {
 				slots[i][j].item.renderFont(slots[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots[i][j].slotRect.y2()-INV_SLOT_SIZE/2);
 			}
 		}
+	}
+	
+	public void renderLight() {
+//		StaticSprite pixel = Sprites.pixel;
+//		Color c = new Color(0f, 0f, 0f, 0.9f);
+		
+		
+        
+//		int programId = GL11.glCreateProgram();
+//		GL11.glFragColor = mix(FirstTextureColor, SecondTextureColor, coeff);
+//		float lightAmbient[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+//		float lightDiffuse[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+//	    float lightPosition[] = { 0.0f, 1.0f, 1.0f, 0.0f };
+//	    
+//	    float[] vertices = { 0, 0, 100, 100 };
+//		ByteBuffer temp = ByteBuffer.allocateDirect(vertices.length * 4);
+//		GL11.glLight(GL11.GL_LIGHT1, GL11.GL_AMBIENT, (FloatBuffer)temp.asFloatBuffer().put(lightAmbient).flip());              // Setup The Ambient Light
+//		GL11.glLight(GL11.GL_LIGHT1, GL11.GL_DIFFUSE, (FloatBuffer)temp.asFloatBuffer().put(lightDiffuse).flip());              // Setup The Diffuse Light         
+//		GL11.glLight(GL11.GL_LIGHT1, GL11.GL_POSITION,(FloatBuffer)temp.asFloatBuffer().put(lightPosition).flip());  
+//
+//		GL11.glEnable(GL11.GL_LIGHT1); 
+//		GL11.glEnable ( GL11.GL_LIGHTING ) ;
+	
+//		c.bind();
+//		pixel.draw(0, 0, 0.9f, Game.currentScreenSizeX, Game.currentScreenSizeY);
+//		
+//		Color.white.bind();
+//		pixel.draw(0, 0, 0.91f, 100, 100);
 	}
 	
 	/******************************************* Inventory State Rendering *******************************************/

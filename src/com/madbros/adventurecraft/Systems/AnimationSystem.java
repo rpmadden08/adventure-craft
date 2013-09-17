@@ -1,6 +1,7 @@
 package com.madbros.adventurecraft.Systems;
 
 import com.madbros.adventurecraft.Inventory;
+import com.madbros.adventurecraft.MobController;
 import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.GameObjects.Mob;
 import com.madbros.adventurecraft.Sprites.Sprites;
@@ -13,10 +14,12 @@ public class AnimationSystem {
 		}
 	}
 	
-	public void updateMain(Hero hero, Mob mob) {
+	public void updateMain(Hero hero, MobController mobController) {
 		updateTiles();
 		if(hero.isMoving()) hero.sprite.updateCurrentAnimation();
-		if(mob.isMoving()) mob.sprite.updateCurrentAnimation();
+		for(Mob mob : mobController.mobs) {
+			if(mob.isMoving()) mob.sprite.updateCurrentAnimation();
+		}
 	}
 	
 	public void updateInventory(Hero hero, Inventory inventory) {
