@@ -32,20 +32,26 @@ public class Block {
 		absRect = new Rect(absX, absY);
 		this.isUnfinished = isUnfinished;
 		
-		layers = new Tile[17];
+		layers = new Tile[23];
 		layers[DARK_DIRT_LAYER] = t[DARK_DIRT_LAYER];
 		layers[LIGHT_DIRT_LAYER] = t[LIGHT_DIRT_LAYER];
 		layers[GRASS_LAYER] = t[GRASS_LAYER];
 		layers[WATER_LAYER] = t[WATER_LAYER];
 		layers[OBJECT_LAYER] = t[OBJECT_LAYER];
+		layers[TREE_LEFT_0] = t[TREE_LEFT_0];
+		layers[TREE_CENTER_0] = t[TREE_CENTER_0];
+		layers[TREE_RIGHT_0] = t[TREE_RIGHT_0];
 		layers[ABOVE_LAYER_1] = t[ABOVE_LAYER_1];
 		layers[TREE_LEFT_1] = t[TREE_LEFT_1];
+		layers[TREE_CENTER_1] = t[TREE_CENTER_1];
 		layers[TREE_RIGHT_1] = t[TREE_RIGHT_1];
 		layers[ABOVE_LAYER_2] = t[ABOVE_LAYER_2];
 		layers[TREE_LEFT_2] = t[TREE_LEFT_2];
+		layers[TREE_CENTER_2] = t[TREE_CENTER_2];
 		layers[TREE_RIGHT_2] = t[TREE_RIGHT_2];
 		layers[ABOVE_LAYER_3] = t[ABOVE_LAYER_3];
 		layers[TREE_LEFT_3] = t[TREE_LEFT_3];
+		layers[TREE_CENTER_3] = t[TREE_CENTER_3];
 		layers[TREE_RIGHT_3] = t[TREE_RIGHT_3];
 		layers[ABOVE_LAYER_4] = t[ABOVE_LAYER_4];
 		layers[ABOVE_LAYER_5] = t[ABOVE_LAYER_5];
@@ -133,17 +139,23 @@ public class Block {
 	
 	//returns all visable layers
 	public Tile[] getRenderTiles() {
-		Tile[] tiles = new Tile[17];
+		Tile[] tiles = new Tile[23];
 		tiles[ABOVE_LAYER_6] = layers[ABOVE_LAYER_6];
 		tiles[ABOVE_LAYER_5] = layers[ABOVE_LAYER_5];
 		tiles[ABOVE_LAYER_4] = layers[ABOVE_LAYER_4];
 		tiles[ABOVE_LAYER_3] = layers[ABOVE_LAYER_3];
 		tiles[ABOVE_LAYER_2] = layers[ABOVE_LAYER_2];
+		tiles[TREE_LEFT_0] = layers[TREE_LEFT_0];
+		tiles[TREE_CENTER_0] = layers[TREE_CENTER_0];
+		tiles[TREE_RIGHT_0] = layers[TREE_RIGHT_0];
 		tiles[TREE_LEFT_1] = layers[TREE_LEFT_1];
+		tiles[TREE_CENTER_1] = layers[TREE_CENTER_1];
 		tiles[TREE_RIGHT_1] = layers[TREE_RIGHT_1];
 		tiles[TREE_LEFT_2] = layers[TREE_LEFT_2];
+		tiles[TREE_CENTER_2] = layers[TREE_CENTER_2];
 		tiles[TREE_RIGHT_2] = layers[TREE_RIGHT_2];
 		tiles[TREE_LEFT_3] = layers[TREE_LEFT_3];
+		tiles[TREE_CENTER_3] = layers[TREE_CENTER_3];
 		tiles[TREE_RIGHT_3] = layers[TREE_RIGHT_3];
 		tiles[ABOVE_LAYER_1] = layers[ABOVE_LAYER_1];
 		tiles[OBJECT_LAYER] = layers[OBJECT_LAYER];

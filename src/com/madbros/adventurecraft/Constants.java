@@ -116,18 +116,24 @@ public class Constants {
 	public static final int GRASS_LAYER = 2;
 	public static final int WATER_LAYER = 3;
 	public static final int OBJECT_LAYER = 4;
-	public static final int ABOVE_LAYER_1 = 5;
-	public static final int TREE_LEFT_1 = 6;
-	public static final int TREE_RIGHT_1 = 7;
-	public static final int ABOVE_LAYER_2 = 8;
-	public static final int TREE_LEFT_2 = 9;
-	public static final int TREE_RIGHT_2 = 10;
-	public static final int ABOVE_LAYER_3 = 11;
-	public static final int TREE_LEFT_3 = 12;
-	public static final int TREE_RIGHT_3 = 13;
-	public static final int ABOVE_LAYER_4 = 14;
-	public static final int ABOVE_LAYER_5 = 15;
-	public static final int ABOVE_LAYER_6 = 16;
+	public static final int TREE_LEFT_0 = 5;
+	public static final int TREE_CENTER_0 = 6;
+	public static final int TREE_RIGHT_0 = 7;
+	public static final int ABOVE_LAYER_1 = 8;
+	public static final int TREE_LEFT_1 = 9;
+	public static final int TREE_CENTER_1 = 10;
+	public static final int TREE_RIGHT_1 = 11;
+	public static final int ABOVE_LAYER_2 = 12;
+	public static final int TREE_LEFT_2 = 13;
+	public static final int TREE_CENTER_2 = 14;
+	public static final int TREE_RIGHT_2 = 15;
+	public static final int ABOVE_LAYER_3 = 16;
+	public static final int TREE_LEFT_3 = 17;
+	public static final int TREE_CENTER_3 = 18;
+	public static final int TREE_RIGHT_3 = 19;
+	public static final int ABOVE_LAYER_4 = 20;
+	public static final int ABOVE_LAYER_5 = 21;
+	public static final int ABOVE_LAYER_6 = 22;
 
 	//z-depth
 	public static final float Z_DARK_DIRT = -0.9f;

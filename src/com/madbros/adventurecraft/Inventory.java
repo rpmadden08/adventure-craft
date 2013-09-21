@@ -56,7 +56,7 @@ public class Inventory {
 		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +160,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +210,BOOTS_SLOT);
 		
-		invBar[0].item = new CampfireItem();
+		invBar[0].item = new Sapling();
 		invBar[0].item.stackSize = 99;
 		invBar[1].item = new IronArmor();
 		invBar[2].item = new Log();
@@ -68,7 +68,7 @@ public class Inventory {
 		invBar[5].item = new EarthClump();
 		invBar[5].item.stackSize = 99;
 		invBar[6].item = new IronLeggings();
-		invBar[7].item = new Sapling();
+		invBar[7].item = new CampfireItem();
 		invBar[7].item.stackSize = 99;
 		invBar[9].item = new Shovel();
 
