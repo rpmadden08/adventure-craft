@@ -36,12 +36,9 @@ public class SaplingTile extends CollisionTile {
 			Block b = Game.level.activeBlocks[x][y];
 			b.layers[OBJECT_LAYER] = new TreeTile();
 			b.setCollisionTile(new TreeTile());
-			
-			int layer;
-
 			int[] xs = {x-1, x-1, x-1, x, x, x, x+1,x+1, x+1};
 			int[] ys = {y-2, y-1, y, y-2, y-1, y, y-2, y-1, y};
-			int[] tileLayer = {TREE_LEFT_2, ABOVE_LAYER_2, TREE_RIGHT_2, TREE_LEFT_1, ABOVE_LAYER_1, TREE_RIGHT_1, OBJECT_LAYER, OBJECT_LAYER, OBJECT_LAYER};
+			int[] tileLayer = {TREE_LEFT_2, TREE_LEFT_1, OBJECT_LAYER, ABOVE_LAYER_2, ABOVE_LAYER_1, OBJECT_LAYER, TREE_RIGHT_2, TREE_RIGHT_1, OBJECT_LAYER};
 			
 			for(int i = 0; i < 9; i++) {
 				b = Game.level.activeBlocks[xs[i]][ys[i]];

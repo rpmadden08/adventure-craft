@@ -34,7 +34,6 @@ public class TreeTile extends CollisionTile {
 	
 	@Override
 	public void bloom(int x, int y, Block[][] activeBlocks) {
-		int layer;
 		Block b;
 		
 		if(x<1 || y<1 || x > CHUNK_SIZE*CHUNKS_IN_A_ROW-2 || y > CHUNK_SIZE*CHUNKS_IN_A_ROW-2) {

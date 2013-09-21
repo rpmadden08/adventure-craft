@@ -8,9 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
-import com.badlogic.gdx.math.MathUtils;
 import com.madbros.adventurecraft.*;
-import com.madbros.adventurecraft.Sprites.Sprites;
 
 public class MainState extends GameState {
 	public MainState() {
