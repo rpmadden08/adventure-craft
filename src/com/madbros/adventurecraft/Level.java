@@ -459,7 +459,7 @@ public class Level {
 //				}
 //				i++; j = 0;
 //			}
-			//saveGame.saveChunk(chunk, chunkX, chunkY);
+			saveGame.saveChunk(chunk, chunkX, chunkY);
 		}
 		isLoading = false;
 	}
