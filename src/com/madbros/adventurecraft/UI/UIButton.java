@@ -1,15 +1,11 @@
 package com.madbros.adventurecraft.UI;
 
-import org.lwjgl.input.*;
-import org.newdawn.slick.*;
-
-import com.madbros.adventurecraft.Sprites.*;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
-import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 import com.madbros.adventurecraft.Utils.Text;
-
-import static com.madbros.adventurecraft.Constants.*;
 
 public abstract class UIButton {
 	Rect rect;
@@ -17,14 +13,14 @@ public abstract class UIButton {
 	
 	ButtonFunction buttonFunction;
 	
-	Color fontColor = Color.white;
+	Color fontColor = Color.WHITE;
 	
 	public boolean mouseIsHovering = false;
 	public boolean buttonIsPressedDown = false;
 	
-	public UIButton(int x, int y, int w, int h, String s, ButtonFunction func) {
+	public UIButton(int x, int y, int w, int h, String s, ButtonFunction func, SpriteBatch batch) {
 		rect = new Rect(x, y, w, h);
-		text = new Text(Sprites.font, s);
+		text = new Text(Sprites.font, s, batch);
 		buttonFunction = func;
 	}
 	
@@ -34,16 +30,30 @@ public abstract class UIButton {
 		text.drawCenter(rect, fontColor);
 	}
 	
-	public void handleMouseInput(boolean leftMouseButtonWasPressed, boolean leftMouseButtonWasReleased) {
-		if(rect.detectCollision(Helpers.getMouseRect())) mouseIsHovering = true;
-		else mouseIsHovering = false;
+	public void handleMouseInput(boolean leftMousePressed, boolean leftMouseUp) {
+		if(leftMousePressed && mouseIsHovering) didPressDown();
 		
-		if(leftMouseButtonWasPressed && mouseIsHovering) didPressDown();
+		if(mouseIsHovering && leftMouseUp && buttonIsPressedDown) {
+			didPressUp();
+			buttonIsPressedDown = false;
+		}
 		
-		if(mouseIsHovering && leftMouseButtonWasReleased && buttonIsPressedDown) didPressUp();
-		
-		if(!Mouse.isButtonDown(LEFT_MOUSE_BUTTON)) buttonIsPressedDown = false;
+		if(!leftMousePressed) buttonIsPressedDown = false;
 	}
+	
+	public void handleMouseMove(int x, int y) {
+		if(rect.detectCollision(new Rect(x, y, 1, 1))) {
+			mouseIsHovering = true;
+		}
+		else mouseIsHovering = false;
+	}
+	
+//	public void handleMouseUp(int x, int y, int button) {
+//		if(mouseIsHovering && button == Input.Buttons.LEFT && buttonIsPressedDown) {
+//			didPressUp();
+//			buttonIsPressedDown = false;
+//		}
+//	}
 
 	public void didPressDown() {
 		buttonIsPressedDown = true;

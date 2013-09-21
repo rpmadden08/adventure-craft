@@ -49,7 +49,7 @@ public class Constants {
 	
 	
 	//block constants
-	public static final int TILE_SIZE = 64;
+	public static final int TILE_SIZE = 32;
 	public static final int TEXTURE_SIZE = 32;
 	
 	//inventory constants
@@ -66,8 +66,8 @@ public class Constants {
 	public static final Rect INV_BACKDROP_RECT = new Rect(INV_MENU_MARGIN.left, INV_MENU_MARGIN.top, 
 														  INITIAL_WINDOW_WIDTH - INV_MENU_MARGIN.getHorizontalLength(),
 														  INITIAL_WINDOW_HEIGHT - INV_MENU_MARGIN.getVerticalLength());
-	public static final Rect INV_BAR_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INITIAL_WINDOW_HEIGHT-50);
-	public static final Rect INV_BAG_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INV_BACKDROP_RECT.y2()- INV_BAR_RECT.h*4);
+	public static final Rect INV_BAR_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INITIAL_WINDOW_HEIGHT-50, 64, 64);
+	public static final Rect INV_BAG_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INV_BACKDROP_RECT.y2() - INV_BAR_RECT.h*4);	//FIXME: this is dumb
 	public static final Rect INV_CHAR_RECT = new Rect(INV_BACKDROP_RECT.x2() - CHARACTER_SIZE*4, INV_BACKDROP_RECT.y + 30, CHARACTER_SIZE*4, CHARACTER_SIZE*4);
 	public static final Rect INV_CRAFTING_RECT = new Rect(130, 50, 2*(INV_SLOT_SIZE+2), 2*(INV_SLOT_SIZE+2));
 	public static final int INV_ANIMATION_CHANGE = 100;
@@ -108,6 +108,7 @@ public class Constants {
 	public static final int TREE_LEAF = 10;
 	public static final int DIRT_MOUNTAIN_BOTTOM = 11;
 	public static final int DIRT_MOUNTAIN_TOP = 12;
+	public static final int CAMPFIRE = 13;
 	
 	//Layers
 	public static final int DARK_DIRT_LAYER = 0;
@@ -116,11 +117,17 @@ public class Constants {
 	public static final int WATER_LAYER = 3;
 	public static final int OBJECT_LAYER = 4;
 	public static final int ABOVE_LAYER_1 = 5;
-	public static final int ABOVE_LAYER_2 = 6;
-	public static final int ABOVE_LAYER_3 = 7;
-	public static final int ABOVE_LAYER_4 = 8;
-	public static final int ABOVE_LAYER_5 = 9;
-	public static final int ABOVE_LAYER_6 = 10;
+	public static final int TREE_LEFT_1 = 6;
+	public static final int TREE_RIGHT_1 = 7;
+	public static final int ABOVE_LAYER_2 = 8;
+	public static final int TREE_LEFT_2 = 9;
+	public static final int TREE_RIGHT_2 = 10;
+	public static final int ABOVE_LAYER_3 = 11;
+	public static final int TREE_LEFT_3 = 12;
+	public static final int TREE_RIGHT_3 = 13;
+	public static final int ABOVE_LAYER_4 = 14;
+	public static final int ABOVE_LAYER_5 = 15;
+	public static final int ABOVE_LAYER_6 = 16;
 
 	//z-depth
 	public static final float Z_DARK_DIRT = -0.9f;
@@ -189,6 +196,7 @@ public class Constants {
 	public static final int IRON_ARMOR = 10;
 	public static final int IRON_LEGGINGS = 11;
 	public static final int IRON_BOOTS = 12;
+	public static final int CAMPFIRE_ITEM = 13;
 	
 	//Clothing Types
 	public static final int HELMET = 0;
@@ -243,6 +251,11 @@ public class Constants {
 		ITEM_HASH.put(SHOVEL, new Shovel());
 		ITEM_HASH.put(SWORD, new Sword());
 		ITEM_HASH.put(SAPLING_ITEM, new Sapling());
+		ITEM_HASH.put(IRON_HELMET, new IronHelmet());
+		ITEM_HASH.put(IRON_ARMOR, new IronArmor());
+		ITEM_HASH.put(IRON_BOOTS, new IronBoots());
+		ITEM_HASH.put(IRON_LEGGINGS, new IronLeggings());
+		ITEM_HASH.put(CAMPFIRE_ITEM, new CampfireItem());
 		
 		TILE_HASH.put(GRASS, new GrassTile());
 		TILE_HASH.put(DIRT, new DirtTile());
@@ -255,6 +268,8 @@ public class Constants {
 		TILE_HASH.put(TREE_LEAF, new TreeLeafTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_BOTTOM, new DirtMountainBottomTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_TOP, new DirtMountainTopTile());
+		TILE_HASH.put(CAMPFIRE, new Campfire());
+		
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);
 		TOP_LEFT_AUTO_TILE_HASH.put(1, TOP_LEFT_TILE);

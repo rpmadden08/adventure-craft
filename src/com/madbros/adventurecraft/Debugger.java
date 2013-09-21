@@ -1,8 +1,10 @@
 package com.madbros.adventurecraft;
 
 import java.text.*;
-import org.newdawn.slick.*;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -28,7 +30,7 @@ public class Debugger {
 	private long startTime = 0;
 	private long endTime = 0;
 	
-	private Font font;
+	private BitmapFont font;
 	private Color fontColor;
 	private String displayedFPS = "-";
 	private String displayedMillisecondsPerUpdate = "-";	//average number of milliseconds it takes to update once
@@ -43,7 +45,7 @@ public class Debugger {
 	
 	public Debugger() {
 		font = Sprites.font;
-		fontColor = Color.white;
+		fontColor = Color.WHITE;
 		
 		lastFPS = Time.getTime();
 		fps = 0;
@@ -131,18 +133,20 @@ public class Debugger {
 		}
 	}
 	
-	public void renderText(Rect charRect) {
-		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*0, "Time Spent In Game: " + displayedGameTime + " seconds", fontColor);
+	public void renderText(Rect charRect, SpriteBatch batch) {
+//		font.draw(batch, str, x, y, start, end);
+		font.setColor(fontColor);
+		font.draw(batch, "Time Spent In Game: " + displayedGameTime + " seconds", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*0);
 		
-		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*2, "Current fps: " + displayedFPS + " fps", fontColor);
-		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*3, "Average ms for update: " + displayedMillisecondsPerUpdate, fontColor);
-		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*4, "Average ms for render: " + displayedMillisecondsPerRender, fontColor);
+		font.draw(batch, "Current fps: " + displayedFPS + " fps", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*2);
+		font.draw(batch, "Average ms for update: " + displayedMillisecondsPerUpdate, DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*3);
+		font.draw(batch, "Average ms for render: " + displayedMillisecondsPerRender, DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*4);
 		
-		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*6, "Free Memory: " + displayedFreeMemory + " mb", fontColor);
-		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*7, "Used Memory: " + displayedUsedMemory + " mb", fontColor);
-		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*8, "Memory Left: " + displayedPercentOfMemoryLeft + "%", fontColor);
-		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*10, "Character Position: (" + charRect.x + ", " + charRect.y + ")", fontColor);
-		font.drawString(DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*12, "Extra Debugger: " + displayedExtra, fontColor);
+		font.draw(batch, "Free Memory: " + displayedFreeMemory + " mb", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*6);
+		font.draw(batch, "Used Memory: " + displayedUsedMemory + " mb", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*7);
+		font.draw(batch, "Memory Left: " + displayedPercentOfMemoryLeft + "%", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*8);
+		font.draw(batch, "Character Position: (" + charRect.x + ", " + charRect.y + ")", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*10);
+		font.draw(batch, "Extra Debugger: " + displayedExtra, DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*12);
 	}
 	
 	public void toggle() {

@@ -1,23 +1,36 @@
 package com.madbros.adventurecraft.Menus;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.UI.*;
 
 public class Menu {
 	public UIButton[] menuButtons;
 	
-	public Menu() {
-		setupMenu();
+	public Menu(SpriteBatch batch) {
+		setupMenu(batch);
 	}
 	
-	public void setupMenu() {
+	public void setupMenu(SpriteBatch batch) {
 
 	}
 	
-	public void handleMouseInput(boolean leftMouseButtonPressed, boolean leftMouseButtonUp) {
+	public void handleMouseInput(boolean leftMousePressed, boolean leftMouseUp) {
 		for(int i = 0; i < menuButtons.length; i++) {
-			menuButtons[i].handleMouseInput(leftMouseButtonPressed, leftMouseButtonUp);
+			menuButtons[i].handleMouseInput(leftMousePressed, leftMouseUp);
 		}
 	}
+	
+	public void handleMouseMove(int x, int y) {
+		for(int i = 0; i < menuButtons.length; i++) {
+			menuButtons[i].handleMouseMove(x, y);
+		}
+	}
+	
+//	public void handleMouseUp(int x, int y, int button) {
+//		for(int i = 0; i < menuButtons.length; i++) {
+//			menuButtons[i].handleMouseUp(x, y, button);
+//		}
+//	}
 	
 	public void render() {
 		for(int i = 0; i < menuButtons.length; i++) {

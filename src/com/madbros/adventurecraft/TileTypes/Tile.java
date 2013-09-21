@@ -2,8 +2,7 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import org.newdawn.slick.Color;
-
+import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.*;
 
 import com.madbros.adventurecraft.Sprites.Sprite;
@@ -23,28 +22,32 @@ public abstract class Tile {
 	public boolean isDiggable = true;
 	public boolean isChoppable = false;
 	public long timeCreated = Time.getTime();
+	public boolean isLightSource = false;
+	public boolean isAutoTileable = true;
 	
 	public int id = AIR;
+	public int autoTile = MIDDLE_TILE;
 	public boolean isMiddleTile = true;
-	public int topLeftAutoTile = MIDDLE_TILE;
-	public int topRightAutoTile = MIDDLE_TILE;
-	public int bottomRightAutoTile = MIDDLE_TILE;
-	public int bottomLeftAutoTile = MIDDLE_TILE;
+//	public int topLeftAutoTile = MIDDLE_TILE;
+//	public int topRightAutoTile = MIDDLE_TILE;
+//	public int bottomRightAutoTile = MIDDLE_TILE;
+//	public int bottomLeftAutoTile = MIDDLE_TILE;
 	
 	public void render(int x, int y) {
-		sprites[topLeftAutoTile].draw(x, y, z);
-		sprites[topRightAutoTile].draw(x+TEXTURE_SIZE, y, z);
-		sprites[bottomLeftAutoTile].draw(x, y+TEXTURE_SIZE, z);
-		sprites[bottomRightAutoTile].draw(x+TEXTURE_SIZE, y+TEXTURE_SIZE, z);
+		sprites[autoTile].draw(x, y, z);
+//		sprites[topLeftAutoTile].draw(x, y, z);
+//		sprites[topRightAutoTile].draw(x+TEXTURE_SIZE, y, z);
+//		sprites[bottomLeftAutoTile].draw(x, y+TEXTURE_SIZE, z);
+//		sprites[bottomRightAutoTile].draw(x+TEXTURE_SIZE, y+TEXTURE_SIZE, z);
 	}
 	
 	public void renderHp(int x, int y) {
 		int w = 20; int h = 4;
 		int sX = x+TEXTURE_SIZE - 10; int sY = y - h*2;
-		new Color(0.0f, 1.0f, 0.0f).bind();
+		Sprites.pixel.setColor(Color.GREEN);
 		
 		Sprites.pixel.draw(sX+1, sY+1, Z_HEALTHBAR, Math.round((currentHp * 1.0f / maxHp) * w-2), h-2);
-		Color.white.bind();
+		Sprites.pixel.setColor(Color.WHITE);
 		Helpers.drawRect(new Rect(sX, sY, w, h), Z_HEALTHBAR);
 	}
 	

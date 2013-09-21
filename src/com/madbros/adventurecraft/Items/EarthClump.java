@@ -45,16 +45,32 @@ public class EarthClump extends BlockItem {
 		System.out.println(hB.canPlace);
 		
 		if(hB.layers[WATER_LAYER].id == HOLE || hB.layers[WATER_LAYER].id == WATER) {
-			hB.canPlace = false;
-			hB.timePlaced = Time.getTime();
-			hB.layers[GRASS_LAYER] = new NoTile();
-			hB.layers[WATER_LAYER] = new NoTile();
-
-			hB.collisionTile = null;
+			for(int i = 0; i < 2; i++) {
+				for(int j = 0; j< 2; j++) {
+					placeDarkDirt(Game.level.activeBlocks[Game.level.highlightedBlockX+i][Game.level.highlightedBlockY+j]);
+				}
+			}
 		} else if(hB.canPlace == true) {
-			hB.layers[GRASS_LAYER] = new NoTile();
-			hB.layers[WATER_LAYER] = new NoTile();
-			hB.layers[LIGHT_DIRT_LAYER] = tile;
+			for(int i = 0; i < 2; i++) {
+				for(int j = 0; j< 2; j++) {
+					placeLightDirt(Game.level.activeBlocks[Game.level.highlightedBlockX+i][Game.level.highlightedBlockY+j], tile);
+				}
+			}
 		}
+	}
+	
+	public void placeDarkDirt(Block hB) {
+		hB.canPlace = false;
+		hB.timePlaced = Time.getTime();
+		hB.layers[GRASS_LAYER] = new NoTile();
+		hB.layers[WATER_LAYER] = new NoTile();
+
+		hB.collisionTile = null;
+	}
+	
+	public void placeLightDirt(Block hB, Tile tile) {
+		hB.layers[GRASS_LAYER] = new NoTile();
+		hB.layers[WATER_LAYER] = new NoTile();
+		hB.layers[LIGHT_DIRT_LAYER] = tile.createNew();
 	}
 }

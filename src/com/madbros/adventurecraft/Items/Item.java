@@ -2,8 +2,8 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import org.newdawn.slick.Color;
-
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.*;
@@ -15,6 +15,7 @@ public abstract class Item {
 	public int numberProducedByCrafting = 0;
 	public int[] itemsPossiblyCraftable = {};
 	public int[] craftCost = {};
+	public boolean is32 = false;
 	
 	public StaticSprite sprite;
 	
@@ -26,14 +27,15 @@ public abstract class Item {
 		sprite.draw(x-ITEM_SIZE/2, y-ITEM_SIZE/2, Z_INV_ITEMS);
 	}
 	
-	public void renderFont(int x, int y) {
+	public void renderFont(int x, int y, SpriteBatch batch) {
 		Color c = new Color(1.0f, 1.0f, 1.0f, 0.8f);
+		Sprites.pixel.setColor(c);
 		int adjX = x - 2; int adjY = y - 2;
 		if(stackSize < 10) adjX += 4;
 		
-		if(stackSize > 1) Sprites.font.drawString(adjX, adjY, String.valueOf(stackSize), c);
-		
-		Color.white.bind();
+		Sprites.font.setColor(Color.WHITE);
+		if(stackSize > 1) Sprites.font.draw(batch, String.valueOf(stackSize), adjX, adjY);
+		Sprites.pixel.setColor(Color.WHITE);
 	}
 	
 	public void useRight() {

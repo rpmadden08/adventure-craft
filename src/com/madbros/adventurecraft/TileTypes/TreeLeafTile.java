@@ -9,13 +9,15 @@ public class TreeLeafTile extends CollisionTile {
 	public TreeLeafTile() {
 		super();
 		currentSpriteId = 0;
-		sprites = Sprites.treeLeafSprites;
+		sprites = Sprites.spriteCollections.get(Sprites.TREE_TWO);
 
 		margin = new Margin(9, 9, 12, 11);
 		id = TREE_LEAF;
 		layer = ABOVE_LAYER_1;
 		z = Z_ABOVE_LAYER;
 		isDiggable = false;
+		isAutoTileable = false;
+		autoTile = 0;
 	}
 	
 //	@Override

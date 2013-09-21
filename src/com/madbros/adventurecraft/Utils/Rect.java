@@ -43,6 +43,10 @@ public class Rect {
 	
 	public int h() { return h; }
 	
+	public int midX() { return x + w/2; }
+	
+	public int midY() { return y + h/2; }
+	
 	public boolean detectCollision(Rect r) {
 		if(!(x1() >= r.x2() || x2() <= r.x1() || y2() <= r.y1() || y1() >= r.y2())) {
 			return true;

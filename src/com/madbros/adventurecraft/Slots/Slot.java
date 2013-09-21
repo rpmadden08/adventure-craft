@@ -2,8 +2,7 @@ package com.madbros.adventurecraft.Slots;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import org.newdawn.slick.*;
-
+import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Items.*;
 import com.madbros.adventurecraft.Sprites.*;
@@ -32,9 +31,9 @@ public class Slot {
 		slotSprite.draw(slotRect, Z_INV_SLOTS);
 		
 		if(isHighlighted) {
-			highlightColor.bind();
+			Sprites.pixel.setColor(highlightColor);
 			highlighter.draw(slotRect, Z_INV_HIGHLIGHT);
-			Color.white.bind();
+			Sprites.pixel.setColor(Color.WHITE);
 		}
 		
 		item.render(slotRect);

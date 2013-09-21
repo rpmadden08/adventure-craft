@@ -7,13 +7,14 @@ import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 
-public class Sapling extends BlockItem {
+public class Sapling extends BlockItem32 {
 	public Sapling() {
 		id = SAPLING_ITEM;
 		tileId = SAPLING;
 		
-		placeableTileIds = new int[]{GRASS};
+		placeableTileIds = new int[]{GRASS, DIRT, DARK_DIRT};
 		sprite = Sprites.sprites.get(Sprites.SAPLING);
+		
 	}
 	
 	@Override

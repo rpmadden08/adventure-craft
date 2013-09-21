@@ -2,9 +2,8 @@ package com.madbros.adventurecraft;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.GameObjects.Hero;
@@ -24,8 +23,8 @@ public class Inventory {
 	
 	public Item heldItem = new NoItem();
 	public int itemSelected = 0;
-	public boolean isUsingItemRight = false;
-	public boolean isUsingItemLeft = false;
+	public boolean isUsingRightItem = false;
+	public boolean isUsingLeftItem = false;
 	
 	public Inventory() {
 		for(int i = 0; i < INV_LENGTH; i++) {
@@ -57,7 +56,8 @@ public class Inventory {
 		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +160,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +210,BOOTS_SLOT);
 		
-		invBar[0].item = new IronBoots();
+		invBar[0].item = new CampfireItem();
+		invBar[0].item.stackSize = 99;
 		invBar[1].item = new IronArmor();
 		invBar[2].item = new Log();
 		invBar[2].item.stackSize = 99;
@@ -79,10 +79,20 @@ public class Inventory {
 	}
 	
 	public void update() {
-		if(Mouse.isButtonDown(LEFT_MOUSE_BUTTON)) invBar[itemSelected].item.useLeft();
-		if(Mouse.isButtonDown(RIGHT_MOUSE_BUTTON)) invBar[itemSelected].item.useRight();
+		if(isUsingLeftItem) invBar[itemSelected].item.useLeft();
+		if(isUsingRightItem) invBar[itemSelected].item.useRight();
 	}
-
+	
+	public void useItem(int button) {
+		if(button == Input.Buttons.LEFT) isUsingLeftItem = true;
+		if(button == Input.Buttons.RIGHT) isUsingRightItem = true;
+	}
+	
+	public void stopUsingItem(int button) {
+		if(button == Input.Buttons.LEFT) isUsingLeftItem = false;
+		if(button == Input.Buttons.RIGHT) isUsingRightItem = false;
+	}
+	
 	public void mouseWheelDidIncrement() {
 		if(itemSelected > 0) itemSelected -= 1;
 		else itemSelected = invBar.length - 1;
@@ -94,14 +104,16 @@ public class Inventory {
 	}
 	
 	public void changeSelectedItemTo(int key) {
-		if(key == Keyboard.KEY_1) itemSelected = 0;
-		else if(key == Keyboard.KEY_2) itemSelected = 1;
-		else if(key == Keyboard.KEY_3) itemSelected = 2;
-		else if(key == Keyboard.KEY_4) itemSelected = 3;
-		else if(key == Keyboard.KEY_5) itemSelected = 4;
-		else if(key == Keyboard.KEY_6) itemSelected = 5;
-		else if(key == Keyboard.KEY_7) itemSelected = 6;
-		else if(key == Keyboard.KEY_8) itemSelected = 7;
+		if(key == Keys.NUM_1) itemSelected = 0;
+		else if(key == Keys.NUM_2) itemSelected = 1;
+		else if(key == Keys.NUM_3) itemSelected = 2;
+		else if(key == Keys.NUM_4) itemSelected = 3;
+		else if(key == Keys.NUM_5) itemSelected = 4;
+		else if(key == Keys.NUM_6) itemSelected = 5;
+		else if(key == Keys.NUM_7) itemSelected = 6;
+		else if(key == Keys.NUM_8) itemSelected = 7;
+		else if(key == Keys.NUM_9) itemSelected = 8;
+		else if(key == Keys.NUM_0) itemSelected = 9;
 	}
 	
 	public void deleteItemIfNecessary() {

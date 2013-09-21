@@ -2,6 +2,7 @@ package com.madbros.adventurecraft.Menus;
 
 import java.io.File;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Game;
 import static com.madbros.adventurecraft.Constants.*;
 
@@ -16,12 +17,12 @@ public class LoadGameMenu extends Menu {
 	SelectUIButton[] selectUIButtons;
 	SelectUIButton  currentlySelectedButton;
 	
-	public LoadGameMenu() {
-		super();
+	public LoadGameMenu(SpriteBatch batch) {
+		super(batch);
 	}
 
 	@Override
-	public void setupMenu() {
+	public void setupMenu(SpriteBatch batch) {
 		Game.createSavesFolderIfNecessary();
 		File folder = new File(SAVE_LOC);
 		File[] listOfFiles = folder.listFiles();
@@ -46,7 +47,7 @@ public class LoadGameMenu extends Menu {
 
 		menuButtons = new UIButton[functions.length];
 		for(int i = 0; i < functions.length; i++) {
-			menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i]);
+			menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i], batch);
 		}
 		
 
@@ -55,15 +56,15 @@ public class LoadGameMenu extends Menu {
 		
 		selectUIButtons = new SelectUIButton[saveFolders.length];
 		for(int i = 0; i < selectUIButtons.length; i++) {
-			selectUIButtons[i] = new SelectUIButton(r1.x, r1.y + i * (r1.h + marginY), r1.w, r1.h, saveFolders[i]);
+			selectUIButtons[i] = new SelectUIButton(r1.x, r1.y + i * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
 		}
 	}
 	
 	@Override
-	public void handleMouseInput(boolean leftMouseButtonPressed, boolean leftMouseButtonUp) {
-		super.handleMouseInput(leftMouseButtonPressed, leftMouseButtonUp);
+	public void handleMouseInput(boolean leftMousePressed, boolean leftMouseReleased) {
+		super.handleMouseInput(leftMousePressed, leftMouseReleased);
 		for(int i = 0; i < selectUIButtons.length; i++) {
-			boolean didPressDown = selectUIButtons[i].handleMouseInput(leftMouseButtonPressed, leftMouseButtonUp);
+			boolean didPressDown = selectUIButtons[i].handleMouseInput(leftMousePressed, leftMouseReleased);
 			if(didPressDown) {
 				if(currentlySelectedButton != null && currentlySelectedButton != selectUIButtons[i]) currentlySelectedButton.buttonIsPressedDown = false;
 				currentlySelectedButton = selectUIButtons[i];
@@ -93,6 +94,6 @@ public class LoadGameMenu extends Menu {
 	}
 	
 	public void cancel() {
-		MainMenuState.cancel();
+		MainMenuState.cancel(Game.batch);
 	}
 }

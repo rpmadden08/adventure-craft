@@ -11,14 +11,16 @@ public class TreeTile extends CollisionTile {
 	
 	public TreeTile() {
 		super();
-		currentSpriteId = 0;
-		sprites = Sprites.treeSprites;
+		currentSpriteId = 5;
+		sprites = Sprites.spriteCollections.get(Sprites.TREE_TWO);
 		margin = new Margin(9, 9, 12, 11);	//3, 3, 0, 12
 
 		id = TREE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
 		isDiggable = false;
+		isAutoTileable = false;
+		autoTile = 0;
 	}
 	
 	@Override
@@ -39,24 +41,17 @@ public class TreeTile extends CollisionTile {
 			activeBlocks[x][y].isUnfinished = true;
 		} else {
 			activeBlocks[x][y].isUnfinished = false;
-			int[] xs = {x, x-1, x-1, x, x+1, x+1};
-			int[] ys = {y, y, y-1, y-1, y-1, y};
+			int[] xs = {x-1, x, x+1,x-1, x, x+1,x-1, x, x+1,x-1, x, x+1};
+			int[] ys = {y,   y, y  , y-1, y-1, y-1, y-2,y-2,y-2,y-3,y-3,y-3};
+			int[] tileLayer = {OBJECT_LAYER, OBJECT_LAYER, OBJECT_LAYER, TREE_LEFT_1, ABOVE_LAYER_1, TREE_RIGHT_1, TREE_LEFT_2, ABOVE_LAYER_2, TREE_RIGHT_2, TREE_LEFT_3, ABOVE_LAYER_3, TREE_RIGHT_3};
 			
-			for(int i = 0; i < 6; i++) {
+			for(int i = 11; i > 3; i--) {
 				//System.out.println(xs[i]+" "+ys[i]);
 				b = activeBlocks[xs[i]][ys[i]];
-				if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR && b.layers[ABOVE_LAYER_3].id != AIR && b.layers[ABOVE_LAYER_4].id != AIR && b.layers[ABOVE_LAYER_5].id != AIR) layer = ABOVE_LAYER_6;
-				else if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR && b.layers[ABOVE_LAYER_3].id != AIR && b.layers[ABOVE_LAYER_4].id != AIR) layer = ABOVE_LAYER_5;
-				else if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR && b.layers[ABOVE_LAYER_3].id != AIR) layer = ABOVE_LAYER_4;
-				else if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR) layer = ABOVE_LAYER_3;
-				else if(b.layers[ABOVE_LAYER_1].id != AIR) layer = ABOVE_LAYER_2;
-				else layer = ABOVE_LAYER_1;
-				b.layers[layer] = new TreeLeafTile(); 
-				b.layers[layer].currentSpriteId = i;
-				b.layers[layer].z = Z_ABOVE_LAYER;
+				b.layers[tileLayer[i]] = new TreeLeafTile(); 
+				b.layers[tileLayer[i]].currentSpriteId = i;
+				b.layers[tileLayer[i]].z = Z_ABOVE_LAYER;
 			}
-			
 		}
-		
 	}
 }

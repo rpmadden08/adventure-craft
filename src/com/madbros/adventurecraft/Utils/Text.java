@@ -1,19 +1,25 @@
 package com.madbros.adventurecraft.Utils;
 
-import org.newdawn.slick.*;
-
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 
 public class Text {
-	private Font f;
+	private BitmapFont f;
 	private String s;
-	private int w;
-	private int h;
+	private float w;
+	private float h;
+	private SpriteBatch batch;
 	
-	public Text(Font f, String s) {
+	public Text(BitmapFont f, String s, SpriteBatch batch) {
 		this.f = f;
 		this.s = s;
-		w = f.getWidth(s);
-		h = f.getHeight(s);
+		this.batch = batch;
+//		w
+		TextBounds b = f.getBounds(s);
+		w = b.width;
+		h = b.height;
 	}
 	
 	public String getString() {
@@ -22,31 +28,34 @@ public class Text {
 	
 	public void setString(String newString) {
 		s = newString;
-		w = f.getWidth(s);
-		h = f.getHeight(s);
+		TextBounds b = f.getBounds(s);
+		w = b.width;
+		h = b.height;
 	}
 	
 	public void drawString(Rect r, Color fontColor) {
-		f.drawString(r.x, r.y, s, fontColor);
+		f.setColor(fontColor);
+		f.draw(batch, s, r.x, r.y);
 	}
 	
 	public void drawCenter(Rect r, Color fontColor) {
-		f.drawString(r.x + r.w / 2 - w / 2, r.y + r.h / 2 - h / 2 - 1, s, fontColor);
+		f.setColor(fontColor);
+		f.draw(batch, s, r.x + r.w / 2 - w / 2, r.y + r.h / 2 - h / 2 - 1);
 	}
 	
 	public int getX(Rect r) {
-		return r.x + r.w / 2 - w / 2;
+		return (int)(r.x + r.w / 2 - w / 2);
 	}
 	
 	public int getY(Rect r) {
-		return r.y + r.h / 2 - h / 2;
+		return (int)(r.y + r.h / 2 - h / 2);
 	}
 	
 	public int getW() {
-		return w;
+		return (int)w;
 	}
 	
 	public int getH() {
-		return h;
+		return (int)h;
 	}
 }

@@ -19,5 +19,6 @@ void main() {
 	vec2 lighCoord = (gl_FragCoord.xy / resolution.xy);
 	vec4 Light = texture2D(u_lightmap, lighCoord);
 	
+	
 	gl_FragColor = vColor * Light;
 }

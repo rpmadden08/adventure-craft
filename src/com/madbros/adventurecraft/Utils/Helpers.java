@@ -1,7 +1,5 @@
 package com.madbros.adventurecraft.Utils;
 
-import org.lwjgl.input.Mouse;
-
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
@@ -9,11 +7,11 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 public class Helpers {		
 	//wrappers for mouse stuff since display thinks y starts at the bottom...
 	public static int getX() {
-		return Mouse.getX();
+		return Game.currentState.input.mouseX;
 	}
 	
 	public static int getY() {
-		return Game.currentScreenSizeY - Mouse.getY();
+		return Game.currentState.input.mouseY; //Game.currentScreenSizeY - Mouse.getY();
 	}
 	
 	public static Rect getMouseRect() {

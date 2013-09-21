@@ -6,7 +6,6 @@ import static com.madbros.adventurecraft.Constants.*;
 import java.io.File;
 import java.util.ArrayList;
 
-import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Point;
@@ -65,52 +64,99 @@ public class Level {
 		}
 		
 
-		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
+		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 	}
 	
 	public void bloomChunk(int startX, int startY, int chunkX, int chunkY) {
-		Block[][] chunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
-		
-		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
-			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
-				if(activeBlocks[x][y].isUnfinished == true) {
-					//System.out.println("SOMETHING");
-					//System.out.println(x+","+y);
-					activeBlocks[x][y].layers[OBJECT_LAYER].bloom(x,y, activeBlocks);	
-				}	
-			}
-		}
-		int x2 = 0;
-		int y2 = 0;
-		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
-			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
-				chunk[x2][y2] = activeBlocks[x][y];
-            	y2++;
-			}
-			x2++; y2 = 0;
-		}
-		
-		saveGame.saveChunk(chunk, chunkX, chunkY);
-		//System.out.println(chunkRect.x + i+","+ chunkRect.y + j);
+//		Block[][] chunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
+//		
+//		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
+//			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
+//				if(activeBlocks[x][y].isUnfinished == true) {
+//					//System.out.println("SOMETHING");
+//					//System.out.println(x+","+y);
+//					activeBlocks[x][y].layers[OBJECT_LAYER].bloom(x,y, activeBlocks);	
+//				}	
+//			}
+//		}
+//		int x2 = 0;
+//		int y2 = 0;
+//		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
+//			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
+//				chunk[x2][y2] = activeBlocks[x][y];
+//            	y2++;
+//			}
+//			x2++; y2 = 0;
+//		}
+//		
+//		saveGame.saveChunk(chunk, chunkX, chunkY);
+//		//System.out.println(chunkRect.x + i+","+ chunkRect.y + j);
 	}
 	
-	private void highlightBlock() {
-		if(highlightedBlock != null) highlightedBlock.isHighlighted = false;
+	private void highlight64() {
+		if(highlightedBlock != null) {
+			highlightedBlock.isHighlighted = false;
+			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = false;
+			activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = false;
+			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = false;
+		}
 		Rect mRect = Helpers.getMouseRect();
 		highlightedBlockX = renderRect.x + (mRect.x + offsetX) / TILE_SIZE;
 		
 		highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
-		highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
 		
-		//autoTileHighlightedBlock();
-//		System.out.println(activeBlocks[highlightedBlockX][highlightedBlockY].layers[OBJECT_LAYER].sprites);
-		//System.out.println("HILITE: "+highlightedBlockX+","+highlightedBlockY);
+		if(highlightedBlockX % 2 == 0 && highlightedBlockY % 2 == 0) {
+			
+		} else if (highlightedBlockX % 2 == 1 && highlightedBlockY % 2 == 0) {
+			highlightedBlockX--;
+		} else if (highlightedBlockX % 2 == 0 && highlightedBlockY % 2 == 1) {
+			highlightedBlockY--;
+		} else {
+			highlightedBlockX--;
+			highlightedBlockY--;
+		}
+		
+		highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
 		
 		if(tileBeingAttacked != highlightedBlock.getTopTile()) {
 			tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
 			tileBeingAttacked = highlightedBlock.getTopTile();
 		}
 		highlightedBlock.isHighlighted = true;
+		activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = true;
+		activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = true;
+		activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = true;
+	}
+	
+	private void highlight32() {
+		if(highlightedBlock != null) {
+			highlightedBlock.isHighlighted = false;
+			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = false;
+			activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = false;
+			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = false;
+		}
+		
+		
+		Rect mRect = Helpers.getMouseRect();
+		highlightedBlockX = renderRect.x + (mRect.x + offsetX) / TILE_SIZE;
+		highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
+		
+		highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
+		
+		if(tileBeingAttacked != highlightedBlock.getTopTile()) {
+			tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
+			tileBeingAttacked = highlightedBlock.getTopTile();
+		}
+		highlightedBlock.isHighlighted = true;
+	}
+	
+	private void highlightBlock() {
+		if(Game.inventory.invBar[Game.inventory.itemSelected].item.is32 == true) {
+			highlight32();
+		} else {
+			highlight64();
+		}
+		
 	}
 	
 	public void update() {
@@ -134,29 +180,29 @@ public class Level {
 		}
 	}
 	
-	public void render() {
-		int i = 0; int j = 0;
-		test.x = 0;
-		test.y = 0;
-		for(int x = renderRect.x; x < renderRect.x2(); x++) {
-			for(int y = renderRect.y; y < renderRect.y2(); y++) {
-				test.y += 1;
-				if(x < activeBlocks.length && y < activeBlocks[0].length && x >= 0 && y >= 0) {
-					activeBlocks[x][y].render(TILE_SIZE * i - offsetX, TILE_SIZE * j - offsetY);
-					
-					if(Game.debugMenu.chunkBoundariesAreOn) {
-						if(x % CHUNK_SIZE == 0) Sprites.pixel.draw(TILE_SIZE * i - offsetX,
-												TILE_SIZE * j - offsetY, Z_BOUNDARIES, 1, TILE_SIZE);
-						if(y % CHUNK_SIZE == 0) Sprites.pixel.draw(TILE_SIZE * i - offsetX,
-												TILE_SIZE * j - offsetY, Z_BOUNDARIES, TILE_SIZE, 1);
-					}
-				}
-				j++;
-			}
-			test.x += 1; test.y = 0;
-			i++; j = 0;
-		}
-	}
+//	public void render() {
+//		int i = 0; int j = 0;
+//		test.x = 0;
+//		test.y = 0;
+//		for(int x = renderRect.x; x < renderRect.x2(); x++) {
+//			for(int y = renderRect.y; y < renderRect.y2(); y++) {
+//				test.y += 1;
+//				if(x < activeBlocks.length && y < activeBlocks[0].length && x >= 0 && y >= 0) {
+//					activeBlocks[x][y].render(TILE_SIZE * i - offsetX, TILE_SIZE * j - offsetY);
+//					
+//					if(Game.debugMenu.chunkBoundariesAreOn) {
+//						if(x % CHUNK_SIZE == 0) Sprites.pixel.draw(TILE_SIZE * i - offsetX,
+//												TILE_SIZE * j - offsetY, Z_BOUNDARIES, 1, TILE_SIZE);
+//						if(y % CHUNK_SIZE == 0) Sprites.pixel.draw(TILE_SIZE * i - offsetX,
+//												TILE_SIZE * j - offsetY, Z_BOUNDARIES, TILE_SIZE, 1);
+//					}
+//				}
+//				j++;
+//			}
+//			test.x += 1; test.y = 0;
+//			i++; j = 0;
+//		}
+//	}
 
 	public void getNorthernChunks() {
 		renderRect.y += CHUNK_SIZE;
@@ -174,7 +220,7 @@ public class Level {
 			}
 		}
 		
-		autoTileNewArea(1, 1, TILES_PER_ROW-1, CHUNK_SIZE+1);
+		autoTileNewArea(2, 2, TILES_PER_ROW-2, CHUNK_SIZE+2);
 	}
 	
 	public void getSouthernChunks() {
@@ -192,7 +238,7 @@ public class Level {
 				bloomChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
 			}
 		}
-		autoTileNewArea(1, TILES_PER_ROW-CHUNK_SIZE-1, TILES_PER_ROW-1, TILES_PER_ROW-1);
+		autoTileNewArea(2, TILES_PER_ROW-CHUNK_SIZE-2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 	}
 	
 	public void getEasternChunks() {
@@ -210,7 +256,7 @@ public class Level {
 				bloomChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
 			}
 		}
-		autoTileNewArea(TILES_PER_ROW-CHUNK_SIZE-1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
+		autoTileNewArea(TILES_PER_ROW-CHUNK_SIZE-2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 	}
 
 	public void getWesternChunks() {
@@ -228,7 +274,7 @@ public class Level {
 				bloomChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
 			}
 		}
-		autoTileNewArea(1, 1, CHUNK_SIZE+1, TILES_PER_ROW-1);
+		autoTileNewArea(2, 2, CHUNK_SIZE+2, TILES_PER_ROW-2);
 	}
 	
 	public void shiftActiveBlocksArray(int dir) {
@@ -251,29 +297,61 @@ public class Level {
 		}
 	}
 	
-	public Block createNewBlock(int x, int y, int chunkX, int chunkY) {
-		Block block;
-		noise = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+x) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+y) / (float)size, 0);
-		int absX = x*TILE_SIZE+chunkX*CHUNK_SIZE*TILE_SIZE;
-		int absY = y*TILE_SIZE+chunkY*CHUNK_SIZE*TILE_SIZE;
+	public void createNewBlock(int i, int j, int chunkX, int chunkY, int x, int y) {
+		Block block;  //top left
+		Block block2; //top right
+		Block block3; //bottom left
+		Block block4; //bottom right
+		
+		noise = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
+		int absX = i*TILE_SIZE+chunkX*CHUNK_SIZE*TILE_SIZE;
+		int absY = j*TILE_SIZE+chunkY*CHUNK_SIZE*TILE_SIZE;
 		
 		if(noise < -0.1) {
-			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
+			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
+			Tile[] waterTile2 = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
+			Tile[] waterTile3 = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
+			Tile[] waterTile4 = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
     		block = new Block(waterTile, absX, absY, false);
+    		block2 = new Block(waterTile2, absX+TILE_SIZE, absY, false);
+    		block3 = new Block(waterTile3, absX, absY+TILE_SIZE, false);
+    		block4 = new Block(waterTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
     	} else if(noise > 0.1) {
 		//} else if(noise < 3000 && noise >-0.1) {
-	    	Tile[] dirtMountainTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
 	    	block = new Block(dirtMountainTile, absX, absY, true);
-	    	block.isUnfinished = true;
+	    	block2 = new Block(dirtMountainTile2, absX+TILE_SIZE, absY, true);
+	    	block3 = new Block(dirtMountainTile3, absX, absY+TILE_SIZE, true);
+	    	block4 = new Block(dirtMountainTile4, absX+TILE_SIZE, absY+TILE_SIZE, true);
+//	    	block.isUnfinished = true;
+//	    	block2.isUnfinished = true;
+//	    	block3.isUnfinished = true;
+//	    	block4.isUnfinished = true;
     	} 
 		else {
-    		Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
+			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
+			Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
+			Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
+			Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
     		block = new Block(grassTile, absX, absY, false);
+    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
+    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
+    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
     	}
 		block.noise = noise;
-//		block.mapHeight = noise;
+		block2.noise = noise;
+		block3.noise = noise;
+		block4.noise = noise;
+
+		activeBlocks[x][y] = block;
+		activeBlocks[x+1][y] = block2;
+		activeBlocks[x][y+1] = block3;
+		activeBlocks[x+1][y+1] = block4;
 		
-		return block;
+//		block.mapHeight = noise;
 	}
 	
 	public void secondIteration(int x, int y, int i, int j, int chunkX, int chunkY) {
@@ -303,26 +381,34 @@ public class Level {
 	
 	public Block autoTile(Block[][] blocks, Block block, int x, int y) {
 		for(int i = LIGHT_DIRT_LAYER; i < blocks[x][y].layers.length; i++) {
-			int left = 0, topLeft = 0, top = 0, topRight = 0, right = 0, bottomRight = 0, bottom = 0, bottomLeft = 0;
-			if(blocks[x-1][y-1].layers[i].id == block.layers[i].id) topLeft = 1;
-			if(blocks[x][y-1].layers[i].id == block.layers[i].id) top = 2;
-			if(blocks[x+1][y-1].layers[i].id == block.layers[i].id) topRight = 4;
-			if(blocks[x-1][y].layers[i].id == block.layers[i].id) left = 8;
-			if(blocks[x+1][y].layers[i].id == block.layers[i].id) right = 16;
-			if(blocks[x-1][y+1].layers[i].id == block.layers[i].id) bottomLeft = 32;
-			if(blocks[x][y+1].layers[i].id == block.layers[i].id) bottom = 64;
-			if(blocks[x+1][y+1].layers[i].id == block.layers[i].id) bottomRight = 128;
-			
-			block.layers[i].topLeftAutoTile = TOP_LEFT_AUTO_TILE_HASH.get(left + topLeft + top);
-			block.layers[i].topRightAutoTile = TOP_RIGHT_AUTO_TILE_HASH.get(right + topRight + top);
-			block.layers[i].bottomLeftAutoTile = BOTTOM_LEFT_AUTO_TILE_HASH.get(left + bottomLeft + bottom);
-			block.layers[i].bottomRightAutoTile = BOTTOM_RIGHT_AUTO_TILE_HASH.get(right + bottomRight + bottom);
-			
-			if(block.layers[i].topLeftAutoTile != MIDDLE_TILE || block.layers[i].topRightAutoTile != MIDDLE_TILE ||
-			   block.layers[i].bottomLeftAutoTile != MIDDLE_TILE || block.layers[i].bottomRightAutoTile != MIDDLE_TILE) {
-				block.layers[i].isMiddleTile = false;
-			} else {
-				block.layers[i].isMiddleTile = true;
+			if(block.layers[i].isAutoTileable) {
+				int left = 0, topLeft = 0, top = 0, topRight = 0, right = 0, bottomRight = 0, bottom = 0, bottomLeft = 0;
+				if(blocks[x-2][y-2].layers[i].id == block.layers[i].id) topLeft = 1;
+				if(blocks[x][y-2].layers[i].id == block.layers[i].id) top = 2;
+				if(blocks[x+2][y-2].layers[i].id == block.layers[i].id) topRight = 4;
+				if(blocks[x-2][y].layers[i].id == block.layers[i].id) left = 8;
+				if(blocks[x+2][y].layers[i].id == block.layers[i].id) right = 16;
+				if(blocks[x-2][y+2].layers[i].id == block.layers[i].id) bottomLeft = 32;
+				if(blocks[x][y+2].layers[i].id == block.layers[i].id) bottom = 64;
+				if(blocks[x+2][y+2].layers[i].id == block.layers[i].id) bottomRight = 128;
+				
+				block.layers[i].autoTile = TOP_LEFT_AUTO_TILE_HASH.get(left + topLeft + top);
+				blocks[x+1][y].layers[i].autoTile = TOP_RIGHT_AUTO_TILE_HASH.get(right + topRight + top);
+				blocks[x][y+1].layers[i].autoTile = BOTTOM_LEFT_AUTO_TILE_HASH.get(left + bottomLeft + bottom);
+				blocks[x+1][y+1].layers[i].autoTile = BOTTOM_RIGHT_AUTO_TILE_HASH.get(right + bottomRight + bottom);
+				
+				if(block.layers[i].autoTile != MIDDLE_TILE || blocks[x+1][y].layers[i].autoTile != MIDDLE_TILE ||
+				   blocks[x][y+1].layers[i].autoTile != MIDDLE_TILE || blocks[x+1][y+1].layers[i].autoTile != MIDDLE_TILE) {
+					block.layers[i].isMiddleTile = false;
+					blocks[x+1][y].layers[i].isMiddleTile = false;
+					blocks[x][y+1].layers[i].isMiddleTile = false;
+					blocks[x+1][y+1].layers[i].isMiddleTile = false;
+				} else {
+					block.layers[i].isMiddleTile = true;
+					blocks[x+1][y].layers[i].isMiddleTile = true;
+					blocks[x][y+1].layers[i].isMiddleTile = true;
+					blocks[x+1][y+1].layers[i].isMiddleTile = true;
+				}
 			}
 		}
 		return block;
@@ -348,9 +434,16 @@ public class Level {
 			//First Iteration (creates all the blocks)
 			for(int x = startX; x < startX+CHUNK_SIZE; x++) {
 				for(int y = startY; y < startY+CHUNK_SIZE; y++) {
-					Block block = createNewBlock(i, j, chunkX, chunkY);
-					chunk[i][j] = block;
-	            	activeBlocks[x][y] = block;
+					if(i % 2 == 0 && j % 2 == 0) {
+						createNewBlock(i, j, chunkX, chunkY, x, y);
+						chunk[i][j] = activeBlocks[x][y];
+						chunk[i+1][j] = activeBlocks[x+1][y];
+						chunk[i][j+1] = activeBlocks[x][y+1];
+						chunk[i+1][j+1] = activeBlocks[x+1][y+1];
+					}
+					
+//					chunk[i][j] = block;
+//	            	activeBlocks[x][y] = block;
 	            	j++;
 				}
 				i++; j = 0;
@@ -374,7 +467,9 @@ public class Level {
 	public void autoTileNewArea(int startX, int startY, int endX, int endY) {
 		for(int x = startX; x < endX; x++) {
 			for(int y = startY; y < endY; y++) {
-				activeBlocks[x][y] = autoTile(activeBlocks, activeBlocks[x][y], x, y);
+				if(x % 2 == 0 && y % 2 == 0) {
+					activeBlocks[x][y] = autoTile(activeBlocks, activeBlocks[x][y], x, y);
+				}
 			}
 		}
 	}
@@ -382,14 +477,14 @@ public class Level {
 	public void autoTileHighlightedBlock() {
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY], highlightedBlockX, highlightedBlockY);
 		
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX-1][highlightedBlockY-1], highlightedBlockX-1, highlightedBlockY-1);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY-1], highlightedBlockX, highlightedBlockY-1);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX+1][highlightedBlockY-1], highlightedBlockX+1, highlightedBlockY-1);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX-1][highlightedBlockY], highlightedBlockX-1, highlightedBlockY);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX+1][highlightedBlockY], highlightedBlockX+1, highlightedBlockY);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX-1][highlightedBlockY+1], highlightedBlockX-1, highlightedBlockY+1);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY+1], highlightedBlockX, highlightedBlockY+1);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX+1][highlightedBlockY+1], highlightedBlockX+1, highlightedBlockY+1);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY-2], highlightedBlockX-2, highlightedBlockY-2);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY-2], highlightedBlockX, highlightedBlockY-2);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY-2], highlightedBlockX+2, highlightedBlockY-2);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY], highlightedBlockX-2, highlightedBlockY);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY], highlightedBlockX+2, highlightedBlockY);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY+2], highlightedBlockX-2, highlightedBlockY+2);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY+2], highlightedBlockX, highlightedBlockY+2);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY+2], highlightedBlockX+2, highlightedBlockY+2);
 	}
 	
 	public void handleCollisions() {

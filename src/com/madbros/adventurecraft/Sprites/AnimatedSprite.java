@@ -2,6 +2,7 @@ package com.madbros.adventurecraft.Sprites;
 
 import java.util.HashMap;
 
+import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.Utils.*;
 
 public class AnimatedSprite extends Sprite {
@@ -67,6 +68,12 @@ public class AnimatedSprite extends Sprite {
 	
 	public int getCurrentAnimation() {
 		return currentAnimation.id;
+	}
+	
+	public void setColor(Color color) {
+		for(StaticSprite sprite : currentAnimation.sprites) {
+			sprite.setColor(color);
+		}
 	}
 	
 	public AnimatedSprite getCopy() {

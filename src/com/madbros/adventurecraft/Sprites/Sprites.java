@@ -1,18 +1,22 @@
 package com.madbros.adventurecraft.Sprites;
 
-import java.awt.Font;
+//import java.awt.Font;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
+//import java.io.InputStream;
 import java.util.HashMap;
 
-import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
-import org.newdawn.slick.util.ResourceLoader;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.stbtt.TrueTypeFontFactory;
+import com.madbros.adventurecraft.Game;
+//import org.newdawn.slick.TrueTypeFont;
+//import org.newdawn.slick.opengl.Texture;
+//import org.newdawn.slick.opengl.TextureLoader;
+//import org.newdawn.slick.util.ResourceLoader;
 
 import static com.madbros.adventurecraft.Constants.*;
 
@@ -21,6 +25,7 @@ import org.json.simple.parser.*;
 
 public class Sprites {
 	public static Texture atlas;
+	public static Texture lightAtlas;
 	
 	public static final String HUMAN_BASE = "1";
 	
@@ -52,10 +57,12 @@ public class Sprites {
 	public static final String LIGHT_DIRT = "lightDirt";
 	public static final String MOUNTAIN_BOTTOM = "mountainBottom";
 	public static final String MOUNTAIN_TOP = "mountainTop";
-	public static final String TREE = "tree";
+	public static final String TREE_TWO = "treeTwo";
 	public static final String WATER1 = "water";
 	public static final String WATER2 = "waterTwo";
 	public static final String INVENTORY_MENU = "inventoryMenu";
+	public static final String CAMPFIRE_SINGLE = "campfire0";
+	public static final String SAPLING_COLLECTION = "saplingCollection";
 	
 	//animated collections
 	public static final String CAMPFIRE_ANIMATION = "campfire";
@@ -122,12 +129,16 @@ public class Sprites {
 	public static StaticSprite[] saplingSprite;
 	public static StaticSprite[] treeSprites;
 	public static StaticSprite[] treeLeafSprites;
+	public static AnimatedSprite[] campfireAnimation;
+	
+	public static final String LIGHT = "light";
 	
 	//for debugging
 	public static StaticSprite collisionDebugger;
 	public static StaticSprite pixel;
 	
-	public static TrueTypeFont font;
+	public static BitmapFont font;
+	public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"«`'<>";
 	public static HashMap<String, StaticSprite> sprites = new HashMap<String, StaticSprite>();
 	public static HashMap<String, StaticSprite[]> spriteCollections = new HashMap<String, StaticSprite[]>();
 	public static HashMap<String, Animation> animations = new HashMap<String, Animation>();
@@ -144,9 +155,11 @@ public class Sprites {
 	}
 	
 	public Sprites() {
-		try {
-			atlas = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/atlas.png"), GL11.GL_NEAREST);
+			atlas = new Texture("res/atlas.png"); //TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/atlas.png"), GL11.GL_NEAREST);
+			lightAtlas = new Texture("res/lightAtlas.png");
 			//atlas2 = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/atlas2.png"), GL11.GL_NEAREST);
+			Texture[] atlasArray = {atlas,lightAtlas};
+			String[] atlasStringArray = {"atlas.json", "lightAtlas.json"};
 			
 			String[] names = {DARK_DIRT, INVENTORY_MENU, INVENTORY_MENU_SELECTOR, 
 					INVENTORY_MENU_SLOT, PIXEL, SHOVEL_ITEM, LOG_ITEM, PLANK_ITEM,
@@ -165,75 +178,85 @@ public class Sprites {
 					PLATE_LEGS_STAND_LEFT, PLATE_LEGS_STAND_RIGHT, PLATE_LEGS_STAND_UP,
 					PLATE_TORSO_WALK_DOWN, PLATE_TORSO_WALK_LEFT, PLATE_TORSO_WALK_RIGHT,
 					PLATE_TORSO_WALK_UP, PLATE_TORSO_STAND_DOWN, PLATE_TORSO_STAND_LEFT,
-					PLATE_TORSO_STAND_RIGHT, PLATE_TORSO_STAND_UP, TREE, STUMP
+					PLATE_TORSO_STAND_RIGHT, PLATE_TORSO_STAND_UP, TREE_TWO, STUMP,
+					CAMPFIRE_ANIMATION, CAMPFIRE_SINGLE, SAPLING_COLLECTION
 			};
-
-			try {
-				JSONParser parser = new JSONParser();
-				Object f = parser.parse(new FileReader("res/atlas.json"));
-				JSONObject obj = (JSONObject) f;
-				
-				for(String name : names) {
-					JSONObject sprite = (JSONObject) obj.get(name);
-					if(sprite.get("type").equals("single")) {
-						StaticSprite s = new StaticSprite(atlas,
-								getInteger(sprite.get("x")), getInteger(sprite.get("y")),
-								getInteger(sprite.get("width")), getInteger(sprite.get("height")),
-								getInteger(sprite.get("offsetX")), getInteger(sprite.get("offsetY"))
-							);
-						
-						sprites.put(name, s);
-					}
-					
-					if(sprite.get("type").equals("static")) {
-						JSONArray spts = (JSONArray) sprite.get("sprites");
-						StaticSprite[] sList = new StaticSprite[spts.size()];
-						
-						for(int i = 0; i < sList.length; i++) {
-							JSONObject s = (JSONObject) spts.get(i);
-							sList[i] = new StaticSprite(atlas,
-									getInteger(s.get("x")), getInteger(s.get("y")),
-									getInteger(s.get("width")), getInteger(s.get("height")),
-									getInteger(s.get("offsetX")), getInteger(s.get("offsetY"))
-								);
-						}
-						
-						spriteCollections.put(name, sList);
-					}
-					
-					if(sprite.get("type").equals("animated")) {
-						JSONArray spts = (JSONArray) sprite.get("sprites");
-						StaticSprite[] sList = new StaticSprite[spts.size()];
-						int[] frameTimes = new int[spts.size()];
-						
-						for(int i = 0; i < sList.length; i++) {
-							JSONObject s = (JSONObject) spts.get(i);
-							sList[i] = new StaticSprite(atlas,
-									getInteger(s.get("x")), getInteger(s.get("y")),
-									getInteger(s.get("width")), getInteger(s.get("height")),
-									getInteger(s.get("offsetX")), getInteger(s.get("offsetY"))
-								);
-							frameTimes[i] = getInteger(sprite.get("frameTime"));
-						}
-						
-						
-						animations.put(name, new Animation(sList, frameTimes, 0));
-						spriteCollections.put(name, sList);
-					}
-				}
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
 			
+			String[] lightNames = {LIGHT};
+			String[][] nameArrays = {names, lightNames};
+			for(int r = 0; r<atlasArray.length; r++) {
+				
+		
+				try {
+					JSONParser parser = new JSONParser();
+					Object f = parser.parse(new FileReader("res/"+atlasStringArray[r]));
+					JSONObject obj = (JSONObject) f;
+					
+					for(String name : nameArrays[r]) {
+						JSONObject sprite = (JSONObject) obj.get(name);
+						if(sprite.get("type").equals("single")) {
+							StaticSprite s = new StaticSprite(atlasArray[r],
+									getInteger(sprite.get("x")), getInteger(sprite.get("y")),
+									getInteger(sprite.get("width")), getInteger(sprite.get("height")),
+									getInteger(sprite.get("offsetX")), getInteger(sprite.get("offsetY")), Game.batch
+								);
+							
+							sprites.put(name, s);
+						}
+						
+						if(sprite.get("type").equals("static")) {
+							JSONArray spts = (JSONArray) sprite.get("sprites");
+							StaticSprite[] sList = new StaticSprite[spts.size()];
+							
+							for(int i = 0; i < sList.length; i++) {
+								JSONObject s = (JSONObject) spts.get(i);
+								sList[i] = new StaticSprite(atlasArray[r],
+										getInteger(s.get("x")), getInteger(s.get("y")),
+										getInteger(s.get("width")), getInteger(s.get("height")),
+										getInteger(s.get("offsetX")), getInteger(s.get("offsetY")), Game.batch
+									);
+							}
+							
+							spriteCollections.put(name, sList);
+						}
+						
+						if(sprite.get("type").equals("animated")) {
+							JSONArray spts = (JSONArray) sprite.get("sprites");
+							StaticSprite[] sList = new StaticSprite[spts.size()];
+							int[] frameTimes = new int[spts.size()];
+							
+							for(int i = 0; i < sList.length; i++) {
+								JSONObject s = (JSONObject) spts.get(i);
+								sList[i] = new StaticSprite(atlasArray[r],
+										getInteger(s.get("x")), getInteger(s.get("y")),
+										getInteger(s.get("width")), getInteger(s.get("height")),
+										getInteger(s.get("offsetX")), getInteger(s.get("offsetY")), Game.batch
+									);
+								frameTimes[i] = getInteger(sprite.get("frameTime"));
+							}
+							
+							
+							animations.put(name, new Animation(sList, frameTimes, 0));
+							spriteCollections.put(name, sList);
+						}
+					}
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
 			waterSprites = new AnimatedSprite[13];
 			for(int i = 0; i < waterSprites.length; i++) {
 				Animation waterAnimation = new Animation(new StaticSprite[]{spriteCollections.get(WATER1)[i], spriteCollections.get(WATER2)[i]}, 800, i);
 				waterSprites[i] = new AnimatedSprite(waterAnimation);
 			}
+			
+			Animation animation = animations.get(CAMPFIRE_ANIMATION);
+			animation.id = 0;
+			campfireAnimation = new AnimatedSprite[]{new AnimatedSprite(animation)};
 			
 			pixel = sprites.get(PIXEL);
 			
@@ -242,20 +265,20 @@ public class Sprites {
 			saplingSprite = new StaticSprite[]{Sprites.sprites.get(STUMP)};
 			
 			treeLeafSprites = new StaticSprite[6];
-			treeLeafSprites[0] = new StaticSprite(atlas, 16, 608, 64, 31);
-			treeLeafSprites[1] = new StaticSprite(atlas, 1, 608, 15, 25, 49, 0);
-			treeLeafSprites[2] = new StaticSprite(atlas, 2, 560, 14, 48, 50, 16);
-			treeLeafSprites[3] = new StaticSprite(atlas, 16, 560, 64, 48, 0, 16);
-			treeLeafSprites[4] = new StaticSprite(atlas, 80, 560, 13, 48, 0, 16); 
-			treeLeafSprites[5] = new StaticSprite(atlas, 80, 608, 14, 26);
+			treeLeafSprites[0] = new StaticSprite(atlas, 16, 608, 64, 31, Game.batch);
+			treeLeafSprites[1] = new StaticSprite(atlas, 1, 608, 15, 25, 49, 0, Game.batch);
+			treeLeafSprites[2] = new StaticSprite(atlas, 2, 560, 14, 48, 50, 16, Game.batch);
+			treeLeafSprites[3] = new StaticSprite(atlas, 16, 560, 64, 48, 0, 16, Game.batch);
+			treeLeafSprites[4] = new StaticSprite(atlas, 80, 560, 13, 48, 0, 16, Game.batch); 
+			treeLeafSprites[5] = new StaticSprite(atlas, 80, 608, 14, 26, Game.batch);
 			
 			treeSprites = new StaticSprite[1];
-			treeSprites[0] = new StaticSprite(atlas, 16, 672, 64, 64);
+			treeSprites[0] = new StaticSprite(atlas, 16, 672, 64, 64, Game.batch);
 			
-			buttonSprite = new StaticSprite(atlas, 1024-189, 1024-64, 66, 32);
-			pressedButtonSprite = new StaticSprite(atlas, 1024-189, 1024-32, 66, 32);
+			buttonSprite = new StaticSprite(atlas, 1024-189, 1024-64, 66, 32, Game.batch);
+			pressedButtonSprite = new StaticSprite(atlas, 1024-189, 1024-32, 66, 32, Game.batch);
 			
-			collisionDebugger = new StaticSprite(atlas, 0, 32, TEXTURE_SIZE, TEXTURE_SIZE);
+			collisionDebugger = new StaticSprite(atlas, 0, 32, TEXTURE_SIZE, TEXTURE_SIZE, Game.batch);
 			
 			int[] animationIds = {STAND_DOWN, STAND_RIGHT, STAND_UP, STAND_LEFT, WALK_DOWN, WALK_RIGHT, WALK_UP, WALK_LEFT};
 			Animation[] animations = new Animation[animationIds.length];
@@ -263,48 +286,6 @@ public class Sprites {
 			Animation[] chest = new Animation[animationIds.length];
 			Animation[] pants = new Animation[animationIds.length];
 			Animation[] boots = new Animation[animationIds.length];
-			
-			int sX = 0; int sY = 96;
-			
-			for(int i = 0; i < 4; i ++) {
-				StaticSprite[] frames = new StaticSprite[4];
-				StaticSprite[] helmetFrames = new StaticSprite[4];
-				StaticSprite[] chestFrames = new StaticSprite[4];
-				StaticSprite[] pantFrames = new StaticSprite[4];
-				StaticSprite[] bootFrames = new StaticSprite[4];
-				
-
-				for(int j = 0; j < 4; j++) {
-					if(j == 1) {
-						animations[i] = new Animation(new StaticSprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
-						helmet[i] = new Animation(new StaticSprite(atlas, sX+192 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
-						chest[i] = new Animation(new StaticSprite(atlas, sX+384 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
-						pants[i] = new Animation(new StaticSprite(atlas, sX+576 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
-						boots[i] = new Animation(new StaticSprite(atlas, sX+768 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE), 400, animationIds[i]);
-					} 
-					
-					if(j == 1 || j == 3) {
-						frames[j] = new StaticSprite(atlas, sX + CHARACTER_SIZE, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
-						helmetFrames[j] = new StaticSprite(atlas, sX+192 + CHARACTER_SIZE, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
-						chestFrames[j] = new StaticSprite(atlas, sX+384 + CHARACTER_SIZE, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
-						pantFrames[j] = new StaticSprite(atlas, sX+576 + CHARACTER_SIZE, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
-						bootFrames[j] = new StaticSprite(atlas, sX+768 + CHARACTER_SIZE, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
-					}
-					else {
-						frames[j] = new StaticSprite(atlas, sX + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
-						helmetFrames[j] = new StaticSprite(atlas, sX+192 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
-						chestFrames[j] = new StaticSprite(atlas, sX+384 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
-						pantFrames[j] = new StaticSprite(atlas, sX+576 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
-						bootFrames[j] = new StaticSprite(atlas, sX+768 + CHARACTER_SIZE * j, sY + CHARACTER_SIZE * i, CHARACTER_SIZE, CHARACTER_SIZE);
-					}
-				}
-
-				animations[i+4] = new Animation(frames, 200, animationIds[i+4]);
-				helmet[i+4] = new Animation(helmetFrames, 200, animationIds[i+4]);
-				chest[i+4] = new Animation(chestFrames, 200, animationIds[i+4]);
-				pants[i+4] = new Animation(pantFrames, 200, animationIds[i+4]);
-				boots[i+4] = new Animation(bootFrames, 200, animationIds[i+4]);
-			}
 			
 			animations = new Animation[]{
 					Sprites.animations.get(MALE_STAND_UP),
@@ -382,25 +363,24 @@ public class Sprites {
 			animatedSprites.put(PLATE_FEET_ITEM, animatedBoots);
 			
 			fireAnimationSprites = new StaticSprite[4];
-			fireAnimationSprites[0] = new StaticSprite(atlas, 0, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4);
-			fireAnimationSprites[1] = new StaticSprite(atlas, 64, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4);
-			fireAnimationSprites[2] = new StaticSprite(atlas, 128, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4);
-			fireAnimationSprites[3] = new StaticSprite(atlas, 192, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4);
-
-		} catch (IOException e) {
-			throw new RuntimeException("Couldn't load sprites.");
-		}
+			fireAnimationSprites[0] = new StaticSprite(atlas, 0, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);
+			fireAnimationSprites[1] = new StaticSprite(atlas, 64, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);
+			fireAnimationSprites[2] = new StaticSprite(atlas, 128, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);
+			fireAnimationSprites[3] = new StaticSprite(atlas, 192, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);
 		
-		try {
-//			Font awtFont = new Font("Times New Roman", Font.BOLD, 12);
-//			font = new TrueTypeFont(awtFont, false);
-			InputStream inputStream = ResourceLoader.getResourceAsStream("res/Lato-Regular.ttf");
-			Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
-			awtFont2 = awtFont2.deriveFont(DEBUG_FONT_SIZE); // set font size
-			font = new TrueTypeFont(awtFont2, false);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(0);
-		}  
+			font = TrueTypeFontFactory.createBitmapFont(Gdx.files.internal("res/Lato-Regular.ttf"), FONT_CHARACTERS, 12.5f, 7.5f, 1.0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+			font.setScale(0.14f, -0.14f);
+			font.setColor(1f, 1f, 1f, 1f);
+//		try {
+////			Font awtFont = new Font("Times New Roman", Font.BOLD, 12);
+////			font = new TrueTypeFont(awtFont, false);
+//			InputStream inputStream = ResourceLoader.getResourceAsStream("res/Lato-Regular.ttf");
+//			Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+//			awtFont2 = awtFont2.deriveFont(DEBUG_FONT_SIZE); // set font size
+//			font = new TrueTypeFont(awtFont2, false);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			System.exit(0);
+//		}  
 	}
 }

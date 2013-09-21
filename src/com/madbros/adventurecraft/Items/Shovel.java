@@ -24,6 +24,9 @@ public class Shovel extends ToolItem {
 			Game.level.tileBeingAttacked.currentHp -= attackPower;
 			if(Game.level.tileBeingAttacked.currentHp < 1) {
 				Game.level.highlightedBlock.deleteTopTile();
+				Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY].deleteTopTile();
+				Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].deleteTopTile();
+				Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY+1].deleteTopTile();
 				Game.level.autoTileHighlightedBlock();
 			}
 		}

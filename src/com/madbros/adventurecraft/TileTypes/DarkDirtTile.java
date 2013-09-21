@@ -17,10 +17,7 @@ public class DarkDirtTile extends Tile{
 		sprites = new StaticSprite[]{(StaticSprite)Sprites.sprites.get(Sprites.DARK_DIRT)};
 		id = DARK_DIRT;
 		isDiggable = true;
-		topLeftAutoTile = 0;
-		topRightAutoTile = 0;
-		bottomRightAutoTile = 0;
-		bottomLeftAutoTile = 0;
+		autoTile = 0;
 	}
 	
 	public Tile createNew() {

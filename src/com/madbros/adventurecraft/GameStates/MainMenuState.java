@@ -2,20 +2,17 @@ package com.madbros.adventurecraft.GameStates;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Menus.*;
 
 public class MainMenuState extends GameState{
 	public static Menu mainMenu;
 	
-	public MainMenuState() {
-		mainMenu = new MainMenu();
+	public MainMenuState(SpriteBatch batch) {
+		mainMenu = new MainMenu(batch);
 		type = State.MAIN_MENU;
-	}
-
-	@Override
-	protected void getMouseButtonInput() {
-		super.getMouseButtonInput();
-		mainMenu.handleMouseInput(leftMouseButtonPressed, leftMouseButtonUp);
+		
+		//FIXME: fix mouse input
 	}
 
 	@Override
@@ -28,15 +25,15 @@ public class MainMenuState extends GameState{
 		mainMenu.renderText();
 	}
 	
-	public static void newGame() {
-		mainMenu = new NewGameMenu();
+	public static void newGame(SpriteBatch batch) {
+		mainMenu = new NewGameMenu(batch);
 	}
 	
-	public static void cancel() {
-		mainMenu = new MainMenu();
+	public static void cancel(SpriteBatch batch) {
+		mainMenu = new MainMenu(batch);
 	}
 	
-	public static void loadGame() {
-		mainMenu = new LoadGameMenu();
+	public static void loadGame(SpriteBatch batch) {
+		mainMenu = new LoadGameMenu(batch);
 	}
 }

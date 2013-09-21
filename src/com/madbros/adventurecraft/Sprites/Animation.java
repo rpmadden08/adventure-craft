@@ -5,7 +5,7 @@ import com.madbros.adventurecraft.Sprites.StaticSprite;
 import com.madbros.adventurecraft.Utils.*;
 
 public class Animation {
-	private StaticSprite[] sprites;
+	public StaticSprite[] sprites;
 	private int[] frameTimesInMilliseconds;
 	private int currentFrame = 0;
 	private int time;

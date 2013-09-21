@@ -12,6 +12,9 @@ public class AnimationSystem {
 		for(int i = 0; i < Sprites.waterSprites.length; i++) {
 			Sprites.waterSprites[i].updateCurrentAnimation();
 		}
+		for(int i = 0; i < Sprites.campfireAnimation.length; i++) {
+			Sprites.campfireAnimation[i].updateCurrentAnimation();
+		}
 	}
 	
 	public void updateMain(Hero hero, MobController mobController) {
@@ -22,8 +25,11 @@ public class AnimationSystem {
 		}
 	}
 	
-	public void updateInventory(Hero hero, Inventory inventory) {
+	public void updateInventory(Hero hero, Inventory inventory, MobController mobController) {
 		updateTiles();
 		hero.sprite.updateCurrentAnimation();
+		for(Mob mob : mobController.mobs) {
+			if(mob.isMoving()) mob.sprite.updateCurrentAnimation();
+		}
 	}
 }

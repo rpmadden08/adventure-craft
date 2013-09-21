@@ -1,9 +1,9 @@
 package com.madbros.adventurecraft.UI;
 
-import org.newdawn.slick.Color;
-
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.*;
 
@@ -12,40 +12,40 @@ public class SelectUIButton {
 	Rect rect;
 	public Text text;
 	
-	Color fontColor = Color.white;
+	Color fontColor = Color.WHITE;
 	
 	StaticSprite sprite = Sprites.pixel;
-	Color buttonColor = Color.darkGray;
+	Color buttonColor = Color.DARK_GRAY;
 	Color pressedColor = new Color(0.0f, 0.0f, 0.0f, 0.3f);
 	
 	public boolean mouseIsHovering = false;
 	public boolean buttonIsPressedDown = false;
 	
-	public SelectUIButton(int x, int y, int w, int h, String s) {
+	public SelectUIButton(int x, int y, int w, int h, String s, SpriteBatch batch) {
 		rect = new Rect(x, y, w, h);
-		text = new Text(Sprites.font, s);
+		text = new Text(Sprites.font, s, batch);
 	}
 	
 	public void render() {
-		buttonColor.bind();
+		Sprites.pixel.setColor(buttonColor);
 
 		sprite.draw(rect, Z_BUTTONS);
 		if(buttonIsPressedDown) {
-			pressedColor.bind();
+			Sprites.pixel.setColor(pressedColor);
 			sprite.draw(rect, Z_BUTTONS);
 		}
-		Color.white.bind();
+		Sprites.pixel.setColor(Color.WHITE);
 	}
 
 	public void renderText() {
 		text.drawCenter(rect, fontColor);
 	}
 	
-	public boolean handleMouseInput(boolean leftMouseButtonWasPressed, boolean leftMouseButtonWasReleased) {	
+	public boolean handleMouseInput(boolean leftMousePressed, boolean leftMouseReleased) {	
 		if(rect.detectCollision(Helpers.getMouseRect())) mouseIsHovering = true;
 		else mouseIsHovering = false;
 		
-		if(leftMouseButtonWasPressed && mouseIsHovering) {
+		if(leftMousePressed && mouseIsHovering) {
 			didPressDown();
 			return true;
 		} else {

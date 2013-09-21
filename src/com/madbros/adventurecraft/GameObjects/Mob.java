@@ -38,7 +38,6 @@ public class Mob extends Actor {
 	
 	@Override
 	public void didCollide() {
-		System.out.println("ouch!!!");
 		mobController.remove(this);
 	}
 	

@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 public class NoTile extends Tile {
 	public NoTile() {
+		super();
 		currentSpriteId = 0;
 
 		layer = DARK_DIRT_LAYER;
@@ -11,11 +12,7 @@ public class NoTile extends Tile {
 		isCollidable = false;
 		isDiggable = false;
 		id = AIR;
-		isMiddleTile = true;
-		topLeftAutoTile = MIDDLE_TILE;
-		topRightAutoTile = MIDDLE_TILE;
-		bottomRightAutoTile = MIDDLE_TILE;
-		bottomLeftAutoTile = MIDDLE_TILE;
+		isAutoTileable = false;
 	}
 	
 	@Override
