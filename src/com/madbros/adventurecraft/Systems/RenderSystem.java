@@ -64,6 +64,8 @@ public class RenderSystem {
 			gameObject.sprite.draw(gameObject.absRect.x - startX, gameObject.absRect.y - startY, gameObject.z);
 		}
 		
+	
+		
 		if(block.isHighlighted) {
 			Tile topTile = block.getTopTile();
 //			System.out.println(topTile.id);
@@ -77,6 +79,12 @@ public class RenderSystem {
 		renderCollisionTiles(x, y, block);
 		renderBlockCollisionRects(x, y, block);
 		renderChunkBoundaries(arrayX, arrayY, x, y);
+		if(block.isHighlightedDebug == true) {
+			Color highlightColor = new Color(1, 1, 1, 0.2f);
+			Sprites.pixel.setColor(highlightColor);
+			Sprites.collisionDebugger.draw(x, y, Z_COLLISION_TILES, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+			Sprites.pixel.setColor(Color.WHITE);
+		}
 	}
 	
 	public void renderHero(Hero hero, int x, int y) {

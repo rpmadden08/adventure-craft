@@ -3,6 +3,7 @@ package com.madbros.adventurecraft;
 import static com.madbros.adventurecraft.Constants.*;
 
 import java.util.ArrayList;
+
 import com.madbros.adventurecraft.GameObjects.GameObject;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.*;
@@ -23,10 +24,22 @@ public class Block {
 	public Long timePlaced= Time.getTime();
 	
 	public boolean isHighlighted = false;
+	public boolean isHighlightedDebug = false;
 	
 	public Block(Tile tile, int absX, int absY, boolean isUnfinished) {
 		this(new Tile[]{tile}, absX, absY, isUnfinished);
 	}
+	
+	public int getX(Block[][] activeBlocks) {
+		int x = (absRect.x - activeBlocks[0][0].absRect.x) / TILE_SIZE;
+		//int y = (absRect.y - Game.level.activeBlocks[0][0].absRect.y) / TILE_SIZE;
+		return x;
+	}
+	public int getY(Block[][] activeBlocks) {
+		int y = (absRect.y - activeBlocks[0][0].absRect.y) / TILE_SIZE;
+		return y;
+	}
+	
 	
 	public Block(Tile[] t, int absX, int absY, boolean isUnfinished) {
 		absRect = new Rect(absX, absY);

@@ -20,10 +20,6 @@ public class SaveGame {
 				for(int i = 0; i < chunk[x][y].layers.length; i++) {
 					tilesID.add(chunk[x][y].layers[i].id);
 				}
-//<<<<<<< HEAD
-//				obj.put("tiles" + x + "-" + y, tiles);
-//				obj.put("x" + x + "-" + y, chunk[x][y].absRect.x);
-//=======
 				
 				JSONArray tilesCurrentTexture = new JSONArray();
 				for(int i = 0; i < chunk[x][y].layers.length; i++) {
@@ -35,10 +31,8 @@ public class SaveGame {
 				obj.put("x" + x + "-" + y, chunk[x][y].absRect.x);
 				obj.put("y" + x + "-" + y, chunk[x][y].absRect.y);
 				obj.put("isUnfinished" + x + "-" + y,new Boolean (chunk[x][y].isUnfinished));
-//>>>>>>> chris
 			}
 		}
-		
 		
 		
 		try {
@@ -80,17 +74,10 @@ public class SaveGame {
 					}
 					
 					long absX = (Long) jO.get("x" + x + "-" + y);
-//<<<<<<< HEAD
-//					long absY = (Long) jO.get("y" + x + "-" + y);
-//				
-//					chunk[x][y] = new Block(t, (int)absX, (int)absY);
-//=======
 					long absY = (Long) jO.get("y" + x + "-" + y); 
 					boolean isUnfinished = (Boolean) jO.get("isUnfinished" + x + "-" + y);
 					chunk[x][y] = new Block(t, (int)absX, (int)absY, isUnfinished);
 					chunk[x][y].isUnfinished = isUnfinished;
-					
-//>>>>>>> chris
 				}
 			}
 		} catch (FileNotFoundException e) {

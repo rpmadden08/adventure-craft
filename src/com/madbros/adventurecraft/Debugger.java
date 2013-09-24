@@ -145,7 +145,7 @@ public class Debugger {
 		font.draw(batch, "Free Memory: " + displayedFreeMemory + " mb", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*6);
 		font.draw(batch, "Used Memory: " + displayedUsedMemory + " mb", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*7);
 		font.draw(batch, "Memory Left: " + displayedPercentOfMemoryLeft + "%", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*8);
-		font.draw(batch, "Character Position: (" + charRect.x + ", " + charRect.y + ")", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*10);
+		font.draw(batch, "Character Position: (" + charRect.x/TILE_SIZE + ", " + charRect.y/TILE_SIZE + ")", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*10);
 		font.draw(batch, "Extra Debugger: " + displayedExtra, DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*12);
 	}
 	
