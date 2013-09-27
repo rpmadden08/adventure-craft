@@ -14,23 +14,17 @@ public class DirtMountainTopTile extends CollisionTile {
 		sprites = Sprites.spriteCollections.get(Sprites.MOUNTAIN_TOP);
 		margin = new Margin(9, 9, 12, 11);
 		id = DIRT_MOUNTAIN_TOP;
-		layer = ABOVE_LAYER_1;
+		layer = ABOVE_LAYER_2;
 		z = Z_ABOVE_LAYER;
 		isDiggable = false;
 	}
 	
 	public void render(int x, int y, int layer) {
-		float z;
-//		if(currentTexture == 0 ) {
-		Helpers.println(String.valueOf(layer / 100f));	//FIXME!!
-		z = this.z + Math.max(layer / 100f, layer / 100f);
-//			else z = this.z + Math.max(Game.level.test.x / 1000f, Game.level.test.y / 1000f);
-//		} else {
-//			z = Z_ABOVE_LAYER;
-//		}
-//		if(y > Game.hero.sRect.y) z = Z_ABOVE_LAYER;// + Math.max(Game.level.test.x / 1000f, Game.level.test.y / 1000f);	//FIXME: not an ideal conditional
-//		else z = this.z;// + Math.max(Game.level.test.x / 1000f, Game.level.test.y / 1000f);
-		sprites[currentSpriteId].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+//		float z;
+//		Helpers.println(String.valueOf(layer / 100f));	//FIXME!!
+//		z = this.z + Math.max(layer / 100f, layer / 100f);
+	//sprites[currentSpriteId].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+	sprites[autoTile].draw(x, y, z);
 	}
 	
 	public Tile createNew() {

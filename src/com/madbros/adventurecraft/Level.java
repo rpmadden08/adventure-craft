@@ -5,6 +5,7 @@ import static com.madbros.adventurecraft.Constants.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
@@ -27,6 +28,8 @@ public class Level {
 	public SaveGame saveGame = new SaveGame();
 	public Point test = new Point(0, 0);
 	public float noise;
+	public float noiseTemperature;
+	public float noiseRainfall;
 	public int debuggerTest = 0;
 	
 	//Keeps track of what part of the activeBlocks array we're rendering. Starts off in the very center.
@@ -35,8 +38,16 @@ public class Level {
 			  						  (int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
 			  						  (int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
-	private long rgenseed = System.currentTimeMillis();
+	//private long rgenseed = System.currentTimeMillis();
+	private long rgenseed = 1;
 	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
+	public Random rand = new Random(rgenseed);
+	public int randInt1 = rand.nextInt();
+	public int randInt2 = rand.nextInt();
+	public PerlinGenerator perlin2 = new PerlinGenerator(randInt1);
+	public PerlinGenerator perlin3 = new PerlinGenerator(randInt2);
+	//public PerlinGenerator perlin2 = new PerlinGenerator((int) rgenseed);
+	//public PerlinGenerator perlin3 = new PerlinGenerator((int) rgenseed);
 	public int size = 100;
 	
 	public Rect chunkRect = new Rect(0, 0, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);	//keeps track of the chunk we're on
@@ -44,6 +55,19 @@ public class Level {
 	public int offsetY = 0;
 
 	public boolean isLoading = false;
+	public double PTotal = 0;
+	public double PTaiga = 0;
+	public double PRainForest = 0;
+	public double PGrass = 0;
+	public double PDesert = 0;
+	public double PForest = 0;
+	public double PSwamp = 0;
+	public double PTundra = 0;
+	public double POcean = 0;
+	public double PMountain = 0;
+	public double PHole = 0;
+	
+	
 	
 	public Level() {
 		if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
@@ -66,9 +90,9 @@ public class Level {
 			Block b = blooming.get(i);
 			int x = b.getX(activeBlocks);
 			int y = b.getY(activeBlocks);
-			if(x > 1 && y > 1 && x < TILES_PER_ROW-1 && y < TILES_PER_ROW-1) {
+			if(x > 2 && y > 2 && x < TILES_PER_ROW-2 && y < TILES_PER_ROW-2) {
 				b.layers[OBJECT_LAYER].bloom(x,y, activeBlocks);
-				b.isUnfinished = false;
+				//b.isUnfinished = false;
 				
 				
 			}
@@ -159,6 +183,16 @@ public class Level {
 	
 	public void update() {
 		//System.out.println(blooming.size());
+		System.out.println("GRASS: "+ PGrass/PTotal *100);
+		System.out.println("FOREST: "+ PForest/PTotal *100);
+		System.out.println("RAINFOREST: "+ PRainForest/PTotal *100);
+		System.out.println("DESERT: "+ PDesert/PTotal *100);
+		System.out.println("TAIGA: "+ PTaiga/PTotal *100);
+		System.out.println("SWAMP: "+ PSwamp/PTotal *100);
+		System.out.println("TUNDRA: "+ PTundra/PTotal *100);
+		System.out.println("MOUNTAIN: "+ PMountain/PTotal *100);
+		System.out.println("HOLE: "+ PHole/PTotal *100);
+		System.out.println("OCEAN: "+ POcean/PTotal *100);
 		if(Game.currentState.type == State.MAIN) highlightBlock();
 		
 		if(renderRect.y <= CHUNK_SIZE/2) {
@@ -188,7 +222,7 @@ public class Level {
 				Block b = iterator.next();
 				int x = b.getX(activeBlocks);
 				int y = b.getY(activeBlocks);
-				if(x >= startX && y >= startY && x <= startX + CHUNK_SIZE && y <= startY + CHUNK_SIZE) {
+				if(x >= startX && y >= startY && x <= startX + CHUNK_SIZE+1 && y <= startY + CHUNK_SIZE+1) {
 					iterator.remove();
 				}
 				
@@ -206,12 +240,11 @@ public class Level {
 		
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			createNewChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
-			
-			//public void createNewChunk(int startX, int startY, int chunkX, int chunkY) {
 		}
-		
-		autoTileNewArea(2, 2, TILES_PER_ROW-2, CHUNK_SIZE+2);
 		bloomAll();
+		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+		//autoTileNewArea(2, 2, TILES_PER_ROW-2, CHUNK_SIZE+2);
+		
 	}
 	
 	public void getSouthernChunks() {
@@ -226,8 +259,10 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			createNewChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
 		}
-		autoTileNewArea(2, TILES_PER_ROW-CHUNK_SIZE-2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 		bloomAll();
+		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+		//autoTileNewArea(2, TILES_PER_ROW-CHUNK_SIZE-2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+		
 	}
 	
 	public void getEasternChunks() {
@@ -242,8 +277,10 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			createNewChunk(TILES_PER_ROW-CHUNK_SIZE, CHUNK_SIZE*i, chunkRect.x2(), chunkRect.y + i);
 		}
-		autoTileNewArea(TILES_PER_ROW-CHUNK_SIZE-2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 		bloomAll();
+		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+		//autoTileNewArea(TILES_PER_ROW-CHUNK_SIZE-2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+	
 	}
 
 	public void getWesternChunks() {
@@ -258,8 +295,10 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			createNewChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
 		}
-		autoTileNewArea(2, 2, CHUNK_SIZE+2, TILES_PER_ROW-2);
 		bloomAll();
+		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+		//autoTileNewArea(2, 2, CHUNK_SIZE+2, TILES_PER_ROW-2);
+		
 	}
 	
 	public void shiftActiveBlocksArray(int dir) {
@@ -287,12 +326,17 @@ public class Level {
 		Block block2; //top right
 		Block block3; //bottom left
 		Block block4; //bottom right
-		
+		PTotal++;
 		noise = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
+		noiseTemperature = perlin2.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
+		noiseRainfall = perlin3.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
+		
 		int absX = i*TILE_SIZE+chunkX*CHUNK_SIZE*TILE_SIZE;
 		int absY = j*TILE_SIZE+chunkY*CHUNK_SIZE*TILE_SIZE;
 		
-		if(noise > 48) {//FIX ME Should be < -0.1
+		//BELOW SEA LEVEL
+		if(noise < -0.3) {//FIX ME Should be < -0.1
+			POcean++;
 			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 			Tile[] waterTile2 = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 			Tile[] waterTile3 = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
@@ -301,37 +345,152 @@ public class Level {
     		block2 = new Block(waterTile2, absX+TILE_SIZE, absY, false);
     		block3 = new Block(waterTile3, absX, absY+TILE_SIZE, false);
     		block4 = new Block(waterTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
-    		
-    		//THIS IS THE MOUNTAIN CODE COMMENTED OUT FOR TESTING:)
-//    	} else if(noise > 0.1) {
-//		//} else if(noise < 3000 && noise >-0.1) {
-//    		Tile[] dirtMountainTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-//    		Tile[] dirtMountainTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-//    		Tile[] dirtMountainTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-//    		Tile[] dirtMountainTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-//	    	block = new Block(dirtMountainTile, absX, absY, true);
-//	    	block2 = new Block(dirtMountainTile2, absX+TILE_SIZE, absY, true);
-//	    	block3 = new Block(dirtMountainTile3, absX, absY+TILE_SIZE, true);
-//	    	block4 = new Block(dirtMountainTile4, absX+TILE_SIZE, absY+TILE_SIZE, true);
-////	    	block.isUnfinished = true;
-////	    	block2.isUnfinished = true;
-////	    	block3.isUnfinished = true;
-////	    	block4.isUnfinished = true;
-    	} 
-		else {
-			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-			Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-			Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-			Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-    		block = new Block(grassTile, absX, absY, false);
-    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
-    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
-    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
+    	//MOUNTAIN
+    	} else if(noise > 0.3) {
+    		PMountain++;
+    		Tile[] dirtMountainTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+	    	block = new Block(dirtMountainTile, absX, absY, true);
+	    	block2 = new Block(dirtMountainTile2, absX+TILE_SIZE, absY, true);
+	    	block3 = new Block(dirtMountainTile3, absX, absY+TILE_SIZE, true);
+	    	block4 = new Block(dirtMountainTile4, absX+TILE_SIZE, absY+TILE_SIZE, true);
+			blooming.add(block);
+			blooming.add(block2);
+			blooming.add(block3);
+			blooming.add(block4);
+		//GRASSLANDS
+    	} else {
+    		//DESERT
+    		if(noiseTemperature < -0.1 && noiseRainfall < -0.1) {
+    			PDesert++;
+    			Tile[] sandTile = {new DarkDirtTile(), new DirtTile(), new SandTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    			Tile[] sandTile2 = {new DarkDirtTile(), new DirtTile(), new SandTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    			Tile[] sandTile3 = {new DarkDirtTile(), new DirtTile(), new SandTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    			Tile[] sandTile4 = {new DarkDirtTile(), new DirtTile(), new SandTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+        		block = new Block(sandTile, absX, absY, false);
+        		block2 = new Block(sandTile2, absX+TILE_SIZE, absY, false);
+        		block3 = new Block(sandTile3, absX, absY+TILE_SIZE, false);
+        		block4 = new Block(sandTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
+        		//GRASSLAND
+    		} else if(noiseTemperature >= -0.1 && noiseTemperature < 0.1 &&noiseRainfall < -0.1){
+    			PGrass++;
+    			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+	    		block = new Block(grassTile, absX, absY, false);
+	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
+	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
+	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
+	    		//GRASSLAND
+    		}else if(noiseTemperature < -0.1 && noiseRainfall >= -0.1 &&noiseRainfall < 0.1){
+    			PGrass++;
+    			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+	    		block = new Block(grassTile, absX, absY, false);
+	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
+	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
+	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
+	    		//Forest
+    		}else if(noiseTemperature >= -0.1 && noiseTemperature < 0.1 &&noiseRainfall >= -0.1 && noiseRainfall < 0.1){
+    			PForest++;
+    			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+	    		block = new Block(grassTile, absX, absY, false);
+	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
+	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
+	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
+	    		blooming.add(block);
+				blooming.add(block2);
+				blooming.add(block3);
+				blooming.add(block4);
+				//RainForest
+    		}else if(noiseTemperature < -0.1 &&noiseRainfall >= 0.1){
+    			PRainForest++;
+    			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeRainTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeRainTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeRainTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeRainTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+	    		block = new Block(grassTile, absX, absY, false);
+	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
+	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
+	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
+	    		blooming.add(block);
+				blooming.add(block2);
+				blooming.add(block3);
+				blooming.add(block4);
+				//Swamp
+    		}else if(noiseTemperature >= -0.1 && noiseTemperature < 0.1 && noiseRainfall >= 0.1){
+    			PSwamp++;
+    			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new DarkGrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new DarkGrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new DarkGrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new DarkGrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+	    		block = new Block(grassTile, absX, absY, false);
+	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
+	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
+	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
+	    		//Taiga (snowy forest)
+    		}else if(noiseRainfall >= -0.1 && noiseRainfall < 0.1 && noiseTemperature >= 0.1){
+    			PTaiga++;
+    			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreePineTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreePineTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreePineTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreePineTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+	    		block = new Block(grassTile, absX, absY, false);
+	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
+	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
+	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
+	    		blooming.add(block);
+				blooming.add(block2);
+				blooming.add(block3);
+				blooming.add(block4);
+				//Tundra (snowy)
+    		}else if(noiseRainfall < -0.1 &&noiseTemperature >= 0.1){
+    			PTundra++;
+    			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new SnowTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new SnowTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new SnowTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new SnowTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+	    		block = new Block(grassTile, absX, absY, false);
+	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
+	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
+	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
+	    		//HOLES
+    		}else {
+    			PHole++;
+    			System.out.println("RAIN: "+noiseRainfall);
+    			System.out.println("TEMP: "+noiseTemperature);
+				Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+	    		block = new Block(grassTile, absX, absY, false);
+	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
+	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
+	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
+    		}
     	}
 		//if(x == 40 && y == 40) {
-			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-			block = new Block(grassTile, absX, absY, false);
-			blooming.add(block);
+//			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+//			Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+//			Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+//			Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+//			
+//			block = new Block(grassTile, absX, absY, false);
+//			block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
+//			block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
+//			block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
+//			blooming.add(block);
+//			blooming.add(block2);
+//			blooming.add(block3);
+//			blooming.add(block4);
 		//}
 		block.noise = noise;
 		block2.noise = noise;

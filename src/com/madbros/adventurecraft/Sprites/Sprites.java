@@ -58,11 +58,16 @@ public class Sprites {
 	public static final String MOUNTAIN_BOTTOM = "mountainBottom";
 	public static final String MOUNTAIN_TOP = "mountainTop";
 	public static final String TREE_TWO = "treeTwo";
+	public static final String TREE_THREE = "greentree";
 	public static final String WATER1 = "water";
 	public static final String WATER2 = "waterTwo";
 	public static final String INVENTORY_MENU = "inventoryMenu";
 	public static final String CAMPFIRE_SINGLE = "campfire0";
 	public static final String SAPLING_COLLECTION = "saplingCollection";
+	public static final String SNOW = "snow";
+	public static final String TREE_FOUR = "pineTree";
+	public static final String DARK_GRASS = "darkGrass";
+	
 	
 	//animated collections
 	public static final String CAMPFIRE_ANIMATION = "campfire";
@@ -178,8 +183,9 @@ public class Sprites {
 					PLATE_LEGS_STAND_LEFT, PLATE_LEGS_STAND_RIGHT, PLATE_LEGS_STAND_UP,
 					PLATE_TORSO_WALK_DOWN, PLATE_TORSO_WALK_LEFT, PLATE_TORSO_WALK_RIGHT,
 					PLATE_TORSO_WALK_UP, PLATE_TORSO_STAND_DOWN, PLATE_TORSO_STAND_LEFT,
-					PLATE_TORSO_STAND_RIGHT, PLATE_TORSO_STAND_UP, TREE_TWO, STUMP,
-					CAMPFIRE_ANIMATION, CAMPFIRE_SINGLE, SAPLING_COLLECTION
+					PLATE_TORSO_STAND_RIGHT, PLATE_TORSO_STAND_UP, TREE_TWO, TREE_THREE, STUMP,
+					CAMPFIRE_ANIMATION, CAMPFIRE_SINGLE, SAPLING_COLLECTION, DESERT, SNOW, TREE_FOUR, 
+					DARK_GRASS
 			};
 			
 			String[] lightNames = {LIGHT};

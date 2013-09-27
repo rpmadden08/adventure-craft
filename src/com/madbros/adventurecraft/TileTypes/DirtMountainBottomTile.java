@@ -28,27 +28,10 @@ public class DirtMountainBottomTile extends CollisionTile {
 	
 	@Override
 	public void bloom(int x, int y, Block[][] activeBlocks) {
-		int layer;
-		Block b;
-		
-		if(x<1 || y<1 || x > CHUNK_SIZE*CHUNKS_IN_A_ROW-2 || y > CHUNK_SIZE*CHUNKS_IN_A_ROW-2) {
-			activeBlocks[x][y].isUnfinished = true;
-		} else {
-			activeBlocks[x][y].isUnfinished = false;
-			
-			b = activeBlocks[x][y-1];
-			if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR && b.layers[ABOVE_LAYER_3].id != AIR && b.layers[ABOVE_LAYER_4].id != AIR && b.layers[ABOVE_LAYER_5].id != AIR) layer = ABOVE_LAYER_6;
-			else if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR && b.layers[ABOVE_LAYER_3].id != AIR && b.layers[ABOVE_LAYER_4].id != AIR) layer = ABOVE_LAYER_5;
-			else if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR && b.layers[ABOVE_LAYER_3].id != AIR) layer = ABOVE_LAYER_4;
-			else if(b.layers[ABOVE_LAYER_1].id != AIR && b.layers[ABOVE_LAYER_2].id != AIR) layer = ABOVE_LAYER_3;
-			else if(b.layers[ABOVE_LAYER_1].id != AIR) layer = ABOVE_LAYER_2;
-			else layer = ABOVE_LAYER_1;
-			b.layers[layer] = new DirtMountainTopTile(); 
-			b.layers[layer].currentSpriteId = 0;
-			b.layers[layer].z = Z_ABOVE_LAYER;
-			
-			
-		}
-		
+		Block b = activeBlocks[x][y-2];
+		//b = activeBlocks[xs[i]][ys[i]];
+		b.layers[ABOVE_LAYER_2] = new DirtMountainTopTile(); 
+		b.layers[ABOVE_LAYER_2].currentSpriteId = 0;
+		b.layers[ABOVE_LAYER_2].z = Z_ABOVE_LAYER;
 	}
 }

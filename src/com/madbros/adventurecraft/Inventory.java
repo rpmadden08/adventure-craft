@@ -58,7 +58,8 @@ public class Inventory {
 		
 		invBar[0].item = new Sapling();
 		invBar[0].item.stackSize = 99;
-		invBar[1].item = new IronArmor();
+		invBar[1].item = new SaplingRain();
+		
 		invBar[2].item = new Log();
 		invBar[2].item.stackSize = 99;
 		invBar[3].item = new SandClump();

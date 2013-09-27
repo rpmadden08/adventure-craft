@@ -55,7 +55,8 @@ public class RenderSystem {
 		Tile[] renderTiles = block.getRenderTiles();
 		
 		for(int i = 0; i < renderTiles.length;i++) {
-			if(renderTiles[i].id == TREE_LEAF) ((TreeLeafTile)renderTiles[i]).render(x, y, i);
+			if(renderTiles[i].isTreeLeafTile == true) ((TreeLeafTile)renderTiles[i]).render(x, y, i);
+			//if(renderTiles[i].id == TREE_LEAF_RAIN) ((TreeLeafTile)renderTiles[i]).render(x, y, i);
 			else renderTiles[i].render(x, y);
 			if(renderTiles[i].isLightSource) lightTiles.add(block);
 		}

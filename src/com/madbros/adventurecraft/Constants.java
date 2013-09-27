@@ -109,6 +109,14 @@ public class Constants {
 	public static final int DIRT_MOUNTAIN_BOTTOM = 11;
 	public static final int DIRT_MOUNTAIN_TOP = 12;
 	public static final int CAMPFIRE = 13;
+	public static final int TREE_LEAF_RAIN = 14;
+	public static final int SAPLING_RAIN = 15;
+	public static final int DARK_GRASS = 16;
+	public static final int SNOW = 17;
+	public static final int TREE_LEAF_PINE = 18;
+	public static final int SAPLING_PINE = 19;
+	public static final int TREE_PINE = 20;
+	
 	
 	//Layers
 	public static final int DARK_DIRT_LAYER = 0;
@@ -271,10 +279,16 @@ public class Constants {
 		TILE_HASH.put(SAND, new SandTile());
 		TILE_HASH.put(AIR, new NoTile());
 		TILE_HASH.put(SAPLING, new SaplingTile());
+		TILE_HASH.put(SAPLING_RAIN, new SaplingRainTile());
 		TILE_HASH.put(TREE_LEAF, new TreeLeafTile());
+		TILE_HASH.put(TREE_LEAF_RAIN, new TreeLeafRainTile());
+		TILE_HASH.put(TREE_LEAF_PINE, new TreeLeafPineTile());
+		
 		TILE_HASH.put(DIRT_MOUNTAIN_BOTTOM, new DirtMountainBottomTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_TOP, new DirtMountainTopTile());
 		TILE_HASH.put(CAMPFIRE, new Campfire());
+		TILE_HASH.put(DARK_GRASS, new DarkGrassTile());
+		TILE_HASH.put(SNOW, new SnowTile());
 		
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);

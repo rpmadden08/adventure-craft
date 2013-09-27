@@ -5,14 +5,14 @@ import static com.madbros.adventurecraft.Constants.*;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.Margin;
 
-public class TreeLeafTile extends CollisionTile {
-	public TreeLeafTile() {
+public class TreeLeafPineTile extends TreeLeafTile {
+	public TreeLeafPineTile() {
 		super();
 		currentSpriteId = 0;
-		sprites = Sprites.spriteCollections.get(Sprites.TREE_TWO);
+		sprites = Sprites.spriteCollections.get(Sprites.TREE_FOUR);
 
 		margin = new Margin(9, 9, 12, 11);
-		id = TREE_LEAF;
+		id = TREE_LEAF_PINE;
 		layer = ABOVE_LAYER_1;
 		z = Z_ABOVE_LAYER;
 		isDiggable = false;
@@ -40,7 +40,7 @@ public class TreeLeafTile extends CollisionTile {
 //		else z = this.z;// + Math.max(Game.level.test.x / 1000f, Game.level.test.y / 1000f);
 	}
 	
-	public TreeLeafTile createNew() {
-		return new TreeLeafTile();
+	public TreeLeafPineTile createNew() {
+		return new TreeLeafPineTile();
 	}
 }
