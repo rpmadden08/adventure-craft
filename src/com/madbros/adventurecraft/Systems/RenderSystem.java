@@ -2,6 +2,7 @@ package com.madbros.adventurecraft.Systems;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+
 import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,11 +11,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.madbros.adventurecraft.Block;
+import com.madbros.adventurecraft.CollectibleController;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Inventory;
 import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.MobController;
 import com.madbros.adventurecraft.GameObjects.Actor;
+import com.madbros.adventurecraft.GameObjects.Collectible;
 import com.madbros.adventurecraft.GameObjects.GameObject;
 import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.GameObjects.Mob;
@@ -89,16 +92,63 @@ public class RenderSystem {
 	}
 	
 	public void renderHero(Hero hero, int x, int y) {
-		hero.sprite.draw(x, y, Z_CHARACTER);
-		renderCollisionRects(hero, x, y);
+		int width = hero.absRect.w / 2;
+		int height = hero.absRect.h / 2+6;
+		if(hero.knockBackTime > 0) {
+			Color highlightColor = new Color(0.7f, 0.7f, 0.7f, 1.0f);
+			hero.sprite.setColor(highlightColor);
+			hero.sprite.draw(x, y, Z_CHARACTER);
+			
+			
+			Sprites.pixel.setColor(Color.RED);
+			Sprites.pixel.draw(x+width,y+height,Z_CHARACTER);
+			
+			hero.sprite.setColor(Color.WHITE);
+		} else {
+			
+		
+			hero.sprite.draw(x, y, Z_CHARACTER);
+			Sprites.pixel.setColor(Color.RED);
+			Sprites.pixel.draw(x+width,y+height,Z_CHARACTER);
+			renderCollisionRects(hero, x, y);
+			
+		}
+		
+		if(hero.isAttacking) {
+			//Item item = Game.inventory.heldItem;
+			//item.sprite.setColor(Color.WHITE);
+			//System.out.println(hero.attackItem.sprite.getOriginX()+"/"+hero.attackItem.sprite.getOriginY());
+			hero.attackItem.sprite.setOrigin(hero.attackItem.originX, hero.attackItem.originY);
+			
+			hero.attackItem.sprite.rotate(hero.weaponR);
+			hero.attackItem.sprite.draw(x+hero.weaponX+ hero.attackItem.weaponOffsetX, y+hero.weaponY+hero.attackItem.weaponOffsetY, Z_CHARACTER);
+			hero.attackItem.sprite.rotate(-hero.weaponR);
+			
+		}
 	}
+
 	
 	public void renderMobs(MobController mobController) {
 		for(Mob mob : mobController.mobs) {
 			int x = mob.absRect.x - startX;
 			int y = mob.absRect.y - startY;
+			int width = mob.absRect.w / 2;
+			int height = mob.absRect.h / 2;
+			
+			
 			mob.sprite.draw(x, y, Z_CHARACTER);
 			renderCollisionRects(mob, x, y);
+			Sprites.pixel.setColor(Color.RED);
+			Sprites.pixel.draw(x+width,y+height,Z_CHARACTER);
+		}
+	}
+	
+	public void renderCollectibles(CollectibleController collectibleController) {
+		for(Collectible collectible : collectibleController.collectibles) {
+			int x = collectible.absRect.x - startX;
+			int y = collectible.absRect.y - startY;
+			collectible.sprite.draw(x, y, Z_CHARACTER);
+			//renderCollisionRects(collectible, x, y);
 		}
 	}
 	

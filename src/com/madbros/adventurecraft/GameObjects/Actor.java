@@ -8,6 +8,7 @@ import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Items.ClothingItem;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
 import com.madbros.adventurecraft.Utils.Margin;
@@ -20,10 +21,27 @@ public class Actor extends GameObject {
 	public Margin margin = new Margin();
 	
 	public float currentSpeed;
+	public float knockBackSpeed;
+	public float moveSpeed;
 	public Block[] collisionDetectionBlocks;
 	
 	boolean isMovingLeft = false, isMovingRight = false, isMovingUp = false, isMovingDown = false;
-	boolean isAttacking = false;
+	boolean isKnockingLeft = false, isKnockingRight = false, isKnockingUp = false, isKnockingDown = false;
+	public boolean isAttacking = false;
+	
+	public int hP = 10;
+	public int maxHP = 10;
+	public int knockBackTime = 0;
+	public boolean hasAttacked = true;
+	public Item attackItem;
+	
+	public int[][] weaponXArray;
+	public int[][] weaponYArray;
+	public float[][] weaponRArray;
+	public int weaponX = 0;
+	public int weaponY = 0;
+	public float weaponR = 0;
+	public int dir = 0;
 	
 	/************************** Movement **************************/
 	public boolean isMoving() {
@@ -133,21 +151,39 @@ public class Actor extends GameObject {
 						boolean didDetectCollision = false;
 						if(isVerticalMovement) {
 							if(charCRect.detectCollision(collisionDetectionBlocks[i].collisionTile.cRect)) {
-								if(isMovingDown) {
-									dir = DOWN;
-								} else if(isMovingUp) {
-									dir = UP;
+								if(knockBackTime <= 0) { /*need this for Knockback Collision*/ 
+									if(isMovingDown) {
+										dir = DOWN;
+									} else if(isMovingUp) {
+										dir = UP;
+									}
+									didDetectCollision = true;
+								} else {
+									if(isKnockingDown) {
+										dir = DOWN;
+									} else if(isKnockingUp) {
+										dir = UP;
+									}
+									didDetectCollision = true;
 								}
-								didDetectCollision = true;
 							}
 						} else {
 							if(charCRect.detectCollision(collisionDetectionBlocks[i].collisionTile.cRect)) {
-								if(isMovingLeft) {
-									dir = LEFT;
-								} else if(isMovingRight) {
-									dir = RIGHT;
+								if(knockBackTime <= 0) { /*need this for Knockback Collision*/ 
+									if(isMovingLeft) {
+										dir = LEFT;
+									} else if(isMovingRight) {
+										dir = RIGHT;
+									}
+									didDetectCollision = true;
+								} else {
+									if(isKnockingLeft) {
+										dir = LEFT;
+									} else if(isKnockingRight) {
+										dir = RIGHT;
+									}
+									didDetectCollision = true;
 								}
-								didDetectCollision = true;
 							}
 						}
 						CollisionTile t = collisionDetectionBlocks[i].collisionTile;
@@ -187,6 +223,31 @@ public class Actor extends GameObject {
 			yMove(moveY);
 			getCollision(VERTICAL, moveY);
 		} else if(isMovingDown) {
+			moveY = Math.round(currentSpeed * delta);
+			yMove(moveY);
+			getCollision(VERTICAL, moveY);
+		}
+	}
+	
+	public void moveKnockBack(int delta) {
+		int moveX = 0, moveY = 0;
+		
+		getCollisionBlocks();
+		if(isKnockingLeft) {
+			moveX = Math.round(-currentSpeed * delta);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
+			xMove(moveX);
+			getCollision(HORIZONTAL, moveX);
+		} else if(isKnockingRight) {
+			moveX = Math.round(currentSpeed * delta);
+			xMove(moveX);
+			getCollision(HORIZONTAL, moveX);
+		}
+		
+		if(isKnockingUp) {
+			moveY = Math.round(-currentSpeed * delta);
+			yMove(moveY);
+			getCollision(VERTICAL, moveY);
+		} else if(isKnockingDown) {
 			moveY = Math.round(currentSpeed * delta);
 			yMove(moveY);
 			getCollision(VERTICAL, moveY);

@@ -39,7 +39,7 @@ public class Level {
 			  						  (int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
 	//private long rgenseed = System.currentTimeMillis();
-	private long rgenseed = 1;
+	private long rgenseed = 4;
 	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public Random rand = new Random(rgenseed);
 	public int randInt1 = rand.nextInt();
@@ -48,7 +48,7 @@ public class Level {
 	public PerlinGenerator perlin3 = new PerlinGenerator(randInt2);
 	//public PerlinGenerator perlin2 = new PerlinGenerator((int) rgenseed);
 	//public PerlinGenerator perlin3 = new PerlinGenerator((int) rgenseed);
-	public int size = 100;
+	public int size = 1000;
 	
 	public Rect chunkRect = new Rect(0, 0, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);	//keeps track of the chunk we're on
 	public int offsetX = 0;	//offset gets set at the start of level if there is one
@@ -165,9 +165,9 @@ public class Level {
 		
 		highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
 		
-		if(tileBeingAttacked != highlightedBlock.getTopTile()) {
+		if(tileBeingAttacked != highlightedBlock.getObjectTile()) {
 			tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
-			tileBeingAttacked = highlightedBlock.getTopTile();
+			tileBeingAttacked = highlightedBlock.getObjectTile();
 		}
 		highlightedBlock.isHighlighted = true;
 	}
@@ -183,16 +183,16 @@ public class Level {
 	
 	public void update() {
 		//System.out.println(blooming.size());
-		System.out.println("GRASS: "+ PGrass/PTotal *100);
-		System.out.println("FOREST: "+ PForest/PTotal *100);
-		System.out.println("RAINFOREST: "+ PRainForest/PTotal *100);
-		System.out.println("DESERT: "+ PDesert/PTotal *100);
-		System.out.println("TAIGA: "+ PTaiga/PTotal *100);
-		System.out.println("SWAMP: "+ PSwamp/PTotal *100);
-		System.out.println("TUNDRA: "+ PTundra/PTotal *100);
-		System.out.println("MOUNTAIN: "+ PMountain/PTotal *100);
-		System.out.println("HOLE: "+ PHole/PTotal *100);
-		System.out.println("OCEAN: "+ POcean/PTotal *100);
+//		System.out.println("GRASS: "+ PGrass/PTotal *100);
+//		System.out.println("FOREST: "+ PForest/PTotal *100);
+//		System.out.println("RAINFOREST: "+ PRainForest/PTotal *100);
+//		System.out.println("DESERT: "+ PDesert/PTotal *100);
+//		System.out.println("TAIGA: "+ PTaiga/PTotal *100);
+//		System.out.println("SWAMP: "+ PSwamp/PTotal *100);
+//		System.out.println("TUNDRA: "+ PTundra/PTotal *100);
+//		System.out.println("MOUNTAIN: "+ PMountain/PTotal *100);
+//		System.out.println("HOLE: "+ PHole/PTotal *100);
+//		System.out.println("OCEAN: "+ POcean/PTotal *100);
 		if(Game.currentState.type == State.MAIN) highlightBlock();
 		
 		if(renderRect.y <= CHUNK_SIZE/2) {

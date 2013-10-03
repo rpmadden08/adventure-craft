@@ -46,8 +46,12 @@ public class Sprites {
 	public static final String PLATE_TORSO_ITEM = "plateTorsoItem";
 	public static final String PLATE_LEGS_ITEM = "plateLegsItem";
 	public static final String PLATE_FEET_ITEM = "plateFeetItem";
+	public static final String BAT = "bat";
 	public static final String SWORD_ITEM = "swordItem";
+	public static final String SWORD = "sword";
+	public static final String LONG_SWORD = "longsword";
 	public static final String SHOVEL_ITEM = "shovelItem";
+	public static final String AXE_ITEM = "stoneAxe";
 	
 	//static collections
 //	public static final String GEM = "Gem Blue";
@@ -79,6 +83,12 @@ public class Sprites {
 	public static final String MALE_STAND_LEFT = "maleStandLeft";
 	public static final String MALE_STAND_RIGHT = "maleStandRight";
 	public static final String MALE_STAND_UP = "maleStandUp";
+	
+	public static final String MALE_SLASH_UP = "maleSlashUp";
+	public static final String MALE_SLASH_DOWN = "maleSlashDown";
+	public static final String MALE_SLASH_LEFT = "maleSlashLeft";
+	public static final String MALE_SLASH_RIGHT = "maleSlashRight";
+	
 	
 	public static final String PLATE_FEET_WALK_DOWN = "plateFeetWalkDown";
 	public static final String PLATE_FEET_WALK_LEFT = "plateFeetWalkLeft";
@@ -125,6 +135,16 @@ public class Sprites {
 	public static final String SKELETON_STAND_LEFT = "skeletonStandLeft";
 	public static final String SKELETON_STAND_UP = "skeletonStandUp";
 
+	public static final String BAT_WALK_DOWN = "batWalkDown";
+	public static final String BAT_WALK_RIGHT = "batWalkRight";
+	public static final String BAT_WALK_LEFT = "batWalkLeft";
+	public static final String BAT_WALK_UP = "batWalkUp";
+	public static final String BAT_STAND_DOWN = "batStandDown";
+	public static final String BAT_STAND_RIGHT = "batStandRight";
+	public static final String BAT_STAND_LEFT = "batStandLeft";
+	public static final String BAT_STAND_UP = "batStandUp";
+	
+	
 	public static StaticSprite[] fireAnimationSprites;
 	
 	public static StaticSprite buttonSprite;
@@ -185,8 +205,10 @@ public class Sprites {
 					PLATE_TORSO_WALK_UP, PLATE_TORSO_STAND_DOWN, PLATE_TORSO_STAND_LEFT,
 					PLATE_TORSO_STAND_RIGHT, PLATE_TORSO_STAND_UP, TREE_TWO, TREE_THREE, STUMP,
 					CAMPFIRE_ANIMATION, CAMPFIRE_SINGLE, SAPLING_COLLECTION, DESERT, SNOW, TREE_FOUR, 
-					DARK_GRASS
-			};
+					DARK_GRASS, AXE_ITEM, BAT_WALK_DOWN, BAT_WALK_UP, BAT_WALK_LEFT, BAT_WALK_RIGHT,
+					BAT_STAND_UP, BAT_STAND_DOWN, BAT_STAND_LEFT, BAT_STAND_RIGHT,MALE_SLASH_UP,
+					MALE_SLASH_DOWN, MALE_SLASH_LEFT, MALE_SLASH_RIGHT, SWORD, LONG_SWORD
+					};
 			
 			String[] lightNames = {LIGHT};
 			String[][] nameArrays = {names, lightNames};
@@ -286,12 +308,13 @@ public class Sprites {
 			
 			collisionDebugger = new StaticSprite(atlas, 0, 32, TEXTURE_SIZE, TEXTURE_SIZE, Game.batch);
 			
-			int[] animationIds = {STAND_DOWN, STAND_RIGHT, STAND_UP, STAND_LEFT, WALK_DOWN, WALK_RIGHT, WALK_UP, WALK_LEFT};
+			int[] animationIds = {STAND_DOWN, STAND_RIGHT, STAND_UP, STAND_LEFT, WALK_DOWN, WALK_RIGHT, WALK_UP, WALK_LEFT, SLASH_DOWN, SLASH_RIGHT, SLASH_UP, SLASH_LEFT};
 			Animation[] animations = new Animation[animationIds.length];
 			Animation[] helmet = new Animation[animationIds.length];
 			Animation[] chest = new Animation[animationIds.length];
 			Animation[] pants = new Animation[animationIds.length];
 			Animation[] boots = new Animation[animationIds.length];
+			Animation[] bat = new Animation[animationIds.length];
 			
 			animations = new Animation[]{
 					Sprites.animations.get(MALE_STAND_UP),
@@ -301,7 +324,11 @@ public class Sprites {
 					Sprites.animations.get(MALE_WALK_UP),
 					Sprites.animations.get(MALE_WALK_DOWN),
 					Sprites.animations.get(MALE_WALK_RIGHT),
-					Sprites.animations.get(MALE_WALK_LEFT)
+					Sprites.animations.get(MALE_WALK_LEFT),
+					Sprites.animations.get(MALE_SLASH_UP),
+					Sprites.animations.get(MALE_SLASH_DOWN),
+					Sprites.animations.get(MALE_SLASH_RIGHT),
+					Sprites.animations.get(MALE_SLASH_LEFT)
 			};
 			
 			helmet = new Animation[] {
@@ -312,6 +339,11 @@ public class Sprites {
 					Sprites.animations.get(PLATE_HELMET_WALK_UP),
 					Sprites.animations.get(PLATE_HELMET_WALK_DOWN),
 					Sprites.animations.get(PLATE_HELMET_WALK_RIGHT),
+					Sprites.animations.get(PLATE_HELMET_WALK_LEFT),
+					//FIXME!!!
+					Sprites.animations.get(PLATE_HELMET_WALK_LEFT),
+					Sprites.animations.get(PLATE_HELMET_WALK_LEFT),
+					Sprites.animations.get(PLATE_HELMET_WALK_LEFT),
 					Sprites.animations.get(PLATE_HELMET_WALK_LEFT),
 			};
 			
@@ -324,6 +356,11 @@ public class Sprites {
 					Sprites.animations.get(PLATE_TORSO_WALK_DOWN),
 					Sprites.animations.get(PLATE_TORSO_WALK_RIGHT),
 					Sprites.animations.get(PLATE_TORSO_WALK_LEFT),
+					
+					Sprites.animations.get(PLATE_TORSO_WALK_LEFT),
+					Sprites.animations.get(PLATE_TORSO_WALK_LEFT),
+					Sprites.animations.get(PLATE_TORSO_WALK_LEFT),
+					Sprites.animations.get(PLATE_TORSO_WALK_LEFT),
 			};
 			
 			pants = new Animation[] {
@@ -334,6 +371,11 @@ public class Sprites {
 					Sprites.animations.get(PLATE_LEGS_WALK_UP),
 					Sprites.animations.get(PLATE_LEGS_WALK_DOWN),
 					Sprites.animations.get(PLATE_LEGS_WALK_RIGHT),
+					Sprites.animations.get(PLATE_LEGS_WALK_LEFT),
+					
+					Sprites.animations.get(PLATE_LEGS_WALK_LEFT),
+					Sprites.animations.get(PLATE_LEGS_WALK_LEFT),
+					Sprites.animations.get(PLATE_LEGS_WALK_LEFT),
 					Sprites.animations.get(PLATE_LEGS_WALK_LEFT),
 			};
 			
@@ -346,6 +388,27 @@ public class Sprites {
 					Sprites.animations.get(PLATE_FEET_WALK_DOWN),
 					Sprites.animations.get(PLATE_FEET_WALK_RIGHT),
 					Sprites.animations.get(PLATE_FEET_WALK_LEFT),
+					
+					Sprites.animations.get(PLATE_FEET_WALK_LEFT),
+					Sprites.animations.get(PLATE_FEET_WALK_LEFT),
+					Sprites.animations.get(PLATE_FEET_WALK_LEFT),
+					Sprites.animations.get(PLATE_FEET_WALK_LEFT),
+			};
+			
+			bat = new Animation[] {
+					Sprites.animations.get(BAT_STAND_UP),
+					Sprites.animations.get(BAT_STAND_DOWN),
+					Sprites.animations.get(BAT_STAND_RIGHT),
+					Sprites.animations.get(BAT_STAND_LEFT),
+					Sprites.animations.get(BAT_WALK_UP),
+					Sprites.animations.get(BAT_WALK_DOWN),
+					Sprites.animations.get(BAT_WALK_RIGHT),
+					Sprites.animations.get(BAT_WALK_LEFT),
+					
+					Sprites.animations.get(BAT_WALK_LEFT),
+					Sprites.animations.get(BAT_WALK_LEFT),
+					Sprites.animations.get(BAT_WALK_LEFT),
+					Sprites.animations.get(BAT_WALK_LEFT),
 			};
 			
 			for(int i = 0; i < animations.length; i++) {
@@ -354,6 +417,7 @@ public class Sprites {
 				chest[i].id = i;
 				pants[i].id = i;
 				boots[i].id = i;
+				bat[i].id = i;
 			}
 			
 			AnimatedSprite animatedSprite = new AnimatedSprite(animations);
@@ -361,12 +425,14 @@ public class Sprites {
 			AnimatedSprite animatedChest = new AnimatedSprite(chest);
 			AnimatedSprite animatedPants = new AnimatedSprite(pants);
 			AnimatedSprite animatedBoots = new AnimatedSprite(boots);
+			AnimatedSprite animatedBat = new AnimatedSprite(bat);
 			
 			animatedSprites.put(HUMAN_BASE, animatedSprite);
 			animatedSprites.put(PLATE_HELMET_ITEM, animatedHelmet);
 			animatedSprites.put(PLATE_TORSO_ITEM, animatedChest);
 			animatedSprites.put(PLATE_LEGS_ITEM, animatedPants);
 			animatedSprites.put(PLATE_FEET_ITEM, animatedBoots);
+			animatedSprites.put(BAT, animatedBat);
 			
 			fireAnimationSprites = new StaticSprite[4];
 			fireAnimationSprites[0] = new StaticSprite(atlas, 0, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);

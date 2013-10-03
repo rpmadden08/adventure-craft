@@ -80,8 +80,17 @@ public class CompoundAnimatedSprite extends CompoundSprite {
 		}
 	}
 	
+	public void changeFrameTimes(int n) {
+		for(AnimatedSprite sprite : sprites) {
+			sprite.changeFrameTimes(n);
+		}
+	}
+	
 	public int getCurrentAnimation() {
 		return sprites.get(0).getCurrentAnimation();
+	}
+	public int getCurrentAnimationFrame() {
+		return sprites.get(0).getCurrentAnimationFrame();
 	}
 	
 	public CompoundAnimatedSprite getCopy() {

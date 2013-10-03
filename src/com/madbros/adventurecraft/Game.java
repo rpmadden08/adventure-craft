@@ -37,6 +37,7 @@ public class Game implements ApplicationListener {
 	public static Level level;
 	public static Hero hero;
 	public static MobController mobController;
+	public static CollectibleController collectibleController;
 	public static Inventory inventory;
 	public static MiniMap map;
 	public static RenderSystem renderSystem;
@@ -94,6 +95,7 @@ public class Game implements ApplicationListener {
 		level = new Level();
 		hero = new Hero();
 		mobController = new MobController();
+		collectibleController = new CollectibleController();
 		inventory = new Inventory();
 		map = new MiniMap();
 		renderSystem = new RenderSystem();

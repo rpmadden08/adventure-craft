@@ -74,22 +74,26 @@ public class MainStateInput extends BasicInput {
 	}
 	
 	public void additionalKeyDown(int key){
-		switch(key) {
-			case Keys.E: Game.toggleInventoryState(); break;
-			case Keys.W: Game.hero.moveUp(); break;
-			case Keys.A: Game.hero.moveLeft(); break;
-			case Keys.S: Game.hero.moveDown(); break;
-			case Keys.D: Game.hero.moveRight(); break;
-			case Keys.U: System.out.println(Game.debugger.getTimeDiff()); break;	//for debugging stuff
+		if(!Game.hero.isAttacking) {
+			switch(key) {
+				case Keys.E: Game.toggleInventoryState(); break;
+				case Keys.W: Game.hero.moveUp(); break;
+				case Keys.A: Game.hero.moveLeft(); break;
+				case Keys.S: Game.hero.moveDown(); break;
+				case Keys.D: Game.hero.moveRight(); break;
+				case Keys.U: System.out.println(Game.debugger.getTimeDiff()); break;	//for debugging stuff
+			}
 		}
 	}
 	
 	public void additionalKeyUp(int key) {
-		switch(key) {
-			case Keys.W: Game.hero.stopUp(); break;
-			case Keys.A: Game.hero.stopLeft(); break;
-			case Keys.S: Game.hero.stopDown(); break;
-			case Keys.D: Game.hero.stopRight(); break;
+		if(!Game.hero.isAttacking) {
+			switch(key) {
+				case Keys.W: Game.hero.stopUp(); break;
+				case Keys.A: Game.hero.stopLeft(); break;
+				case Keys.S: Game.hero.stopDown(); break;
+				case Keys.D: Game.hero.stopRight(); break;
+			}
 		}
 	}
 	

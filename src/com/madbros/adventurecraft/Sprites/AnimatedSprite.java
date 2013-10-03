@@ -66,8 +66,18 @@ public class AnimatedSprite extends Sprite {
 		}
 	}
 	
+	public void changeFrameTimes(int n) {
+		for (int key : animations.keySet()) {
+		    animations.get(key).changeFrameTimes(n);
+		}
+	}
+	
 	public int getCurrentAnimation() {
 		return currentAnimation.id;
+	}
+	
+	public int getCurrentAnimationFrame() {
+		return currentAnimation.currentFrame;
 	}
 	
 	public void setColor(Color color) {

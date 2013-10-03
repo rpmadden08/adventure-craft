@@ -138,6 +138,12 @@ public class Block {
 		return new NoTile();
 	}
 	
+	public Tile getObjectTile() {
+		
+		if(layers[OBJECT_LAYER].id != AIR) return layers[OBJECT_LAYER];
+		return new NoTile();
+	}
+	
 	public void deleteTopTile() {
 		for(int i = layers.length-1; i > -1; i--) {
 			if(layers[i].id != AIR && layers[i].id != DARK_DIRT) { 
@@ -148,6 +154,14 @@ public class Block {
 				setCollisionTile((CollisionTile)layers[WATER_LAYER]);
 			}
 		}
+	}
+	public void deleteObjectTile() {
+		
+			if(layers[OBJECT_LAYER].id != AIR && layers[OBJECT_LAYER].id != DARK_DIRT) { 
+				layers[OBJECT_LAYER] = new NoTile();
+				return;
+			}
+		
 	}
 	
 	//returns all visable layers

@@ -43,6 +43,11 @@ public class Constants {
 	public static final int WALK_DOWN = 5;
 	public static final int WALK_RIGHT = 6;
 	public static final int WALK_LEFT = 7;
+	public static final int SLASH_UP = 8;
+	public static final int SLASH_DOWN = 9;
+	public static final int SLASH_RIGHT = 10;
+	public static final int SLASH_LEFT = 11;
+	
 
 	public static final boolean VERTICAL = true;
 	public static final boolean HORIZONTAL = false;
@@ -211,6 +216,8 @@ public class Constants {
 	public static final int IRON_LEGGINGS = 11;
 	public static final int IRON_BOOTS = 12;
 	public static final int CAMPFIRE_ITEM = 13;
+	public static final int AXE = 14;
+	public static final int LONG_SWORD = 15;
 	
 	//Clothing Types
 	public static final int HELMET = 0;
@@ -263,7 +270,9 @@ public class Constants {
 		ITEM_HASH.put(LOG, new Log());
 		ITEM_HASH.put(PLANK, new Plank());
 		ITEM_HASH.put(SHOVEL, new Shovel());
+		ITEM_HASH.put(AXE, new Axe());
 		ITEM_HASH.put(SWORD, new Sword());
+		ITEM_HASH.put(LONG_SWORD, new LongSword());
 		ITEM_HASH.put(SAPLING_ITEM, new Sapling());
 		ITEM_HASH.put(IRON_HELMET, new IronHelmet());
 		ITEM_HASH.put(IRON_ARMOR, new IronArmor());

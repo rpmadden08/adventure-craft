@@ -2,9 +2,7 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
-import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Margin;
 
 public class DirtMountainTopTile extends CollisionTile {

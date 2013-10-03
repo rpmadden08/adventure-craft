@@ -16,6 +16,10 @@ public abstract class Item {
 	public int[] itemsPossiblyCraftable = {};
 	public int[] craftCost = {};
 	public boolean is32 = false;
+	public float originX = 2;
+	public float originY = 30;
+	public float weaponOffsetX = 0;
+	public float weaponOffsetY = 0;
 	
 	public StaticSprite sprite;
 	

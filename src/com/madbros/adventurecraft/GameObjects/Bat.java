@@ -5,25 +5,27 @@ import static com.madbros.adventurecraft.Constants.*;
 import java.util.Random;
 
 import com.madbros.adventurecraft.Block;
+import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.MobController;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class Mob extends Actor {
+public class Bat extends Mob {
 	int length = 0;
 	int framesNum = 0;
 	MobController mobController;
 	
-	public Mob(MobController mobController) {
+	public Bat(MobController mobController) {
+		super(mobController);
 		this.mobController = mobController;
 		absRect = new Rect(TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2 - 64,
 				  TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2 - 64,
-				  CHARACTER_SIZE, CHARACTER_SIZE);
-		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_BASE));
-		margin = new Margin(17, 17, 29, 1);
-		currentSpeed = 0.05f;
+				  32, 32);
+		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BAT));
+		margin = new Margin(0, 0, 0, 0);
+		currentSpeed = 0.1f;
 		collisionDetectionBlocks = new Block[9];
 	}
 
@@ -38,8 +40,10 @@ public class Mob extends Actor {
 	
 	@Override
 	public void didCollide() {
+		//mobController.remove(this);
 		
-		mobController.remove(this);
+		Game.hero.takeDamage(1);
+		Game.hero.knockBack(this);
 	}
 	
 	public void updateAI() {

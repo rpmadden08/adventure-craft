@@ -56,12 +56,8 @@ public class Inventory {
 		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +160,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x - 50,INV_CHAR_RECT.y +210,BOOTS_SLOT);
 		
-		invBar[0].item = new Sapling();
-		invBar[0].item.stackSize = 99;
-		invBar[1].item = new SaplingRain();
-		
-		invBar[2].item = new Log();
-		invBar[2].item.stackSize = 99;
+		invBar[0].item = new Sword();
+		invBar[1].item = new LongSword();
 		invBar[3].item = new SandClump();
 		invBar[3].item.stackSize = 99;
 		invBar[4].item = new GrassSeed();
@@ -71,14 +67,46 @@ public class Inventory {
 		invBar[6].item = new IronLeggings();
 		invBar[7].item = new CampfireItem();
 		invBar[7].item.stackSize = 99;
-		invBar[9].item = new Shovel();
+		//invBar[8].item = new IronHelmet();
+		//invBar[9].item = new Shovel();
 
 //		invClothing[0].item = new IronHelmet();
 //		Game.hero.addClothingItem((ClothingItem)invClothing[0].item);
-		invBar[8].item = new IronHelmet();
+		
 
 	}
-	
+	public void add(Item addedItem) {
+		for(int i = 0; i < invBar.length; i++) {
+			if(invBar[i].item.id == addedItem.id ) {
+				if(invBar[i].item.stackSize != addedItem.maxStackSize ) {
+					invBar[i].item.stackSize ++;
+					return;
+				}
+				
+			}
+		}
+		for(int i = 0; i < invBag.length; i++) {
+			if(invBag[i].item == addedItem ) {
+				if(invBag[i].item.stackSize != addedItem.maxStackSize ) {
+					invBag[i].item.stackSize ++;
+					return;
+				}
+				
+			}
+		}
+		for(int i = 0; i < invBar.length; i++) {
+			if(invBar[i].item.id == 0 ) {
+				invBar[i].item = addedItem;
+				return;
+			}
+		}
+		for(int i = 0; i < invBag.length; i++) {
+			if(invBag[i].item.id == 0) {
+				invBag[i].item = addedItem;
+				return;
+			}
+		}
+	}
 	public void update() {
 		if(isUsingLeftItem) invBar[itemSelected].item.useLeft();
 		if(isUsingRightItem) invBar[itemSelected].item.useRight();

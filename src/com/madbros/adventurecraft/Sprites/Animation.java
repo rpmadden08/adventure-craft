@@ -7,7 +7,7 @@ import com.madbros.adventurecraft.Utils.*;
 public class Animation {
 	public StaticSprite[] sprites;
 	private int[] frameTimesInMilliseconds;
-	private int currentFrame = 0;
+	public int currentFrame = 0;
 	private int time;
 	public int id;
 	
@@ -75,6 +75,12 @@ public class Animation {
 	public void changeFrameTimesBy(int n) {
 		for(int i = 0; i < sprites.length; i++) {
 			frameTimesInMilliseconds[i] += n;
+		}
+	}
+	
+	public void changeFrameTimes(int n) {
+		for(int i = 0; i < sprites.length; i++) {
+			frameTimesInMilliseconds[i] = n;
 		}
 	}
 	

@@ -4,7 +4,6 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.*;
-
 import com.madbros.adventurecraft.Sprites.Sprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Helpers;
@@ -61,4 +60,7 @@ public abstract class Tile {
 	public void update(int x, int y) {
 		
 	}
+	
+	public void deleteMe(int x, int y, Block[][] activeBlocks) {}
+	
 }
