@@ -15,6 +15,15 @@ import com.madbros.adventurecraft.Utils.Rect;
 
 public class Hero extends Actor {
 	public Hero() {
+		//STATS
+		maxHP = 250;
+		hP = maxHP;
+		maxMP = 250;
+		mP = maxMP;
+		maxEP = 250;
+		eP = maxEP;
+		
+		
 		absRect = new Rect(TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
 				  TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
 				  CHARACTER_SIZE, CHARACTER_SIZE);

@@ -3,15 +3,13 @@ package com.madbros.adventurecraft.Sprites;
 //import java.awt.Font;
 
 import java.io.FileNotFoundException;
+
 import java.io.FileReader;
 import java.io.IOException;
 //import java.io.InputStream;
 import java.util.HashMap;
-
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.stbtt.TrueTypeFontFactory;
 import com.madbros.adventurecraft.Game;
 //import org.newdawn.slick.TrueTypeFont;
 //import org.newdawn.slick.opengl.Texture;
@@ -34,6 +32,8 @@ public class Sprites {
 	public static final String COLLISION_DETECTION = "collisionDetection";
 	public static final String INVENTORY_MENU_SELECTOR = "inventoryMenuSelector";
 	public static final String INVENTORY_MENU_SLOT = "inventoryMenuSlot";
+	public static final String HEALTH_BAR_EDGE = "healthBarEdge";
+	
 	public static final String PIXEL = "pixel";
 	public static final String SAPLING = "sapling";
 	public static final String STUMP = "stump";
@@ -161,6 +161,7 @@ public class Sprites {
 	//for debugging
 	public static StaticSprite collisionDebugger;
 	public static StaticSprite pixel;
+	public static StaticSprite healthBar;
 	
 	public static BitmapFont font;
 	public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"«`'<>";
@@ -207,7 +208,7 @@ public class Sprites {
 					CAMPFIRE_ANIMATION, CAMPFIRE_SINGLE, SAPLING_COLLECTION, DESERT, SNOW, TREE_FOUR, 
 					DARK_GRASS, AXE_ITEM, BAT_WALK_DOWN, BAT_WALK_UP, BAT_WALK_LEFT, BAT_WALK_RIGHT,
 					BAT_STAND_UP, BAT_STAND_DOWN, BAT_STAND_LEFT, BAT_STAND_RIGHT,MALE_SLASH_UP,
-					MALE_SLASH_DOWN, MALE_SLASH_LEFT, MALE_SLASH_RIGHT, SWORD, LONG_SWORD
+					MALE_SLASH_DOWN, MALE_SLASH_LEFT, MALE_SLASH_RIGHT, SWORD, LONG_SWORD, HEALTH_BAR_EDGE
 					};
 			
 			String[] lightNames = {LIGHT};
@@ -287,6 +288,7 @@ public class Sprites {
 			campfireAnimation = new AnimatedSprite[]{new AnimatedSprite(animation)};
 			
 			pixel = sprites.get(PIXEL);
+			healthBar = sprites.get(HEALTH_BAR_EDGE);
 			
 //			sprites.put(0, waterSprites);
 			
@@ -448,19 +450,10 @@ public class Sprites {
 			fireAnimationSprites[2] = new StaticSprite(atlas, 128, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);
 			fireAnimationSprites[3] = new StaticSprite(atlas, 192, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);
 		
-			font = TrueTypeFontFactory.createBitmapFont(Gdx.files.internal("res/Lato-Regular.ttf"), FONT_CHARACTERS, 12.5f, 7.5f, 1.0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-			font.setScale(0.14f, -0.14f);
+			//font = TrueTypeFontFactory.createBitmapFont(Gdx.files.internal("res/8Bit16.ttf"), FONT_CHARACTERS, 12.5f, 7.5f, 1.0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+			font = new BitmapFont();
 			font.setColor(1f, 1f, 1f, 1f);
-//		try {
-////			Font awtFont = new Font("Times New Roman", Font.BOLD, 12);
-////			font = new TrueTypeFont(awtFont, false);
-//			InputStream inputStream = ResourceLoader.getResourceAsStream("res/Lato-Regular.ttf");
-//			Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
-//			awtFont2 = awtFont2.deriveFont(DEBUG_FONT_SIZE); // set font size
-//			font = new TrueTypeFont(awtFont2, false);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			System.exit(0);
-//		}  
+			font.setScale(1f, -1f);
+			font.setColor(1f, 1f, 1f, 1f);
 	}
 }

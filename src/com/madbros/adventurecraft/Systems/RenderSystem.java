@@ -139,6 +139,71 @@ public class RenderSystem {
 //			Sprites.pixel.setColor(Color.WHITE);
 			
 		}
+		renderHealth(hero);
+		
+	}
+	
+	public void renderHealth(Hero hero) {
+		//The Red/Blue/Green Part
+		Sprites.pixel.setColor(Color.RED);
+		Sprites.pixel.draw(4,4,Z_CHARACTER,hero.hP,10);
+		Sprites.pixel.setColor(Color.BLUE);
+		Sprites.pixel.draw(4,20,Z_CHARACTER,hero.mP,10);
+		Sprites.pixel.setColor(Color.GREEN);
+		Sprites.pixel.draw(4,36,Z_CHARACTER,hero.eP,10);
+		
+		//Red Highlight top
+		Sprites.pixel.setColor(1f, 1f, 1f,0.4f);
+		Sprites.pixel.draw(4,4,Z_CHARACTER,hero.hP,2);
+		Sprites.pixel.draw(4,20,Z_CHARACTER,hero.mP,2);
+		Sprites.pixel.draw(4,36,Z_CHARACTER,hero.eP,2);
+		
+		//Red Highlight bottom
+		Sprites.pixel.setColor(0f, 0f, 0f,0.3f);
+		Sprites.pixel.draw(4,12,Z_CHARACTER,hero.hP,2);
+		Sprites.pixel.draw(4,28,Z_CHARACTER,hero.mP,2);
+		Sprites.pixel.draw(4,44,Z_CHARACTER,hero.eP,2);
+	
+		//Black Edge
+		Sprites.pixel.setColor(Color.BLACK);
+		Sprites.pixel.draw(4+hero.hP,4,Z_CHARACTER,hero.maxHP-hero.hP,10);
+		Sprites.pixel.draw(4+hero.mP,20,Z_CHARACTER,hero.maxMP-hero.mP,10);
+		Sprites.pixel.draw(4+hero.eP,36,Z_CHARACTER,hero.maxEP-hero.eP,10);
+		
+		//Border left
+		Sprites.healthBar.draw(2,2,Z_CHARACTER,4,14);
+		Sprites.healthBar.draw(2,18,Z_CHARACTER,4,14);
+		Sprites.healthBar.draw(2,34,Z_CHARACTER,4,14);
+		
+		//Border Top
+		Sprites.pixel.setColor(0.886f, 0.914f, 0.98f,1f);
+		Sprites.pixel.draw(6, 2, Z_CHARACTER, hero.maxHP-4, 2);
+		Sprites.pixel.draw(6, 18, Z_CHARACTER, hero.maxMP-4, 2);
+		Sprites.pixel.draw(6, 34, Z_CHARACTER, hero.maxEP-4, 2);
+		
+		//Border Bottom
+		Sprites.pixel.draw(6, 14, Z_CHARACTER, hero.maxHP-4, 2);
+		Sprites.pixel.draw(6, 30, Z_CHARACTER, hero.maxMP-4, 2);
+		Sprites.pixel.draw(6, 46, Z_CHARACTER, hero.maxEP-4, 2);
+		
+		//Border Right
+		Sprites.healthBar.rotate(180);
+		Sprites.healthBar.draw(2+hero.maxHP,2,Z_CHARACTER,4,14);
+		Sprites.healthBar.draw(2+hero.maxMP,18,Z_CHARACTER,4,14);
+		Sprites.healthBar.draw(2+hero.maxEP,34,Z_CHARACTER,4,14);
+		Sprites.healthBar.rotate(180);
+		
+		//Reset
+		Sprites.pixel.setColor(Color.WHITE);
+		
+//		Sprites.pixel.draw(4, 3, Z_CHARACTER, hero.maxHP+1, 1);
+//		Sprites.pixel.draw(3, 4, Z_CHARACTER, hero.maxHP+2, 1);
+//		Sprites.pixel.draw(2, 5, Z_CHARACTER, hero.maxHP+3, 8);
+//		Sprites.pixel.draw(3, 13, Z_CHARACTER, hero.maxHP+2, 1);
+//		Sprites.pixel.draw(4, 14, Z_CHARACTER, hero.maxHP+1, 1);
+//		Sprites.pixel.draw(5, 15, Z_CHARACTER, hero.maxHP, 1);
+		
+		Sprites.pixel.setColor(Color.WHITE);
 	}
 
 	

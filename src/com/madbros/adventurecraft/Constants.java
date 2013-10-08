@@ -65,16 +65,21 @@ public class Constants {
 	public static final int INV_LENGTH = 10;
 	public static final int INV_HEIGHT = 4;
 	
-	public static final Margin INV_MENU_MARGIN = new Margin(50, 50, 20, 100);
-	public static final Margin INV_SLOT_MARGIN = new Margin(0, 20, 0, 8);
+	public static final Margin INV_MENU_MARGIN = new Margin(46, 50, 50, 100);
+	public static final Margin INV_SLOT_MARGIN = new Margin(0, 2, 0, 2);
+	public static final Margin INV_MENU_SLOT_MARGIN =new Margin(0, 0, 0, 0);
 	
-	public static final Rect INV_BACKDROP_RECT = new Rect(INV_MENU_MARGIN.left, INV_MENU_MARGIN.top, 
-														  INITIAL_WINDOW_WIDTH - INV_MENU_MARGIN.getHorizontalLength(),
-														  INITIAL_WINDOW_HEIGHT - INV_MENU_MARGIN.getVerticalLength());
-	public static final Rect INV_BAR_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INITIAL_WINDOW_HEIGHT-50, 64, 64);
-	public static final Rect INV_BAG_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INV_BACKDROP_RECT.y2() - INV_BAR_RECT.h*4);	//FIXME: this is dumb
-	public static final Rect INV_CHAR_RECT = new Rect(INV_BACKDROP_RECT.x2() - CHARACTER_SIZE*4, INV_BACKDROP_RECT.y + 30, CHARACTER_SIZE*4, CHARACTER_SIZE*4);
-	public static final Rect INV_CRAFTING_RECT = new Rect(130, 50, 2*(INV_SLOT_SIZE+2), 2*(INV_SLOT_SIZE+2));
+	public static final Rect INV_BACKDROP_RECT = new Rect(INV_MENU_MARGIN.left, INV_MENU_MARGIN.top,INV_SLOT_SIZE*INV_LENGTH, INV_SLOT_SIZE*INV_LENGTH+18);
+	//public static final Rect INV_BAR_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INITIAL_WINDOW_HEIGHT-50, 64, 64);
+	public static final Rect INV_BAR_RECT = new Rect(2,50, 64, 64);
+	
+	//public static final Rect INV_BAG_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INV_BACKDROP_RECT.y2() - INV_BAR_RECT.h*4);	//FIXME: this is dumb
+	public static final Rect INV_BAG_RECT = new Rect(56, 60, INV_SLOT_SIZE*4, INV_SLOT_SIZE*INV_LENGTH);
+	
+	//public static final Rect INV_CHAR_RECT = new Rect(INV_BACKDROP_RECT.x2() - CHARACTER_SIZE*4, INV_BACKDROP_RECT.y + 30, CHARACTER_SIZE*4, CHARACTER_SIZE*4);
+	public static final Rect INV_CHAR_RECT = new Rect(180, 50,100,100);
+	
+	public static final Rect INV_CRAFTING_RECT = new Rect(230, 347, 2*(INV_SLOT_SIZE+2), 2*(INV_SLOT_SIZE+2));
 	public static final int INV_ANIMATION_CHANGE = 100;
 	
 	//item/slot constants
