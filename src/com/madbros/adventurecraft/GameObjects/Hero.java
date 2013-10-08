@@ -36,12 +36,12 @@ public class Hero extends Actor {
 		weaponYArray[0] = new int[]{4,2,0,2,4};
 		weaponRArray[0] = new float[]{-45,-90,-45,-20,0};
 		//DOWN
-		weaponXArray[1] = new int[]{34,30,34,50,53};
-		weaponYArray[1] = new int[]{16,16,16,14,12};
+		weaponXArray[1] = new int[]{34,30,36,50,53};
+		weaponYArray[1] = new int[]{11,11,11,9,7};
 		weaponRArray[1] = new float[]{135,180,135,110,90};
 		//LEFT
-		weaponXArray[2] = new int[]{18,20,14,9,11};
-		weaponYArray[2] = new int[]{17,15,14,4,2};
+		weaponXArray[2] = new int[]{22,24,18,13,15};
+		weaponYArray[2] = new int[]{15,13,12,2,0};
 		weaponRArray[2] = new float[]{225,180,225,250,270};
 		//RIGHT
 		weaponXArray[3] = new int[]{41,39,45,50,48};
@@ -128,9 +128,11 @@ public class Hero extends Actor {
 			currentSpeed = moveSpeed;
 			move(Time.getDelta());
 		} else if(isAttacking) {
+			startWeaponAnimation = true;
 			int currentFrame = sprite.getCurrentAnimationFrame();
 			if(currentFrame == 0) {
 				if(hasAttacked == true) {
+					startWeaponAnimation = false;
 					stop();
 					int t = sprite.getCurrentAnimation();
 					if(t == SLASH_UP) {
@@ -189,21 +191,25 @@ public class Hero extends Actor {
 		int iD = item.id;
 		attackItem = ITEM_HASH.get(iD).createNew();;
 		//attackTime = 24;
-		sprite.changeFrameTimes(40);
+		sprite.changeFrameTimes(80);
 		
 		int t = sprite.getCurrentAnimation();
 		if(t == STAND_UP || t == WALK_UP) {
 			sprite.changeAnimationTo(SLASH_UP);
 			dir = 0;
+			attackItem.cRectFinal = attackItem.cRectU;
 		} else if(t == STAND_DOWN || t == WALK_DOWN) {
 			sprite.changeAnimationTo(SLASH_DOWN);
 			dir = 1;
+			attackItem.cRectFinal = attackItem.cRectD;
 		} else if(t == STAND_LEFT || t == WALK_LEFT) {
 			sprite.changeAnimationTo(SLASH_LEFT);
 			dir = 2;
+			attackItem.cRectFinal = attackItem.cRectL;
 		} else if(t == STAND_RIGHT || t == WALK_RIGHT) {
 			sprite.changeAnimationTo(SLASH_RIGHT);
 			dir = 3;
+			attackItem.cRectFinal = attackItem.cRectR;
 		}
 	}
 	

@@ -12,7 +12,7 @@ public class MobController {
 	public void update() {
 		Random rand = new Random();
 		int num = rand.nextInt(100);
-		if(num == 57 && mobs.size() < 0) {
+		if(num == 57 && mobs.size() < 10) {
 			mobs.add(new Bat(this));
 		}
 		

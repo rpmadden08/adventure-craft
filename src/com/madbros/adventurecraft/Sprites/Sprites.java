@@ -309,12 +309,15 @@ public class Sprites {
 			collisionDebugger = new StaticSprite(atlas, 0, 32, TEXTURE_SIZE, TEXTURE_SIZE, Game.batch);
 			
 			int[] animationIds = {STAND_DOWN, STAND_RIGHT, STAND_UP, STAND_LEFT, WALK_DOWN, WALK_RIGHT, WALK_UP, WALK_LEFT, SLASH_DOWN, SLASH_RIGHT, SLASH_UP, SLASH_LEFT};
+			int[] animationIdsMob = {STAND_DOWN, STAND_RIGHT, STAND_UP, STAND_LEFT, WALK_DOWN, WALK_RIGHT, WALK_UP, WALK_LEFT};
 			Animation[] animations = new Animation[animationIds.length];
 			Animation[] helmet = new Animation[animationIds.length];
 			Animation[] chest = new Animation[animationIds.length];
 			Animation[] pants = new Animation[animationIds.length];
 			Animation[] boots = new Animation[animationIds.length];
-			Animation[] bat = new Animation[animationIds.length];
+			
+			Animation[] animationsMob = new Animation[animationIdsMob.length];
+			Animation[] bat = new Animation[animationIdsMob.length];
 			
 			animations = new Animation[]{
 					Sprites.animations.get(MALE_STAND_UP),
@@ -325,6 +328,7 @@ public class Sprites {
 					Sprites.animations.get(MALE_WALK_DOWN),
 					Sprites.animations.get(MALE_WALK_RIGHT),
 					Sprites.animations.get(MALE_WALK_LEFT),
+					
 					Sprites.animations.get(MALE_SLASH_UP),
 					Sprites.animations.get(MALE_SLASH_DOWN),
 					Sprites.animations.get(MALE_SLASH_RIGHT),
@@ -405,10 +409,10 @@ public class Sprites {
 					Sprites.animations.get(BAT_WALK_RIGHT),
 					Sprites.animations.get(BAT_WALK_LEFT),
 					
-					Sprites.animations.get(BAT_WALK_LEFT),
-					Sprites.animations.get(BAT_WALK_LEFT),
-					Sprites.animations.get(BAT_WALK_LEFT),
-					Sprites.animations.get(BAT_WALK_LEFT),
+//					Sprites.animations.get(BAT_WALK_LEFT),
+//					Sprites.animations.get(BAT_WALK_LEFT),
+//					Sprites.animations.get(BAT_WALK_LEFT),
+//					Sprites.animations.get(BAT_WALK_LEFT),
 			};
 			
 			for(int i = 0; i < animations.length; i++) {
@@ -417,6 +421,9 @@ public class Sprites {
 				chest[i].id = i;
 				pants[i].id = i;
 				boots[i].id = i;
+			}
+			
+			for(int i = 0; i < animationsMob.length; i++) {
 				bat[i].id = i;
 			}
 			
@@ -425,6 +432,7 @@ public class Sprites {
 			AnimatedSprite animatedChest = new AnimatedSprite(chest);
 			AnimatedSprite animatedPants = new AnimatedSprite(pants);
 			AnimatedSprite animatedBoots = new AnimatedSprite(boots);
+			
 			AnimatedSprite animatedBat = new AnimatedSprite(bat);
 			
 			animatedSprites.put(HUMAN_BASE, animatedSprite);

@@ -9,8 +9,8 @@ public class LongSword extends WeaponItem {
 	public LongSword() {
 		id = LONG_SWORD;
 		sprite = Sprites.sprites.get(Sprites.LONG_SWORD);
-		originX = 2;
-		originY = 62;
+		originX = 0;
+		originY = sprite.getHeight();
 		weaponOffsetX = 0;
 		weaponOffsetY = -32;
 	}

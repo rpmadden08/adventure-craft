@@ -20,6 +20,12 @@ public abstract class Item {
 	public float originY = 30;
 	public float weaponOffsetX = 0;
 	public float weaponOffsetY = 0;
+	public Rect cRectFinal = new Rect (0,0,0,0);
+	public Rect cRectU = new Rect (0,0,0,0);
+	public Rect cRectD = new Rect (0,0,0,0);
+	public Rect cRectR = new Rect (0,0,0,0);
+	public Rect cRectL = new Rect (0,0,0,0);
+	
 	
 	public StaticSprite sprite;
 	

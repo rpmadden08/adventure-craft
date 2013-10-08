@@ -2,7 +2,6 @@ package com.madbros.adventurecraft.Systems;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-
 import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.Arrays;
@@ -108,21 +107,36 @@ public class RenderSystem {
 			
 		
 			hero.sprite.draw(x, y, Z_CHARACTER);
-			Sprites.pixel.setColor(Color.RED);
-			Sprites.pixel.draw(x+width,y+height,Z_CHARACTER);
+			
 			renderCollisionRects(hero, x, y);
 			
 		}
 		
-		if(hero.isAttacking) {
+		if(hero.isAttacking && hero.startWeaponAnimation == true) {
 			//Item item = Game.inventory.heldItem;
 			//item.sprite.setColor(Color.WHITE);
 			//System.out.println(hero.attackItem.sprite.getOriginX()+"/"+hero.attackItem.sprite.getOriginY());
 			hero.attackItem.sprite.setOrigin(hero.attackItem.originX, hero.attackItem.originY);
+			//hero.attackItem.sprite.
+			Sprites.pixel.setColor(Color.RED);
+			Sprites.pixel.draw(hero.attackItem.originX, hero.attackItem.originY,Z_CHARACTER);
 			
 			hero.attackItem.sprite.rotate(hero.weaponR);
 			hero.attackItem.sprite.draw(x+hero.weaponX+ hero.attackItem.weaponOffsetX, y+hero.weaponY+hero.attackItem.weaponOffsetY, Z_CHARACTER);
 			hero.attackItem.sprite.rotate(-hero.weaponR);
+			
+			Sprites.pixel.setColor(Color.RED);
+			Sprites.pixel.draw(x + hero.attackItem.originX+hero.weaponX+ hero.attackItem.weaponOffsetX, y + hero.attackItem.originY+hero.weaponY+hero.attackItem.weaponOffsetY,Z_CHARACTER);
+			
+			//Collision rectangles
+		
+//			Rect r = new Rect(x+hero.attackItem.cRectFinal.x,y+hero.attackItem.cRectFinal.y, hero.attackItem.cRectFinal.w,hero.attackItem.cRectFinal.h);
+//			
+//			Color highlightColor = new Color(0, 0, 1f, 0.6f);
+//			Sprites.pixel.setColor(highlightColor);
+//			
+//			Sprites.pixel.draw(r, Z_COLLISION_RECTS);
+//			Sprites.pixel.setColor(Color.WHITE);
 			
 		}
 	}
@@ -134,8 +148,7 @@ public class RenderSystem {
 			int y = mob.absRect.y - startY;
 			int width = mob.absRect.w / 2;
 			int height = mob.absRect.h / 2;
-			
-			
+
 			mob.sprite.draw(x, y, Z_CHARACTER);
 			renderCollisionRects(mob, x, y);
 			Sprites.pixel.setColor(Color.RED);

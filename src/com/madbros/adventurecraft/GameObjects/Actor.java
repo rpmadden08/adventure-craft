@@ -42,6 +42,7 @@ public class Actor extends GameObject {
 	public int weaponY = 0;
 	public float weaponR = 0;
 	public int dir = 0;
+	public boolean startWeaponAnimation = false;
 	
 	/************************** Movement **************************/
 	public boolean isMoving() {
@@ -131,12 +132,21 @@ public class Actor extends GameObject {
 	}
 	
 	public void didCollide() {};
+	public void didGetHit() {};
 	
 	public void checkCollisions() {
 		Rect charCRect = new Rect(Game.hero.absRect, Game.hero.margin);
 		Rect cRect = new Rect(absRect, margin);
+		
 		if(cRect.detectCollision(charCRect)) {
 			didCollide();
+		}
+		if(Game.hero.isAttacking) {
+			Rect wRect = new Rect(Game.hero.absRect.x+ Game.hero.attackItem.cRectFinal.x, Game.hero.absRect.y + Game.hero.attackItem.cRectFinal.y, Game.hero.attackItem.cRectFinal.w,Game.hero.attackItem.cRectFinal.h);
+
+			if(cRect.detectCollision(wRect)) {
+				didGetHit();
+			}
 		}
 	}
 	

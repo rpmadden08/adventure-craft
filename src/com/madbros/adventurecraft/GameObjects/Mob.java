@@ -42,6 +42,12 @@ public class Mob extends Actor {
 		mobController.remove(this);
 	}
 	
+	@Override
+	public void didGetHit() {
+		//This is when the weapon hits the bat
+		mobController.remove(this);
+	}
+	
 	public void updateAI() {
 		if(framesNum > length) {
 			framesNum = 0;
