@@ -6,7 +6,9 @@ import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.Arrays;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.madbros.adventurecraft.Block;
@@ -15,6 +17,7 @@ import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Inventory;
 import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.MobController;
+import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.GameObjects.Actor;
 import com.madbros.adventurecraft.GameObjects.Collectible;
 import com.madbros.adventurecraft.GameObjects.GameObject;
@@ -29,8 +32,8 @@ import com.madbros.adventurecraft.Utils.Rect;
 
 public class RenderSystem {
 //	private ArrayList<GameObject> alreadyRenderedObjects;
-	private int startX;
-	private int startY;
+	public int startX;
+	public int startY;
 	private ArrayList<Block> lightTiles;
 
 	public void setStartPosition(Level lv) {
@@ -88,6 +91,10 @@ public class RenderSystem {
 			Sprites.collisionDebugger.draw(x, y, Z_COLLISION_TILES, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
 			Sprites.pixel.setColor(Color.WHITE);
 		}
+	}
+	
+	public void renderParticle(ParticleEffect p) {
+		p.draw(Game.batch, Gdx.graphics.getRawDeltaTime());
 	}
 	
 	public void renderHero(Hero hero, int x, int y) {

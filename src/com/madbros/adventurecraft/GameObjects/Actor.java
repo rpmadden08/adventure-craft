@@ -219,51 +219,51 @@ public class Actor extends GameObject {
 		absRect.y += moveY;
 	}
 	
-	public void move(int delta) {
+	public void move(float f) {
 		int moveX = 0, moveY = 0;
 		
 		getCollisionBlocks();
 		if(isMovingLeft) {
-			moveX = Math.round(-currentSpeed * delta);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
+			moveX = Math.round(-currentSpeed * f);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
 			xMove(moveX);
 			getCollision(HORIZONTAL, moveX);
 		} else if(isMovingRight) {
-			moveX = Math.round(currentSpeed * delta);
+			moveX = Math.round(currentSpeed * f);
 			xMove(moveX);
 			getCollision(HORIZONTAL, moveX);
 		}
 		
 		if(isMovingUp) {
-			moveY = Math.round(-currentSpeed * delta);
+			moveY = Math.round(-currentSpeed * f);
 			yMove(moveY);
 			getCollision(VERTICAL, moveY);
 		} else if(isMovingDown) {
-			moveY = Math.round(currentSpeed * delta);
+			moveY = Math.round(currentSpeed * f);
 			yMove(moveY);
 			getCollision(VERTICAL, moveY);
 		}
 	}
 	
-	public void moveKnockBack(int delta) {
+	public void moveKnockBack(float f) {
 		int moveX = 0, moveY = 0;
 		
 		getCollisionBlocks();
 		if(isKnockingLeft) {
-			moveX = Math.round(-currentSpeed * delta);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
+			moveX = Math.round(-currentSpeed * f);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
 			xMove(moveX);
 			getCollision(HORIZONTAL, moveX);
 		} else if(isKnockingRight) {
-			moveX = Math.round(currentSpeed * delta);
+			moveX = Math.round(currentSpeed * f);
 			xMove(moveX);
 			getCollision(HORIZONTAL, moveX);
 		}
 		
 		if(isKnockingUp) {
-			moveY = Math.round(-currentSpeed * delta);
+			moveY = Math.round(-currentSpeed * f);
 			yMove(moveY);
 			getCollision(VERTICAL, moveY);
 		} else if(isKnockingDown) {
-			moveY = Math.round(currentSpeed * delta);
+			moveY = Math.round(currentSpeed * f);
 			yMove(moveY);
 			getCollision(VERTICAL, moveY);
 		}

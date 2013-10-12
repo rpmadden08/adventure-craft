@@ -73,7 +73,11 @@ public class MainState extends GameState {
 			Game.renderSystem.renderHero(Game.hero, Game.getCenterScreenX() - CHARACTER_SIZE/2, Game.getCenterScreenY() - CHARACTER_SIZE/2);
 			Game.renderSystem.renderMobs(Game.mobController);
 			Game.renderSystem.renderCollectibles(Game.collectibleController);
+			Game.renderSystem.renderParticle(Game.p);
 		Game.batch.end();
+		
+		//Particle Effect
+		
 		
 		Game.fbo.begin();
 		Game.batch.setProjectionMatrix(Game.camera.combined);
@@ -82,6 +86,7 @@ public class MainState extends GameState {
 		Game.batch.begin();
 		Game.renderSystem.renderLight(Game.hero);
 		Game.batch.end();
+		
 		Game.fbo.end();
 		renderHud();
 		

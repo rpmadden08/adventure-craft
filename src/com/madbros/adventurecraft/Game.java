@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
@@ -32,6 +33,7 @@ public class Game implements ApplicationListener {
 	public static String locOfSavedGame = null;
 	
 	public static SpriteBatch batch;
+	public static SpriteBatch particleBatch;
 	public static Debugger debugger;
 	public static DebugMenu debugMenu;
 	public static Level level;
@@ -50,6 +52,8 @@ public class Game implements ApplicationListener {
 	public static final float PI2 = 3.1415926535897932384626433832795f * 2.0f;
 	public static Texture light;
 	public static FrameBuffer fbo;
+	
+	public static ParticleEffect p = new ParticleEffect();
 	
 	public static ShaderProgram defaultShader;
 	public static ShaderProgram ambientShader;
@@ -116,9 +120,13 @@ public class Game implements ApplicationListener {
 
 	@Override
 	public void create() {
+		
+		p.load(Gdx.files.internal("data/Chunks.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
+		
 		camera= new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		batch = new SpriteBatch();
+		particleBatch = new SpriteBatch();
 		new Sprites();
 		new Constants();
 		

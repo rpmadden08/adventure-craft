@@ -5,7 +5,9 @@ import static com.madbros.adventurecraft.Constants.*;
 import java.util.Random;
 
 import com.madbros.adventurecraft.Block;
+import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.MobController;
+import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
@@ -16,6 +18,7 @@ public class Mob extends Actor {
 	int framesNum = 0;
 	MobController mobController;
 	
+	
 	public Mob(MobController mobController) {
 		this.mobController = mobController;
 		absRect = new Rect(TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2 - 64,
@@ -25,6 +28,10 @@ public class Mob extends Actor {
 		margin = new Margin(17, 17, 29, 1);
 		currentSpeed = 0.05f;
 		collisionDetectionBlocks = new Block[9];
+		
+		moveSpeed = 0.05f;
+		currentSpeed = 0.05f; //0.19
+		knockBackSpeed = 0.7f;
 	}
 
 //	public void startAttacking() {
@@ -35,17 +42,83 @@ public class Mob extends Actor {
 //	public void stopAttacking() {
 //		isAttacking = false;
 //	}
+	public void takeDamage(int damage) {
+		if(knockBackTime <= 0) {
+			hP = hP - damage;
+			knockBackTime = 5;
+			if(hP <= 0) {
+				mobController.remove(this);
+			}
+		}
+		//System.out.println("KnockBackTime:  "+ knockBackTime);
+	}
+	
+	public void knockBack(Hero hero) {
+		double p1x = (double) absRect.x+ (absRect.w /2);
+		double p1y = (double) absRect.y+ (absRect.h/2);
+		double p2x = (double) hero.absRect.x +(hero.absRect.w /2);
+		double p2y = (double) hero.absRect.y +(hero.absRect.h /2);
+		double xDiff = p2x - p1x;
+		double yDiff = p2y - p1y;
+		double degrees = Math.atan2(yDiff,  xDiff);
+		degrees = degrees * 180 /(int) Math.PI;
+		if(degrees < 0) {
+			degrees += 360;
+		}
+		
+		isKnockingUp = false;
+		isKnockingDown = false;
+		isKnockingLeft = false;
+		isKnockingRight = false;
+		
+		if(degrees < 112.5 && degrees >= 67.5) {
+			isKnockingUp = true;
+		} else if(degrees < 22.5 || degrees >= 337.5) {
+			isKnockingLeft = true;
+		} else if(degrees < 202.5 && degrees >= 157.5) {
+			isKnockingRight = true;
+		} else if(degrees < 292.5 && degrees >= 247.5) {
+			isKnockingDown = true;
+		} else if(degrees < 67.5 && degrees >= 22.5) {
+			isKnockingUp = true;
+			isKnockingLeft = true;
+		} else if(degrees < 157.5 && degrees >= 112.5) {
+			isKnockingUp = true;
+			isKnockingRight = true;
+		} else if(degrees < 247.5 && degrees >= 202.5) {
+			isKnockingDown = true;
+			isKnockingLeft = true;
+		} else if(degrees < 337.5 && degrees >= 292.5) {
+			isKnockingDown = true;
+			isKnockingRight = true;
+		} 
+		//0 = left, 90 = up etc....	
+	}
 	
 	@Override
 	public void didCollide() {
 		
-		mobController.remove(this);
+		//mobController.remove(this);
+	}
+	public void update() {
+		if(knockBackTime > 0) {
+			knockBackTime = knockBackTime - 1;
+			currentSpeed = knockBackSpeed;
+			moveKnockBack(Time.getDelta());
+		} else if(isMoving() && !isAttacking) {
+			currentSpeed = moveSpeed;
+			move(Time.getDelta());
+		} else if(isAttacking) {
+			
+		}
 	}
 	
 	@Override
 	public void didGetHit() {
-		//This is when the weapon hits the bat
-		mobController.remove(this);
+		if(knockBackTime <= 0) {
+			takeDamage(1);
+			knockBack(Game.hero);
+		}
 	}
 	
 	public void updateAI() {

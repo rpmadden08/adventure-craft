@@ -68,7 +68,7 @@ public class Inventory {
 		invBar[7].item = new CampfireItem();
 		invBar[7].item.stackSize = 99;
 		//invBar[8].item = new IronHelmet();
-		//invBar[9].item = new Shovel();
+		invBar[9].item = new Axe();
 
 //		invClothing[0].item = new IronHelmet();
 //		Game.hero.addClothingItem((ClothingItem)invClothing[0].item);

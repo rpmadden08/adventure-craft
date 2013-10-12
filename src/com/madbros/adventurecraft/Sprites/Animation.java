@@ -8,7 +8,7 @@ public class Animation {
 	public StaticSprite[] sprites;
 	private int[] frameTimesInMilliseconds;
 	public int currentFrame = 0;
-	private int time;
+	private float time;
 	public int id;
 	
 	/*********************************** Constructors ***********************************/
@@ -61,8 +61,8 @@ public class Animation {
 		if(time >= frameTimesInMilliseconds[currentFrame]) nextFrame(time - frameTimesInMilliseconds[currentFrame]);
 	}
 	
-	private void nextFrame(int t) {
-		time = t;
+	private void nextFrame(float f) {
+		time = f;
 		if(currentFrame >= sprites.length - 1) currentFrame = 0;
 		else currentFrame++;
 	}
