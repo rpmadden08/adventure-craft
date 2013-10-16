@@ -64,7 +64,8 @@ public class MainState extends GameState {
 		
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		Game.batch.setProjectionMatrix(Game.camera.combined);
-		Game.batch.setShader(Game.defaultShader);
+		//TURN LIGHTING ON OFF HERE
+		Game.batch.setShader(Game.currentShader);
 		Game.batch.begin();
 			Game.fbo.getColorBufferTexture().bind(1);
 			Game.light.bind(0);
@@ -91,11 +92,12 @@ public class MainState extends GameState {
 		renderHud();
 		
 		
-//		Game.map.render(Game.level.activeBlocks);
+		//Game.map.render(Game.level.activeBlocks);
 	}
 	
 	protected void renderHud() {
 		Game.batch.setProjectionMatrix(Game.camera.combined);
+		
 		Game.batch.setShader(Game.defaultShader);
 		Game.batch.begin();
 			Game.renderSystem.renderHud(Game.inventory);

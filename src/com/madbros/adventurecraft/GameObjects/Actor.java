@@ -9,6 +9,7 @@ import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Items.ClothingItem;
 import com.madbros.adventurecraft.Items.Item;
+import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
 import com.madbros.adventurecraft.Utils.Margin;
@@ -38,7 +39,7 @@ public class Actor extends GameObject {
 	
 	public int knockBackTime = 0;
 	public boolean hasAttacked = true;
-	public Item attackItem;
+	public WeaponItem attackItem;
 	
 	public int[][] weaponXArray;
 	public int[][] weaponYArray;

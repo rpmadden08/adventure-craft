@@ -2,17 +2,21 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.openal.Wav.Sound;
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 
 public class Axe extends ToolItem {
+	protected Sound sound = (Sound) Gdx.audio.newSound(Gdx.files.internal("sounds/axeChop.wav"));
 	public Axe() {
 		id = AXE;
 		sprite = Sprites.sprites.get(Sprites.AXE_ITEM);
 		attackPower = 1;
 		is32 = true;
 		isInUse = false;
+		
 		
 	}
 	
@@ -33,6 +37,7 @@ public class Axe extends ToolItem {
 					Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
 					Game.level.autoTileHighlightedBlock();
 				}
+				//sound.play(1.0f);
 				System.out.println("ONLY RAN ONCE");
 				System.out.println(Game.level.tileBeingAttacked.currentHp);
 				isInUse = true;

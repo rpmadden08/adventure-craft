@@ -8,6 +8,7 @@ import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Items.Item;
+import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
@@ -117,10 +118,10 @@ public class Hero extends Actor {
 			isKnockingRight = true;
 		} else if(degrees < 247.5 && degrees >= 202.5) {
 			isKnockingDown = true;
-			isKnockingLeft = true;
+			isKnockingRight = true;
 		} else if(degrees < 337.5 && degrees >= 292.5) {
 			isKnockingDown = true;
-			isKnockingRight = true;
+			isKnockingLeft = true;
 		} 
 		//0 = left, 90 = up etc....
 		
@@ -161,7 +162,9 @@ public class Hero extends Actor {
 					if(Keyboard.isKeyDown(Keyboard.KEY_S)) moveDown();
 					if(Keyboard.isKeyDown(Keyboard.KEY_A)) moveLeft();
 					if(Keyboard.isKeyDown(Keyboard.KEY_D)) moveRight();
+					sprite.changeFrameTimes(80);
 					isAttacking = false;
+					
 				}
 				weaponX = weaponXArray[dir][currentFrame];
 				weaponY = weaponYArray[dir][currentFrame];
@@ -198,9 +201,9 @@ public class Hero extends Actor {
 		isAttacking = true;
 		//attackItem = item;
 		int iD = item.id;
-		attackItem = ITEM_HASH.get(iD).createNew();;
+		attackItem = (WeaponItem) ITEM_HASH.get(iD).createNew();;
 		//attackTime = 24;
-		sprite.changeFrameTimes(80);
+		sprite.changeFrameTimes(attackItem.swingSpeed);
 		
 		int t = sprite.getCurrentAnimation();
 		if(t == STAND_UP || t == WALK_UP) {

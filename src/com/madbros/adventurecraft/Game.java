@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.madbros.adventurecraft.GameObjects.*;
 import com.madbros.adventurecraft.GameStates.*;
@@ -59,9 +60,16 @@ public class Game implements ApplicationListener {
 	public static ShaderProgram ambientShader;
 	public static ShaderProgram lightShader;
 	public static ShaderProgram finalShader;
+	public static ShaderProgram currentShader;
 	
-	public static final float ambientIntensity = .05f;
-	public static final Vector3 ambientColor = new Vector3(0.3f, 0.3f, 0.7f);
+	public static float ambientIntensity = 0.05f; //0.05
+	public static Vector3 ambientColor = new Vector3(0.3f, 0.3f, 0.7f); //0.3f, 0.3f, 0.7f
+	
+	public static float lightTransparency = 1f;
+	public static float lightTransparency2 = 1f;
+	
+	public static float ambientIntensity2 = 0.05f; //0.05
+	public static Vector3 ambientColor2 = new Vector3(0.3f, 0.3f, 0.7f); //0.3f, 0.3f, 0.7f
 	
 /*#########################################################*/
 	public static void toggleInventoryState() {
@@ -161,22 +169,29 @@ public class Game implements ApplicationListener {
 		
 		finalShader.begin();
 		finalShader.setUniformi("u_lightmap", 1);
-		finalShader.setUniformf("ambientColor", ambientColor.x, ambientColor.y,
-				ambientColor.z, ambientIntensity);
+		finalShader.setUniformf("ambientColor", ambientColor.x, ambientColor.y, ambientColor.z, ambientIntensity);
 		finalShader.end();
 		
+		currentShader = finalShader;
 		light = new Texture("data/light.png");
+	}
+	
+	public static void reShade(Vector3 color, float intensity) {
+		finalShader.begin();
+		finalShader.setUniformi("u_lightmap", 1);
+		finalShader.setUniformf("ambientColor", color.x, color.y, color.z, intensity);
+		finalShader.end();
 	}
 
 	@Override
 	public void dispose() {
 		batch.dispose();
-//		finalShader.dispose();
-//		lightShader.dispose();
-//		ambientShader.dispose();
-//		defaultShader.dispose();
-//		light.dispose();
-//		fbo.dispose();
+		finalShader.dispose();
+		lightShader.dispose();
+		ambientShader.dispose();
+		defaultShader.dispose();
+		light.dispose();
+		fbo.dispose();
 //		bitmapFont.dispose();
 //		tilemap.dispose();
 	}

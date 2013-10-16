@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.math.Vector3;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Point;
@@ -49,6 +52,11 @@ public class Level {
 	//public PerlinGenerator perlin2 = new PerlinGenerator((int) rgenseed);
 	//public PerlinGenerator perlin3 = new PerlinGenerator((int) rgenseed);
 	public int size = 1000;
+	public long time;
+	public long gameStartTime;
+	public int hours = 8;
+	public int minutes = 0;
+	public boolean isDay = true;
 	
 	public Rect chunkRect = new Rect(0, 0, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);	//keeps track of the chunk we're on
 	public int offsetX = 0;	//offset gets set at the start of level if there is one
@@ -67,6 +75,9 @@ public class Level {
 	public double PMountain = 0;
 	public double PHole = 0;
 	
+	public int musicSelection = 0;
+	public Music music = Gdx.audio.newMusic(Gdx.files.internal("music/overworld.wav"));
+	
 	
 	
 	public Level() {
@@ -80,6 +91,7 @@ public class Level {
 				createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
 			}
 		}
+		gameStartTime = Time.getTime();
 		bloomAll();		
 
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
@@ -193,6 +205,35 @@ public class Level {
 //		System.out.println("MOUNTAIN: "+ PMountain/PTotal *100);
 //		System.out.println("HOLE: "+ PHole/PTotal *100);
 //		System.out.println("OCEAN: "+ POcean/PTotal *100);
+//		time = Time.getTime();
+//		time = (long) ((time - gameStartTime)/1000);
+//		
+		Time.checkTime();
+		if(isDay == true) {
+			if (musicSelection != 1) {
+				musicSelection = 1;
+				if(music.isPlaying()) {
+					music.stop();
+					music.dispose();
+				}
+				music = Gdx.audio.newMusic(Gdx.files.internal("music/overworld.wav"));
+				
+				music.play();
+				music.setLooping(true);
+			}
+		} else if (isDay == false) {
+			if (musicSelection != 2) {
+				musicSelection = 2;
+				if(music.isPlaying()) {
+					music.stop();
+					music.dispose();
+				}
+				music = Gdx.audio.newMusic(Gdx.files.internal("music/darkworld.wav"));
+				
+				music.play();
+				music.setLooping(true);
+			}
+		}
 		if(Game.currentState.type == State.MAIN) highlightBlock();
 		
 		if(renderRect.y <= CHUNK_SIZE/2) {

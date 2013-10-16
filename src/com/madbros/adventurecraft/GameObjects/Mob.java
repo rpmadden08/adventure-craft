@@ -29,9 +29,9 @@ public class Mob extends Actor {
 		currentSpeed = 0.05f;
 		collisionDetectionBlocks = new Block[9];
 		
-		moveSpeed = 0.05f;
+		moveSpeed = 0f;//0.05
 		currentSpeed = 0.05f; //0.19
-		knockBackSpeed = 0.7f;
+		knockBackSpeed = 0.05f; //0.7
 	}
 
 //	public void startAttacking() {
@@ -45,7 +45,7 @@ public class Mob extends Actor {
 	public void takeDamage(int damage) {
 		if(knockBackTime <= 0) {
 			hP = hP - damage;
-			knockBackTime = 5;
+			knockBackTime = 30; //30
 			if(hP <= 0) {
 				mobController.remove(this);
 			}
@@ -54,10 +54,10 @@ public class Mob extends Actor {
 	}
 	
 	public void knockBack(Hero hero) {
-		double p1x = (double) absRect.x+ (absRect.w /2);
-		double p1y = (double) absRect.y+ (absRect.h/2);
-		double p2x = (double) hero.absRect.x +(hero.absRect.w /2);
-		double p2y = (double) hero.absRect.y +(hero.absRect.h /2);
+		double p1x = (double) absRect.x + (absRect.w/2);
+		double p1y = (double) absRect.y + (absRect.h/2);
+		double p2x = (double) hero.absRect.x + (hero.absRect.w /2);
+		double p2y = (double) hero.absRect.y + (hero.absRect.h /2);
 		double xDiff = p2x - p1x;
 		double yDiff = p2y - p1y;
 		double degrees = Math.atan2(yDiff,  xDiff);
@@ -87,17 +87,16 @@ public class Mob extends Actor {
 			isKnockingRight = true;
 		} else if(degrees < 247.5 && degrees >= 202.5) {
 			isKnockingDown = true;
-			isKnockingLeft = true;
+			isKnockingRight = true;
 		} else if(degrees < 337.5 && degrees >= 292.5) {
 			isKnockingDown = true;
-			isKnockingRight = true;
+			isKnockingLeft = true;
 		} 
 		//0 = left, 90 = up etc....	
 	}
 	
 	@Override
 	public void didCollide() {
-		
 		//mobController.remove(this);
 	}
 	public void update() {

@@ -20,4 +20,5 @@ void main() {
 	
 	vec3 final = vColor * diffuseColor.rgb * ambient;
 	gl_FragColor = vec4(final, diffuseColor.a);
+	
 }

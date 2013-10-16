@@ -9,6 +9,7 @@ public class Time {
 	public Time() {
 		lastFrame = getTime();
 		setDelta();
+		
 	}
 	
 	public static long getTime() {
@@ -22,6 +23,131 @@ public class Time {
 	public static float getDelta() {
 		//System.out.println(Gdx.graphics.getRawDeltaTime());
 		return Gdx.graphics.getRawDeltaTime() *1000;
+	}
+	public static long getMilliseconds() {
+		long totalMilli = System.nanoTime() / 1000000; //<- time in milliseconds
+		
+		totalMilli = (totalMilli - Game.level.gameStartTime)/10;
+		return totalMilli % 100;
+	}
+	
+	public static long getTotalSeconds() {
+		long currentTime =  System.nanoTime() / 1000000; //<- time in milliseconds
+		
+		return (currentTime - Game.level.gameStartTime)/100; //Should be 1000 but made it /10 for testing purposes...
+	}
+	
+	public static long getSeconds() {
+		long currentTime = getTotalSeconds();
+		
+		long timeNow = currentTime % 60;
+		return timeNow;
+	}
+	
+	public static String getSecondsString() {
+		long timeNow = getSeconds();
+		if (timeNow / 10 == 0) {
+	        return "0" + timeNow;
+	    }
+		return "" + timeNow;
+	}
+	
+	public static long getMinutes() {
+		long currentTime = getTotalSeconds();
+		
+		long timeNow = currentTime / 60 + 8;
+		timeNow = timeNow % 24;
+		if (timeNow == 0)  {
+			timeNow = 24;
+		}
+		
+		return timeNow;
+	}
+	
+	public static String getMinutesString() {
+		long timeNow = getMinutes();
+		if (timeNow > 12) {
+			timeNow = timeNow - 12;
+		}
+		return "" + timeNow;
+	}
+	
+	public static void checkTime() {
+		long seconds = getMilliseconds();
+		long minutes = getSeconds();
+		long hours = getMinutes();
+		
+		if(hours >= 6 && hours < 19) {
+			Game.currentShader = Game.defaultShader; // Should be default
+			Game.level.isDay = true;
+		} else if (hours >= 5 && hours < 6) {
+			if(minutes >= 30) {
+				Game.currentShader = Game.finalShader;
+				double currentTime = minutes;
+				currentTime = currentTime + (seconds * 0.01);
+				double amountCompleted = currentTime - 30;
+				double percentage = amountCompleted / 30;
+				float shaderInfo[] = {Game.ambientIntensity, Game.ambientColor.x, Game.ambientColor.y,Game.ambientColor.z};
+				for(int a = 0;a < 4; a++) {
+					float x = shaderInfo[a];
+					float shaderTotal = 1f - x;
+					float amountToAdd = (float) (shaderTotal * percentage);
+					switch (a) {
+						case 0: Game.ambientIntensity2 = x + amountToAdd;
+						break;
+						case 1: Game.ambientColor2.x = x + amountToAdd;
+						break;
+						case 2: Game.ambientColor2.y = x + amountToAdd;
+						break;
+						case 3: Game.ambientColor2.z = x + amountToAdd;
+						break;
+					} 
+				}
+				float amountToAddLighting = 1f * (float)percentage;
+				Game.lightTransparency2 = Game.lightTransparency -amountToAddLighting;
+				Game.reShade(Game.ambientColor2, Game.ambientIntensity2);
+				
+			}
+		} else if (hours >= 19 &&  hours < 20) {
+			if(minutes >= 30) {
+				
+				double currentTime = minutes;
+				currentTime = currentTime + (seconds * 0.01); //IE 16.45
+				double amountCompleted = currentTime - 30; //IE 15
+				double percentage = amountCompleted / 30; 
+				float shaderInfo[] = {Game.ambientIntensity, Game.ambientColor.x, Game.ambientColor.y,Game.ambientColor.z};
+				for(int a = 0;a < 4; a++) {
+					float x = shaderInfo[a];
+					float shaderTotal = 1f - x; // to get 100% value
+					float amountToAdd = (float) (shaderTotal * percentage);
+					//float amountToSubtract = shaderTotal-amountToAdd;
+					switch (a) {
+						case 0: Game.ambientIntensity2 = 1f - amountToAdd;
+						break;
+						case 1: Game.ambientColor2.x = 1f - amountToAdd;
+						break;
+						case 2: Game.ambientColor2.y = 1f - amountToAdd;
+						break;
+						case 3: Game.ambientColor2.z = 1f - amountToAdd;
+						break;
+					} 
+				}
+				float amountToAddLighting = 1f * (float)percentage;
+				System.out.println(amountToAddLighting);
+				
+				Game.reShade(Game.ambientColor2, Game.ambientIntensity2);
+				Game.currentShader = Game.finalShader;
+				Game.lightTransparency2 = amountToAddLighting;
+			} else {
+				Game.currentShader = Game.defaultShader;
+				Game.lightTransparency2 = 0f;
+			}
+		} else {
+			Game.level.isDay = false;
+			Game.currentShader = Game.finalShader;
+			Game.lightTransparency2 = 1f;
+		}
+		System.out.println(hours+":"+minutes+"."+seconds);
 	}
 	
 	public static void setDelta() {

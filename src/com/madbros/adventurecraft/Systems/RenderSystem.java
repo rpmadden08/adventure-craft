@@ -100,6 +100,9 @@ public class RenderSystem {
 	public void renderHero(Hero hero, int x, int y) {
 		int width = hero.absRect.w / 2;
 		int height = hero.absRect.h / 2+6;
+		
+		
+		
 		if(hero.knockBackTime > 0) {
 			Color highlightColor = new Color(0.7f, 0.7f, 0.7f, 1.0f);
 			hero.sprite.setColor(highlightColor);
@@ -146,7 +149,10 @@ public class RenderSystem {
 //			Sprites.pixel.setColor(Color.WHITE);
 			
 		}
-		renderHealth(hero);
+		Sprites.pixel.setColor(Color.BLACK);
+		Sprites.pixel.draw(x + width,y +height-6,Z_CHARACTER,4,4);
+		Sprites.pixel.setColor(Color.WHITE);
+		
 		
 	}
 	
@@ -243,6 +249,7 @@ public class RenderSystem {
 			if(i == inv.itemSelected) inv.selectSprite.draw(inv.invBar[i].slotRect.x - 2, inv.invBar[i].slotRect.y - 2,
 									  Z_INV_SELECT, inv.invBar[i].slotRect.w + 3, inv.invBar[i].slotRect.h + 3);
 		}
+		renderHealth(Game.hero);
 	}
 	
 	public void renderText(Inventory inv, SpriteBatch batch) {
@@ -261,6 +268,7 @@ public class RenderSystem {
 		float y = hero.absRect.midY() - startY - lightSize/2;
 		StaticSprite lightSprite = Sprites.sprites.get(Sprites.LIGHT);
 		lightSprite.draw(x, y, 0.4f, lightSize, lightSize);
+		lightSprite.setColor(1,1,1,Game.lightTransparency2);
 		
 		for(Block light : lightTiles) {
 			x = light.absRect.midX() - startX - lightSize/2;
