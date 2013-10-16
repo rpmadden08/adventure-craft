@@ -17,6 +17,7 @@ public class MainStateInput extends BasicInput {
 		super.touchUp(x, y, pointer, button);
 		Game.inventory.stopUsingItem(button);
 		if(Game.debugMenu.menuIsActive) Game.debugMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
+		Game.hero.attackButtonReleased = true;
 		return false;
 	}
 	

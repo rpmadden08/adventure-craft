@@ -2,13 +2,14 @@ package com.madbros.adventurecraft.GameObjects;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+
 import org.lwjgl.input.Keyboard;
 
+import com.badlogic.gdx.backends.openal.Wav.Sound;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Items.ClothingItem;
-import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
@@ -49,6 +50,7 @@ public class Actor extends GameObject {
 	public float weaponR = 0;
 	public int dir = 0;
 	public boolean startWeaponAnimation = false;
+	public Sound hitSound;
 	
 	/************************** Movement **************************/
 	public boolean isMoving() {

@@ -17,7 +17,6 @@ import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Inventory;
 import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.MobController;
-import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.GameObjects.Actor;
 import com.madbros.adventurecraft.GameObjects.Collectible;
 import com.madbros.adventurecraft.GameObjects.GameObject;
@@ -148,11 +147,7 @@ public class RenderSystem {
 //			Sprites.pixel.draw(r, Z_COLLISION_RECTS);
 //			Sprites.pixel.setColor(Color.WHITE);
 			
-		}
-		Sprites.pixel.setColor(Color.BLACK);
-		Sprites.pixel.draw(x + width,y +height-6,Z_CHARACTER,4,4);
-		Sprites.pixel.setColor(Color.WHITE);
-		
+		}		
 		
 	}
 	
@@ -218,19 +213,62 @@ public class RenderSystem {
 		
 		Sprites.pixel.setColor(Color.WHITE);
 	}
+	
+	public void renderMobHealth(Mob mob) {
+				int x = mob.absRect.x - startX;
+				int y = mob.absRect.y - startY - 6;
+				double difference = (mob.maxHP - mob.hP);
+				double percentage = (mob.maxHP-difference) / mob.maxHP;
+				double hPCalc = percentage * 29; 
+				int hP = (int) hPCalc;
+				System.out.println(percentage);
+				
+				//The Red/Blue/Green Part
+				Sprites.pixel.setColor(Color.RED);
+				Sprites.pixel.draw(x+1,y+1,Z_CHARACTER,hP,4);
+				
+				//Red Highlight top
+				Sprites.pixel.setColor(1f, 1f, 1f,0.4f);
+				Sprites.pixel.draw(x+2,y+1,Z_CHARACTER,hP,1);
+				
+				//Red Highlight bottom
+				Sprites.pixel.setColor(0f, 0f, 0f,0.3f);
+				Sprites.pixel.draw(x+2,y+4,Z_CHARACTER,hP,1);
+			
+				//Black Edge
+				Sprites.pixel.setColor(Color.BLACK);
+				Sprites.pixel.draw(x+1+hP,y+1,Z_CHARACTER,29-hP,4);
+				
+				//Border left
+				Sprites.healthBarMon.draw(x,y,Z_CHARACTER,2,6);
 
+				
+				//Border Top
+				Sprites.pixel.setColor(0.886f, 0.914f, 0.98f,1f);
+				Sprites.pixel.draw(x+2, y, Z_CHARACTER, 27, 1);
+				
+				//Border Bottom
+				Sprites.pixel.draw(x+2, y+5, Z_CHARACTER, 27, 1);
+				
+				//Border Right
+				Sprites.healthBarMon.rotate(180);
+				Sprites.healthBarMon.draw(x+2+27,y,Z_CHARACTER,2,6);
+				Sprites.healthBarMon.rotate(180);
+				
+				//Reset
+				Sprites.pixel.setColor(Color.WHITE);
+	}
 	
 	public void renderMobs(MobController mobController) {
 		for(Mob mob : mobController.mobs) {
 			int x = mob.absRect.x - startX;
 			int y = mob.absRect.y - startY;
-			int width = mob.absRect.w / 2;
-			int height = mob.absRect.h / 2;
+			//int width = mob.absRect.w / 2;
+			//int height = mob.absRect.h / 2;
 
 			mob.sprite.draw(x, y, Z_CHARACTER);
 			renderCollisionRects(mob, x, y);
-			Sprites.pixel.setColor(Color.RED);
-			Sprites.pixel.draw(x+width,y+height,Z_CHARACTER);
+			renderMobHealth(mob);
 		}
 	}
 	

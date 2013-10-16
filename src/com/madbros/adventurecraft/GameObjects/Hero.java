@@ -4,6 +4,8 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import org.lwjgl.input.Keyboard;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.openal.Wav.Sound;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
@@ -15,13 +17,14 @@ import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class Hero extends Actor {
+	public boolean attackButtonReleased = true;
 	public Hero() {
 		//STATS
-		maxHP = 250;
+		maxHP = 25;
 		hP = maxHP;
-		maxMP = 250;
+		maxMP = 25;
 		mP = maxMP;
-		maxEP = 250;
+		maxEP = 25;
 		eP = maxEP;
 		
 		
@@ -32,7 +35,9 @@ public class Hero extends Actor {
 		margin = new Margin(17, 17, 29, 1);
 		moveSpeed = 0.19f;
 		currentSpeed = 0.59f; //0.19
-		knockBackSpeed = 0.7f;
+		knockBackSpeed = 0.3f;
+		hitSound = (Sound) Gdx.audio.newSound(Gdx.files.internal("sounds/pain.wav"));
+		
 		collisionDetectionBlocks = new Block[9];
 		weaponX = 0;
 		weaponY= 0;
@@ -77,7 +82,8 @@ public class Hero extends Actor {
 	public void takeDamage(int damage) {
 		if(knockBackTime <= 0) {
 			hP = hP - damage;
-			knockBackTime = 5;
+			hitSound.play();
+			knockBackTime = 10;
 			System.out.println("HP:  "+ hP);
 			//System.out.println("KnockBackTime:  "+ knockBackTime);
 		}
@@ -197,31 +203,35 @@ public class Hero extends Actor {
 	}
 	
 	public void attack(Item item) {
-		hasAttacked = false;
-		isAttacking = true;
-		//attackItem = item;
-		int iD = item.id;
-		attackItem = (WeaponItem) ITEM_HASH.get(iD).createNew();;
-		//attackTime = 24;
-		sprite.changeFrameTimes(attackItem.swingSpeed);
+		if(attackButtonReleased == true) {
+			attackButtonReleased = false;
 		
-		int t = sprite.getCurrentAnimation();
-		if(t == STAND_UP || t == WALK_UP) {
-			sprite.changeAnimationTo(SLASH_UP);
-			dir = 0;
-			attackItem.cRectFinal = attackItem.cRectU;
-		} else if(t == STAND_DOWN || t == WALK_DOWN) {
-			sprite.changeAnimationTo(SLASH_DOWN);
-			dir = 1;
-			attackItem.cRectFinal = attackItem.cRectD;
-		} else if(t == STAND_LEFT || t == WALK_LEFT) {
-			sprite.changeAnimationTo(SLASH_LEFT);
-			dir = 2;
-			attackItem.cRectFinal = attackItem.cRectL;
-		} else if(t == STAND_RIGHT || t == WALK_RIGHT) {
-			sprite.changeAnimationTo(SLASH_RIGHT);
-			dir = 3;
-			attackItem.cRectFinal = attackItem.cRectR;
+			hasAttacked = false;
+			isAttacking = true;
+			//attackItem = item;
+			int iD = item.id;
+			attackItem = (WeaponItem) ITEM_HASH.get(iD).createNew();
+			//attackTime = 24;
+			sprite.changeFrameTimes(attackItem.swingSpeed);
+			
+			int t = sprite.getCurrentAnimation();
+			if(t == STAND_UP || t == WALK_UP) {
+				sprite.changeAnimationTo(SLASH_UP);
+				dir = 0;
+				attackItem.cRectFinal = attackItem.cRectU;
+			} else if(t == STAND_DOWN || t == WALK_DOWN) {
+				sprite.changeAnimationTo(SLASH_DOWN);
+				dir = 1;
+				attackItem.cRectFinal = attackItem.cRectD;
+			} else if(t == STAND_LEFT || t == WALK_LEFT) {
+				sprite.changeAnimationTo(SLASH_LEFT);
+				dir = 2;
+				attackItem.cRectFinal = attackItem.cRectL;
+			} else if(t == STAND_RIGHT || t == WALK_RIGHT) {
+				sprite.changeAnimationTo(SLASH_RIGHT);
+				dir = 3;
+				attackItem.cRectFinal = attackItem.cRectR;
+			}
 		}
 	}
 	

@@ -2,6 +2,7 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.badlogic.gdx.backends.openal.Wav.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Slots.*;
@@ -25,6 +26,8 @@ public abstract class Item {
 	public Rect cRectD = new Rect (0,0,0,0);
 	public Rect cRectR = new Rect (0,0,0,0);
 	public Rect cRectL = new Rect (0,0,0,0);
+	public Sound sound;
+	
 	
 	
 	public StaticSprite sprite;

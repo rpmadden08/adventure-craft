@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 
 public class Time {
 	private static long lastFrame = 0;
-	private static float delta;
+	public static float delta;
 	
 	public Time() {
 		lastFrame = getTime();
@@ -133,7 +133,7 @@ public class Time {
 					} 
 				}
 				float amountToAddLighting = 1f * (float)percentage;
-				System.out.println(amountToAddLighting);
+				//System.out.println(amountToAddLighting);
 				
 				Game.reShade(Game.ambientColor2, Game.ambientIntensity2);
 				Game.currentShader = Game.finalShader;
@@ -147,7 +147,7 @@ public class Time {
 			Game.currentShader = Game.finalShader;
 			Game.lightTransparency2 = 1f;
 		}
-		System.out.println(hours+":"+minutes+"."+seconds);
+		//System.out.println(hours+":"+minutes+"."+seconds);
 	}
 	
 	public static void setDelta() {

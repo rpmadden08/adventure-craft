@@ -9,13 +9,13 @@ import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 
 public class Axe extends ToolItem {
-	protected Sound sound = (Sound) Gdx.audio.newSound(Gdx.files.internal("sounds/axeChop.wav"));
 	public Axe() {
 		id = AXE;
 		sprite = Sprites.sprites.get(Sprites.AXE_ITEM);
 		attackPower = 1;
 		is32 = true;
 		isInUse = false;
+		sound = (Sound) Gdx.audio.newSound(Gdx.files.internal("sounds/axeChop.wav"));
 		
 		
 	}

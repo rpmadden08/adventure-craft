@@ -4,6 +4,8 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import java.util.Random;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.openal.Wav.Sound;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.MobController;
@@ -28,10 +30,11 @@ public class Mob extends Actor {
 		margin = new Margin(17, 17, 29, 1);
 		currentSpeed = 0.05f;
 		collisionDetectionBlocks = new Block[9];
+		hitSound = (Sound) Gdx.audio.newSound(Gdx.files.internal("sounds/bat.wav"));
 		
-		moveSpeed = 0f;//0.05
-		currentSpeed = 0.05f; //0.19
-		knockBackSpeed = 0.05f; //0.7
+		moveSpeed = 0.05f;//0.05
+		currentSpeed = 0.05f; //0.05
+		knockBackSpeed = 0.3f; //0.3
 	}
 
 //	public void startAttacking() {
@@ -45,7 +48,8 @@ public class Mob extends Actor {
 	public void takeDamage(int damage) {
 		if(knockBackTime <= 0) {
 			hP = hP - damage;
-			knockBackTime = 30; //30
+			hitSound.play();
+			knockBackTime = 10; //30
 			if(hP <= 0) {
 				mobController.remove(this);
 			}

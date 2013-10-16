@@ -33,6 +33,7 @@ public class Sprites {
 	public static final String INVENTORY_MENU_SELECTOR = "inventoryMenuSelector";
 	public static final String INVENTORY_MENU_SLOT = "inventoryMenuSlot";
 	public static final String HEALTH_BAR_EDGE = "healthBarEdge";
+	public static final String MON_HEALTH_EDGE = "monHealthEdge";
 	
 	public static final String PIXEL = "pixel";
 	public static final String SAPLING = "sapling";
@@ -162,6 +163,7 @@ public class Sprites {
 	public static StaticSprite collisionDebugger;
 	public static StaticSprite pixel;
 	public static StaticSprite healthBar;
+	public static StaticSprite healthBarMon;
 	
 	public static BitmapFont font;
 	public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"«`'<>";
@@ -208,8 +210,9 @@ public class Sprites {
 					CAMPFIRE_ANIMATION, CAMPFIRE_SINGLE, SAPLING_COLLECTION, DESERT, SNOW, TREE_FOUR, 
 					DARK_GRASS, AXE_ITEM, BAT_WALK_DOWN, BAT_WALK_UP, BAT_WALK_LEFT, BAT_WALK_RIGHT,
 					BAT_STAND_UP, BAT_STAND_DOWN, BAT_STAND_LEFT, BAT_STAND_RIGHT,MALE_SLASH_UP,
-					MALE_SLASH_DOWN, MALE_SLASH_LEFT, MALE_SLASH_RIGHT, SWORD, LONG_SWORD, HEALTH_BAR_EDGE
-					};
+					MALE_SLASH_DOWN, MALE_SLASH_LEFT, MALE_SLASH_RIGHT, SWORD, LONG_SWORD, HEALTH_BAR_EDGE,
+					MON_HEALTH_EDGE
+			};
 			
 			String[] lightNames = {LIGHT};
 			String[][] nameArrays = {names, lightNames};
@@ -289,6 +292,7 @@ public class Sprites {
 			
 			pixel = sprites.get(PIXEL);
 			healthBar = sprites.get(HEALTH_BAR_EDGE);
+			healthBarMon = sprites.get(MON_HEALTH_EDGE);
 			
 //			sprites.put(0, waterSprites);
 			
