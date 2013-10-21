@@ -4,8 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import org.lwjgl.input.Keyboard;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.backends.openal.Wav.Sound;
+
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
@@ -18,6 +17,7 @@ import com.madbros.adventurecraft.Utils.Rect;
 
 public class Hero extends Actor {
 	public boolean attackButtonReleased = true;
+	public boolean isDead = false;
 	public Hero() {
 		//STATS
 		maxHP = 25;
@@ -36,7 +36,7 @@ public class Hero extends Actor {
 		moveSpeed = 0.19f;
 		currentSpeed = 0.59f; //0.19
 		knockBackSpeed = 0.3f;
-		hitSound = (Sound) Gdx.audio.newSound(Gdx.files.internal("sounds/pain.wav"));
+		hitSound = "sounds/pain.wav";
 		
 		collisionDetectionBlocks = new Block[9];
 		weaponX = 0;
@@ -82,9 +82,10 @@ public class Hero extends Actor {
 	public void takeDamage(int damage) {
 		if(knockBackTime <= 0) {
 			hP = hP - damage;
-			hitSound.play();
+			Game.soundController.create(hitSound);
 			knockBackTime = 10;
-			System.out.println("HP:  "+ hP);
+			
+			//System.out.println("HP:  "+ hP);
 			//System.out.println("KnockBackTime:  "+ knockBackTime);
 		}
 		//System.out.println("KnockBackTime:  "+ knockBackTime);
@@ -136,7 +137,11 @@ public class Hero extends Actor {
 	public void didCollide() {}
 	
 	public void update() {
-		if(knockBackTime > 0) {
+		if(hP<=0) {
+			isDead = true;
+		} else if (isDead == true) {
+			
+		} else if(knockBackTime > 0) {
 			knockBackTime = knockBackTime - 1;
 			currentSpeed = knockBackSpeed;
 			moveKnockBack(Time.getDelta());

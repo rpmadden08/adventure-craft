@@ -53,6 +53,7 @@ public class Sprites {
 	public static final String LONG_SWORD = "longsword";
 	public static final String SHOVEL_ITEM = "shovelItem";
 	public static final String AXE_ITEM = "stoneAxe";
+	public static final String BAT_WING = "batWing";
 	
 	//static collections
 //	public static final String GEM = "Gem Blue";
@@ -211,7 +212,7 @@ public class Sprites {
 					DARK_GRASS, AXE_ITEM, BAT_WALK_DOWN, BAT_WALK_UP, BAT_WALK_LEFT, BAT_WALK_RIGHT,
 					BAT_STAND_UP, BAT_STAND_DOWN, BAT_STAND_LEFT, BAT_STAND_RIGHT,MALE_SLASH_UP,
 					MALE_SLASH_DOWN, MALE_SLASH_LEFT, MALE_SLASH_RIGHT, SWORD, LONG_SWORD, HEALTH_BAR_EDGE,
-					MON_HEALTH_EDGE
+					MON_HEALTH_EDGE, BAT_WING
 			};
 			
 			String[] lightNames = {LIGHT};

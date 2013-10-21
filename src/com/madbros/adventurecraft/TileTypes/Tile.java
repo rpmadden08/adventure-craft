@@ -49,6 +49,7 @@ public abstract class Tile {
 		Sprites.pixel.draw(sX+1, sY+1, Z_HEALTHBAR, Math.round((currentHp * 1.0f / maxHp) * w-2), h-2);
 		Sprites.pixel.setColor(Color.WHITE);
 		Helpers.drawRect(new Rect(sX, sY, w, h), Z_HEALTHBAR);
+		Game.renderSystem.renderTileHealth(this, x, y);
 	}
 	
 	public void bloom(int x,int y, Block[][] activeBlocks) {

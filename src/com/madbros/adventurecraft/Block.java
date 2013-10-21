@@ -132,7 +132,7 @@ public class Block {
 	}
 	
 	public Tile getTopTile() {
-		for(int i = layers.length-1; i > -1; i--) {
+		for(int i = OBJECT_LAYER; i > -1; i--) {
 			if(layers[i].id != AIR) return layers[i];
 		}
 		return new NoTile();

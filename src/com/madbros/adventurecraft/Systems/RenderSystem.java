@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+//import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.madbros.adventurecraft.Block;
@@ -17,6 +17,7 @@ import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Inventory;
 import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.MobController;
+import com.madbros.adventurecraft.ParticleEffect;
 import com.madbros.adventurecraft.GameObjects.Actor;
 import com.madbros.adventurecraft.GameObjects.Collectible;
 import com.madbros.adventurecraft.GameObjects.GameObject;
@@ -73,12 +74,15 @@ public class RenderSystem {
 		
 		if(block.isHighlighted) {
 			Tile topTile = block.getTopTile();
-//			System.out.println(topTile.id);
-			if(topTile.currentHp < topTile.maxHp) topTile.renderHp(x, y);
+			//if(topTile.currentHp < topTile.maxHp) topTile.renderHp(x, y);
 			Color highlightColor = new Color(0.7f, 0.7f, 0.7f, 1.0f);
 			topTile.sprites[topTile.autoTile].setColor(highlightColor);
 			topTile.render(x, y);
 			topTile.sprites[topTile.autoTile].setColor(Color.WHITE);
+			//Tile objectTile = block.getObjectTile();
+			if(topTile.currentHp < topTile.maxHp) {
+				renderTileHealth(topTile, x, y);
+			}
 		}
 		
 		renderCollisionTiles(x, y, block);
@@ -93,7 +97,10 @@ public class RenderSystem {
 	}
 	
 	public void renderParticle(ParticleEffect p) {
+		p.flipY();
+		p.setPosition(p.x - startX, p.y - startY);
 		p.draw(Game.batch, Gdx.graphics.getRawDeltaTime());
+		p.flipY();
 	}
 	
 	public void renderHero(Hero hero, int x, int y) {
@@ -101,55 +108,99 @@ public class RenderSystem {
 		int height = hero.absRect.h / 2+6;
 		
 		
-		
-		if(hero.knockBackTime > 0) {
-			Color highlightColor = new Color(0.7f, 0.7f, 0.7f, 1.0f);
-			hero.sprite.setColor(highlightColor);
-			hero.sprite.draw(x, y, Z_CHARACTER);
+		if(hero.isDead == false) {
+			if(hero.knockBackTime > 0) {
+				Color highlightColor = new Color(0.7f, 0.7f, 0.7f, 1.0f);
+				hero.sprite.setColor(highlightColor);
+				hero.sprite.draw(x, y, Z_CHARACTER);
+				
+				
+				Sprites.pixel.setColor(Color.RED);
+				Sprites.pixel.draw(x+width,y+height,Z_CHARACTER);
+				
+				hero.sprite.setColor(Color.WHITE);
+			} else {
+				
 			
+				hero.sprite.draw(x, y, Z_CHARACTER);
+				
+				renderCollisionRects(hero, x, y);
+				
+			}
 			
-			Sprites.pixel.setColor(Color.RED);
-			Sprites.pixel.draw(x+width,y+height,Z_CHARACTER);
+			if(hero.isAttacking && hero.startWeaponAnimation == true) {
+				//Item item = Game.inventory.heldItem;
+				//item.sprite.setColor(Color.WHITE);
+				//System.out.println(hero.attackItem.sprite.getOriginX()+"/"+hero.attackItem.sprite.getOriginY());
+				hero.attackItem.sprite.setOrigin(hero.attackItem.originX, hero.attackItem.originY);
+				//hero.attackItem.sprite.
+				Sprites.pixel.setColor(Color.RED);
+				Sprites.pixel.draw(hero.attackItem.originX, hero.attackItem.originY,Z_CHARACTER);
+				
+				hero.attackItem.sprite.rotate(hero.weaponR);
+				hero.attackItem.sprite.draw(x+hero.weaponX+ hero.attackItem.weaponOffsetX, y+hero.weaponY+hero.attackItem.weaponOffsetY, Z_CHARACTER);
+				hero.attackItem.sprite.rotate(-hero.weaponR);
+				
+				Sprites.pixel.setColor(Color.RED);
+				Sprites.pixel.draw(x + hero.attackItem.originX+hero.weaponX+ hero.attackItem.weaponOffsetX, y + hero.attackItem.originY+hero.weaponY+hero.attackItem.weaponOffsetY,Z_CHARACTER);
+				
+				//Collision rectangles
 			
-			hero.sprite.setColor(Color.WHITE);
-		} else {
-			
-		
-			hero.sprite.draw(x, y, Z_CHARACTER);
-			
-			renderCollisionRects(hero, x, y);
-			
+	//			Rect r = new Rect(x+hero.attackItem.cRectFinal.x,y+hero.attackItem.cRectFinal.y, hero.attackItem.cRectFinal.w,hero.attackItem.cRectFinal.h);
+	//			
+	//			Color highlightColor = new Color(0, 0, 1f, 0.6f);
+	//			Sprites.pixel.setColor(highlightColor);
+	//			
+	//			Sprites.pixel.draw(r, Z_COLLISION_RECTS);
+	//			Sprites.pixel.setColor(Color.WHITE);
+				
+			}	
 		}
 		
-		if(hero.isAttacking && hero.startWeaponAnimation == true) {
-			//Item item = Game.inventory.heldItem;
-			//item.sprite.setColor(Color.WHITE);
-			//System.out.println(hero.attackItem.sprite.getOriginX()+"/"+hero.attackItem.sprite.getOriginY());
-			hero.attackItem.sprite.setOrigin(hero.attackItem.originX, hero.attackItem.originY);
-			//hero.attackItem.sprite.
-			Sprites.pixel.setColor(Color.RED);
-			Sprites.pixel.draw(hero.attackItem.originX, hero.attackItem.originY,Z_CHARACTER);
-			
-			hero.attackItem.sprite.rotate(hero.weaponR);
-			hero.attackItem.sprite.draw(x+hero.weaponX+ hero.attackItem.weaponOffsetX, y+hero.weaponY+hero.attackItem.weaponOffsetY, Z_CHARACTER);
-			hero.attackItem.sprite.rotate(-hero.weaponR);
-			
-			Sprites.pixel.setColor(Color.RED);
-			Sprites.pixel.draw(x + hero.attackItem.originX+hero.weaponX+ hero.attackItem.weaponOffsetX, y + hero.attackItem.originY+hero.weaponY+hero.attackItem.weaponOffsetY,Z_CHARACTER);
-			
-			//Collision rectangles
-		
-//			Rect r = new Rect(x+hero.attackItem.cRectFinal.x,y+hero.attackItem.cRectFinal.y, hero.attackItem.cRectFinal.w,hero.attackItem.cRectFinal.h);
-//			
-//			Color highlightColor = new Color(0, 0, 1f, 0.6f);
-//			Sprites.pixel.setColor(highlightColor);
-//			
-//			Sprites.pixel.draw(r, Z_COLLISION_RECTS);
-//			Sprites.pixel.setColor(Color.WHITE);
-			
-		}		
-		
 	}
+	
+	public void renderTileHealth(Tile tile, int x, int y) {
+		double difference = (tile.maxHp - tile.currentHp);
+		double percentage = (tile.maxHp-difference) / tile.maxHp;
+		double hPCalc = percentage * 30; 
+		int hP = (int) hPCalc;
+		//System.out.println(percentage);
+		
+		//The Red/Blue/Green Part
+		Sprites.pixel.setColor(Color.RED);
+		Sprites.pixel.draw(x+1,y+1,Z_CHARACTER,hP,4);
+		
+		//Red Highlight top
+		Sprites.pixel.setColor(1f, 1f, 1f,0.4f);
+		Sprites.pixel.draw(x+2,y+1,Z_CHARACTER,hP,1);
+		
+		//Red Highlight bottom
+		Sprites.pixel.setColor(0f, 0f, 0f,0.3f);
+		Sprites.pixel.draw(x+2,y+4,Z_CHARACTER,hP,1);
+	
+		//Black Edge
+		Sprites.pixel.setColor(Color.BLACK);
+		Sprites.pixel.draw(x+1+hP,y+1,Z_CHARACTER,30-hP,4);
+		
+		//Border left
+		Sprites.healthBarMon.draw(x,y,Z_CHARACTER,2,6);
+
+		
+		//Border Top
+		Sprites.pixel.setColor(0.886f, 0.914f, 0.98f,1f);
+		Sprites.pixel.draw(x+2, y, Z_CHARACTER, 28, 1);
+		
+		//Border Bottom
+		Sprites.pixel.draw(x+2, y+5, Z_CHARACTER, 28, 1);
+		
+		//Border Right
+		Sprites.healthBarMon.rotate(180);
+		Sprites.healthBarMon.draw(x+2+28,y,Z_CHARACTER,2,6);
+		Sprites.healthBarMon.rotate(180);
+		
+		//Reset
+		Sprites.pixel.setColor(Color.WHITE);
+}
 	
 	public void renderHealth(Hero hero) {
 		//The Red/Blue/Green Part
@@ -221,7 +272,7 @@ public class RenderSystem {
 				double percentage = (mob.maxHP-difference) / mob.maxHP;
 				double hPCalc = percentage * 29; 
 				int hP = (int) hPCalc;
-				System.out.println(percentage);
+				//System.out.println(percentage);
 				
 				//The Red/Blue/Green Part
 				Sprites.pixel.setColor(Color.RED);
@@ -265,7 +316,6 @@ public class RenderSystem {
 			int y = mob.absRect.y - startY;
 			//int width = mob.absRect.w / 2;
 			//int height = mob.absRect.h / 2;
-
 			mob.sprite.draw(x, y, Z_CHARACTER);
 			renderCollisionRects(mob, x, y);
 			renderMobHealth(mob);

@@ -37,6 +37,11 @@ public class Bat extends Mob {
 //	public void stopAttacking() {
 //		isAttacking = false;
 //	}
+	@Override
+	public void deathDrop() {
+		Rect collectibleRect = new Rect(absRect.x, absRect.y, 16, 16);
+		Game.collectibleController.add(BAT_WING, Sprites.sprites.get(Sprites.BAT_WING), collectibleRect );
+	}
 	
 	@Override
 	public void didCollide() {

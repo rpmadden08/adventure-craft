@@ -7,7 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+//import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
@@ -39,6 +39,7 @@ public class Game implements ApplicationListener {
 	public static Level level;
 	public static Hero hero;
 	public static MobController mobController;
+	public static SoundController soundController;
 	public static CollectibleController collectibleController;
 	public static Inventory inventory;
 	public static MiniMap map;
@@ -52,6 +53,8 @@ public class Game implements ApplicationListener {
 	public static final float PI2 = 3.1415926535897932384626433832795f * 2.0f;
 	public static Texture light;
 	public static FrameBuffer fbo;
+	
+	public static ParticleEffect death = new ParticleEffect();
 	
 	public static ParticleEffect p = new ParticleEffect();
 	
@@ -106,6 +109,7 @@ public class Game implements ApplicationListener {
 		level = new Level();
 		hero = new Hero();
 		mobController = new MobController();
+		soundController = new SoundController();
 		collectibleController = new CollectibleController();
 		inventory = new Inventory();
 		map = new MiniMap();
@@ -128,7 +132,8 @@ public class Game implements ApplicationListener {
 	@Override
 	public void create() {
 		
-		p.load(Gdx.files.internal("data/Chunks.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
+		p.load(Gdx.files.internal("data/death.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
+		death.load(Gdx.files.internal("data/death.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
 		
 		camera= new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -191,6 +196,7 @@ public class Game implements ApplicationListener {
 		defaultShader.dispose();
 		light.dispose();
 		fbo.dispose();
+		level.music.dispose();
 //		bitmapFont.dispose();
 //		tilemap.dispose();
 	}

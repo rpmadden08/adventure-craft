@@ -5,7 +5,6 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import org.lwjgl.input.Keyboard;
 
-import com.badlogic.gdx.backends.openal.Wav.Sound;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
@@ -50,7 +49,8 @@ public class Actor extends GameObject {
 	public float weaponR = 0;
 	public int dir = 0;
 	public boolean startWeaponAnimation = false;
-	public Sound hitSound;
+	public String hitSound;
+	public String deathSound;
 	
 	/************************** Movement **************************/
 	public boolean isMoving() {

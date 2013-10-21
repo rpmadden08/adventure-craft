@@ -4,8 +4,6 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import java.util.Random;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.backends.openal.Wav.Sound;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.MobController;
@@ -30,7 +28,9 @@ public class Mob extends Actor {
 		margin = new Margin(17, 17, 29, 1);
 		currentSpeed = 0.05f;
 		collisionDetectionBlocks = new Block[9];
-		hitSound = (Sound) Gdx.audio.newSound(Gdx.files.internal("sounds/bat.wav"));
+		
+		hitSound = "sounds/bat.wav";
+		deathSound = "sounds/splat.wav";
 		
 		moveSpeed = 0.05f;//0.05
 		currentSpeed = 0.05f; //0.05
@@ -45,12 +45,22 @@ public class Mob extends Actor {
 //	public void stopAttacking() {
 //		isAttacking = false;
 //	}
+	public void deathDrop() {
+		
+	}
+	
 	public void takeDamage(int damage) {
 		if(knockBackTime <= 0) {
 			hP = hP - damage;
-			hitSound.play();
+			Game.soundController.create(hitSound);
 			knockBackTime = 10; //30
 			if(hP <= 0) {
+				deathDrop();
+				Game.soundController.create(deathSound);
+				Game.p.x = absRect.x;
+				Game.p.y = absRect.y;
+				//Game.p.update(Gdx.graphics.getRawDeltaTime());
+				Game.p.start();
 				mobController.remove(this);
 			}
 		}
@@ -119,7 +129,7 @@ public class Mob extends Actor {
 	@Override
 	public void didGetHit() {
 		if(knockBackTime <= 0) {
-			takeDamage(1);
+			takeDamage(5);
 			knockBack(Game.hero);
 		}
 	}

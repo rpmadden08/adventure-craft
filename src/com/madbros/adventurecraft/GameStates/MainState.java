@@ -49,6 +49,7 @@ public class MainState extends GameState {
 		Game.animationSystem.updateMain(Game.hero, Game.mobController);	//a list of mobs will also be passed to this system
 		Game.hero.update();
 		Game.mobController.update();
+		Game.soundController.update();
 		Game.collectibleController.update();
 		Game.level.update();
 		Game.inventory.update();
@@ -71,13 +72,12 @@ public class MainState extends GameState {
 			Game.light.bind(0);
 
 			Game.renderSystem.renderWorld(Game.level);
+			Game.renderSystem.renderCollectibles(Game.collectibleController);
 			Game.renderSystem.renderHero(Game.hero, Game.getCenterScreenX() - CHARACTER_SIZE/2, Game.getCenterScreenY() - CHARACTER_SIZE/2);
 			Game.renderSystem.renderMobs(Game.mobController);
-			Game.renderSystem.renderCollectibles(Game.collectibleController);
+			
 			Game.renderSystem.renderParticle(Game.p);
 		Game.batch.end();
-		
-		//Particle Effect
 		
 		
 		Game.fbo.begin();

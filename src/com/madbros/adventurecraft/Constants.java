@@ -223,6 +223,7 @@ public class Constants {
 	public static final int CAMPFIRE_ITEM = 13;
 	public static final int AXE = 14;
 	public static final int LONG_SWORD = 15;
+	public static final int BAT_WING = 16;
 	
 	//Clothing Types
 	public static final int HELMET = 0;
@@ -284,6 +285,7 @@ public class Constants {
 		ITEM_HASH.put(IRON_BOOTS, new IronBoots());
 		ITEM_HASH.put(IRON_LEGGINGS, new IronLeggings());
 		ITEM_HASH.put(CAMPFIRE_ITEM, new CampfireItem());
+		ITEM_HASH.put(BAT_WING, new BatWing());
 		
 		TILE_HASH.put(GRASS, new GrassTile());
 		TILE_HASH.put(DIRT, new DirtTile());

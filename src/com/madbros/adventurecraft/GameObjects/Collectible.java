@@ -30,8 +30,8 @@ public class Collectible extends GameObject{
 		sprite = (com.madbros.adventurecraft.Sprites.Sprite) spriteID;
 		item = ITEM_HASH.get(iD).createNew();
 		Random rand3 = new Random();
-		int lr = rand3.nextInt(10);
-		direction = lr-5;
+		int lr = rand3.nextInt(4);
+		direction = lr-2;
 		Random rand = new Random();
 		int ud = rand.nextInt(4);
 		length = length +ud -2;
