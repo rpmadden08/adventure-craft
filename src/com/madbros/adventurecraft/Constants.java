@@ -28,6 +28,8 @@ public class Constants {
 	public static final String SAVE_LOC = "saves/";
 	public static final String CHUNKS_FOLDER = "chunks/";
 	
+	public static final int WORLD_SIZE = 10;
+	
 	//character constants
 	public static final int CHARACTER_SIZE = 64;
 	public static final int UP = 1;
@@ -291,6 +293,7 @@ public class Constants {
 		TILE_HASH.put(DIRT, new DirtTile());
 		TILE_HASH.put(WATER, new WaterTile());
 		TILE_HASH.put(TREE, new TreeTile());
+		TILE_HASH.put(TREE_PINE, new TreePineTile());
 		TILE_HASH.put(DARK_DIRT, new DarkDirtTile());
 		TILE_HASH.put(SAND, new SandTile());
 		TILE_HASH.put(AIR, new NoTile());

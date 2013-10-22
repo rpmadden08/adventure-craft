@@ -270,7 +270,7 @@ public class RenderSystem {
 				int y = mob.absRect.y - startY - 6;
 				double difference = (mob.maxHP - mob.hP);
 				double percentage = (mob.maxHP-difference) / mob.maxHP;
-				double hPCalc = percentage * 29; 
+				double hPCalc = percentage * 29;
 				int hP = (int) hPCalc;
 				//System.out.println(percentage);
 				

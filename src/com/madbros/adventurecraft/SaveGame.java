@@ -2,91 +2,67 @@ package com.madbros.adventurecraft;
 
 import java.io.*;
 
-import org.json.simple.*;
-import org.json.simple.parser.*;
-
-import com.madbros.adventurecraft.TileTypes.Tile;
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
+import com.madbros.adventurecraft.Utils.Helpers;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-@SuppressWarnings("unchecked")
+//@SuppressWarnings("unchecked")
 public class SaveGame {
 	public void saveChunk(Block[][] chunk, int chunkX, int chunkY) {
-		JSONObject obj = new JSONObject();
+		Chunk chunkData = new Chunk();
 		
-		for(int x = 0; x < CHUNK_SIZE; x++) {
-			for(int y = 0; y < CHUNK_SIZE; y++) {
-				JSONArray tilesID = new JSONArray();
+		int[][][] ids = new int[chunk.length][chunk.length][chunk[0][0].layers.length];
+		int[][][] currentTextures = new int[chunk.length][chunk.length][chunk[0][0].layers.length];
+		int[][] absX = new int[CHUNK_SIZE][CHUNK_SIZE];
+		int[][] absY = new int[CHUNK_SIZE][CHUNK_SIZE];
+		boolean[][] isUnfinished = new boolean[CHUNK_SIZE][CHUNK_SIZE];
+		
+		for(int x = 0; x < chunk.length; x++) {
+			for(int y = 0; y < chunk.length; y++) {
 				for(int i = 0; i < chunk[x][y].layers.length; i++) {
-					tilesID.add(chunk[x][y].layers[i].id);
+					ids[x][y][i] = chunk[x][y].layers[i].id;
+					currentTextures[x][y][i] = chunk[x][y].layers[i].currentSpriteId;
 				}
-				
-				JSONArray tilesCurrentTexture = new JSONArray();
-				for(int i = 0; i < chunk[x][y].layers.length; i++) {
-					tilesCurrentTexture.add(chunk[x][y].layers[i].currentSpriteId);
-				}
-				
-				obj.put("tilesID" + x + "-" + y, tilesID);
-				obj.put("tilesCurrentTexture" + x + "-" + y, tilesCurrentTexture);
-				obj.put("x" + x + "-" + y, chunk[x][y].absRect.x);
-				obj.put("y" + x + "-" + y, chunk[x][y].absRect.y);
-				obj.put("isUnfinished" + x + "-" + y,new Boolean (chunk[x][y].isUnfinished));
+				absX[x][y] = chunk[x][y].absRect.x;
+				absY[x][y] = chunk[x][y].absRect.y;
+				isUnfinished[x][y] = chunk[x][y].isUnfinished;
 			}
 		}
 		
+		chunkData.ids = ids;
+		chunkData.currentTextures = currentTextures;
+		chunkData.absX = absX;
+		chunkData.absY = absY;
+		chunkData.isUnfinished = isUnfinished;
 		
+		Kryo kryo = new Kryo();
+
 		try {
-			FileWriter file = new FileWriter(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv");
-			BufferedWriter bw = new BufferedWriter(file);
-			bw.write(obj.toJSONString());
+			Output output = new Output(new FileOutputStream(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv"));
 			
-			bw.flush();
-			bw.close();
-			
+			kryo.writeObject(output, chunkData);
+			output.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 	
 	public Block[][] loadChunk(int chunkX, int chunkY) {
-		JSONParser parser = new JSONParser();
-		Block[][] chunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
+		Chunk chunk = new Chunk();
+		
+		Kryo kryo = new Kryo();
+
 		try {
-			Object f = parser.parse(new FileReader(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv"));
-			JSONObject jO = (JSONObject) f;
-			
-			for(int x = 0; x < CHUNK_SIZE; x++) {
-				for(int y = 0; y < CHUNK_SIZE; y++) {
-					JSONArray tilesID = (JSONArray) jO.get("tilesID" + x + "-" + y);
-					Tile[] t = new Tile[tilesID.size()];
-					for(int i = 0; i < tilesID.size(); i++) {
-						long id = (Long) tilesID.get(i);						
-						t[i] = TILE_HASH.get((int)id).createNew();
-					}
-					
-					JSONArray tilesCurrentTexture = (JSONArray) jO.get("tilesCurrentTexture" + x + "-" + y);
-					//Tile[] t = new Tile[tiles.size()];
-					for(int i = 0; i < tilesCurrentTexture.size(); i++) {
-						long currentTexture = (Long) tilesCurrentTexture.get(i);
-						t[i].currentSpriteId = (int)currentTexture;
-						
-					}
-					
-					long absX = (Long) jO.get("x" + x + "-" + y);
-					long absY = (Long) jO.get("y" + x + "-" + y); 
-					boolean isUnfinished = (Boolean) jO.get("isUnfinished" + x + "-" + y);
-					chunk[x][y] = new Block(t, (int)absX, (int)absY, isUnfinished);
-					chunk[x][y].isUnfinished = isUnfinished;
-				}
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			Input input = new Input(new FileInputStream(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv"));
+			//System.out.println(chunkX + "-" + chunkY + ".sv");
+			chunk = kryo.readObject(input, Chunk.class);
+			input.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
 		}
-		return chunk;
+		return Helpers.chunkToBlockArray(chunk);
 	}
 }

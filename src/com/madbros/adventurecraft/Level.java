@@ -2,7 +2,7 @@ package com.madbros.adventurecraft;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import java.io.File;
+//import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -19,6 +19,7 @@ public class Level {
 	public Cell[] potentialCollisionCells;	//resets to empty every frame and includes only cells that something has moved in
 	
 	public Block[][] activeBlocks;
+	public Block[][] currentChunk;
 	public ArrayList<Block> collisionBlocks;
 	public Block highlightedBlock;
 	public Tile tileBeingAttacked = new NoTile();
@@ -80,16 +81,32 @@ public class Level {
 	
 	
 	public Level() {
+//		int[][] test = new int[3000][3000];
+//		for(int i = 0; i < 3000; i++) {
+//			for(int j = 0; j < 3000; j++) {
+//				test[i][j] = 1;
+//			}
+//		}
+//		System.out.println("Success");
+		
 		if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
 		if(Game.getCenterScreenY() % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.getCenterScreenY() % TILE_SIZE;
 		
 		activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
+		currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
+		for(int i = 0; i < WORLD_SIZE; i++) {
+			for(int j = 0; j < WORLD_SIZE; j++) {
+				createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
+			}
+			System.out.println("i = " + i);
+		}
 		
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
-				createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
+				loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
 			}
 		}
+		
 		gameStartTime = Time.getTime();
 		bloomAll();		
 
@@ -279,7 +296,7 @@ public class Level {
 		chunkRect.y--;
 		
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			createNewChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
+			loadChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
 		}
 		bloomAll();
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
@@ -297,7 +314,8 @@ public class Level {
 		chunkRect.y++;
 		
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			createNewChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
+			loadChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
+			//System.out.println(CHUNK_SIZE * i +"&"+ TILES_PER_ROW - CHUNK_SIZE+"&"+ chunkRect.x + i +"&"+ chunkRect.y2());
 		}
 		bloomAll();
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
@@ -315,7 +333,7 @@ public class Level {
 		chunkRect.x++;
 		
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			createNewChunk(TILES_PER_ROW-CHUNK_SIZE, CHUNK_SIZE*i, chunkRect.x2(), chunkRect.y + i);
+			loadChunk(TILES_PER_ROW-CHUNK_SIZE, CHUNK_SIZE*i, chunkRect.x2(), chunkRect.y + i);
 		}
 		bloomAll();
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
@@ -333,7 +351,7 @@ public class Level {
 		chunkRect.x--;
 		
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			createNewChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
+			loadChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
 		}
 		bloomAll();
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
@@ -375,7 +393,7 @@ public class Level {
 		int absY = j*TILE_SIZE+chunkY*CHUNK_SIZE*TILE_SIZE;
 		
 		//BELOW SEA LEVEL
-		if(noise < -0.3) {//FIX ME Should be < -0.1
+		if(noise < -0.3) {//FIXME Should be < -0.1
 			POcean++;
 			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 			Tile[] waterTile2 = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
@@ -396,10 +414,10 @@ public class Level {
 	    	block2 = new Block(dirtMountainTile2, absX+TILE_SIZE, absY, true);
 	    	block3 = new Block(dirtMountainTile3, absX, absY+TILE_SIZE, true);
 	    	block4 = new Block(dirtMountainTile4, absX+TILE_SIZE, absY+TILE_SIZE, true);
-			blooming.add(block);
-			blooming.add(block2);
-			blooming.add(block3);
-			blooming.add(block4);
+//			blooming.add(block);
+//			blooming.add(block2);
+//			blooming.add(block3);
+//			blooming.add(block4);
 		//GRASSLANDS
     	} else {
     		//DESERT
@@ -446,10 +464,10 @@ public class Level {
 	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
 	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
 	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
-	    		blooming.add(block);
-				blooming.add(block2);
-				blooming.add(block3);
-				blooming.add(block4);
+//	    		blooming.add(block);
+//				blooming.add(block2);
+//				blooming.add(block3);
+//				blooming.add(block4);
 				//RainForest
     		}else if(noiseTemperature < -0.1 &&noiseRainfall >= 0.1){
     			PRainForest++;
@@ -461,10 +479,10 @@ public class Level {
 	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
 	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
 	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
-	    		blooming.add(block);
-				blooming.add(block2);
-				blooming.add(block3);
-				blooming.add(block4);
+//	    		blooming.add(block);
+//				blooming.add(block2);
+//				blooming.add(block3);
+//				blooming.add(block4);
 				//Swamp
     		}else if(noiseTemperature >= -0.1 && noiseTemperature < 0.1 && noiseRainfall >= 0.1){
     			PSwamp++;
@@ -487,10 +505,10 @@ public class Level {
 	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
 	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
 	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
-	    		blooming.add(block);
-				blooming.add(block2);
-				blooming.add(block3);
-				blooming.add(block4);
+//	    		blooming.add(block);
+//				blooming.add(block2);
+//				blooming.add(block3);
+//				blooming.add(block4);
 				//Tundra (snowy)
     		}else if(noiseRainfall < -0.1 &&noiseTemperature >= 0.1){
     			PTundra++;
@@ -505,8 +523,8 @@ public class Level {
 	    		//HOLES
     		}else {
     			PHole++;
-    			System.out.println("RAIN: "+noiseRainfall);
-    			System.out.println("TEMP: "+noiseTemperature);
+//    			System.out.println("RAIN: "+noiseRainfall);
+//    			System.out.println("TEMP: "+noiseTemperature);
 				Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
@@ -537,10 +555,11 @@ public class Level {
 		block3.noise = noise;
 		block4.noise = noise;
 
-		activeBlocks[x][y] = block;
-		activeBlocks[x+1][y] = block2;
-		activeBlocks[x][y+1] = block3;
-		activeBlocks[x+1][y+1] = block4;
+		
+		currentChunk[i][j] = block;
+		currentChunk[i+1][j] = block2;
+		currentChunk[i][j+1] = block3;
+		currentChunk[i+1][j+1] = block4;
 		
 //		block.mapHeight = noise;
 	}
@@ -605,41 +624,37 @@ public class Level {
 		return block;
 	}
 	
-	public void createNewChunk(int startX, int startY, int chunkX, int chunkY) {
+	public void loadChunk(int startX, int startY, int chunkX, int chunkY) {
 		isLoading = true;
-		
-		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv");
-		if(f.exists()) { 
-			Block[][] chunk = saveGame.loadChunk(chunkX, chunkY);
-			int i = 0; int j = 0;
-			for(int x = startX; x < startX+CHUNK_SIZE; x++) {
-				for(int y = startY; y < startY+CHUNK_SIZE; y++) {
-					activeBlocks[x][y] = chunk[i][j];
-					j++;
-				}
-				i++; j =0;
+		System.out.println(chunkX +"&"+chunkY);
+		Block[][] chunk = saveGame.loadChunk(chunkX, chunkY);
+		int i = 0; int j = 0;
+		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
+			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
+				activeBlocks[x][y] = chunk[i][j];
+				j++;
 			}
-		} else {
-			Block[][] chunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
-			int i = 0; int j = 0;
-			//First Iteration (creates all the blocks)
-			for(int x = startX; x < startX+CHUNK_SIZE; x++) {
-				for(int y = startY; y < startY+CHUNK_SIZE; y++) {
-					if(i % 2 == 0 && j % 2 == 0) {
-						createNewBlock(i, j, chunkX, chunkY, x, y);
-						chunk[i][j] = activeBlocks[x][y];
-						chunk[i+1][j] = activeBlocks[x+1][y];
-						chunk[i][j+1] = activeBlocks[x][y+1];
-						chunk[i+1][j+1] = activeBlocks[x+1][y+1];
-					}
-	            	j++;
-				}
-				i++; j = 0;
-			}
-			//saveGame.saveChunk(chunk, chunkX, chunkY);
+			i++; j =0;
 		}
 		isLoading = false;
 	}
+	
+	public void createNewChunk(int startX, int startY, int chunkX, int chunkY) {
+//		Block[][] chunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
+		int i = 0; int j = 0;
+		//First Iteration (creates all the blocks)
+		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
+			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
+				if(i % 2 == 0 && j % 2 == 0) {
+					createNewBlock(i, j, chunkX, chunkY, x, y);
+				}
+            	j++;
+			}
+			i++; j = 0;
+		}
+		saveGame.saveChunk(currentChunk, chunkX, chunkY);
+	}
+
 	
 	public void autoTileNewArea(int startX, int startY, int endX, int endY) {
 		for(int x = startX; x < endX; x++) {
