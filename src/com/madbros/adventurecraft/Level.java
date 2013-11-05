@@ -2,7 +2,7 @@ package com.madbros.adventurecraft;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-//import java.io.File;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -94,8 +94,8 @@ public class Level {
 		
 		activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
 		currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
-		for(int i = 0; i < WORLD_SIZE; i++) {
-			for(int j = 0; j < WORLD_SIZE; j++) {
+		for(int i = 0; i < 200; i++) {
+			for(int j = 0; j < 200; j++) {
 				createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
 			}
 			System.out.println("i = " + i);
@@ -315,7 +315,6 @@ public class Level {
 		
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			loadChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
-			//System.out.println(CHUNK_SIZE * i +"&"+ TILES_PER_ROW - CHUNK_SIZE+"&"+ chunkRect.x + i +"&"+ chunkRect.y2());
 		}
 		bloomAll();
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
@@ -626,7 +625,7 @@ public class Level {
 	
 	public void loadChunk(int startX, int startY, int chunkX, int chunkY) {
 		isLoading = true;
-		System.out.println(chunkX +"&"+chunkY);
+		
 		Block[][] chunk = saveGame.loadChunk(chunkX, chunkY);
 		int i = 0; int j = 0;
 		for(int x = startX; x < startX+CHUNK_SIZE; x++) {

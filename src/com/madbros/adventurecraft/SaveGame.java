@@ -57,7 +57,6 @@ public class SaveGame {
 
 		try {
 			Input input = new Input(new FileInputStream(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv"));
-			//System.out.println(chunkX + "-" + chunkY + ".sv");
 			chunk = kryo.readObject(input, Chunk.class);
 			input.close();
 		} catch (IOException e) {
