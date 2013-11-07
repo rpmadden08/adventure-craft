@@ -54,7 +54,7 @@ public class Helpers {
 			for(int y = 0; y < CHUNK_SIZE; y++) {
 				Tile[] t = new Tile[23];
 				for(int i = 0; i < 23; i++) {
-					int id = chunk.ids[x][y][i];						
+					int id = chunk.ids[x][y][i];	
 					t[i] = TILE_HASH.get(id).createNew();
 					t[i].currentSpriteId = chunk.currentTextures[x][y][i];
 				}

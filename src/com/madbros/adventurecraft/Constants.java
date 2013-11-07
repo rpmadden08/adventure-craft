@@ -97,6 +97,8 @@ public class Constants {
 	//level constants
 	public static final int CHUNK_SIZE = 16;
 	public static final int CHUNKS_IN_A_ROW = 5;	//also columns
+	public static final int CHUNKS_LENGTH_TOTAL = 20; //200
+	public static final int CHUNK_BLOOM_MARGIN = 10;
 	public static final int TILES_PER_ROW = CHUNK_SIZE*CHUNKS_IN_A_ROW;	//also columns
 	
 	//game states
@@ -291,6 +293,7 @@ public class Constants {
 		TILE_HASH.put(DIRT, new DirtTile());
 		TILE_HASH.put(WATER, new WaterTile());
 		TILE_HASH.put(TREE, new TreeTile());
+		TILE_HASH.put(TREE_PINE, new TreePineTile());
 		TILE_HASH.put(DARK_DIRT, new DarkDirtTile());
 		TILE_HASH.put(SAND, new SandTile());
 		TILE_HASH.put(AIR, new NoTile());
@@ -299,6 +302,7 @@ public class Constants {
 		TILE_HASH.put(TREE_LEAF, new TreeLeafTile());
 		TILE_HASH.put(TREE_LEAF_RAIN, new TreeLeafRainTile());
 		TILE_HASH.put(TREE_LEAF_PINE, new TreeLeafPineTile());
+		TILE_HASH.put(HOLE, new HoleTile());
 		
 		TILE_HASH.put(DIRT_MOUNTAIN_BOTTOM, new DirtMountainBottomTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_TOP, new DirtMountainTopTile());
