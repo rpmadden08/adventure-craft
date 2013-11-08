@@ -99,28 +99,14 @@ public class Level {
 			}
 		}
 		
-		gameStartTime = Time.getTime();
-		bloomAll();		
+		gameStartTime = Time.getTime();		
 
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 	}
 	
-	public void bloomAll() {
-		for(int i = 0; i < blooming.size(); i++) {
-			Block b = blooming.get(i);
-			int x = b.getX(activeBlocks);
-			int y = b.getY(activeBlocks);
-			if(x > 2 && y > 2 && x < TILES_PER_ROW-2 && y < TILES_PER_ROW-2) {
-				b.layers[OBJECT_LAYER].bloom(x,y, activeBlocks);
-				//b.isUnfinished = false;
-				
-				
-			}
-		}
-	}
+
 	
 	public void saveChunk(int startX, int startY, int chunkX, int chunkY) {
-		//bloomChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
 		Block[][] chunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
 		int x2 = 0;
 		int y2 = 0;
@@ -202,20 +188,6 @@ public class Level {
 	}
 	
 	public void update() {
-		//System.out.println(blooming.size());
-//		System.out.println("GRASS: "+ PGrass/PTotal *100);
-//		System.out.println("FOREST: "+ PForest/PTotal *100);
-//		System.out.println("RAINFOREST: "+ PRainForest/PTotal *100);
-//		System.out.println("DESERT: "+ PDesert/PTotal *100);
-//		System.out.println("TAIGA: "+ PTaiga/PTotal *100);
-//		System.out.println("SWAMP: "+ PSwamp/PTotal *100);
-//		System.out.println("TUNDRA: "+ PTundra/PTotal *100);
-//		System.out.println("MOUNTAIN: "+ PMountain/PTotal *100);
-//		System.out.println("HOLE: "+ PHole/PTotal *100);
-//		System.out.println("OCEAN: "+ POcean/PTotal *100);
-//		time = Time.getTime();
-//		time = (long) ((time - gameStartTime)/1000);
-//		
 		Time.checkTime();
 		if(isDay == true) {
 			if (musicSelection != 1) {
@@ -280,7 +252,7 @@ public class Level {
 	
 	public void getNorthernChunks() {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			removeUnfinished(CHUNK_SIZE*i, TILES_PER_ROW- CHUNK_SIZE);
+			saveChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
 		}
 		renderRect.y += CHUNK_SIZE;
 		
@@ -290,16 +262,17 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			loadChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
 		}
-		//bloomAll();
+		
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
-		//autoTileNewArea(2, 2, TILES_PER_ROW-2, CHUNK_SIZE+2);
+		
 		
 	}
 	
 	public void getSouthernChunks() {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			removeUnfinished(CHUNK_SIZE*i, 0);
+			saveChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
 		}
+		
 		renderRect.y -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(UP);
@@ -308,9 +281,9 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			loadChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
 		}
-		//bloomAll();
+		
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
-		//autoTileNewArea(2, TILES_PER_ROW-CHUNK_SIZE-2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+		
 		
 	}
 	
@@ -318,7 +291,6 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
 		}
-		System.out.println("moved Right 1");
 		renderRect.x -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(LEFT);
@@ -332,9 +304,10 @@ public class Level {
 	}
 
 	public void getWesternChunks() {
-//		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-//			removeUnfinished(TILES_PER_ROW-CHUNK_SIZE, CHUNK_SIZE*i);
-//		}
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			saveChunk(TILES_PER_ROW-CHUNK_SIZE, CHUNK_SIZE*i, chunkRect.x2(), chunkRect.y + i);
+		}
+		
 		renderRect.x += CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(RIGHT);
@@ -343,9 +316,9 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			loadChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
 		}
-		//bloomAll();
+		
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
-		//autoTileNewArea(2, 2, CHUNK_SIZE+2, TILES_PER_ROW-2);
+		
 		
 	}
 	
@@ -566,18 +539,7 @@ public class Level {
     				cycle++;
     			}
     		}
-//    		if(chunkGenerator.chunkObjectLayer[m][n] == TREE) {
-//    			block.layers[OBJECT_LAYER] = new TreeTile();
-//    		}
-//    		if(chunkGenerator.chunkObjectLayer[m+1][n] == TREE) {
-//    			block2.layers[OBJECT_LAYER] = new TreeTile();
-//    		}
-//    		if(chunkGenerator.chunkObjectLayer[m][n+1] == TREE) {
-//    			block3.layers[OBJECT_LAYER] = new TreeTile();
-//    		}
-//    		if(chunkGenerator.chunkObjectLayer[m+1][n+1] == TREE) {
-//    			block4.layers[OBJECT_LAYER] = new TreeTile();
-//    		}
+
     	}
 		
 		block.noise = noise;

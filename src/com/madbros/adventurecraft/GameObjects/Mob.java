@@ -114,6 +114,8 @@ public class Mob extends Actor {
 		//mobController.remove(this);
 	}
 	public void update() {
+		//Check if the mob has stepped out of bounds
+		
 		if(knockBackTime > 0) {
 			knockBackTime = knockBackTime - 1;
 			currentSpeed = knockBackSpeed;
@@ -125,6 +127,31 @@ public class Mob extends Actor {
 			
 		}
 	}
+	
+	@Override
+	public void checkCollisions() {
+		if(this.absRect.x < Game.level.activeBlocks[0][0].absRect.x 
+				|| this.absRect.y < Game.level.activeBlocks[0][0].absRect.y
+				|| this.absRect.x > Game.level.activeBlocks[CHUNK_SIZE*CHUNKS_IN_A_ROW-1][CHUNK_SIZE*CHUNKS_IN_A_ROW-1].absRect.x+TILE_SIZE-1
+				|| this.absRect.y > Game.level.activeBlocks[CHUNK_SIZE*CHUNKS_IN_A_ROW-1][CHUNK_SIZE*CHUNKS_IN_A_ROW-1].absRect.y+TILE_SIZE-1) {
+					mobController.remove(this);
+				} else {
+		
+			Rect charCRect = new Rect(Game.hero.absRect, Game.hero.margin);
+			Rect cRect = new Rect(absRect, margin);
+			
+			if(cRect.detectCollision(charCRect)) {
+				didCollide();
+			}
+			if(Game.hero.isAttacking) {
+				Rect wRect = new Rect(Game.hero.absRect.x+ Game.hero.attackItem.cRectFinal.x, Game.hero.absRect.y + Game.hero.attackItem.cRectFinal.y, Game.hero.attackItem.cRectFinal.w,Game.hero.attackItem.cRectFinal.h);
+	
+				if(cRect.detectCollision(wRect)) {
+					didGetHit();
+				}
+			}
+		}
+	};
 	
 	@Override
 	public void didGetHit() {

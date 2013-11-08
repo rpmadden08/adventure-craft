@@ -20,8 +20,7 @@ public class Bat extends Mob {
 	public Bat(MobController mobController, int x, int y) {
 		super(mobController);
 		this.mobController = mobController;
-		absRect = new Rect(x*TILE_SIZE,
-				  y*TILE_SIZE,
+		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BAT));
 		margin = new Margin(0, 0, 0, 0);

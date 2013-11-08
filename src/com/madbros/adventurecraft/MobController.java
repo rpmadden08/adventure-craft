@@ -16,13 +16,13 @@ public class MobController {
 		if(x > CHUNK_SIZE*2 && x< CHUNK_SIZE *3+1 && y > CHUNK_SIZE*2 && y< CHUNK_SIZE *3+1 ) {
 			
 		} else {
-			if(Game.level.activeBlocks[x][y].layers[GRASS_LAYER].id == 1) {
+			//if(Game.level.activeBlocks[x][y].layers[GRASS_LAYER].id == 1) {
 				
 				int num = rand.nextInt(1);//100
 				if(num == 0 && mobs.size() < 10) {//57
 					mobs.add(new Bat(this, x, y));
 				}
-			}
+			//}
 		}
 		
 //		for(int x = CHUNK_SIZE+1; x < CHUNK_SIZE*4; x++) {
@@ -45,6 +45,7 @@ public class MobController {
 		for(int i = 0; i < mobs.size(); i++) {
 			mobs.get(i).updateAI();
 			mobs.get(i).update();
+			//DO NOT remove the mob before checkCollisions...  Causes a crash
 			mobs.get(i).checkCollisions();
 		}
 	}
