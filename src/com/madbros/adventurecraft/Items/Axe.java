@@ -41,7 +41,7 @@ public class Axe extends ToolItem {
 					if(Game.level.tileBeingAttacked.currentHp < 1) {
 						Game.level.highlightedBlock.deleteObjectTile();
 						Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
-						Game.level.autoTileHighlightedBlock();
+						//Game.level.autoTileHighlightedBlock();
 						isInUse = false;
 					}
 					Game.soundController.create(sound);
