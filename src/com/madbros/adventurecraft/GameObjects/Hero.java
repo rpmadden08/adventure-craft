@@ -33,7 +33,7 @@ public class Hero extends Actor {
 				  CHARACTER_SIZE, CHARACTER_SIZE);
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_BASE));
 		margin = new Margin(17, 17, 29, 1);
-		moveSpeed = 0.19f;
+		moveSpeed = 0.59f; //0.19
 		currentSpeed = 0.59f; //0.19
 		knockBackSpeed = 0.3f;
 		hitSound = "sounds/pain.wav";

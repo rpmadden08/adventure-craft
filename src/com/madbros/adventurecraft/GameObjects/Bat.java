@@ -17,11 +17,11 @@ public class Bat extends Mob {
 	int framesNum = 0;
 	MobController mobController;
 	
-	public Bat(MobController mobController) {
+	public Bat(MobController mobController, int x, int y) {
 		super(mobController);
 		this.mobController = mobController;
-		absRect = new Rect(TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2 - 64,
-				  TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2 - 64,
+		absRect = new Rect(x*TILE_SIZE,
+				  y*TILE_SIZE,
 				  32, 32);
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BAT));
 		margin = new Margin(0, 0, 0, 0);

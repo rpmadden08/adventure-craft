@@ -315,9 +315,10 @@ public class Level {
 	}
 	
 	public void getEasternChunks() {
-//		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-//			removeUnfinished(0, CHUNK_SIZE*i);
-//		}
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			saveChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
+		}
+		System.out.println("moved Right 1");
 		renderRect.x -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(LEFT);
@@ -326,9 +327,7 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			loadChunk(TILES_PER_ROW-CHUNK_SIZE, CHUNK_SIZE*i, chunkRect.x2(), chunkRect.y + i);
 		}
-		//bloomAll();
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
-		//autoTileNewArea(TILES_PER_ROW-CHUNK_SIZE-2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 	
 	}
 
@@ -340,10 +339,6 @@ public class Level {
 		
 		shiftActiveBlocksArray(RIGHT);
 		chunkRect.x--;
-		if(chunkRect.x<0) {
-			chunkRect.x = chunkRect.x + CHUNKS_LENGTH_TOTAL;
-		}
-		System.out.println(chunkRect.x);
 		
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			loadChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
