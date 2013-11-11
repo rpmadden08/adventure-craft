@@ -82,12 +82,20 @@ public class Inventory {
 		
 
 	}
-	public void add(Item addedItem) {
+	public void add(Item addedItem, int stackSize) {
 		for(int i = 0; i < invBar.length; i++) {
 			if(invBar[i].item.id == addedItem.id ) {
 				if(invBar[i].item.stackSize != addedItem.maxStackSize ) {
-					invBar[i].item.stackSize ++;
-					return;
+					if(invBar[i].item.stackSize + stackSize > addedItem.maxStackSize) {
+						int diff = addedItem.maxStackSize - invBar[i].item.stackSize;
+						stackSize = stackSize - diff;
+						invBar[i].item.stackSize = invBar[i].item.stackSize + diff;
+					} else {
+						invBar[i].item.stackSize = invBar[i].item.stackSize + stackSize;
+						return;
+					}
+					
+					
 				}
 				
 			}
@@ -95,20 +103,29 @@ public class Inventory {
 		for(int i = 0; i < invBag.length; i++) {
 			if(invBag[i].item.id == addedItem.id ) {
 				if(invBag[i].item.stackSize != addedItem.maxStackSize ) {
-					invBag[i].item.stackSize ++;
-					return;
-				}				
+					if(invBag[i].item.stackSize + stackSize > addedItem.maxStackSize) {
+						int diff = addedItem.maxStackSize - invBag[i].item.stackSize;
+						stackSize = stackSize - diff;
+						invBag[i].item.stackSize = invBag[i].item.stackSize + diff;
+					} else {
+						invBag[i].item.stackSize = invBag[i].item.stackSize + stackSize;
+						return;
+					}
+				}
+						
 			}
 		}
 		for(int i = 0; i < invBar.length; i++) {
 			if(invBar[i].item.id == 0 ) {
 				invBar[i].item = addedItem;
+				invBar[i].item.stackSize = stackSize;
 				return;
 			}
 		}
 		for(int i = 0; i < invBag.length; i++) {
 			if(invBag[i].item.id == 0) {
 				invBag[i].item = addedItem;
+				invBag[i].item.stackSize = stackSize;
 				return;
 			}
 		}

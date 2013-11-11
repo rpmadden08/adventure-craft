@@ -2,6 +2,7 @@ package com.madbros.adventurecraft;
 
 import java.io.File;
 
+import com.madbros.adventurecraft.Items.*;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -19,6 +20,7 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Systems.AnimationSystem;
 import com.madbros.adventurecraft.Systems.CollisionDetectionSystem;
 import com.madbros.adventurecraft.Systems.RenderSystem;
+import com.madbros.adventurecraft.Utils.Rect;
 
 import static com.madbros.adventurecraft.Constants.*;
 
@@ -79,6 +81,13 @@ public class Game implements ApplicationListener {
 			currentState = new MainState();
 			hero.stop();
 			inventory.close(hero);
+			if(inventory.heldItem.id != 0) {
+				Rect collectibleRect = new Rect(hero.absRect.x, hero.absRect.y, 16, 16);
+				Game.collectibleController.add(inventory.heldItem.id, inventory.heldItem.sprite, collectibleRect, inventory.heldItem.stackSize);
+				inventory.heldItem.stackSize = 0;
+				inventory.heldItem = new NoItem();
+				
+			}
 		} else {
 			currentState = new InventoryState();
 			hero.stop();

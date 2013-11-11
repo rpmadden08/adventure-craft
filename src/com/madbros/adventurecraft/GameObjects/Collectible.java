@@ -20,18 +20,18 @@ public class Collectible extends GameObject{
 	int gravity = 1;
 	int speed = 10;
 	int direction = 0;
+	int stackSize = 1;
 
-	public Collectible(CollectibleController collectibleController, int iD, Sprite spriteID, Rect collectible) {
+	public Collectible(CollectibleController collectibleController, int iD, Sprite spriteID, Rect collectible, int stackSize) {
 		this.collectibleController = collectibleController;
 		absRect = collectible;
 		margin = new Margin(0, 0, 0, 0);
-	
-		//sprite = new CompoundStaticSprite(Sprites.spriteCollections.get(Sprites.SHOVEL_ITEM));
 		sprite = (com.madbros.adventurecraft.Sprites.Sprite) spriteID;
 		item = ITEM_HASH.get(iD).createNew();
 		Random rand3 = new Random();
 		int lr = rand3.nextInt(4);
 		direction = lr-2;
+		this.stackSize = stackSize;
 		Random rand = new Random();
 		int ud = rand.nextInt(4);
 		length = length +ud -2;
@@ -74,7 +74,7 @@ public class Collectible extends GameObject{
 	}
 	public void didCollide() {
 		collectibleController.remove(this);
-		Game.inventory.add(item);
+		Game.inventory.add(item, stackSize);
 		
 	}
 }

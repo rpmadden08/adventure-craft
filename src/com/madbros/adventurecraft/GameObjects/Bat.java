@@ -39,7 +39,7 @@ public class Bat extends Mob {
 	@Override
 	public void deathDrop() {
 		Rect collectibleRect = new Rect(absRect.x, absRect.y, 16, 16);
-		Game.collectibleController.add(BAT_WING, Sprites.sprites.get(Sprites.BAT_WING), collectibleRect );
+		Game.collectibleController.add(BAT_WING, Sprites.sprites.get(Sprites.BAT_WING), collectibleRect, 1);
 	}
 	
 	@Override

@@ -34,8 +34,8 @@ public class Actor extends GameObject {
 	public int maxHP = 10;
 	public int mP = 10;
 	public int maxMP = 10;
-	public int eP = 10;
-	public int maxEP = 10;
+	public double eP = 10;
+	public double maxEP = 10;
 	
 	public int knockBackTime = 0;
 	public boolean hasAttacked = true;

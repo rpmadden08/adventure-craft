@@ -75,10 +75,10 @@ public class TreeTile extends CollisionTile {
 		Rect collectibleRect3 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Rect collectibleRect4 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Rect collectibleRect5 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect );
-		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect2 );
-		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect3 );
-		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect4 );
-		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect5 );
+		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect, 1 );
+		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect2, 1 );
+		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect3, 1 );
+		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect4, 1 );
+		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect5, 1 );
 	}
 }
