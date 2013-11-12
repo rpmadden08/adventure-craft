@@ -226,6 +226,8 @@ public class Constants {
 	public static final int AXE = 14;
 	public static final int LONG_SWORD = 15;
 	public static final int BAT_WING = 16;
+	public static final int HOE = 17;
+	
 	
 	//Clothing Types
 	public static final int HELMET = 0;

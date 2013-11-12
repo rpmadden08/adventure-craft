@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Point;
@@ -132,6 +130,7 @@ public class Level {
 			activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = false;
 			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = false;
 		}
+		
 		Rect mRect = Helpers.getMouseRect();
 		Rect itemRange = Game.inventory.invBar[Game.inventory.itemSelected].item.range;
 		itemRange.x = Game.hero.sRect.x - (itemRange.w / 2) + (Game.hero.sRect.w /2);
@@ -153,16 +152,19 @@ public class Level {
 			}
 			
 			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
-			
 			if(tileBeingAttacked != highlightedBlock.getTopTile()) {
 				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
 				tileBeingAttacked = highlightedBlock.getTopTile();
 			}
+			
 			highlightedBlock.isHighlighted = true;
 			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = true;
 			activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = true;
 			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = true;
+		} else {
+			highlightedBlock = null;
 		}
+		
 	}
 	
 	private void highlight32() {
@@ -189,6 +191,8 @@ public class Level {
 				tileBeingAttacked = highlightedBlock.getObjectTile();
 			}
 			highlightedBlock.isHighlighted = true;
+		} else {
+			highlightedBlock = null;
 		}
 	}
 	
@@ -262,7 +266,7 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
 		}
-		
+		System.out.println("DOWN 1");
 		renderRect.y -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(UP);

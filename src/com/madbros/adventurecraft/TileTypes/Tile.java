@@ -20,6 +20,7 @@ public abstract class Tile {
 	public boolean isCollidable = false;
 	public boolean isDiggable = true;
 	public boolean isChoppable = false;
+	public boolean isTillable = false;
 	public long timeCreated = Time.getTime();
 	public boolean isLightSource = false;
 	public boolean isAutoTileable = true;

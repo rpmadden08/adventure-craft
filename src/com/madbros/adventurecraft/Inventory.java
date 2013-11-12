@@ -57,9 +57,9 @@ public class Inventory {
 		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +120,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +160,BOOTS_SLOT);
 		
-		invBar[0].item = new Sword();
+		invBar[0].item = new Hoe();
 		invBar[0].item.stackSize = 1;
-		invBar[1].item = new Sword();
+		invBar[1].item = new Shovel();
 		invBar[1].item.stackSize = 1;
 		invBar[2].item = new Sword();
 		invBar[2].item.stackSize = 1;
@@ -73,8 +73,8 @@ public class Inventory {
 		invBar[6].item.stackSize = 1;
 		invBar[7].item = new CampfireItem();
 		invBar[7].item.stackSize = 99;
-		invBar[8].item = new Sword();
-		invBar[8].item.stackSize = 1;
+		invBar[8].item = new Sapling();
+		invBar[8].item.stackSize = 99;
 		invBar[9].item = new Axe();
 		invBar[9].item.stackSize = 1;
 

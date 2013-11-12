@@ -146,15 +146,36 @@ public class Block {
 	
 	public void deleteTopTile() {
 		for(int i = layers.length-1; i > -1; i--) {
-			if(layers[i].id != AIR && layers[i].id != DARK_DIRT) { 
+			if(layers[i].id != AIR && layers[i].id != DIRT && layers[i].id != DARK_DIRT ) { 
 				layers[i] = new NoTile();
 				return;
+			} else if(layers[i].id == DIRT) {
+				layers[WATER_LAYER] = new HoleTile();
+				setCollisionTile((CollisionTile)layers[WATER_LAYER]);
+				return;
 			} else if(layers[i].id == DARK_DIRT) {
+				layers[LIGHT_DIRT_LAYER] = new DirtTile();
 				layers[WATER_LAYER] = new HoleTile();
 				setCollisionTile((CollisionTile)layers[WATER_LAYER]);
 			}
 		}
 	}
+	
+	public void deleteTopTileTilled() {
+		for(int i = layers.length-1; i > -1; i--) {
+			if(layers[i].id != AIR && layers[i].id != DARK_DIRT) { 
+				layers[i] = new NoTile();
+				//layers[LIGHT_DIRT_LAYER] = new NoTile();
+				return;
+			} else if(layers[i].id == DARK_DIRT) {
+				
+				layers[WATER_LAYER] = new HoleTile();
+				layers[LIGHT_DIRT_LAYER] = new DirtTile();
+				setCollisionTile((CollisionTile)layers[WATER_LAYER]);
+			}
+		}
+	}
+	
 	public void deleteObjectTile() {
 		
 			if(layers[OBJECT_LAYER].id != AIR && layers[OBJECT_LAYER].id != DARK_DIRT) { 
