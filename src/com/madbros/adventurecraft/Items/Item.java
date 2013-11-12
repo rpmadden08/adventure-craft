@@ -31,6 +31,7 @@ public abstract class Item {
 	
 	
 	public StaticSprite sprite;
+	public boolean isInRange;
 	
 	public void render(Rect slotRect) {
 		sprite.draw(slotRect.x + ITEM_OFFSET, slotRect.y + ITEM_OFFSET, Z_INV_ITEMS);

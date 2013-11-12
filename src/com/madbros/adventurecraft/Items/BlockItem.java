@@ -16,20 +16,22 @@ public abstract class BlockItem extends StackableItem{
 	
 	@Override
 	public void useRight() {
-		Tile tile = TILE_HASH.get(tileId).createNew();
-		Block hB = Game.level.highlightedBlock;
-		Block hB2 = Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY];
-		Block hB3 = Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1];
-		Block hB4 = Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY+1];
-		
-		if(Helpers.arrayDoesContainInt(placeableTileIds, hB.getTopTerrainTile().id) && AIR == hB.layers[OBJECT_LAYER].id) {
-			placeTile(hB, tile);
-			placeTile(hB2, TILE_HASH.get(tileId).createNew());
-			placeTile(hB3, TILE_HASH.get(tileId).createNew());
-			placeTile(hB4, TILE_HASH.get(tileId).createNew());
-			stackSize -= 1;
-			Game.inventory.deleteItemIfNecessary();
-			Game.level.autoTileHighlightedBlock();
+		if(isInRange == true) {
+			Tile tile = TILE_HASH.get(tileId).createNew();
+			Block hB = Game.level.highlightedBlock;
+			Block hB2 = Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY];
+			Block hB3 = Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1];
+			Block hB4 = Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY+1];
+			
+			if(Helpers.arrayDoesContainInt(placeableTileIds, hB.getTopTerrainTile().id) && AIR == hB.layers[OBJECT_LAYER].id) {
+				placeTile(hB, tile);
+				placeTile(hB2, TILE_HASH.get(tileId).createNew());
+				placeTile(hB3, TILE_HASH.get(tileId).createNew());
+				placeTile(hB4, TILE_HASH.get(tileId).createNew());
+				stackSize -= 1;
+				Game.inventory.deleteItemIfNecessary();
+				Game.level.autoTileHighlightedBlock();
+			}
 		}
 	}
 	

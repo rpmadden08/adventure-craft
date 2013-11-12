@@ -24,7 +24,7 @@ public class Shovel extends ToolItem {
 		
 //		Tile topTile = Game.level.highlightedBlock.getTopTile();
 		
-		if(Game.level.tileBeingAttacked.isDiggable) {
+		if(Game.level.tileBeingAttacked.isDiggable && isInRange == true) {
 			//take hp from top tile in highlightedblock
 			Game.level.tileBeingAttacked.currentHp -= attackPower;
 			if(Game.level.tileBeingAttacked.currentHp < 1) {

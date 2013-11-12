@@ -136,6 +136,7 @@ public class Level {
 		itemRange.x = Game.hero.sRect.x - (itemRange.w / 2) + (Game.hero.sRect.w /2);
 		itemRange.y = Game.hero.sRect.y- (itemRange.h / 2) + (Game.hero.sRect.h/2);
 		if(mRect.detectCollision(itemRange)) {
+			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = true;
 			highlightedBlockX = renderRect.x + (mRect.x + offsetX) / TILE_SIZE;
 			
 			highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
@@ -163,6 +164,7 @@ public class Level {
 			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = true;
 		} else {
 			highlightedBlock = null;
+			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = false;
 		}
 		
 	}
@@ -181,6 +183,7 @@ public class Level {
 		itemRange.x = Game.hero.sRect.x - (itemRange.w / 2) + (Game.hero.sRect.w /2);
 		itemRange.y = Game.hero.sRect.y- (itemRange.h / 2) + (Game.hero.sRect.h/2);
 		if(mRect.detectCollision(itemRange)) {
+			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = true;
 			highlightedBlockX = renderRect.x + (mRect.x + offsetX) / TILE_SIZE;
 			highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
 			
@@ -193,6 +196,8 @@ public class Level {
 			highlightedBlock.isHighlighted = true;
 		} else {
 			highlightedBlock = null;
+			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = false;
+			
 		}
 	}
 	

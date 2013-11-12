@@ -26,7 +26,7 @@ public class Axe extends ToolItem {
 	public void useLeft() {
 		
 //		Tile topTile = Game.level.highlightedBlock.getTopTile();
-		if(Game.level.tileBeingAttacked.isChoppable) {
+		if(Game.level.tileBeingAttacked.isChoppable && isInRange == true) {
 			if(isInUse == false) {
 				swingRemaining = 0;
 				isInUse = true;
