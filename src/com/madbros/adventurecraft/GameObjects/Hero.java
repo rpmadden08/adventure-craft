@@ -4,9 +4,9 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import org.lwjgl.input.Keyboard;
 
-
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.WeaponItem;
@@ -18,6 +18,7 @@ import com.madbros.adventurecraft.Utils.Rect;
 public class Hero extends Actor {
 	public boolean attackButtonReleased = true;
 	public boolean isDead = false;
+	public int deathWait = 0;
 	public Hero() {
 		//STATS
 		maxHP = 25;
@@ -28,8 +29,8 @@ public class Hero extends Actor {
 		eP = maxEP;
 		
 		
-		absRect = new Rect(TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
-				  TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2,
+		absRect = new Rect(Game.level.spawnX,
+				  Game.level.spawnY,
 				  CHARACTER_SIZE, CHARACTER_SIZE);
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_BASE));
 		margin = new Margin(17, 17, 29, 1);
@@ -81,7 +82,11 @@ public class Hero extends Actor {
 	
 	public void takeDamage(int damage) {
 		if(knockBackTime <= 0) {
-			hP = hP - damage;
+			if(hP - damage < 0) {
+				hP = 0;
+			} else {
+				hP = hP - damage;
+			}
 			Game.soundController.create(hitSound);
 			knockBackTime = 10;
 			
@@ -138,7 +143,14 @@ public class Hero extends Actor {
 	
 	public void update() {
 		if(hP<=0) {
+			Game.inventory.dropAll();
 			isDead = true;
+			if(deathWait > 60) {
+				Game.level = new Level();
+				Game.hero = new Hero();
+			} else {
+				deathWait ++;
+			}
 		} else if (isDead == true) {
 			
 		} else if(knockBackTime > 0) {

@@ -46,7 +46,7 @@ public class Bat extends Mob {
 	public void didCollide() {
 		//mobController.remove(this);
 		
-		Game.hero.takeDamage(1);
+		Game.hero.takeDamage(20);
 		Game.hero.knockBack(this);
 	}
 //	@Override

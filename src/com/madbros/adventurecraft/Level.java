@@ -3,6 +3,7 @@ package com.madbros.adventurecraft;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.ChunkGenerator;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -75,8 +76,11 @@ public class Level {
 	public double PMountain = 0;
 	public double PHole = 0;
 	
-	public int musicSelection = 0;
-	public Music music = Gdx.audio.newMusic(Gdx.files.internal("music/overworld.wav"));
+	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
+	public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
+	
+	//public int musicSelection = 0;
+	//public Music music = Gdx.audio.newMusic(Gdx.files.internal("music/overworld.wav"));
 	
 	
 	
@@ -129,31 +133,36 @@ public class Level {
 			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = false;
 		}
 		Rect mRect = Helpers.getMouseRect();
-		highlightedBlockX = renderRect.x + (mRect.x + offsetX) / TILE_SIZE;
-		
-		highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
-		
-		if(highlightedBlockX % 2 == 0 && highlightedBlockY % 2 == 0) {
+		Rect itemRange = Game.inventory.invBar[Game.inventory.itemSelected].item.range;
+		itemRange.x = Game.hero.sRect.x - (itemRange.w / 2) + (Game.hero.sRect.w /2);
+		itemRange.y = Game.hero.sRect.y- (itemRange.h / 2) + (Game.hero.sRect.h/2);
+		if(mRect.detectCollision(itemRange)) {
+			highlightedBlockX = renderRect.x + (mRect.x + offsetX) / TILE_SIZE;
 			
-		} else if (highlightedBlockX % 2 == 1 && highlightedBlockY % 2 == 0) {
-			highlightedBlockX--;
-		} else if (highlightedBlockX % 2 == 0 && highlightedBlockY % 2 == 1) {
-			highlightedBlockY--;
-		} else {
-			highlightedBlockX--;
-			highlightedBlockY--;
+			highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
+			
+			if(highlightedBlockX % 2 == 0 && highlightedBlockY % 2 == 0) {
+				
+			} else if (highlightedBlockX % 2 == 1 && highlightedBlockY % 2 == 0) {
+				highlightedBlockX--;
+			} else if (highlightedBlockX % 2 == 0 && highlightedBlockY % 2 == 1) {
+				highlightedBlockY--;
+			} else {
+				highlightedBlockX--;
+				highlightedBlockY--;
+			}
+			
+			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
+			
+			if(tileBeingAttacked != highlightedBlock.getTopTile()) {
+				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
+				tileBeingAttacked = highlightedBlock.getTopTile();
+			}
+			highlightedBlock.isHighlighted = true;
+			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = true;
+			activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = true;
+			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = true;
 		}
-		
-		highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
-		
-		if(tileBeingAttacked != highlightedBlock.getTopTile()) {
-			tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
-			tileBeingAttacked = highlightedBlock.getTopTile();
-		}
-		highlightedBlock.isHighlighted = true;
-		activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = true;
-		activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = true;
-		activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = true;
 	}
 	
 	private void highlight32() {
@@ -166,16 +175,21 @@ public class Level {
 		
 		
 		Rect mRect = Helpers.getMouseRect();
-		highlightedBlockX = renderRect.x + (mRect.x + offsetX) / TILE_SIZE;
-		highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
-		
-		highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
-		
-		if(tileBeingAttacked != highlightedBlock.getObjectTile()) {
-			tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
-			tileBeingAttacked = highlightedBlock.getObjectTile();
+		Rect itemRange = Game.inventory.invBar[Game.inventory.itemSelected].item.range;
+		itemRange.x = Game.hero.sRect.x - (itemRange.w / 2) + (Game.hero.sRect.w /2);
+		itemRange.y = Game.hero.sRect.y- (itemRange.h / 2) + (Game.hero.sRect.h/2);
+		if(mRect.detectCollision(itemRange)) {
+			highlightedBlockX = renderRect.x + (mRect.x + offsetX) / TILE_SIZE;
+			highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
+			
+			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
+			
+			if(tileBeingAttacked != highlightedBlock.getObjectTile()) {
+				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
+				tileBeingAttacked = highlightedBlock.getObjectTile();
+			}
+			highlightedBlock.isHighlighted = true;
 		}
-		highlightedBlock.isHighlighted = true;
 	}
 	
 	private void highlightBlock() {
@@ -189,31 +203,7 @@ public class Level {
 	
 	public void update() {
 		Time.checkTime();
-		if(isDay == true) {
-			if (musicSelection != 1) {
-				musicSelection = 1;
-				if(music.isPlaying()) {
-					music.stop();
-					music.dispose();
-				}
-				music = Gdx.audio.newMusic(Gdx.files.internal("music/overworld.wav"));
-				
-				music.play();
-				music.setLooping(true);
-			}
-		} else if (isDay == false) {
-			if (musicSelection != 2) {
-				musicSelection = 2;
-				if(music.isPlaying()) {
-					music.stop();
-					music.dispose();
-				}
-				music = Gdx.audio.newMusic(Gdx.files.internal("music/darkworld.wav"));
-				
-				music.play();
-				music.setLooping(true);
-			}
-		}
+		
 		if(Game.currentState.type == State.MAIN) highlightBlock();
 		
 		if(renderRect.y <= CHUNK_SIZE/2) {

@@ -25,6 +25,7 @@ public abstract class Item {
 	public Rect cRectD = new Rect (0,0,0,0);
 	public Rect cRectR = new Rect (0,0,0,0);
 	public Rect cRectL = new Rect (0,0,0,0);
+	public Rect range = new Rect(0,0, 256,256);
 	public String sound;
 	
 	

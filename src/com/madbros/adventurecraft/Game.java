@@ -42,6 +42,7 @@ public class Game implements ApplicationListener {
 	public static Hero hero;
 	public static MobController mobController;
 	public static SoundController soundController;
+	public static MusicController musicController;
 	public static CollectibleController collectibleController;
 	public static Inventory inventory;
 	public static MiniMap map;
@@ -120,6 +121,7 @@ public class Game implements ApplicationListener {
 		mobController = new MobController();
 		soundController = new SoundController();
 		collectibleController = new CollectibleController();
+		musicController = new MusicController();
 		inventory = new Inventory();
 		map = new MiniMap();
 		renderSystem = new RenderSystem();
@@ -205,7 +207,7 @@ public class Game implements ApplicationListener {
 		defaultShader.dispose();
 		light.dispose();
 		fbo.dispose();
-		level.music.dispose();
+		musicController.music.dispose();
 //		bitmapFont.dispose();
 //		tilemap.dispose();
 	}

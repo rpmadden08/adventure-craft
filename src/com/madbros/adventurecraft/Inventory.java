@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.*;
+import com.madbros.adventurecraft.Utils.Rect;
 import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.Items.*;
 
@@ -81,6 +82,27 @@ public class Inventory {
 //		Game.hero.addClothingItem((ClothingItem)invClothing[0].item);
 		
 
+	}
+	
+	public void dropAll() {
+		for(int i = 0; i < invBar.length; i++) {
+			if(invBar[i].item.id != 0) {
+				Rect collectibleRect = new Rect(Game.hero.absRect.x, Game.hero.absRect.y, 16, 16);
+				Game.collectibleController.add(invBar[i].item.id, invBar[i].item.sprite, collectibleRect, invBar[i].item.stackSize);
+				invBar[i].item.stackSize = 0;
+				invBar[i].item = new NoItem();
+			}
+			
+		}
+		
+		for(int i = 0; i < invBar.length; i++) {
+			if(invBar[i].item.id != 0) {
+				Rect collectibleRect = new Rect(Game.hero.absRect.x, Game.hero.absRect.y, 16, 16);
+				Game.collectibleController.add(invBar[i].item.id, invBar[i].item.sprite, collectibleRect, invBar[i].item.stackSize);
+				invBar[i].item.stackSize = 0;
+				invBar[i].item = new NoItem();
+			}
+		}
 	}
 	public void add(Item addedItem, int stackSize) {
 		for(int i = 0; i < invBar.length; i++) {
