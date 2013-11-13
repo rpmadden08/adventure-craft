@@ -23,6 +23,7 @@ import com.madbros.adventurecraft.GameObjects.Collectible;
 import com.madbros.adventurecraft.GameObjects.GameObject;
 import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.GameObjects.Mob;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.TileTypes.Tile;
@@ -311,6 +312,52 @@ public class RenderSystem {
 				Sprites.pixel.setColor(Color.WHITE);
 	}
 	
+	public void renderItemHealth(Item item, int x, int y) {
+//		int x = mob.absRect.x - startX;
+//		int y = mob.absRect.y - startY - 6;
+		x = x +4;
+		y = y +26;
+		double difference = (item.maxUses - item.uses);
+		double percentage = (item.maxUses-difference) / item.maxUses;
+		double hPCalc = percentage * 29;
+		int hP = (int) hPCalc;
+		//System.out.println(percentage);
+		
+		//The Red/Blue/Green Part
+		Sprites.pixel.setColor(Color.RED);
+		Sprites.pixel.draw(x+1,y+1,Z_CHARACTER,hP,4);
+		
+		//Red Highlight top
+		Sprites.pixel.setColor(1f, 1f, 1f,0.4f);
+		Sprites.pixel.draw(x+2,y+1,Z_CHARACTER,hP,1);
+		
+		//Red Highlight bottom
+		Sprites.pixel.setColor(0f, 0f, 0f,0.3f);
+		Sprites.pixel.draw(x+2,y+4,Z_CHARACTER,hP,1);
+	
+		//Black Edge
+		Sprites.pixel.setColor(Color.BLACK);
+		Sprites.pixel.draw(x+1+hP,y+1,Z_CHARACTER,29-hP,4);
+		
+		//Border left
+		Sprites.healthBarMon.draw(x,y,Z_CHARACTER,2,6);
+
+		
+		//Border Top
+		Sprites.pixel.setColor(0.886f, 0.914f, 0.98f,1f);
+		Sprites.pixel.draw(x+2, y, Z_CHARACTER, 28, 1);
+		
+		//Border Bottom
+		Sprites.pixel.draw(x+2, y+5, Z_CHARACTER, 28, 1);
+		
+		//Border Right
+		Sprites.healthBarMon.rotate(180);
+		Sprites.healthBarMon.draw(x+2+28,y,Z_CHARACTER,2,6);
+		Sprites.healthBarMon.rotate(180);
+		
+		//Reset
+		Sprites.pixel.setColor(Color.WHITE);
+}
 	public void renderMobs(MobController mobController) {
 		for(Mob mob : mobController.mobs) {
 			int x = mob.absRect.x - startX;
@@ -335,8 +382,10 @@ public class RenderSystem {
 	public void renderHud(Inventory inv) {
 		for(int i=0;i < inv.invBar.length; i++) {			
 			inv.invBar[i].render();
-			if(i == inv.itemSelected) inv.selectSprite.draw(inv.invBar[i].slotRect.x - 2, inv.invBar[i].slotRect.y - 2,
-									  Z_INV_SELECT, inv.invBar[i].slotRect.w + 3, inv.invBar[i].slotRect.h + 3);
+			if(i == inv.itemSelected) 
+				inv.selectSprite.draw(inv.invBar[i].slotRect.x - 2, inv.invBar[i].slotRect.y - 2,
+				Z_INV_SELECT, inv.invBar[i].slotRect.w + 3, inv.invBar[i].slotRect.h + 3);
+			
 		}
 		renderHealth(Game.hero);
 	}

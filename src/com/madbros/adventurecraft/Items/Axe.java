@@ -2,7 +2,7 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-
+import com.badlogic.gdx.Gdx;
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 
@@ -27,6 +27,7 @@ public class Axe extends ToolItem {
 		
 //		Tile topTile = Game.level.highlightedBlock.getTopTile();
 		if(Game.level.tileBeingAttacked.isChoppable && isInRange == true) {
+			
 			if(isInUse == false) {
 				swingRemaining = 0;
 				isInUse = true;
@@ -43,16 +44,18 @@ public class Axe extends ToolItem {
 						Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
 						//Game.level.autoTileHighlightedBlock();
 						isInUse = false;
+						uses = uses -1;
+						if(uses <= 0) {
+							stackSize = stackSize - 1;
+							Game.inventory.deleteItemIfNecessary();
+						}
 					}
 					Game.soundController.create(sound);
 					//System.out.println(Game.level.tileBeingAttacked.currentHp);
-					
-					int x = Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2);
-					int y = Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2);
-					
-					Game.p.setPosition((float)x,(float)y);
-					//Game.p.update(Gdx.graphics.getRawDeltaTime());
+					Game.p.x= Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2);
+					Game.p.y = Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2);
 					Game.p.start();
+					//Game.p.allowCompletion();
 				}
 			}
 		}

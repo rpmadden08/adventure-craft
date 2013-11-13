@@ -2,8 +2,8 @@ Untitled
 - Delay -
 active: false
 - Duration - 
-lowMin: 100.0
-lowMax: 100.0
+lowMin: 10.0
+lowMax: 10.0
 - Count - 
 min: 0
 max: 200
@@ -14,7 +14,7 @@ highMin: 100.0
 highMax: 100.0
 relative: false
 scalingCount: 1
-scaling0: 1.0
+scaling0: 0.5
 timelineCount: 1
 timeline0: 0.0
 - Life - 

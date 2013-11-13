@@ -57,10 +57,10 @@ public class Mob extends Actor {
 			if(hP <= 0) {
 				deathDrop();
 				Game.soundController.create(deathSound);
-				Game.p.x = absRect.x;
-				Game.p.y = absRect.y;
+				Game.death.x = absRect.x;
+				Game.death.y = absRect.y;
 				//Game.p.update(Gdx.graphics.getRawDeltaTime());
-				Game.p.start();
+				Game.death.start();
 				mobController.remove(this);
 			}
 		}

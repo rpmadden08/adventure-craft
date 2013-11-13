@@ -29,6 +29,8 @@ public abstract class Item {
 	public Rect range = new Rect(0,0, 256,256);
 	public String sound;
 	public int attackPower = 1;
+	public int maxUses = 10;
+	public int uses = 10;
 	
 	
 	
@@ -37,6 +39,9 @@ public abstract class Item {
 	
 	public void render(Rect slotRect) {
 		sprite.draw(slotRect.x + ITEM_OFFSET, slotRect.y + ITEM_OFFSET, Z_INV_ITEMS);
+		if(uses != maxUses) {
+			Game.renderSystem.renderItemHealth(this, slotRect.x, slotRect.y);
+		}
 	}
 	
 	public void render(int x, int y) {
