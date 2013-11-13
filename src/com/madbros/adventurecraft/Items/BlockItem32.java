@@ -11,10 +11,6 @@ public abstract class BlockItem32 extends StackableItem{
 	int tileId = DIRT;
 	int[] placeableTileIds;
 	
-	public BlockItem32() {
-		is32 = true;
-	}
-	
 	@Override
 	public abstract BlockItem32 createNew();
 	

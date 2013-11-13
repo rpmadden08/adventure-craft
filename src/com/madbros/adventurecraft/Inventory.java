@@ -69,11 +69,11 @@ public class Inventory {
 		invBar[4].item.stackSize = 99;
 		invBar[5].item = new EarthClump();
 		invBar[5].item.stackSize = 99;
-		invBar[6].item = new Sword();
-		invBar[6].item.stackSize = 1;
+		invBar[6].item = new SeedPotato();
+		invBar[6].item.stackSize = 99;
 		invBar[7].item = new CampfireItem();
 		invBar[7].item.stackSize = 99;
-		invBar[8].item = new Sapling();
+		invBar[8].item = new Potatoes();
 		invBar[8].item.stackSize = 99;
 		invBar[9].item = new Axe();
 		invBar[9].item.stackSize = 1;

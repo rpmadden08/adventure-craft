@@ -34,9 +34,11 @@ public class Sprites {
 	public static final String INVENTORY_MENU_SLOT = "inventoryMenuSlot";
 	public static final String HEALTH_BAR_EDGE = "healthBarEdge";
 	public static final String MON_HEALTH_EDGE = "monHealthEdge";
+	public static final String TILLED_SOIL = "tilledSoil";
 	
 	public static final String PIXEL = "pixel";
 	public static final String SAPLING = "sapling";
+	public static final String SEED_POTATO = "seeds";
 	public static final String STUMP = "stump";
 	public static final String GRASS_ITEM = "grassItem";
 	public static final String DIRT_ITEM = "dirtItem";
@@ -74,6 +76,9 @@ public class Sprites {
 	public static final String SNOW = "snow";
 	public static final String TREE_FOUR = "pineTree";
 	public static final String DARK_GRASS = "darkGrass";
+	public static final String POTATO_PLANT = "potatoPlant";
+	public static final String POTATOES = "potatoes";
+	
 	
 	
 	//animated collections
@@ -213,7 +218,7 @@ public class Sprites {
 					DARK_GRASS, AXE_ITEM, BAT_WALK_DOWN, BAT_WALK_UP, BAT_WALK_LEFT, BAT_WALK_RIGHT,
 					BAT_STAND_UP, BAT_STAND_DOWN, BAT_STAND_LEFT, BAT_STAND_RIGHT,MALE_SLASH_UP,
 					MALE_SLASH_DOWN, MALE_SLASH_LEFT, MALE_SLASH_RIGHT, SWORD, LONG_SWORD, HEALTH_BAR_EDGE,
-					MON_HEALTH_EDGE, BAT_WING, HOE
+					MON_HEALTH_EDGE, BAT_WING, HOE, SEED_POTATO, POTATO_PLANT, POTATOES, TILLED_SOIL
 			};
 			
 			String[] lightNames = {LIGHT};

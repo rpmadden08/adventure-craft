@@ -10,7 +10,9 @@ import com.madbros.adventurecraft.Utils.Helpers;
 public abstract class BlockItem extends StackableItem{
 	int tileId = DIRT;
 	int[] placeableTileIds;
-	
+	public BlockItem() {
+		is32 = false;
+	}
 	@Override
 	public abstract BlockItem createNew();
 	

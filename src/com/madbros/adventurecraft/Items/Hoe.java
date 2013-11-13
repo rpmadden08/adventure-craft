@@ -11,6 +11,7 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 public class Hoe extends ToolItem {
 	public Hoe() {
 		id = HOE;
+		is32 = false;
 		sprite = Sprites.sprites.get(Sprites.HOE);
 		attackPower = 1;
 	}

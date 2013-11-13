@@ -13,6 +13,7 @@ public class Shovel extends ToolItem {
 		id = SHOVEL;
 		sprite = Sprites.sprites.get(Sprites.SHOVEL_ITEM);
 		attackPower = 1;
+		is32 = false;
 	}
 	
 	@Override
@@ -24,7 +25,7 @@ public class Shovel extends ToolItem {
 		
 //		Tile topTile = Game.level.highlightedBlock.getTopTile();
 		
-		if(Game.level.tileBeingAttacked.isDiggable && isInRange == true) {
+		if(Game.level.tileBeingAttacked.isDiggable && isInRange == true && Game.level.tileBeingAttacked2.isDiggable && Game.level.tileBeingAttacked3.isDiggable && Game.level.tileBeingAttacked4.isDiggable) {
 			//take hp from top tile in highlightedblock
 			Game.level.tileBeingAttacked.currentHp -= attackPower;
 			if(Game.level.tileBeingAttacked.currentHp < 1) {

@@ -36,24 +36,7 @@ public class TreeTile extends CollisionTile {
 		return new TreeTile();
 	}
 	
-	@Override
-//	public void bloom(int x, int y, Block[][] activeBlocks) {
-//		Block b = activeBlocks[x][y];
-//		
-//		int[] xs = {x-1, x-1, x-1, x, x, x, x+1,x+1, x+1};
-//		int[] ys = {y-2, y-1, y, y-2, y-1, y, y-2, y-1, y};
-//		int[] tileLayer = {TREE_LEFT_2, TREE_LEFT_1, TREE_LEFT_0, TREE_CENTER_2, TREE_CENTER_1, TREE_CENTER_0, TREE_RIGHT_2, TREE_RIGHT_1, TREE_RIGHT_0};
-//		
-//		for(int i = 0; i < 9; i++) {
-//			b = activeBlocks[xs[i]][ys[i]];
-//			b.layers[tileLayer[i]] = new TreeLeafTile(); 
-//			b.layers[tileLayer[i]].currentSpriteId = i;
-//			b.layers[tileLayer[i]].z = Z_ABOVE_LAYER;
-//		}
-////		b.layers[TREE_CENTER_0] = new TreeTile();
-////		b.setCollisionTile(new TreeTile());
-//	}
-	
+	@Override	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		Block b = activeBlocks[x][y];
 		int[] xs = {x-1, x-1, x-1, x, x, x, x+1,x+1, x+1};

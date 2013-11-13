@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.*;
@@ -15,7 +16,7 @@ public abstract class Item {
 	public int numberProducedByCrafting = 0;
 	public int[] itemsPossiblyCraftable = {};
 	public int[] craftCost = {};
-	public boolean is32 = false;
+	public boolean is32 = true;
 	public float originX = 2;
 	public float originY = 30;
 	public float weaponOffsetX = 0;
@@ -27,6 +28,7 @@ public abstract class Item {
 	public Rect cRectL = new Rect (0,0,0,0);
 	public Rect range = new Rect(0,0, 256,256);
 	public String sound;
+	public int attackPower = 1;
 	
 	
 	
@@ -58,6 +60,15 @@ public abstract class Item {
 	
 	public void useLeft() {
 		//attack
+		if(Game.level.tileBeingAttacked.isBreakable && isInRange == true) {
+			Game.level.tileBeingAttacked.currentHp -= attackPower;
+			if(Game.level.tileBeingAttacked.currentHp < 1) {
+				Game.level.highlightedBlock.deleteObjectTile();
+				Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
+				
+				//Game.level.autoTileHighlightedBlock();
+			}
+		}
 	}
 	
 	public boolean isValidRecipe(Slot[] craftingSlots) {

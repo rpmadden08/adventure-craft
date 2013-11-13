@@ -21,7 +21,14 @@ public class Level {
 	public Block[][] currentChunk;
 	public ArrayList<Block> collisionBlocks;
 	public Block highlightedBlock;
+	public Block highlightedBlock2;
+	public Block highlightedBlock3;
+	public Block highlightedBlock4;
 	public Tile tileBeingAttacked = new NoTile();
+	public Tile tileBeingAttacked2 = new NoTile();
+	public Tile tileBeingAttacked3 = new NoTile();
+	public Tile tileBeingAttacked4 = new NoTile();
+	
 	public int highlightedBlockX = 0;
 	public int highlightedBlockY = 0;
 	
@@ -153,9 +160,16 @@ public class Level {
 			}
 			
 			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
+			highlightedBlock2 = activeBlocks[highlightedBlockX+1][highlightedBlockY];
+			highlightedBlock3 = activeBlocks[highlightedBlockX][highlightedBlockY+1];
+			highlightedBlock4 = activeBlocks[highlightedBlockX+1][highlightedBlockY+1];
+			
 			if(tileBeingAttacked != highlightedBlock.getTopTile()) {
 				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
 				tileBeingAttacked = highlightedBlock.getTopTile();
+				tileBeingAttacked2 = highlightedBlock2.getTopTile();
+				tileBeingAttacked3 = highlightedBlock3.getTopTile();
+				tileBeingAttacked4 = highlightedBlock4.getTopTile();
 			}
 			
 			highlightedBlock.isHighlighted = true;
@@ -164,6 +178,9 @@ public class Level {
 			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = true;
 		} else {
 			highlightedBlock = null;
+			highlightedBlock2 = null;
+			highlightedBlock3 = null;
+			highlightedBlock4 = null;
 			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = false;
 		}
 		
@@ -188,10 +205,12 @@ public class Level {
 			highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
 			
 			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
+
 			
 			if(tileBeingAttacked != highlightedBlock.getObjectTile()) {
 				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
 				tileBeingAttacked = highlightedBlock.getObjectTile();
+				
 			}
 			highlightedBlock.isHighlighted = true;
 		} else {

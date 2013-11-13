@@ -21,6 +21,7 @@ public abstract class Tile {
 	public boolean isDiggable = true;
 	public boolean isChoppable = false;
 	public boolean isTillable = false;
+	public boolean isBreakable = false; //This is for items breakable by hand
 	public long timeCreated = Time.getTime();
 	public boolean isLightSource = false;
 	public boolean isAutoTileable = true;
