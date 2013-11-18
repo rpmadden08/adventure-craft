@@ -129,6 +129,7 @@ public class Constants {
 	public static final int SAPLING_PINE = 19;
 	public static final int TREE_PINE = 20;
 	public static final int POTATO_TILE = 21;
+	public static final int TABLE = 22;
 	
 	
 	//Layers
@@ -230,6 +231,7 @@ public class Constants {
 	public static final int HOE = 17;
 	public static final int SEED_POTATO = 18;
 	public static final int POTATOES = 19;
+	public static final int TABLE_ITEM = 20;
 	
 	
 	//Clothing Types
@@ -295,6 +297,7 @@ public class Constants {
 		ITEM_HASH.put(BAT_WING, new BatWing());
 		ITEM_HASH.put(SEED_POTATO, new SeedPotato());
 		ITEM_HASH.put(POTATOES, new Potatoes());
+		ITEM_HASH.put(TABLE_ITEM, new TableItem());
 		
 		TILE_HASH.put(GRASS, new GrassTile());
 		TILE_HASH.put(DIRT, new DirtTile());
@@ -317,6 +320,7 @@ public class Constants {
 		TILE_HASH.put(CAMPFIRE, new Campfire());
 		TILE_HASH.put(DARK_GRASS, new DarkGrassTile());
 		TILE_HASH.put(SNOW, new SnowTile());
+		TILE_HASH.put(TABLE, new Table());
 		
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);

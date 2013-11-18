@@ -12,6 +12,7 @@ public class Plank extends CraftItem {
 		sprite = Sprites.sprites.get(Sprites.PLANK_ITEM);
 		numberProducedByCrafting = 4;
 		craftCost = new int[]{LOG};
+		itemsPossiblyCraftable = new int[]{TABLE_ITEM};
 		//set recipes
 	}
 	
@@ -19,6 +20,12 @@ public class Plank extends CraftItem {
 	public boolean isValidRecipe(Slot[] craftingSlots) {
 		return Helpers.containsXNumberOfItemsInSlots(1, LOG, craftingSlots) &&
 			   Helpers.containsXNumberOfItemsInSlots(3, EMPTY, craftingSlots);
+	}
+	
+	@Override
+	public boolean isValidTableRecipe(Slot[] craftingSlots) {
+		return Helpers.containsXNumberOfItemsInSlots(1, LOG, craftingSlots) &&
+			   Helpers.containsXNumberOfItemsInSlots(8, EMPTY, craftingSlots);
 	}
 	
 	@Override

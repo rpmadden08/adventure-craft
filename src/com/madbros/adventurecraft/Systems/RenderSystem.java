@@ -429,10 +429,20 @@ public class RenderSystem {
 		
 		inv.menuSprites[4].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2); //middle
 		
-		Slot[][] slots = {inv.invBag, inv.invCrafting, inv.invCrafted, inv.invClothing};
+		Slot[][] slots = {inv.invBag, inv.invCrafted, inv.invClothing};
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
 				slots[i][j].render();
+			}
+		}
+		
+		if(inv.craftingTableOn == true) {
+			for(int i = 0; i < inv.invTable.length; i++) {
+				inv.invTable[i].render();
+			}
+		} else {
+			for(int i = 0; i < inv.invCrafting.length; i++) {
+				inv.invCrafting[i].render();
 			}
 		}
 
@@ -442,7 +452,7 @@ public class RenderSystem {
 	}
 	
 	public void renderInventoryText(Inventory inv, SpriteBatch batch) {
-		Slot[][] slots = new Slot[][]{inv.invBag, inv.invCrafting, inv.invCrafted};
+		Slot[][] slots = new Slot[][]{inv.invBag, inv.invCrafting, inv.invCrafted, inv.invTable};
 
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {

@@ -17,7 +17,9 @@ public class Inventory {
 	
 	public Slot[] invBar= new Slot[INV_LENGTH];
 	public Slot[] invBag= new Slot[INV_LENGTH * INV_HEIGHT];
-	public CraftingSlot[] invCrafting= new CraftingSlot[2 * 2];
+	public boolean craftingTableOn = false;
+	public CraftingSlot[] invCrafting = new CraftingSlot[2 * 2];
+	public CraftingSlot[] invTable = new CraftingSlot[3 * 3];
 	public CraftedSlot[] invCrafted = new CraftedSlot[1];
 	public ClothingSlot[] invClothing = new ClothingSlot[4];
 
@@ -49,26 +51,34 @@ public class Inventory {
 				k++;
 			}
 		}
+		k=0;
+		for(int x = 0; x < 3; x++) {	
+			for(int y = 0; y < 3; y++) {
+				invTable[k] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE) * x,
+										  INV_CRAFTING_RECT.y + (INV_SLOT_SIZE) * y);
+				k++;
+			}
+		}
 		
-		invCrafted[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 5, INV_CRAFTING_RECT.y);
+		invCrafted[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 75, INV_CRAFTING_RECT.y);
 
 		invClothing[0] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y+40, HELMET_SLOT);
 		invClothing[1] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +80,ARMOR_SLOT);
 		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +120,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +160,BOOTS_SLOT);
 		
-		invBar[0].item = new Hoe();
-		invBar[0].item.stackSize = 1;
-		invBar[1].item = new Shovel();
+		invBar[0].item = new Log();
+		invBar[0].item.stackSize =99;
+		invBar[1].item = new Sword();
 		invBar[1].item.stackSize = 1;
-		invBar[2].item = new Sword();
+		invBar[2].item = new TableItem();
 		invBar[2].item.stackSize = 1;
 		invBar[3].item = new SandClump();
 		invBar[3].item.stackSize = 99;
 		invBar[4].item = new GrassSeed();
 		invBar[4].item.stackSize = 99;
-		invBar[5].item = new EarthClump();
-		invBar[5].item.stackSize = 99;
+		invBar[5].item = new Hoe();
+		invBar[5].item.stackSize = 1;
 		invBar[6].item = new SeedPotato();
 		invBar[6].item.stackSize = 99;
 		invBar[7].item = new CampfireItem();

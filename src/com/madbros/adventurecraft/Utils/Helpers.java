@@ -1,6 +1,8 @@
 package com.madbros.adventurecraft.Utils;
 
 import static com.madbros.adventurecraft.Constants.CHUNK_SIZE;
+import static com.madbros.adventurecraft.Constants.EMPTY;
+import static com.madbros.adventurecraft.Constants.LOG;
 import static com.madbros.adventurecraft.Constants.TILE_HASH;
 
 import com.madbros.adventurecraft.*;

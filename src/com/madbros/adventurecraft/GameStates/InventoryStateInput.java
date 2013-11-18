@@ -21,8 +21,8 @@ public class InventoryStateInput extends MainStateInput {
 	public void additionalMouseDown() {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
 
-		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing};
-		Boolean test = false;
+		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafted, Game.inventory.invClothing};
+		Boolean droppedItemInSlot = false;
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
 				if(mouseRect.detectCollision(slots[i][j].slotRect)) {
@@ -30,14 +30,42 @@ public class InventoryStateInput extends MainStateInput {
 					
 					if(mouseLeftDown) slots[i][j].handleLeftClick(Game.inventory);
 					else if(mouseRightDown) slots[i][j].handleRightClick(Game.inventory);
-					test = true;
+					droppedItemInSlot = true;
 				} else {
 					slots[i][j].isHighlighted = false;
 					
 				}
 			}
 		}
-		if(test == false) {
+		if(Game.inventory.craftingTableOn == true) {
+			for(int i = 0; i < Game.inventory.invTable.length; i++) {
+				if(mouseRect.detectCollision(Game.inventory.invTable[i].slotRect)) {
+					Game.inventory.invTable[i].isHighlighted = true;
+					
+					if(mouseLeftDown) Game.inventory.invTable[i].handleLeftClick(Game.inventory);
+					else if(mouseRightDown) Game.inventory.invTable[i].handleRightClick(Game.inventory);
+					droppedItemInSlot = true;
+				} else {
+					Game.inventory.invTable[i].isHighlighted = false;
+					
+				}
+			}
+		} else {
+			for(int i = 0; i < Game.inventory.invCrafting.length; i++) {
+				if(mouseRect.detectCollision(Game.inventory.invCrafting[i].slotRect)) {
+					Game.inventory.invCrafting[i].isHighlighted = true;
+					
+					if(mouseLeftDown) Game.inventory.invCrafting[i].handleLeftClick(Game.inventory);
+					else if(mouseRightDown) Game.inventory.invCrafting[i].handleRightClick(Game.inventory);
+					droppedItemInSlot = true;
+				} else {
+					Game.inventory.invCrafting[i].isHighlighted = false;
+					
+				}
+			}
+		}
+		
+		if(droppedItemInSlot == false) {
 			if(mouseLeftDown && Game.inventory.heldItem.id != 0) {
 				Rect collectibleRect = new Rect(Game.hero.absRect.x, Game.hero.absRect.y, 16, 16);
 				Game.collectibleController.add(Game.inventory.heldItem.id, Game.inventory.heldItem.sprite, collectibleRect, Game.inventory.heldItem.stackSize);
@@ -50,7 +78,7 @@ public class InventoryStateInput extends MainStateInput {
 	public void additionalMouseMove() {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
 
-		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing};
+		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing, Game.inventory.invTable};
 		
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {

@@ -79,6 +79,7 @@ public class Game implements ApplicationListener {
 /*#########################################################*/
 	public static void toggleInventoryState() {
 		if(currentState.type == State.INVENTORY) {
+			inventory.craftingTableOn = false;
 			currentState = new MainState();
 			hero.stop();
 			inventory.close(hero);

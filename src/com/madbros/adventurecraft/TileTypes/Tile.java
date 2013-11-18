@@ -25,6 +25,7 @@ public abstract class Tile {
 	public long timeCreated = Time.getTime();
 	public boolean isLightSource = false;
 	public boolean isAutoTileable = true;
+	public boolean isUseable = false;
 	
 	public int id = AIR;
 	public int autoTile = MIDDLE_TILE;
@@ -55,6 +56,10 @@ public abstract class Tile {
 	}
 	
 	public void bloom(int x,int y, Block[][] activeBlocks) {
+		
+	}
+	
+	public void rightClicked() {
 		
 	}
 	

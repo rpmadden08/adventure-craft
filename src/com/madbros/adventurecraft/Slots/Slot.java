@@ -54,8 +54,11 @@ public class Slot {
 		} else {
 			swapItems(inv);
 		}
-		
-		handleAdditional(inv.invCrafting, inv.invCrafted);
+		if(inv.craftingTableOn) {
+			handleAdditional(inv.invTable, inv.invCrafted);
+		} else {
+			handleAdditional(inv.invCrafting, inv.invCrafted);
+		}
 	}
 	
 	public void handleRightClick(Inventory inv) {
@@ -91,8 +94,12 @@ public class Slot {
 	
 	public void removeRecipeItemsFromCraftingSlots(int[] recipeCost, Slot[] invCrafting) {
 		int[] itemPositionsRemovedAlready = new int[recipeCost.length];	//so you don't remove two planks from the same stack, for example
-		for(int i = 0; i < recipeCost.length; i++) {
-			for(int j = 0; j < invCrafting.length; j++) {
+		for(int t = 0; t < itemPositionsRemovedAlready.length; t++) {  //MUST START AT -1 BECAUSE 0 is equal to the first crafting slot
+			itemPositionsRemovedAlready[t] = -1;
+		}
+		for(int i = 0; i < recipeCost.length; i++) { 
+			for(int j = 0; j < invCrafting.length; j++) { 
+				//System.out.println(invCrafting[j].item.id+"-"+recipeCost[i]);
 				if(invCrafting[j].item.id == recipeCost[i] && !Helpers.arrayDoesContainInt(itemPositionsRemovedAlready, j)) {
 					invCrafting[j].item.stackSize -= 1;
 					if(invCrafting[j].item.stackSize < 1) invCrafting[j].item = new NoItem();
@@ -116,7 +123,7 @@ public class Slot {
 	public void craftAnItemFromThisListIfPossible(Slot[] invCrafting, Slot[] invCrafted, int[] itemsPossiblyCraftable) {
 		for(int i = 0; i < itemsPossiblyCraftable.length; i++) {
 			Item possiblyCraftableItem = ITEM_HASH.get(itemsPossiblyCraftable[i]);
-			if(possiblyCraftableItem.isValidRecipe(invCrafting)) {
+			if(possiblyCraftableItem.isValidRecipe(invCrafting)|| possiblyCraftableItem.isValidTableRecipe(invCrafting)) {
 				invCrafted[0].item = possiblyCraftableItem.createNew();
 				invCrafted[0].item.stackSize = invCrafted[0].item.numberProducedByCrafting;
 				return;

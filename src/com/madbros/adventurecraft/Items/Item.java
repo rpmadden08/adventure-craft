@@ -31,6 +31,7 @@ public abstract class Item {
 	public int attackPower = 1;
 	public int maxUses = 10;
 	public int uses = 10;
+	public boolean isUseable = false;
 	
 	
 	
@@ -61,6 +62,9 @@ public abstract class Item {
 	
 	public void useRight() {
 		//place 
+		if(Game.level.tileBeingAttacked.isUseable) {
+			Game.level.tileBeingAttacked.rightClicked();
+		}
 	}
 	
 	public void useLeft() {
@@ -79,6 +83,11 @@ public abstract class Item {
 	public boolean isValidRecipe(Slot[] craftingSlots) {
 		return false;
 	}
+	
+	public boolean isValidTableRecipe(Slot[] craftingSlots) {
+		return false;
+	}
+	
 	
 	abstract public Item createNew(); 
 }
