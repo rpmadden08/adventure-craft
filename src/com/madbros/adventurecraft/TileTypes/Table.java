@@ -36,6 +36,7 @@ public class Table extends CollisionTile {
 			Game.inventory.craftingTableOn = true;
 			Game.toggleInventoryState();
 		}
+		
 	}
 	
 	public Tile createNew() {

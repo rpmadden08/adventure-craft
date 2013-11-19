@@ -103,7 +103,7 @@ public class Constants {
 	
 	//game states
 	public static enum State {
-		MAIN, INVENTORY, MAIN_MENU, NEW_GAME_MENU;
+		MAIN, INVENTORY, MAIN_MENU, NEW_GAME_MENU, TABLE_INVENTORY;
 	}
 	
 	//Blocks

@@ -91,6 +91,26 @@ public class Game implements ApplicationListener {
 				
 			}
 		} else {
+			//StandardInventory standardInventory = new StandardInventory();
+			currentState = new InventoryState();
+			hero.stop();
+			inventory.open(hero);
+		}
+	}
+	
+	public static void toggleInventoryTableState() {
+		if(currentState.type == State.TABLE_INVENTORY) {
+			//inventory.craftingTableOn = false;
+			currentState = new MainState();
+			hero.stop();
+			inventory.close(hero);
+			if(inventory.heldItem.id != 0) {
+				Rect collectibleRect = new Rect(hero.absRect.x, hero.absRect.y, 16, 16);
+				Game.collectibleController.add(inventory.heldItem.id, inventory.heldItem.sprite, collectibleRect, inventory.heldItem.stackSize);
+				inventory.heldItem.stackSize = 0;
+				inventory.heldItem = new NoItem();
+			}
+		} else {
 			currentState = new InventoryState();
 			hero.stop();
 			inventory.open(hero);

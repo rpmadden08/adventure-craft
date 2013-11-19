@@ -43,25 +43,6 @@ public class Inventory {
 			}
 		}
 		
-		k = 0;
-		for(int x = 0; x < 2; x++) {	
-			for(int y = 0; y < 2; y++) {
-				invCrafting[k] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE) * x,
-										  INV_CRAFTING_RECT.y + (INV_SLOT_SIZE) * y);
-				k++;
-			}
-		}
-		k=0;
-		for(int x = 0; x < 3; x++) {	
-			for(int y = 0; y < 3; y++) {
-				invTable[k] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE) * x,
-										  INV_CRAFTING_RECT.y + (INV_SLOT_SIZE) * y);
-				k++;
-			}
-		}
-		
-		invCrafted[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 75, INV_CRAFTING_RECT.y);
-
 		invClothing[0] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y+40, HELMET_SLOT);
 		invClothing[1] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +80,ARMOR_SLOT);
 		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +120,LEGGINGS_SLOT);
