@@ -10,10 +10,12 @@ public class Text {
 	private String s;
 	private float w;
 	private float h;
+	private SpriteBatch batch;
 	
-	public Text(BitmapFont f, String s) {
+	public Text(BitmapFont f, String s, SpriteBatch batch) {
 		this.f = f;
 		this.s = s;
+		this.batch = batch;
 //		w
 		TextBounds b = f.getBounds(s);
 		w = b.width;

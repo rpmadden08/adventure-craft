@@ -130,7 +130,7 @@ public class Game implements ApplicationListener {
 		
 		collisionDetectionSystem = new CollisionDetectionSystem();
 		
-		Game.currentState = new MainMenuState();
+		Game.currentState = new MainState();
 	}
 	
 	public static int getCenterScreenX() {
@@ -155,7 +155,7 @@ public class Game implements ApplicationListener {
 		new Constants();
 		
 		debugger = new Debugger();
-		debugMenu = new DebugMenu();
+		debugMenu = new DebugMenu(batch);
 		
 //		currentState = new MainMenuState(batch);
 		currentState = new MainState(true);
