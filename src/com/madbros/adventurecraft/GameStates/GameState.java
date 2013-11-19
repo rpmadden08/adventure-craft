@@ -7,7 +7,6 @@ import com.madbros.adventurecraft.*;
 public abstract class GameState {
 	public State type;
 	public BasicInput input;
-	public StandardInventory standardInventory;
 	protected float dt;
 //	protected int delta;
 	

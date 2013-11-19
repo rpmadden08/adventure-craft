@@ -18,7 +18,6 @@ import com.madbros.adventurecraft.Inventory;
 import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.MobController;
 import com.madbros.adventurecraft.ParticleEffect;
-import com.madbros.adventurecraft.StandardInventory;
 import com.madbros.adventurecraft.GameObjects.Actor;
 import com.madbros.adventurecraft.GameObjects.Collectible;
 import com.madbros.adventurecraft.GameObjects.GameObject;
@@ -430,31 +429,30 @@ public class RenderSystem {
 		
 		inv.menuSprites[4].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2); //middle
 		
-		Slot[][] slots = {inv.invBag, inv.invClothing, };
+		Slot[][] slots = {inv.invBag, inv.invCrafted, inv.invClothing};
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
 				slots[i][j].render();
 			}
 		}
-
 		
-		
-		inv.heldItem.render(Helpers.getX(), Helpers.getY());
-	}
-	
-	public void renderStandardInventory(Hero hero, StandardInventory inv) {
-		Slot[][] slots = {inv.invCrafted, inv.invCrafting};
-		for(int i = 0; i < slots.length; i++) {
-			for(int j = 0; j < slots[i].length; j++) {
-				slots[i][j].render();
+		if(inv.craftingTableOn == true) {
+			for(int i = 0; i < inv.invTable.length; i++) {
+				inv.invTable[i].render();
+			}
+		} else {
+			for(int i = 0; i < inv.invCrafting.length; i++) {
+				inv.invCrafting[i].render();
 			}
 		}
 
 		hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
+		
+		inv.heldItem.render(Helpers.getX(), Helpers.getY());
 	}
 	
 	public void renderInventoryText(Inventory inv, SpriteBatch batch) {
-		Slot[][] slots = new Slot[][]{inv.invBag};
+		Slot[][] slots = new Slot[][]{inv.invBag, inv.invCrafting, inv.invCrafted, inv.invTable};
 
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
@@ -464,20 +462,6 @@ public class RenderSystem {
 		
 		if(inv.heldItem.id != EMPTY) inv.heldItem.renderFont(Helpers.getX(), Helpers.getY(), batch);
 	}
-	
-	public void renderStandardInventoryText(StandardInventory inv, SpriteBatch batch) {
-		Slot[][] slots = new Slot[][]{inv.invCrafting, inv.invCrafted};
-
-		for(int i = 0; i < slots.length; i++) {
-			for(int j = 0; j < slots[i].length; j++) {
-				slots[i][j].item.renderFont(slots[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
-			}
-		}
-		
-		if(inv.heldItem.id != EMPTY) inv.heldItem.renderFont(Helpers.getX(), Helpers.getY(), batch);
-	}
-	
-	
 	
 	/******************************************* Debug Rendering *******************************************/
 	public void renderChunkBoundaries(int x, int y, int sX, int sY) {
