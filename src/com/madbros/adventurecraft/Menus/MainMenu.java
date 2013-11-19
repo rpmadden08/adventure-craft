@@ -12,12 +12,12 @@ import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class MainMenu extends Menu{
-	public MainMenu(SpriteBatch batch) {
-		super(batch);
+	public MainMenu() {
+		super();
 	}
 	
 	@Override
-	public void setupMenu(SpriteBatch batch) {
+	public void setupMenu() {
 		ButtonFunction newGame = new ButtonFunction() { public void invoke() { newGame(); } };
 		ButtonFunction loadGame = new ButtonFunction() { public void invoke() { loadGame(); } };
 		ButtonFunction options = new ButtonFunction() { public void invoke() { options(); } };
@@ -31,16 +31,16 @@ public class MainMenu extends Menu{
 		
 		menuButtons = new TextUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {
-			menuButtons[i] = new TextUIButton(r.x, r.y + i * (r.h + marginY), r.w, r.h, strings[i], functions[i], batch);
+			menuButtons[i] = new TextUIButton(r.x, r.y + i * (r.h + marginY), r.w, r.h, strings[i], functions[i]);
 		}
 	}
 	
 	private void newGame() {
-		MainMenuState.newGame(Game.batch);
+		MainMenuState.newGame();
 	}
 	
 	private void loadGame() {
-		MainMenuState.loadGame(Game.batch);
+		MainMenuState.loadGame();
 	}
 	
 	private void options() {

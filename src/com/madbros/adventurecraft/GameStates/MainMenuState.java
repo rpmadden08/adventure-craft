@@ -8,8 +8,8 @@ import com.madbros.adventurecraft.Menus.*;
 public class MainMenuState extends GameState{
 	public static Menu mainMenu;
 	
-	public MainMenuState(SpriteBatch batch) {
-		mainMenu = new MainMenu(batch);
+	public MainMenuState() {
+		mainMenu = new MainMenu();
 		type = State.MAIN_MENU;
 		
 		//FIXME: fix mouse input
@@ -25,15 +25,15 @@ public class MainMenuState extends GameState{
 		mainMenu.renderText();
 	}
 	
-	public static void newGame(SpriteBatch batch) {
-		mainMenu = new NewGameMenu(batch);
+	public static void newGame() {
+		mainMenu = new NewGameMenu();
 	}
 	
-	public static void cancel(SpriteBatch batch) {
-		mainMenu = new MainMenu(batch);
+	public static void cancel() {
+		mainMenu = new MainMenu();
 	}
 	
-	public static void loadGame(SpriteBatch batch) {
-		mainMenu = new LoadGameMenu(batch);
+	public static void loadGame() {
+		mainMenu = new LoadGameMenu();
 	}
 }

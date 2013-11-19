@@ -20,12 +20,12 @@ public class DebugMenu extends Menu {
 	public boolean menuIsActive;
 	public boolean fullscreenIsOn;
 	
-	public DebugMenu(SpriteBatch batch) {
-		super(batch);
+	public DebugMenu() {
+		super();
 	}
 	
 	@Override
-	public void setupMenu(SpriteBatch batch) {
+	public void setupMenu() {
 		collisionTilesAreOn = false;
 		collisionRectsAreOn = false;
 		chunkBoundariesAreOn = false;
@@ -55,7 +55,7 @@ public class DebugMenu extends Menu {
 		
 		menuButtons = new PlainUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {
-			menuButtons[i] = new PlainUIButton(r.x, r.y*i, r.w, r.h, strings[i], functions[i], batch);
+			menuButtons[i] = new PlainUIButton(r.x, r.y*i, r.w, r.h, strings[i], functions[i]);
 		}
 	}
 	

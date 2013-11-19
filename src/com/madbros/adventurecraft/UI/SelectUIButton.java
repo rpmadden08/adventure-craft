@@ -21,9 +21,9 @@ public class SelectUIButton {
 	public boolean mouseIsHovering = false;
 	public boolean buttonIsPressedDown = false;
 	
-	public SelectUIButton(int x, int y, int w, int h, String s, SpriteBatch batch) {
+	public SelectUIButton(int x, int y, int w, int h, String s) {
 		rect = new Rect(x, y, w, h);
-		text = new Text(Sprites.font, s, batch);
+		text = new Text(Sprites.font, s);
 	}
 	
 	public void render() {

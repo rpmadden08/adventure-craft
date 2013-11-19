@@ -11,12 +11,12 @@ public class TexturedUIButton extends UIButton {
 	StaticSprite mainSprite = Sprites.buttonSprite;
 	StaticSprite pressedSprite = Sprites.pressedButtonSprite;
 	
-	public TexturedUIButton(int x, int y, int w, int h, String s, ButtonFunction func, SpriteBatch batch) {
-		super(x, y, w, h, s, func, batch);
+	public TexturedUIButton(int x, int y, int w, int h, String s, ButtonFunction func) {
+		super(x, y, w, h, s, func);
 	}
 	
 	public TexturedUIButton(Rect r, String s, StaticSprite mainSprite, StaticSprite pressedSprite, ButtonFunction func, SpriteBatch batch) {
-		super(r.x, r.y, r.w, r.h, s, func, batch);
+		super(r.x, r.y, r.w, r.h, s, func);
 		this.mainSprite = mainSprite;
 		this.pressedSprite = pressedSprite;
 	}

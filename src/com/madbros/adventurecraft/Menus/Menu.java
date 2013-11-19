@@ -6,11 +6,11 @@ import com.madbros.adventurecraft.UI.*;
 public class Menu {
 	public UIButton[] menuButtons;
 	
-	public Menu(SpriteBatch batch) {
-		setupMenu(batch);
+	public Menu() {
+		setupMenu();
 	}
 	
-	public void setupMenu(SpriteBatch batch) {
+	public void setupMenu() {
 
 	}
 	

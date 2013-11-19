@@ -16,12 +16,12 @@ public class NewGameMenu extends Menu {
 	private Rect textRect;
 	private Text gameName;
 	
-	public NewGameMenu(SpriteBatch batch) {
-		super(batch);
+	public NewGameMenu() {
+		super();
 	}
 	
 	@Override
-	public void setupMenu(SpriteBatch batch) {
+	public void setupMenu() {
 		fileName = "New Game";
 		File f = new File(SAVE_LOC + fileName);
 		if(f.exists()) {
@@ -38,7 +38,7 @@ public class NewGameMenu extends Menu {
 		}
 		
 		textRect = new Rect(0, 0, Game.currentScreenSizeX, Game.currentScreenSizeY-100);
-		gameName = new Text(Sprites.font, "Game Name: " + fileName, batch);
+		gameName = new Text(Sprites.font, "Game Name: " + fileName);
 		
 		ButtonFunction create = new ButtonFunction() { public void invoke() { create(); } };
 		ButtonFunction cancel = new ButtonFunction() { public void invoke() { cancel(); } };
@@ -52,7 +52,7 @@ public class NewGameMenu extends Menu {
 
 		menuButtons = new PlainUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {
-			menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i], batch);
+			menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i]);
 		}
 	}
 	
@@ -73,6 +73,6 @@ public class NewGameMenu extends Menu {
 	}
 	
 	public void cancel() {
-		MainMenuState.cancel(Game.batch);
+		MainMenuState.cancel();
 	}
 }

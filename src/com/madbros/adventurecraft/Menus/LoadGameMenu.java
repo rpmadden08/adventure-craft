@@ -17,12 +17,12 @@ public class LoadGameMenu extends Menu {
 	SelectUIButton[] selectUIButtons;
 	SelectUIButton  currentlySelectedButton;
 	
-	public LoadGameMenu(SpriteBatch batch) {
-		super(batch);
+	public LoadGameMenu() {
+		super();
 	}
 
 	@Override
-	public void setupMenu(SpriteBatch batch) {
+	public void setupMenu() {
 		Game.createSavesFolderIfNecessary();
 		File folder = new File(SAVE_LOC);
 		File[] listOfFiles = folder.listFiles();
@@ -47,7 +47,7 @@ public class LoadGameMenu extends Menu {
 
 		menuButtons = new UIButton[functions.length];
 		for(int i = 0; i < functions.length; i++) {
-			menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i], batch);
+			menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i]);
 		}
 		
 
@@ -56,7 +56,7 @@ public class LoadGameMenu extends Menu {
 		
 		selectUIButtons = new SelectUIButton[saveFolders.length];
 		for(int i = 0; i < selectUIButtons.length; i++) {
-			selectUIButtons[i] = new SelectUIButton(r1.x, r1.y + i * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
+			selectUIButtons[i] = new SelectUIButton(r1.x, r1.y + i * (r1.h + marginY), r1.w, r1.h, saveFolders[i]);
 		}
 	}
 	
@@ -94,6 +94,6 @@ public class LoadGameMenu extends Menu {
 	}
 	
 	public void cancel() {
-		MainMenuState.cancel(Game.batch);
+		MainMenuState.cancel();
 	}
 }
