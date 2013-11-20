@@ -18,7 +18,7 @@ public abstract class CollisionTile extends Tile {
 		switch(dir) {
 		case DOWN:
 			extra = move - charCRect.getBottomCollisionDiff(tileRect);
-			actor.yMove(-move);
+			actor.yMove(-move + extra);
 			break;
 		case UP:
 			extra = move - charCRect.getTopCollisionDiff(tileRect);
@@ -30,7 +30,7 @@ public abstract class CollisionTile extends Tile {
 			break;
 		case RIGHT:
 			extra = move - charCRect.getRightCollisionDiff(tileRect);
-			actor.xMove(-move);
+			actor.xMove(-move + extra);
 			break;
 		}
 	}

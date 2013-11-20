@@ -97,11 +97,13 @@ public class Level {
 		currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
 		
 		//FIXME: Make this loop only get called on a new game...
-		for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
-			for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
-				createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
+		if(Game.isNewGame == true) {
+			for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
+				for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
+					createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
+				}
+				System.out.println("i = " + i);
 			}
-			System.out.println("i = " + i);
 		}
 		
 		//FIXME: Should be dependent on character's spawn point...

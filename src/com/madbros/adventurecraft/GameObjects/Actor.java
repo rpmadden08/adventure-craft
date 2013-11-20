@@ -129,7 +129,7 @@ public class Actor extends GameObject {
 //		int x = (absRect.x - Game.level.activeBlocks[0][0].absRect.x) / TILE_SIZE;
 //		int y = (absRect.y - Game.level.activeBlocks[0][0].absRect.y) / TILE_SIZE;
 		int x = Game.level.renderRect.x2() - (sRect.x2() - margin.right) / TILE_SIZE - 2;//(aRect.x + margin.left) / TILE_SIZE;
-		int y = Game.level.renderRect.y2() - (sRect.y2() - margin.bottom) / TILE_SIZE - 2;//(aRect.y) / TILE_SIZE;
+		int y = Game.level.renderRect.y2() - (sRect.y2() - margin.bottom) / TILE_SIZE - 2+1;//(aRect.y) / TILE_SIZE;
 
 		int j = 0;
 		for(int i = 0; i < collisionDetectionBlocks.length; i++) {
@@ -221,7 +221,7 @@ public class Actor extends GameObject {
 		absRect.x += moveX;
 		int totalLength = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE;
 		if(absRect.x2() >= totalLength) {
-			borderAbsRect = new Rect(absRect.x2() - totalLength, absRect.y, absRect.w, absRect.h);
+			borderAbsRect = new Rect(absRect.x1() - totalLength, absRect.y, absRect.w, absRect.h);
 			if(absRect.x > totalLength && absRect.y > 0 && absRect.y2() < totalLength) {
 				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
 				borderAbsRect = null;
@@ -239,7 +239,7 @@ public class Actor extends GameObject {
 		absRect.y += moveY;
 		int totalLength = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE;
 		if(absRect.y2() >= totalLength) {
-			borderAbsRect = new Rect(absRect.x, absRect.y2() - totalLength, absRect.w, absRect.h);
+			borderAbsRect = new Rect(absRect.x, absRect.y1() - totalLength, absRect.w, absRect.h);
 			if(absRect.y > totalLength && absRect.x > 0 && absRect.x2() < totalLength) {
 				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
 				borderAbsRect = null;
@@ -265,6 +265,8 @@ public class Actor extends GameObject {
 		int moveY = Math.round(speed * f);
 		yMove(moveY);
 		if(!getCollision(VERTICAL, moveY, absRect) && borderAbsRect != null) {
+			System.out.println("BorderY: " + borderAbsRect.y);
+//			System.out.println("TileY: " + collisionDetectionBlocks[0].collisionTile.cRect.y);
 			getCollision(VERTICAL, moveY, borderAbsRect);
 		}
 	}

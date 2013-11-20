@@ -33,7 +33,7 @@ public class Game implements ApplicationListener {
 	
 	public static GameState currentState;
 	public static String locOfSavedGame = null;
-	
+	public static boolean isNewGame = true;
 	public static SpriteBatch batch;
 	public static SpriteBatch particleBatch;
 	public static Debugger debugger;
