@@ -157,8 +157,7 @@ public class Game implements ApplicationListener {
 		debugger = new Debugger();
 		debugMenu = new DebugMenu(batch);
 		
-//		currentState = new MainMenuState(batch);
-		currentState = new MainState(true);
+
 		
 		final String vertexShader = new FileHandle("data/vertexShader.glsl").readString();
 		final String defaultPixelShader = new FileHandle("data/defaultPixelShader.glsl").readString();
@@ -190,6 +189,9 @@ public class Game implements ApplicationListener {
 		
 		currentShader = finalShader;
 		light = new Texture("data/light.png");
+		
+		currentState = new MainMenuState(batch);
+//		currentState = new MainState(true);
 	}
 	
 	public static void reShade(Vector3 color, float intensity) {
@@ -202,20 +204,21 @@ public class Game implements ApplicationListener {
 	@Override
 	public void dispose() {
 		batch.dispose();
-		finalShader.dispose();
-		lightShader.dispose();
-		ambientShader.dispose();
-		defaultShader.dispose();
-		light.dispose();
-		fbo.dispose();
-		musicController.music.dispose();
+		if(fbo != null) {
+			finalShader.dispose();
+			lightShader.dispose();
+			ambientShader.dispose();
+			defaultShader.dispose();
+			light.dispose();
+			fbo.dispose();
+			musicController.music.dispose();
+		}
 //		bitmapFont.dispose();
 //		tilemap.dispose();
 	}
 
 	@Override
 	public void render() {
-		
 		currentState.update();
 		
 		currentState.render();

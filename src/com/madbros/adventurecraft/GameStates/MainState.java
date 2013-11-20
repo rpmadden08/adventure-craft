@@ -19,6 +19,20 @@ public class MainState extends GameState {
 		type = State.MAIN;
 		if(isQuickLoad) Game.createDefaultSaveGameIfNecessary();
 		
+		Game.camera= new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		Game.camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		Game.camera.update();
+		
+		Game.fbo = new FrameBuffer(Format.RGBA8888, Game.currentScreenSizeX, Game.currentScreenSizeY, false);
+		 
+		Game.lightShader.begin();
+		Game.lightShader.setUniformf("resolution", Game.currentScreenSizeX, Game.currentScreenSizeY);
+		Game.lightShader.end();
+
+		Game.finalShader.begin();
+		Game.finalShader.setUniformf("resolution", Game.currentScreenSizeX, Game.currentScreenSizeY);
+		Game.finalShader.end();	
+		
 		input = new MainStateInput();
 		Gdx.input.setInputProcessor(input);
 	}

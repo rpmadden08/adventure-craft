@@ -41,7 +41,7 @@ public class SelectUIButton {
 		text.drawCenter(rect, fontColor);
 	}
 	
-	public boolean handleMouseInput(boolean leftMousePressed, boolean leftMouseReleased) {	
+	public boolean handleMouseInput(boolean leftMousePressed, boolean leftMouseReleased) {
 		if(rect.detectCollision(Helpers.getMouseRect())) mouseIsHovering = true;
 		else mouseIsHovering = false;
 		

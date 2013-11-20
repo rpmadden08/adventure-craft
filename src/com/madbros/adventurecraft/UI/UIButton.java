@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
+import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 import com.madbros.adventurecraft.Utils.Text;
 
@@ -42,7 +43,7 @@ public abstract class UIButton {
 	}
 	
 	public void handleMouseMove(int x, int y) {
-		if(rect.detectCollision(new Rect(x, y, 1, 1))) {
+		if(rect.detectCollision(Helpers.getMouseRect())) {
 			mouseIsHovering = true;
 		}
 		else mouseIsHovering = false;

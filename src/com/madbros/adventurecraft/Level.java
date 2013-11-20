@@ -95,6 +95,8 @@ public class Level {
 		
 		activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
 		currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
+		
+		//FIXME: Make this loop only get called on a new game...
 		for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
 			for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
 				createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
@@ -102,6 +104,7 @@ public class Level {
 			System.out.println("i = " + i);
 		}
 		
+		//FIXME: Should be dependent on character's spawn point...
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
 				loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
@@ -636,6 +639,18 @@ public class Level {
 	
 	public void loadChunk(int startX, int startY, int chunkX, int chunkY) {
 		isLoading = true;
+		
+		if(chunkX >= CHUNKS_LENGTH_TOTAL) {
+			chunkX = chunkX % CHUNKS_LENGTH_TOTAL;
+		} else if(chunkX < 0) {
+			chunkX = CHUNKS_LENGTH_TOTAL + chunkX;
+		}
+		
+		if(chunkY >= CHUNKS_LENGTH_TOTAL) {
+			chunkY = chunkY % CHUNKS_LENGTH_TOTAL;
+		} else if(chunkY < 0) {
+			chunkY = CHUNKS_LENGTH_TOTAL + chunkY;
+		}
 		
 		Block[][] chunk = saveGame.loadChunk(chunkX, chunkY);
 		int i = 0; int j = 0;

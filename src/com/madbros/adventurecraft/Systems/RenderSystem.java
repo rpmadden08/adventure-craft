@@ -45,18 +45,21 @@ public class RenderSystem {
 	/******************************************* Main State Rendering *******************************************/
 	public void renderWorld(Level lv) {
 //		alreadyRenderedObjects = new ArrayList<GameObject>();
+		int i = 0; int j = 0;
 		for(int x = lv.renderRect.x; x < lv.renderRect.x2(); x++) {
 			for(int y = lv.renderRect.y; y < lv.renderRect.y2(); y++) {
-				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {					
-					renderBlock(x, y, lv.activeBlocks[x][y]);
-				}
+//				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {					
+					renderBlock(x, y, lv.activeBlocks[x][y], lv, i, j);
+//				}
+				j++;
 			}
+			i++; j = 0;
 		}
 	}
 	
-	public void renderBlock(int arrayX, int arrayY, Block block) {
-		int x = block.absRect.x - startX;
-		int y = block.absRect.y - startY;
+	public void renderBlock(int arrayX, int arrayY, Block block, Level lv, int i2, int j2) {
+		int x = i2 * TILE_SIZE - lv.offsetX; //block.absRect.x - startX;
+		int y = j2 * TILE_SIZE - lv.offsetY; //block.absRect.y - startY;
 
 		Tile[] renderTiles = block.getRenderTiles();
 		

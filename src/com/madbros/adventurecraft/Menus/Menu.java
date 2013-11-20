@@ -5,6 +5,7 @@ import com.madbros.adventurecraft.UI.*;
 
 public class Menu {
 	public UIButton[] menuButtons;
+//	public SelectUIButton[] selectUIButtons;
 	
 	public Menu(SpriteBatch batch) {
 		setupMenu(batch);

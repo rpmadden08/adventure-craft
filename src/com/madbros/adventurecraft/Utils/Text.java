@@ -19,7 +19,7 @@ public class Text {
 //		w
 		TextBounds b = f.getBounds(s);
 		w = b.width;
-		h = b.height;
+		h = b.height * -1;
 	}
 	
 	public String getString() {
@@ -30,7 +30,7 @@ public class Text {
 		s = newString;
 		TextBounds b = f.getBounds(s);
 		w = b.width;
-		h = b.height;
+		h = b.height * -1;
 	}
 	
 	public void drawString(Rect r, Color fontColor) {

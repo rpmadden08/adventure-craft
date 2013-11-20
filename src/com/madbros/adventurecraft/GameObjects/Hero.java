@@ -29,11 +29,10 @@ public class Hero extends Actor {
 		eP = maxEP;
 		
 		
-		absRect = new Rect(Game.level.spawnX,
-				  Game.level.spawnY,
+		absRect = new Rect(Game.level.spawnX, Game.level.spawnY,
 				  CHARACTER_SIZE, CHARACTER_SIZE);
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_BASE));
-		margin = new Margin(17, 17, 29, 1);
+		margin = new Margin(0, 0, 0, 0); //17, 17, 29, 1);
 		moveSpeed = 0.19f; //0.19
 		currentSpeed = 0.19f; //0.19
 		knockBackSpeed = 0.3f;

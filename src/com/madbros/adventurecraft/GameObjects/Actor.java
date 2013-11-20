@@ -18,6 +18,8 @@ import com.madbros.adventurecraft.Utils.Rect;
 public class Actor extends GameObject {
 	public CompoundAnimatedSprite sprite;
 	public Rect absRect;
+	public Rect borderAbsRect;
+	
 	public Rect sRect = new Rect(Game.getCenterScreenX() - CHARACTER_SIZE/2, Game.getCenterScreenY() - CHARACTER_SIZE/2, CHARACTER_SIZE, CHARACTER_SIZE);
 	public Margin margin = new Margin();
 	
@@ -124,11 +126,11 @@ public class Actor extends GameObject {
 	/************************** Collision Detection **************************/
 	public void getCollisionBlocks() {
 		//get position in activeBlocks array
-		int x = (absRect.x - Game.level.activeBlocks[0][0].absRect.x) / TILE_SIZE;
-		int y = (absRect.y - Game.level.activeBlocks[0][0].absRect.y) / TILE_SIZE;
-//		int x = Game.level.renderRect.x2() - (sRect.x2() - margin.right) / TILE_SIZE - 2;//(aRect.x + margin.left) / TILE_SIZE;
-//		int y = Game.level.renderRect.y2() - (sRect.y2() - margin.bottom) / TILE_SIZE - 2;//(aRect.y) / TILE_SIZE;
-		
+//		int x = (absRect.x - Game.level.activeBlocks[0][0].absRect.x) / TILE_SIZE;
+//		int y = (absRect.y - Game.level.activeBlocks[0][0].absRect.y) / TILE_SIZE;
+		int x = Game.level.renderRect.x2() - (sRect.x2() - margin.right) / TILE_SIZE - 2;//(aRect.x + margin.left) / TILE_SIZE;
+		int y = Game.level.renderRect.y2() - (sRect.y2() - margin.bottom) / TILE_SIZE - 2;//(aRect.y) / TILE_SIZE;
+
 		int j = 0;
 		for(int i = 0; i < collisionDetectionBlocks.length; i++) {
 			if(x+i/3 >= 0 && x+i/3 < Game.level.activeBlocks.length && y+j >= 0 && y+j < Game.level.activeBlocks[0].length) {
@@ -158,9 +160,9 @@ public class Actor extends GameObject {
 		}
 	}
 	
-	public void getCollision(boolean isVerticalMovement, int move) {
+	public boolean getCollision(boolean isVerticalMovement, int move, Rect r) {
 		if(Game.debugMenu.collisionDetectionIsOn) {
-			Rect charCRect = new Rect(absRect, this.margin);
+			Rect charCRect = new Rect(r, this.margin);
 			
 			for(int i = 0; i < collisionDetectionBlocks.length; i++) {
 				if(collisionDetectionBlocks[i] != null) {
@@ -207,68 +209,93 @@ public class Actor extends GameObject {
 						CollisionTile t = collisionDetectionBlocks[i].collisionTile;
 						t.heroDidCollide(this, dir, move, charCRect, collisionDetectionBlocks[i].collisionTile.cRect);
 						collisionDetectionBlocks[i].sRect = new Rect(collisionDetectionBlocks[i].collisionTile.cRect, this);	//yellow block in debug mode
-						if(didDetectCollision) break;
+						if(didDetectCollision) return true;
 					}
 				}
 			}
 		}
+		return false;
 	}
 	
 	public void xMove(int moveX) {
 		absRect.x += moveX;
+		int totalLength = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE;
+		if(absRect.x2() >= totalLength) {
+			borderAbsRect = new Rect(absRect.x2() - totalLength, absRect.y, absRect.w, absRect.h);
+			if(absRect.x > totalLength && absRect.y > 0 && absRect.y2() < totalLength) {
+				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
+				borderAbsRect = null;
+			}
+		} else if(absRect.x <= 0) {
+			borderAbsRect = new Rect(totalLength + absRect.x, absRect.y, absRect.w, absRect.h);
+			if(absRect.x2() < 0 && absRect.y > 0 && absRect.y2() < totalLength) {
+				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
+				borderAbsRect = null;
+			}
+		}
 	}
 	
 	public void yMove(int moveY) {
 		absRect.y += moveY;
+		int totalLength = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE;
+		if(absRect.y2() >= totalLength) {
+			borderAbsRect = new Rect(absRect.x, absRect.y2() - totalLength, absRect.w, absRect.h);
+			if(absRect.y > totalLength && absRect.x > 0 && absRect.x2() < totalLength) {
+				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
+				borderAbsRect = null;
+			}
+		} else if(absRect.y <= 0) {
+			borderAbsRect = new Rect(absRect.x, totalLength + absRect.y, absRect.w, absRect.h);
+			if(absRect.y2() < 0 && absRect.x > 0 && absRect.x2() < totalLength) {
+				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
+				borderAbsRect = null;
+			}
+		}
+	}
+	
+	private void moveHorizontal(float f, float speed) {
+		int moveX = Math.round(speed * f);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
+		xMove(moveX);
+		if(!getCollision(HORIZONTAL, moveX, absRect) && borderAbsRect != null) {
+			getCollision(HORIZONTAL, moveX, borderAbsRect);
+		}
+	}
+	
+	private void moveVertical(float f, float speed) {
+		int moveY = Math.round(speed * f);
+		yMove(moveY);
+		if(!getCollision(VERTICAL, moveY, absRect) && borderAbsRect != null) {
+			getCollision(VERTICAL, moveY, borderAbsRect);
+		}
 	}
 	
 	public void move(float f) {
-		int moveX = 0, moveY = 0;
-		
 		getCollisionBlocks();
 		if(isMovingLeft) {
-			moveX = Math.round(-currentSpeed * f);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
-			xMove(moveX);
-			getCollision(HORIZONTAL, moveX);
+			moveHorizontal(f, -currentSpeed);
 		} else if(isMovingRight) {
-			moveX = Math.round(currentSpeed * f);
-			xMove(moveX);
-			getCollision(HORIZONTAL, moveX);
+			moveHorizontal(f, currentSpeed);
 		}
 		
 		if(isMovingUp) {
-			moveY = Math.round(-currentSpeed * f);
-			yMove(moveY);
-			getCollision(VERTICAL, moveY);
+			moveVertical(f, -currentSpeed);
 		} else if(isMovingDown) {
-			moveY = Math.round(currentSpeed * f);
-			yMove(moveY);
-			getCollision(VERTICAL, moveY);
+			moveVertical(f, currentSpeed);
 		}
 	}
 	
 	public void moveKnockBack(float f) {
-		int moveX = 0, moveY = 0;
-		
 		getCollisionBlocks();
 		if(isKnockingLeft) {
-			moveX = Math.round(-currentSpeed * f);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
-			xMove(moveX);
-			getCollision(HORIZONTAL, moveX);
+			moveHorizontal(f, -currentSpeed);
 		} else if(isKnockingRight) {
-			moveX = Math.round(currentSpeed * f);
-			xMove(moveX);
-			getCollision(HORIZONTAL, moveX);
+			moveHorizontal(f, currentSpeed);
 		}
 		
 		if(isKnockingUp) {
-			moveY = Math.round(-currentSpeed * f);
-			yMove(moveY);
-			getCollision(VERTICAL, moveY);
+			moveVertical(f, -currentSpeed);
 		} else if(isKnockingDown) {
-			moveY = Math.round(currentSpeed * f);
-			yMove(moveY);
-			getCollision(VERTICAL, moveY);
+			moveVertical(f, currentSpeed);
 		}
 	}
 	

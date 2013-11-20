@@ -1,13 +1,16 @@
 package com.madbros.adventurecraft;
 
-import java.io.*;
+import static com.madbros.adventurecraft.Constants.*;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.madbros.adventurecraft.Utils.Helpers;
-
-import static com.madbros.adventurecraft.Constants.*;
 
 //@SuppressWarnings("unchecked")
 public class SaveGame {
@@ -54,7 +57,7 @@ public class SaveGame {
 		Chunk chunk = new Chunk();
 		
 		Kryo kryo = new Kryo();
-
+		
 		try {
 			Input input = new Input(new FileInputStream(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv"));
 			chunk = kryo.readObject(input, Chunk.class);

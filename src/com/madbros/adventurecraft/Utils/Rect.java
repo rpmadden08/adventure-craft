@@ -56,7 +56,7 @@ public class Rect {
 	}
 	
 	public int getBottomCollisionDiff(Rect r) {
-		return y2() - r.y1() ;
+		return y2() - r.y1();
 	}
 	
 	public int getTopCollisionDiff(Rect r) {
@@ -64,7 +64,7 @@ public class Rect {
 	}
 	
 	public int getLeftCollisionDiff(Rect r) {
-		return x1() - r.x2() ;
+		return x1() - r.x2();
 	}
 	
 	public int getRightCollisionDiff(Rect r) {
