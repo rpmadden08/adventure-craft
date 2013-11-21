@@ -102,7 +102,6 @@ public class Level {
 				for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
 					createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
 				}
-				System.out.println("i = " + i);
 			}
 		}
 		
@@ -295,7 +294,7 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
 		}
-		System.out.println("DOWN 1");
+
 		renderRect.y -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(UP);
@@ -379,7 +378,7 @@ public class Level {
 		int absY = j*TILE_SIZE+chunkY*CHUNK_SIZE*TILE_SIZE;
 		int m = i+CHUNK_BLOOM_MARGIN;
 		int n = j+CHUNK_BLOOM_MARGIN;
-		System.out.println(chunkX);
+
 		//BELOW SEA LEVEL
 		if(chunkX < 2 || chunkY < 2 || chunkX > CHUNKS_LENGTH_TOTAL - 3 || chunkY > CHUNKS_LENGTH_TOTAL - 3) {
 				Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
@@ -602,7 +601,6 @@ public class Level {
 	    		
 	    } else {
 	    	//if(activeBlocks[x][y].noise > 0.1 && noise < 0.105) {
-	    	//System.out.println(x+" "+y);
 		    	Tile[] treeTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
 		    	activeBlocks[x][y] = new Block(treeTile, absX, absY, false);
 		    	//activeBlocks[x][y].layers[OBJECT_LAYER].bloom(x,y, activeBlocks);

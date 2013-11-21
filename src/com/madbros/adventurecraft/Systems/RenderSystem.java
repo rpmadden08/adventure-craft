@@ -135,7 +135,6 @@ public class RenderSystem {
 			if(hero.isAttacking && hero.startWeaponAnimation == true) {
 				//Item item = Game.inventory.heldItem;
 				//item.sprite.setColor(Color.WHITE);
-				//System.out.println(hero.attackItem.sprite.getOriginX()+"/"+hero.attackItem.sprite.getOriginY());
 				hero.attackItem.sprite.setOrigin(hero.attackItem.originX, hero.attackItem.originY);
 				//hero.attackItem.sprite.
 				Sprites.pixel.setColor(Color.RED);
@@ -168,7 +167,6 @@ public class RenderSystem {
 		double percentage = (tile.maxHp-difference) / tile.maxHp;
 		double hPCalc = percentage * 30; 
 		int hP = (int) hPCalc;
-		//System.out.println(percentage);
 		
 		//The Red/Blue/Green Part
 		Sprites.pixel.setColor(Color.RED);
@@ -277,7 +275,6 @@ public class RenderSystem {
 				double percentage = (mob.maxHP-difference) / mob.maxHP;
 				double hPCalc = percentage * 29;
 				int hP = (int) hPCalc;
-				//System.out.println(percentage);
 				
 				//The Red/Blue/Green Part
 				Sprites.pixel.setColor(Color.RED);
@@ -324,7 +321,6 @@ public class RenderSystem {
 		double percentage = (item.maxUses-difference) / item.maxUses;
 		double hPCalc = percentage * 29;
 		int hP = (int) hPCalc;
-		//System.out.println(percentage);
 		
 		//The Red/Blue/Green Part
 		Sprites.pixel.setColor(Color.RED);

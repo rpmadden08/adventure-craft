@@ -26,7 +26,6 @@ public class EarthClump extends BlockItem {
 		Block hB = Game.level.highlightedBlock;
 		
 		if(hB.canPlace == false) {
-			System.out.println(Time.getTime() - hB.timePlaced);
 			if(Time.getTime() - hB.timePlaced > 300) {
 				hB.canPlace = true;
 			}
@@ -42,8 +41,6 @@ public class EarthClump extends BlockItem {
 	
 	@Override
 	public void placeTile(Block hB, Tile tile) {
-		System.out.println(hB.canPlace);
-		
 		if(hB.layers[WATER_LAYER].id == HOLE || hB.layers[WATER_LAYER].id == WATER) {
 			for(int i = 0; i < 2; i++) {
 				for(int j = 0; j< 2; j++) {

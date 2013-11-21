@@ -32,7 +32,6 @@ public class Table extends CollisionTile {
 	public void rightClicked() {
 		
 		if(Game.currentState.type == State.MAIN) {
-			//System.out.println("test");
 			Game.inventory.craftingTableOn = true;
 			Game.toggleInventoryState();
 		}

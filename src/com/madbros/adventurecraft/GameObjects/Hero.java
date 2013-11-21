@@ -88,11 +88,7 @@ public class Hero extends Actor {
 			}
 			Game.soundController.create(hitSound);
 			knockBackTime = 10;
-			
-			//System.out.println("HP:  "+ hP);
-			//System.out.println("KnockBackTime:  "+ knockBackTime);
 		}
-		//System.out.println("KnockBackTime:  "+ knockBackTime);
 	}
 	
 	public void knockBack(Mob mob) {

@@ -58,7 +58,6 @@ public class TreeRainTile extends CollisionTile {
 //			int[] tileLayer = {OBJECT_LAYER, OBJECT_LAYER, OBJECT_LAYER, TREE_LEFT_1, ABOVE_LAYER_1, TREE_RIGHT_1, TREE_LEFT_2, ABOVE_LAYER_2, TREE_RIGHT_2, TREE_LEFT_3, ABOVE_LAYER_3, TREE_RIGHT_3};
 //			
 //			for(int i = 11; i > 3; i--) {
-//				//System.out.println(xs[i]+" "+ys[i]);
 //				b = activeBlocks[xs[i]][ys[i]];
 //				b.layers[tileLayer[i]] = new TreeLeafTile(); 
 //				b.layers[tileLayer[i]].currentSpriteId = i;

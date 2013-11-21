@@ -226,64 +226,22 @@ public class Actor extends GameObject {
 	
 	public void xMove(int moveX) {
 		absRect.x += moveX;
-//		int totalLength = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE;
-//		if(absRect.x2() >= totalLength) {
-//			borderAbsRect = new Rect(absRect.x1() - totalLength, absRect.y, absRect.w, absRect.h);
-//			if(absRect.x > totalLength && absRect.y > 0 && absRect.y2() < totalLength) {
-//				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
-//				borderAbsRect = null;
-//			}
-//		} else if(absRect.x <= 0) {
-//			borderAbsRect = new Rect(totalLength + absRect.x, absRect.y, absRect.w, absRect.h);
-//			if(absRect.x2() < 0 && absRect.y > 0 && absRect.y2() < totalLength) {
-//				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
-//				borderAbsRect = null;
-//			}
-//		} else if(borderAbsRect != null) {
-//			borderAbsRect = new Rect(absRect.x, borderAbsRect.y, absRect.w, absRect.h);
-//		}
-//		System.out.println("X = "+absRect.x);
 	}
 	
 	public void yMove(int moveY) {
 		absRect.y += moveY;
-//		int totalLength = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE;
-//		if(absRect.y2() >= totalLength) {
-//			borderAbsRect = new Rect(absRect.x, absRect.y1() - totalLength, absRect.w, absRect.h);
-//			if(absRect.y > totalLength && absRect.x > 0 && absRect.x2() < totalLength) {
-//				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
-//				borderAbsRect = null;
-//			}
-//		} else if(absRect.y <= 0) {
-//			borderAbsRect = new Rect(absRect.x, totalLength + absRect.y, absRect.w, absRect.h);
-//			if(absRect.y2() < 0 && absRect.x > 0 && absRect.x2() < totalLength) {
-//				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
-//				borderAbsRect = null;
-//			}
-//		} else if(borderAbsRect != null) {
-//			borderAbsRect = new Rect(borderAbsRect.x, absRect.y, absRect.w, absRect.h);
-//		}
-//		System.out.println("Y="+absRect.y);
-		
 	}
 	
 	private void moveHorizontal(float f, float speed) {
 		int moveX = Math.round(speed * f);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
 		xMove(moveX);
-		if(!getCollision(HORIZONTAL, moveX, absRect) && borderAbsRect != null) {
-			System.out.println("BorderX: " + borderAbsRect.x);
-			getCollision(HORIZONTAL, moveX, borderAbsRect);
-		}
+		getCollision(HORIZONTAL, moveX, absRect);
 	}
 	
 	private void moveVertical(float f, float speed) {
 		int moveY = Math.round(speed * f);
 		yMove(moveY);
-		if(!getCollision(VERTICAL, moveY, absRect) && borderAbsRect != null) {
-			System.out.println("BorderY: " + borderAbsRect.y);
-//			System.out.println("TileY: " + collisionDetectionBlocks[0].collisionTile.cRect.y);
-			getCollision(VERTICAL, moveY, borderAbsRect);
-		}
+		getCollision(VERTICAL, moveY, absRect);
 	}
 	
 	public void move(float f) {

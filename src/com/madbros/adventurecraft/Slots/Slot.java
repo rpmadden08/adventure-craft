@@ -99,7 +99,6 @@ public class Slot {
 		}
 		for(int i = 0; i < recipeCost.length; i++) { 
 			for(int j = 0; j < invCrafting.length; j++) { 
-				//System.out.println(invCrafting[j].item.id+"-"+recipeCost[i]);
 				if(invCrafting[j].item.id == recipeCost[i] && !Helpers.arrayDoesContainInt(itemPositionsRemovedAlready, j)) {
 					invCrafting[j].item.stackSize -= 1;
 					if(invCrafting[j].item.stackSize < 1) invCrafting[j].item = new NoItem();
