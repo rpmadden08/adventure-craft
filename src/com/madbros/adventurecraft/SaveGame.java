@@ -10,6 +10,13 @@ import java.io.IOException;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.madbros.adventurecraft.TileTypes.DarkDirtTile;
+import com.madbros.adventurecraft.TileTypes.DirtTile;
+import com.madbros.adventurecraft.TileTypes.GrassTile;
+import com.madbros.adventurecraft.TileTypes.HoleTile;
+import com.madbros.adventurecraft.TileTypes.NoTile;
+import com.madbros.adventurecraft.TileTypes.Tile;
+import com.madbros.adventurecraft.TileTypes.TreeTile;
 import com.madbros.adventurecraft.Utils.Helpers;
 
 //@SuppressWarnings("unchecked")

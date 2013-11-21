@@ -15,7 +15,7 @@ public class ChunkGenerator {
 		
 	}
 	
-	public int getObjectLayerGeneration(int m, int n, long seed, Random rand) {
+	public int getObjectLayerGeneration(int m, int n, long seed, Random rand, int x, int y) {
 		if(chunkGroundLayer[m][n] == 1) {
 			return AIR;
     	//MOUNTAIN
@@ -33,13 +33,17 @@ public class ChunkGenerator {
     			return AIR;
 	    		//Forest
     		}else if(chunkGroundLayer[m][n] == 5){
+				if(x > CHUNK_SIZE * 2 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 2 - 1 &&
+				   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
+	    			double a = getTree(m, n, seed, rand);
+	    			if(a < 0.5) {
+	    				return TREE;
+	    			} else {
+	    				return AIR;
+	    			}
+				}
     			
-    			double a = getTree(m, n, seed, rand);
-    			if(a < 0.5) {
-    				return TREE;
-    			} else {
-    				return AIR;
-    			}
+    			return AIR;
     			
 	    		
 				//RainForest
@@ -66,10 +70,10 @@ public class ChunkGenerator {
 
 	public int getGroundLayerGeneration(int m, int n, Random rand) {
 		//BELOW SEA LEVEL
-		if(chunkNoiseElevation[m][n] < -0.3) {//FIXME Should be < -0.1
+		if(chunkNoiseElevation[m][n] < -0.1) {//FIXME Should be < -0.1
 			return 1;
     	//MOUNTAIN
-    	} else if(chunkNoiseElevation[m][n] > 0.3) {
+    	} else if(chunkNoiseElevation[m][n] > 0.1) {
     		return 2;
     	} else {
     		//DESERT
@@ -114,6 +118,5 @@ public class ChunkGenerator {
 	    Random r = new Random(seed2);
 	    a = r.nextDouble();
 	    return a;
-	    
 	}
 }

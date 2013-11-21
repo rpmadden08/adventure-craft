@@ -48,7 +48,7 @@ public class Level {
 			  						  (int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
 	//private long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 4; // 4 is desert 0 is forest
+	public long rgenseed = 0; // 4 is desert 0 is forest
 	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public Random rand = new Random(rgenseed);
 	public int randInt1 = rand.nextInt();
@@ -379,9 +379,18 @@ public class Level {
 		int absY = j*TILE_SIZE+chunkY*CHUNK_SIZE*TILE_SIZE;
 		int m = i+CHUNK_BLOOM_MARGIN;
 		int n = j+CHUNK_BLOOM_MARGIN;
-		
+		System.out.println(chunkX);
 		//BELOW SEA LEVEL
-		if(chunkGenerator.chunkGroundLayer[m][n] == 1) {//FIXME Should be < -0.1
+		if(chunkX < 2 || chunkY < 2 || chunkX > CHUNKS_LENGTH_TOTAL - 3 || chunkY > CHUNKS_LENGTH_TOTAL - 3) {
+				Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+	    		block = new Block(grassTile, absX, absY, false);
+	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
+	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
+	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);			
+		} else if(chunkGenerator.chunkGroundLayer[m][n] == 1) {//FIXME Should be < -0.1
 			POcean++;
 			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 			Tile[] waterTile2 = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
@@ -487,10 +496,7 @@ public class Level {
 	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
 	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
 	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
-//	    		blooming.add(block);
-//				blooming.add(block2);
-//				blooming.add(block3);
-//				blooming.add(block4);
+
 				//Tundra (snowy)
     		}else if(chunkGenerator.chunkGroundLayer[m][n] == 9){
     			PTundra++;
@@ -503,7 +509,7 @@ public class Level {
 	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
 	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
 	    		//HOLES
-    		}else {
+    		} else {
     			PHole++;
 				Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
@@ -514,54 +520,56 @@ public class Level {
 	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
 	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
     		}
-    		Block[] blockGrid = {block, block3, block2, block4};
-    		int cycle = 0;
-    		for(int s = m; s < m+2; s++) {
-    			for(int t = n; t < n+2; t++) {
-    				
-    				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
-    	    			blockGrid[cycle].layers[OBJECT_LAYER] = new TreeTile();
-    	    		}
-    				if(chunkGenerator.chunkObjectLayer[s+1][t+2] == TREE) {
-    					blockGrid[cycle].layers[TREE_LEFT_2] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_LEFT_2].currentSpriteId = 0;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s+1][t+1] == TREE) {
-    					blockGrid[cycle].layers[TREE_LEFT_1] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_LEFT_1].currentSpriteId = 1;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s+1][t] == TREE) {
-    					blockGrid[cycle].layers[TREE_LEFT_0] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_LEFT_0].currentSpriteId = 2;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s][t+2] == TREE) {
-    					blockGrid[cycle].layers[TREE_CENTER_2] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_CENTER_2].currentSpriteId = 3;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s][t+1] == TREE) {
-    					blockGrid[cycle].layers[TREE_CENTER_1] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_CENTER_1].currentSpriteId = 4;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
-    					blockGrid[cycle].layers[TREE_CENTER_0] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_CENTER_0].currentSpriteId = 5;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s-1][t+2] == TREE) {
-    					blockGrid[cycle].layers[TREE_RIGHT_2] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_RIGHT_2].currentSpriteId = 6;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s-1][t+1] == TREE) {
-    					blockGrid[cycle].layers[TREE_RIGHT_1] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_RIGHT_1].currentSpriteId = 7;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s-1][t] == TREE) {
-    					blockGrid[cycle].layers[TREE_RIGHT_0] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_RIGHT_0].currentSpriteId = 8;
-    				}
-    				
-    				cycle++;
-    			}
-    		}
+    		
+    	}
+		
+		Block[] blockGrid = {block, block3, block2, block4};
+		int cycle = 0;
+		for(int s = m; s < m+2; s++) {
+			for(int t = n; t < n+2; t++) {
+				
+				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
+	    			blockGrid[cycle].layers[OBJECT_LAYER] = new TreeTile();
+	    		}
+				if(chunkGenerator.chunkObjectLayer[s+1][t+2] == TREE) {
+					blockGrid[cycle].layers[TREE_LEFT_2] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_LEFT_2].currentSpriteId = 0;
+				}
+				if(chunkGenerator.chunkObjectLayer[s+1][t+1] == TREE) {
+					blockGrid[cycle].layers[TREE_LEFT_1] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_LEFT_1].currentSpriteId = 1;
+				}
+				if(chunkGenerator.chunkObjectLayer[s+1][t] == TREE) {
+					blockGrid[cycle].layers[TREE_LEFT_0] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_LEFT_0].currentSpriteId = 2;
+				}
+				if(chunkGenerator.chunkObjectLayer[s][t+2] == TREE) {
+					blockGrid[cycle].layers[TREE_CENTER_2] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_CENTER_2].currentSpriteId = 3;
+				}
+				if(chunkGenerator.chunkObjectLayer[s][t+1] == TREE) {
+					blockGrid[cycle].layers[TREE_CENTER_1] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_CENTER_1].currentSpriteId = 4;
+				}
+				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
+					blockGrid[cycle].layers[TREE_CENTER_0] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_CENTER_0].currentSpriteId = 5;
+				}
+				if(chunkGenerator.chunkObjectLayer[s-1][t+2] == TREE) {
+					blockGrid[cycle].layers[TREE_RIGHT_2] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_RIGHT_2].currentSpriteId = 6;
+				}
+				if(chunkGenerator.chunkObjectLayer[s-1][t+1] == TREE) {
+					blockGrid[cycle].layers[TREE_RIGHT_1] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_RIGHT_1].currentSpriteId = 7;
+				}
+				if(chunkGenerator.chunkObjectLayer[s-1][t] == TREE) {
+					blockGrid[cycle].layers[TREE_RIGHT_0] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_RIGHT_0].currentSpriteId = 8;
+				}
+				
+				cycle++;
+			}
 
     	}
 		
@@ -642,18 +650,6 @@ public class Level {
 	public void loadChunk(int startX, int startY, int chunkX, int chunkY) {
 		isLoading = true;
 		
-		if(chunkX >= CHUNKS_LENGTH_TOTAL) {
-			chunkX = chunkX % CHUNKS_LENGTH_TOTAL;
-		} else if(chunkX < 0) {
-			chunkX = CHUNKS_LENGTH_TOTAL + chunkX;
-		}
-		
-		if(chunkY >= CHUNKS_LENGTH_TOTAL) {
-			chunkY = chunkY % CHUNKS_LENGTH_TOTAL;
-		} else if(chunkY < 0) {
-			chunkY = CHUNKS_LENGTH_TOTAL + chunkY;
-		}
-		
 		Block[][] chunk = saveGame.loadChunk(chunkX, chunkY);
 		int i = 0; int j = 0;
 		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
@@ -663,6 +659,7 @@ public class Level {
 			}
 			i++; j =0;
 		}
+		
 		isLoading = false;
 	}
 	
@@ -675,8 +672,8 @@ public class Level {
 				chunkGenerator.chunkNoiseElevation[i][j] = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
 				chunkGenerator.chunkNoiseTemperature[i][j] = perlin2.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
 				chunkGenerator.chunkNoiseRainfall[i][j] = perlin3.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
-				chunkGenerator.chunkGroundLayer[i][j] = chunkGenerator.getGroundLayerGeneration(i, j,rand);
-				chunkGenerator.chunkObjectLayer[i][j] = chunkGenerator.getObjectLayerGeneration(i, j, rgenseed, rand);
+				chunkGenerator.chunkGroundLayer[i][j] = chunkGenerator.getGroundLayerGeneration(i, j, rand);
+				chunkGenerator.chunkObjectLayer[i][j] = chunkGenerator.getObjectLayerGeneration(i, j, rgenseed, rand, x, y);
 				j++;
 			}
 			i++; j = 0;
