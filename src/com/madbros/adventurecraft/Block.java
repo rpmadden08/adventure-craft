@@ -40,6 +40,13 @@ public class Block {
 		return y;
 	}
 	
+	public int getAbsX() {
+		return absRect.x / TILE_SIZE;
+	}
+	
+	public int getAbsY() {
+		return absRect.y / TILE_SIZE;
+	}
 	
 	public Block(Tile[] t, int absX, int absY, boolean isUnfinished) {
 		absRect = new Rect(absX, absY);

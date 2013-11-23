@@ -3,7 +3,6 @@ package com.madbros.adventurecraft;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.ChunkGenerator;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -48,7 +47,7 @@ public class Level {
 			  						  (int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
 	//private long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 0; // 4 is desert 0 is forest
+	public long rgenseed = 4; // 4 is desert 0 is forest
 	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public Random rand = new Random(rgenseed);
 	public int randInt1 = rand.nextInt();
@@ -209,9 +208,13 @@ public class Level {
 			highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
 			
 			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
-
+			//This is so that chests know their coordinates...
+			tileBeingAttacked.absX = highlightedBlock.getAbsX();
+			tileBeingAttacked.absY = highlightedBlock.getAbsY();
 			
 			if(tileBeingAttacked != highlightedBlock.getObjectTile()) {
+				
+				
 				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
 				tileBeingAttacked = highlightedBlock.getObjectTile();
 				

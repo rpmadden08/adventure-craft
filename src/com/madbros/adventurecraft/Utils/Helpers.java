@@ -1,8 +1,7 @@
 package com.madbros.adventurecraft.Utils;
 
 import static com.madbros.adventurecraft.Constants.CHUNK_SIZE;
-import static com.madbros.adventurecraft.Constants.EMPTY;
-import static com.madbros.adventurecraft.Constants.LOG;
+import static com.madbros.adventurecraft.Constants.ITEM_HASH;
 import static com.madbros.adventurecraft.Constants.TILE_HASH;
 
 import com.madbros.adventurecraft.*;
@@ -69,6 +68,15 @@ public class Helpers {
 			}
 		}
 		return blockArray;
+	}
+	
+	public static void chestDataToSlotArray(ChestData chestData) {
+		//Slot[] slots = new Slot[Game.inventory.invChest.length];
+		for(int x = 0; x < Game.inventory.invChest.length; x++) {
+			Game.inventory.invChest[x].item = ITEM_HASH.get(chestData.itemIds[x]).createNew();
+			Game.inventory.invChest[x].item.stackSize = chestData.itemStackSizes[x];
+			Game.inventory.invChest[x].item.uses = chestData.itemUses[x];
+		}
 	}
 	
 	public static void println(String s) {

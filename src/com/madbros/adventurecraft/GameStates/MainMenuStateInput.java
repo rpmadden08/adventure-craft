@@ -1,6 +1,4 @@
 package com.madbros.adventurecraft.GameStates;
-
-import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Menus.Menu;
 
 public class MainMenuStateInput extends BasicInput {

@@ -27,6 +27,7 @@ public class Constants {
 	
 	public static final String SAVE_LOC = "saves/";
 	public static final String CHUNKS_FOLDER = "chunks/";
+	public static final String CHESTS_FOLDER = "chests/";
 	
 	//character constants
 	public static final int CHARACTER_SIZE = 64;
@@ -130,6 +131,7 @@ public class Constants {
 	public static final int TREE_PINE = 20;
 	public static final int POTATO_TILE = 21;
 	public static final int TABLE = 22;
+	public static final int CHEST = 23;
 	
 	
 	//Layers
@@ -232,6 +234,7 @@ public class Constants {
 	public static final int SEED_POTATO = 18;
 	public static final int POTATOES = 19;
 	public static final int TABLE_ITEM = 20;
+	public static final int CHEST_ITEM = 21;
 	
 	
 	//Clothing Types
@@ -299,6 +302,7 @@ public class Constants {
 		ITEM_HASH.put(SEED_POTATO, new SeedPotato());
 		ITEM_HASH.put(POTATOES, new Potatoes());
 		ITEM_HASH.put(TABLE_ITEM, new TableItem());
+		ITEM_HASH.put(CHEST_ITEM, new ChestItem());
 		
 		TILE_HASH.put(GRASS, new GrassTile());
 		TILE_HASH.put(DIRT, new DirtTile());
@@ -315,13 +319,13 @@ public class Constants {
 		TILE_HASH.put(TREE_LEAF_RAIN, new TreeLeafRainTile());
 		TILE_HASH.put(TREE_LEAF_PINE, new TreeLeafPineTile());
 		TILE_HASH.put(HOLE, new HoleTile());
-		
 		TILE_HASH.put(DIRT_MOUNTAIN_BOTTOM, new DirtMountainBottomTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_TOP, new DirtMountainTopTile());
 		TILE_HASH.put(CAMPFIRE, new Campfire());
 		TILE_HASH.put(DARK_GRASS, new DarkGrassTile());
 		TILE_HASH.put(SNOW, new SnowTile());
 		TILE_HASH.put(TABLE, new Table());
+		TILE_HASH.put(CHEST, new Chest());
 		
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);

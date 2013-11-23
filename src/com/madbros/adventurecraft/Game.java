@@ -80,6 +80,15 @@ public class Game implements ApplicationListener {
 	public static void toggleInventoryState() {
 		if(currentState.type == State.INVENTORY) {
 			inventory.craftingTableOn = false;
+			if(inventory.chestOn) {
+				inventory.chestOn = false;
+				
+				//This is Wrong.... I think...
+				int x = inventory.currentInvBlockX;
+				int y = inventory.currentInvBlockY;
+				level.saveGame.saveChest(Game.inventory.invChest,x, y);
+			}
+			
 			currentState = new MainState();
 			hero.stop();
 			inventory.close(hero);
@@ -115,7 +124,10 @@ public class Game implements ApplicationListener {
 		
 		f = new File(Game.locOfSavedGame + CHUNKS_FOLDER);
 		if(!f.exists()) f.mkdir();
+		f = new File(Game.locOfSavedGame + CHESTS_FOLDER);
+		if(!f.exists()) f.mkdir();
 		//make other folders...
+		
 		
 		level = new Level();
 		hero = new Hero();

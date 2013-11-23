@@ -50,6 +50,20 @@ public class InventoryStateInput extends MainStateInput {
 					
 				}
 			}
+		} else if (Game.inventory.chestOn == true) {
+			for(int i = 0; i < Game.inventory.invChest.length; i++) {
+				if(mouseRect.detectCollision(Game.inventory.invChest[i].slotRect)) {
+					Game.inventory.invChest[i].isHighlighted = true;
+					
+					if(mouseLeftDown) Game.inventory.invChest[i].handleLeftClick(Game.inventory);
+					else if(mouseRightDown) Game.inventory.invChest[i].handleRightClick(Game.inventory);
+					droppedItemInSlot = true;
+				} else {
+					Game.inventory.invChest[i].isHighlighted = false;
+					
+				}
+			}
+			
 		} else {
 			for(int i = 0; i < Game.inventory.invCrafting.length; i++) {
 				if(mouseRect.detectCollision(Game.inventory.invCrafting[i].slotRect)) {
@@ -78,7 +92,7 @@ public class InventoryStateInput extends MainStateInput {
 	public void additionalMouseMove() {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
 
-		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing, Game.inventory.invTable};
+		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing, Game.inventory.invTable, Game.inventory.invChest};
 		
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {

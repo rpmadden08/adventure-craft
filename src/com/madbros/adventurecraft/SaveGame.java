@@ -1,8 +1,6 @@
 package com.madbros.adventurecraft;
 
 import static com.madbros.adventurecraft.Constants.*;
-
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,13 +8,7 @@ import java.io.IOException;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import com.madbros.adventurecraft.TileTypes.DarkDirtTile;
-import com.madbros.adventurecraft.TileTypes.DirtTile;
-import com.madbros.adventurecraft.TileTypes.GrassTile;
-import com.madbros.adventurecraft.TileTypes.HoleTile;
-import com.madbros.adventurecraft.TileTypes.NoTile;
-import com.madbros.adventurecraft.TileTypes.Tile;
-import com.madbros.adventurecraft.TileTypes.TreeTile;
+import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Utils.Helpers;
 
 //@SuppressWarnings("unchecked")
@@ -73,5 +65,45 @@ public class SaveGame {
 			e.printStackTrace();
 		}
 		return Helpers.chunkToBlockArray(chunk);
+	}
+	
+	public void saveChest(Slot[] slot, int absX, int absY) {
+		ChestData chestData = new ChestData();
+		
+		int[] itemIds = new int[slot.length];
+		int[] itemStackSizes = new int[slot.length];
+		int[] itemUses = new int[slot.length];
+		
+		for(int x = 0; x < slot.length; x++) {
+			itemIds[x] = chestData.itemIds[x];
+			itemStackSizes[x] = chestData.itemStackSizes[x];
+			itemUses[x] = chestData.itemUses[x];
+		}
+		
+		Kryo kryo = new Kryo();
+
+		try {
+			Output output = new Output(new FileOutputStream(Game.locOfSavedGame + CHESTS_FOLDER + absX + "-" + absY + ".sv"));
+			
+			kryo.writeObject(output, chestData);
+			output.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadChest(int absX, int absY) {
+		ChestData chestData = new ChestData();
+		
+		Kryo kryo = new Kryo();
+		
+		try {
+			Input input = new Input(new FileInputStream(Game.locOfSavedGame + CHESTS_FOLDER + absX + "-" + absY + ".sv"));
+			chestData = kryo.readObject(input, ChestData.class);
+			input.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Helpers.chestDataToSlotArray(chestData);
 	}
 }

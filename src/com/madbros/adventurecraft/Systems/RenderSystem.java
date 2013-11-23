@@ -428,24 +428,36 @@ public class RenderSystem {
 		
 		inv.menuSprites[4].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2); //middle
 		
-		Slot[][] slots = {inv.invBag, inv.invCrafted, inv.invClothing};
-		for(int i = 0; i < slots.length; i++) {
-			for(int j = 0; j < slots[i].length; j++) {
-				slots[i][j].render();
-			}
+		//Slot[][] slots = {inv.invBag, inv.invCrafted, inv.invClothing};
+		for(int i = 0; i < inv.invBag.length; i++) {
+			inv.invBag[i].render();
 		}
 		
 		if(inv.craftingTableOn == true) {
-			for(int i = 0; i < inv.invTable.length; i++) {
-				inv.invTable[i].render();
+			Slot[][] slots = {inv.invCrafted, inv.invClothing, inv.invTable};
+			for(int i = 0; i < slots.length; i++) {
+				for(int j = 0; j < slots[i].length; j++) {
+					slots[i][j].render();
+				}
 			}
-		} else {
-			for(int i = 0; i < inv.invCrafting.length; i++) {
-				inv.invCrafting[i].render();
+			hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
+			
+		} else if(inv.chestOn) {
+			for(int i = 0; i < inv.invChest.length; i++) {
+				inv.invChest[i].render();
 			}
+			
+		}else {
+			Slot[][] slots = {inv.invCrafted, inv.invClothing, inv.invCrafting};
+			for(int i = 0; i < slots.length; i++) {
+				for(int j = 0; j < slots[i].length; j++) {
+					slots[i][j].render();
+				}
+			}
+			hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
 		}
 
-		hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
+		
 		
 		inv.heldItem.render(Helpers.getX(), Helpers.getY());
 	}

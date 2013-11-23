@@ -17,11 +17,15 @@ public class Inventory {
 	
 	public Slot[] invBar= new Slot[INV_LENGTH];
 	public Slot[] invBag= new Slot[INV_LENGTH * INV_HEIGHT];
+	public Slot[] invChest= new Slot[INV_LENGTH * INV_HEIGHT];
 	public boolean craftingTableOn = false;
+	public boolean chestOn = false;
 	public CraftingSlot[] invCrafting = new CraftingSlot[2 * 2];
 	public CraftingSlot[] invTable = new CraftingSlot[3 * 3];
 	public CraftedSlot[] invCrafted = new CraftedSlot[1];
 	public ClothingSlot[] invClothing = new ClothingSlot[4];
+	public int currentInvBlockX = 0;
+	public int currentInvBlockY = 0;
 
 	
 	public Item heldItem = new NoItem();
@@ -38,6 +42,15 @@ public class Inventory {
 		for(int x = 0; x < INV_LENGTH; x++) {
 			for(int y = 0; y < INV_HEIGHT; y++) {
 				invBag[k] = new Slot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.right) * y,
+									 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.bottom) * x);
+				k++;
+			}
+		}
+		
+		k = 0;
+		for(int x = 0; x < INV_LENGTH; x++) {
+			for(int y = 0; y < INV_HEIGHT; y++) {
+				invChest[k] = new Slot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.right) * y+200,
 									 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.bottom) * x);
 				k++;
 			}
@@ -67,11 +80,11 @@ public class Inventory {
 		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +120,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +160,BOOTS_SLOT);
 		
-		invBar[0].item = new Log();
+		invBar[0].item = new ChestItem();
 		invBar[0].item.stackSize =99;
 		invBar[1].item = new Sword();
 		invBar[1].item.stackSize = 1;
-		invBar[2].item = new TableItem();
+		invBar[2].item = new NoItem();
 		invBar[2].item.stackSize = 1;
 		invBar[3].item = new SandClump();
 		invBar[3].item.stackSize = 99;

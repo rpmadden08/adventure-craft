@@ -106,8 +106,8 @@ public class LoadGameMenu extends Menu {
 	
 	public void delete() {
 		if(currentlySelectedButton != null) {
-			System.out.println(currentlySelectedButton.iD);
-			listOfFiles[currentlySelectedButton.iD].delete();
+			//System.out.println(currentlySelectedButton.iD);
+			//listOfFiles[currentlySelectedButton.iD].delete();
 			try {
 				FileUtils.deleteDirectory(listOfFiles[currentlySelectedButton.iD]);
 			} catch (IOException e) {

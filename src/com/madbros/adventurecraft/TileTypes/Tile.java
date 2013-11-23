@@ -26,7 +26,8 @@ public abstract class Tile {
 	public boolean isLightSource = false;
 	public boolean isAutoTileable = true;
 	public boolean isUseable = false;
-	
+	public int absX = 0;
+	public int absY = 0;
 	public int id = AIR;
 	public int autoTile = MIDDLE_TILE;
 	public boolean isMiddleTile = true;

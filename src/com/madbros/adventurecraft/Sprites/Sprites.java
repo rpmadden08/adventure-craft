@@ -58,6 +58,7 @@ public class Sprites {
 	public static final String BAT_WING = "batWing";
 	public static final String HOE = "ironHoe";
 	public static final String TABLE_ITEM = "table";
+	public static final String CHEST_ITEM = "chest";
 	
 	//static collections
 //	public static final String GEM = "Gem Blue";
@@ -80,6 +81,7 @@ public class Sprites {
 	public static final String POTATO_PLANT = "potatoPlant";
 	public static final String POTATOES = "potatoes";
 	public static final String TABLE = "tableItem";
+	public static final String CHEST = "chestItem";
 	
 	
 	
@@ -221,7 +223,7 @@ public class Sprites {
 					BAT_STAND_UP, BAT_STAND_DOWN, BAT_STAND_LEFT, BAT_STAND_RIGHT,MALE_SLASH_UP,
 					MALE_SLASH_DOWN, MALE_SLASH_LEFT, MALE_SLASH_RIGHT, SWORD, LONG_SWORD, HEALTH_BAR_EDGE,
 					MON_HEALTH_EDGE, BAT_WING, HOE, SEED_POTATO, POTATO_PLANT, POTATOES, TILLED_SOIL,
-					TABLE, TABLE_ITEM
+					TABLE, TABLE_ITEM, CHEST, CHEST_ITEM
 			};
 			
 			String[] lightNames = {LIGHT};
