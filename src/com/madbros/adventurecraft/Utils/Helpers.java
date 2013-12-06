@@ -1,12 +1,11 @@
 package com.madbros.adventurecraft.Utils;
 
-import static com.madbros.adventurecraft.Constants.CHUNK_SIZE;
-import static com.madbros.adventurecraft.Constants.ITEM_HASH;
-import static com.madbros.adventurecraft.Constants.TILE_HASH;
+import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.TileTypes.Furnace;
 import com.madbros.adventurecraft.TileTypes.Tile;
 
 public class Helpers {		
@@ -58,6 +57,30 @@ public class Helpers {
 					int id = chunk.ids[x][y][i];	
 					t[i] = TILE_HASH.get(id).createNew();
 					t[i].currentSpriteId = chunk.currentTextures[x][y][i];
+					if(chunk.ids[x][y][i] == FURNACE) {
+						int id0 = chunk.furnaceSlot0ID[x][y][i];
+						int id1 = chunk.furnaceSlot1ID[x][y][i];
+						Furnace tempTile = (Furnace) t[i];
+						t[i].furnaceSlots[0].item = ITEM_HASH.get(id0).createNew();
+						t[i].furnaceSlots[1].item = ITEM_HASH.get(id1).createNew();
+						t[i].furnaceSlots[0].item.stackSize = chunk.furnaceSlot0StackSize[x][y][i];
+						t[i].furnaceSlots[1].item.stackSize = chunk.furnaceSlot1StackSize[x][y][i];
+						
+						tempTile.furnaceFuel = chunk.furnaceFuel[x][y][i];
+						tempTile.furnaceMaxFuel = chunk.furnaceMaxFuel[x][y][i];
+						System.out.println(chunk.furnaceFuel[x][y][i]);
+						tempTile.furnaceBuildTime = chunk.furnaceBuildTime[x][y][i];
+						tempTile.furnaceIsBurning = chunk.furnaceIsBurning[x][y][i];
+						tempTile.isCraftableItem = chunk.furnaceIsCraftableItem[x][y][i];
+						int possiblyCraftableId = chunk.furnacePossiblyCraftableItemID[x][y][i];
+						tempTile.possiblyCraftableItem = ITEM_HASH.get(possiblyCraftableId).createNew();
+						t[i] = tempTile;
+//						public int[][][] furnaceFuel = new int[CHUNK_SIZE][CHUNK_SIZE][23];
+//						public int[][][] furnaceMaxFuel = new int[CHUNK_SIZE][CHUNK_SIZE][23];
+//						public int[][][] furnaceBuildTime = new int[CHUNK_SIZE][CHUNK_SIZE][23];
+//						public int[][][] furnacePossiblyCraftableItemID = new int[CHUNK_SIZE][CHUNK_SIZE][23];
+//						public boolean[][][] furnaceIsBurning = new boolean[CHUNK_SIZE][CHUNK_SIZE][23];
+					}
 				}
 				
 				long absX = chunk.absX[x][y];
