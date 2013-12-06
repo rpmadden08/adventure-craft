@@ -27,6 +27,9 @@ public class SaveGame {
 				for(int i = 0; i < chunk[x][y].layers.length; i++) {
 					ids[x][y][i] = chunk[x][y].layers[i].id;
 					currentTextures[x][y][i] = chunk[x][y].layers[i].currentSpriteId;
+					//If branch for if the id is a furnace
+					//  -save the item id for the "what is cooking" slot
+					//  - save the item id for the fuel slot
 				}
 				absX[x][y] = chunk[x][y].absRect.x;
 				absY[x][y] = chunk[x][y].absRect.y;

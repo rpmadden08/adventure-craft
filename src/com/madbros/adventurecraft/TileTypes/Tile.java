@@ -4,6 +4,8 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Slots.CraftedSlot;
+import com.madbros.adventurecraft.Slots.CraftingSlot;
 import com.madbros.adventurecraft.Sprites.Sprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Helpers;
@@ -28,10 +30,14 @@ public abstract class Tile {
 	public boolean isUseable = false;
 	public int absX = 0;
 	public int absY = 0;
+	public int activeBlocksX = 0;
+	public int activeBlocksY = 0;
 	public int id = AIR;
 	public int autoTile = MIDDLE_TILE;
 	public boolean isMiddleTile = true;
 	public boolean isTreeLeafTile = false; //When it renders treeleaftiles act differently.  
+	public CraftingSlot[] furnaceSlots = new CraftingSlot[2];
+	public CraftedSlot[] craftedSlot = new CraftedSlot[1];
 //	public int topLeftAutoTile = MIDDLE_TILE;
 //	public int topRightAutoTile = MIDDLE_TILE;
 //	public int bottomRightAutoTile = MIDDLE_TILE;

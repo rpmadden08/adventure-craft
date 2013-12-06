@@ -7,28 +7,29 @@ import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
+import com.madbros.adventurecraft.TileTypes.FurnaceTop;
 import com.madbros.adventurecraft.TileTypes.Tile;
-import com.madbros.adventurecraft.Utils.Helpers;
 
-public class TableItem extends BlockItem32 {
-	public TableItem() {
-		id = TABLE_ITEM;
-		tileId = TABLE;
+public class FurnaceItem extends BlockItem32 {
+	public FurnaceItem() {
+		id = FURNACE_ITEM;
+		tileId = FURNACE;
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, SAND};
-		sprite = Sprites.sprites.get(Sprites.TABLE_ITEM);
-		maxStackSize = 3;
+		sprite = Sprites.sprites.get(Sprites.FURNACE_SINGLE);
+		maxStackSize = 99;
 		numberProducedByCrafting = 1;
-		craftCost = new int[]{PLANK, PLANK, PLANK, PLANK};
+		craftCost = new int[]{};
 	}
 	
 	@Override
 	public BlockItem32 createNew() {
-		return new TableItem();
+		return new FurnaceItem();
 	}
 	
 	@Override
 	public boolean isValidRecipe(Slot[] craftingSlots) {
-		return Helpers.containsXNumberOfItemsInSlots(4, PLANK, craftingSlots);
+		return false;
+		//return Helpers.containsXNumberOfItemsInSlots(4, PLANK, craftingSlots);
 	}
 
 	@Override
@@ -36,6 +37,10 @@ public class TableItem extends BlockItem32 {
 		hB.layers[OBJECT_LAYER] = tile;
 		hB.setCollisionTile((CollisionTile)tile);
 		Game.level.hasPlacedItemOnClick = true;
+		int x = hB.getX(Game.level.activeBlocks);
+		int y = hB.getY(Game.level.activeBlocks);
+		Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new FurnaceTop();
+		
 	}
 
 }

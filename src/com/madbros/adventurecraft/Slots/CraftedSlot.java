@@ -16,6 +16,8 @@ public class CraftedSlot extends Slot{
 		CraftingSlot[] craftingSlots;
 		if(inv.craftingTableOn == true) {
 			craftingSlots = inv.invTable;
+		} else if(inv.furnaceOn) {
+			craftingSlots = Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER].furnaceSlots;
 		} else {
 			craftingSlots = inv.invCrafting;
 		}

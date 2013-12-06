@@ -1,6 +1,7 @@
 package com.madbros.adventurecraft.Menus;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
@@ -31,7 +32,11 @@ public class LoadGameMenu extends Menu {
 	public void setupMenu(SpriteBatch batch) {
 		Game.createSavesFolderIfNecessary();
 		File folder = new File(SAVE_LOC);
-		listOfFiles = folder.listFiles();
+		listOfFiles = folder.listFiles(new FilenameFilter() {
+		    public boolean accept(File dir, String name) {
+		    	return new File(dir, name).isDirectory();
+		    }
+		});
 		this.batch = batch;
 		
 		saveFolders = new String[listOfFiles.length];

@@ -74,12 +74,16 @@ public class Sprites {
 	public static final String WATER2 = "waterTwo";
 	public static final String INVENTORY_MENU = "inventoryMenu";
 	public static final String CAMPFIRE_SINGLE = "campfire0";
+	public static final String FURNACE_SINGLE = "furnace0";
+	public static final String FURNACE_TOP = "furnaceTopTile";
+	
 	public static final String SAPLING_COLLECTION = "saplingCollection";
 	public static final String SNOW = "snow";
 	public static final String TREE_FOUR = "pineTree";
 	public static final String DARK_GRASS = "darkGrass";
 	public static final String POTATO_PLANT = "potatoPlant";
 	public static final String POTATOES = "potatoes";
+	public static final String BAKED_POTATOES = "bakedPotatoes";
 	public static final String TABLE = "tableItem";
 	public static final String CHEST = "chestItem";
 	
@@ -87,6 +91,8 @@ public class Sprites {
 	
 	//animated collections
 	public static final String CAMPFIRE_ANIMATION = "campfire";
+	public static final String FURNACE_ANIMATION = "furnaceA";
+//	public static final String FURNACE_STATIC = "furnaceStatic";
 	public static final String MALE_WALK_DOWN = "maleWalkDown";
 	public static final String MALE_WALK_LEFT = "maleWalkLeft";
 	public static final String MALE_WALK_RIGHT = "maleWalkRight";
@@ -167,6 +173,8 @@ public class Sprites {
 	public static StaticSprite[] treeSprites;
 	public static StaticSprite[] treeLeafSprites;
 	public static AnimatedSprite[] campfireAnimation;
+	public static AnimatedSprite[] furnaceAnimation;
+	public static StaticSprite[] furnaceStatic;
 	
 	public static final String LIGHT = "light";
 	
@@ -223,7 +231,8 @@ public class Sprites {
 					BAT_STAND_UP, BAT_STAND_DOWN, BAT_STAND_LEFT, BAT_STAND_RIGHT,MALE_SLASH_UP,
 					MALE_SLASH_DOWN, MALE_SLASH_LEFT, MALE_SLASH_RIGHT, SWORD, LONG_SWORD, HEALTH_BAR_EDGE,
 					MON_HEALTH_EDGE, BAT_WING, HOE, SEED_POTATO, POTATO_PLANT, POTATOES, TILLED_SOIL,
-					TABLE, TABLE_ITEM, CHEST, CHEST_ITEM
+					TABLE, TABLE_ITEM, CHEST, CHEST_ITEM, FURNACE_ANIMATION, FURNACE_SINGLE,
+					BAKED_POTATOES, FURNACE_TOP
 			};
 			
 			String[] lightNames = {LIGHT};
@@ -301,6 +310,14 @@ public class Sprites {
 			Animation animation = animations.get(CAMPFIRE_ANIMATION);
 			animation.id = 0;
 			campfireAnimation = new AnimatedSprite[]{new AnimatedSprite(animation)};
+			
+			animation = animations.get(FURNACE_ANIMATION);
+			animation.id = 0;
+			furnaceAnimation = new AnimatedSprite[]{new AnimatedSprite(animation)};
+			
+//			animation = animations.get(FURNACE_STATIC);
+//			animation.id = 0;
+			furnaceStatic = new StaticSprite[]{Sprites.sprites.get(FURNACE_SINGLE)};
 			
 			pixel = sprites.get(PIXEL);
 			healthBar = sprites.get(HEALTH_BAR_EDGE);

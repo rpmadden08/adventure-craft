@@ -82,11 +82,14 @@ public class Game implements ApplicationListener {
 			inventory.craftingTableOn = false;
 			if(inventory.chestOn) {
 				inventory.chestOn = false;
-				
-				//This is Wrong.... I think...
 				int x = inventory.currentInvBlockX;
 				int y = inventory.currentInvBlockY;
 				level.saveGame.saveChest(Game.inventory.invChest,x, y);
+			} else if(inventory.furnaceOn) {
+				inventory.furnaceOn = false;
+				//int x = inventory.currentInvBlockX;
+				//int y = inventory.currentInvBlockY;
+				//level.saveGame.saveChest(Game.inventory.invChest,x, y);
 			}
 			
 			currentState = new MainState();
@@ -125,6 +128,8 @@ public class Game implements ApplicationListener {
 		f = new File(Game.locOfSavedGame + CHUNKS_FOLDER);
 		if(!f.exists()) f.mkdir();
 		f = new File(Game.locOfSavedGame + CHESTS_FOLDER);
+		if(!f.exists()) f.mkdir();
+		f = new File(Game.locOfSavedGame + FURNACES_FOLDER);
 		if(!f.exists()) f.mkdir();
 		//make other folders...
 		

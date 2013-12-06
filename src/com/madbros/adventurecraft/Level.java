@@ -31,6 +31,8 @@ public class Level {
 	public int highlightedBlockX = 0;
 	public int highlightedBlockY = 0;
 	
+	public boolean hasPlacedItemOnClick = false;
+	
 	public ArrayList<Block> blooming = new ArrayList<Block>();
 	
 	public SaveGame saveGame = new SaveGame();
@@ -211,6 +213,9 @@ public class Level {
 			//This is so that chests know their coordinates...
 			tileBeingAttacked.absX = highlightedBlock.getAbsX();
 			tileBeingAttacked.absY = highlightedBlock.getAbsY();
+			//This is so that furnaces know their activeBlocks...
+			tileBeingAttacked.activeBlocksX = highlightedBlockX;
+			tileBeingAttacked.activeBlocksY = highlightedBlockY;
 			
 			if(tileBeingAttacked != highlightedBlock.getObjectTile()) {
 				

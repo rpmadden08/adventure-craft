@@ -18,12 +18,14 @@ public class MainStateInput extends BasicInput {
 		Game.inventory.stopUsingItem(button);
 		if(Game.debugMenu.menuIsActive) Game.debugMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		Game.hero.attackButtonReleased = true;
+		Game.level.hasPlacedItemOnClick = false;
 		return false;
 	}
 	
 	@Override
 	public boolean touchDown(int x, int y, int pointer, int button) {
 		super.touchDown(x, y, pointer, button);
+		
 		Game.inventory.useItem(button);
 		if(Game.debugMenu.menuIsActive) Game.debugMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		additionalMouseDown();

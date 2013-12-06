@@ -49,6 +49,7 @@ public class ChestItem extends BlockItem32 {
 		}
 		hB.layers[OBJECT_LAYER] = tile;
 		hB.setCollisionTile((CollisionTile)tile);
+		Game.level.hasPlacedItemOnClick = true;
 	}
 
 }

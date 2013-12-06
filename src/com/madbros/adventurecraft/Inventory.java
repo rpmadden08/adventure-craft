@@ -20,12 +20,24 @@ public class Inventory {
 	public Slot[] invChest= new Slot[INV_LENGTH * INV_HEIGHT];
 	public boolean craftingTableOn = false;
 	public boolean chestOn = false;
+	public boolean furnaceOn = false;
 	public CraftingSlot[] invCrafting = new CraftingSlot[2 * 2];
 	public CraftingSlot[] invTable = new CraftingSlot[3 * 3];
+	//public CraftingSlot[] invFurnace = new CraftingSlot[2];
+	//public CraftingSlot[] invFurnaceFuel = new CraftingSlot[1];
 	public CraftedSlot[] invCrafted = new CraftedSlot[1];
 	public ClothingSlot[] invClothing = new ClothingSlot[4];
 	public int currentInvBlockX = 0;
 	public int currentInvBlockY = 0;
+	public int currentInvActiveBlockX = 0;
+	public int currentInvActiveBlockY = 0;
+	//public Furnace furnace = new Furnace();
+	
+//	public int furnaceFuel = 0;
+//	public int furnaceBuildTime = 0;
+//	public Item possiblyCraftableItem = new NoItem();
+//	public boolean furnaceIsBurning = false;
+//	public int timeCheck = 0;
 
 	
 	public Item heldItem = new NoItem();
@@ -73,6 +85,11 @@ public class Inventory {
 			}
 		}
 		
+//		for(int i = 0; i < 2; i++) {
+//			invFurnace[i] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE),
+//					  INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)*i);
+//		}
+		
 		invCrafted[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 75, INV_CRAFTING_RECT.y);
 
 		invClothing[0] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y+40, HELMET_SLOT);
@@ -82,11 +99,11 @@ public class Inventory {
 		
 		invBar[0].item = new ChestItem();
 		invBar[0].item.stackSize =99;
-		invBar[1].item = new Sword();
+		invBar[1].item = new FurnaceItem();
 		invBar[1].item.stackSize = 1;
-		invBar[2].item = new NoItem();
+		invBar[2].item = new FurnaceItem();
 		invBar[2].item.stackSize = 1;
-		invBar[3].item = new SandClump();
+		invBar[3].item = new Log();
 		invBar[3].item.stackSize = 99;
 		invBar[4].item = new GrassSeed();
 		invBar[4].item.stackSize = 99;
@@ -178,6 +195,22 @@ public class Inventory {
 	public void update() {
 		if(isUsingLeftItem) invBar[itemSelected].item.useLeft();
 		if(isUsingRightItem) invBar[itemSelected].item.useRight();
+//		System.out.println(furnaceOn);
+//		if(furnaceOn) {
+//			System.out.println(furnaceOn);
+//			System.out.println(furnaceIsBurning);
+//			if(furnaceIsBurning == true) {
+//				//System.out.println("test12");
+//				//LOOP
+//				if(timeCheck <= 0) {
+//					System.out.println(timeCheck);
+//				} else {
+//					timeCheck = timeCheck -1;
+//					//System.out.println(timeCheck);
+//				}
+//				
+//			}
+//		}
 	}
 	
 	public void useItem(int button) {
