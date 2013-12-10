@@ -7,6 +7,8 @@ public class Chunk {
 	public int[][][] currentTextures = new int[CHUNK_SIZE][CHUNK_SIZE][23];
 	public int[][] furnaceInts;
 	public boolean[][] furnaceBooleans;
+	public int[][] cauldronInts;
+	public boolean[][] cauldronBooleans;
 
 //	public int[][][] furnaceFuel = new int[CHUNK_SIZE][CHUNK_SIZE][23];
 //	public int[][][] furnaceMaxFuel = new int[CHUNK_SIZE][CHUNK_SIZE][23];

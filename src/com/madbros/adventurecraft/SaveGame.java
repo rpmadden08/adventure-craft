@@ -11,6 +11,7 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.madbros.adventurecraft.Slots.Slot;
+import com.madbros.adventurecraft.TileTypes.Cauldron;
 import com.madbros.adventurecraft.TileTypes.Furnace;
 import com.madbros.adventurecraft.Utils.Helpers;
 
@@ -25,6 +26,11 @@ public class SaveGame {
 		ArrayList<boolean[]> furnaceListBoolean = new ArrayList<boolean[]>();
 		int[][] furnaceInts;
 		boolean[][] furnaceBooleans;
+		
+		ArrayList<int[]> cauldronListInt = new ArrayList<int[]>();
+		ArrayList<boolean[]> cauldronListBoolean = new ArrayList<boolean[]>();
+		int[][] cauldronInts;
+		boolean[][] cauldronBooleans;
 		
 		int[][] absX = new int[CHUNK_SIZE][CHUNK_SIZE];
 		int[][] absY = new int[CHUNK_SIZE][CHUNK_SIZE];
@@ -50,10 +56,28 @@ public class SaveGame {
 								};
 						boolean[] a2={furnace.furnaceIsBurning,
 								furnace.isCraftableItem};
-						
 						furnaceListInt.add(a1);
 						furnaceListBoolean.add(a2);						
-
+					}
+					if(chunk[x][y].layers[i].id == CAULDRON) {
+						Cauldron cauldron = (Cauldron) chunk[x][y].layers[i];
+						int a1[]={cauldron.cauldronFuel,
+								cauldron.cauldronMaxFuel,
+								cauldron.cauldronBuildTime,
+								cauldron.possiblyCraftableItem.id,
+								cauldron.cauldronSlots[0].item.id,
+								cauldron.cauldronSlots[1].item.id,
+								cauldron.cauldronSlots[2].item.id,
+								cauldron.cauldronSlots[3].item.id,
+								cauldron.cauldronSlots[0].item.stackSize,
+								cauldron.cauldronSlots[1].item.stackSize,
+								cauldron.cauldronSlots[2].item.stackSize,
+								cauldron.cauldronSlots[3].item.stackSize,
+								};
+						boolean[] a2={cauldron.cauldronIsBurning,
+								cauldron.isCraftableItem};
+						cauldronListInt.add(a1);
+						cauldronListBoolean.add(a2);						
 					}
 					
 				}
@@ -73,6 +97,16 @@ public class SaveGame {
 		    furnaceBooleans[i] = furnaceListBoolean.get(i);
 		}
 		
+		cauldronInts = new int[cauldronListInt.size()][];
+		for (int i = 0; i < cauldronListInt.size(); i++) {
+		    cauldronInts[i] = cauldronListInt.get(i);
+		}		
+		
+		cauldronBooleans = new boolean[cauldronListBoolean.size()][];
+		for (int i = 0; i < cauldronListBoolean.size(); i++) {
+		    cauldronBooleans[i] = cauldronListBoolean.get(i);
+		}
+		
 		chunkData.ids = ids;
 		chunkData.currentTextures = currentTextures;
 		chunkData.absX = absX;
@@ -82,6 +116,10 @@ public class SaveGame {
 		chunkData.furnaceInts = furnaceInts;
 		chunkData.furnaceBooleans = new boolean[furnaceBooleans.length][8];
 		chunkData.furnaceBooleans = furnaceBooleans;
+		chunkData.cauldronInts = new int[cauldronInts.length][8];
+		chunkData.cauldronInts = cauldronInts;
+		chunkData.cauldronBooleans = new boolean[cauldronBooleans.length][8];
+		chunkData.cauldronBooleans = cauldronBooleans;
 		
 		Kryo kryo = new Kryo();
 
