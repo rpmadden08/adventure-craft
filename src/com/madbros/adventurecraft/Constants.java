@@ -135,6 +135,7 @@ public class Constants {
 	public static final int CHEST = 23;
 	public static final int FURNACE = 24;
 	public static final int FURNACE_TOP = 25;
+	public static final int CAULDRON = 26;
 	
 	
 	//Layers
@@ -240,6 +241,7 @@ public class Constants {
 	public static final int CHEST_ITEM = 21;
 	public static final int FURNACE_ITEM = 22;
 	public static final int BAKED_POTATOES = 23;
+	public static final int CAULDRON_ITEM = 24;
 	
 	
 	//Clothing Types
@@ -310,6 +312,7 @@ public class Constants {
 		ITEM_HASH.put(TABLE_ITEM, new TableItem());
 		ITEM_HASH.put(CHEST_ITEM, new ChestItem());
 		ITEM_HASH.put(FURNACE_ITEM, new FurnaceItem());
+		ITEM_HASH.put(CAULDRON_ITEM, new CauldronItem());
 		
 		TILE_HASH.put(GRASS, new GrassTile());
 		TILE_HASH.put(DIRT, new DirtTile());
@@ -335,6 +338,7 @@ public class Constants {
 		TILE_HASH.put(CHEST, new Chest());
 		TILE_HASH.put(FURNACE, new Furnace());
 		TILE_HASH.put(FURNACE_TOP, new FurnaceTop());
+		TILE_HASH.put(CAULDRON, new Cauldron());
 		
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);

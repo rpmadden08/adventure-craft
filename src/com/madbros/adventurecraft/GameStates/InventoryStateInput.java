@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.OBJECT_LAYER;
 
 import com.badlogic.gdx.Input.Keys;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.TileTypes.Furnace;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 import com.madbros.adventurecraft.Items.NoItem;
@@ -53,7 +54,8 @@ public class InventoryStateInput extends MainStateInput {
 				}
 			}
 		} else if(Game.inventory.furnaceOn == true) {
-			Slot[][] slots2 = {Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER].craftedSlot, Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER].furnaceSlots};
+			Furnace furnaceTile = (Furnace) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			Slot[][] slots2 = {furnaceTile.craftedSlot, furnaceTile.furnaceSlots};
 			for(int i = 0; i < slots2.length; i++) {
 				for(int j = 0; j < slots2[i].length; j++) {
 					if(mouseRect.detectCollision(slots2[i][j].slotRect)) {
@@ -125,7 +127,8 @@ public class InventoryStateInput extends MainStateInput {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
 		
 		if(Game.inventory.furnaceOn) { 
-			Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing, Game.inventory.invTable, Game.inventory.invChest, Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER].furnaceSlots};
+			Furnace furnaceTile = (Furnace) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing, Game.inventory.invTable, Game.inventory.invChest, furnaceTile.furnaceSlots};
 			for(int i = 0; i < slots.length; i++) {
 				for(int j = 0; j < slots[i].length; j++) {
 					if(mouseRect.detectCollision(slots[i][j].slotRect)) {

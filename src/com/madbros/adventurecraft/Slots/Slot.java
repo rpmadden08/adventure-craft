@@ -58,7 +58,8 @@ public class Slot {
 		if(inv.craftingTableOn) {
 			handleAdditional(inv.invTable, inv.invCrafted);
 		} else if(inv.furnaceOn) {
-			handleAdditional2((Furnace)Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER], Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER].furnaceSlots, Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER].craftedSlot);
+			Furnace furnaceTile = (Furnace) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			handleAdditional2(furnaceTile, furnaceTile.furnaceSlots, furnaceTile.craftedSlot);
 		} else {
 			handleAdditional(inv.invCrafting, inv.invCrafted);
 		}
@@ -86,7 +87,8 @@ public class Slot {
 		if(inv.craftingTableOn) {
 			handleAdditional(inv.invTable, inv.invCrafted);
 		} else if(inv.furnaceOn) {
-			handleAdditional2((Furnace)Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER], Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER].furnaceSlots, Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER].craftedSlot);
+			Furnace furnaceTile = (Furnace) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			handleAdditional2(furnaceTile, furnaceTile.furnaceSlots, furnaceTile.craftedSlot);
 		} else {
 			handleAdditional(inv.invCrafting, inv.invCrafted);
 		}

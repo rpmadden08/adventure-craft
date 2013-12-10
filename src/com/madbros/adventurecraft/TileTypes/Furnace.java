@@ -17,7 +17,10 @@ public class Furnace extends CollisionTile {
 	public int furnaceBuildTime = 10;
 	public Item possiblyCraftableItem = new NoItem();
 	public boolean furnaceIsBurning = false;
-	public int timeCheck = 0;
+	public int timeCheck = 0;	
+	
+	public CraftingSlot[] furnaceSlots = new CraftingSlot[2];
+	public CraftedSlot[] craftedSlot = new CraftedSlot[1];
 	
 	public boolean isCraftableItem = false;
 	

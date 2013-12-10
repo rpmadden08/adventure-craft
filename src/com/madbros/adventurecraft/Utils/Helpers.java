@@ -59,30 +59,15 @@ public class Helpers {
 					t[i] = TILE_HASH.get(id).createNew();
 					t[i].currentSpriteId = chunk.currentTextures[x][y][i];
 					if(chunk.ids[x][y][i] == FURNACE) {
-//						furnace.furnaceFuel,
-//						furnace.furnaceMaxFuel,
-//						furnace.furnaceBuildTime,
-//						furnace.possiblyCraftableItem.id,
-//						furnace.furnaceSlots[0].item.id,
-//						furnace.furnaceSlots[1].item.id,
-//						furnace.furnaceSlots[0].item.stackSize,
-//						furnace.furnaceSlots[1].item.stackSize,
 						int id0 = chunk.furnaceInts[furnInt][4];
 						int id1 = chunk.furnaceInts[furnInt][5];
+						//t[i] = (Furnace) t[i];
 						Furnace tempTile = (Furnace) t[i];
-						t[i].furnaceSlots[0].item = ITEM_HASH.get(id0).createNew();
-						System.out.println("0="+chunk.furnaceInts[furnInt][0]);
-						System.out.println("1="+chunk.furnaceInts[furnInt][1]);
-						System.out.println("2="+chunk.furnaceInts[furnInt][2]);
-						System.out.println("3="+chunk.furnaceInts[furnInt][3]);
-						System.out.println("4="+chunk.furnaceInts[furnInt][4]);
-						System.out.println("5="+chunk.furnaceInts[furnInt][5]);
-						System.out.println("6="+chunk.furnaceInts[furnInt][6]);
-						System.out.println("7="+chunk.furnaceInts[furnInt][7]);
 						
-						t[i].furnaceSlots[1].item = ITEM_HASH.get(id1).createNew();
-						t[i].furnaceSlots[0].item.stackSize = chunk.furnaceInts[furnInt][6];
-						t[i].furnaceSlots[1].item.stackSize = chunk.furnaceInts[furnInt][7];
+						tempTile.furnaceSlots[0].item = ITEM_HASH.get(id0).createNew();						
+						tempTile.furnaceSlots[1].item = ITEM_HASH.get(id1).createNew();
+						tempTile.furnaceSlots[0].item.stackSize = chunk.furnaceInts[furnInt][6];
+						tempTile.furnaceSlots[1].item.stackSize = chunk.furnaceInts[furnInt][7];
 						
 						tempTile.furnaceFuel = chunk.furnaceInts[furnInt][0];
 						tempTile.furnaceMaxFuel = chunk.furnaceInts[furnInt][1];
@@ -93,11 +78,6 @@ public class Helpers {
 						tempTile.possiblyCraftableItem = ITEM_HASH.get(possiblyCraftableId).createNew();
 						t[i] = tempTile;
 						furnInt = furnInt +1;
-//						public int[][][] furnaceFuel = new int[CHUNK_SIZE][CHUNK_SIZE][23];
-//						public int[][][] furnaceMaxFuel = new int[CHUNK_SIZE][CHUNK_SIZE][23];
-//						public int[][][] furnaceBuildTime = new int[CHUNK_SIZE][CHUNK_SIZE][23];
-//						public int[][][] furnacePossiblyCraftableItemID = new int[CHUNK_SIZE][CHUNK_SIZE][23];
-//						public boolean[][][] furnaceIsBurning = new boolean[CHUNK_SIZE][CHUNK_SIZE][23];
 					}
 				}
 				
