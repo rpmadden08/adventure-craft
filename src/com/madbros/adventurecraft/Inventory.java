@@ -99,13 +99,13 @@ public class Inventory {
 		
 		invBar[0].item = new ChestItem();
 		invBar[0].item.stackSize =99;
-		invBar[1].item = new NoItem();
+		invBar[1].item = new FurnaceItem();
 		invBar[1].item.stackSize = 1;
 		invBar[2].item = new FurnaceItem();
 		invBar[2].item.stackSize = 1;
 		invBar[3].item = new Log();
 		invBar[3].item.stackSize = 99;
-		invBar[4].item = new GrassSeed();
+		invBar[4].item = new NoItem();
 		invBar[4].item.stackSize = 99;
 		invBar[5].item = new Hoe();
 		invBar[5].item.stackSize = 1;
