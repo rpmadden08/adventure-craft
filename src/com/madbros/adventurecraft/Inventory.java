@@ -21,6 +21,7 @@ public class Inventory {
 	public boolean craftingTableOn = false;
 	public boolean chestOn = false;
 	public boolean furnaceOn = false;
+	public boolean cauldronOn = false;
 	public CraftingSlot[] invCrafting = new CraftingSlot[2 * 2];
 	public CraftingSlot[] invTable = new CraftingSlot[3 * 3];
 	//public CraftingSlot[] invFurnace = new CraftingSlot[2];
@@ -105,8 +106,8 @@ public class Inventory {
 		invBar[2].item.stackSize = 1;
 		invBar[3].item = new Log();
 		invBar[3].item.stackSize = 99;
-		invBar[4].item = new NoItem();
-		invBar[4].item.stackSize = 99;
+		invBar[4].item = new CauldronItem();
+		invBar[4].item.stackSize = 1;
 		invBar[5].item = new Hoe();
 		invBar[5].item.stackSize = 1;
 		invBar[6].item = new SeedPotato();

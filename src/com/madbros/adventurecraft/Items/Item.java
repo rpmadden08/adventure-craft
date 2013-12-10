@@ -94,6 +94,10 @@ public abstract class Item {
 		return false;
 	}
 	
+	public boolean isValidCauldronRecipe(Slot[] craftingSlots) {
+		return false;
+	}
+	
 	
 	abstract public Item createNew(); 
 }

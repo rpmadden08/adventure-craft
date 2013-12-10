@@ -76,6 +76,7 @@ public class Sprites {
 	public static final String CAMPFIRE_SINGLE = "campfire0";
 	public static final String FURNACE_SINGLE = "furnace0";
 	public static final String CAULDRON = "cauldron";
+	public static final String CAULDRON_SINGLE = "cauldronStatic";
 	public static final String FURNACE_TOP = "furnaceTopTile";
 	
 	public static final String SAPLING_COLLECTION = "saplingCollection";
@@ -93,7 +94,7 @@ public class Sprites {
 	//animated collections
 	public static final String CAMPFIRE_ANIMATION = "campfire";
 	public static final String FURNACE_ANIMATION = "furnaceA";
-	public static final String CAULDRON_ANIMATION = "boilingCauldron";
+	public static final String CAULDRON_ANIMATION = "boilingCauldronA";
 //	public static final String FURNACE_STATIC = "furnaceStatic";
 	public static final String MALE_WALK_DOWN = "maleWalkDown";
 	public static final String MALE_WALK_LEFT = "maleWalkLeft";
@@ -178,6 +179,7 @@ public class Sprites {
 	public static AnimatedSprite[] furnaceAnimation;
 	public static StaticSprite[] furnaceStatic;
 	public static AnimatedSprite[] cauldronAnimation;
+	public static StaticSprite[] cauldronStatic;
 	
 	public static final String LIGHT = "light";
 	
@@ -235,7 +237,7 @@ public class Sprites {
 					MALE_SLASH_DOWN, MALE_SLASH_LEFT, MALE_SLASH_RIGHT, SWORD, LONG_SWORD, HEALTH_BAR_EDGE,
 					MON_HEALTH_EDGE, BAT_WING, HOE, SEED_POTATO, POTATO_PLANT, POTATOES, TILLED_SOIL,
 					TABLE, TABLE_ITEM, CHEST, CHEST_ITEM, FURNACE_ANIMATION, FURNACE_SINGLE,
-					BAKED_POTATOES, FURNACE_TOP, CAULDRON_ANIMATION, CAULDRON
+					BAKED_POTATOES, FURNACE_TOP, CAULDRON_ANIMATION, CAULDRON, CAULDRON_SINGLE
 			};
 			
 			String[] lightNames = {LIGHT};
@@ -325,6 +327,7 @@ public class Sprites {
 //			animation = animations.get(FURNACE_STATIC);
 //			animation.id = 0;
 			furnaceStatic = new StaticSprite[]{Sprites.sprites.get(FURNACE_SINGLE)};
+			cauldronStatic = new StaticSprite[]{Sprites.sprites.get(CAULDRON_SINGLE)};
 			
 			pixel = sprites.get(PIXEL);
 			healthBar = sprites.get(HEALTH_BAR_EDGE);

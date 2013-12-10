@@ -90,6 +90,8 @@ public class Game implements ApplicationListener {
 				//int x = inventory.currentInvBlockX;
 				//int y = inventory.currentInvBlockY;
 				//level.saveGame.saveChest(Game.inventory.invChest,x, y);
+			} else if(inventory.cauldronOn) {
+				inventory.cauldronOn = false;
 			}
 			
 			currentState = new MainState();

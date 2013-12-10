@@ -26,6 +26,7 @@ import com.madbros.adventurecraft.GameObjects.Mob;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.*;
+import com.madbros.adventurecraft.TileTypes.Cauldron;
 import com.madbros.adventurecraft.TileTypes.Furnace;
 import com.madbros.adventurecraft.TileTypes.FurnaceTop;
 import com.madbros.adventurecraft.TileTypes.Tile;
@@ -467,7 +468,22 @@ public class RenderSystem {
 			renderFurnaceBuildTime(furnace, 330, 390);
 			
 			
-		}else {
+		} else if(inv.cauldronOn) {
+			Cauldron cauldron = (Cauldron) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			cauldron.sprites[0].draw(276, 396, 300);
+			Cauldron cauldronTile = (Cauldron) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			Slot[][] slots = {cauldronTile.craftedSlot, inv.invClothing, cauldronTile.cauldronSlots};
+			for(int i = 0; i < slots.length; i++) {
+				for(int j = 0; j < slots[i].length; j++) {
+					slots[i][j].render();
+				}
+			}
+			hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
+		
+			renderCauldronFuel(cauldron, 272, 396);
+			renderCauldronBuildTime(cauldron, 330, 390);
+			
+		} else {
 			Slot[][] slots = {inv.invCrafted, inv.invClothing, inv.invCrafting};
 			for(int i = 0; i < slots.length; i++) {
 				for(int j = 0; j < slots[i].length; j++) {
@@ -487,6 +503,51 @@ public class RenderSystem {
 		y = y +26;
 		//double difference = (10 - furnace.furnaceBuildTime);
 		double difference = furnace.furnaceBuildTime;
+		double percentage = (10 - difference) / 10;
+		double hPCalc = percentage * 29;
+		int hP = (int) hPCalc;
+		
+		//The Red/Blue/Green Part
+		Sprites.pixel.setColor(Color.WHITE);
+		Sprites.pixel.draw(x+1,y+1,Z_CHARACTER,hP,4);
+		
+		//Red Highlight top
+		Sprites.pixel.setColor(1f, 1f, 1f,0.4f);
+		Sprites.pixel.draw(x+2,y+1,Z_CHARACTER,hP,1);
+		
+		//Red Highlight bottom
+		Sprites.pixel.setColor(0f, 0f, 0f,0.3f);
+		Sprites.pixel.draw(x+2,y+4,Z_CHARACTER,hP,1);
+	
+		//Black Edge
+		Sprites.pixel.setColor(Color.BLACK);
+		Sprites.pixel.draw(x+1+hP,y+1,Z_CHARACTER,29-hP,4);
+		
+		//Border left
+		Sprites.healthBarMon.draw(x,y,Z_CHARACTER,2,6);
+
+		
+		//Border Top
+		Sprites.pixel.setColor(0.886f, 0.914f, 0.98f,1f);
+		Sprites.pixel.draw(x+2, y, Z_CHARACTER, 28, 1);
+		
+		//Border Bottom
+		Sprites.pixel.draw(x+2, y+5, Z_CHARACTER, 28, 1);
+		
+		//Border Right
+		Sprites.healthBarMon.rotate(180);
+		Sprites.healthBarMon.draw(x+2+28,y,Z_CHARACTER,2,6);
+		Sprites.healthBarMon.rotate(180);
+		
+		//Reset
+		Sprites.pixel.setColor(Color.WHITE);
+	}
+	
+	public void renderCauldronBuildTime(Cauldron cauldron, int x, int y) {
+		x = x +4;
+		y = y +26;
+		//double difference = (10 - furnace.furnaceBuildTime);
+		double difference = cauldron.cauldronBuildTime;
 		double percentage = (10 - difference) / 10;
 		double hPCalc = percentage * 29;
 		int hP = (int) hPCalc;
@@ -571,6 +632,50 @@ public class RenderSystem {
 		Sprites.pixel.setColor(Color.WHITE);
 	}
 	
+	public void renderCauldronFuel(Cauldron cauldron, int x, int y) {
+		x = x +4;
+		y = y +26;
+		double difference = (cauldron.cauldronMaxFuel - cauldron.cauldronFuel);
+		double percentage = (cauldron.cauldronMaxFuel - difference) / cauldron.cauldronMaxFuel;
+		double hPCalc = percentage * 29;
+		int hP = (int) hPCalc;
+		
+		//The Red/Blue/Green Part
+		Sprites.pixel.setColor(Color.RED);
+		Sprites.pixel.draw(x+1,y+1,Z_CHARACTER,hP,4);
+		
+		//Red Highlight top
+		Sprites.pixel.setColor(1f, 1f, 1f,0.4f);
+		Sprites.pixel.draw(x+2,y+1,Z_CHARACTER,hP,1);
+		
+		//Red Highlight bottom
+		Sprites.pixel.setColor(0f, 0f, 0f,0.3f);
+		Sprites.pixel.draw(x+2,y+4,Z_CHARACTER,hP,1);
+	
+		//Black Edge
+		Sprites.pixel.setColor(Color.BLACK);
+		Sprites.pixel.draw(x+1+hP,y+1,Z_CHARACTER,29-hP,4);
+		
+		//Border left
+		Sprites.healthBarMon.draw(x,y,Z_CHARACTER,2,6);
+
+		
+		//Border Top
+		Sprites.pixel.setColor(0.886f, 0.914f, 0.98f,1f);
+		Sprites.pixel.draw(x+2, y, Z_CHARACTER, 28, 1);
+		
+		//Border Bottom
+		Sprites.pixel.draw(x+2, y+5, Z_CHARACTER, 28, 1);
+		
+		//Border Right
+		Sprites.healthBarMon.rotate(180);
+		Sprites.healthBarMon.draw(x+2+28,y,Z_CHARACTER,2,6);
+		Sprites.healthBarMon.rotate(180);
+		
+		//Reset
+		Sprites.pixel.setColor(Color.WHITE);
+	}
+	
 	public void renderInventoryText(Inventory inv, SpriteBatch batch) {
 		Slot[][] slots = new Slot[][]{inv.invBag, inv.invCrafting, inv.invCrafted, inv.invTable, inv.invChest};
 		//
@@ -583,6 +688,15 @@ public class RenderSystem {
 		if(inv.furnaceOn) {
 			Furnace furnaceTile = (Furnace) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Slot[][]slots2 = {furnaceTile.craftedSlot, inv.invClothing, furnaceTile.furnaceSlots};
+			for(int i = 0; i < slots2.length; i++) {
+				for(int j = 0; j < slots2[i].length; j++) {
+					slots2[i][j].item.renderFont(slots2[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots2[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
+					
+				}
+			}
+		}else if(inv.cauldronOn) {
+			Cauldron cauldronTile = (Cauldron) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			Slot[][]slots2 = {cauldronTile.craftedSlot, inv.invClothing, cauldronTile.cauldronSlots};
 			for(int i = 0; i < slots2.length; i++) {
 				for(int j = 0; j < slots2[i].length; j++) {
 					slots2[i][j].item.renderFont(slots2[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots2[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);

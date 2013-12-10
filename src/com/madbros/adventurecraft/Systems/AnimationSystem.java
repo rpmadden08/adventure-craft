@@ -18,6 +18,9 @@ public class AnimationSystem {
 		for(int i = 0; i < Sprites.furnaceAnimation.length; i++) {
 			Sprites.furnaceAnimation[i].updateCurrentAnimation();
 		}
+		for(int i = 0; i < Sprites.cauldronAnimation.length; i++) {
+			Sprites.cauldronAnimation[i].updateCurrentAnimation();
+		}
 	}
 	
 	public void updateMain(Hero hero, MobController mobController) {

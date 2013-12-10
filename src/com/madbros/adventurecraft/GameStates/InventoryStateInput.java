@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.OBJECT_LAYER;
 
 import com.badlogic.gdx.Input.Keys;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.TileTypes.Cauldron;
 import com.madbros.adventurecraft.TileTypes.Furnace;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -70,21 +71,25 @@ public class InventoryStateInput extends MainStateInput {
 					}
 				}
 			}
-			
-			
-//			for(int i = 0; i < Game.inventory.furnace.furnaceSlots.length; i++) {
-//				if(mouseRect.detectCollision(Game.inventory.furnace.furnaceSlots[i].slotRect)) {
-//					Game.inventory.furnace.furnaceSlots[i].isHighlighted = true;
-//					
-//					if(mouseLeftDown) Game.inventory.furnace.furnaceSlots[i].handleLeftClick(Game.inventory);
-//					else if(mouseRightDown) Game.inventory.furnace.furnaceSlots[i].handleRightClick(Game.inventory);
-//					droppedItemInSlot = true;
-//				} else {
-//					Game.inventory.furnace.furnaceSlots[i].isHighlighted = false;
-//					
-//				}
-//			}
-		}else if (Game.inventory.chestOn == true) {
+		} else if(Game.inventory.cauldronOn == true) {
+			Cauldron cauldronTile = (Cauldron) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			Slot[][] slots2 = {cauldronTile.craftedSlot, cauldronTile.cauldronSlots};
+			for(int i = 0; i < slots2.length; i++) {
+				for(int j = 0; j < slots2[i].length; j++) {
+					if(mouseRect.detectCollision(slots2[i][j].slotRect)) {
+						slots2[i][j].isHighlighted = true;
+						
+						if(mouseLeftDown) slots2[i][j].handleLeftClick(Game.inventory);
+						else if(mouseRightDown) slots2[i][j].handleRightClick(Game.inventory);
+						droppedItemInSlot = true;
+					} else {
+						slots2[i][j].isHighlighted = false;
+						
+					}
+				}
+			}
+		}
+		else if (Game.inventory.chestOn == true) {
 			for(int i = 0; i < Game.inventory.invChest.length; i++) {
 				if(mouseRect.detectCollision(Game.inventory.invChest[i].slotRect)) {
 					Game.inventory.invChest[i].isHighlighted = true;
@@ -129,6 +134,18 @@ public class InventoryStateInput extends MainStateInput {
 		if(Game.inventory.furnaceOn) { 
 			Furnace furnaceTile = (Furnace) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing, Game.inventory.invTable, Game.inventory.invChest, furnaceTile.furnaceSlots};
+			for(int i = 0; i < slots.length; i++) {
+				for(int j = 0; j < slots[i].length; j++) {
+					if(mouseRect.detectCollision(slots[i][j].slotRect)) {
+						slots[i][j].isHighlighted = true;
+					} else {
+						slots[i][j].isHighlighted = false;
+					}
+				}
+			}
+		} else if(Game.inventory.cauldronOn) {
+			Cauldron cauldronTile = (Cauldron) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing, Game.inventory.invTable, Game.inventory.invChest, cauldronTile.cauldronSlots};
 			for(int i = 0; i < slots.length; i++) {
 				for(int j = 0; j < slots[i].length; j++) {
 					if(mouseRect.detectCollision(slots[i][j].slotRect)) {

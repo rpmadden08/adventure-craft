@@ -7,6 +7,7 @@ import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Constants.State;
 import com.madbros.adventurecraft.Items.*;
 import com.madbros.adventurecraft.Sprites.*;
+import com.madbros.adventurecraft.TileTypes.Cauldron;
 import com.madbros.adventurecraft.TileTypes.Furnace;
 import com.madbros.adventurecraft.Utils.*;
 
@@ -37,7 +38,6 @@ public class Slot {
 			highlighter.draw(slotRect, Z_INV_HIGHLIGHT);
 			Sprites.pixel.setColor(Color.WHITE);
 		}
-		
 		item.render(slotRect);
 	}
 	
@@ -60,6 +60,9 @@ public class Slot {
 		} else if(inv.furnaceOn) {
 			Furnace furnaceTile = (Furnace) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			handleAdditional2(furnaceTile, furnaceTile.furnaceSlots, furnaceTile.craftedSlot);
+		} else if(inv.cauldronOn) {
+			Cauldron cauldronTile = (Cauldron) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			handleAdditionalCauldron(cauldronTile, cauldronTile.cauldronSlots, cauldronTile.craftedSlot);
 		} else {
 			handleAdditional(inv.invCrafting, inv.invCrafted);
 		}
@@ -89,6 +92,9 @@ public class Slot {
 		} else if(inv.furnaceOn) {
 			Furnace furnaceTile = (Furnace) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			handleAdditional2(furnaceTile, furnaceTile.furnaceSlots, furnaceTile.craftedSlot);
+		} else if(inv.cauldronOn) {
+			Cauldron cauldronTile = (Cauldron) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			handleAdditionalCauldron(cauldronTile, cauldronTile.cauldronSlots, cauldronTile.craftedSlot);
 		} else {
 			handleAdditional(inv.invCrafting, inv.invCrafted);
 		}
@@ -99,6 +105,11 @@ public class Slot {
 	public void handleAdditional2(Furnace furnace, Slot[] invCrafting, Slot[] invCrafted) { 
 		craftAnotherItemIfPossible2(furnace, invCrafting, invCrafted);
 	}
+	
+	public void handleAdditionalCauldron(Cauldron cauldron, Slot[] invCrafting, Slot[] invCrafted) { 
+		craftAnotherItemIfPossibleCauldron(cauldron, invCrafting, invCrafted);
+	}
+	
 	/* Helpers */
 	public void swapItems(Inventory inv) {
 		Item temp = inv.heldItem;
@@ -144,6 +155,17 @@ public class Slot {
 		}
 	}
 	
+	public void craftAnotherItemIfPossibleCauldron(Cauldron cauldron, Slot[] invCrafting, Slot[] invCrafted) {
+		for(int i = 0; i < invCrafting.length-1; i++) {
+			if(invCrafting[i].item.id != EMPTY) {
+				craftAnItemFromThisListIfPossibleCauldron(cauldron, invCrafting, invCrafted, invCrafting[i].item.itemsPossiblyCraftable);
+				return;
+			} else {
+				cauldron.isCraftableItem = false;
+			}
+		} 
+	}
+	
 	public void craftAnItemFromThisListIfPossible(Slot[] invCrafting, Slot[] invCrafted, int[] itemsPossiblyCraftable) {
 		for(int i = 0; i < itemsPossiblyCraftable.length; i++) {
 			Item possiblyCraftableItem = ITEM_HASH.get(itemsPossiblyCraftable[i]);
@@ -177,6 +199,26 @@ public class Slot {
 			}
 		}
 	}
+	public void craftAnItemFromThisListIfPossibleCauldron(Cauldron cauldron, Slot[] invCrafting, Slot[] invCrafted, int[] itemsPossiblyCraftable) {
+		for(int i = 0; i < itemsPossiblyCraftable.length; i++) {
+			//cauldron cauldron = (cauldron) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			Item possiblyCraftableItem = ITEM_HASH.get(itemsPossiblyCraftable[i]);
+			if(possiblyCraftableItem.isValidCauldronRecipe(cauldron.cauldronSlots)) {
+				cauldron.isCraftableItem = true;
+				cauldron.possiblyCraftableItem = possiblyCraftableItem.createNew();
+				
+				if(cauldron.cauldronIsBurning == false) {
+					checkCauldronFuel(cauldron, invCrafting, invCrafted);
+				}
+				//System.out.println("DID IT!");
+				//cauldron.cauldronBuildTime = 10;
+				return;
+			} else {
+				cauldron.isCraftableItem = false;
+				//cauldron.cauldronBuildTime = 10;
+			}
+		}
+	}
 	public void checkFuel(Furnace furnace, Slot[] invCrafting, Slot[] invCrafted) { 
 		if(invCrafting[1].item.isFuelSource) {
 			furnace.furnaceIsBurning = true;
@@ -190,6 +232,21 @@ public class Slot {
 			}
 		} else {
 			furnace.furnaceIsBurning = false;
+		}
+	}
+	public void checkCauldronFuel(Cauldron cauldron, Slot[] invCrafting, Slot[] invCrafted) { 
+		if(invCrafting[3].item.isFuelSource) {
+			cauldron.cauldronIsBurning = true;
+			cauldron.cauldronFuel = cauldron.cauldronSlots[3].item.fuelAmount;
+			cauldron.cauldronMaxFuel = cauldron.cauldronSlots[3].item.fuelAmount;
+			
+			
+			cauldron.cauldronSlots[3].item.stackSize = cauldron.cauldronSlots[3].item.stackSize - 1;
+			if(cauldron.cauldronSlots[3].item.stackSize <= 0) {
+				cauldron.cauldronSlots[3].item = new NoItem();
+			}
+		} else {
+			cauldron.cauldronIsBurning = false;
 		}
 	}
 	

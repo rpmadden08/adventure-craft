@@ -7,7 +7,6 @@ import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
-import com.madbros.adventurecraft.TileTypes.FurnaceTop;
 import com.madbros.adventurecraft.TileTypes.Tile;
 
 public class CauldronItem extends BlockItem32 {
@@ -15,7 +14,7 @@ public class CauldronItem extends BlockItem32 {
 		id = CAULDRON_ITEM;
 		tileId = CAULDRON;
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, SAND};
-		sprite = Sprites.sprites.get(Sprites.CAULDRON);
+		sprite = Sprites.sprites.get(Sprites.CAULDRON_SINGLE);
 		maxStackSize = 99;
 		numberProducedByCrafting = 1;
 		craftCost = new int[]{};
