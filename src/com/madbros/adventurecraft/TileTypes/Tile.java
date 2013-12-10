@@ -4,8 +4,6 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.*;
-import com.madbros.adventurecraft.Slots.CraftedSlot;
-import com.madbros.adventurecraft.Slots.CraftingSlot;
 import com.madbros.adventurecraft.Sprites.Sprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Helpers;

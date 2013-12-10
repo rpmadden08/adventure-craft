@@ -80,18 +80,6 @@ public class Helpers {
 						t[i] = tempTile;
 						furnInt = furnInt +1;
 					} else if(chunk.ids[x][y][i] == CAULDRON) {
-//						cauldron.cauldronFuel,
-//						cauldron.cauldronMaxFuel,
-//						cauldron.cauldronBuildTime,
-//						cauldron.possiblyCraftableItem.id,
-//						cauldron.cauldronSlots[0].item.id,
-//						cauldron.cauldronSlots[1].item.id,
-//						cauldron.cauldronSlots[2].item.id,
-//						cauldron.cauldronSlots[3].item.id,
-//						cauldron.cauldronSlots[0].item.stackSize,
-//						cauldron.cauldronSlots[1].item.stackSize,
-//						cauldron.cauldronSlots[2].item.stackSize,
-//						cauldron.cauldronSlots[3].item.stackSize,
 						int id0 = chunk.cauldronInts[furnInt][4];
 						int id1 = chunk.cauldronInts[furnInt][5];
 						int id2 = chunk.cauldronInts[furnInt][6];
