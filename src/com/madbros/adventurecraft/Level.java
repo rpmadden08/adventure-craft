@@ -154,6 +154,7 @@ public class Level {
 	public void loadGame() {
 		if(Game.isNewGame) {
 			saveGame.saveGame();
+			//NO NEED to saveCurrentChunks();  It's already been done...
 		} else {
 			SaveGameData saveData = saveGame.saveData();
 			Game.hero.hP = saveData.hP;
@@ -351,6 +352,7 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
 		}
+		
 		renderRect.y += CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(DOWN);
@@ -369,7 +371,7 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
 		}
-
+		
 		renderRect.y -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(UP);
@@ -388,6 +390,7 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
 		}
+		
 		renderRect.x -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(LEFT);

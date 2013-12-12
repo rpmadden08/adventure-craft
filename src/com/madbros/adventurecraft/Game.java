@@ -92,6 +92,8 @@ public class Game implements ApplicationListener {
 				int x = inventory.currentInvBlockX;
 				int y = inventory.currentInvBlockY;
 				level.saveGame.saveChest(Game.inventory.invChest,x, y);
+				level.saveGame.saveGame();
+				level.saveCurrentChunks();
 			} else if(inventory.furnaceOn) {
 				inventory.furnaceOn = false;
 				//int x = inventory.currentInvBlockX;
@@ -232,6 +234,10 @@ public class Game implements ApplicationListener {
 	}
 
 	public static void quit() {
+		if(level != null) {
+			Game.level.saveGame.saveGame();
+			Game.level.saveCurrentChunks();
+		}
 		batch.dispose();
 		if(fbo != null) {
 			finalShader.dispose();
