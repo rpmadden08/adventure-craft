@@ -43,11 +43,33 @@ public class Level {
 	public int debuggerTest = 0;
 	
 	//Keeps track of what part of the activeBlocks array we're rendering. Starts off in the very center.
+	//renderRect, spawnX, spawnY should all be the same
 	public Rect renderRect = new Rect(TILES_PER_ROW / 2 - (int)Math.ceil(Game.getCenterScreenX() * 1.0 /TILE_SIZE),
 			  						  TILES_PER_ROW / 2 - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
 			  						  (int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
 			  						  (int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
+	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
+	public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
+	public int offsetX = 0;	//offset gets set at the start of level if there is one
+	public int offsetY = 0;
 	
+	//80 * 32 /2 - 64/2 = 
+//	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+512;
+//	public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
+//	
+//	int startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+//	int startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+//	public Rect chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
+//	
+//	public int offsetX = 0;	//offset gets set at the start of level if there is one
+//	public int offsetY = 0;
+//	public Rect renderRect = new Rect(
+//			spawnX / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE),
+//			spawnY / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
+//			(int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
+//			(int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
+//	
+//	
 	//private long rgenseed = System.currentTimeMillis();
 	public long rgenseed = 4; // 4 is desert 0 is forest
 	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
@@ -66,8 +88,7 @@ public class Level {
 	public boolean isDay = true;
 	
 	public Rect chunkRect = new Rect(0, 0, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);	//keeps track of the chunk we're on
-	public int offsetX = 0;	//offset gets set at the start of level if there is one
-	public int offsetY = 0;
+
 
 	public boolean isLoading = false;
 	public double PTotal = 0;
@@ -82,8 +103,7 @@ public class Level {
 	public double PMountain = 0;
 	public double PHole = 0;
 	
-	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
-	public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
+	
 	
 	//public int musicSelection = 0;
 	//public Music music = Gdx.audio.newMusic(Gdx.files.internal("music/overworld.wav"));
@@ -106,13 +126,21 @@ public class Level {
 			}
 		}
 		
+		//1248 /(CHUNK_SIZE*TILE_SIZE) -3    32 = 39 -CHUNK_SIZE*2 = 32
+//		int startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+//		int startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+//		chunkRect.x = startChunkX;
+//		chunkRect.y = startChunkY;
+		//System.out.println(startChunkX);
+		//System.out.println(startChunkY);
 		//FIXME: Should be dependent on character's spawn point...
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
 				loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
+				
 			}
+			
 		}
-		
 		gameStartTime = Time.getTime();		
 
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);

@@ -2,6 +2,8 @@ package com.madbros.adventurecraft;
 
 import java.io.File;
 
+import org.lwjgl.opengl.Display;
+
 import com.madbros.adventurecraft.Items.*;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -33,10 +35,12 @@ public class Game implements ApplicationListener {
 	
 	public static GameState currentState;
 	public static String locOfSavedGame = null;
+	public static String gameFileName = null;
 	public static boolean isNewGame = true;
 	public static SpriteBatch batch;
 	public static SpriteBatch particleBatch;
 	public static Debugger debugger;
+	public static GameMainMenu gameMainMenu;
 	public static DebugMenu debugMenu;
 	public static Level level;
 	public static Hero hero;
@@ -175,6 +179,7 @@ public class Game implements ApplicationListener {
 		
 		debugger = new Debugger();
 		debugMenu = new DebugMenu(batch);
+		gameMainMenu = new GameMainMenu(batch);
 		
 
 		
@@ -220,8 +225,7 @@ public class Game implements ApplicationListener {
 		finalShader.end();
 	}
 
-	@Override
-	public void dispose() {
+	public static void quit() {
 		batch.dispose();
 		if(fbo != null) {
 			finalShader.dispose();
@@ -232,6 +236,13 @@ public class Game implements ApplicationListener {
 			fbo.dispose();
 			musicController.music.dispose();
 		}
+	}
+
+	@Override
+	public void dispose() {
+		quit();
+		Display.destroy();
+		System.exit(0);
 //		bitmapFont.dispose();
 //		tilemap.dispose();
 	}

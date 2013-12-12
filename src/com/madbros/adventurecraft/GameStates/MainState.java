@@ -122,6 +122,10 @@ public class MainState extends GameState {
 				Game.debugMenu.render();
 				Game.debugMenu.renderText();
 			}
+			if(Game.gameMainMenu.menuIsActive) {
+				Game.gameMainMenu.render();
+				Game.gameMainMenu.renderText();
+			}
 		Game.batch.end();
 	}
 }
