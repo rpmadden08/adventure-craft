@@ -282,11 +282,6 @@ public class Hero extends Actor {
 			Game.level.offsetY += TILE_SIZE;
 			Game.level.renderRect.y--;
 		}
-		if(absRect.y < 981) {
-			test = true;
-		} else {
-			test = false;
-		}
 		//System.out.println("y="+absRect.y);
 	}
 }

@@ -38,7 +38,7 @@ public class Actor extends GameObject {
 	public double eP = 10;
 	public double maxEP = 10;
 	
-	public boolean test = false;
+	//public boolean test = false;
 	
 	public int knockBackTime = 0;
 	public boolean hasAttacked = true;
@@ -190,7 +190,7 @@ public class Actor extends GameObject {
 									}
 									didDetectCollision = true;
 								} else {
-									if(test == true) {System.out.println("TESTING VERTICAL"); }
+									
 									if(isKnockingDown) {
 										dir = DOWN;
 									} else if(isKnockingUp) {

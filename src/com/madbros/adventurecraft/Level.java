@@ -3,6 +3,7 @@ package com.madbros.adventurecraft;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.ChunkGenerator;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -150,7 +151,28 @@ public class Level {
 	}
 	
 	public void loadGame() {
-		saveGame.saveGame();
+		if(Game.isNewGame) {
+			saveGame.saveGame();
+		} else {
+			SaveGameData saveData = saveGame.saveData();
+			Game.hero.hP = saveData.hP;
+			Game.hero.maxHP = saveData.maxHP;
+			Game.hero.mP = saveData.mP;
+			Game.hero.maxMP = saveData.maxMP;
+			Game.hero.eP = saveData.eP;
+			Game.hero.maxEP = saveData.maxEP;
+			for(int x = 0; x < saveData.invBarID.length; x++) {
+				int id = saveData.invBarID[x];
+				Game.inventory.invBar[x].item = ITEM_HASH.get(id).createNew();
+				Game.inventory.invBar[x].item.stackSize = saveData.invBarStackSize[x];
+			}
+			
+			for(int x = 0; x < saveData.invBagID.length; x++) {
+				int id = saveData.invBagID[x];
+				Game.inventory.invBag[x].item = ITEM_HASH.get(id).createNew();
+				Game.inventory.invBag[x].item.stackSize = saveData.invBagStackSize[x];
+			}
+		}
 	}
 	
 	public void saveCurrentChunks() {

@@ -24,6 +24,25 @@ public class SaveGame {
 		saveData.offsetX = Game.level.offsetX;
 		saveData.offsetY = Game.level.offsetY;
 		
+		saveData.hP = Game.hero.hP;
+		saveData.maxHP = Game.hero.maxHP;
+		saveData.mP = Game.hero.mP;
+		saveData.maxMP = Game.hero.maxMP;
+		saveData.eP = Game.hero.eP;
+		saveData.maxEP = Game.hero.maxEP;
+		
+		for(int x = 0; x < saveData.invBarID.length; x++) {
+			saveData.invBarID[x] = Game.inventory.invBar[x].item.id;
+			saveData.invBarStackSize[x] = Game.inventory.invBar[x].item.stackSize;
+		}
+		
+		for(int x = 0; x < saveData.invBagID.length; x++) {
+			saveData.invBagID[x] = Game.inventory.invBag[x].item.id;
+			saveData.invBagStackSize[x] = Game.inventory.invBag[x].item.stackSize;
+		}
+		
+		saveData.gameTime = Game.gameStartTime;
+		
 		Kryo kryo = new Kryo();
 
 		try {
