@@ -61,7 +61,7 @@ public class Level {
 	
 //	
 	//private long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 4; // 4 is desert 0 is forest
+	public long rgenseed = 20; // 4 is desert 0 is forest 20 is grassland
 	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public Random rand = new Random(rgenseed);
 	public int randInt1 = rand.nextInt();

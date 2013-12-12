@@ -119,6 +119,7 @@ public class LoadGameMenu extends Menu {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			currentlySelectedButton = null;
 		}
 		setupMenu(batch);
 		

@@ -22,7 +22,7 @@ public abstract class Tile {
 	public boolean isChoppable = false;
 	public boolean isTillable = false;
 	public boolean isBreakable = false; //This is for items breakable by hand
-	public long timeCreated = Time.getTime();
+	public long timeCreated = Time.getGameTime();
 	public boolean isLightSource = false;
 	public boolean isAutoTileable = true;
 	public boolean isUseable = false;

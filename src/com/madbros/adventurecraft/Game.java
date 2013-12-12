@@ -54,6 +54,9 @@ public class Game implements ApplicationListener {
 	public static AnimationSystem animationSystem;
 	public static CollisionDetectionSystem collisionDetectionSystem;
 	
+	public static long gameStartTime;
+	public static long timeSpentInPreviousSaves;
+	
 	public static OrthographicCamera camera;
 	public static float zAngle;
 	public static final float zSpeed = 15.0f;
@@ -167,6 +170,8 @@ public class Game implements ApplicationListener {
 
 	@Override
 	public void create() {
+		gameStartTime = Time.getTime();
+		timeSpentInPreviousSaves = 0;  //TODO set this on game load:)
 		
 		p.load(Gdx.files.internal("data/Chunks.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
 		death.load(Gdx.files.internal("data/death.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder

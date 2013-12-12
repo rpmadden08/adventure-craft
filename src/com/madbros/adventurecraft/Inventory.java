@@ -114,7 +114,7 @@ public class Inventory {
 		invBar[6].item.stackSize = 99;
 		invBar[7].item = new CampfireItem();
 		invBar[7].item.stackSize = 99;
-		invBar[8].item = new Potatoes();
+		invBar[8].item = new Sapling();
 		invBar[8].item.stackSize = 99;
 		invBar[9].item = new Shovel();
 		invBar[9].item.stackSize = 1;
