@@ -23,6 +23,7 @@ public class SaveGame {
 		saveData.heroY = Game.hero.absRect.y;
 		saveData.offsetX = Game.level.offsetX;
 		saveData.offsetY = Game.level.offsetY;
+		System.out.println("Saved: "+Game.level.offsetX+"-"+Game.level.offsetY);
 		
 		saveData.hP = Game.hero.hP;
 		saveData.maxHP = Game.hero.maxHP;

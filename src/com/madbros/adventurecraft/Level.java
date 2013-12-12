@@ -45,9 +45,11 @@ public class Level {
 	
 	//Keeps track of what part of the activeBlocks array we're rendering. Starts off in the very center.
 	//renderRect, spawnX, spawnY should all be the same
-
-	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+512;
-	public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
+//total chunks * chunk_size * Tile_size /2 - character
+	public int spawnX = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE /2 - CHARACTER_SIZE/2;
+	public int spawnY = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE /2 - CHARACTER_SIZE/2;
+//	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+900;
+	//public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+700;
 	
 	int startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 	int startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
@@ -62,7 +64,7 @@ public class Level {
 	
 //	
 	//private long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 20; // 4 is desert 0 is forest 20 is grassland
+	public long rgenseed = 6; // 4 is desert 0 is forest 20 is grassland
 	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public Random rand = new Random(rgenseed);
 	public int randInt1 = rand.nextInt();
@@ -113,11 +115,13 @@ public class Level {
 			startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 			startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 			chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
+			
 			offsetX = saveData.offsetX;
 			offsetY = saveData.offsetY;
+			System.out.println("LOADED: "+offsetX+"-"+offsetY);
 			renderRect = new Rect(
-					spawnX / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE),
-					spawnY / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
+					(spawnX+(offsetX)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE),
+					(spawnY+(TILE_SIZE -offsetY)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
 					(int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
 					(int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 			
@@ -458,7 +462,7 @@ public class Level {
 		int n = j+CHUNK_BLOOM_MARGIN;
 
 		//BELOW SEA LEVEL
-		if(chunkX < 2 || chunkY < 2 || chunkX > CHUNKS_LENGTH_TOTAL - 3 || chunkY > CHUNKS_LENGTH_TOTAL - 3) {
+		if(chunkX < 3 || chunkY < 3 || chunkX > CHUNKS_LENGTH_TOTAL - 3 || chunkY > CHUNKS_LENGTH_TOTAL - 3) {
 				Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
