@@ -41,7 +41,7 @@ public class SaveGame {
 			saveData.invBagStackSize[x] = Game.inventory.invBag[x].item.stackSize;
 		}
 		
-		saveData.gameTime = Game.gameStartTime;
+		saveData.gameTime = Time.getGameTime();
 		
 		Kryo kryo = new Kryo();
 
@@ -95,6 +95,7 @@ public class SaveGame {
 		
 		int[][][] ids = new int[chunk.length][chunk.length][chunk[0][0].layers.length];
 		int[][][] currentTextures = new int[chunk.length][chunk.length][chunk[0][0].layers.length];
+		long[][][] timeCreated = new long [chunk.length][chunk.length][chunk[0][0].layers.length];
 		ArrayList<int[]> furnaceListInt = new ArrayList<int[]>();
 		ArrayList<boolean[]> furnaceListBoolean = new ArrayList<boolean[]>();
 		int[][] furnaceInts;
@@ -115,7 +116,7 @@ public class SaveGame {
 				for(int i = 0; i < chunk[x][y].layers.length; i++) {
 					ids[x][y][i] = chunk[x][y].layers[i].id;
 					currentTextures[x][y][i] = chunk[x][y].layers[i].currentSpriteId;
-					
+					timeCreated[x][y][i] = chunk[x][y].layers[i].timeCreated;
 					if(chunk[x][y].layers[i].id == FURNACE) {
 						Furnace furnace = (Furnace) chunk[x][y].layers[i];
 						int a1[]={furnace.furnaceFuel,
@@ -182,6 +183,7 @@ public class SaveGame {
 		
 		chunkData.ids = ids;
 		chunkData.currentTextures = currentTextures;
+		chunkData.timeCreated = timeCreated;
 		chunkData.absX = absX;
 		chunkData.absY = absY;
 		chunkData.isUnfinished = isUnfinished;

@@ -102,6 +102,7 @@ public class Level {
 	
 	
 	public Level() {	
+		Game.gameStartTime = Time.getTime();
 		if(Game.isNewGame) {
 			if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
 			if(Game.getCenterScreenY() % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.getCenterScreenY() % TILE_SIZE;
@@ -172,6 +173,7 @@ public class Level {
 				Game.inventory.invBag[x].item = ITEM_HASH.get(id).createNew();
 				Game.inventory.invBag[x].item.stackSize = saveData.invBagStackSize[x];
 			}
+			Game.timeSpentInPreviousSaves = saveData.gameTime;
 		}
 	}
 	

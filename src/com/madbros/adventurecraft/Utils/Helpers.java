@@ -59,6 +59,7 @@ public class Helpers {
 					int id = chunk.ids[x][y][i];	
 					t[i] = TILE_HASH.get(id).createNew();
 					t[i].currentSpriteId = chunk.currentTextures[x][y][i];
+					t[i].timeCreated = chunk.timeCreated[x][y][i];
 					if(chunk.ids[x][y][i] == FURNACE) {
 						int id0 = chunk.furnaceInts[furnInt][4];
 						int id1 = chunk.furnaceInts[furnInt][5];
