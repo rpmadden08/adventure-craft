@@ -13,12 +13,8 @@ import com.madbros.adventurecraft.Utils.Rect;
 import com.madbros.adventurecraft.Game;
 
 public class GameMainMenu extends Menu {
-	public boolean collisionTilesAreOn;
-	public boolean collisionRectsAreOn;
-	public boolean chunkBoundariesAreOn;
-	public boolean collisionDetectionIsOn;
+
 	public boolean menuIsActive;
-	public boolean fullscreenIsOn;
 	
 	public GameMainMenu(SpriteBatch batch) {
 		super(batch);
@@ -26,12 +22,8 @@ public class GameMainMenu extends Menu {
 	
 	@Override
 	public void setupMenu(SpriteBatch batch) {
-		collisionTilesAreOn = false;
-		collisionRectsAreOn = false;
-		chunkBoundariesAreOn = false;
-		collisionDetectionIsOn = true;
+
 		menuIsActive = false;
-		fullscreenIsOn = false;
 		
 		
 		Rect r = new Rect(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY, DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY);
@@ -70,7 +62,8 @@ public class GameMainMenu extends Menu {
 	}
 
 	private void saveGameFunction() {
-		
+		Game.level.saveCurrentChunks();
+		Game.level.saveGame.saveGame();
 	}
 
 	private void quitGameFunction() {

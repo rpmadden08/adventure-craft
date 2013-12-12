@@ -17,6 +17,60 @@ import com.madbros.adventurecraft.Utils.Helpers;
 
 //@SuppressWarnings("unchecked")
 public class SaveGame {
+	public void saveGame() {
+		SaveGameData saveData = new SaveGameData();
+		saveData.heroX = Game.hero.absRect.x;
+		saveData.heroY = Game.hero.absRect.y;
+		saveData.offsetX = Game.level.offsetX;
+		saveData.offsetY = Game.level.offsetY;
+		
+		Kryo kryo = new Kryo();
+
+		try {
+			Output output = new Output(new FileOutputStream(Game.locOfSavedGame+"main.sv"));
+			
+			kryo.writeObject(output, saveData);
+			output.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public SaveGameData saveData() {
+		SaveGameData saveData = new SaveGameData();
+		
+		Kryo kryo = new Kryo();
+		
+		try {
+			Input input = new Input(new FileInputStream(Game.locOfSavedGame + "main.sv"));
+			saveData = kryo.readObject(input, SaveGameData.class);
+			input.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return saveData;
+		
+	}
+	
+//	public void loadGame() {
+//		SaveGameData saveData = new SaveGameData();
+//		
+//		Kryo kryo = new Kryo();
+//		
+//		try {
+//			Input input = new Input(new FileInputStream(Game.locOfSavedGame + "main.sv"));
+//			saveData = kryo.readObject(input, SaveGameData.class);
+//			input.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		//Set everything here
+//		Game.level.spawnX = saveData.heroX;
+//		Game.level.spawnY = saveData.heroY;
+//		
+//		
+//	}
 	public void saveChunk(Block[][] chunk, int chunkX, int chunkY) {
 		Chunk chunkData = new Chunk();
 		

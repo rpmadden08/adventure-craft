@@ -152,6 +152,7 @@ public class Game implements ApplicationListener {
 		animationSystem = new AnimationSystem();
 		
 		collisionDetectionSystem = new CollisionDetectionSystem();
+		level.loadGame();
 		
 		Game.currentState = new MainState();
 	}

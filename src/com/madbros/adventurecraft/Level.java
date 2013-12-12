@@ -44,31 +44,21 @@ public class Level {
 	
 	//Keeps track of what part of the activeBlocks array we're rendering. Starts off in the very center.
 	//renderRect, spawnX, spawnY should all be the same
-	public Rect renderRect = new Rect(TILES_PER_ROW / 2 - (int)Math.ceil(Game.getCenterScreenX() * 1.0 /TILE_SIZE),
-			  						  TILES_PER_ROW / 2 - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
-			  						  (int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
-			  						  (int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
-	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
+
+	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+512;
 	public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
+	
+	int startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+	int startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+	public Rect chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
 	public int offsetX = 0;	//offset gets set at the start of level if there is one
 	public int offsetY = 0;
+	public Rect renderRect = new Rect(
+			spawnX / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE),
+			spawnY / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
+			(int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
+			(int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
-	//80 * 32 /2 - 64/2 = 
-//	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+512;
-//	public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
-//	
-//	int startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
-//	int startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
-//	public Rect chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
-//	
-//	public int offsetX = 0;	//offset gets set at the start of level if there is one
-//	public int offsetY = 0;
-//	public Rect renderRect = new Rect(
-//			spawnX / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE),
-//			spawnY / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
-//			(int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
-//			(int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
-//	
 //	
 	//private long rgenseed = System.currentTimeMillis();
 	public long rgenseed = 4; // 4 is desert 0 is forest
@@ -87,7 +77,7 @@ public class Level {
 	public int minutes = 0;
 	public boolean isDay = true;
 	
-	public Rect chunkRect = new Rect(0, 0, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);	//keeps track of the chunk we're on
+	//public Rect chunkRect = new Rect(0, 0, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);	//keeps track of the chunk we're on
 
 
 	public boolean isLoading = false;
@@ -110,30 +100,43 @@ public class Level {
 	
 	
 	
-	public Level() {		
-		if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
-		if(Game.getCenterScreenY() % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.getCenterScreenY() % TILE_SIZE;
+	public Level() {	
+		if(Game.isNewGame) {
+			if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
+			if(Game.getCenterScreenY() % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.getCenterScreenY() % TILE_SIZE;
+		} else {
+			SaveGameData saveData = saveGame.saveData();
+			spawnX = saveData.heroX;
+			spawnY = saveData.heroY;
+			startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+			startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+			chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
+			offsetX = saveData.offsetX;
+			offsetY = saveData.offsetY;
+			renderRect = new Rect(
+					spawnX / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE),
+					spawnY / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
+					(int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
+					(int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
+			
+		}
+		
+		
 		
 		activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
 		currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
 		
-		//FIXME: Make this loop only get called on a new game...
 		if(Game.isNewGame == true) {
 			for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
 				for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
-					createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
+					createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
 				}
 			}
-		}
+			
+		} 
 		
-		//1248 /(CHUNK_SIZE*TILE_SIZE) -3    32 = 39 -CHUNK_SIZE*2 = 32
-//		int startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
-//		int startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
-//		chunkRect.x = startChunkX;
-//		chunkRect.y = startChunkY;
-		//System.out.println(startChunkX);
-		//System.out.println(startChunkY);
-		//FIXME: Should be dependent on character's spawn point...
+		
+		
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
 				loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
@@ -144,6 +147,18 @@ public class Level {
 		gameStartTime = Time.getTime();		
 
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+	}
+	
+	public void loadGame() {
+		saveGame.saveGame();
+	}
+	
+	public void saveCurrentChunks() {
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
+				saveChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
+			}
+		}
 	}
 	
 

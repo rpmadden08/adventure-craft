@@ -136,6 +136,7 @@ public class Hero extends Actor {
 	}
 	public void didCollide() {}
 	
+	@Override
 	public void update() {
 		if(hP<=0) {
 			Game.inventory.dropAll();
@@ -150,8 +151,10 @@ public class Hero extends Actor {
 			
 		} else if(knockBackTime > 0) {
 			knockBackTime = knockBackTime - 1;
-			currentSpeed = knockBackSpeed;
-			moveKnockBack(Time.getDelta());
+			if(knockBackTime > 0) {
+				currentSpeed = knockBackSpeed;
+				moveKnockBack(Time.getDelta());
+			}
 		} else if(isMoving() && !isAttacking) {
 			if(eP > 0) {
 				eP = eP - 0.0005;
@@ -252,6 +255,7 @@ public class Hero extends Actor {
 	}
 	
 	public void xMove(int moveX) {
+		
 		super.xMove(moveX);
 		Game.level.offsetX += moveX;
 		while(Game.level.offsetX >= TILE_SIZE) {
@@ -262,10 +266,13 @@ public class Hero extends Actor {
 			Game.level.offsetX += TILE_SIZE;
 			Game.level.renderRect.x--;
 		}
+		//System.out.println("x="+absRect.x);
 	}
 	
 	public void yMove(int moveY) {
+		
 		super.yMove(moveY);
+		
 		Game.level.offsetY += moveY;
 		while(Game.level.offsetY >= TILE_SIZE) {
 			Game.level.offsetY -= TILE_SIZE;
@@ -275,5 +282,11 @@ public class Hero extends Actor {
 			Game.level.offsetY += TILE_SIZE;
 			Game.level.renderRect.y--;
 		}
+		if(absRect.y < 981) {
+			test = true;
+		} else {
+			test = false;
+		}
+		//System.out.println("y="+absRect.y);
 	}
 }

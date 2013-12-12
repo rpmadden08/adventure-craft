@@ -2,7 +2,6 @@ package com.madbros.adventurecraft.GameObjects;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-
 import org.lwjgl.input.Keyboard;
 
 import com.madbros.adventurecraft.Block;
@@ -38,6 +37,8 @@ public class Actor extends GameObject {
 	public int maxMP = 10;
 	public double eP = 10;
 	public double maxEP = 10;
+	
+	public boolean test = false;
 	
 	public int knockBackTime = 0;
 	public boolean hasAttacked = true;
@@ -164,7 +165,9 @@ public class Actor extends GameObject {
 	}
 	
 	public boolean getCollision(boolean isVerticalMovement, int move, Rect r) {
+		
 		if(Game.debugMenu.collisionDetectionIsOn) {
+			
 //			Rect charCRect = new Rect(Game.level.renderRect.x * TILE_SIZE + sRect.x + margin.left, 
 //									  Game.level.renderRect.y * TILE_SIZE + sRect.y + margin.top, 
 //									  CHARACTER_SIZE - margin.left - margin.right,
@@ -177,6 +180,7 @@ public class Actor extends GameObject {
 						int dir = 0;
 						boolean didDetectCollision = false;
 						if(isVerticalMovement) {
+							
 							if(charCRect.detectCollision(collisionDetectionBlocks[i].collisionTile.cRect)) {
 								if(knockBackTime <= 0) { /*need this for Knockback Collision*/ 
 									if(isMovingDown) {
@@ -186,6 +190,7 @@ public class Actor extends GameObject {
 									}
 									didDetectCollision = true;
 								} else {
+									if(test == true) {System.out.println("TESTING VERTICAL"); }
 									if(isKnockingDown) {
 										dir = DOWN;
 									} else if(isKnockingUp) {
@@ -226,6 +231,7 @@ public class Actor extends GameObject {
 	
 	public void xMove(int moveX) {
 		absRect.x += moveX;
+
 	}
 	
 	public void yMove(int moveY) {
