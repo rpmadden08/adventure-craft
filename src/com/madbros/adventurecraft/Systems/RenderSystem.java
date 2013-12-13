@@ -52,7 +52,20 @@ public class RenderSystem {
 		for(int x = lv.renderRect.x; x < lv.renderRect.x2(); x++) {
 			for(int y = lv.renderRect.y; y < lv.renderRect.y2(); y++) {
 //				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {					
-					renderBlock(x, y, lv.activeBlocks[x][y], lv, i, j);
+					renderBlock(x, y, lv.activeBlocks[x][y], lv, i, j, true);
+//				}
+				j++;
+			}
+			i++; j = 0;
+		}
+	}
+	public void renderWorldAbove(Level lv) {
+//		alreadyRenderedObjects = new ArrayList<GameObject>();
+		int i = 0; int j = 0;
+		for(int x = lv.renderRect.x; x < lv.renderRect.x2(); x++) {
+			for(int y = lv.renderRect.y; y < lv.renderRect.y2(); y++) {
+//				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {					
+					renderBlock(x, y, lv.activeBlocks[x][y], lv, i, j, false);
 //				}
 				j++;
 			}
@@ -60,17 +73,22 @@ public class RenderSystem {
 		}
 	}
 	
-	public void renderBlock(int arrayX, int arrayY, Block block, Level lv, int i2, int j2) {
+	public void renderBlock(int arrayX, int arrayY, Block block, Level lv, int i2, int j2, Boolean isAbove) {
 		int x = i2 * TILE_SIZE - lv.offsetX; //block.absRect.x - startX;
 		int y = j2 * TILE_SIZE - lv.offsetY; //block.absRect.y - startY;
-
-		Tile[] renderTiles = block.getRenderTiles();
-		
+		Tile[] renderTiles;
+		if(isAbove == true) {
+			renderTiles = block.getRenderTilesBottom();
+		} else {
+			renderTiles = block.getRenderTilesTop();
+			
+		}
 		for(int i = 0; i < renderTiles.length;i++) {
-			if(renderTiles[i].isTreeLeafTile == true) ((TreeLeafTile)renderTiles[i]).render(x, y, i);
-			//if(renderTiles[i].id == TREE_LEAF_RAIN) ((TreeLeafTile)renderTiles[i]).render(x, y, i);
-			else renderTiles[i].render(x, y);
-			if(renderTiles[i].isLightSource) lightTiles.add(block);
+			if(renderTiles[i].isVisible) {
+				if(renderTiles[i].isTreeLeafTile == true) ((TreeLeafTile)renderTiles[i]).render(x, y, i);
+				else renderTiles[i].render(x, y);
+				if(renderTiles[i].isLightSource) lightTiles.add(block);
+			}
 		}
 		
 		for(GameObject gameObject : block.objects) {

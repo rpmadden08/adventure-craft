@@ -100,9 +100,9 @@ public class Inventory {
 		
 		invBar[0].item = new ChestItem();
 		invBar[0].item.stackSize =99;
-		invBar[1].item = new FurnaceItem();
+		invBar[1].item = new Axe();
 		invBar[1].item.stackSize = 1;
-		invBar[2].item = new FurnaceItem();
+		invBar[2].item = new Axe();
 		invBar[2].item.stackSize = 1;
 		invBar[3].item = new Log();
 		invBar[3].item.stackSize = 99;

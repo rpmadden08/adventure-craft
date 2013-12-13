@@ -332,6 +332,7 @@ public class Level {
 		for(int x = renderRect.x; x < renderRect.x2(); x++) {
 			for(int y = renderRect.y; y < renderRect.y2(); y++) {
 				activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
+				activeBlocks[x][y].layers[TREE_LEFT_0].update(x, y);
 			}
 		}
 	}
@@ -632,10 +633,10 @@ public class Level {
 					blockGrid[cycle].layers[TREE_CENTER_1] = new TreeLeafTile();
 					blockGrid[cycle].layers[TREE_CENTER_1].currentSpriteId = 4;
 				}
-				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
-					blockGrid[cycle].layers[TREE_CENTER_0] = new TreeLeafTile();
-					blockGrid[cycle].layers[TREE_CENTER_0].currentSpriteId = 5;
-				}
+//				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
+//					blockGrid[cycle].layers[TREE_CENTER_0] = new TreeLeafTile();
+//					blockGrid[cycle].layers[TREE_CENTER_0].currentSpriteId = 5;
+//				}
 				if(chunkGenerator.chunkObjectLayer[s-1][t+2] == TREE) {
 					blockGrid[cycle].layers[TREE_RIGHT_2] = new TreeLeafTile();
 					blockGrid[cycle].layers[TREE_RIGHT_2].currentSpriteId = 6;

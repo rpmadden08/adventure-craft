@@ -17,6 +17,7 @@ public abstract class Tile {
 	public int currentSpriteId = 0;
 	public int layer = DARK_DIRT_LAYER;
 	public float z = Z_DARK_DIRT;
+	public boolean isVisible = true;
 	public boolean isCollidable = false;
 	public boolean isDiggable = true;
 	public boolean isChoppable = false;
