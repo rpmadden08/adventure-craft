@@ -118,9 +118,16 @@ public class Level {
 			
 			offsetX = saveData.offsetX;
 			offsetY = saveData.offsetY;
-			System.out.println("LOADED: "+offsetX+"-"+offsetY);
+			System.out.println("SPAWNLOAD: "+spawnX+"-"+spawnY);
+			System.out.println("OFFSETLOAD: "+offsetX+"-"+offsetY);
+			int renderRectX;
+			if(offsetX > 15) {
+				renderRectX = (spawnX+(offsetX)) / TILE_SIZE -(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
+			} else {
+				renderRectX = (spawnX+(offsetX)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
+			}
 			renderRect = new Rect(
-					(spawnX+(offsetX)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE),
+					renderRectX,
 					(spawnY+(TILE_SIZE -offsetY)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
 					(int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
 					(int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);

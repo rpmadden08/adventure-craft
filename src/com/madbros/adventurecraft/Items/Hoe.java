@@ -25,7 +25,9 @@ public class Hoe extends ToolItem {
 		
 //		Tile topTile = Game.level.highlightedBlock.getTopTile();
 		
-		if(Game.level.tileBeingAttacked.isTillable && isInRange == true) {
+		if(Game.level.tileBeingAttacked.isTillable && Game.level.tileBeingAttacked2.isTillable 
+				&& Game.level.tileBeingAttacked3.isTillable 
+				&& Game.level.tileBeingAttacked4.isTillable &&isInRange == true) {
 			//take hp from top tile in highlightedblock
 			Game.level.tileBeingAttacked.currentHp -= attackPower;
 			if(Game.level.tileBeingAttacked.currentHp < 1) {

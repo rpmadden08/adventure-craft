@@ -132,7 +132,7 @@ public class Block {
 	}
 	
 	public void deleteTopTileTilled() {
-		for(int i = layers.length-1; i > -1; i--) {
+		for(int i = OBJECT_LAYER; i > -1; i--) {
 			if(layers[i].id != AIR && layers[i].id != DARK_DIRT) { 
 				layers[i] = new NoTile();
 				//layers[LIGHT_DIRT_LAYER] = new NoTile();

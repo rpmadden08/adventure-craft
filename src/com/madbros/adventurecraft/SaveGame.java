@@ -23,7 +23,8 @@ public class SaveGame {
 		saveData.heroY = Game.hero.absRect.y;
 		saveData.offsetX = Game.level.offsetX;
 		saveData.offsetY = Game.level.offsetY;
-		System.out.println("Saved: "+Game.level.offsetX+"-"+Game.level.offsetY);
+		System.out.println("SavedOffset: "+Game.level.offsetX+"-"+Game.level.offsetY);
+		System.out.println("SavedSpawn: "+Game.level.spawnX+"-"+Game.level.spawnY);
 		
 		saveData.hP = Game.hero.hP;
 		saveData.maxHP = Game.hero.maxHP;
@@ -73,24 +74,6 @@ public class SaveGame {
 		
 	}
 	
-//	public void loadGame() {
-//		SaveGameData saveData = new SaveGameData();
-//		
-//		Kryo kryo = new Kryo();
-//		
-//		try {
-//			Input input = new Input(new FileInputStream(Game.locOfSavedGame + "main.sv"));
-//			saveData = kryo.readObject(input, SaveGameData.class);
-//			input.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		//Set everything here
-//		Game.level.spawnX = saveData.heroX;
-//		Game.level.spawnY = saveData.heroY;
-//		
-//		
-//	}
 	public void saveChunk(Block[][] chunk, int chunkX, int chunkY) {
 		Chunk chunkData = new Chunk();
 		
