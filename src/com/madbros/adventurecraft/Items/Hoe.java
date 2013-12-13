@@ -13,7 +13,7 @@ public class Hoe extends ToolItem {
 		id = HOE;
 		is32 = false;
 		sprite = Sprites.sprites.get(Sprites.HOE);
-		attackPower = 1;
+		attackPower = 5;
 	}
 	
 	@Override
@@ -28,15 +28,19 @@ public class Hoe extends ToolItem {
 		if(Game.level.tileBeingAttacked.isTillable && Game.level.tileBeingAttacked2.isTillable 
 				&& Game.level.tileBeingAttacked3.isTillable 
 				&& Game.level.tileBeingAttacked4.isTillable &&isInRange == true) {
-			//take hp from top tile in highlightedblock
-			Game.level.tileBeingAttacked.currentHp -= attackPower;
-			if(Game.level.tileBeingAttacked.currentHp < 1) {
-				Game.level.highlightedBlock.deleteTopTileTilled();
-				Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY].deleteTopTileTilled();
-				Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].deleteTopTileTilled();
-				Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY+1].deleteTopTileTilled();
-				Game.level.autoTileHighlightedBlock();
-			}
+			swing();
+
+		}
+	}
+	public void impact() {
+		Game.level.tileBeingAttacked.currentHp -= attackPower;
+		if(Game.level.tileBeingAttacked.currentHp < 1) {
+			Game.level.highlightedBlock.deleteTopTileTilled();
+			Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY].deleteTopTileTilled();
+			Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].deleteTopTileTilled();
+			Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY+1].deleteTopTileTilled();
+			Game.level.autoTileHighlightedBlock();
+			calculateUsage();
 		}
 	}
 }

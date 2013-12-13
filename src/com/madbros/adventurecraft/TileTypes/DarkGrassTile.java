@@ -10,6 +10,7 @@ public class DarkGrassTile extends Tile {
 		layer = GRASS_LAYER;
 		z = Z_GRASS;
 		isCollidable = false;
+		isTillable = true;
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.DARK_GRASS);
 		id = DARK_GRASS;

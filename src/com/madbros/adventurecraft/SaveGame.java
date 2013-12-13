@@ -23,8 +23,8 @@ public class SaveGame {
 		saveData.heroY = Game.hero.absRect.y;
 		saveData.offsetX = Game.level.offsetX;
 		saveData.offsetY = Game.level.offsetY;
-		System.out.println("SavedOffset: "+Game.level.offsetX+"-"+Game.level.offsetY);
-		System.out.println("SavedSpawn: "+Game.level.spawnX+"-"+Game.level.spawnY);
+		//System.out.println("SavedOffset: "+Game.level.offsetX+"-"+Game.level.offsetY);
+		//System.out.println("SavedSpawn: "+Game.level.spawnX+"-"+Game.level.spawnY);
 		
 		saveData.hP = Game.hero.hP;
 		saveData.maxHP = Game.hero.maxHP;

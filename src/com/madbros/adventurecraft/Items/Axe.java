@@ -8,7 +8,7 @@ public class Axe extends ToolItem {
 	public Axe() {
 		id = AXE;
 		sprite = Sprites.sprites.get(Sprites.AXE_ITEM);
-		attackPower = 20;
+		attackPower = 5;
 		is32 = true;
 		isInUse = false;
 		sound = "sounds/axeChop.wav";
@@ -20,42 +20,24 @@ public class Axe extends ToolItem {
 	public Axe createNew() {
 		return new Axe();
 	}
-	
-	public void useLeft() {
+	public void impact() {
+		//Game.p.allowCompletion();
+		Game.level.tileBeingAttacked.currentHp -= attackPower;
+		if(Game.level.tileBeingAttacked.currentHp < 1) {
+			Game.level.highlightedBlock.deleteObjectTile();
+			Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
+			//Game.level.autoTileHighlightedBlock();
+			calculateUsage();
+		}
+		Game.soundController.create(sound);
 		
-//		Tile topTile = Game.level.highlightedBlock.getTopTile();
+		Game.p.x= Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2);
+		Game.p.y = Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2);
+		Game.p.start();
+	}
+	public void useLeft() {
 		if(Game.level.tileBeingAttacked.isChoppable && isInRange == true) {
-			
-			if(isInUse == false) {
-				swingRemaining = 0;
-				isInUse = true;
-				
-					
-				
-			} else {
-				swingRemaining = swingRemaining -1;
-				if (swingRemaining <= 0) {
-					swingRemaining = swingSpeed;
-					Game.level.tileBeingAttacked.currentHp -= attackPower;
-					if(Game.level.tileBeingAttacked.currentHp < 1) {
-						Game.level.highlightedBlock.deleteObjectTile();
-						Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
-						//Game.level.autoTileHighlightedBlock();
-						isInUse = false;
-						uses = uses -1;
-						if(uses <= 0) {
-							stackSize = stackSize - 1;
-							Game.inventory.deleteItemIfNecessary();
-						}
-					}
-					Game.soundController.create(sound);
-					
-					Game.p.x= Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2);
-					Game.p.y = Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2);
-					Game.p.start();
-					//Game.p.allowCompletion();
-				}
-			}
+			swing();
 		}
 	}
 }

@@ -118,8 +118,8 @@ public class Level {
 			
 			offsetX = saveData.offsetX;
 			offsetY = saveData.offsetY;
-			System.out.println("SPAWNLOAD: "+spawnX+"-"+spawnY);
-			System.out.println("OFFSETLOAD: "+offsetX+"-"+offsetY);
+			//System.out.println("SPAWNLOAD: "+spawnX+"-"+spawnY);
+			//System.out.println("OFFSETLOAD: "+offsetX+"-"+offsetY);
 			int renderRectX;
 			if(offsetX > 15) {
 				renderRectX = (spawnX+(offsetX)) / TILE_SIZE -(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
