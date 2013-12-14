@@ -611,7 +611,6 @@ public class Level {
     		}
     		
     	}
-		
 		Block[] blockGrid = {block, block3, block2, block4};
 		int cycle = 0;
 		for(int s = m; s < m+2; s++) {
@@ -659,6 +658,7 @@ public class Level {
 				
 				cycle++;
 			}
+			
 
     	}
 		

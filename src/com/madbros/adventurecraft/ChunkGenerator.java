@@ -33,7 +33,7 @@ public class ChunkGenerator {
     			return AIR;
 	    		//Forest
     		}else if(chunkGroundLayer[m][n] == 5){
-				if(x > CHUNK_SIZE * 2 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 2 - 1 &&
+				if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 3 - 1 &&
 				   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
 					
 	    			double a = getTree(m, n, seed, rand);
