@@ -37,6 +37,7 @@ public class Actor extends GameObject {
 	public int maxMP = 10;
 	public double eP = 10;
 	public double maxEP = 10;
+	public int armor = 0;
 	
 	//public boolean test = false;
 	

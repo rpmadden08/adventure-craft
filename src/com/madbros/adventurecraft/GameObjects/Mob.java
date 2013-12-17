@@ -17,6 +17,7 @@ public class Mob extends Actor {
 	int length = 0;
 	int framesNum = 0;
 	MobController mobController;
+	int attack;
 	
 	
 	public Mob(MobController mobController) {

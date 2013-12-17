@@ -192,6 +192,7 @@ public class Level {
 					Game.hero.sprite.addSprite(clothingItem.animatedSprite);
 				}
 			}
+			Game.hero.calcArmor();
 			
 			for(int x = 0; x < saveData.invCraftingID.length; x++) {
 				int id = saveData.invCraftingID[x];

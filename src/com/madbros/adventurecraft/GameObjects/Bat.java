@@ -19,6 +19,7 @@ public class Bat extends Mob {
 	
 	public Bat(MobController mobController, int x, int y) {
 		super(mobController);
+		attack = 5;
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
@@ -46,7 +47,7 @@ public class Bat extends Mob {
 	public void didCollide() {
 		//mobController.remove(this);
 		
-		Game.hero.takeDamage(1);
+		Game.hero.takeDamage(attack);
 		Game.hero.knockBack(this);
 	}
 //	@Override
