@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import com.madbros.adventurecraft.Items.ClothingItem;
+import com.madbros.adventurecraft.Items.IronArmor;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Point;
@@ -184,6 +185,15 @@ public class Level {
 			for(int x = 0; x < saveData.invClothingID.length; x++) {
 				int id = saveData.invClothingID[x];
 				Game.inventory.invClothing[x].item = ITEM_HASH.get(id).createNew();
+				ClothingItem clothingItem = new IronArmor();
+				if(Game.inventory.invClothing[x].item.id != 0) {
+					System.out.println("YES");
+					clothingItem = (ClothingItem)Game.inventory.invClothing[x].item;
+					//Game.hero.addClothingItem(clothingItem);
+					Game.hero.sprite.addSprite(clothingItem.animatedSprite);
+				}
+				//ClothingItem clothingItem = (ClothingItem) Game.inventory.invClothing[x].item;
+				//Game.hero.addClothingItem(clothingItem);
 //				ClothingItem clothingItem = (ClothingItem) Game.inventory.invClothing[x].item;
 //				Game.hero.sprite.addSprite(clothingItem.animatedSprite);
 			}
