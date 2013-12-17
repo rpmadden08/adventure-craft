@@ -10,6 +10,7 @@ import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.WeaponItem;
+import com.madbros.adventurecraft.Sprites.Animation;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
@@ -163,6 +164,7 @@ public class Hero extends Actor {
 			currentSpeed = moveSpeed;
 			move(Time.getDelta());
 		} else if(isAttacking) {
+			sprite.changeFrameTimes(80);
 			startWeaponAnimation = true;
 			int currentFrame = sprite.getCurrentAnimationFrame();
 			if(currentFrame == 0) {

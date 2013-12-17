@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.madbros.adventurecraft.Items.ClothingItem;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.TileTypes.Cauldron;
 import com.madbros.adventurecraft.TileTypes.Furnace;
@@ -32,6 +33,8 @@ public class SaveGame {
 		saveData.maxMP = Game.hero.maxMP;
 		saveData.eP = Game.hero.eP;
 		saveData.maxEP = Game.hero.maxEP;
+
+//		public int[] invClothingID = new int[4];
 		
 		for(int x = 0; x < saveData.invBarID.length; x++) {
 			saveData.invBarID[x] = Game.inventory.invBar[x].item.id;
@@ -41,6 +44,20 @@ public class SaveGame {
 		for(int x = 0; x < saveData.invBagID.length; x++) {
 			saveData.invBagID[x] = Game.inventory.invBag[x].item.id;
 			saveData.invBagStackSize[x] = Game.inventory.invBag[x].item.stackSize;
+		}
+		
+		saveData.invCraftedID = Game.inventory.invCrafted[0].item.id;
+		saveData.invCraftedStackSize = Game.inventory.invCrafted[0].item.stackSize;
+		
+		for(int x = 0; x < saveData.invCraftingID.length; x++) {
+			saveData.invCraftingID[x] = Game.inventory.invCrafting[x].item.id;
+			saveData.invCraftingStackSize[x] = Game.inventory.invCrafting[x].item.stackSize;
+		}
+		
+		for(int x = 0; x < saveData.invClothingID.length; x++) {
+			saveData.invClothingID[x] = Game.inventory.invClothing[x].item.id;
+
+			//saveData.invCraftingStackSize[x] = Game.inventory.invCrafting[x].item.stackSize;
 		}
 		
 		saveData.gameTime = Time.getGameTime();

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import com.madbros.adventurecraft.Items.ClothingItem;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Point;
@@ -180,8 +181,24 @@ public class Level {
 				Game.inventory.invBar[x].item.stackSize = saveData.invBarStackSize[x];
 			}
 			
+			for(int x = 0; x < saveData.invClothingID.length; x++) {
+				int id = saveData.invClothingID[x];
+				Game.inventory.invClothing[x].item = ITEM_HASH.get(id).createNew();
+//				ClothingItem clothingItem = (ClothingItem) Game.inventory.invClothing[x].item;
+//				Game.hero.sprite.addSprite(clothingItem.animatedSprite);
+			}
+			
+			for(int x = 0; x < saveData.invCraftingID.length; x++) {
+				int id = saveData.invCraftingID[x];
+				Game.inventory.invCrafting[x].item = ITEM_HASH.get(id).createNew();
+				Game.inventory.invCrafting[x].item.stackSize = saveData.invCraftingStackSize[x];
+			}
+				int id = saveData.invCraftedID;
+				Game.inventory.invCrafted[0].item = ITEM_HASH.get(id).createNew();
+				Game.inventory.invCrafted[0].item.stackSize = saveData.invCraftedStackSize;
+			
 			for(int x = 0; x < saveData.invBagID.length; x++) {
-				int id = saveData.invBagID[x];
+				id = saveData.invBagID[x];
 				Game.inventory.invBag[x].item = ITEM_HASH.get(id).createNew();
 				Game.inventory.invBag[x].item.stackSize = saveData.invBagStackSize[x];
 			}
