@@ -495,9 +495,13 @@ public class Sprites {
 			
 			AnimatedSprite animatedSprite = new AnimatedSprite(animations);
 			AnimatedSprite animatedHelmet = new AnimatedSprite(helmet);
+			animatedHelmet.stackPosition = 5;
 			AnimatedSprite animatedChest = new AnimatedSprite(chest);
+			animatedChest.stackPosition = 4;
 			AnimatedSprite animatedPants = new AnimatedSprite(pants);
+			animatedPants.stackPosition = 3;
 			AnimatedSprite animatedBoots = new AnimatedSprite(boots);
+			animatedBoots.stackPosition = 2;
 			
 			AnimatedSprite animatedBat = new AnimatedSprite(bat);
 			

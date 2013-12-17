@@ -306,6 +306,7 @@ public class Actor extends GameObject {
 	
 	public void addClothingItem(ClothingItem clothingItem) {
 		sprite.addSprite(clothingItem.animatedSprite);
+		sprite.sort();
 		sprite.changeAnimationTo(WALK_DOWN);
 		//increase armor rating and add special effects
 	}

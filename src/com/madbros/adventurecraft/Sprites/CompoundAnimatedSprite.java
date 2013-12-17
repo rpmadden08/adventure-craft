@@ -1,7 +1,9 @@
 package com.madbros.adventurecraft.Sprites;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
+import com.madbros.adventurecraft.AtlasComparator;
 import com.madbros.adventurecraft.Utils.*;
 
 public class CompoundAnimatedSprite extends CompoundSprite {
@@ -91,6 +93,10 @@ public class CompoundAnimatedSprite extends CompoundSprite {
 	}
 	public int getCurrentAnimationFrame() {
 		return sprites.get(0).getCurrentAnimationFrame();
+	}
+	
+	public void sort() {
+		Collections.sort(sprites, new AtlasComparator());
 	}
 	
 	public CompoundAnimatedSprite getCopy() {

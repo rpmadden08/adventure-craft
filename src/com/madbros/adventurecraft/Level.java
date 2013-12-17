@@ -182,20 +182,15 @@ public class Level {
 				Game.inventory.invBar[x].item.stackSize = saveData.invBarStackSize[x];
 			}
 			
-			for(int x = 0; x < saveData.invClothingID.length; x++) {
+			for(int x = saveData.invClothingID.length-1; x >= 0; x--) {
 				int id = saveData.invClothingID[x];
 				Game.inventory.invClothing[x].item = ITEM_HASH.get(id).createNew();
 				ClothingItem clothingItem = new IronArmor();
 				if(Game.inventory.invClothing[x].item.id != 0) {
 					System.out.println("YES");
 					clothingItem = (ClothingItem)Game.inventory.invClothing[x].item;
-					//Game.hero.addClothingItem(clothingItem);
 					Game.hero.sprite.addSprite(clothingItem.animatedSprite);
 				}
-				//ClothingItem clothingItem = (ClothingItem) Game.inventory.invClothing[x].item;
-				//Game.hero.addClothingItem(clothingItem);
-//				ClothingItem clothingItem = (ClothingItem) Game.inventory.invClothing[x].item;
-//				Game.hero.sprite.addSprite(clothingItem.animatedSprite);
 			}
 			
 			for(int x = 0; x < saveData.invCraftingID.length; x++) {
