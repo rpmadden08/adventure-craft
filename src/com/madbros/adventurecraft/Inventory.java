@@ -102,7 +102,7 @@ public class Inventory {
 		invBar[0].item.stackSize =99;
 		invBar[1].item = new IronArmor();
 		invBar[1].item.stackSize = 1;
-		invBar[2].item = new Pick();
+		invBar[2].item = new Sword();
 		invBar[2].item.stackSize = 1;
 		invBar[3].item = new IronLeggings();
 		invBar[3].item.stackSize = 1;
