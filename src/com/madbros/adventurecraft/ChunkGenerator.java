@@ -20,7 +20,7 @@ public class ChunkGenerator {
 			return AIR;
     	//MOUNTAIN
     	} else if(chunkGroundLayer[m][n] == 2) {
-    		return AIR;
+    		return DIRT_MOUNTAIN_BOTTOM;
     	} else {
     		//DESERT
     		if(chunkGroundLayer[m][n] == 3) {

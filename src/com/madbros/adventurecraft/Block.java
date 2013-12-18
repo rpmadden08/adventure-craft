@@ -146,6 +146,10 @@ public class Block {
 		}
 	}
 	
+	public void deleteTile(int layer) {
+		layers[layer] = new NoTile();
+	}
+	
 	public void deleteObjectTile() {
 		
 			if(layers[OBJECT_LAYER].id != AIR && layers[OBJECT_LAYER].id != DARK_DIRT) { 

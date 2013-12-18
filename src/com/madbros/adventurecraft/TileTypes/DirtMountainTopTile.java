@@ -15,6 +15,7 @@ public class DirtMountainTopTile extends CollisionTile {
 		layer = ABOVE_LAYER_2;
 		z = Z_ABOVE_LAYER;
 		isDiggable = false;
+		isPickable = true;
 	}
 	
 	public void render(int x, int y, int layer) {

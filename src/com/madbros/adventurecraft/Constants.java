@@ -237,6 +237,7 @@ public class Constants {
 	public static final int FURNACE_ITEM = 22;
 	public static final int BAKED_POTATOES = 23;
 	public static final int CAULDRON_ITEM = 24;
+	public static final int PICK = 25;
 	
 	
 	//Clothing Types
@@ -293,6 +294,7 @@ public class Constants {
 		ITEM_HASH.put(AXE, new Axe());
 		ITEM_HASH.put(SWORD, new Sword());
 		ITEM_HASH.put(HOE, new Hoe());
+		ITEM_HASH.put(PICK, new Pick());
 		ITEM_HASH.put(LONG_SWORD, new LongSword());
 		ITEM_HASH.put(SAPLING_ITEM, new Sapling());
 		ITEM_HASH.put(IRON_HELMET, new IronHelmet());

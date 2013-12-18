@@ -59,6 +59,7 @@ public class Sprites {
 	public static final String HOE = "ironHoe";
 	public static final String TABLE_ITEM = "table";
 	public static final String CHEST_ITEM = "chest";
+	public static final String PICK = "ironPick";
 	
 	//static collections
 //	public static final String GEM = "Gem Blue";
@@ -258,7 +259,7 @@ public class Sprites {
 					PLATE_TORSO_SLASH_RIGHT,PLATE_HELMET_SLASH_UP, PLATE_HELMET_SLASH_DOWN, PLATE_HELMET_SLASH_LEFT, 
 					PLATE_HELMET_SLASH_RIGHT, PLATE_LEGS_SLASH_UP, PLATE_LEGS_SLASH_DOWN, PLATE_LEGS_SLASH_LEFT, 
 					PLATE_LEGS_SLASH_RIGHT, PLATE_FEET_SLASH_UP, PLATE_FEET_SLASH_DOWN, PLATE_FEET_SLASH_LEFT, 
-					PLATE_FEET_SLASH_RIGHT
+					PLATE_FEET_SLASH_RIGHT, PICK
 			};
 			
 			String[] lightNames = {LIGHT};

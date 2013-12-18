@@ -514,10 +514,10 @@ public class Level {
     	//MOUNTAIN
     	} else if(chunkGenerator.chunkGroundLayer[m][n] == 2) {
     		PMountain++;
-    		Tile[] dirtMountainTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-    		Tile[] dirtMountainTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-    		Tile[] dirtMountainTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-    		Tile[] dirtMountainTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile2 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile3 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile4 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 	    	block = new Block(dirtMountainTile, absX, absY, true);
 	    	block2 = new Block(dirtMountainTile2, absX+TILE_SIZE, absY, true);
 	    	block3 = new Block(dirtMountainTile3, absX, absY+TILE_SIZE, true);
@@ -633,11 +633,20 @@ public class Level {
     		}
     		
     	}
+		//Mountains
+		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_BOTTOM) {
+			block.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+			block2.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+			block3.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+			block4.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+		}
 		Block[] blockGrid = {block, block3, block2, block4};
 		int cycle = 0;
 		for(int s = m; s < m+2; s++) {
 			for(int t = n; t < n+2; t++) {
 				
+				
+				//TREES
 				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
 	    			blockGrid[cycle].layers[OBJECT_LAYER] = new TreeTile();
 	    		}
@@ -833,6 +842,20 @@ public class Level {
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY+2], highlightedBlockX-2, highlightedBlockY+2);
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY+2], highlightedBlockX, highlightedBlockY+2);
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY+2], highlightedBlockX+2, highlightedBlockY+2);
+	}
+	
+	public void autoTileBlock(int x, int y) {
+		autoTile(activeBlocks, activeBlocks[x][y], x, y);
+		
+		autoTile(activeBlocks, activeBlocks[x-2][y-2], x-2, y-2);
+		autoTile(activeBlocks, activeBlocks[x][y-2], x, y-2);
+		autoTile(activeBlocks, activeBlocks[x+2][y-2], x+2, y-2);
+		autoTile(activeBlocks, activeBlocks[x-2][y], x-2, y);
+		autoTile(activeBlocks, activeBlocks[x+2][y], x+2, y);
+		autoTile(activeBlocks, activeBlocks[x-2][y+2], x-2, y+2);
+		autoTile(activeBlocks, activeBlocks[x][y+2], x, y+2);
+		autoTile(activeBlocks, activeBlocks[x+2][y+2], x+2, y+2);
+
 	}
 	
 	public void handleCollisions() {

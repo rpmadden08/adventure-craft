@@ -19,6 +19,7 @@ public abstract class Tile {
 	public float z = Z_DARK_DIRT;
 	public boolean isVisible = true;
 	public boolean isCollidable = false;
+	public boolean isPickable = false;
 	public boolean isDiggable = true;
 	public boolean isChoppable = false;
 	public boolean isTillable = false;

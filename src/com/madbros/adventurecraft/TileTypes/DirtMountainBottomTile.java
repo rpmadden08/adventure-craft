@@ -16,6 +16,7 @@ public class DirtMountainBottomTile extends CollisionTile {
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
 		isDiggable = false;
+		isPickable = true;
 	}
 	
 	public void render(int x, int y, int layer) {
