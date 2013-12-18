@@ -187,7 +187,6 @@ public class Level {
 				Game.inventory.invClothing[x].item = ITEM_HASH.get(id).createNew();
 				ClothingItem clothingItem = new IronArmor();
 				if(Game.inventory.invClothing[x].item.id != 0) {
-					System.out.println("YES");
 					clothingItem = (ClothingItem)Game.inventory.invClothing[x].item;
 					Game.hero.sprite.addSprite(clothingItem.animatedSprite);
 				}

@@ -16,6 +16,7 @@ public class Bat extends Mob {
 	int length = 0;
 	int framesNum = 0;
 	MobController mobController;
+	//Rect detectRect;
 	
 	public Bat(MobController mobController, int x, int y) {
 		super(mobController);
@@ -23,6 +24,8 @@ public class Bat extends Mob {
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
+		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
+		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BAT));
 		margin = new Margin(0, 0, 0, 0);
 		currentSpeed = 0.1f;
@@ -58,7 +61,15 @@ public class Bat extends Mob {
 //	}
 	
 	public void updateAI() {
-		if(framesNum > length) {
+		detectRect = new Rect(absRect.x - detectRange, absRect.y - detectRange, absRect.w +(detectRange*2), absRect.h +(detectRange*2));
+		if(detectRect.detectCollision(Game.hero.absRect)) {
+			isChasing = true;
+			//stop();
+			chaseHero(Game.hero.absRect, this.absRect);
+		} else {
+			isChasing = false;
+		}
+		if(framesNum > length && isChasing == false) {
 			framesNum = 0;
 			Random rand2 = new Random();
 			length = rand2.nextInt(100);
