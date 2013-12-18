@@ -501,7 +501,7 @@ public class Level {
 	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
 	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
 	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);			
-		} else if(chunkGenerator.chunkGroundLayer[m][n] == 1) {//FIXME Should be < -0.1
+		} else if(chunkGenerator.chunkGroundLayer[m][n] == 1) {
 			POcean++;
 			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 			Tile[] waterTile2 = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
@@ -634,11 +634,18 @@ public class Level {
     		
     	}
 		//Mountains
-		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_BOTTOM) {
+		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_BOTTOM || chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_COAL_BOTTOM) {
 			block.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
 			block2.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
 			block3.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
 			block4.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+		}
+		
+		if(chunkGenerator.chunkObjectLayer[m][n] == DIRT_MOUNTAIN_COAL_BOTTOM) {
+			block.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
+			block2.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
+			block3.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
+			block4.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
 		}
 		Block[] blockGrid = {block, block3, block2, block4};
 		int cycle = 0;
@@ -735,14 +742,14 @@ public class Level {
 		for(int i = LIGHT_DIRT_LAYER; i < blocks[x][y].layers.length; i++) {
 			if(block.layers[i].isAutoTileable) {
 				int left = 0, topLeft = 0, top = 0, topRight = 0, right = 0, bottomRight = 0, bottom = 0, bottomLeft = 0;
-				if(blocks[x-2][y-2].layers[i].id == block.layers[i].id) topLeft = 1;
-				if(blocks[x][y-2].layers[i].id == block.layers[i].id) top = 2;
-				if(blocks[x+2][y-2].layers[i].id == block.layers[i].id) topRight = 4;
-				if(blocks[x-2][y].layers[i].id == block.layers[i].id) left = 8;
-				if(blocks[x+2][y].layers[i].id == block.layers[i].id) right = 16;
-				if(blocks[x-2][y+2].layers[i].id == block.layers[i].id) bottomLeft = 32;
-				if(blocks[x][y+2].layers[i].id == block.layers[i].id) bottom = 64;
-				if(blocks[x+2][y+2].layers[i].id == block.layers[i].id) bottomRight = 128;
+				if(blocks[x-2][y-2].layers[i].autoTileID == block.layers[i].autoTileID) topLeft = 1;
+				if(blocks[x][y-2].layers[i].autoTileID == block.layers[i].autoTileID) top = 2;
+				if(blocks[x+2][y-2].layers[i].autoTileID == block.layers[i].autoTileID) topRight = 4;
+				if(blocks[x-2][y].layers[i].autoTileID == block.layers[i].autoTileID) left = 8;
+				if(blocks[x+2][y].layers[i].autoTileID == block.layers[i].autoTileID) right = 16;
+				if(blocks[x-2][y+2].layers[i].autoTileID == block.layers[i].autoTileID) bottomLeft = 32;
+				if(blocks[x][y+2].layers[i].autoTileID == block.layers[i].autoTileID) bottom = 64;
+				if(blocks[x+2][y+2].layers[i].autoTileID == block.layers[i].autoTileID) bottomRight = 128;
 				
 				block.layers[i].autoTile = TOP_LEFT_AUTO_TILE_HASH.get(left + topLeft + top);
 				blocks[x+1][y].layers[i].autoTile = TOP_RIGHT_AUTO_TILE_HASH.get(right + topRight + top);

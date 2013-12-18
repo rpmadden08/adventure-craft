@@ -20,7 +20,15 @@ public class ChunkGenerator {
 			return AIR;
     	//MOUNTAIN
     	} else if(chunkGroundLayer[m][n] == 2) {
-    		return DIRT_MOUNTAIN_BOTTOM;
+    		Random r = new Random();
+    		int Low = 1;
+    		int High = 10;
+    		int R = r.nextInt(High-Low) + Low;
+    		if(R >5) {
+    			return DIRT_MOUNTAIN_BOTTOM;
+    		} else {
+    			return DIRT_MOUNTAIN_COAL_BOTTOM;
+    		}
     	} else {
     		//DESERT
     		if(chunkGroundLayer[m][n] == 3) {

@@ -13,6 +13,7 @@ public class GrassTile extends Tile {
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.GRASS);
 		id = GRASS;
+		autoTileID = id;
 		isTillable = true;
 	}
 

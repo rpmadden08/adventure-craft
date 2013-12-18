@@ -5,13 +5,13 @@ import static com.madbros.adventurecraft.Constants.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 
-public class DirtMountainTopTile extends CollisionTile {
-	public DirtMountainTopTile() {
+public class DirtMountainCoalTopTile extends CollisionTile {
+	public DirtMountainCoalTopTile() {
 		super();
 		currentSpriteId = 0;
-		sprites = Sprites.spriteCollections.get(Sprites.MOUNTAIN_TOP);
+		sprites = Sprites.spriteCollections.get(Sprites.MOUNTAIN_COAL_TOP);
 		margin = new Margin(9, 9, 12, 11);
-		id = DIRT_MOUNTAIN_TOP;
+		id = DIRT_MOUNTAIN_COAL_TOP;
 		autoTileID = id;
 		layer = ABOVE_LAYER_2;
 		z = Z_ABOVE_LAYER;
@@ -28,6 +28,6 @@ public class DirtMountainTopTile extends CollisionTile {
 	}
 	
 	public Tile createNew() {
-		return new DirtMountainTopTile();
+		return new DirtMountainCoalTopTile();
 	}
 }
