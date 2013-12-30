@@ -59,6 +59,7 @@ public class MainStateInput extends BasicInput {
 	@Override
 	public boolean keyDown(int key) {
 		super.keyDown(key);
+		System.out.println("test");
 		switch(key) {
 		case Keys.M: Game.debugger.toggle(); break;
 		case Keys.ESCAPE: Game.gameMainMenu.toggleMenu(); break;
@@ -75,7 +76,8 @@ public class MainStateInput extends BasicInput {
 		case Keys.NUM_0: Game.inventory.changeSelectedItemTo(key); break;
 		case Keys.MINUS: Game.zoomOut(); break;
 		case Keys.EQUALS: Game.zoomIn(); break;
-	}
+		}
+
 		additionalKeyDown(key);
 		return false;
 	}

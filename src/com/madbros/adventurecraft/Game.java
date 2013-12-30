@@ -74,7 +74,7 @@ public class Game implements ApplicationListener {
 	public static ShaderProgram finalShader;
 	public static ShaderProgram currentShader;
 	
-	public static float ambientIntensity = 0.05f; //0.05
+	public static float ambientIntensity = 0.4f; //0.05
 	public static Vector3 ambientColor = new Vector3(0.3f, 0.3f, 0.7f); //0.3f, 0.3f, 0.7f
 	
 	public static float lightTransparency = 1f;
