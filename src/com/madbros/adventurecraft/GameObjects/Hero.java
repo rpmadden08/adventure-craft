@@ -11,6 +11,7 @@ import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Items.ClothingItem;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.WeaponItem;
+import com.madbros.adventurecraft.Sprites.Animation;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;

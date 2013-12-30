@@ -25,7 +25,6 @@ public class AnimationSystem {
 	
 	public void updateMain(Hero hero, MobController mobController) {
 		updateTiles();
-		
 		hero.sprite.updateCurrentAnimation();
 		for(Mob mob : mobController.mobs) {
 			if(mob.isMoving()) mob.sprite.updateCurrentAnimation();

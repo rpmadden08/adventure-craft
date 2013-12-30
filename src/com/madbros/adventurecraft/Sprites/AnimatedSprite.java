@@ -49,6 +49,7 @@ public class AnimatedSprite extends Sprite {
 	}
 	
 	public void changeAnimationTo(int animationId) {
+		//FIXME Just not sure why this resetFrame command was here...  
 		resetFrame();
 		
 		currentAnimation = animations.get(animationId);
