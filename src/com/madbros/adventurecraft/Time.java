@@ -30,14 +30,14 @@ public class Time {
 	public static long getMilliseconds() {
 		long totalMilli = System.nanoTime() / 1000000; //<- time in milliseconds
 		
-		totalMilli = (totalMilli - Game.level.gameStartTime)/10;
+		totalMilli = (totalMilli - Game.level.gameStartTime+ Game.timeSpentInPreviousSaves)/10;
 		return totalMilli % 100;
 	}
 	
 	public static long getTotalSeconds() {
 		long currentTime =  System.nanoTime() / 1000000; //<- time in milliseconds
 		
-		return (currentTime - Game.level.gameStartTime)/100; //Should be 1000 but made it /10 for testing purposes...
+		return (currentTime - Game.level.gameStartTime+ Game.timeSpentInPreviousSaves)/1000; //Should be 1000 but made it /10 for testing purposes...
 	}
 	
 	public static long getSeconds() {

@@ -59,7 +59,6 @@ public class MainStateInput extends BasicInput {
 	@Override
 	public boolean keyDown(int key) {
 		super.keyDown(key);
-		System.out.println("test");
 		switch(key) {
 		case Keys.M: Game.debugger.toggle(); break;
 		case Keys.ESCAPE: Game.gameMainMenu.toggleMenu(); break;

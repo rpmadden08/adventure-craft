@@ -30,6 +30,10 @@ public class Debugger {
 	private long[] updateTimeStore;
 	private long startTime = 0;
 	private long endTime = 0;
+//	private int hours = 0;
+//	private int minutes = 0;
+	private String hours;
+	private String minutes;
 	
 	private BitmapFont font;
 	private Color fontColor;
@@ -66,6 +70,10 @@ public class Debugger {
 	private void updateFPS() {
 		long timeNow = Time.getTime();
 		timeSpentInGame = (long) ((timeNow - Game.gameStartTime + Game.timeSpentInPreviousSaves)/1000);  // ms --> secs
+//		hours = (int) Time.getMinutes();
+//		minutes = (int) Time.getSeconds();
+		hours = Time.getMinutesString();
+		minutes = Time.getSecondsString();
 		displayedGameTime = String.valueOf(timeSpentInGame);
 		
 		if(timeNow - lastFPS > 1000) {
@@ -139,6 +147,8 @@ public class Debugger {
 //		font.draw(batch, str, x, y, start, end);
 		font.setColor(fontColor);
 		font.draw(batch, "Time Spent In Game: " + displayedGameTime + " seconds", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*0);
+		font.draw(batch, "Current Time: "+hours+":"+minutes, DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*1);
+		
 		
 		font.draw(batch, "Current fps: " + displayedFPS + " fps", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*2);
 		font.draw(batch, "Average ms for update: " + displayedMillisecondsPerUpdate, DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*3);
@@ -149,6 +159,7 @@ public class Debugger {
 		font.draw(batch, "Memory Left: " + displayedPercentOfMemoryLeft + "%", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*8);
 		font.draw(batch, "Character Position: (" + charRect.x/TILE_SIZE + ", " + charRect.y/TILE_SIZE + ")", DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*10);
 		font.draw(batch, "Extra Debugger: " + displayedExtra, DISPLAY_STARTX, DISPLAY_STARTY + DISPLAY_MARGIN*12);
+	
 	}
 	
 	public void toggle() {

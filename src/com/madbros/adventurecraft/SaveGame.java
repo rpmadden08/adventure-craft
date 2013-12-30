@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import com.madbros.adventurecraft.Items.ClothingItem;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.TileTypes.Cauldron;
 import com.madbros.adventurecraft.TileTypes.Furnace;
