@@ -20,20 +20,15 @@ public class ChunkGenerator {
 			return AIR;
     	//MOUNTAIN
     	} else if(chunkGroundLayer[m][n] == 2) {
-    		if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 3 - 1 &&
- 				   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
- 					
-	    		Random r = new Random();
-	    		int Low = 1;
-	    		int High = 10;
-	    		int R = r.nextInt(High-Low) + Low;
-	    		if(R >5) {
-	    			return DIRT_MOUNTAIN_BOTTOM;
-	    		} else {
-	    			return DIRT_MOUNTAIN_COAL_BOTTOM;
-	    		}
+    		Random r = new Random();
+    		int Low = 1;
+    		int High = 10;
+    		int R = r.nextInt(High-Low) + Low;
+    		if(R >5) {
+    			return DIRT_MOUNTAIN_BOTTOM;
+    		} else {
+    			return DIRT_MOUNTAIN_COAL_BOTTOM;
     		}
-    		return AIR;
     	} else {
     		//DESERT
     		if(chunkGroundLayer[m][n] == 3) {
@@ -62,16 +57,6 @@ public class ChunkGenerator {
 	    		
 				//RainForest
     		}else if(chunkGroundLayer[m][n] == 6){
-    			if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 3 - 1 &&
-    					   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
-    						
-    		    			double a = getTree(m, n, seed, rand);
-    		    			if(a < 0.5) {
-    		    				return TREE_RAIN;
-    		    			} else {
-    		    				return AIR;
-    		    			}
-    					}
     			return AIR;
 				//Swamp
     		}else if(chunkGroundLayer[m][n] == 7){
@@ -79,16 +64,6 @@ public class ChunkGenerator {
 	    		
 	    		//Taiga (snowy forest)
     		}else if(chunkGroundLayer[m][n] == 8){
-    			if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 3 - 1 &&
- 					   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
- 						
- 		    			double a = getTree(m, n, seed, rand);
- 		    			if(a < 0.5) {
- 		    				return TREE_PINE;
- 		    			} else {
- 		    				return AIR;
- 		    			}
- 					}
     			return AIR;
 				//Tundra (snowy)
     		}else if(chunkGroundLayer[m][n] == 9){

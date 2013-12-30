@@ -179,28 +179,20 @@ public class Mob extends Actor {
 			moveDown();
 		} else if(speedX > maxSpeed) {
 			moveRight();
-			if(isMovingUp || isMovingDown) {
-				stopUp();
-				stopDown();
-			}
+			stopUp();
+			stopDown();
 		} else if(speedX < -maxSpeed) {
 			moveLeft();
-			if(isMovingUp || isMovingDown) {
-				stopUp();
-				stopDown();
-			}
+			stopUp();
+			stopDown();
 		} else if(speedY > maxSpeed) {
 			moveDown();
-			if(isMovingLeft || isMovingRight) {
-				stopLeft();
-				stopRight();
-			}
+			stopLeft();
+			stopRight();
 		} else if(speedY < -maxSpeed) {
 			moveUp();
-			if(isMovingLeft || isMovingRight) {
-				stopLeft();
-				stopRight();
-			}
+			stopLeft();
+			stopRight();
 		}
 	}
 	

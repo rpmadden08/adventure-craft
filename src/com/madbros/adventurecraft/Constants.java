@@ -133,7 +133,6 @@ public class Constants {
 	public static final int CAULDRON = 26;
 	public static final int DIRT_MOUNTAIN_COAL_BOTTOM = 27;
 	public static final int DIRT_MOUNTAIN_COAL_TOP = 28;
-	public static final int TREE_RAIN = 29;
 	
 	
 	//Layers
@@ -319,7 +318,6 @@ public class Constants {
 		TILE_HASH.put(WATER, new WaterTile());
 		TILE_HASH.put(TREE, new TreeTile());
 		TILE_HASH.put(TREE_PINE, new TreePineTile());
-		TILE_HASH.put(TREE_RAIN, new TreeRainTile());
 		TILE_HASH.put(DARK_DIRT, new DarkDirtTile());
 		TILE_HASH.put(SAND, new SandTile());
 		TILE_HASH.put(AIR, new NoTile());
