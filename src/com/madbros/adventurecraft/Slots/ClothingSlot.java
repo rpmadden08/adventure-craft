@@ -31,12 +31,14 @@ public class ClothingSlot extends Slot{
 					Game.hero.addClothingItem(heldItem);
 					if(item instanceof ClothingItem) Game.hero.removeClothingItem((ClothingItem)item);
 					swapItems(inv);
+					Game.hero.calcArmor();
 				}
 			}
 		} else if(inv.heldItem.id == EMPTY && item.id != EMPTY) {
 			ClothingItem item = (ClothingItem) this.item;
 			Game.hero.removeClothingItem(item);
 			swapItems(inv);
+			Game.hero.calcArmor();
 		}
 		
 		handleAdditional(inv.invCrafting, inv.invCrafted);

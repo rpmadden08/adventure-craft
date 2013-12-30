@@ -40,6 +40,13 @@ public class Block {
 		return y;
 	}
 	
+	public int getAbsX() {
+		return absRect.x / TILE_SIZE;
+	}
+	
+	public int getAbsY() {
+		return absRect.y / TILE_SIZE;
+	}
 	
 	public Block(Tile[] t, int absX, int absY, boolean isUnfinished) {
 		absRect = new Rect(absX, absY);
@@ -83,43 +90,6 @@ public class Block {
 		}
 	}
 	
-//	public void render(int x, int y) {
-//		Tile[] renderTiles = getRenderTiles();
-//		
-//		for(int i = 0; i < renderTiles.length;i++) {
-//			if(renderTiles[i].id == TREE_LEAF) ((TreeLeafTile)renderTiles[i]).render(x, y, i);
-//			else renderTiles[i].render(x, y);
-//		}
-//		
-//		Tile topTile = getTopTile();
-//		
-//		if(isHighlighted) {
-//			if(topTile.currentHp < topTile.maxHp) topTile.renderHp(x, y);
-//			Color highlightColor = new Color(0.8f, 0.8f, 0.8f, 1.0f);
-//			topTile.sprites[topTile.currentSpriteId].setColor(highlightColor);
-//			topTile.render(x, y);
-//			topTile.sprites[topTile.currentSpriteId].setColor(Color.WHITE);
-//		}
-//		
-//		if(Game.debugMenu.collisionTilesAreOn && Arrays.asList(Game.hero.collisionDetectionBlocks).contains(this)) {
-//			Color highlightColor = new Color(1, 1, 1, 0.2f);
-//			Sprites.pixel.setColor(highlightColor);
-//			Sprites.collisionDebugger.draw(x, y, Z_COLLISION_TILES, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
-//			Sprites.pixel.setColor(Color.WHITE);
-//		}
-//		
-//		if(Game.debugMenu.collisionRectsAreOn && isCollidable()) {
-//			Rect r = new Rect((int)x, (int)y);
-//			r = new Rect(r, collisionTile.margin);
-//			
-//			Color highlightColor = new Color(0, 0, 1f, 0.6f);
-//			Sprites.pixel.setColor(highlightColor);
-//			
-//			Sprites.pixel.draw(r, Z_COLLISION_RECTS);
-//			Sprites.pixel.setColor(Color.WHITE);
-//		}
-//	}
-	
 	public boolean isCollidable() {
 		return collisionTile != null;
 	}
@@ -162,7 +132,7 @@ public class Block {
 	}
 	
 	public void deleteTopTileTilled() {
-		for(int i = layers.length-1; i > -1; i--) {
+		for(int i = OBJECT_LAYER; i > -1; i--) {
 			if(layers[i].id != AIR && layers[i].id != DARK_DIRT) { 
 				layers[i] = new NoTile();
 				//layers[LIGHT_DIRT_LAYER] = new NoTile();
@@ -176,6 +146,10 @@ public class Block {
 		}
 	}
 	
+	public void deleteTile(int layer) {
+		layers[layer] = new NoTile();
+	}
+	
 	public void deleteObjectTile() {
 		
 			if(layers[OBJECT_LAYER].id != AIR && layers[OBJECT_LAYER].id != DARK_DIRT) { 
@@ -186,28 +160,10 @@ public class Block {
 	}
 	
 	//returns all visable layers
-	public Tile[] getRenderTiles() {
-		Tile[] tiles = new Tile[23];
-		tiles[ABOVE_LAYER_6] = layers[ABOVE_LAYER_6];
-		tiles[ABOVE_LAYER_5] = layers[ABOVE_LAYER_5];
-		tiles[ABOVE_LAYER_4] = layers[ABOVE_LAYER_4];
-		tiles[ABOVE_LAYER_3] = layers[ABOVE_LAYER_3];
-		tiles[ABOVE_LAYER_2] = layers[ABOVE_LAYER_2];
-		tiles[TREE_LEFT_0] = layers[TREE_LEFT_0];
-		tiles[TREE_CENTER_0] = layers[TREE_CENTER_0];
-		tiles[TREE_RIGHT_0] = layers[TREE_RIGHT_0];
-		tiles[TREE_LEFT_1] = layers[TREE_LEFT_1];
-		tiles[TREE_CENTER_1] = layers[TREE_CENTER_1];
-		tiles[TREE_RIGHT_1] = layers[TREE_RIGHT_1];
-		tiles[TREE_LEFT_2] = layers[TREE_LEFT_2];
-		tiles[TREE_CENTER_2] = layers[TREE_CENTER_2];
-		tiles[TREE_RIGHT_2] = layers[TREE_RIGHT_2];
-		tiles[TREE_LEFT_3] = layers[TREE_LEFT_3];
-		tiles[TREE_CENTER_3] = layers[TREE_CENTER_3];
-		tiles[TREE_RIGHT_3] = layers[TREE_RIGHT_3];
-		tiles[ABOVE_LAYER_1] = layers[ABOVE_LAYER_1];
+	public Tile[] getRenderTilesBottom() {
+		Tile[] tiles = new Tile[5];
+
 		tiles[OBJECT_LAYER] = layers[OBJECT_LAYER];
-		
 		boolean middleTileReached = false;
 		for(int i = WATER_LAYER; i > -1; i--) {
 			if(layers[i].id == AIR || middleTileReached) tiles[i] = new NoTile();
@@ -216,6 +172,36 @@ public class Block {
 				if(layers[i].isMiddleTile) middleTileReached = true;
 			}
 		}
+		return tiles;
+	}
+	
+	public Tile[] getRenderTilesTop() {
+		Tile[] tiles = new Tile[18];
+		int j = 0;
+		for(int i = TREE_LEFT_0; i < 23; i++) {
+			tiles[j] = layers[i];
+			j++;
+		}
+		
+		
+//		tiles[ABOVE_LAYER_6] = layers[ABOVE_LAYER_6];
+//		tiles[ABOVE_LAYER_5] = layers[ABOVE_LAYER_5];
+//		tiles[ABOVE_LAYER_4] = layers[ABOVE_LAYER_4];
+//		tiles[ABOVE_LAYER_3] = layers[ABOVE_LAYER_3];
+//		tiles[ABOVE_LAYER_2] = layers[ABOVE_LAYER_2];
+//		tiles[TREE_LEFT_0] = layers[TREE_LEFT_0];
+//		tiles[TREE_CENTER_0] = layers[TREE_CENTER_0];
+//		tiles[TREE_RIGHT_0] = layers[TREE_RIGHT_0];
+//		tiles[TREE_LEFT_1] = layers[TREE_LEFT_1];
+//		tiles[TREE_CENTER_1] = layers[TREE_CENTER_1];
+//		tiles[TREE_RIGHT_1] = layers[TREE_RIGHT_1];
+//		tiles[TREE_LEFT_2] = layers[TREE_LEFT_2];
+//		tiles[TREE_CENTER_2] = layers[TREE_CENTER_2];
+//		tiles[TREE_RIGHT_2] = layers[TREE_RIGHT_2];
+//		tiles[TREE_LEFT_3] = layers[TREE_LEFT_3];
+//		tiles[TREE_CENTER_3] = layers[TREE_CENTER_3];
+//		tiles[TREE_RIGHT_3] = layers[TREE_RIGHT_3];
+//		tiles[ABOVE_LAYER_1] = layers[ABOVE_LAYER_1];
 		return tiles;
 	}
 	

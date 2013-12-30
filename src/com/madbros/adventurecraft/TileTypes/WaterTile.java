@@ -13,6 +13,7 @@ public class WaterTile extends CollisionTile {
 		z = Z_WATER;
 		margin = new Margin(2, 2, 2, 3);
 		id = WATER;
+		autoTileID = id;
 		isDiggable = false;
 		sprites = Sprites.waterSprites;
 	}

@@ -27,6 +27,8 @@ public class Constants {
 	
 	public static final String SAVE_LOC = "saves/";
 	public static final String CHUNKS_FOLDER = "chunks/";
+	public static final String CHESTS_FOLDER = "chests/";
+	public static final String FURNACES_FOLDER = "furnaces/";
 	
 	//character constants
 	public static final int CHARACTER_SIZE = 64;
@@ -70,13 +72,8 @@ public class Constants {
 	public static final Margin INV_MENU_SLOT_MARGIN =new Margin(0, 0, 0, 0);
 	
 	public static final Rect INV_BACKDROP_RECT = new Rect(INV_MENU_MARGIN.left, INV_MENU_MARGIN.top,INV_SLOT_SIZE*INV_LENGTH, INV_SLOT_SIZE*INV_LENGTH+18);
-	//public static final Rect INV_BAR_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INITIAL_WINDOW_HEIGHT-50, 64, 64);
 	public static final Rect INV_BAR_RECT = new Rect(2,50, 64, 64);
-	
-	//public static final Rect INV_BAG_RECT = new Rect((INITIAL_WINDOW_WIDTH - (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * INV_LENGTH + INV_SLOT_SIZE) / 2, INV_BACKDROP_RECT.y2() - INV_BAR_RECT.h*4);	//FIXME: this is dumb
 	public static final Rect INV_BAG_RECT = new Rect(56, 60, INV_SLOT_SIZE*4, INV_SLOT_SIZE*INV_LENGTH);
-	
-	//public static final Rect INV_CHAR_RECT = new Rect(INV_BACKDROP_RECT.x2() - CHARACTER_SIZE*4, INV_BACKDROP_RECT.y + 30, CHARACTER_SIZE*4, CHARACTER_SIZE*4);
 	public static final Rect INV_CHAR_RECT = new Rect(180, 50,100,100);
 	
 	public static final Rect INV_CRAFTING_RECT = new Rect(230, 347, 2*(INV_SLOT_SIZE+2), 2*(INV_SLOT_SIZE+2));
@@ -130,6 +127,13 @@ public class Constants {
 	public static final int TREE_PINE = 20;
 	public static final int POTATO_TILE = 21;
 	public static final int TABLE = 22;
+	public static final int CHEST = 23;
+	public static final int FURNACE = 24;
+	public static final int FURNACE_TOP = 25;
+	public static final int CAULDRON = 26;
+	public static final int DIRT_MOUNTAIN_COAL_BOTTOM = 27;
+	public static final int DIRT_MOUNTAIN_COAL_TOP = 28;
+	public static final int TREE_RAIN = 29;
 	
 	
 	//Layers
@@ -232,6 +236,11 @@ public class Constants {
 	public static final int SEED_POTATO = 18;
 	public static final int POTATOES = 19;
 	public static final int TABLE_ITEM = 20;
+	public static final int CHEST_ITEM = 21;
+	public static final int FURNACE_ITEM = 22;
+	public static final int BAKED_POTATOES = 23;
+	public static final int CAULDRON_ITEM = 24;
+	public static final int PICK = 25;
 	
 	
 	//Clothing Types
@@ -287,6 +296,8 @@ public class Constants {
 		ITEM_HASH.put(SHOVEL, new Shovel());
 		ITEM_HASH.put(AXE, new Axe());
 		ITEM_HASH.put(SWORD, new Sword());
+		ITEM_HASH.put(HOE, new Hoe());
+		ITEM_HASH.put(PICK, new Pick());
 		ITEM_HASH.put(LONG_SWORD, new LongSword());
 		ITEM_HASH.put(SAPLING_ITEM, new Sapling());
 		ITEM_HASH.put(IRON_HELMET, new IronHelmet());
@@ -297,13 +308,18 @@ public class Constants {
 		ITEM_HASH.put(BAT_WING, new BatWing());
 		ITEM_HASH.put(SEED_POTATO, new SeedPotato());
 		ITEM_HASH.put(POTATOES, new Potatoes());
+		ITEM_HASH.put(BAKED_POTATOES, new BakedPotatoes());
 		ITEM_HASH.put(TABLE_ITEM, new TableItem());
+		ITEM_HASH.put(CHEST_ITEM, new ChestItem());
+		ITEM_HASH.put(FURNACE_ITEM, new FurnaceItem());
+		ITEM_HASH.put(CAULDRON_ITEM, new CauldronItem());
 		
 		TILE_HASH.put(GRASS, new GrassTile());
 		TILE_HASH.put(DIRT, new DirtTile());
 		TILE_HASH.put(WATER, new WaterTile());
 		TILE_HASH.put(TREE, new TreeTile());
 		TILE_HASH.put(TREE_PINE, new TreePineTile());
+		TILE_HASH.put(TREE_RAIN, new TreeRainTile());
 		TILE_HASH.put(DARK_DIRT, new DarkDirtTile());
 		TILE_HASH.put(SAND, new SandTile());
 		TILE_HASH.put(AIR, new NoTile());
@@ -314,13 +330,18 @@ public class Constants {
 		TILE_HASH.put(TREE_LEAF_RAIN, new TreeLeafRainTile());
 		TILE_HASH.put(TREE_LEAF_PINE, new TreeLeafPineTile());
 		TILE_HASH.put(HOLE, new HoleTile());
-		
 		TILE_HASH.put(DIRT_MOUNTAIN_BOTTOM, new DirtMountainBottomTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_TOP, new DirtMountainTopTile());
+		TILE_HASH.put(DIRT_MOUNTAIN_COAL_BOTTOM, new DirtMountainCoalBottomTile());
+		TILE_HASH.put(DIRT_MOUNTAIN_COAL_TOP, new DirtMountainCoalTopTile());
 		TILE_HASH.put(CAMPFIRE, new Campfire());
 		TILE_HASH.put(DARK_GRASS, new DarkGrassTile());
 		TILE_HASH.put(SNOW, new SnowTile());
 		TILE_HASH.put(TABLE, new Table());
+		TILE_HASH.put(CHEST, new Chest());
+		TILE_HASH.put(FURNACE, new Furnace());
+		TILE_HASH.put(FURNACE_TOP, new FurnaceTop());
+		TILE_HASH.put(CAULDRON, new Cauldron());
 		
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);

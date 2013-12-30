@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import com.madbros.adventurecraft.Items.ClothingItem;
+import com.madbros.adventurecraft.Items.IronArmor;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Point;
@@ -32,6 +34,8 @@ public class Level {
 	public int highlightedBlockX = 0;
 	public int highlightedBlockY = 0;
 	
+	public boolean hasPlacedItemOnClick = false;
+	
 	public ArrayList<Block> blooming = new ArrayList<Block>();
 	
 	public SaveGame saveGame = new SaveGame();
@@ -42,13 +46,27 @@ public class Level {
 	public int debuggerTest = 0;
 	
 	//Keeps track of what part of the activeBlocks array we're rendering. Starts off in the very center.
-	public Rect renderRect = new Rect(TILES_PER_ROW / 2 - (int)Math.ceil(Game.getCenterScreenX() * 1.0 /TILE_SIZE),
-			  						  TILES_PER_ROW / 2 - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
-			  						  (int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
-			  						  (int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
+	//renderRect, spawnX, spawnY should all be the same
+//total chunks * chunk_size * Tile_size /2 - character
+	public int spawnX = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE /2 - CHARACTER_SIZE/2;
+	public int spawnY = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE /2 - CHARACTER_SIZE/2;
+//	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+900;
+	//public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+700;
 	
+	int startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+	int startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+	public Rect chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
+	public int offsetX = 0;	//offset gets set at the start of level if there is one
+	public int offsetY = 0;
+	public Rect renderRect = new Rect(
+			spawnX / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE),
+			spawnY / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
+			(int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
+			(int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
+	
+//	
 	//private long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 4; // 4 is desert 0 is forest
+	public long rgenseed = 6; // 4 is desert 0 is forest 20 is grassland
 	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public Random rand = new Random(rgenseed);
 	public int randInt1 = rand.nextInt();
@@ -64,9 +82,8 @@ public class Level {
 	public int minutes = 0;
 	public boolean isDay = true;
 	
-	public Rect chunkRect = new Rect(0, 0, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);	//keeps track of the chunk we're on
-	public int offsetX = 0;	//offset gets set at the start of level if there is one
-	public int offsetY = 0;
+	//public Rect chunkRect = new Rect(0, 0, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);	//keeps track of the chunk we're on
+
 
 	public boolean isLoading = false;
 	public double PTotal = 0;
@@ -81,39 +98,125 @@ public class Level {
 	public double PMountain = 0;
 	public double PHole = 0;
 	
-	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
-	public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
+	
 	
 	//public int musicSelection = 0;
 	//public Music music = Gdx.audio.newMusic(Gdx.files.internal("music/overworld.wav"));
 	
 	
 	
-	public Level() {		
-		if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
-		if(Game.getCenterScreenY() % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.getCenterScreenY() % TILE_SIZE;
+	public Level() {	
+		Game.gameStartTime = Time.getTime();
+		if(Game.isNewGame) {
+			if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
+			if(Game.getCenterScreenY() % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.getCenterScreenY() % TILE_SIZE;
+		} else {
+			SaveGameData saveData = saveGame.saveData();
+			spawnX = saveData.heroX;
+			spawnY = saveData.heroY;
+			startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+			startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+			chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
+			
+			offsetX = saveData.offsetX;
+			offsetY = saveData.offsetY;
+			//System.out.println("SPAWNLOAD: "+spawnX+"-"+spawnY);
+			//System.out.println("OFFSETLOAD: "+offsetX+"-"+offsetY);
+			int renderRectX;
+			if(offsetX > 15) {
+				renderRectX = (spawnX+(offsetX)) / TILE_SIZE -(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
+			} else {
+				renderRectX = (spawnX+(offsetX)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
+			}
+			renderRect = new Rect(
+					renderRectX,
+					(spawnY+(TILE_SIZE -offsetY)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
+					(int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
+					(int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
+			
+		}
+		
+		
 		
 		activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
 		currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
 		
-		//FIXME: Make this loop only get called on a new game...
-		for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
-			for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
-				createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
+		if(Game.isNewGame == true) {
+			for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
+				for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
+					createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
+				}
 			}
-			System.out.println("i = " + i);
-		}
+			
+		} 
 		
-		//FIXME: Should be dependent on character's spawn point...
+		
+		
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
 				loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
+				
 			}
+			
 		}
-		
 		gameStartTime = Time.getTime();		
 
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+	}
+	
+	public void loadGame() {
+		if(Game.isNewGame) {
+			saveGame.saveGame();
+			//NO NEED to saveCurrentChunks();  It's already been done...
+		} else {
+			SaveGameData saveData = saveGame.saveData();
+			Game.hero.hP = saveData.hP;
+			Game.hero.maxHP = saveData.maxHP;
+			Game.hero.mP = saveData.mP;
+			Game.hero.maxMP = saveData.maxMP;
+			Game.hero.eP = saveData.eP;
+			Game.hero.maxEP = saveData.maxEP;
+			for(int x = 0; x < saveData.invBarID.length; x++) {
+				int id = saveData.invBarID[x];
+				Game.inventory.invBar[x].item = ITEM_HASH.get(id).createNew();
+				Game.inventory.invBar[x].item.stackSize = saveData.invBarStackSize[x];
+			}
+			
+			for(int x = saveData.invClothingID.length-1; x >= 0; x--) {
+				int id = saveData.invClothingID[x];
+				Game.inventory.invClothing[x].item = ITEM_HASH.get(id).createNew();
+				ClothingItem clothingItem = new IronArmor();
+				if(Game.inventory.invClothing[x].item.id != 0) {
+					clothingItem = (ClothingItem)Game.inventory.invClothing[x].item;
+					Game.hero.sprite.addSprite(clothingItem.animatedSprite);
+				}
+			}
+			Game.hero.calcArmor();
+			
+			for(int x = 0; x < saveData.invCraftingID.length; x++) {
+				int id = saveData.invCraftingID[x];
+				Game.inventory.invCrafting[x].item = ITEM_HASH.get(id).createNew();
+				Game.inventory.invCrafting[x].item.stackSize = saveData.invCraftingStackSize[x];
+			}
+				int id = saveData.invCraftedID;
+				Game.inventory.invCrafted[0].item = ITEM_HASH.get(id).createNew();
+				Game.inventory.invCrafted[0].item.stackSize = saveData.invCraftedStackSize;
+			
+			for(int x = 0; x < saveData.invBagID.length; x++) {
+				id = saveData.invBagID[x];
+				Game.inventory.invBag[x].item = ITEM_HASH.get(id).createNew();
+				Game.inventory.invBag[x].item.stackSize = saveData.invBagStackSize[x];
+			}
+			Game.timeSpentInPreviousSaves = saveData.gameTime;
+		}
+	}
+	
+	public void saveCurrentChunks() {
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
+				saveChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
+			}
+		}
 	}
 	
 
@@ -208,9 +311,16 @@ public class Level {
 			highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
 			
 			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
-
+			//This is so that chests know their coordinates...
+			tileBeingAttacked.absX = highlightedBlock.getAbsX();
+			tileBeingAttacked.absY = highlightedBlock.getAbsY();
+			//This is so that furnaces know their activeBlocks...
+			tileBeingAttacked.activeBlocksX = highlightedBlockX;
+			tileBeingAttacked.activeBlocksY = highlightedBlockY;
 			
 			if(tileBeingAttacked != highlightedBlock.getObjectTile()) {
+				
+				
 				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
 				tileBeingAttacked = highlightedBlock.getObjectTile();
 				
@@ -251,6 +361,7 @@ public class Level {
 		for(int x = renderRect.x; x < renderRect.x2(); x++) {
 			for(int y = renderRect.y; y < renderRect.y2(); y++) {
 				activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
+				activeBlocks[x][y].layers[TREE_LEFT_0].update(x, y);
 			}
 		}
 	}
@@ -275,6 +386,7 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
 		}
+		
 		renderRect.y += CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(DOWN);
@@ -293,7 +405,7 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
 		}
-		System.out.println("DOWN 1");
+		
 		renderRect.y -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(UP);
@@ -312,6 +424,7 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
 		}
+		
 		renderRect.x -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(LEFT);
@@ -377,9 +490,18 @@ public class Level {
 		int absY = j*TILE_SIZE+chunkY*CHUNK_SIZE*TILE_SIZE;
 		int m = i+CHUNK_BLOOM_MARGIN;
 		int n = j+CHUNK_BLOOM_MARGIN;
-		
+
 		//BELOW SEA LEVEL
-		if(chunkGenerator.chunkGroundLayer[m][n] == 1) {//FIXME Should be < -0.1
+		if(chunkX < 3 || chunkY < 3 || chunkX > CHUNKS_LENGTH_TOTAL - 3 || chunkY > CHUNKS_LENGTH_TOTAL - 3) {
+				Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+	    		block = new Block(grassTile, absX, absY, false);
+	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
+	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
+	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);			
+		} else if(chunkGenerator.chunkGroundLayer[m][n] == 1) {
 			POcean++;
 			Tile[] waterTile = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 			Tile[] waterTile2 = {new DarkDirtTile(),  new DirtTile(), new NoTile(), new WaterTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
@@ -392,10 +514,10 @@ public class Level {
     	//MOUNTAIN
     	} else if(chunkGenerator.chunkGroundLayer[m][n] == 2) {
     		PMountain++;
-    		Tile[] dirtMountainTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-    		Tile[] dirtMountainTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-    		Tile[] dirtMountainTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-    		Tile[] dirtMountainTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile2 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile3 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] dirtMountainTile4 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 	    	block = new Block(dirtMountainTile, absX, absY, true);
 	    	block2 = new Block(dirtMountainTile2, absX+TILE_SIZE, absY, true);
 	    	block3 = new Block(dirtMountainTile3, absX, absY+TILE_SIZE, true);
@@ -450,18 +572,14 @@ public class Level {
 				//RainForest
     		}else if(chunkGenerator.chunkGroundLayer[m][n] == 6){
     			PRainForest++;
-    			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeRainTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeRainTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeRainTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeRainTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 	    		block = new Block(grassTile, absX, absY, false);
 	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
 	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
 	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
-//	    		blooming.add(block);
-//				blooming.add(block2);
-//				blooming.add(block3);
-//				blooming.add(block4);
 				//Swamp
     		}else if(chunkGenerator.chunkGroundLayer[m][n] == 7){
     			PSwamp++;
@@ -477,18 +595,15 @@ public class Level {
 	    		//Taiga (snowy forest)
     		}else if(chunkGenerator.chunkGroundLayer[m][n] == 8){
     			PTaiga++;
-    			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreePineTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreePineTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreePineTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreePineTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new SnowTile(), new NoTile(), new TreePineTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new SnowTile(), new NoTile(), new TreePineTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new SnowTile(), new NoTile(), new TreePineTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new SnowTile(), new NoTile(), new TreePineTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 	    		block = new Block(grassTile, absX, absY, false);
 	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
 	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
 	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
-//	    		blooming.add(block);
-//				blooming.add(block2);
-//				blooming.add(block3);
-//				blooming.add(block4);
+
 				//Tundra (snowy)
     		}else if(chunkGenerator.chunkGroundLayer[m][n] == 9){
     			PTundra++;
@@ -501,7 +616,7 @@ public class Level {
 	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
 	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
 	    		//HOLES
-    		}else {
+    		} else {
     			PHole++;
 				Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
@@ -512,54 +627,161 @@ public class Level {
 	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
 	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
     		}
-    		Block[] blockGrid = {block, block3, block2, block4};
-    		int cycle = 0;
-    		for(int s = m; s < m+2; s++) {
-    			for(int t = n; t < n+2; t++) {
-    				
-    				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
-    	    			blockGrid[cycle].layers[OBJECT_LAYER] = new TreeTile();
-    	    		}
-    				if(chunkGenerator.chunkObjectLayer[s+1][t+2] == TREE) {
-    					blockGrid[cycle].layers[TREE_LEFT_2] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_LEFT_2].currentSpriteId = 0;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s+1][t+1] == TREE) {
-    					blockGrid[cycle].layers[TREE_LEFT_1] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_LEFT_1].currentSpriteId = 1;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s+1][t] == TREE) {
-    					blockGrid[cycle].layers[TREE_LEFT_0] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_LEFT_0].currentSpriteId = 2;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s][t+2] == TREE) {
-    					blockGrid[cycle].layers[TREE_CENTER_2] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_CENTER_2].currentSpriteId = 3;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s][t+1] == TREE) {
-    					blockGrid[cycle].layers[TREE_CENTER_1] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_CENTER_1].currentSpriteId = 4;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
-    					blockGrid[cycle].layers[TREE_CENTER_0] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_CENTER_0].currentSpriteId = 5;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s-1][t+2] == TREE) {
-    					blockGrid[cycle].layers[TREE_RIGHT_2] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_RIGHT_2].currentSpriteId = 6;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s-1][t+1] == TREE) {
-    					blockGrid[cycle].layers[TREE_RIGHT_1] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_RIGHT_1].currentSpriteId = 7;
-    				}
-    				if(chunkGenerator.chunkObjectLayer[s-1][t] == TREE) {
-    					blockGrid[cycle].layers[TREE_RIGHT_0] = new TreeLeafTile();
-    					blockGrid[cycle].layers[TREE_RIGHT_0].currentSpriteId = 8;
-    				}
-    				
-    				cycle++;
-    			}
-    		}
+    		
+    	}
+		//Mountains
+		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_BOTTOM || chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_COAL_BOTTOM) {
+			block.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+			block2.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+			block3.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+			block4.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+		}
+		
+		if(chunkGenerator.chunkObjectLayer[m][n] == DIRT_MOUNTAIN_COAL_BOTTOM) {
+			block.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
+			block2.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
+			block3.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
+			block4.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
+		}
+		Block[] blockGrid = {block, block3, block2, block4};
+		int cycle = 0;
+		for(int s = m; s < m+2; s++) {
+			for(int t = n; t < n+2; t++) {
+				
+				
+				//RainForestTree
+				if(chunkGenerator.chunkObjectLayer[s][t] == TREE_RAIN) {
+	    			blockGrid[cycle].layers[OBJECT_LAYER] = new TreeRainTile();
+	    		}
+				if(chunkGenerator.chunkObjectLayer[s+1][t+3] == TREE_RAIN) {
+					blockGrid[cycle].layers[TREE_LEFT_3] = new TreeLeafRainTile();
+					blockGrid[cycle].layers[TREE_LEFT_3].currentSpriteId = 0;
+				}
+				if(chunkGenerator.chunkObjectLayer[s+1][t+2] == TREE_RAIN) {
+					blockGrid[cycle].layers[TREE_LEFT_2] = new TreeLeafRainTile();
+					blockGrid[cycle].layers[TREE_LEFT_2].currentSpriteId = 1;
+				}
+				if(chunkGenerator.chunkObjectLayer[s+1][t+1] == TREE_RAIN) {
+					blockGrid[cycle].layers[TREE_LEFT_1] = new TreeLeafRainTile();
+					blockGrid[cycle].layers[TREE_LEFT_1].currentSpriteId = 2;
+				}
+				
+				if(chunkGenerator.chunkObjectLayer[s][t+3] == TREE_RAIN) {
+					blockGrid[cycle].layers[TREE_CENTER_3] = new TreeLeafRainTile();
+					blockGrid[cycle].layers[TREE_CENTER_3].currentSpriteId = 3;
+				}
+				if(chunkGenerator.chunkObjectLayer[s][t+2] == TREE_RAIN) {
+					blockGrid[cycle].layers[TREE_CENTER_2] = new TreeLeafRainTile();
+					blockGrid[cycle].layers[TREE_CENTER_2].currentSpriteId = 4;
+				}
+				if(chunkGenerator.chunkObjectLayer[s][t+1] == TREE_RAIN) {
+					blockGrid[cycle].layers[TREE_CENTER_1] = new TreeLeafRainTile();
+					blockGrid[cycle].layers[TREE_CENTER_1].currentSpriteId = 5;
+				}
+//				if(chunkGenerator.chunkObjectLayer[s][t] == TREE_RAIN) {
+//					blockGrid[cycle].layers[TREE_CENTER_1] = new TreeLeafTile();
+//					blockGrid[cycle].layers[TREE_CENTER_1].currentSpriteId = 5;
+//				}
+				if(chunkGenerator.chunkObjectLayer[s-1][t+3] == TREE_RAIN) {
+					blockGrid[cycle].layers[TREE_RIGHT_2] = new TreeLeafRainTile();
+					blockGrid[cycle].layers[TREE_RIGHT_2].currentSpriteId = 7;
+				}
+				if(chunkGenerator.chunkObjectLayer[s-1][t+2] == TREE_RAIN) {
+					blockGrid[cycle].layers[TREE_RIGHT_1] = new TreeLeafRainTile();
+					blockGrid[cycle].layers[TREE_RIGHT_1].currentSpriteId = 8;
+				}
+				if(chunkGenerator.chunkObjectLayer[s-1][t+1] == TREE_RAIN) {
+					blockGrid[cycle].layers[TREE_RIGHT_0] = new TreeLeafRainTile();
+					blockGrid[cycle].layers[TREE_RIGHT_0].currentSpriteId = 9;
+				}
+				
+				
+				
+				   //Forest Tree
+				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
+	    			blockGrid[cycle].layers[OBJECT_LAYER] = new TreeTile();
+	    		}
+				if(chunkGenerator.chunkObjectLayer[s+1][t+2] == TREE) {
+					blockGrid[cycle].layers[TREE_LEFT_2] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_LEFT_2].currentSpriteId = 0;
+				}
+				if(chunkGenerator.chunkObjectLayer[s+1][t+1] == TREE) {
+					blockGrid[cycle].layers[TREE_LEFT_1] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_LEFT_1].currentSpriteId = 1;
+				}
+				if(chunkGenerator.chunkObjectLayer[s+1][t] == TREE) {
+					blockGrid[cycle].layers[TREE_LEFT_0] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_LEFT_0].currentSpriteId = 2;
+				}
+				if(chunkGenerator.chunkObjectLayer[s][t+2] == TREE) {
+					blockGrid[cycle].layers[TREE_CENTER_2] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_CENTER_2].currentSpriteId = 3;
+				}
+				if(chunkGenerator.chunkObjectLayer[s][t+1] == TREE) {
+					blockGrid[cycle].layers[TREE_CENTER_1] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_CENTER_1].currentSpriteId = 4;
+				}
+//				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
+//					blockGrid[cycle].layers[TREE_CENTER_0] = new TreeLeafTile();
+//					blockGrid[cycle].layers[TREE_CENTER_0].currentSpriteId = 5;
+//				}
+				if(chunkGenerator.chunkObjectLayer[s-1][t+2] == TREE) {
+					blockGrid[cycle].layers[TREE_RIGHT_2] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_RIGHT_2].currentSpriteId = 6;
+				}
+				if(chunkGenerator.chunkObjectLayer[s-1][t+1] == TREE) {
+					blockGrid[cycle].layers[TREE_RIGHT_1] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_RIGHT_1].currentSpriteId = 7;
+				}
+				if(chunkGenerator.chunkObjectLayer[s-1][t] == TREE) {
+					blockGrid[cycle].layers[TREE_RIGHT_0] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_RIGHT_0].currentSpriteId = 8;
+				}
+				
+				//PINE TREE
+				if(chunkGenerator.chunkObjectLayer[s][t] == TREE_PINE) {
+	    			blockGrid[cycle].layers[OBJECT_LAYER] = new TreePineTile();
+	    		}
+				if(chunkGenerator.chunkObjectLayer[s+1][t+2] == TREE_PINE) {
+					blockGrid[cycle].layers[TREE_LEFT_2] = new TreeLeafPineTile();
+					blockGrid[cycle].layers[TREE_LEFT_2].currentSpriteId = 0;
+				}
+				if(chunkGenerator.chunkObjectLayer[s+1][t+1] == TREE_PINE) {
+					blockGrid[cycle].layers[TREE_LEFT_1] = new TreeLeafPineTile();
+					blockGrid[cycle].layers[TREE_LEFT_1].currentSpriteId = 1;
+				}
+				if(chunkGenerator.chunkObjectLayer[s+1][t] == TREE_PINE) {
+					blockGrid[cycle].layers[TREE_LEFT_0] = new TreeLeafPineTile();
+					blockGrid[cycle].layers[TREE_LEFT_0].currentSpriteId = 2;
+				}
+				if(chunkGenerator.chunkObjectLayer[s][t+2] == TREE_PINE) {
+					blockGrid[cycle].layers[TREE_CENTER_2] = new TreeLeafPineTile();
+					blockGrid[cycle].layers[TREE_CENTER_2].currentSpriteId = 3;
+				}
+				if(chunkGenerator.chunkObjectLayer[s][t+1] == TREE_PINE) {
+					blockGrid[cycle].layers[TREE_CENTER_1] = new TreeLeafPineTile();
+					blockGrid[cycle].layers[TREE_CENTER_1].currentSpriteId = 4;
+				}
+//				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
+//					blockGrid[cycle].layers[TREE_CENTER_0] = new TreeLeafTile();
+//					blockGrid[cycle].layers[TREE_CENTER_0].currentSpriteId = 5;
+//				}
+				if(chunkGenerator.chunkObjectLayer[s-1][t+2] == TREE_PINE) {
+					blockGrid[cycle].layers[TREE_RIGHT_2] = new TreeLeafPineTile();
+					blockGrid[cycle].layers[TREE_RIGHT_2].currentSpriteId = 6;
+				}
+				if(chunkGenerator.chunkObjectLayer[s-1][t+1] == TREE_PINE) {
+					blockGrid[cycle].layers[TREE_RIGHT_1] = new TreeLeafPineTile();
+					blockGrid[cycle].layers[TREE_RIGHT_1].currentSpriteId = 7;
+				}
+				if(chunkGenerator.chunkObjectLayer[s-1][t] == TREE_PINE) {
+					blockGrid[cycle].layers[TREE_RIGHT_0] = new TreeLeafPineTile();
+					blockGrid[cycle].layers[TREE_RIGHT_0].currentSpriteId = 8;
+				}
+				
+				cycle++;
+			}
+			
 
     	}
 		
@@ -592,7 +814,6 @@ public class Level {
 	    		
 	    } else {
 	    	//if(activeBlocks[x][y].noise > 0.1 && noise < 0.105) {
-	    	//System.out.println(x+" "+y);
 		    	Tile[] treeTile = {new DarkDirtTile(), new DirtTile(), new GrassTile(), new NoTile(), new TreeTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile()};
 		    	activeBlocks[x][y] = new Block(treeTile, absX, absY, false);
 		    	//activeBlocks[x][y].layers[OBJECT_LAYER].bloom(x,y, activeBlocks);
@@ -606,14 +827,14 @@ public class Level {
 		for(int i = LIGHT_DIRT_LAYER; i < blocks[x][y].layers.length; i++) {
 			if(block.layers[i].isAutoTileable) {
 				int left = 0, topLeft = 0, top = 0, topRight = 0, right = 0, bottomRight = 0, bottom = 0, bottomLeft = 0;
-				if(blocks[x-2][y-2].layers[i].id == block.layers[i].id) topLeft = 1;
-				if(blocks[x][y-2].layers[i].id == block.layers[i].id) top = 2;
-				if(blocks[x+2][y-2].layers[i].id == block.layers[i].id) topRight = 4;
-				if(blocks[x-2][y].layers[i].id == block.layers[i].id) left = 8;
-				if(blocks[x+2][y].layers[i].id == block.layers[i].id) right = 16;
-				if(blocks[x-2][y+2].layers[i].id == block.layers[i].id) bottomLeft = 32;
-				if(blocks[x][y+2].layers[i].id == block.layers[i].id) bottom = 64;
-				if(blocks[x+2][y+2].layers[i].id == block.layers[i].id) bottomRight = 128;
+				if(blocks[x-2][y-2].layers[i].autoTileID == block.layers[i].autoTileID) topLeft = 1;
+				if(blocks[x][y-2].layers[i].autoTileID == block.layers[i].autoTileID) top = 2;
+				if(blocks[x+2][y-2].layers[i].autoTileID == block.layers[i].autoTileID) topRight = 4;
+				if(blocks[x-2][y].layers[i].autoTileID == block.layers[i].autoTileID) left = 8;
+				if(blocks[x+2][y].layers[i].autoTileID == block.layers[i].autoTileID) right = 16;
+				if(blocks[x-2][y+2].layers[i].autoTileID == block.layers[i].autoTileID) bottomLeft = 32;
+				if(blocks[x][y+2].layers[i].autoTileID == block.layers[i].autoTileID) bottom = 64;
+				if(blocks[x+2][y+2].layers[i].autoTileID == block.layers[i].autoTileID) bottomRight = 128;
 				
 				block.layers[i].autoTile = TOP_LEFT_AUTO_TILE_HASH.get(left + topLeft + top);
 				blocks[x+1][y].layers[i].autoTile = TOP_RIGHT_AUTO_TILE_HASH.get(right + topRight + top);
@@ -640,18 +861,6 @@ public class Level {
 	public void loadChunk(int startX, int startY, int chunkX, int chunkY) {
 		isLoading = true;
 		
-		if(chunkX >= CHUNKS_LENGTH_TOTAL) {
-			chunkX = chunkX % CHUNKS_LENGTH_TOTAL;
-		} else if(chunkX < 0) {
-			chunkX = CHUNKS_LENGTH_TOTAL + chunkX;
-		}
-		
-		if(chunkY >= CHUNKS_LENGTH_TOTAL) {
-			chunkY = chunkY % CHUNKS_LENGTH_TOTAL;
-		} else if(chunkY < 0) {
-			chunkY = CHUNKS_LENGTH_TOTAL + chunkY;
-		}
-		
 		Block[][] chunk = saveGame.loadChunk(chunkX, chunkY);
 		int i = 0; int j = 0;
 		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
@@ -661,6 +870,7 @@ public class Level {
 			}
 			i++; j =0;
 		}
+		
 		isLoading = false;
 	}
 	
@@ -673,8 +883,8 @@ public class Level {
 				chunkGenerator.chunkNoiseElevation[i][j] = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
 				chunkGenerator.chunkNoiseTemperature[i][j] = perlin2.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
 				chunkGenerator.chunkNoiseRainfall[i][j] = perlin3.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
-				chunkGenerator.chunkGroundLayer[i][j] = chunkGenerator.getGroundLayerGeneration(i, j,rand);
-				chunkGenerator.chunkObjectLayer[i][j] = chunkGenerator.getObjectLayerGeneration(i, j, rgenseed, rand);
+				chunkGenerator.chunkGroundLayer[i][j] = chunkGenerator.getGroundLayerGeneration(i, j, rand);
+				chunkGenerator.chunkObjectLayer[i][j] = chunkGenerator.getObjectLayerGeneration(i, j, rgenseed, rand, x, y);
 				j++;
 			}
 			i++; j = 0;
@@ -724,6 +934,20 @@ public class Level {
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY+2], highlightedBlockX-2, highlightedBlockY+2);
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY+2], highlightedBlockX, highlightedBlockY+2);
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY+2], highlightedBlockX+2, highlightedBlockY+2);
+	}
+	
+	public void autoTileBlock(int x, int y) {
+		autoTile(activeBlocks, activeBlocks[x][y], x, y);
+		
+		autoTile(activeBlocks, activeBlocks[x-2][y-2], x-2, y-2);
+		autoTile(activeBlocks, activeBlocks[x][y-2], x, y-2);
+		autoTile(activeBlocks, activeBlocks[x+2][y-2], x+2, y-2);
+		autoTile(activeBlocks, activeBlocks[x-2][y], x-2, y);
+		autoTile(activeBlocks, activeBlocks[x+2][y], x+2, y);
+		autoTile(activeBlocks, activeBlocks[x-2][y+2], x-2, y+2);
+		autoTile(activeBlocks, activeBlocks[x][y+2], x, y+2);
+		autoTile(activeBlocks, activeBlocks[x+2][y+2], x+2, y+2);
+
 	}
 	
 	public void handleCollisions() {

@@ -58,6 +58,8 @@ public class Sprites {
 	public static final String BAT_WING = "batWing";
 	public static final String HOE = "ironHoe";
 	public static final String TABLE_ITEM = "table";
+	public static final String CHEST_ITEM = "chest";
+	public static final String PICK = "ironPick";
 	
 	//static collections
 //	public static final String GEM = "Gem Blue";
@@ -67,24 +69,36 @@ public class Sprites {
 	public static final String LIGHT_DIRT = "lightDirt";
 	public static final String MOUNTAIN_BOTTOM = "mountainBottom";
 	public static final String MOUNTAIN_TOP = "mountainTop";
+	public static final String MOUNTAIN_COAL_BOTTOM = "mountainCoalBottom";
+	public static final String MOUNTAIN_COAL_TOP = "mountainCoalTop";
 	public static final String TREE_TWO = "treeTwo";
 	public static final String TREE_THREE = "greentree";
 	public static final String WATER1 = "water";
 	public static final String WATER2 = "waterTwo";
 	public static final String INVENTORY_MENU = "inventoryMenu";
 	public static final String CAMPFIRE_SINGLE = "campfire0";
+	public static final String FURNACE_SINGLE = "furnace0";
+	public static final String CAULDRON = "cauldron";
+	public static final String CAULDRON_SINGLE = "cauldronStatic";
+	public static final String FURNACE_TOP = "furnaceTopTile";
+	
 	public static final String SAPLING_COLLECTION = "saplingCollection";
 	public static final String SNOW = "snow";
 	public static final String TREE_FOUR = "pineTree";
 	public static final String DARK_GRASS = "darkGrass";
 	public static final String POTATO_PLANT = "potatoPlant";
 	public static final String POTATOES = "potatoes";
+	public static final String BAKED_POTATOES = "bakedPotatoes";
 	public static final String TABLE = "tableItem";
+	public static final String CHEST = "chestItem";
 	
 	
 	
 	//animated collections
 	public static final String CAMPFIRE_ANIMATION = "campfire";
+	public static final String FURNACE_ANIMATION = "furnaceA";
+	public static final String CAULDRON_ANIMATION = "boilingCauldronA";
+//	public static final String FURNACE_STATIC = "furnaceStatic";
 	public static final String MALE_WALK_DOWN = "maleWalkDown";
 	public static final String MALE_WALK_LEFT = "maleWalkLeft";
 	public static final String MALE_WALK_RIGHT = "maleWalkRight";
@@ -108,6 +122,10 @@ public class Sprites {
 	public static final String PLATE_FEET_STAND_LEFT = "plateFeetStandLeft";
 	public static final String PLATE_FEET_STAND_RIGHT = "plateFeetStandRight";
 	public static final String PLATE_FEET_STAND_UP = "plateFeetStandUp";
+	public static final String PLATE_FEET_SLASH_DOWN = "plateFeetSlashDown";
+	public static final String PLATE_FEET_SLASH_LEFT = "plateFeetSlashLeft";
+	public static final String PLATE_FEET_SLASH_RIGHT = "plateFeetSlashRight";
+	public static final String PLATE_FEET_SLASH_UP = "plateFeetSlashUp";
 	
 	public static final String PLATE_LEGS_WALK_DOWN = "plateLegsWalkDown";
 	public static final String PLATE_LEGS_WALK_LEFT = "plateLegsWalkLeft";
@@ -117,6 +135,10 @@ public class Sprites {
 	public static final String PLATE_LEGS_STAND_LEFT = "plateLegsStandLeft";
 	public static final String PLATE_LEGS_STAND_RIGHT = "plateLegsStandRight";
 	public static final String PLATE_LEGS_STAND_UP = "plateLegsStandUp";
+	public static final String PLATE_LEGS_SLASH_DOWN = "plateLegsSlashDown";
+	public static final String PLATE_LEGS_SLASH_LEFT = "plateLegsSlashLeft";
+	public static final String PLATE_LEGS_SLASH_RIGHT = "plateLegsSlashRight";
+	public static final String PLATE_LEGS_SLASH_UP = "plateLegsSlashUp";
 	
 	public static final String PLATE_HELMET_WALK_DOWN = "plateHelmetWalkDown";
 	public static final String PLATE_HELMET_WALK_LEFT = "plateHelmetWalkLeft";
@@ -126,6 +148,10 @@ public class Sprites {
 	public static final String PLATE_HELMET_STAND_LEFT = "plateHelmetStandLeft";
 	public static final String PLATE_HELMET_STAND_RIGHT = "plateHelmetStandRight";
 	public static final String PLATE_HELMET_STAND_UP = "plateHelmetStandUp";
+	public static final String PLATE_HELMET_SLASH_DOWN = "plateHelmetSlashDown";
+	public static final String PLATE_HELMET_SLASH_LEFT = "plateHelmetSlashLeft";
+	public static final String PLATE_HELMET_SLASH_RIGHT = "plateHelmetSlashRight";
+	public static final String PLATE_HELMET_SLASH_UP = "plateHelmetSlashUp";
 	
 	public static final String PLATE_TORSO_WALK_DOWN = "plateTorsoWalkDown";
 	public static final String PLATE_TORSO_WALK_LEFT = "plateTorsoWalkLeft";
@@ -135,6 +161,10 @@ public class Sprites {
 	public static final String PLATE_TORSO_STAND_LEFT = "plateTorsoStandLeft";
 	public static final String PLATE_TORSO_STAND_RIGHT = "plateTorsoStandRight";
 	public static final String PLATE_TORSO_STAND_UP = "plateTorsoStandUp";
+	public static final String PLATE_TORSO_SLASH_DOWN = "plateTorsoSlashDown";
+	public static final String PLATE_TORSO_SLASH_LEFT = "plateTorsoSlashLeft";
+	public static final String PLATE_TORSO_SLASH_RIGHT = "plateTorsoSlashRight";
+	public static final String PLATE_TORSO_SLASH_UP = "plateTorsoSlashUp";
 	
 	public static final String SKELETON_WALK_DOWN = "skeletonWalkDown";
 	public static final String SKELETON_WALK_RIGHT = "skeletonWalkRight";
@@ -165,6 +195,10 @@ public class Sprites {
 	public static StaticSprite[] treeSprites;
 	public static StaticSprite[] treeLeafSprites;
 	public static AnimatedSprite[] campfireAnimation;
+	public static AnimatedSprite[] furnaceAnimation;
+	public static StaticSprite[] furnaceStatic;
+	public static AnimatedSprite[] cauldronAnimation;
+	public static StaticSprite[] cauldronStatic;
 	
 	public static final String LIGHT = "light";
 	
@@ -221,7 +255,13 @@ public class Sprites {
 					BAT_STAND_UP, BAT_STAND_DOWN, BAT_STAND_LEFT, BAT_STAND_RIGHT,MALE_SLASH_UP,
 					MALE_SLASH_DOWN, MALE_SLASH_LEFT, MALE_SLASH_RIGHT, SWORD, LONG_SWORD, HEALTH_BAR_EDGE,
 					MON_HEALTH_EDGE, BAT_WING, HOE, SEED_POTATO, POTATO_PLANT, POTATOES, TILLED_SOIL,
-					TABLE, TABLE_ITEM
+					TABLE, TABLE_ITEM, CHEST, CHEST_ITEM, FURNACE_ANIMATION, FURNACE_SINGLE,
+					BAKED_POTATOES, FURNACE_TOP, CAULDRON_ANIMATION, CAULDRON, CAULDRON_SINGLE,
+					PLATE_TORSO_SLASH_UP, PLATE_TORSO_SLASH_DOWN, PLATE_TORSO_SLASH_LEFT, 
+					PLATE_TORSO_SLASH_RIGHT,PLATE_HELMET_SLASH_UP, PLATE_HELMET_SLASH_DOWN, PLATE_HELMET_SLASH_LEFT, 
+					PLATE_HELMET_SLASH_RIGHT, PLATE_LEGS_SLASH_UP, PLATE_LEGS_SLASH_DOWN, PLATE_LEGS_SLASH_LEFT, 
+					PLATE_LEGS_SLASH_RIGHT, PLATE_FEET_SLASH_UP, PLATE_FEET_SLASH_DOWN, PLATE_FEET_SLASH_LEFT, 
+					PLATE_FEET_SLASH_RIGHT, PICK, MOUNTAIN_COAL_TOP, MOUNTAIN_COAL_BOTTOM
 			};
 			
 			String[] lightNames = {LIGHT};
@@ -300,6 +340,19 @@ public class Sprites {
 			animation.id = 0;
 			campfireAnimation = new AnimatedSprite[]{new AnimatedSprite(animation)};
 			
+			animation = animations.get(FURNACE_ANIMATION);
+			animation.id = 0;
+			furnaceAnimation = new AnimatedSprite[]{new AnimatedSprite(animation)};
+			
+			animation = animations.get(CAULDRON_ANIMATION);
+			animation.id = 0;
+			cauldronAnimation = new AnimatedSprite[]{new AnimatedSprite(animation)};
+			
+//			animation = animations.get(FURNACE_STATIC);
+//			animation.id = 0;
+			furnaceStatic = new StaticSprite[]{Sprites.sprites.get(FURNACE_SINGLE)};
+			cauldronStatic = new StaticSprite[]{Sprites.sprites.get(CAULDRON_SINGLE)};
+			
 			pixel = sprites.get(PIXEL);
 			healthBar = sprites.get(HEALTH_BAR_EDGE);
 			healthBarMon = sprites.get(MON_HEALTH_EDGE);
@@ -360,11 +413,11 @@ public class Sprites {
 					Sprites.animations.get(PLATE_HELMET_WALK_DOWN),
 					Sprites.animations.get(PLATE_HELMET_WALK_RIGHT),
 					Sprites.animations.get(PLATE_HELMET_WALK_LEFT),
-					//FIXME!!!
-					Sprites.animations.get(PLATE_HELMET_WALK_LEFT),
-					Sprites.animations.get(PLATE_HELMET_WALK_LEFT),
-					Sprites.animations.get(PLATE_HELMET_WALK_LEFT),
-					Sprites.animations.get(PLATE_HELMET_WALK_LEFT),
+					
+					Sprites.animations.get(PLATE_HELMET_SLASH_UP),
+					Sprites.animations.get(PLATE_HELMET_SLASH_DOWN),
+					Sprites.animations.get(PLATE_HELMET_SLASH_RIGHT),
+					Sprites.animations.get(PLATE_HELMET_SLASH_LEFT)
 			};
 			
 			chest = new Animation[] {
@@ -377,10 +430,10 @@ public class Sprites {
 					Sprites.animations.get(PLATE_TORSO_WALK_RIGHT),
 					Sprites.animations.get(PLATE_TORSO_WALK_LEFT),
 					
-					Sprites.animations.get(PLATE_TORSO_WALK_LEFT),
-					Sprites.animations.get(PLATE_TORSO_WALK_LEFT),
-					Sprites.animations.get(PLATE_TORSO_WALK_LEFT),
-					Sprites.animations.get(PLATE_TORSO_WALK_LEFT),
+					Sprites.animations.get(PLATE_TORSO_SLASH_UP),
+					Sprites.animations.get(PLATE_TORSO_SLASH_DOWN),
+					Sprites.animations.get(PLATE_TORSO_SLASH_RIGHT),
+					Sprites.animations.get(PLATE_TORSO_SLASH_LEFT)
 			};
 			
 			pants = new Animation[] {
@@ -392,11 +445,11 @@ public class Sprites {
 					Sprites.animations.get(PLATE_LEGS_WALK_DOWN),
 					Sprites.animations.get(PLATE_LEGS_WALK_RIGHT),
 					Sprites.animations.get(PLATE_LEGS_WALK_LEFT),
-					
-					Sprites.animations.get(PLATE_LEGS_WALK_LEFT),
-					Sprites.animations.get(PLATE_LEGS_WALK_LEFT),
-					Sprites.animations.get(PLATE_LEGS_WALK_LEFT),
-					Sprites.animations.get(PLATE_LEGS_WALK_LEFT),
+
+					Sprites.animations.get(PLATE_LEGS_SLASH_UP),
+					Sprites.animations.get(PLATE_LEGS_SLASH_DOWN),
+					Sprites.animations.get(PLATE_LEGS_SLASH_RIGHT),
+					Sprites.animations.get(PLATE_LEGS_SLASH_LEFT)
 			};
 			
 			boots = new Animation[] {
@@ -409,10 +462,10 @@ public class Sprites {
 					Sprites.animations.get(PLATE_FEET_WALK_RIGHT),
 					Sprites.animations.get(PLATE_FEET_WALK_LEFT),
 					
-					Sprites.animations.get(PLATE_FEET_WALK_LEFT),
-					Sprites.animations.get(PLATE_FEET_WALK_LEFT),
-					Sprites.animations.get(PLATE_FEET_WALK_LEFT),
-					Sprites.animations.get(PLATE_FEET_WALK_LEFT),
+					Sprites.animations.get(PLATE_FEET_SLASH_UP),
+					Sprites.animations.get(PLATE_FEET_SLASH_DOWN),
+					Sprites.animations.get(PLATE_FEET_SLASH_RIGHT),
+					Sprites.animations.get(PLATE_FEET_SLASH_LEFT)
 			};
 			
 			bat = new Animation[] {
@@ -423,7 +476,7 @@ public class Sprites {
 					Sprites.animations.get(BAT_WALK_UP),
 					Sprites.animations.get(BAT_WALK_DOWN),
 					Sprites.animations.get(BAT_WALK_RIGHT),
-					Sprites.animations.get(BAT_WALK_LEFT),
+					Sprites.animations.get(BAT_WALK_LEFT)
 					
 //					Sprites.animations.get(BAT_WALK_LEFT),
 //					Sprites.animations.get(BAT_WALK_LEFT),
@@ -445,9 +498,13 @@ public class Sprites {
 			
 			AnimatedSprite animatedSprite = new AnimatedSprite(animations);
 			AnimatedSprite animatedHelmet = new AnimatedSprite(helmet);
+			animatedHelmet.stackPosition = 5;
 			AnimatedSprite animatedChest = new AnimatedSprite(chest);
+			animatedChest.stackPosition = 4;
 			AnimatedSprite animatedPants = new AnimatedSprite(pants);
+			animatedPants.stackPosition = 3;
 			AnimatedSprite animatedBoots = new AnimatedSprite(boots);
+			animatedBoots.stackPosition = 2;
 			
 			AnimatedSprite animatedBat = new AnimatedSprite(bat);
 			

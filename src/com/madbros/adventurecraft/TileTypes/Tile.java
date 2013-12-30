@@ -17,20 +17,27 @@ public abstract class Tile {
 	public int currentSpriteId = 0;
 	public int layer = DARK_DIRT_LAYER;
 	public float z = Z_DARK_DIRT;
+	public boolean isVisible = true;
 	public boolean isCollidable = false;
+	public boolean isPickable = false;
 	public boolean isDiggable = true;
 	public boolean isChoppable = false;
 	public boolean isTillable = false;
 	public boolean isBreakable = false; //This is for items breakable by hand
-	public long timeCreated = Time.getTime();
+	public long timeCreated = Time.getGameTime();
 	public boolean isLightSource = false;
 	public boolean isAutoTileable = true;
 	public boolean isUseable = false;
-	
+	public int absX = 0;
+	public int absY = 0;
+	public int activeBlocksX = 0;
+	public int activeBlocksY = 0;
 	public int id = AIR;
+	public int autoTileID = id;
 	public int autoTile = MIDDLE_TILE;
 	public boolean isMiddleTile = true;
 	public boolean isTreeLeafTile = false; //When it renders treeleaftiles act differently.  
+
 //	public int topLeftAutoTile = MIDDLE_TILE;
 //	public int topRightAutoTile = MIDDLE_TILE;
 //	public int bottomRightAutoTile = MIDDLE_TILE;

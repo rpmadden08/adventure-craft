@@ -17,6 +17,11 @@ public class Mob extends Actor {
 	int length = 0;
 	int framesNum = 0;
 	MobController mobController;
+	int attack;
+	Rect detectRect;
+	int detectRange = 100;
+	boolean isChasing = true;
+	float damping = 1;
 	
 	
 	public Mob(MobController mobController) {
@@ -24,6 +29,7 @@ public class Mob extends Actor {
 		absRect = new Rect(TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2 - 64,
 				  TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2 - 64,
 				  CHARACTER_SIZE, CHARACTER_SIZE);
+		detectRect = new Rect(absRect.x - detectRange, absRect.y - detectRange, absRect.w +(detectRange*2), absRect.h +(detectRange*2));
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_BASE));
 		margin = new Margin(17, 17, 29, 1);
 		currentSpeed = 0.05f;
@@ -37,14 +43,7 @@ public class Mob extends Actor {
 		knockBackSpeed = 0.3f; //0.3
 	}
 
-//	public void startAttacking() {
-//		timeSinceLastAnimation = 0;	//getTime()
-//		isAttacking = true;
-//	}
-//	
-//	public void stopAttacking() {
-//		isAttacking = false;
-//	}
+
 	public void deathDrop() {
 		
 	}
@@ -64,7 +63,6 @@ public class Mob extends Actor {
 				mobController.remove(this);
 			}
 		}
-		//System.out.println("KnockBackTime:  "+ knockBackTime);
 	}
 	
 	public void knockBack(Hero hero) {
@@ -158,6 +156,51 @@ public class Mob extends Actor {
 		if(knockBackTime <= 0) {
 			takeDamage(5);
 			knockBack(Game.hero);
+		}
+	}
+	
+	public void chaseHero(Rect hero, Rect mob) {
+		float speedX = (hero.x+(hero.w/2)) - (mob.x+(mob.w/2));
+		float speedY = (hero.y+(hero.h/2)) - (mob.y +(mob.h/2));
+		
+		float maxSpeed = moveSpeed;
+		
+		if(speedX > maxSpeed && speedY > maxSpeed) {
+			moveRight();
+			moveDown();
+		} else if(speedX > maxSpeed && speedY < -maxSpeed) {
+			moveRight();
+			moveUp();
+		} else if(speedX < -maxSpeed && speedY < -maxSpeed) {
+			moveLeft();
+			moveUp();
+		} else if(speedX < -maxSpeed && speedY > maxSpeed) {
+			moveLeft();
+			moveDown();
+		} else if(speedX > maxSpeed) {
+			moveRight();
+			if(isMovingUp || isMovingDown) {
+				stopUp();
+				stopDown();
+			}
+		} else if(speedX < -maxSpeed) {
+			moveLeft();
+			if(isMovingUp || isMovingDown) {
+				stopUp();
+				stopDown();
+			}
+		} else if(speedY > maxSpeed) {
+			moveDown();
+			if(isMovingLeft || isMovingRight) {
+				stopLeft();
+				stopRight();
+			}
+		} else if(speedY < -maxSpeed) {
+			moveUp();
+			if(isMovingLeft || isMovingRight) {
+				stopLeft();
+				stopRight();
+			}
 		}
 	}
 	

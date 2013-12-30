@@ -15,12 +15,18 @@ public class AnimationSystem {
 		for(int i = 0; i < Sprites.campfireAnimation.length; i++) {
 			Sprites.campfireAnimation[i].updateCurrentAnimation();
 		}
+		for(int i = 0; i < Sprites.furnaceAnimation.length; i++) {
+			Sprites.furnaceAnimation[i].updateCurrentAnimation();
+		}
+		for(int i = 0; i < Sprites.cauldronAnimation.length; i++) {
+			Sprites.cauldronAnimation[i].updateCurrentAnimation();
+		}
 	}
 	
 	public void updateMain(Hero hero, MobController mobController) {
 		updateTiles();
-		//if(hero.isMoving()) 
-			hero.sprite.updateCurrentAnimation();
+		
+		hero.sprite.updateCurrentAnimation();
 		for(Mob mob : mobController.mobs) {
 			if(mob.isMoving()) mob.sprite.updateCurrentAnimation();
 		}

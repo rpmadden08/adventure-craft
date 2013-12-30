@@ -17,15 +17,19 @@ public class MainStateInput extends BasicInput {
 		super.touchUp(x, y, pointer, button);
 		Game.inventory.stopUsingItem(button);
 		if(Game.debugMenu.menuIsActive) Game.debugMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
+		if(Game.gameMainMenu.menuIsActive) Game.gameMainMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		Game.hero.attackButtonReleased = true;
+		Game.level.hasPlacedItemOnClick = false;
 		return false;
 	}
 	
 	@Override
 	public boolean touchDown(int x, int y, int pointer, int button) {
 		super.touchDown(x, y, pointer, button);
+		
 		Game.inventory.useItem(button);
 		if(Game.debugMenu.menuIsActive) Game.debugMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
+		if(Game.gameMainMenu.menuIsActive) Game.gameMainMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		additionalMouseDown();
 		return false;
 	}
@@ -34,6 +38,7 @@ public class MainStateInput extends BasicInput {
 	public boolean mouseMoved(int x, int y) {
 		super.mouseMoved(x, y);
 		if(Game.debugMenu.menuIsActive) Game.debugMenu.handleMouseMove(x, y);
+		if(Game.gameMainMenu.menuIsActive) Game.gameMainMenu.handleMouseMove(x, y);
 		additionalMouseMove();
 		return false;
 	}
@@ -54,8 +59,10 @@ public class MainStateInput extends BasicInput {
 	@Override
 	public boolean keyDown(int key) {
 		super.keyDown(key);
+		System.out.println("test");
 		switch(key) {
 		case Keys.M: Game.debugger.toggle(); break;
+		case Keys.ESCAPE: Game.gameMainMenu.toggleMenu(); break;
 		case Keys.P: Game.debugMenu.toggleMenu(); break;
 		case Keys.NUM_1: Game.inventory.changeSelectedItemTo(key); break;
 		case Keys.NUM_2: Game.inventory.changeSelectedItemTo(key); break;
@@ -69,7 +76,8 @@ public class MainStateInput extends BasicInput {
 		case Keys.NUM_0: Game.inventory.changeSelectedItemTo(key); break;
 		case Keys.MINUS: Game.zoomOut(); break;
 		case Keys.EQUALS: Game.zoomIn(); break;
-	}
+		}
+
 		additionalKeyDown(key);
 		return false;
 	}

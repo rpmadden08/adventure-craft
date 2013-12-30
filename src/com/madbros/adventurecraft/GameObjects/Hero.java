@@ -8,6 +8,7 @@ import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.Time;
+import com.madbros.adventurecraft.Items.ClothingItem;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
@@ -32,9 +33,9 @@ public class Hero extends Actor {
 		absRect = new Rect(Game.level.spawnX, Game.level.spawnY,
 				  CHARACTER_SIZE, CHARACTER_SIZE);
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_BASE));
-		margin = new Margin(0, 0, 0, 0); //17, 17, 29, 1);
-		moveSpeed = 0.19f; //0.19
-		currentSpeed = 0.19f; //0.19
+		margin = new Margin(17, 17, 29, 1);
+		moveSpeed = 0.5f; //0.19
+		currentSpeed = 0.5f; //0.19
 		knockBackSpeed = 0.3f;
 		hitSound = "sounds/pain.wav";
 		
@@ -80,6 +81,8 @@ public class Hero extends Actor {
 	public void checkCollisions() {};
 	
 	public void takeDamage(int damage) {
+		damage = damage - armor;
+		if(damage<1) {damage = 1;}
 		if(knockBackTime <= 0) {
 			if(hP - damage < 0) {
 				hP = 0;
@@ -88,11 +91,18 @@ public class Hero extends Actor {
 			}
 			Game.soundController.create(hitSound);
 			knockBackTime = 10;
-			
-			//System.out.println("HP:  "+ hP);
-			//System.out.println("KnockBackTime:  "+ knockBackTime);
 		}
-		//System.out.println("KnockBackTime:  "+ knockBackTime);
+	}
+	
+	public void calcArmor() {
+		int tempArmor = 0;
+		for(int a = 0; a < Game.inventory.invClothing.length; a++) {
+			if(Game.inventory.invClothing[a].item.id != 0) {
+				ClothingItem tempClothingItem = (ClothingItem) Game.inventory.invClothing[a].item;
+				tempArmor = tempArmor + tempClothingItem.defensePower;
+			}
+		}
+		armor = tempArmor;
 	}
 	
 	public void knockBack(Mob mob) {
@@ -140,6 +150,7 @@ public class Hero extends Actor {
 	}
 	public void didCollide() {}
 	
+	@Override
 	public void update() {
 		if(hP<=0) {
 			Game.inventory.dropAll();
@@ -154,8 +165,10 @@ public class Hero extends Actor {
 			
 		} else if(knockBackTime > 0) {
 			knockBackTime = knockBackTime - 1;
-			currentSpeed = knockBackSpeed;
-			moveKnockBack(Time.getDelta());
+			if(knockBackTime > 0) {
+				currentSpeed = knockBackSpeed;
+				moveKnockBack(Time.getDelta());
+			}
 		} else if(isMoving() && !isAttacking) {
 			if(eP > 0) {
 				eP = eP - 0.0005;
@@ -164,6 +177,7 @@ public class Hero extends Actor {
 			currentSpeed = moveSpeed;
 			move(Time.getDelta());
 		} else if(isAttacking) {
+			sprite.changeFrameTimes(80);
 			startWeaponAnimation = true;
 			int currentFrame = sprite.getCurrentAnimationFrame();
 			if(currentFrame == 0) {
@@ -256,6 +270,7 @@ public class Hero extends Actor {
 	}
 	
 	public void xMove(int moveX) {
+		
 		super.xMove(moveX);
 		Game.level.offsetX += moveX;
 		while(Game.level.offsetX >= TILE_SIZE) {
@@ -266,10 +281,13 @@ public class Hero extends Actor {
 			Game.level.offsetX += TILE_SIZE;
 			Game.level.renderRect.x--;
 		}
+		//System.out.println("x="+absRect.x);
 	}
 	
 	public void yMove(int moveY) {
+		
 		super.yMove(moveY);
+		
 		Game.level.offsetY += moveY;
 		while(Game.level.offsetY >= TILE_SIZE) {
 			Game.level.offsetY -= TILE_SIZE;
@@ -279,5 +297,6 @@ public class Hero extends Actor {
 			Game.level.offsetY += TILE_SIZE;
 			Game.level.renderRect.y--;
 		}
+		//System.out.println("y="+absRect.y);
 	}
 }

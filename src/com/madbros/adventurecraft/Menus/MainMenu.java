@@ -4,8 +4,10 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import org.lwjgl.opengl.Display;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.MyTextInputListener;
 import com.madbros.adventurecraft.GameStates.MainMenuState;
 import com.madbros.adventurecraft.UI.*;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
@@ -36,7 +38,9 @@ public class MainMenu extends Menu{
 	}
 	
 	private void newGame() {
-		MainMenuState.newGame(Game.batch);
+		MyTextInputListener listener = new MyTextInputListener();
+		Gdx.input.getTextInput(listener, "Name of New Game", "New Game");
+		//MainMenuState.newGame(Game.batch);
 	}
 	
 	private void loadGame() {
@@ -47,7 +51,7 @@ public class MainMenu extends Menu{
 		System.out.println("options");
 	}
 	
-	private void quitGame() {
+	public void quitGame() {
 		Display.destroy();
 		System.exit(0);
 	}
