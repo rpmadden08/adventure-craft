@@ -10,7 +10,6 @@ import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.WeaponItem;
-import com.madbros.adventurecraft.Sprites.Animation;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
@@ -137,7 +136,6 @@ public class Hero extends Actor {
 	}
 	public void didCollide() {}
 	
-	@Override
 	public void update() {
 		if(hP<=0) {
 			Game.inventory.dropAll();
@@ -152,10 +150,8 @@ public class Hero extends Actor {
 			
 		} else if(knockBackTime > 0) {
 			knockBackTime = knockBackTime - 1;
-			if(knockBackTime > 0) {
-				currentSpeed = knockBackSpeed;
-				moveKnockBack(Time.getDelta());
-			}
+			currentSpeed = knockBackSpeed;
+			moveKnockBack(Time.getDelta());
 		} else if(isMoving() && !isAttacking) {
 			if(eP > 0) {
 				eP = eP - 0.0005;
@@ -164,7 +160,6 @@ public class Hero extends Actor {
 			currentSpeed = moveSpeed;
 			move(Time.getDelta());
 		} else if(isAttacking) {
-			sprite.changeFrameTimes(80);
 			startWeaponAnimation = true;
 			int currentFrame = sprite.getCurrentAnimationFrame();
 			if(currentFrame == 0) {
@@ -257,7 +252,6 @@ public class Hero extends Actor {
 	}
 	
 	public void xMove(int moveX) {
-		
 		super.xMove(moveX);
 		Game.level.offsetX += moveX;
 		while(Game.level.offsetX >= TILE_SIZE) {
@@ -268,13 +262,10 @@ public class Hero extends Actor {
 			Game.level.offsetX += TILE_SIZE;
 			Game.level.renderRect.x--;
 		}
-		//System.out.println("x="+absRect.x);
 	}
 	
 	public void yMove(int moveY) {
-		
 		super.yMove(moveY);
-		
 		Game.level.offsetY += moveY;
 		while(Game.level.offsetY >= TILE_SIZE) {
 			Game.level.offsetY -= TILE_SIZE;
@@ -284,6 +275,5 @@ public class Hero extends Actor {
 			Game.level.offsetY += TILE_SIZE;
 			Game.level.renderRect.y--;
 		}
-		//System.out.println("y="+absRect.y);
 	}
 }

@@ -12,10 +12,9 @@ import static com.madbros.adventurecraft.Constants.*;
 
 public class Debugger {
 	public boolean isDebugging = false;
-	//public long gameStartTime;
+	private long gameStartTime;
 	private long timeSpentInGame;    // in seconds
-	//public long timeSpentInPreviousSaves;
-	
+
 	private DecimalFormat df = new DecimalFormat("0.###");
 	
 	private long lastFPS;
@@ -58,14 +57,13 @@ public class Debugger {
 		
 		runtime = Runtime.getRuntime();
 		
-		Game.gameStartTime = Time.getTime();
+		gameStartTime = Time.getTime();
 		timeSpentInGame = 0;
-		Game.timeSpentInPreviousSaves = 0;
 	}
 	
 	private void updateFPS() {
 		long timeNow = Time.getTime();
-		timeSpentInGame = (long) ((timeNow - Game.gameStartTime + Game.timeSpentInPreviousSaves)/1000);  // ms --> secs
+		timeSpentInGame = (long) ((timeNow - gameStartTime)/1000);  // ms --> secs
 		displayedGameTime = String.valueOf(timeSpentInGame);
 		
 		if(timeNow - lastFPS > 1000) {

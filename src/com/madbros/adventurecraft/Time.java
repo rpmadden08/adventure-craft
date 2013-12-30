@@ -16,10 +16,6 @@ public class Time {
 		return System.nanoTime() / 1000000; //<- time in milliseconds
 	}
 	
-	public static long getGameTime() {
-		return System.nanoTime() / 1000000 -Game.gameStartTime + Game.timeSpentInPreviousSaves;
-	}
-	
 	public static long getTimeNano() {
 		return System.nanoTime();
 	}

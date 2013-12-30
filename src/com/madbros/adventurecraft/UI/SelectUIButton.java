@@ -11,7 +11,6 @@ public class SelectUIButton {
 	//TODO: refactor with UIButton
 	Rect rect;
 	public Text text;
-	public int iD;
 	
 	Color fontColor = Color.WHITE;
 	

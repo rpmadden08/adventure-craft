@@ -2,8 +2,6 @@ package com.madbros.adventurecraft;
 
 import java.io.File;
 
-import org.lwjgl.opengl.Display;
-
 import com.madbros.adventurecraft.Items.*;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -35,12 +33,10 @@ public class Game implements ApplicationListener {
 	
 	public static GameState currentState;
 	public static String locOfSavedGame = null;
-	public static String gameFileName = null;
 	public static boolean isNewGame = true;
 	public static SpriteBatch batch;
 	public static SpriteBatch particleBatch;
 	public static Debugger debugger;
-	public static GameMainMenu gameMainMenu;
 	public static DebugMenu debugMenu;
 	public static Level level;
 	public static Hero hero;
@@ -53,9 +49,6 @@ public class Game implements ApplicationListener {
 	public static RenderSystem renderSystem;
 	public static AnimationSystem animationSystem;
 	public static CollisionDetectionSystem collisionDetectionSystem;
-	
-	public static long gameStartTime;
-	public static long timeSpentInPreviousSaves;
 	
 	public static OrthographicCamera camera;
 	public static float zAngle;
@@ -87,22 +80,6 @@ public class Game implements ApplicationListener {
 	public static void toggleInventoryState() {
 		if(currentState.type == State.INVENTORY) {
 			inventory.craftingTableOn = false;
-			if(inventory.chestOn) {
-				inventory.chestOn = false;
-				int x = inventory.currentInvBlockX;
-				int y = inventory.currentInvBlockY;
-				level.saveGame.saveChest(Game.inventory.invChest,x, y);
-				level.saveGame.saveGame();
-				level.saveCurrentChunks();
-			} else if(inventory.furnaceOn) {
-				inventory.furnaceOn = false;
-				//int x = inventory.currentInvBlockX;
-				//int y = inventory.currentInvBlockY;
-				//level.saveGame.saveChest(Game.inventory.invChest,x, y);
-			} else if(inventory.cauldronOn) {
-				inventory.cauldronOn = false;
-			}
-			
 			currentState = new MainState();
 			hero.stop();
 			inventory.close(hero);
@@ -138,12 +115,7 @@ public class Game implements ApplicationListener {
 		
 		f = new File(Game.locOfSavedGame + CHUNKS_FOLDER);
 		if(!f.exists()) f.mkdir();
-		f = new File(Game.locOfSavedGame + CHESTS_FOLDER);
-		if(!f.exists()) f.mkdir();
-		f = new File(Game.locOfSavedGame + FURNACES_FOLDER);
-		if(!f.exists()) f.mkdir();
 		//make other folders...
-		
 		
 		level = new Level();
 		hero = new Hero();
@@ -157,7 +129,6 @@ public class Game implements ApplicationListener {
 		animationSystem = new AnimationSystem();
 		
 		collisionDetectionSystem = new CollisionDetectionSystem();
-		level.loadGame();
 		
 		Game.currentState = new MainState();
 	}
@@ -172,8 +143,6 @@ public class Game implements ApplicationListener {
 
 	@Override
 	public void create() {
-		gameStartTime = Time.getTime();
-		timeSpentInPreviousSaves = 0;  //TODO set this on game load:)
 		
 		p.load(Gdx.files.internal("data/Chunks.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
 		death.load(Gdx.files.internal("data/death.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
@@ -187,7 +156,6 @@ public class Game implements ApplicationListener {
 		
 		debugger = new Debugger();
 		debugMenu = new DebugMenu(batch);
-		gameMainMenu = new GameMainMenu(batch);
 		
 
 		
@@ -233,11 +201,8 @@ public class Game implements ApplicationListener {
 		finalShader.end();
 	}
 
-	public static void quit() {
-		if(level != null) {
-			Game.level.saveGame.saveGame();
-			Game.level.saveCurrentChunks();
-		}
+	@Override
+	public void dispose() {
 		batch.dispose();
 		if(fbo != null) {
 			finalShader.dispose();
@@ -248,13 +213,6 @@ public class Game implements ApplicationListener {
 			fbo.dispose();
 			musicController.music.dispose();
 		}
-	}
-
-	@Override
-	public void dispose() {
-		quit();
-		Display.destroy();
-		System.exit(0);
 //		bitmapFont.dispose();
 //		tilemap.dispose();
 	}

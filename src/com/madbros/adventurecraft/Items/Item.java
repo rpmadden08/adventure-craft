@@ -32,8 +32,6 @@ public abstract class Item {
 	public int maxUses = 10;
 	public int uses = 10;
 	public boolean isUseable = false;
-	public boolean isFuelSource = false;
-	public int fuelAmount = 0;
 	
 	
 	
@@ -86,15 +84,7 @@ public abstract class Item {
 		return false;
 	}
 	
-	public boolean isValidFurnaceRecipe(Slot[] craftingSlots) {
-		return false;
-	}
-	
 	public boolean isValidTableRecipe(Slot[] craftingSlots) {
-		return false;
-	}
-	
-	public boolean isValidCauldronRecipe(Slot[] craftingSlots) {
 		return false;
 	}
 	

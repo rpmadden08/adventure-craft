@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-import com.madbros.adventurecraft.Items.ClothingItem;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Point;
@@ -33,8 +32,6 @@ public class Level {
 	public int highlightedBlockX = 0;
 	public int highlightedBlockY = 0;
 	
-	public boolean hasPlacedItemOnClick = false;
-	
 	public ArrayList<Block> blooming = new ArrayList<Block>();
 	
 	public SaveGame saveGame = new SaveGame();
@@ -45,27 +42,13 @@ public class Level {
 	public int debuggerTest = 0;
 	
 	//Keeps track of what part of the activeBlocks array we're rendering. Starts off in the very center.
-	//renderRect, spawnX, spawnY should all be the same
-//total chunks * chunk_size * Tile_size /2 - character
-	public int spawnX = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE /2 - CHARACTER_SIZE/2;
-	public int spawnY = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE /2 - CHARACTER_SIZE/2;
-//	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+900;
-	//public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+700;
+	public Rect renderRect = new Rect(TILES_PER_ROW / 2 - (int)Math.ceil(Game.getCenterScreenX() * 1.0 /TILE_SIZE),
+			  						  TILES_PER_ROW / 2 - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
+			  						  (int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
+			  						  (int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
-	int startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
-	int startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
-	public Rect chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
-	public int offsetX = 0;	//offset gets set at the start of level if there is one
-	public int offsetY = 0;
-	public Rect renderRect = new Rect(
-			spawnX / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE),
-			spawnY / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
-			(int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
-			(int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
-	
-//	
 	//private long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 6; // 4 is desert 0 is forest 20 is grassland
+	public long rgenseed = 0; // 4 is desert 0 is forest
 	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public Random rand = new Random(rgenseed);
 	public int randInt1 = rand.nextInt();
@@ -81,8 +64,9 @@ public class Level {
 	public int minutes = 0;
 	public boolean isDay = true;
 	
-	//public Rect chunkRect = new Rect(0, 0, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);	//keeps track of the chunk we're on
-
+	public Rect chunkRect = new Rect(0, 0, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);	//keeps track of the chunk we're on
+	public int offsetX = 0;	//offset gets set at the start of level if there is one
+	public int offsetY = 0;
 
 	public boolean isLoading = false;
 	public double PTotal = 0;
@@ -97,121 +81,40 @@ public class Level {
 	public double PMountain = 0;
 	public double PHole = 0;
 	
-	
+	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
+	public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
 	
 	//public int musicSelection = 0;
 	//public Music music = Gdx.audio.newMusic(Gdx.files.internal("music/overworld.wav"));
 	
 	
 	
-	public Level() {	
-		Game.gameStartTime = Time.getTime();
-		if(Game.isNewGame) {
-			if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
-			if(Game.getCenterScreenY() % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.getCenterScreenY() % TILE_SIZE;
-		} else {
-			SaveGameData saveData = saveGame.saveData();
-			spawnX = saveData.heroX;
-			spawnY = saveData.heroY;
-			startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
-			startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
-			chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
-			
-			offsetX = saveData.offsetX;
-			offsetY = saveData.offsetY;
-			//System.out.println("SPAWNLOAD: "+spawnX+"-"+spawnY);
-			//System.out.println("OFFSETLOAD: "+offsetX+"-"+offsetY);
-			int renderRectX;
-			if(offsetX > 15) {
-				renderRectX = (spawnX+(offsetX)) / TILE_SIZE -(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
-			} else {
-				renderRectX = (spawnX+(offsetX)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
-			}
-			renderRect = new Rect(
-					renderRectX,
-					(spawnY+(TILE_SIZE -offsetY)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
-					(int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
-					(int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
-			
-		}
-		
-		
+	public Level() {		
+		if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
+		if(Game.getCenterScreenY() % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.getCenterScreenY() % TILE_SIZE;
 		
 		activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
 		currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
 		
+		//FIXME: Make this loop only get called on a new game...
 		if(Game.isNewGame == true) {
 			for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
 				for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
-					createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
+					createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
 				}
 			}
-			
-		} 
+		}
 		
-		
-		
+		//FIXME: Should be dependent on character's spawn point...
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
 				loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
-				
 			}
-			
 		}
+		
 		gameStartTime = Time.getTime();		
 
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
-	}
-	
-	public void loadGame() {
-		if(Game.isNewGame) {
-			saveGame.saveGame();
-			//NO NEED to saveCurrentChunks();  It's already been done...
-		} else {
-			SaveGameData saveData = saveGame.saveData();
-			Game.hero.hP = saveData.hP;
-			Game.hero.maxHP = saveData.maxHP;
-			Game.hero.mP = saveData.mP;
-			Game.hero.maxMP = saveData.maxMP;
-			Game.hero.eP = saveData.eP;
-			Game.hero.maxEP = saveData.maxEP;
-			for(int x = 0; x < saveData.invBarID.length; x++) {
-				int id = saveData.invBarID[x];
-				Game.inventory.invBar[x].item = ITEM_HASH.get(id).createNew();
-				Game.inventory.invBar[x].item.stackSize = saveData.invBarStackSize[x];
-			}
-			
-			for(int x = 0; x < saveData.invClothingID.length; x++) {
-				int id = saveData.invClothingID[x];
-				Game.inventory.invClothing[x].item = ITEM_HASH.get(id).createNew();
-//				ClothingItem clothingItem = (ClothingItem) Game.inventory.invClothing[x].item;
-//				Game.hero.sprite.addSprite(clothingItem.animatedSprite);
-			}
-			
-			for(int x = 0; x < saveData.invCraftingID.length; x++) {
-				int id = saveData.invCraftingID[x];
-				Game.inventory.invCrafting[x].item = ITEM_HASH.get(id).createNew();
-				Game.inventory.invCrafting[x].item.stackSize = saveData.invCraftingStackSize[x];
-			}
-				int id = saveData.invCraftedID;
-				Game.inventory.invCrafted[0].item = ITEM_HASH.get(id).createNew();
-				Game.inventory.invCrafted[0].item.stackSize = saveData.invCraftedStackSize;
-			
-			for(int x = 0; x < saveData.invBagID.length; x++) {
-				id = saveData.invBagID[x];
-				Game.inventory.invBag[x].item = ITEM_HASH.get(id).createNew();
-				Game.inventory.invBag[x].item.stackSize = saveData.invBagStackSize[x];
-			}
-			Game.timeSpentInPreviousSaves = saveData.gameTime;
-		}
-	}
-	
-	public void saveCurrentChunks() {
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
-				saveChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
-			}
-		}
 	}
 	
 
@@ -306,16 +209,9 @@ public class Level {
 			highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
 			
 			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
-			//This is so that chests know their coordinates...
-			tileBeingAttacked.absX = highlightedBlock.getAbsX();
-			tileBeingAttacked.absY = highlightedBlock.getAbsY();
-			//This is so that furnaces know their activeBlocks...
-			tileBeingAttacked.activeBlocksX = highlightedBlockX;
-			tileBeingAttacked.activeBlocksY = highlightedBlockY;
+
 			
 			if(tileBeingAttacked != highlightedBlock.getObjectTile()) {
-				
-				
 				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
 				tileBeingAttacked = highlightedBlock.getObjectTile();
 				
@@ -356,7 +252,6 @@ public class Level {
 		for(int x = renderRect.x; x < renderRect.x2(); x++) {
 			for(int y = renderRect.y; y < renderRect.y2(); y++) {
 				activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
-				activeBlocks[x][y].layers[TREE_LEFT_0].update(x, y);
 			}
 		}
 	}
@@ -381,7 +276,6 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
 		}
-		
 		renderRect.y += CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(DOWN);
@@ -400,7 +294,7 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
 		}
-		
+
 		renderRect.y -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(UP);
@@ -419,7 +313,6 @@ public class Level {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
 		}
-		
 		renderRect.x -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(LEFT);
@@ -487,7 +380,7 @@ public class Level {
 		int n = j+CHUNK_BLOOM_MARGIN;
 
 		//BELOW SEA LEVEL
-		if(chunkX < 3 || chunkY < 3 || chunkX > CHUNKS_LENGTH_TOTAL - 3 || chunkY > CHUNKS_LENGTH_TOTAL - 3) {
+		if(chunkX < 2 || chunkY < 2 || chunkX > CHUNKS_LENGTH_TOTAL - 3 || chunkY > CHUNKS_LENGTH_TOTAL - 3) {
 				Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new HoleTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
@@ -628,6 +521,7 @@ public class Level {
     		}
     		
     	}
+		
 		Block[] blockGrid = {block, block3, block2, block4};
 		int cycle = 0;
 		for(int s = m; s < m+2; s++) {
@@ -656,10 +550,10 @@ public class Level {
 					blockGrid[cycle].layers[TREE_CENTER_1] = new TreeLeafTile();
 					blockGrid[cycle].layers[TREE_CENTER_1].currentSpriteId = 4;
 				}
-//				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
-//					blockGrid[cycle].layers[TREE_CENTER_0] = new TreeLeafTile();
-//					blockGrid[cycle].layers[TREE_CENTER_0].currentSpriteId = 5;
-//				}
+				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
+					blockGrid[cycle].layers[TREE_CENTER_0] = new TreeLeafTile();
+					blockGrid[cycle].layers[TREE_CENTER_0].currentSpriteId = 5;
+				}
 				if(chunkGenerator.chunkObjectLayer[s-1][t+2] == TREE) {
 					blockGrid[cycle].layers[TREE_RIGHT_2] = new TreeLeafTile();
 					blockGrid[cycle].layers[TREE_RIGHT_2].currentSpriteId = 6;
@@ -675,7 +569,6 @@ public class Level {
 				
 				cycle++;
 			}
-			
 
     	}
 		

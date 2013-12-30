@@ -1,8 +1,9 @@
 package com.madbros.adventurecraft.Menus;
 
-import static com.madbros.adventurecraft.Constants.*;
+import static com.madbros.adventurecraft.Constants.DEBUG_MENU_SIZEX;
 
-import com.badlogic.gdx.Gdx;
+import static com.madbros.adventurecraft.Constants.DEBUG_MENU_SIZEY;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.UI.PlainUIButton;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
@@ -30,7 +31,7 @@ public class DebugMenu extends Menu {
 		chunkBoundariesAreOn = false;
 		collisionDetectionIsOn = true;
 		menuIsActive = false;
-		fullscreenIsOn = false;
+		fullscreenIsOn = true;
 		
 		
 		Rect r = new Rect(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY, DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY);
@@ -40,7 +41,7 @@ public class DebugMenu extends Menu {
 		ButtonFunction chunkBoundaries = new ButtonFunction() { public void invoke() { toggleChunkBoundaries(); } };
 		ButtonFunction characterSpeedDown = new ButtonFunction() { public void invoke() { characterSpeedDown(); } };
 		ButtonFunction characterSpeedUp = new ButtonFunction() { public void invoke() { characterSpeedUp(); } };
-		ButtonFunction tester = new ButtonFunction() { public void invoke() { tester(); } };
+//		ButtonFunction tester = new ButtonFunction() { public void invoke() { tester(); } };
 		
 		String s1, s2, s3, s4, s5;
 		if(collisionDetectionIsOn) s1 = "Collision Detection Is On"; else s1 = "Collision Detection Is Off";
@@ -50,7 +51,7 @@ public class DebugMenu extends Menu {
 		if(fullscreenIsOn) s5 = "Fullscreen Is On"; else s5 = "Fullscreen Is Off";
 
 		String[] strings = {s1, s2, s3, s4, "Speed-", "Speed+", s5};
-		ButtonFunction[] functions = {collisionDetection, collisionRectangles, collisionTiles, chunkBoundaries, characterSpeedDown, characterSpeedUp, tester};
+		ButtonFunction[] functions = {collisionDetection, collisionRectangles, collisionTiles, chunkBoundaries, characterSpeedDown, characterSpeedUp};//, tester};
 		
 		menuButtons = new PlainUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {
@@ -58,18 +59,18 @@ public class DebugMenu extends Menu {
 		}
 	}
 	
-	public void tester() {
-		if(fullscreenIsOn == false) {
-			Gdx.graphics.setDisplayMode(INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT, true);
-			fullscreenIsOn = true;
-			menuButtons[6].setString("Fullscreen Is On");
-		} else {
-			Gdx.graphics.setDisplayMode(INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT, false);
-			fullscreenIsOn = false;
-			menuButtons[6].setString("Fullscreen Is Off");
-		}
-		
-	}
+//	public void tester() {
+//		if(fullscreenIsOn == false) {
+//			Game.setDisplayMode(INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT, true);
+//			fullscreenIsOn = true;
+//			menuButtons[6].setString("Fullscreen Is On");
+//		} else {
+//			Game.setDisplayMode(INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT, false);
+//			fullscreenIsOn = false;
+//			menuButtons[6].setString("Fullscreen Is Off");
+//		}
+//		
+//	}
 	
 	public void toggleMenu() {
 		if(menuIsActive) menuIsActive = false;

@@ -2,159 +2,39 @@ package com.madbros.adventurecraft;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import com.madbros.adventurecraft.Items.ClothingItem;
-import com.madbros.adventurecraft.Slots.Slot;
-import com.madbros.adventurecraft.TileTypes.Cauldron;
-import com.madbros.adventurecraft.TileTypes.Furnace;
+import com.madbros.adventurecraft.TileTypes.DarkDirtTile;
+import com.madbros.adventurecraft.TileTypes.DirtTile;
+import com.madbros.adventurecraft.TileTypes.GrassTile;
+import com.madbros.adventurecraft.TileTypes.HoleTile;
+import com.madbros.adventurecraft.TileTypes.NoTile;
+import com.madbros.adventurecraft.TileTypes.Tile;
+import com.madbros.adventurecraft.TileTypes.TreeTile;
 import com.madbros.adventurecraft.Utils.Helpers;
 
 //@SuppressWarnings("unchecked")
 public class SaveGame {
-	public void saveGame() {
-		SaveGameData saveData = new SaveGameData();
-		saveData.heroX = Game.hero.absRect.x;
-		saveData.heroY = Game.hero.absRect.y;
-		saveData.offsetX = Game.level.offsetX;
-		saveData.offsetY = Game.level.offsetY;
-		//System.out.println("SavedOffset: "+Game.level.offsetX+"-"+Game.level.offsetY);
-		//System.out.println("SavedSpawn: "+Game.level.spawnX+"-"+Game.level.spawnY);
-		
-		saveData.hP = Game.hero.hP;
-		saveData.maxHP = Game.hero.maxHP;
-		saveData.mP = Game.hero.mP;
-		saveData.maxMP = Game.hero.maxMP;
-		saveData.eP = Game.hero.eP;
-		saveData.maxEP = Game.hero.maxEP;
-
-//		public int[] invClothingID = new int[4];
-		
-		for(int x = 0; x < saveData.invBarID.length; x++) {
-			saveData.invBarID[x] = Game.inventory.invBar[x].item.id;
-			saveData.invBarStackSize[x] = Game.inventory.invBar[x].item.stackSize;
-		}
-		
-		for(int x = 0; x < saveData.invBagID.length; x++) {
-			saveData.invBagID[x] = Game.inventory.invBag[x].item.id;
-			saveData.invBagStackSize[x] = Game.inventory.invBag[x].item.stackSize;
-		}
-		
-		saveData.invCraftedID = Game.inventory.invCrafted[0].item.id;
-		saveData.invCraftedStackSize = Game.inventory.invCrafted[0].item.stackSize;
-		
-		for(int x = 0; x < saveData.invCraftingID.length; x++) {
-			saveData.invCraftingID[x] = Game.inventory.invCrafting[x].item.id;
-			saveData.invCraftingStackSize[x] = Game.inventory.invCrafting[x].item.stackSize;
-		}
-		
-		for(int x = 0; x < saveData.invClothingID.length; x++) {
-			saveData.invClothingID[x] = Game.inventory.invClothing[x].item.id;
-
-			//saveData.invCraftingStackSize[x] = Game.inventory.invCrafting[x].item.stackSize;
-		}
-		
-		saveData.gameTime = Time.getGameTime();
-		
-		Kryo kryo = new Kryo();
-
-		try {
-			Output output = new Output(new FileOutputStream(Game.locOfSavedGame+"main.sv"));
-			
-			kryo.writeObject(output, saveData);
-			output.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
-	}
-	
-	public SaveGameData saveData() {
-		SaveGameData saveData = new SaveGameData();
-		
-		Kryo kryo = new Kryo();
-		
-		try {
-			Input input = new Input(new FileInputStream(Game.locOfSavedGame + "main.sv"));
-			saveData = kryo.readObject(input, SaveGameData.class);
-			input.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return saveData;
-		
-	}
-	
 	public void saveChunk(Block[][] chunk, int chunkX, int chunkY) {
 		Chunk chunkData = new Chunk();
 		
 		int[][][] ids = new int[chunk.length][chunk.length][chunk[0][0].layers.length];
 		int[][][] currentTextures = new int[chunk.length][chunk.length][chunk[0][0].layers.length];
-		long[][][] timeCreated = new long [chunk.length][chunk.length][chunk[0][0].layers.length];
-		ArrayList<int[]> furnaceListInt = new ArrayList<int[]>();
-		ArrayList<boolean[]> furnaceListBoolean = new ArrayList<boolean[]>();
-		int[][] furnaceInts;
-		boolean[][] furnaceBooleans;
-		
-		ArrayList<int[]> cauldronListInt = new ArrayList<int[]>();
-		ArrayList<boolean[]> cauldronListBoolean = new ArrayList<boolean[]>();
-		int[][] cauldronInts;
-		boolean[][] cauldronBooleans;
-		
 		int[][] absX = new int[CHUNK_SIZE][CHUNK_SIZE];
 		int[][] absY = new int[CHUNK_SIZE][CHUNK_SIZE];
 		boolean[][] isUnfinished = new boolean[CHUNK_SIZE][CHUNK_SIZE];
-		
 		
 		for(int x = 0; x < chunk.length; x++) {
 			for(int y = 0; y < chunk.length; y++) {
 				for(int i = 0; i < chunk[x][y].layers.length; i++) {
 					ids[x][y][i] = chunk[x][y].layers[i].id;
 					currentTextures[x][y][i] = chunk[x][y].layers[i].currentSpriteId;
-					timeCreated[x][y][i] = chunk[x][y].layers[i].timeCreated;
-					if(chunk[x][y].layers[i].id == FURNACE) {
-						Furnace furnace = (Furnace) chunk[x][y].layers[i];
-						int a1[]={furnace.furnaceFuel,
-								furnace.furnaceMaxFuel,
-								furnace.furnaceBuildTime,
-								furnace.possiblyCraftableItem.id,
-								furnace.furnaceSlots[0].item.id,
-								furnace.furnaceSlots[1].item.id,
-								furnace.furnaceSlots[0].item.stackSize,
-								furnace.furnaceSlots[1].item.stackSize,
-								};
-						boolean[] a2={furnace.furnaceIsBurning,
-								furnace.isCraftableItem};
-						furnaceListInt.add(a1);
-						furnaceListBoolean.add(a2);						
-					}
-					if(chunk[x][y].layers[i].id == CAULDRON) {
-						Cauldron cauldron = (Cauldron) chunk[x][y].layers[i];
-						int a1[]={cauldron.cauldronFuel,
-								cauldron.cauldronMaxFuel,
-								cauldron.cauldronBuildTime,
-								cauldron.possiblyCraftableItem.id,
-								cauldron.cauldronSlots[0].item.id,
-								cauldron.cauldronSlots[1].item.id,
-								cauldron.cauldronSlots[2].item.id,
-								cauldron.cauldronSlots[3].item.id,
-								cauldron.cauldronSlots[0].item.stackSize,
-								cauldron.cauldronSlots[1].item.stackSize,
-								cauldron.cauldronSlots[2].item.stackSize,
-								cauldron.cauldronSlots[3].item.stackSize,
-								};
-						boolean[] a2={cauldron.cauldronIsBurning,
-								cauldron.isCraftableItem};
-						cauldronListInt.add(a1);
-						cauldronListBoolean.add(a2);						
-					}
-					
 				}
 				absX[x][y] = chunk[x][y].absRect.x;
 				absY[x][y] = chunk[x][y].absRect.y;
@@ -162,40 +42,11 @@ public class SaveGame {
 			}
 		}
 		
-		furnaceInts = new int[furnaceListInt.size()][];
-		for (int i = 0; i < furnaceListInt.size(); i++) {
-		    furnaceInts[i] = furnaceListInt.get(i);
-		}		
-		
-		furnaceBooleans = new boolean[furnaceListBoolean.size()][];
-		for (int i = 0; i < furnaceListBoolean.size(); i++) {
-		    furnaceBooleans[i] = furnaceListBoolean.get(i);
-		}
-		
-		cauldronInts = new int[cauldronListInt.size()][];
-		for (int i = 0; i < cauldronListInt.size(); i++) {
-		    cauldronInts[i] = cauldronListInt.get(i);
-		}		
-		
-		cauldronBooleans = new boolean[cauldronListBoolean.size()][];
-		for (int i = 0; i < cauldronListBoolean.size(); i++) {
-		    cauldronBooleans[i] = cauldronListBoolean.get(i);
-		}
-		
 		chunkData.ids = ids;
 		chunkData.currentTextures = currentTextures;
-		chunkData.timeCreated = timeCreated;
 		chunkData.absX = absX;
 		chunkData.absY = absY;
 		chunkData.isUnfinished = isUnfinished;
-		chunkData.furnaceInts = new int[furnaceInts.length][8];
-		chunkData.furnaceInts = furnaceInts;
-		chunkData.furnaceBooleans = new boolean[furnaceBooleans.length][8];
-		chunkData.furnaceBooleans = furnaceBooleans;
-		chunkData.cauldronInts = new int[cauldronInts.length][8];
-		chunkData.cauldronInts = cauldronInts;
-		chunkData.cauldronBooleans = new boolean[cauldronBooleans.length][8];
-		chunkData.cauldronBooleans = cauldronBooleans;
 		
 		Kryo kryo = new Kryo();
 
@@ -222,45 +73,5 @@ public class SaveGame {
 			e.printStackTrace();
 		}
 		return Helpers.chunkToBlockArray(chunk);
-	}
-	
-	public void saveChest(Slot[] slot, int absX, int absY) {
-		ChestData chestData = new ChestData();
-		
-		int[] itemIds = new int[slot.length];
-		int[] itemStackSizes = new int[slot.length];
-		int[] itemUses = new int[slot.length];
-		
-		for(int x = 0; x < slot.length; x++) {
-			itemIds[x] = chestData.itemIds[x];
-			itemStackSizes[x] = chestData.itemStackSizes[x];
-			itemUses[x] = chestData.itemUses[x];
-		}
-		
-		Kryo kryo = new Kryo();
-
-		try {
-			Output output = new Output(new FileOutputStream(Game.locOfSavedGame + CHESTS_FOLDER + absX + "-" + absY + ".sv"));
-			
-			kryo.writeObject(output, chestData);
-			output.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void loadChest(int absX, int absY) {
-		ChestData chestData = new ChestData();
-		
-		Kryo kryo = new Kryo();
-		
-		try {
-			Input input = new Input(new FileInputStream(Game.locOfSavedGame + CHESTS_FOLDER + absX + "-" + absY + ".sv"));
-			chestData = kryo.readObject(input, ChestData.class);
-			input.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Helpers.chestDataToSlotArray(chestData);
 	}
 }

@@ -4,7 +4,6 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Items.*;
-import com.madbros.adventurecraft.TileTypes.Furnace;
 
 public class CraftedSlot extends Slot{
 	public CraftedSlot(int x, int y) {
@@ -17,9 +16,6 @@ public class CraftedSlot extends Slot{
 		CraftingSlot[] craftingSlots;
 		if(inv.craftingTableOn == true) {
 			craftingSlots = inv.invTable;
-		} else if(inv.furnaceOn) {
-			Furnace furnaceTile = (Furnace) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			craftingSlots = furnaceTile.furnaceSlots;
 		} else {
 			craftingSlots = inv.invCrafting;
 		}

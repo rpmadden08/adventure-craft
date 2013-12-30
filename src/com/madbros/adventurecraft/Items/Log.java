@@ -7,8 +7,6 @@ import com.madbros.adventurecraft.Sprites.*;
 public class Log extends CraftItem {
 	public Log() {
 		id = LOG;
-		isFuelSource = true;
-		fuelAmount = 60;
 		sprite = Sprites.sprites.get(Sprites.LOG_ITEM);
 		itemsPossiblyCraftable = new int[]{PLANK};
 	}

@@ -32,7 +32,7 @@ public class SaplingTile extends CollisionTile {
 	
 	@Override
 	public void update(int x, int y) {
-		if(Time.getGameTime() - timeCreated > 10000) {// 3000
+		if(Time.getTime() - timeCreated > 10000) {// 3000
 			Block b = Game.level.activeBlocks[x][y];
 			b.layers[OBJECT_LAYER] = new TreeTile();
 			b.setCollisionTile(new TreeTile());

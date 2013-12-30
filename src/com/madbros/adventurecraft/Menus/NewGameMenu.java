@@ -5,29 +5,24 @@ import java.io.File;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.*;
-
 import static com.madbros.adventurecraft.Constants.*;
-
 import com.madbros.adventurecraft.GameStates.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.UI.*;
 import com.madbros.adventurecraft.Utils.*;
 
 public class NewGameMenu extends Menu {
-	private String fileName = "New Game";
+	private String fileName;
 	private Rect textRect;
 	private Text gameName;
-	public SpriteBatch textFieldBatch;
 	
 	public NewGameMenu(SpriteBatch batch) {
 		super(batch);
-		textFieldBatch = batch;
 	}
 	
 	@Override
 	public void setupMenu(SpriteBatch batch) {
-		
-		//fileName = "New Game";
+		fileName = "New Game";
 		File f = new File(SAVE_LOC + fileName);
 		if(f.exists()) {
 			int gameNumber = 1;
@@ -71,11 +66,10 @@ public class NewGameMenu extends Menu {
 	public void renderText() {
 		super.renderText();
 		gameName.drawCenter(textRect, Color.WHITE);
-		
 	}
 	
 	public void create() {
-		Game.createNewGameAtLoc(SAVE_LOC + Game.gameFileName + "/");
+		Game.createNewGameAtLoc(SAVE_LOC + fileName + "/");
 	}
 	
 	public void cancel() {

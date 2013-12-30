@@ -9,8 +9,6 @@ public class Potatoes extends FoodItem {
 		id = POTATOES;
 		sprite = Sprites.sprites.get(Sprites.POTATOES);
 		
-		itemsPossiblyCraftable = new int[]{BAKED_POTATOES};
-		
 	}
 	@Override
 	public FoodItem createNew() {
