@@ -8,7 +8,6 @@ import com.madbros.adventurecraft.Utils.*;
 public class AnimatedSprite extends Sprite {
 	private HashMap<Integer, Animation> animations = new HashMap<Integer, Animation>();
 	private Animation currentAnimation;
-	public int stackPosition = 0;
 	
 	/*********************************** Constructors ***********************************/
 	public AnimatedSprite(Animation animation) {
@@ -49,9 +48,7 @@ public class AnimatedSprite extends Sprite {
 	}
 	
 	public void changeAnimationTo(int animationId) {
-		//FIXME Just not sure why this resetFrame command was here...  
 		resetFrame();
-		
 		currentAnimation = animations.get(animationId);
 	}
 	

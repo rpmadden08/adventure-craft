@@ -19,7 +19,6 @@ public abstract class Tile {
 	public float z = Z_DARK_DIRT;
 	public boolean isVisible = true;
 	public boolean isCollidable = false;
-	public boolean isPickable = false;
 	public boolean isDiggable = true;
 	public boolean isChoppable = false;
 	public boolean isTillable = false;
@@ -33,7 +32,6 @@ public abstract class Tile {
 	public int activeBlocksX = 0;
 	public int activeBlocksY = 0;
 	public int id = AIR;
-	public int autoTileID = id;
 	public int autoTile = MIDDLE_TILE;
 	public boolean isMiddleTile = true;
 	public boolean isTreeLeafTile = false; //When it renders treeleaftiles act differently.  

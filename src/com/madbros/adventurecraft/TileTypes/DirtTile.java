@@ -13,7 +13,6 @@ public class DirtTile extends Tile {
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.LIGHT_DIRT);
 		id = DIRT;
-		autoTileID = id;
 		isTillable = true;
 	}
 	

@@ -8,7 +8,6 @@ import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.Time;
-import com.madbros.adventurecraft.Items.ClothingItem;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.Animation;
@@ -82,8 +81,6 @@ public class Hero extends Actor {
 	public void checkCollisions() {};
 	
 	public void takeDamage(int damage) {
-		damage = damage - armor;
-		if(damage<1) {damage = 1;}
 		if(knockBackTime <= 0) {
 			if(hP - damage < 0) {
 				hP = 0;
@@ -93,17 +90,6 @@ public class Hero extends Actor {
 			Game.soundController.create(hitSound);
 			knockBackTime = 10;
 		}
-	}
-	
-	public void calcArmor() {
-		int tempArmor = 0;
-		for(int a = 0; a < Game.inventory.invClothing.length; a++) {
-			if(Game.inventory.invClothing[a].item.id != 0) {
-				ClothingItem tempClothingItem = (ClothingItem) Game.inventory.invClothing[a].item;
-				tempArmor = tempArmor + tempClothingItem.defensePower;
-			}
-		}
-		armor = tempArmor;
 	}
 	
 	public void knockBack(Mob mob) {

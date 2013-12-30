@@ -131,8 +131,6 @@ public class Constants {
 	public static final int FURNACE = 24;
 	public static final int FURNACE_TOP = 25;
 	public static final int CAULDRON = 26;
-	public static final int DIRT_MOUNTAIN_COAL_BOTTOM = 27;
-	public static final int DIRT_MOUNTAIN_COAL_TOP = 28;
 	
 	
 	//Layers
@@ -239,7 +237,6 @@ public class Constants {
 	public static final int FURNACE_ITEM = 22;
 	public static final int BAKED_POTATOES = 23;
 	public static final int CAULDRON_ITEM = 24;
-	public static final int PICK = 25;
 	
 	
 	//Clothing Types
@@ -296,7 +293,6 @@ public class Constants {
 		ITEM_HASH.put(AXE, new Axe());
 		ITEM_HASH.put(SWORD, new Sword());
 		ITEM_HASH.put(HOE, new Hoe());
-		ITEM_HASH.put(PICK, new Pick());
 		ITEM_HASH.put(LONG_SWORD, new LongSword());
 		ITEM_HASH.put(SAPLING_ITEM, new Sapling());
 		ITEM_HASH.put(IRON_HELMET, new IronHelmet());
@@ -330,8 +326,6 @@ public class Constants {
 		TILE_HASH.put(HOLE, new HoleTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_BOTTOM, new DirtMountainBottomTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_TOP, new DirtMountainTopTile());
-		TILE_HASH.put(DIRT_MOUNTAIN_COAL_BOTTOM, new DirtMountainCoalBottomTile());
-		TILE_HASH.put(DIRT_MOUNTAIN_COAL_TOP, new DirtMountainCoalTopTile());
 		TILE_HASH.put(CAMPFIRE, new Campfire());
 		TILE_HASH.put(DARK_GRASS, new DarkGrassTile());
 		TILE_HASH.put(SNOW, new SnowTile());

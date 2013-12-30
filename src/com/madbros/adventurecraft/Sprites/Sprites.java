@@ -59,7 +59,6 @@ public class Sprites {
 	public static final String HOE = "ironHoe";
 	public static final String TABLE_ITEM = "table";
 	public static final String CHEST_ITEM = "chest";
-	public static final String PICK = "ironPick";
 	
 	//static collections
 //	public static final String GEM = "Gem Blue";
@@ -69,8 +68,6 @@ public class Sprites {
 	public static final String LIGHT_DIRT = "lightDirt";
 	public static final String MOUNTAIN_BOTTOM = "mountainBottom";
 	public static final String MOUNTAIN_TOP = "mountainTop";
-	public static final String MOUNTAIN_COAL_BOTTOM = "mountainCoalBottom";
-	public static final String MOUNTAIN_COAL_TOP = "mountainCoalTop";
 	public static final String TREE_TWO = "treeTwo";
 	public static final String TREE_THREE = "greentree";
 	public static final String WATER1 = "water";
@@ -261,7 +258,7 @@ public class Sprites {
 					PLATE_TORSO_SLASH_RIGHT,PLATE_HELMET_SLASH_UP, PLATE_HELMET_SLASH_DOWN, PLATE_HELMET_SLASH_LEFT, 
 					PLATE_HELMET_SLASH_RIGHT, PLATE_LEGS_SLASH_UP, PLATE_LEGS_SLASH_DOWN, PLATE_LEGS_SLASH_LEFT, 
 					PLATE_LEGS_SLASH_RIGHT, PLATE_FEET_SLASH_UP, PLATE_FEET_SLASH_DOWN, PLATE_FEET_SLASH_LEFT, 
-					PLATE_FEET_SLASH_RIGHT, PICK, MOUNTAIN_COAL_TOP, MOUNTAIN_COAL_BOTTOM
+					PLATE_FEET_SLASH_RIGHT
 			};
 			
 			String[] lightNames = {LIGHT};
@@ -498,13 +495,9 @@ public class Sprites {
 			
 			AnimatedSprite animatedSprite = new AnimatedSprite(animations);
 			AnimatedSprite animatedHelmet = new AnimatedSprite(helmet);
-			animatedHelmet.stackPosition = 5;
 			AnimatedSprite animatedChest = new AnimatedSprite(chest);
-			animatedChest.stackPosition = 4;
 			AnimatedSprite animatedPants = new AnimatedSprite(pants);
-			animatedPants.stackPosition = 3;
 			AnimatedSprite animatedBoots = new AnimatedSprite(boots);
-			animatedBoots.stackPosition = 2;
 			
 			AnimatedSprite animatedBat = new AnimatedSprite(bat);
 			

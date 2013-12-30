@@ -16,11 +16,11 @@ public class MobController {
 		if(x > CHUNK_SIZE*2 && x< CHUNK_SIZE *3+1 && y > CHUNK_SIZE*2 && y< CHUNK_SIZE *3+1 ) {
 			
 		} else {
-			if(Game.level.activeBlocks[x][y].layers[GRASS_LAYER].id == DARK_GRASS) {
+			if(Game.level.activeBlocks[x][y].layers[GRASS_LAYER].id == SAND) {
 				
 				int num = rand.nextInt(1);//100
 				if(num == 0 && mobs.size() < 10) {//57
-					mobs.add(new Bat(this, x, y));
+					//mobs.add(new Bat(this, x, y));
 				}
 			}
 		}

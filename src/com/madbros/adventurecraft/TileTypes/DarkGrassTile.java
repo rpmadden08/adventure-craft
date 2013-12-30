@@ -14,7 +14,6 @@ public class DarkGrassTile extends Tile {
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.DARK_GRASS);
 		id = DARK_GRASS;
-		autoTileID = id;
 	}
 
 	public Tile createNew() {
