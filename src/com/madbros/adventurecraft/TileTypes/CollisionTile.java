@@ -1,7 +1,6 @@
 package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
-
 import com.madbros.adventurecraft.GameObjects.Actor;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -9,8 +8,6 @@ import com.madbros.adventurecraft.Utils.Rect;
 public abstract class CollisionTile extends Tile {
 	public Margin margin;
 	public Rect cRect;
-	public int arrayX;
-	public int arrayY;
 	
 	public CollisionTile() {
 		isCollidable = true;
@@ -21,7 +18,7 @@ public abstract class CollisionTile extends Tile {
 		switch(dir) {
 		case DOWN:
 			extra = move - charCRect.getBottomCollisionDiff(tileRect);
-			actor.yMove(-move + extra);
+			actor.yMove(-move);
 			break;
 		case UP:
 			extra = move - charCRect.getTopCollisionDiff(tileRect);
@@ -33,24 +30,14 @@ public abstract class CollisionTile extends Tile {
 			break;
 		case RIGHT:
 			extra = move - charCRect.getRightCollisionDiff(tileRect);
-			actor.xMove(-move + extra);
+			actor.xMove(-move);
 			break;
 		}
 	}
 
-	public void setArrayPos(int x, int y) {
-		arrayX = x;
-		arrayY = y;
-	}
-	
 	public void setCollisionRect(Rect absRect) {
 		cRect = new Rect(absRect, margin);
 	}
-	
-//	public Rect getCollisionRect() {
-//		return new Rect(arrayX * TILE_SIZE + margin.left, arrayY * TILE_SIZE + margin.top, 
-//						TILE_SIZE - margin.left - margin.right, TILE_SIZE - margin.top - margin.bottom);
-//	}
 	
 	public abstract Tile createNew();
 }

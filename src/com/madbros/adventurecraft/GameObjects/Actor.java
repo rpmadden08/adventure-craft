@@ -126,18 +126,15 @@ public class Actor extends GameObject {
 	/************************** Collision Detection **************************/
 	public void getCollisionBlocks() {
 		//get position in activeBlocks array
-		int x = (absRect.x - Game.level.activeBlocks[0][0].absRect.x) / TILE_SIZE;
-		int y = (absRect.y - Game.level.activeBlocks[0][0].absRect.y) / TILE_SIZE;
-//		int x = Game.level.renderRect.x2() - (sRect.x2() - margin.right) / TILE_SIZE - 2;//(aRect.x + margin.left) / TILE_SIZE;
-//		int y = Game.level.renderRect.y2() - (sRect.y2() - margin.bottom) / TILE_SIZE - 2+1;//(aRect.y) / TILE_SIZE;
-		
+//		int x = (absRect.x - Game.level.activeBlocks[0][0].absRect.x) / TILE_SIZE;
+//		int y = (absRect.y - Game.level.activeBlocks[0][0].absRect.y) / TILE_SIZE;
+		int x = Game.level.renderRect.x2() - (sRect.x2() - margin.right) / TILE_SIZE - 2;//(aRect.x + margin.left) / TILE_SIZE;
+		int y = Game.level.renderRect.y2() - (sRect.y2() - margin.bottom) / TILE_SIZE - 2;//(aRect.y) / TILE_SIZE;
+
 		int j = 0;
 		for(int i = 0; i < collisionDetectionBlocks.length; i++) {
 			if(x+i/3 >= 0 && x+i/3 < Game.level.activeBlocks.length && y+j >= 0 && y+j < Game.level.activeBlocks[0].length) {
 				collisionDetectionBlocks[i] = Game.level.activeBlocks[x+i/3][y+j]; //3x3 grid of blocks around the character
-//				if(collisionDetectionBlocks[i].isCollidable()) {
-//					collisionDetectionBlocks[i].collisionTile.setArrayPos(x+i/3, y+j);
-//				}
 			}
 			j++;
 			if(j > 2) j = 0;
@@ -165,12 +162,8 @@ public class Actor extends GameObject {
 	
 	public boolean getCollision(boolean isVerticalMovement, int move, Rect r) {
 		if(Game.debugMenu.collisionDetectionIsOn) {
-//			Rect charCRect = new Rect(Game.level.renderRect.x * TILE_SIZE + sRect.x + margin.left, 
-//									  Game.level.renderRect.y * TILE_SIZE + sRect.y + margin.top, 
-//									  CHARACTER_SIZE - margin.left - margin.right,
-//									  CHARACTER_SIZE - margin.top - margin.bottom);
-			
 			Rect charCRect = new Rect(r, this.margin);
+			
 			for(int i = 0; i < collisionDetectionBlocks.length; i++) {
 				if(collisionDetectionBlocks[i] != null) {
 					if(collisionDetectionBlocks[i].isCollidable()) {		
@@ -226,22 +219,54 @@ public class Actor extends GameObject {
 	
 	public void xMove(int moveX) {
 		absRect.x += moveX;
+		int totalLength = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE;
+		if(absRect.x2() >= totalLength) {
+			borderAbsRect = new Rect(absRect.x2() - totalLength, absRect.y, absRect.w, absRect.h);
+			if(absRect.x > totalLength && absRect.y > 0 && absRect.y2() < totalLength) {
+				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
+				borderAbsRect = null;
+			}
+		} else if(absRect.x <= 0) {
+			borderAbsRect = new Rect(totalLength + absRect.x, absRect.y, absRect.w, absRect.h);
+			if(absRect.x2() < 0 && absRect.y > 0 && absRect.y2() < totalLength) {
+				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
+				borderAbsRect = null;
+			}
+		}
 	}
 	
 	public void yMove(int moveY) {
 		absRect.y += moveY;
+		int totalLength = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE;
+		if(absRect.y2() >= totalLength) {
+			borderAbsRect = new Rect(absRect.x, absRect.y2() - totalLength, absRect.w, absRect.h);
+			if(absRect.y > totalLength && absRect.x > 0 && absRect.x2() < totalLength) {
+				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
+				borderAbsRect = null;
+			}
+		} else if(absRect.y <= 0) {
+			borderAbsRect = new Rect(absRect.x, totalLength + absRect.y, absRect.w, absRect.h);
+			if(absRect.y2() < 0 && absRect.x > 0 && absRect.x2() < totalLength) {
+				absRect = new Rect(borderAbsRect.x, borderAbsRect.y, borderAbsRect.w, borderAbsRect.h);
+				borderAbsRect = null;
+			}
+		}
 	}
 	
 	private void moveHorizontal(float f, float speed) {
 		int moveX = Math.round(speed * f);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
 		xMove(moveX);
-		getCollision(HORIZONTAL, moveX, absRect);
+		if(!getCollision(HORIZONTAL, moveX, absRect) && borderAbsRect != null) {
+			getCollision(HORIZONTAL, moveX, borderAbsRect);
+		}
 	}
 	
 	private void moveVertical(float f, float speed) {
 		int moveY = Math.round(speed * f);
 		yMove(moveY);
-		getCollision(VERTICAL, moveY, absRect);
+		if(!getCollision(VERTICAL, moveY, absRect) && borderAbsRect != null) {
+			getCollision(VERTICAL, moveY, borderAbsRect);
+		}
 	}
 	
 	public void move(float f) {

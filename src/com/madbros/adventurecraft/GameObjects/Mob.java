@@ -64,6 +64,7 @@ public class Mob extends Actor {
 				mobController.remove(this);
 			}
 		}
+		//System.out.println("KnockBackTime:  "+ knockBackTime);
 	}
 	
 	public void knockBack(Hero hero) {

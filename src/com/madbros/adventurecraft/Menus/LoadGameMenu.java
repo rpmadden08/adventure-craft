@@ -30,6 +30,7 @@ public class LoadGameMenu extends Menu {
 		saveFolders = new String[listOfFiles.length];
 		for(int i = 0; i < listOfFiles.length; i++) {
 			saveFolders[i] = listOfFiles[i].getName();
+			System.out.println(saveFolders[i]);
 		}
 		
 		ButtonFunction load = new ButtonFunction() { public void invoke() { load(); } };
@@ -89,9 +90,7 @@ public class LoadGameMenu extends Menu {
 	}
 	
 	public void load() {
-		Game.isNewGame = false;
 		if(currentlySelectedButton != null) Game.createNewGameAtLoc(SAVE_LOC + currentlySelectedButton.text.getString() + "/");
-		
 	}
 	
 	public void cancel() {

@@ -21,6 +21,7 @@ public class Time {
 	}
 	
 	public static float getDelta() {
+		//System.out.println(Gdx.graphics.getRawDeltaTime());
 		return Gdx.graphics.getRawDeltaTime() *1000;
 	}
 	public static long getMilliseconds() {
@@ -132,6 +133,7 @@ public class Time {
 					} 
 				}
 				float amountToAddLighting = 1f * (float)percentage;
+				//System.out.println(amountToAddLighting);
 				
 				Game.reShade(Game.ambientColor2, Game.ambientIntensity2);
 				Game.currentShader = Game.finalShader;
@@ -145,6 +147,7 @@ public class Time {
 			Game.currentShader = Game.finalShader;
 			Game.lightTransparency2 = 1f;
 		}
+		//System.out.println(hours+":"+minutes+"."+seconds);
 	}
 	
 	public static void setDelta() {

@@ -49,7 +49,7 @@ public class Axe extends ToolItem {
 						}
 					}
 					Game.soundController.create(sound);
-					
+					//System.out.println(Game.level.tileBeingAttacked.currentHp);
 					Game.p.x= Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2);
 					Game.p.y = Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2);
 					Game.p.start();

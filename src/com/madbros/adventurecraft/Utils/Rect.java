@@ -64,7 +64,7 @@ public class Rect {
 	}
 	
 	public int getLeftCollisionDiff(Rect r) {
-		return x1() - r.x2() ;
+		return x1() - r.x2();
 	}
 	
 	public int getRightCollisionDiff(Rect r) {
