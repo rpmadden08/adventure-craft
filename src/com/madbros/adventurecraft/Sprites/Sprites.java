@@ -201,6 +201,7 @@ public class Sprites {
 	public static StaticSprite[] cauldronStatic;
 	
 	public static final String LIGHT = "light";
+	public static final String CAMPFIRE_LIGHT = "CampfireLight";
 	
 	//for debugging
 	public static StaticSprite collisionDebugger;
@@ -264,7 +265,7 @@ public class Sprites {
 					PLATE_FEET_SLASH_RIGHT, PICK, MOUNTAIN_COAL_TOP, MOUNTAIN_COAL_BOTTOM
 			};
 			
-			String[] lightNames = {LIGHT};
+			String[] lightNames = {LIGHT, CAMPFIRE_LIGHT};
 			String[][] nameArrays = {names, lightNames};
 			for(int r = 0; r<atlasArray.length; r++) {
 				

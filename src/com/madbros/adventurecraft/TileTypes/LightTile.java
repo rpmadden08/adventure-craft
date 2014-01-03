@@ -6,6 +6,7 @@ import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Utils.Margin;
 
 public abstract class LightTile extends CollisionTile {
+	public float lightSize = 0;
 	
 	public LightTile() {
 		super();

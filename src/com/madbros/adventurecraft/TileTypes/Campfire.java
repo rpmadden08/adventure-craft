@@ -8,6 +8,7 @@ public class Campfire extends LightTile {
 
 	public Campfire() {
 		super();
+		lightSize = 500;
 		id = CAMPFIRE;
 		sprites = Sprites.campfireAnimation;
 		autoTile = 0;

@@ -29,6 +29,7 @@ import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.TileTypes.Cauldron;
 import com.madbros.adventurecraft.TileTypes.Furnace;
 import com.madbros.adventurecraft.TileTypes.FurnaceTop;
+import com.madbros.adventurecraft.TileTypes.LightTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.TileTypes.TreeLeafTile;
 import com.madbros.adventurecraft.Utils.Helpers;
@@ -39,6 +40,8 @@ public class RenderSystem {
 	public int startX;
 	public int startY;
 	private ArrayList<Block> lightTiles;
+	private int frameCutter = 0;
+	private float lightSizeRandom = 0;
 
 	public void setStartPosition(Level lv) {
 		lightTiles = new ArrayList<Block>();
@@ -420,19 +423,29 @@ public class RenderSystem {
 		}
 	}
 	
+	//FIXME (placeholder)
 	public void renderLight(Hero hero) {
-		float lightSize = MathUtils.random(100, 101)+150; //150; //lightOscillate? (4.75f + 0.25f * (float)Math.sin(zAngle) + .2f*MathUtils.random()) + 100:5.0f + 100;
+		float lightSize = 100;
+		if(frameCutter >= 5) {
+			lightSizeRandom = MathUtils.random(0, 20); //150; //lightOscillate? (4.75f + 0.25f * (float)Math.sin(zAngle) + .2f*MathUtils.random()) + 100:5.0f + 100;
+			frameCutter = 0;
+		}
+		//lightSize = lightSize + lightSizeRandom;
 		float x = hero.absRect.midX() - startX - lightSize/2;
 		float y = hero.absRect.midY() - startY - lightSize/2;
 		StaticSprite lightSprite = Sprites.sprites.get(Sprites.LIGHT);
 		lightSprite.draw(x, y, 0.4f, lightSize, lightSize);
 		lightSprite.setColor(1,1,1,Game.lightTransparency2);
 		
+		StaticSprite campFireSprite = Sprites.sprites.get(Sprites.CAMPFIRE_LIGHT);
 		for(Block light : lightTiles) {
+			LightTile tile = (LightTile)light.layers[OBJECT_LAYER];
+			lightSize = tile.lightSize + lightSizeRandom;
 			x = light.absRect.midX() - startX - lightSize/2;
 			y = light.absRect.midY() - startY - lightSize/2;
-			lightSprite.draw(x, y, 0.4f, lightSize, lightSize);
+			campFireSprite.draw(x, y, 0.4f, lightSize, lightSize);
 		}
+		frameCutter ++;
 	}
 	
 	/******************************************* Inventory State Rendering *******************************************/
