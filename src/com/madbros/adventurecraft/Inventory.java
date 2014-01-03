@@ -108,7 +108,7 @@ public class Inventory {
 		invBar[3].item.stackSize = 1;
 		invBar[4].item = new IronHelmet();
 		invBar[4].item.stackSize =99;
-		invBar[5].item = new Hoe();
+		invBar[5].item = new Axe();
 		invBar[5].item.stackSize = 1;
 		invBar[6].item = new SeedPotato();
 		invBar[6].item.stackSize = 99;

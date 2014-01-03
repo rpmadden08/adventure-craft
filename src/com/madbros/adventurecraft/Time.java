@@ -83,8 +83,8 @@ public class Time {
 		if(hours >= 6 && hours < 19) {
 			Game.currentShader = Game.defaultShader; // Should be default
 			Game.level.isDay = true;
-			Game.currentShader = Game.finalShader; // Should be default
-			Game.level.isDay = true;
+//			Game.currentShader = Game.finalShader; // Should be default
+//			Game.level.isDay = true;
 		} else if (hours >= 5 && hours < 6) {
 			if(minutes >= 30) {
 				Game.currentShader = Game.finalShader;
