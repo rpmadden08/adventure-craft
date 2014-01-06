@@ -100,7 +100,7 @@ public class Inventory {
 		
 		invBar[0].item = new ChestItem();
 		invBar[0].item.stackSize =99;
-		invBar[1].item = new IronArmor();
+		invBar[1].item = new Hoe();
 		invBar[1].item.stackSize = 1;
 		invBar[2].item = new Sword();
 		invBar[2].item.stackSize = 1;
@@ -118,6 +118,16 @@ public class Inventory {
 		invBar[8].item.stackSize = 99;
 		invBar[9].item = new Shovel();
 		invBar[9].item.stackSize = 1;
+		
+		invBag[0].item = new IronHelmet();
+		invBag[0].item.stackSize = 1;
+		invBag[1].item = new IronArmor();
+		invBag[1].item.stackSize = 1;
+		invBag[2].item = new IronLeggings();
+		invBag[2].item.stackSize = 1;
+		invBag[3].item = new IronBoots();
+		invBag[3].item.stackSize = 1;
+		
 
 //		invClothing[0].item = new IronHelmet();
 //		Game.hero.addClothingItem((ClothingItem)invClothing[0].item);

@@ -4,12 +4,14 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import java.util.Random;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class PotatoTile extends CollisionTile {
+	private int growthTime;
 	
 	public PotatoTile() {
 		super();
@@ -23,6 +25,7 @@ public class PotatoTile extends CollisionTile {
 		isAutoTileable = false;
 		autoTile = 0;
 		isBreakable = true;
+		growthTime = setGrowthTime();
 	}
 	
 	@Override
@@ -34,20 +37,23 @@ public class PotatoTile extends CollisionTile {
 		return new PotatoTile();
 	}
 	
+	private int setGrowthTime() {
+		
+		return MathUtils.random(180000, 300000); //Every 1000 is 1 second.  180000 is 3 minutes.
+	}
+	
 	@Override
 	public void update(int x, int y) {
 		if(currentSpriteId != 3) {
-			if(Time.getTime() - timeCreated > 2000) {// 3000
-				if(currentSpriteId == 0) {
-					timeCreated = Time.getTime();
-					currentSpriteId = 1;
-				} else if (currentSpriteId == 1) {
-					timeCreated = Time.getTime();
-					currentSpriteId = 2;
-				} else if (currentSpriteId == 2) {
-					timeCreated = Time.getTime();
-					currentSpriteId = 3;
-				} 
+			int growthDivided = growthTime /3;
+			if(Time.getGameTime() - timeCreated > growthTime) {// 3000
+				currentSpriteId = 3;
+			} else if (Time.getGameTime() - timeCreated > growthDivided*2) {
+				currentSpriteId = 2;
+			} else if (Time.getGameTime() - timeCreated > growthDivided) {
+				currentSpriteId = 1;
+			} else {
+				
 			}
 		}
 	}

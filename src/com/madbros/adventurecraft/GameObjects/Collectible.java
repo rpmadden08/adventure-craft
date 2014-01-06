@@ -91,7 +91,7 @@ public class Collectible extends GameObject{
 	
 	public void chase() {
 		int speedX = Game.hero.absRect.x - absRect.x+(absRect.w/2);
-		int speedY = Game.hero.absRect.y - absRect.y+(absRect.h/2);
+		int speedY = Game.hero.absRect.y - absRect.y+(absRect.h/2+6);
 		
 		float maxSpeed = currentSpeed * damping;
 		
