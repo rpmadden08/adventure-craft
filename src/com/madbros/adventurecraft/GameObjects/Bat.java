@@ -20,7 +20,7 @@ public class Bat extends Mob {
 	
 	public Bat(MobController mobController, int x, int y) {
 		super(mobController);
-		attack = 5;
+		attack = 20;
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
@@ -30,6 +30,7 @@ public class Bat extends Mob {
 		margin = new Margin(0, 0, 0, 0);
 		currentSpeed = 0.1f;
 		collisionDetectionBlocks = new Block[9];
+		hP = 1;
 	}
 
 //	public void startAttacking() {
@@ -49,9 +50,10 @@ public class Bat extends Mob {
 	@Override
 	public void didCollide() {
 		//mobController.remove(this);
-		
+		if(!Game.hero.isDead) {
 		Game.hero.takeDamage(attack);
 		Game.hero.knockBack(this);
+		}
 	}
 //	@Override
 //	public void didGetHit() {
@@ -62,7 +64,7 @@ public class Bat extends Mob {
 	
 	public void updateAI() {
 		detectRect = new Rect(absRect.x - detectRange, absRect.y - detectRange, absRect.w +(detectRange*2), absRect.h +(detectRange*2));
-		if(detectRect.detectCollision(Game.hero.absRect)) {
+		if(detectRect.detectCollision(Game.hero.absRect) && !Game.hero.isDead) {
 			isChasing = true;
 			//stop();
 			chaseHero(Game.hero.absRect, this.absRect);

@@ -93,6 +93,7 @@ public class MainState extends GameState {
 			Game.renderSystem.renderMobs(Game.mobController);
 			
 			Game.renderSystem.renderParticle(Game.p);
+			Game.renderSystem.renderParticle(Game.death);
 		Game.batch.end();
 		
 		

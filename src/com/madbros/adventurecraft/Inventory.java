@@ -104,10 +104,10 @@ public class Inventory {
 		invBar[1].item.stackSize = 1;
 		invBar[2].item = new Sword();
 		invBar[2].item.stackSize = 1;
-		invBar[3].item = new IronLeggings();
+		invBar[3].item = new Axe();
 		invBar[3].item.stackSize = 1;
 		invBar[4].item = new IronHelmet();
-		invBar[4].item.stackSize =99;
+		invBar[4].item.stackSize =1;
 		invBar[5].item = new Axe();
 		invBar[5].item.stackSize = 1;
 		invBar[6].item = new SeedPotato();
@@ -146,12 +146,12 @@ public class Inventory {
 			
 		}
 		
-		for(int i = 0; i < invBar.length; i++) {
-			if(invBar[i].item.id != 0) {
+		for(int i = 0; i < invBag.length; i++) {
+			if(invBag[i].item.id != 0) {
 				Rect collectibleRect = new Rect(Game.hero.absRect.x, Game.hero.absRect.y, 16, 16);
-				Game.collectibleController.add(invBar[i].item.id, invBar[i].item.sprite, collectibleRect, invBar[i].item.stackSize);
-				invBar[i].item.stackSize = 0;
-				invBar[i].item = new NoItem();
+				Game.collectibleController.add(invBag[i].item.id, invBag[i].item.sprite, collectibleRect, invBag[i].item.stackSize);
+				invBag[i].item.stackSize = 0;
+				invBag[i].item = new NoItem();
 			}
 		}
 	}

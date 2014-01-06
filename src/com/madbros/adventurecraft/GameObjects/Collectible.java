@@ -78,7 +78,7 @@ public class Collectible extends GameObject{
 	public void checkCollisions() {
 		Rect charCRect1 = new Rect(Game.hero.absRect, Game.hero.margin);
 		Rect rangeRect = new Rect(absRect.x - range, absRect.y - range, absRect.w+ (range*2), absRect.h+(range*2));
-		if(rangeRect.detectCollision(charCRect1)) {
+		if(rangeRect.detectCollision(charCRect1) && !Game.hero.isDead) {
 			chase();
 		}
 		

@@ -181,30 +181,33 @@ public class Hero extends Actor {
 			startWeaponAnimation = true;
 			int currentFrame = sprite.getCurrentAnimationFrame();
 			if(currentFrame == 0) {
-				if(hasAttacked == true) {
-					startWeaponAnimation = false;
-					stop();
-					int t = sprite.getCurrentAnimation();
-					if(t == SLASH_UP) {
-						sprite.changeAnimationTo(STAND_UP);
-						
-					} else if(t == SLASH_DOWN) {
-						sprite.changeAnimationTo(STAND_DOWN);
-						
-					} else if(t == SLASH_LEFT) {
-						sprite.changeAnimationTo(STAND_LEFT);
-						
-					} else if(t == SLASH_RIGHT) {
-						sprite.changeAnimationTo(STAND_RIGHT);
+				WeaponItem attackItem = (WeaponItem) Game.inventory.invBar[Game.inventory.itemSelected].item;
+				if(attackButtonReleased == true || attackItem.isRepeatable == false) {
+					if(hasAttacked == true) {
+						startWeaponAnimation = false;
+						stop();
+						int t = sprite.getCurrentAnimation();
+						if(t == SLASH_UP) {
+							sprite.changeAnimationTo(STAND_UP);
+							
+						} else if(t == SLASH_DOWN) {
+							sprite.changeAnimationTo(STAND_DOWN);
+							
+						} else if(t == SLASH_LEFT) {
+							sprite.changeAnimationTo(STAND_LEFT);
+							
+						} else if(t == SLASH_RIGHT) {
+							sprite.changeAnimationTo(STAND_RIGHT);
+							
+						}
+						if(Keyboard.isKeyDown(Keyboard.KEY_W)) moveUp();
+						if(Keyboard.isKeyDown(Keyboard.KEY_S)) moveDown();
+						if(Keyboard.isKeyDown(Keyboard.KEY_A)) moveLeft();
+						if(Keyboard.isKeyDown(Keyboard.KEY_D)) moveRight();
+						sprite.changeFrameTimes(80);
+						isAttacking = false;
 						
 					}
-					if(Keyboard.isKeyDown(Keyboard.KEY_W)) moveUp();
-					if(Keyboard.isKeyDown(Keyboard.KEY_S)) moveDown();
-					if(Keyboard.isKeyDown(Keyboard.KEY_A)) moveLeft();
-					if(Keyboard.isKeyDown(Keyboard.KEY_D)) moveRight();
-					sprite.changeFrameTimes(80);
-					isAttacking = false;
-					
 				}
 				weaponX = weaponXArray[dir][currentFrame];
 				weaponY = weaponYArray[dir][currentFrame];
@@ -236,7 +239,7 @@ public class Hero extends Actor {
 		
 	}
 	
-	public void attack(Item item) {
+	public void attack(WeaponItem item) {
 		if(attackButtonReleased == true) {
 			attackButtonReleased = false;
 		

@@ -1,8 +1,10 @@
 package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
+
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class Axe extends ToolItem {
 	public Axe() {
@@ -13,6 +15,11 @@ public class Axe extends ToolItem {
 		isInUse = false;
 		sound = "sounds/axeChop.wav";
 		
+		cRectU = new Rect (0,-6,82,32);
+		cRectD = new Rect (0,54,82,32);
+		cRectL = new Rect (-22,0,40,82);
+		cRectR = new Rect (46,0,40,82);
+		isRepeatable = true;
 		
 	}
 	
@@ -39,5 +46,8 @@ public class Axe extends ToolItem {
 		if(Game.level.tileBeingAttacked.isChoppable && isInRange == true) {
 			swing();
 		}
+		
+			Game.hero.attack(this);
+			//Game.soundController.create(sound);
 	}
 }
