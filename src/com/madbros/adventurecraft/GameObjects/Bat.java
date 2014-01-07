@@ -30,7 +30,6 @@ public class Bat extends Mob {
 		margin = new Margin(0, 0, 0, 0);
 		currentSpeed = 0.1f;
 		collisionDetectionBlocks = new Block[9];
-		hP = 1;
 	}
 
 //	public void startAttacking() {
@@ -51,8 +50,8 @@ public class Bat extends Mob {
 	public void didCollide() {
 		//mobController.remove(this);
 		if(!Game.hero.isDead) {
-		Game.hero.takeDamage(attack);
-		Game.hero.knockBack(this);
+			Game.hero.takeDamage(attack);
+			Game.hero.knockBack(this);
 		}
 	}
 //	@Override

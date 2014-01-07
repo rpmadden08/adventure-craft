@@ -29,7 +29,7 @@ public class Sword extends WeaponItem {
 		if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
 			
 			Game.hero.attack(this);
-			Game.soundController.create(sound);
+			Game.soundController.create(sound, 1);
 		}
 	}
 	

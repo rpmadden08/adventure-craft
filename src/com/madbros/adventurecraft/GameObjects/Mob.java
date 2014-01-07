@@ -52,11 +52,11 @@ public class Mob extends Actor {
 	public void takeDamage(int damage) {
 		if(knockBackTime <= 0) {
 			hP = hP - damage;
-			Game.soundController.create(hitSound);
+			Game.soundController.create(hitSound, 1);
 			knockBackTime = 10; //30
 			if(hP <= 0) {
 				deathDrop();
-				Game.soundController.create(deathSound);
+				Game.soundController.create(deathSound, 1);
 				Game.death.x = absRect.x+ (absRect.w/2);
 				Game.death.y = absRect.y+ (absRect.h/2);
 				//Game.p.update(Gdx.graphics.getRawDeltaTime());

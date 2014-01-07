@@ -15,7 +15,7 @@ public class SoundController {
 		for(int i = 0; i < sounds.size(); i++) {
 			//Plays the sound on update
 			if(!soundsData.get(i).isPlayed) {
-				sounds.get(i).play();
+				sounds.get(i).play(soundsData.get(i).volume);
 				soundsData.get(i).isPlayed = true;
 			}
 			soundsData.get(i).timePlayed = Time.getTime();
@@ -29,9 +29,11 @@ public class SoundController {
 		}
 	}
 	
-	public void create(String name) {
+	public void create(String name, float volume) {
 		sounds.add((Sound) Gdx.audio.newSound(Gdx.files.internal(name)));
 		soundsData.add(new SoundData());
+		int test = sounds.size()-1;
+		soundsData.get(test).volume = volume;
 		
 	}
 	

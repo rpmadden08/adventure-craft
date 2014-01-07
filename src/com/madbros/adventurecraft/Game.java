@@ -247,6 +247,7 @@ public class Game implements ApplicationListener {
 			light.dispose();
 			fbo.dispose();
 			musicController.music.dispose();
+			System.out.println(soundController.sounds.size());
 		}
 	}
 

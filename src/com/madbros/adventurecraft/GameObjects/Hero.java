@@ -34,8 +34,8 @@ public class Hero extends Actor {
 				  CHARACTER_SIZE, CHARACTER_SIZE);
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_BASE));
 		margin = new Margin(17, 17, 29, 1);
-		moveSpeed = 0.5f; //0.19
-		currentSpeed = 0.5f; //0.19
+		moveSpeed = 0.19f; //0.19
+		currentSpeed = 0.19f; //0.19
 		knockBackSpeed = 0.3f;
 		hitSound = "sounds/pain.wav";
 		
@@ -89,7 +89,7 @@ public class Hero extends Actor {
 			} else {
 				hP = hP - damage;
 			}
-			Game.soundController.create(hitSound);
+			Game.soundController.create(hitSound, 1);
 			knockBackTime = 10;
 		}
 	}
@@ -177,7 +177,9 @@ public class Hero extends Actor {
 			currentSpeed = moveSpeed;
 			move(Time.getDelta());
 		} else if(isAttacking) {
-			sprite.changeFrameTimes(80);
+
+			//ATTACK
+			sprite.changeFrameTimes(50);
 			startWeaponAnimation = true;
 			int currentFrame = sprite.getCurrentAnimationFrame();
 			if(currentFrame == 0) {

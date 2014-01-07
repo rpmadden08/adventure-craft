@@ -36,7 +36,7 @@ public class Axe extends ToolItem {
 			//Game.level.autoTileHighlightedBlock();
 			calculateUsage();
 		}
-		Game.soundController.create(sound);
+		Game.soundController.create(sound, 1);
 		
 		Game.p.x= Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2);
 		Game.p.y = Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2);
