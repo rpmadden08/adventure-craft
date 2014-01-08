@@ -10,6 +10,7 @@ import com.madbros.adventurecraft.Utils.Rect;
 public class Sword extends WeaponItem {
 	public Sword() {
 		id = SWORD;
+		name = "Sword";
 		sprite = Sprites.sprites.get(Sprites.SWORD);
 		originX = 0;
 		originY = 32;

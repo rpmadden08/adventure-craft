@@ -18,6 +18,7 @@ import com.madbros.adventurecraft.Utils.Helpers;
 public class ChestItem extends BlockItem32 {
 	public ChestItem() {
 		id = CHEST_ITEM;
+		name = "Chest";
 		tileId = CHEST;
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, SAND};
 		sprite = Sprites.sprites.get(Sprites.CHEST_ITEM);

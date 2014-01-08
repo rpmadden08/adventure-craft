@@ -11,6 +11,7 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 public class Pick extends ToolItem {
 	public Pick() {
 		id = PICK;
+		name = "Iron Pickaxe";
 		is32 = false;
 		sprite = Sprites.sprites.get(Sprites.PICK);
 		attackPower = 5;

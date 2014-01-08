@@ -11,6 +11,7 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 public class Shovel extends ToolItem {
 	public Shovel() {
 		id = SHOVEL;
+		name = "Shovel";
 		sprite = Sprites.sprites.get(Sprites.SHOVEL_ITEM);
 		attackPower = 1;
 		is32 = false;

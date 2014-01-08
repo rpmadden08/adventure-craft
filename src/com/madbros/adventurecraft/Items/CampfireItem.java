@@ -10,6 +10,7 @@ import com.madbros.adventurecraft.TileTypes.Tile;
 public class CampfireItem extends BlockItem32 {
 	public CampfireItem() {
 		id = CAMPFIRE_ITEM;
+		name = "Campfire";
 		tileId = CAMPFIRE;
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS};
 		sprite = Sprites.sprites.get(Sprites.CAMPFIRE_SINGLE);

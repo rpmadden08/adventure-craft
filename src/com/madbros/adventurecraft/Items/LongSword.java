@@ -8,6 +8,7 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 public class LongSword extends WeaponItem {
 	public LongSword() {
 		id = LONG_SWORD;
+		name = "Long Sword";
 		sprite = Sprites.sprites.get(Sprites.LONG_SWORD);
 		originX = 0;
 		originY = sprite.getHeight();

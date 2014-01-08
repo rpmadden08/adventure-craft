@@ -9,6 +9,7 @@ import com.madbros.adventurecraft.Utils.Helpers;
 public class Plank extends CraftItem {
 	public Plank() {
 		id = PLANK;
+		name = "Plank";
 		sprite = Sprites.sprites.get(Sprites.PLANK_ITEM);
 		numberProducedByCrafting = 4;
 		craftCost = new int[]{LOG};

@@ -10,6 +10,7 @@ public class SandClump extends BlockItem {
 	public SandClump() {
 		id = SAND_CLUMP;
 		tileId = SAND;
+		name = "Sand";
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, WATER};
 		sprite = Sprites.sprites.get(Sprites.SAND_ITEM);
 	}

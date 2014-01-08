@@ -10,6 +10,7 @@ import com.madbros.adventurecraft.Utils.*;
 public class EarthClump extends BlockItem {
 	public EarthClump() {
 		id = EARTH_CLUMP;
+		name = "Dirt";
 		tileId = DIRT;
 		sprite = Sprites.sprites.get(Sprites.DIRT_ITEM);
 		placeableTileIds = new int[]{WATER, SAND, DARK_DIRT, HOLE};

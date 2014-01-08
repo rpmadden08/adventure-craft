@@ -7,6 +7,7 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 public class IronLeggings extends ClothingItem {
 	public IronLeggings() {
 		id = IRON_LEGGINGS;
+		name = "Iron Leggings";
 		sprite = Sprites.sprites.get(Sprites.PLATE_LEGS_ITEM);
 		animatedSprite = Sprites.animatedSprites.get(Sprites.PLATE_LEGS_ITEM);
 		defensePower = 1;

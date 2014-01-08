@@ -9,6 +9,7 @@ import com.madbros.adventurecraft.Utils.Rect;
 public class Axe extends ToolItem {
 	public Axe() {
 		id = AXE;
+		name = "Axe";
 		sprite = Sprites.sprites.get(Sprites.AXE_ITEM);
 		attackPower = 5;
 		is32 = true;

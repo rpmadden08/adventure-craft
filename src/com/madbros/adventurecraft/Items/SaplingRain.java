@@ -11,6 +11,7 @@ public class SaplingRain extends BlockItem32 {
 	public SaplingRain() {
 		id = SAPLING_ITEM;
 		tileId = SAPLING_RAIN;
+		name = "Rain Forest Tree Sapling";
 		
 		placeableTileIds = new int[]{GRASS, DIRT, DARK_DIRT};
 		sprite = Sprites.sprites.get(Sprites.SAPLING);

@@ -11,6 +11,7 @@ public class SeedPotato extends BlockItem32 {
 	public SeedPotato() {
 		id = SEED_POTATO;
 		tileId = POTATO_TILE;
+		name = "Potato Seeds";
 		placeableTileIds = new int[]{DARK_DIRT};
 		sprite = Sprites.sprites.get(Sprites.SEED_POTATO);
 		

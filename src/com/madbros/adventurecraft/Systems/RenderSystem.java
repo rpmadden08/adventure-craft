@@ -17,12 +17,14 @@ import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Inventory;
 import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.MobController;
+import com.madbros.adventurecraft.NotificationController;
 import com.madbros.adventurecraft.ParticleEffect;
 import com.madbros.adventurecraft.GameObjects.Actor;
 import com.madbros.adventurecraft.GameObjects.Collectible;
 import com.madbros.adventurecraft.GameObjects.GameObject;
 import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.GameObjects.Mob;
+import com.madbros.adventurecraft.GameObjects.Notification;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.*;
@@ -231,17 +233,21 @@ public class RenderSystem {
 	public void renderHealth(Hero hero) {
 		
 		//The Red/Blue/Green Part
-		Sprites.pixel.setColor(Color.RED);
+		Sprites.pixel.setColor(Color.toFloatBits(239, 29, 29, 255));
 		Sprites.pixel.draw(4,4,Z_CHARACTER,hero.hP,10);
-		Sprites.pixel.setColor(Color.BLUE);
+		
+		Sprites.pixel.setColor(Color.toFloatBits(28, 57, 234, 255));
 		Sprites.pixel.draw(4,20,Z_CHARACTER,hero.mP,10);
-		Sprites.pixel.setColor(Color.GREEN);
+		
+		Sprites.pixel.setColor(Color.toFloatBits(39, 194, 32, 255));
 		Sprites.pixel.draw(4,36,Z_CHARACTER,(int)hero.eP,10);
 		
 		//Red Highlight top
-		Sprites.pixel.setColor(1f, 1f, 1f,0.4f);
+		Sprites.pixel.setColor(Color.toFloatBits(239, 99, 99, 255));
 		Sprites.pixel.draw(4,4,Z_CHARACTER,hero.hP,2);
+		Sprites.pixel.setColor(Color.toFloatBits(68, 97, 234, 255));
 		Sprites.pixel.draw(4,20,Z_CHARACTER,hero.mP,2);
+		Sprites.pixel.setColor(1f, 1f, 1f,0.25f);
 		Sprites.pixel.draw(4,36,Z_CHARACTER,(int)hero.eP,2);
 		
 		//Red Highlight bottom
@@ -398,6 +404,17 @@ public class RenderSystem {
 			int x = collectible.absRect.x - startX;
 			int y = collectible.absRect.y - startY;
 			collectible.sprite.draw(x, y, Z_CHARACTER);
+			//renderCollisionRects(collectible, x, y);
+		}
+	}
+	
+	public void renderNotifications(NotificationController notificationController, SpriteBatch batch) {
+		for(Notification notification : notificationController.notifications) {
+//			int x = notification.absRect.x - startX;
+//			int y = notification.absRect.y - startY;
+			notification.renderFont(notification.absRect.x, notification.absRect.y, batch);
+			notification.sprite.draw(notification.absRect.x-(int)notification.size-38, notification.absRect.y, Z_CHARACTER);
+			
 			//renderCollisionRects(collectible, x, y);
 		}
 	}

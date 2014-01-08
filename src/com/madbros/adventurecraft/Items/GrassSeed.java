@@ -9,6 +9,7 @@ import com.madbros.adventurecraft.TileTypes.*;
 public class GrassSeed extends BlockItem {
 	public GrassSeed() {
 		id = GRASS_SEED;
+		name = "Grass Seed";
 		tileId = GRASS;
 		placeableTileIds = new int[]{DIRT, DARK_DIRT};
 		sprite = Sprites.sprites.get(Sprites.GRASS_ITEM);

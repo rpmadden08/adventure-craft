@@ -11,6 +11,7 @@ import com.madbros.adventurecraft.Utils.*;
 
 public abstract class Item {
 	public int id = EMPTY;
+	public String name = "This item needs a name";
 	public int stackSize = 1;
 	public int maxStackSize = 1;
 	public int numberProducedByCrafting = 0;

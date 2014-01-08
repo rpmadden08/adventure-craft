@@ -48,6 +48,7 @@ public class Game implements ApplicationListener {
 	public static SoundController soundController;
 	public static MusicController musicController;
 	public static CollectibleController collectibleController;
+	public static NotificationController notificationController;
 	public static Inventory inventory;
 	public static MiniMap map;
 	public static RenderSystem renderSystem;
@@ -150,6 +151,7 @@ public class Game implements ApplicationListener {
 		mobController = new MobController();
 		soundController = new SoundController();
 		collectibleController = new CollectibleController();
+		notificationController = new NotificationController();
 		musicController = new MusicController();
 		inventory = new Inventory();
 		map = new MiniMap();

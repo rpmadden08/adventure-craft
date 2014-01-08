@@ -13,6 +13,7 @@ import com.madbros.adventurecraft.TileTypes.Tile;
 public class FurnaceItem extends BlockItem32 {
 	public FurnaceItem() {
 		id = FURNACE_ITEM;
+		name = "Furnace";
 		tileId = FURNACE;
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, SAND};
 		sprite = Sprites.sprites.get(Sprites.FURNACE_SINGLE);

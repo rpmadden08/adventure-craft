@@ -7,6 +7,7 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 public class Potatoes extends FoodItem {
 	public Potatoes() {
 		id = POTATOES;
+		name = "Potatoes";
 		sprite = Sprites.sprites.get(Sprites.POTATOES);
 		
 		itemsPossiblyCraftable = new int[]{BAKED_POTATOES};

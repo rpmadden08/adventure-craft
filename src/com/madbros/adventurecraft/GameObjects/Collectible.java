@@ -132,7 +132,6 @@ public class Collectible extends GameObject{
 		
 		absRect.x += moveX;
 		absRect.y += moveY;
-		System.out.println(moveX);
 		
 	}
 	
@@ -140,6 +139,7 @@ public class Collectible extends GameObject{
 		Game.soundController.create(plopSound, 1);
 		collectibleController.remove(this);
 		Game.inventory.add(item, stackSize);
+		Game.notificationController.add(4, sprite, absRect, item.name);
 		
 	}
 }
