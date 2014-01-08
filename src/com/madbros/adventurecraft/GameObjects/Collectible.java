@@ -21,12 +21,14 @@ public class Collectible extends GameObject{
 	int length2 = 8;
 	int gravity = 1;
 	int speed = 10;
-	int currentSpeed = 3;
+	float speed2 = 0;
+	//int currentSpeed = 3;
 	int direction = 0;
 	int direction2 = 0;
 	int stackSize = 1;
 	float damping = 1;
 	int range = 100;
+	String plopSound = "sounds/plop.wav";
 
 	public Collectible(CollectibleController collectibleController, int iD, Sprite spriteID, Rect collectible, int stackSize) {
 		this.collectibleController = collectibleController;
@@ -71,6 +73,8 @@ public class Collectible extends GameObject{
 				absRect.x += direction;
 			}
 			framesNum++;
+		} else {
+			checkCollisions();
 		}
 		
 	}
@@ -79,7 +83,12 @@ public class Collectible extends GameObject{
 		Rect charCRect1 = new Rect(Game.hero.absRect, Game.hero.margin);
 		Rect rangeRect = new Rect(absRect.x - range, absRect.y - range, absRect.w+ (range*2), absRect.h+(range*2));
 		if(rangeRect.detectCollision(charCRect1) && !Game.hero.isDead) {
+			if(speed2 < 5) {
+				speed2 = speed2 + 0.2f;
+			}
 			chase();
+		} else {
+			speed2 = 0;
 		}
 		
 		Rect charCRect = new Rect(Game.hero.absRect, Game.hero.margin);
@@ -90,32 +99,45 @@ public class Collectible extends GameObject{
 	}
 	
 	public void chase() {
-		int speedX = Game.hero.absRect.x - absRect.x+(absRect.w/2);
-		int speedY = Game.hero.absRect.y - absRect.y+(absRect.h/2+6);
-		
-		float maxSpeed = currentSpeed * damping;
-		
-		if(speedX > maxSpeed) {
-			speedX = (int)maxSpeed;
+		double p1x = (double) Game.hero.absRect.x+ (Game.hero.absRect.w /2);
+		double p1y = (double) Game.hero.absRect.y+ (Game.hero.absRect.h/2);
+		double p2x = (double) absRect.x +(absRect.w /2);
+		double p2y = (double) absRect.y +(absRect.h /2);
+		double xDiff = p2x - p1x;
+		double yDiff = p2y - p1y;
+		double degrees = Math.atan2(yDiff,  xDiff);
+		degrees = degrees * 180 /(int) Math.PI;
+		if(degrees < 0) {
+			degrees += 360;
 		}
-		if(speedX < -maxSpeed) {
-			speedX = (int)-maxSpeed;
-		}
+		degrees = degrees +180;
 		
-		if(speedY > maxSpeed) {
-			speedY = (int)maxSpeed;
-		}
-		if(speedY < -maxSpeed) {
-			speedY = (int)-maxSpeed;
-		}
+		double moveX = 0;
+		double moveY = 0;
 		
 		
-		absRect.x = absRect.x + speedX;
-		absRect.y = absRect.y + speedY;
+		double newX = ((int) absRect.x) + 1 * Math.cos(Math.toRadians(degrees));
+		double newY = ((int) absRect.y) + 1 * Math.sin(Math.toRadians(degrees));
+		
+		double vX = newX - absRect.x;
+		double vY = newY - absRect.y;
+		
+		double length2 = Math.sqrt((vX*vX)+(vY*vY));
+		
+		vX = vX/length2;
+		vY = vY/length2;
+		
+		moveX = (vX*speed2);
+		moveY = (vY*speed2);
+		
+		absRect.x += moveX;
+		absRect.y += moveY;
+		System.out.println(moveX);
 		
 	}
 	
 	public void didCollide() {
+		Game.soundController.create(plopSound, 1);
 		collectibleController.remove(this);
 		Game.inventory.add(item, stackSize);
 		

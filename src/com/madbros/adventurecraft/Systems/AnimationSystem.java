@@ -28,7 +28,8 @@ public class AnimationSystem {
 		
 		hero.sprite.updateCurrentAnimation();
 		for(Mob mob : mobController.mobs) {
-			if(mob.isMoving()) mob.sprite.updateCurrentAnimation();
+			//if(mob.isMoving()) mob.sprite.updateCurrentAnimation();
+			mob.sprite.updateCurrentAnimation();
 		}
 	}
 	

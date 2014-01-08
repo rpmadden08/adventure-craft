@@ -29,18 +29,18 @@ public class GameMainMenu extends Menu {
 		Rect r = new Rect(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY, DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY);
 		ButtonFunction resumeGame = new ButtonFunction() { public void invoke() { resumeGameFunction(); } };
 		ButtonFunction options = new ButtonFunction() { public void invoke() { optionsFunction(); } };
-		ButtonFunction saveGame = new ButtonFunction() { public void invoke() { saveGameFunction(); } };
+		//ButtonFunction saveGame = new ButtonFunction() { public void invoke() { saveGameFunction(); } };
 		ButtonFunction quitGame = new ButtonFunction() { public void invoke() { quitGameFunction(); } };
 
 		
 		String s1, s2, s3, s4;
 		s1 = "Resume";
 		s2 = "Options";
-		s3 = "Save";
-		s4 = "Quit";
+		//s3 = "Save";
+		s4 = "Save & Quit";
 
-		String[] strings = {s1, s2, s3, s4};
-		ButtonFunction[] functions = {resumeGame, options, saveGame, quitGame};
+		String[] strings = {s1, s2, s4};
+		ButtonFunction[] functions = {resumeGame, options, quitGame};
 		
 		menuButtons = new PlainUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {

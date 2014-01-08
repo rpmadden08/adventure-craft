@@ -20,7 +20,7 @@ public class CollectibleController {
 		for(int i = 0; i < collectibles.size(); i++) {
 			collectibles.get(i).updateAI();
 			collectibles.get(i).update();
-			collectibles.get(i).checkCollisions();
+			//collectibles.get(i).checkCollisions();
 		}
 	}
 	
