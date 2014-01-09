@@ -4,7 +4,6 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import java.util.Random;
 
-import com.badlogic.gdx.Gdx;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.MobController;
@@ -57,10 +56,12 @@ public class Mob extends Actor {
 			if(hP <= 0) {
 				deathDrop();
 				Game.soundController.create(deathSound, 1);
+				
 				Game.death.x = absRect.x+ (absRect.w/2);
 				Game.death.y = absRect.y+ (absRect.h/2);
-				//Game.p.update(Gdx.graphics.getRawDeltaTime());
+				
 				Game.death.start();
+
 				mobController.remove(this);
 			}
 		}

@@ -9,7 +9,6 @@ import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Items.ClothingItem;
-import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.Sprites.Sprites;

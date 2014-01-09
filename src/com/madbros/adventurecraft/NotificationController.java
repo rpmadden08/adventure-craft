@@ -1,9 +1,6 @@
 package com.madbros.adventurecraft;
 
 import java.util.ArrayList;
-import java.util.Random;
-
-import com.madbros.adventurecraft.GameObjects.Collectible;
 import com.madbros.adventurecraft.GameObjects.Notification;
 import com.madbros.adventurecraft.Sprites.Sprite;
 import com.madbros.adventurecraft.Utils.Rect;

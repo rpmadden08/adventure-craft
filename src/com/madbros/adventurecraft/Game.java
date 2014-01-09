@@ -64,7 +64,6 @@ public class Game implements ApplicationListener {
 	public static final float PI2 = 3.1415926535897932384626433832795f * 2.0f;
 	public static Texture light;
 	public static FrameBuffer fbo;
-	
 	public static ParticleEffect death = new ParticleEffect();
 	
 	public static ParticleEffect p = new ParticleEffect();
@@ -249,8 +248,7 @@ public class Game implements ApplicationListener {
 			light.dispose();
 			fbo.dispose();
 			musicController.music.dispose();
-			System.out.println(soundController.sounds.size());
-		}
+			}
 	}
 
 	@Override

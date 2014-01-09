@@ -33,10 +33,9 @@ public class GameMainMenu extends Menu {
 		ButtonFunction quitGame = new ButtonFunction() { public void invoke() { quitGameFunction(); } };
 
 		
-		String s1, s2, s3, s4;
+		String s1, s2, s4;
 		s1 = "Resume";
 		s2 = "Options";
-		//s3 = "Save";
 		s4 = "Save & Quit";
 
 		String[] strings = {s1, s2, s4};
@@ -61,10 +60,10 @@ public class GameMainMenu extends Menu {
 		
 	}
 
-	private void saveGameFunction() {
-		Game.level.saveCurrentChunks();
-		Game.level.saveGame.saveGame();
-	}
+//	private void saveGameFunction() {
+//		Game.level.saveCurrentChunks();
+//		Game.level.saveGame.saveGame();
+//	}
 
 	private void quitGameFunction() {
 		Game.quit();

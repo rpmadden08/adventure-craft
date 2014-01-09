@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-//import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.madbros.adventurecraft.Block;
@@ -127,9 +126,11 @@ public class RenderSystem {
 	}
 	
 	public void renderParticle(ParticleEffect p) {
+		
 		p.flipY();
 		p.setPosition(p.x - startX, p.y - startY);
-		p.draw(Game.batch, Gdx.graphics.getRawDeltaTime());
+		p.update(Gdx.graphics.getRawDeltaTime());
+		p.draw(Game.batch);
 		p.flipY();
 	}
 	
@@ -404,6 +405,7 @@ public class RenderSystem {
 			int x = collectible.absRect.x - startX;
 			int y = collectible.absRect.y - startY;
 			collectible.sprite.draw(x, y, Z_CHARACTER);
+			//System.out.println(collectible.absRect.x-startX);
 			//renderCollisionRects(collectible, x, y);
 		}
 	}

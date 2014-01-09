@@ -1,8 +1,6 @@
 package com.madbros.adventurecraft.Utils;
 
 import static com.madbros.adventurecraft.Constants.*;
-
-import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.Sprites;

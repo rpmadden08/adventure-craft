@@ -1,14 +1,9 @@
 package com.madbros.adventurecraft.GameObjects;
 
-import static com.madbros.adventurecraft.Constants.ITEM_HASH;
-
-import java.util.Random;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.madbros.adventurecraft.CollectibleController;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.NotificationController;
 import com.madbros.adventurecraft.Sprites.Sprites;
