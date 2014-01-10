@@ -133,6 +133,7 @@ public class RenderSystem {
 			p.update(Gdx.graphics.getRawDeltaTime());
 			p.draw(Game.batch);
 			p.flipY();
+			
 		}
 	}
 	

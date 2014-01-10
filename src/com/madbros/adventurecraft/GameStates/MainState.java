@@ -67,6 +67,7 @@ public class MainState extends GameState {
 		Game.musicController.update();
 		Game.collectibleController.update();
 		Game.notificationController.update();
+		Game.particleEffectController.update();
 		Game.level.update();
 		Game.inventory.update();
 		
