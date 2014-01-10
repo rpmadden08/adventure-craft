@@ -14,7 +14,7 @@ public class CauldronItem extends BlockItem32 {
 		id = CAULDRON_ITEM;
 		tileId = CAULDRON;
 		name = "Cauldron";
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, SAND};
+		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS, SAND};
 		sprite = Sprites.sprites.get(Sprites.CAULDRON_SINGLE);
 		maxStackSize = 99;
 		numberProducedByCrafting = 1;
@@ -40,7 +40,7 @@ public class CauldronItem extends BlockItem32 {
 //		int x = hB.getX(Game.level.activeBlocks);
 //		int y = hB.getY(Game.level.activeBlocks);
 //		Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new FurnaceTop();
-		
 	}
+	
 
 }

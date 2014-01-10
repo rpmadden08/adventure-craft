@@ -142,6 +142,7 @@ public class Level {
 		currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
 		
 		if(Game.isNewGame == true) {
+			Game.isNewGame = false;
 			for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
 				for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
 					createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);

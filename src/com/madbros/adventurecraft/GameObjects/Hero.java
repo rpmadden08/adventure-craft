@@ -155,6 +155,8 @@ public class Hero extends Actor {
 			Game.inventory.dropAll();
 			isDead = true;
 			if(deathWait > 60) {
+				Game.level.saveGame.saveGame();
+				Game.level.saveCurrentChunks();
 				Game.level = new Level();
 				Game.hero = new Hero();
 			} else {

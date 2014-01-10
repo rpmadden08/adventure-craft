@@ -2,6 +2,7 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.NoItem;
@@ -9,6 +10,7 @@ import com.madbros.adventurecraft.Slots.CraftedSlot;
 import com.madbros.adventurecraft.Slots.CraftingSlot;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class Cauldron extends CollisionTile {
 	//public int test = 0;
@@ -37,6 +39,8 @@ public class Cauldron extends CollisionTile {
 		autoTile = 0;
 		isBreakable = true;
 		isUseable = true;
+		currentHp = 1;
+		maxHp = 1;
 		
 
 			cauldronSlots[0] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)- (INV_SLOT_SIZE/2), INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
@@ -123,5 +127,23 @@ public class Cauldron extends CollisionTile {
 	
 	public Tile createNew() {
 		return new Cauldron();
+	}
+	
+	public void deleteMe(int x, int y, Block[][] activeBlocks) {
+		Block b = activeBlocks[x][y];
+		b.layers[OBJECT_LAYER] = new NoTile();
+		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+		Game.collectibleController.add(CAULDRON_ITEM, Sprites.sprites.get(Sprites.CAULDRON_SINGLE), collectibleRect, 1);
+		for(int i = 0; i < cauldronSlots.length; i++) {
+			if(cauldronSlots[i].item.id != 0) {
+				Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+				Game.collectibleController.add(cauldronSlots[i].item.id, cauldronSlots[i].item.sprite, collectibleRect2, 1);
+			}
+		}
+		if(craftedSlot[0].item.id != 0) {
+			Rect collectibleRect3 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+			Game.collectibleController.add(cauldronSlots[0].item.id, cauldronSlots[0].item.sprite, collectibleRect3, 1);
+			
+		}
 	}
 }
