@@ -502,6 +502,7 @@ public class RenderSystem {
 			for(int i = 0; i < inv.invChest.length; i++) {
 				inv.invChest[i].render();
 			}
+			//System.out.println(inv.invChest[0].item.id);
 			
 		} else if(inv.furnaceOn) {
 			Furnace furnace = (Furnace) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];

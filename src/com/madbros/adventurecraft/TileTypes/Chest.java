@@ -4,9 +4,11 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import java.io.File;
 
+import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class Chest extends CollisionTile {
 	
@@ -38,9 +40,13 @@ public class Chest extends CollisionTile {
 			Game.inventory.chestOn = true;
 			Game.inventory.currentInvBlockX = x;
 			Game.inventory.currentInvBlockY = y;
+//			System.out.println(x);
+//			System.out.println(y);
 			File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + x + "-" + y + ".sv");
 			if(f.exists()) {
+				System.out.println("Before:"+ Game.inventory.invChest[0].item.id);
 				Game.level.saveGame.loadChest(x, y);
+				System.out.println("After:"+ Game.inventory.invChest[0].item.id);
 			}
 			Game.toggleInventoryState();
 			
@@ -49,5 +55,27 @@ public class Chest extends CollisionTile {
 	
 	public Tile createNew() {
 		return new Chest();
+	}
+	
+	public void deleteMe(int x, int y, Block[][] activeBlocks) {
+		Block b = activeBlocks[x][y];
+		b.layers[OBJECT_LAYER] = new NoTile();
+		File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + x + "-" + y + ".sv");
+		if(f.exists()) {
+			Game.level.saveGame.loadChest(x, y);
+		f.delete();
+		}
+		
+		
+		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+		Game.collectibleController.add(CHEST_ITEM, Sprites.sprites.get(Sprites.CHEST_ITEM), collectibleRect, 1);
+		
+		for(int i = 0; i < Game.inventory.invChest.length; i++) {
+			if(Game.inventory.invChest[i].item.id != 0) {
+				Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+				Game.collectibleController.add(Game.inventory.invChest[i].item.id, Game.inventory.invChest[i].item.sprite, collectibleRect2, 1);
+			}
+		}
+		
 	}
 }

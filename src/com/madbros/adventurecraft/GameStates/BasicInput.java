@@ -36,6 +36,7 @@ public abstract class BasicInput extends InputAdapter {
 	
 	@Override
 	public boolean mouseMoved(int x, int y) {
+		System.out.println(x);
 		mouseX = x;
 		mouseY = y;
 		return false;

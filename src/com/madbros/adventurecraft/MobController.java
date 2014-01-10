@@ -20,7 +20,7 @@ public class MobController {
 				
 				int num = rand.nextInt(1);//100
 				if(num == 0 && mobs.size() < 10) {//57
-					mobs.add(new Bat(this, x, y));
+					//mobs.add(new Bat(this, x, y));
 				}
 			}
 		}

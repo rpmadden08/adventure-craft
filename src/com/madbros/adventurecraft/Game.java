@@ -96,7 +96,11 @@ public class Game implements ApplicationListener {
 				inventory.chestOn = false;
 				int x = inventory.currentInvBlockX;
 				int y = inventory.currentInvBlockY;
+//				System.out.println(x);
+//				System.out.println(y);
+				System.out.println(inventory.invChest[0].item.id);
 				level.saveGame.saveChest(Game.inventory.invChest,x, y);
+				
 				level.saveGame.saveGame();
 				level.saveCurrentChunks();
 			} else if(inventory.furnaceOn) {

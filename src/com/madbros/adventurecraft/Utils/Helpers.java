@@ -120,6 +120,7 @@ public class Helpers {
 	
 	public static void chestDataToSlotArray(ChestData chestData) {
 		//Slot[] slots = new Slot[Game.inventory.invChest.length];
+		System.out.println("Helpers Item Slot 1 has an ID of:  "+chestData.itemIds[0]);
 		for(int x = 0; x < Game.inventory.invChest.length; x++) {
 			Game.inventory.invChest[x].item = ITEM_HASH.get(chestData.itemIds[x]).createNew();
 			Game.inventory.invChest[x].item.stackSize = chestData.itemStackSizes[x];

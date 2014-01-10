@@ -226,14 +226,11 @@ public class SaveGame {
 	public void saveChest(Slot[] slot, int absX, int absY) {
 		ChestData chestData = new ChestData();
 		
-		int[] itemIds = new int[slot.length];
-		int[] itemStackSizes = new int[slot.length];
-		int[] itemUses = new int[slot.length];
 		
 		for(int x = 0; x < slot.length; x++) {
-			itemIds[x] = chestData.itemIds[x];
-			itemStackSizes[x] = chestData.itemStackSizes[x];
-			itemUses[x] = chestData.itemUses[x];
+			chestData.itemIds[x] = slot[x].item.id;
+			chestData.itemStackSizes[x] = slot[x].item.stackSize;
+			chestData.itemUses[x] = slot[x].item.uses;
 		}
 		
 		Kryo kryo = new Kryo();

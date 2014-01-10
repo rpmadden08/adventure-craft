@@ -61,6 +61,7 @@ public class MainState extends GameState {
 		while(Game.zAngle > Game.PI2)
 			Game.zAngle -= Game.PI2;
 		Game.animationSystem.updateMain(Game.hero, Game.mobController);	//a list of mobs will also be passed to this system
+		input.mouseMoved(Gdx.input.getX(), Gdx.input.getY());
 		Game.hero.update();
 		Game.mobController.update();
 		Game.soundController.update();

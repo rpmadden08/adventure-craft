@@ -20,7 +20,7 @@ public class ChestItem extends BlockItem32 {
 		id = CHEST_ITEM;
 		name = "Chest";
 		tileId = CHEST;
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, SAND};
+		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS,DARK_GRASS, SAND};
 		sprite = Sprites.sprites.get(Sprites.CHEST_ITEM);
 		maxStackSize = 99;
 		numberProducedByCrafting = 1;
@@ -41,12 +41,13 @@ public class ChestItem extends BlockItem32 {
 	public void placeTile(Block hB, Tile tile) {
 		File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + Game.level.tileBeingAttacked.absX + "-" + Game.level.tileBeingAttacked.absY + ".sv");
 		if(f.exists()) { 
-			try {
-				FileUtils.deleteDirectory(f);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			f.delete();
+//			try {
+//				FileUtils.deleteDirectory(f);
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				//e.printStackTrace();
+//			}
 		}
 		hB.layers[OBJECT_LAYER] = tile;
 		hB.setCollisionTile((CollisionTile)tile);
