@@ -49,6 +49,8 @@ public class Game implements ApplicationListener {
 	public static MusicController musicController;
 	public static CollectibleController collectibleController;
 	public static NotificationController notificationController;
+	public static ParticleEffectController particleEffectController;
+	
 	public static Inventory inventory;
 	public static MiniMap map;
 	public static RenderSystem renderSystem;
@@ -64,9 +66,12 @@ public class Game implements ApplicationListener {
 	public static final float PI2 = 3.1415926535897932384626433832795f * 2.0f;
 	public static Texture light;
 	public static FrameBuffer fbo;
-	public static ParticleEffect death = new ParticleEffect();
 	
-	public static ParticleEffect p = new ParticleEffect();
+	
+	
+//	public static ParticleEffect death = new ParticleEffect();
+//	
+//	public static ParticleEffect p = new ParticleEffect();
 	
 	public static ShaderProgram defaultShader;
 	public static ShaderProgram ambientShader;
@@ -151,6 +156,7 @@ public class Game implements ApplicationListener {
 		soundController = new SoundController();
 		collectibleController = new CollectibleController();
 		notificationController = new NotificationController();
+		particleEffectController = new ParticleEffectController();
 		musicController = new MusicController();
 		inventory = new Inventory();
 		map = new MiniMap();
@@ -176,8 +182,8 @@ public class Game implements ApplicationListener {
 		gameStartTime = Time.getTime();
 		timeSpentInPreviousSaves = 0;  //TODO set this on game load:)
 		
-		p.load(Gdx.files.internal("data/Chunks.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
-		death.load(Gdx.files.internal("data/death.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
+		//p.load(Gdx.files.internal("data/Chunks.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
+		//death.load(Gdx.files.internal("data/death.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
 		
 		camera= new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

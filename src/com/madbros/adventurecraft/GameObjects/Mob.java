@@ -56,11 +56,8 @@ public class Mob extends Actor {
 			if(hP <= 0) {
 				deathDrop();
 				Game.soundController.create(deathSound, 1);
-				
-				Game.death.x = absRect.x+ (absRect.w/2);
-				Game.death.y = absRect.y+ (absRect.h/2);
-				
-				Game.death.start();
+				//Create a new particle effect...
+				Game.particleEffectController.add("death.p", absRect.x+ (absRect.w/2), absRect.y+ (absRect.h/2));
 
 				mobController.remove(this);
 			}

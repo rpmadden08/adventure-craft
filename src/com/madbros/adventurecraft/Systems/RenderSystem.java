@@ -18,6 +18,7 @@ import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.MobController;
 import com.madbros.adventurecraft.NotificationController;
 import com.madbros.adventurecraft.ParticleEffect;
+import com.madbros.adventurecraft.ParticleEffectController;
 import com.madbros.adventurecraft.GameObjects.Actor;
 import com.madbros.adventurecraft.GameObjects.Collectible;
 import com.madbros.adventurecraft.GameObjects.GameObject;
@@ -125,13 +126,14 @@ public class RenderSystem {
 		}
 	}
 	
-	public void renderParticle(ParticleEffect p) {
-		
-		p.flipY();
-		p.setPosition(p.x - startX, p.y - startY);
-		p.update(Gdx.graphics.getRawDeltaTime());
-		p.draw(Game.batch);
-		p.flipY();
+	public void renderParticle(ParticleEffectController pController) {
+		for(ParticleEffect p : pController.particleEffects) {
+			p.flipY();
+			p.setPosition(p.x - startX, p.y - startY);
+			p.update(Gdx.graphics.getRawDeltaTime());
+			p.draw(Game.batch);
+			p.flipY();
+		}
 	}
 	
 	public void renderHero(Hero hero, int x, int y) {
