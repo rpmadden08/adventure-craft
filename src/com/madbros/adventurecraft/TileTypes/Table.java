@@ -2,9 +2,11 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class Table extends CollisionTile {
 	
@@ -21,6 +23,8 @@ public class Table extends CollisionTile {
 		autoTile = 0;
 		isBreakable = true;
 		isUseable = true;
+		currentHp = 1;
+		maxHp = 1;
 	}
 	
 	@Override
@@ -31,7 +35,7 @@ public class Table extends CollisionTile {
 	@Override
 	public void rightClicked() {
 		
-		if(Game.currentState.type == State.MAIN) {
+		if(Game.currentState.type == State.MAIN && Game.level.hasPlacedItemOnClick == false) {
 			Game.inventory.craftingTableOn = true;
 			Game.toggleInventoryState();
 		}
@@ -39,5 +43,16 @@ public class Table extends CollisionTile {
 	
 	public Tile createNew() {
 		return new Table();
+	}
+	
+	public void deleteMe(int x, int y, Block[][] activeBlocks) {
+		Block b = activeBlocks[x][y];
+		Block b2 = activeBlocks[x][y-1];
+		b.layers[OBJECT_LAYER] = new NoTile();
+		b2.layers[ABOVE_LAYER_1] = new NoTile();
+		
+		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+		Game.collectibleController.add(TABLE_ITEM, Sprites.sprites.get(Sprites.TABLE_ITEM), collectibleRect, 1);
+		
 	}
 }

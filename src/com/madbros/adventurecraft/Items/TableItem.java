@@ -15,7 +15,7 @@ public class TableItem extends BlockItem32 {
 		id = TABLE_ITEM;
 		tileId = TABLE;
 		name = "Wooden Table";
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, SAND};
+		placeableTileIds = new int[]{DIRT, DARK_DIRT, DARK_GRASS, GRASS, SAND};
 		sprite = Sprites.sprites.get(Sprites.TABLE_ITEM);
 		maxStackSize = 3;
 		numberProducedByCrafting = 1;

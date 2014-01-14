@@ -2,7 +2,6 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-
 //import com.badlogic.gdx.Gdx;
 //import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.madbros.adventurecraft.*;
@@ -50,6 +49,9 @@ public class Pick extends ToolItem {
 			Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY-1].deleteTile(ABOVE_LAYER_1);
 			Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY-2].deleteTile(ABOVE_LAYER_1);
 			Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY-1].deleteTile(ABOVE_LAYER_1);
+			
+			Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
+			
 			
 			Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-2);
 			Game.level.autoTileHighlightedBlock();

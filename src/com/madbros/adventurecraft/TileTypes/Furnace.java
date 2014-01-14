@@ -2,6 +2,7 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.NoItem;
@@ -9,6 +10,7 @@ import com.madbros.adventurecraft.Slots.CraftedSlot;
 import com.madbros.adventurecraft.Slots.CraftingSlot;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class Furnace extends CollisionTile {
 	//public int test = 0;
@@ -37,6 +39,8 @@ public class Furnace extends CollisionTile {
 		autoTile = 0;
 		isBreakable = true;
 		isUseable = true;
+		currentHp = 1;
+		maxHp = 1;
 		
 //		for(int i = 0; i < 2; i++) {
 			furnaceSlots[0] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE), INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
@@ -124,5 +128,26 @@ public class Furnace extends CollisionTile {
 	
 	public Tile createNew() {
 		return new Furnace();
+	}
+	
+	public void deleteMe(int x, int y, Block[][] activeBlocks) {
+		Block b = activeBlocks[x][y];
+		Block b2 = activeBlocks[x][y-1];
+		b.layers[OBJECT_LAYER] = new NoTile();
+		b2.layers[ABOVE_LAYER_1] = new NoTile();
+		
+		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+		Game.collectibleController.add(FURNACE_ITEM, Sprites.sprites.get(Sprites.FURNACE_SINGLE), collectibleRect, 1);
+		for(int i = 0; i < furnaceSlots.length; i++) {
+			if(furnaceSlots[i].item.id != 0) {
+				Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+				Game.collectibleController.add(furnaceSlots[i].item.id, furnaceSlots[i].item.sprite, collectibleRect2, 1);
+			}
+		}
+		if(craftedSlot[0].item.id != 0) {
+			Rect collectibleRect3 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+			Game.collectibleController.add(craftedSlot[0].item.id, craftedSlot[0].item.sprite, collectibleRect3, 1);
+			
+		}
 	}
 }

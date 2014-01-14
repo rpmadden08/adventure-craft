@@ -7,6 +7,12 @@ public abstract class ToolItem extends WeaponItem {
 	protected boolean isInUse = false;
 	protected int swingSpeed = 30;
 	protected int swingRemaining = swingSpeed;
+	
+	public ToolItem() {
+		super();
+		isRepeatable = true;
+	}
+	
 	public void impact() {
 		
 	}

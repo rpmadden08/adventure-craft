@@ -1,7 +1,11 @@
 package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
+
+import com.madbros.adventurecraft.Block;
+import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.*;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class DarkGrassTile extends Tile {
 	public DarkGrassTile() {
@@ -15,9 +19,21 @@ public class DarkGrassTile extends Tile {
 		sprites = Sprites.spriteCollections.get(Sprites.DARK_GRASS);
 		id = DARK_GRASS;
 		autoTileID = id;
+		isDiggable = true;
 	}
 
 	public Tile createNew() {
 		return new DarkGrassTile();
+	}
+	
+	public void deleteMe(int x, int y, Block[][] activeBlocks) {
+		Game.level.highlightedBlock.layers[GRASS_LAYER] = new NoTile();
+		Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY].layers[GRASS_LAYER] = new NoTile();
+		Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].layers[GRASS_LAYER] = new NoTile();
+		Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY+1].layers[GRASS_LAYER] = new NoTile();
+	
+		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+		Game.collectibleController.add(GRASS_SEED, Sprites.sprites.get(Sprites.GRASS_ITEM), collectibleRect, 1);
+		
 	}
 }

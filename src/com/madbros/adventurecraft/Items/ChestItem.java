@@ -3,10 +3,6 @@ package com.madbros.adventurecraft.Items;
 import static com.madbros.adventurecraft.Constants.*;
 
 import java.io.File;
-import java.io.IOException;
-
-import org.apache.commons.io.FileUtils;
-
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Slots.Slot;
@@ -42,12 +38,6 @@ public class ChestItem extends BlockItem32 {
 		File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + Game.level.tileBeingAttacked.absX + "-" + Game.level.tileBeingAttacked.absY + ".sv");
 		if(f.exists()) { 
 			f.delete();
-//			try {
-//				FileUtils.deleteDirectory(f);
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				//e.printStackTrace();
-//			}
 		}
 		hB.layers[OBJECT_LAYER] = tile;
 		hB.setCollisionTile((CollisionTile)tile);

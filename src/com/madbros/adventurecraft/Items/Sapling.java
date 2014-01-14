@@ -12,7 +12,7 @@ public class Sapling extends BlockItem32 {
 		id = SAPLING_ITEM;
 		tileId = SAPLING;
 		name = "Sapling";
-		placeableTileIds = new int[]{GRASS, DIRT, DARK_DIRT};
+		placeableTileIds = new int[]{GRASS, DIRT,DARK_GRASS, DARK_DIRT};
 		sprite = Sprites.sprites.get(Sprites.SAPLING);
 		
 	}

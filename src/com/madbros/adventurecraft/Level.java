@@ -270,6 +270,13 @@ public class Level {
 			highlightedBlock3 = activeBlocks[highlightedBlockX][highlightedBlockY+1];
 			highlightedBlock4 = activeBlocks[highlightedBlockX+1][highlightedBlockY+1];
 			
+//			//This is so that chests know their coordinates...
+//			tileBeingAttacked.absX = highlightedBlock.getAbsX();
+//			tileBeingAttacked.absY = highlightedBlock.getAbsY();
+//			//This is so that furnaces know their activeBlocks...
+//			tileBeingAttacked.activeBlocksX = highlightedBlockX;
+//			tileBeingAttacked.activeBlocksY = highlightedBlockY;
+			
 			if(tileBeingAttacked != highlightedBlock.getTopTile()) {
 				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
 				tileBeingAttacked = highlightedBlock.getTopTile();

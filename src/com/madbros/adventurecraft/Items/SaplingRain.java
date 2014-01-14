@@ -13,7 +13,7 @@ public class SaplingRain extends BlockItem32 {
 		tileId = SAPLING_RAIN;
 		name = "Rain Forest Tree Sapling";
 		
-		placeableTileIds = new int[]{GRASS, DIRT, DARK_DIRT};
+		placeableTileIds = new int[]{GRASS, DIRT,DARK_GRASS, DARK_DIRT};
 		sprite = Sprites.sprites.get(Sprites.SAPLING);
 		
 	}
@@ -26,14 +26,7 @@ public class SaplingRain extends BlockItem32 {
 	@Override
 	public void placeTile(Block hB, Tile tile) {
 		hB.layers[OBJECT_LAYER] = tile;
-//		if(hB.layers[WATER_LAYER].id == HOLE) {
-//			hB.layers[GRASS_LAYER] = tile;
-//			hB.layers[WATER_LAYER] = new NoTile();
-//			hB.layers[LIGHT_DIRT_LAYER] = new NoTile();
-//			hB.collisionTile = null;
-//			hB.cRect = null;
-//		} else {
-//			hB.layers[GRASS_LAYER] = tile;
-//		}
+
 	}
+	
 }

@@ -25,6 +25,8 @@ public class Chest extends CollisionTile {
 		autoTile = 0;
 		isBreakable = true;
 		isUseable = true;
+		currentHp = 1;
+		maxHp = 1;
 	}
 	
 	@Override
@@ -34,7 +36,7 @@ public class Chest extends CollisionTile {
 	
 	@Override
 	public void rightClicked() {
-		if(Game.currentState.type == State.MAIN) {
+		if(Game.currentState.type == State.MAIN && Game.level.hasPlacedItemOnClick == false) {
 			int x = absX;
 			int y = absY;
 			Game.inventory.chestOn = true;

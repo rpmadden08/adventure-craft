@@ -2,7 +2,6 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-
 //import com.badlogic.gdx.Gdx;
 //import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.madbros.adventurecraft.*;
@@ -15,6 +14,7 @@ public class Hoe extends ToolItem {
 		is32 = false;
 		sprite = Sprites.sprites.get(Sprites.HOE);
 		attackPower = 5;
+		isRepeatable = true;
 	}
 	
 	@Override
@@ -32,6 +32,7 @@ public class Hoe extends ToolItem {
 			swing();
 
 		}
+		Game.hero.attack(this);
 	}
 	public void impact() {
 		Game.level.tileBeingAttacked.currentHp -= attackPower;
@@ -40,6 +41,8 @@ public class Hoe extends ToolItem {
 			Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY].deleteTopTileTilled();
 			Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].deleteTopTileTilled();
 			Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY+1].deleteTopTileTilled();
+			Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
+			
 			Game.level.autoTileHighlightedBlock();
 			calculateUsage();
 		}

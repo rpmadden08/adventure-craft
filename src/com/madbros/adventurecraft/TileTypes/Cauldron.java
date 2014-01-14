@@ -142,7 +142,7 @@ public class Cauldron extends CollisionTile {
 		}
 		if(craftedSlot[0].item.id != 0) {
 			Rect collectibleRect3 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-			Game.collectibleController.add(cauldronSlots[0].item.id, cauldronSlots[0].item.sprite, collectibleRect3, 1);
+			Game.collectibleController.add(craftedSlot[0].item.id, craftedSlot[0].item.sprite, collectibleRect3, 1);
 			
 		}
 	}

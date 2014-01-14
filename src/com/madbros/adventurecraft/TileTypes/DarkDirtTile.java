@@ -2,7 +2,10 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.madbros.adventurecraft.Block;
+import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.*;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class DarkDirtTile extends Tile{
 
@@ -27,5 +30,11 @@ public class DarkDirtTile extends Tile{
 	@Override
 	public void render(int x, int y) {
 		sprites[0].draw(x, y, z, TILE_SIZE, TILE_SIZE);
+	}
+	
+	public void deleteMe(int x, int y, Block[][] activeBlocks) {
+		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+		Game.collectibleController.add(EARTH_CLUMP, Sprites.sprites.get(Sprites.DIRT_ITEM), collectibleRect, 1);
+		
 	}
 }

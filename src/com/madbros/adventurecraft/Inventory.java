@@ -99,23 +99,23 @@ public class Inventory {
 		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +160,BOOTS_SLOT);
 		
 		invBar[0].item = new Sword();
-		invBar[0].item.stackSize =99;
-		invBar[1].item = new CauldronItem();
+		invBar[0].item.stackSize =1;
+		invBar[1].item = new TableItem();
 		invBar[1].item.stackSize = 1;
-		invBar[2].item = new ChestItem();
+		invBar[2].item = new Sapling();
 		invBar[2].item.stackSize = 1;
-		invBar[3].item = new Potatoes();
+		invBar[3].item = new TableItem();
 		invBar[3].item.stackSize = 1;
-		invBar[4].item = new Log();
-		invBar[4].item.stackSize =1;
+		invBar[4].item = new Sapling();
+		invBar[4].item.stackSize =99;
 		invBar[5].item = new Axe();
 		invBar[5].item.stackSize = 1;
-		invBar[6].item = new SeedPotato();
-		invBar[6].item.stackSize = 99;
-		invBar[7].item = new CampfireItem();
-		invBar[7].item.stackSize = 99;
-		invBar[8].item = new Sapling();
-		invBar[8].item.stackSize = 99;
+		invBar[6].item = new Hoe();
+		invBar[6].item.stackSize = 1;
+		invBar[7].item = new ChestItem();
+		invBar[7].item.stackSize = 1;
+		invBar[8].item = new FurnaceItem();
+		invBar[8].item.stackSize = 1;
 		invBar[9].item = new Shovel();
 		invBar[9].item.stackSize = 1;
 		

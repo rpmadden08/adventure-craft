@@ -15,7 +15,7 @@ public class FurnaceItem extends BlockItem32 {
 		id = FURNACE_ITEM;
 		name = "Furnace";
 		tileId = FURNACE;
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, SAND};
+		placeableTileIds = new int[]{DIRT, DARK_DIRT, DARK_GRASS, GRASS, SAND};
 		sprite = Sprites.sprites.get(Sprites.FURNACE_SINGLE);
 		maxStackSize = 99;
 		numberProducedByCrafting = 1;
