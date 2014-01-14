@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.TileTypes.DirtMountainTopTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.Utils.Helpers;
 
@@ -33,6 +34,10 @@ public abstract class BlockItem extends StackableItem{
 				stackSize -= 1;
 				Game.inventory.deleteItemIfNecessary();
 				Game.level.autoTileHighlightedBlock();
+				int x = hB.getX(Game.level.activeBlocks);
+				int y = hB.getY(Game.level.activeBlocks);
+				//Game.level.activeBlocks[x][y-2].layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+				Game.level.autoTileBlock(x, y-2);
 			}
 		}
 	}

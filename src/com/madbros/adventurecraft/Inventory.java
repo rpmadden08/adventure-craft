@@ -112,12 +112,12 @@ public class Inventory {
 		invBar[5].item.stackSize = 1;
 		invBar[6].item = new Hoe();
 		invBar[6].item.stackSize = 1;
-		invBar[7].item = new Pick();
-		invBar[7].item.stackSize = 1;
-		invBar[8].item = new FurnaceItem();
-		invBar[8].item.stackSize = 1;
-		invBar[9].item = new Shovel();
-		invBar[9].item.stackSize = 1;
+		invBar[7].item = new DirtMountainItem();
+		invBar[7].item.stackSize = 99;
+		invBar[8].item = new SnowItem();
+		invBar[8].item.stackSize = 99;
+		invBar[9].item = new DarkGrassItem();
+		invBar[9].item.stackSize = 99;
 		
 		invBag[0].item = new IronHelmet();
 		invBag[0].item.stackSize = 1;

@@ -319,6 +319,10 @@ public class Constants {
 		ITEM_HASH.put(CHEST_ITEM, new ChestItem());
 		ITEM_HASH.put(FURNACE_ITEM, new FurnaceItem());
 		ITEM_HASH.put(CAULDRON_ITEM, new CauldronItem());
+		ITEM_HASH.put(SNOW_ITEM, new SnowItem());
+		ITEM_HASH.put(DARK_GRASS_ITEM, new DarkGrassItem());
+		ITEM_HASH.put(DIRT_MOUNTAIN_ITEM, new DirtMountainItem());
+		
 		
 		TILE_HASH.put(GRASS, new GrassTile());
 		TILE_HASH.put(DIRT, new DirtTile());
