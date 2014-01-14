@@ -41,7 +41,10 @@ public class Sprites {
 	public static final String SEED_POTATO = "seeds";
 	public static final String STUMP = "stump";
 	public static final String GRASS_ITEM = "grassItem";
+	public static final String SNOW_ITEM = "snowItem";
+	public static final String DARK_GRASS_ITEM = "darkGrassItem";
 	public static final String DIRT_ITEM = "dirtItem";
+	public static final String DIRT_MOUNTAIN_ITEM = "dirtMountainItem";
 	public static final String SAND_ITEM = "sandItem";
 	public static final String LOG_ITEM = "logItem";
 	public static final String PLANK_ITEM = "plankItem";
@@ -65,6 +68,7 @@ public class Sprites {
 //	public static final String GEM = "Gem Blue";
 	public static final String DESERT = "desert";
 	public static final String GRASS = "grass";
+	public static final String SPACE = "space";
 	public static final String HOLE = "hole";
 	public static final String LIGHT_DIRT = "lightDirt";
 	public static final String MOUNTAIN_BOTTOM = "mountainBottom";
@@ -262,7 +266,8 @@ public class Sprites {
 					PLATE_TORSO_SLASH_RIGHT,PLATE_HELMET_SLASH_UP, PLATE_HELMET_SLASH_DOWN, PLATE_HELMET_SLASH_LEFT, 
 					PLATE_HELMET_SLASH_RIGHT, PLATE_LEGS_SLASH_UP, PLATE_LEGS_SLASH_DOWN, PLATE_LEGS_SLASH_LEFT, 
 					PLATE_LEGS_SLASH_RIGHT, PLATE_FEET_SLASH_UP, PLATE_FEET_SLASH_DOWN, PLATE_FEET_SLASH_LEFT, 
-					PLATE_FEET_SLASH_RIGHT, PICK, MOUNTAIN_COAL_TOP, MOUNTAIN_COAL_BOTTOM
+					PLATE_FEET_SLASH_RIGHT, PICK, MOUNTAIN_COAL_TOP, MOUNTAIN_COAL_BOTTOM, SPACE, SNOW_ITEM,
+					DARK_GRASS_ITEM, DIRT_MOUNTAIN_ITEM
 			};
 			
 			String[] lightNames = {LIGHT, CAMPFIRE_LIGHT};

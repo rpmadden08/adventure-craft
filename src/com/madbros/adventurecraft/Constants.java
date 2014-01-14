@@ -134,6 +134,8 @@ public class Constants {
 	public static final int DIRT_MOUNTAIN_COAL_BOTTOM = 27;
 	public static final int DIRT_MOUNTAIN_COAL_TOP = 28;
 	public static final int TREE_RAIN = 29;
+	public static final int SPACE = 30;
+	
 	
 	
 	//Layers
@@ -241,6 +243,10 @@ public class Constants {
 	public static final int BAKED_POTATOES = 23;
 	public static final int CAULDRON_ITEM = 24;
 	public static final int PICK = 25;
+	public static final int SNOW_ITEM = 26;
+	public static final int DARK_GRASS_ITEM = 27;
+	public static final int DIRT_MOUNTAIN_ITEM = 28;
+	
 	
 	
 	//Clothing Types
@@ -330,6 +336,7 @@ public class Constants {
 		TILE_HASH.put(TREE_LEAF_RAIN, new TreeLeafRainTile());
 		TILE_HASH.put(TREE_LEAF_PINE, new TreeLeafPineTile());
 		TILE_HASH.put(HOLE, new HoleTile());
+		TILE_HASH.put(SPACE, new SpaceTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_BOTTOM, new DirtMountainBottomTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_TOP, new DirtMountainTopTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_COAL_BOTTOM, new DirtMountainCoalBottomTile());
