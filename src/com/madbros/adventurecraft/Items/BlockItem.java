@@ -26,7 +26,8 @@ public abstract class BlockItem extends StackableItem{
 			Block hB3 = Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1];
 			Block hB4 = Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY+1];
 			
-			if(Helpers.arrayDoesContainInt(placeableTileIds, hB.getTopTerrainTile().id) && AIR == hB.layers[OBJECT_LAYER].id) {
+			if(Helpers.arrayDoesContainInt(placeableTileIds, hB.getTopTerrainTile().id) && AIR == hB.layers[OBJECT_LAYER].id &&
+					AIR == hB2.layers[OBJECT_LAYER].id && AIR == hB3.layers[OBJECT_LAYER].id  && AIR == hB4.layers[OBJECT_LAYER].id) {
 				placeTile(hB, tile);
 				placeTile(hB2, TILE_HASH.get(tileId).createNew());
 				placeTile(hB3, TILE_HASH.get(tileId).createNew());
