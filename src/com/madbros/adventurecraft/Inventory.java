@@ -100,9 +100,9 @@ public class Inventory {
 		
 		invBar[0].item = new Sword();
 		invBar[0].item.stackSize =1;
-		invBar[1].item = new TableItem();
+		invBar[1].item = new Shovel();
 		invBar[1].item.stackSize = 1;
-		invBar[2].item = new Sapling();
+		invBar[2].item = new CampfireItem();
 		invBar[2].item.stackSize = 1;
 		invBar[3].item = new TableItem();
 		invBar[3].item.stackSize = 1;

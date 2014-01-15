@@ -103,13 +103,16 @@ public class RenderSystem {
 	
 		
 		if(block.isHighlighted) {
+			Item item = ITEM_HASH.get(Game.inventory.invBar[Game.inventory.itemSelected].item.id).createNew();
+			item.highlightItem(x, y);
+			
 			Tile topTile = block.getTopTile();
-			//if(topTile.currentHp < topTile.maxHp) topTile.renderHp(x, y);
-			Color highlightColor = new Color(0.7f, 0.7f, 0.7f, 1.0f);
-			topTile.sprites[topTile.autoTile].setColor(highlightColor);
-			topTile.render(x, y);
-			topTile.sprites[topTile.autoTile].setColor(Color.WHITE);
-			//Tile objectTile = block.getObjectTile();
+//			Color highlightColor = new Color(0.7f, 0.7f, 0.7f, 1.0f);
+//			
+//			topTile.sprites[topTile.autoTile].setColor(highlightColor);
+//			topTile.render(x, y);
+//			topTile.sprites[topTile.autoTile].setColor(Color.WHITE);
+//			
 			if(topTile.currentHp < topTile.maxHp) {
 				renderTileHealth(topTile, x, y);
 			}

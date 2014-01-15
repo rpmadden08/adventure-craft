@@ -99,6 +99,10 @@ public abstract class Item {
 		return false;
 	}
 	
+	public void highlightItem(int x, int y) {
+		
+	}
+	
 	
 	abstract public Item createNew(); 
 }
