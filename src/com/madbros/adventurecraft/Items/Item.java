@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.*;
@@ -99,7 +100,7 @@ public abstract class Item {
 		return false;
 	}
 	
-	public void highlightItem(int x, int y) {
+	public void highlightItem(Block block, int x, int y) {
 		
 	}
 	

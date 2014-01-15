@@ -53,4 +53,10 @@ public class Axe extends ToolItem {
 			Game.hero.attack(this);
 			//Game.soundController.create(sound);
 	}
+	
+	public void highlightItem(Block block, int x, int y) {
+		if(Game.level.tileBeingAttacked.isChoppable && Game.level.activeBlocks[block.getX(Game.level.activeBlocks)][block.getY(Game.level.activeBlocks)].layers[OBJECT_LAYER].id != AIR) {
+			Game.level.tileBeingAttacked.highlightEntireObject(block.getX(Game.level.activeBlocks),block.getY(Game.level.activeBlocks), x, y);
+		}
+	}
 }

@@ -63,4 +63,37 @@ public class TreeTile extends CollisionTile {
 		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect4, 1 );
 		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect5, 1 );
 	}
+	
+	public void highlightEntireObject(int x, int y, int drawX, int drawY) {
+		//Tile tile = Game.level.tileBeingAttacked;
+//		sprites[currentSpriteId].setColor(1f,1f,1f,0.3f);
+//		sprites[currentSpriteId].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+//		sprites[currentSpriteId].setColor(1f,1f,1f,1f);
+//		
+		Block b = Game.level.activeBlocks[x][y];
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].currentSpriteId].setColor(0.5f,0.5f,0.5f,0.8f);
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].currentSpriteId].draw(drawX, drawY, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].currentSpriteId].setColor(1f,1f,1f,1f);
+		
+		
+		int[] xs = {x-1, x-1, x-1, x, x, x+1,x+1, x+1};
+		int[] ys = {y-2, y-1, y, y-2, y-1, y-2, y-1, y};
+		int[] drawXs = {drawX-TILE_SIZE,drawX-TILE_SIZE, drawX-TILE_SIZE, drawX, drawX, drawX + TILE_SIZE, drawX + TILE_SIZE, drawX + TILE_SIZE};
+		int[] drawYs = {drawY-(TILE_SIZE*2), drawY-TILE_SIZE, drawY, drawY-(TILE_SIZE*2),drawY-TILE_SIZE,drawY-(TILE_SIZE*2), drawY-TILE_SIZE, drawY};
+		int[] tileLayer = {TREE_LEFT_2, TREE_LEFT_1, TREE_LEFT_0, TREE_CENTER_2, TREE_CENTER_1, TREE_RIGHT_2, TREE_RIGHT_1, TREE_RIGHT_0};
+		for(int i = 0; i < 8; i++) {
+			b = Game.level.activeBlocks[xs[i]][ys[i]];
+			//b.layers[tileLayer[i]] = new NoTile(); 
+			int spriteId = b.layers[tileLayer[i]].currentSpriteId;
+//			Tile tile = b.layers[tileLayer[i]];
+//			tile.sprites[spriteId].setColor(0.8f,0.8f,0.8f,1f);
+//			tile.render(drawXs[i], drawYs[i]);
+//			tile.sprites[spriteId].setColor(1f,1f,1f,1f);
+			b.layers[tileLayer[i]].sprites[spriteId].setColor(0.5f,0.5f,0.5f,0.8f);
+			b.layers[tileLayer[i]].sprites[spriteId].draw(drawXs[i], drawYs[i], z);
+			b.layers[tileLayer[i]].sprites[spriteId].setColor(1f,1f,1f,1f);
+			
+
+		}
+	}
 }

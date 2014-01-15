@@ -14,7 +14,7 @@ public class TreeLeafTile extends CollisionTile {
 
 		margin = new Margin(9, 9, 12, 11);
 		id = TREE_LEAF;
-		layer = ABOVE_LAYER_1;
+		layer = ABOVE_LAYER_4;
 		z = Z_ABOVE_LAYER;
 		isDiggable = false;
 		isAutoTileable = false;
@@ -24,9 +24,6 @@ public class TreeLeafTile extends CollisionTile {
 	
 //	@Override
 	public void render(int x, int y, int layer) {
-		float z;
-		z = this.z + layer / 100f; //FIXME!!
-		
 		sprites[currentSpriteId].draw(x, y, z);
 	}
 	

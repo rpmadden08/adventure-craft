@@ -31,17 +31,13 @@ public class CampfireItem extends BlockItem32 {
 	}
 
 	@Override
-	public void highlightItem(int x, int y) {
+	public void highlightItem(Block block, int x, int y) {
 			
-			Block hB = Game.level.highlightedBlock;
-			if(Helpers.arrayDoesContainInt(placeableTileIds, hB.getTopTerrainTile().id) && AIR == hB.layers[OBJECT_LAYER].id) {
-				//topTile.sprites[topTile.autoTile].setColor(highlightColor);
-				//sprite.render(x, y);
-				//System.out.println("CHECK");
-				sprite.setColor(1f,1f,1f,0.3f);
-				sprite.draw(x, y, Z_CHARACTER, hB.absRect.w, hB.absRect.h);
+			if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id) {
+
+				sprite.setColor(1f,1f,1f,0.5f);
+				sprite.draw(x, y, Z_CHARACTER, block.absRect.w, block.absRect.h);
 				sprite.setColor(Color.WHITE);
-				//topTile.sprites[topTile.autoTile].setColor(Color.WHITE);
 			}
 	}
 }

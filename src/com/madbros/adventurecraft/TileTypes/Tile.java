@@ -78,4 +78,7 @@ public abstract class Tile {
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {}
 	
+	public void highlightEntireObject(int x, int y, int drawX, int drawY) {
+		
+	}
 }

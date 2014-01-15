@@ -71,12 +71,38 @@ public class RenderSystem {
 			for(int y = lv.renderRect.y; y < lv.renderRect.y2(); y++) {
 //				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {					
 					renderBlock(x, y, lv.activeBlocks[x][y], lv, i, j, false);
+					
+//				}
+				j++;
+			}
+			i++; j = 0;
+		}
+		i = 0; j = 0;
+		for(int x = lv.renderRect.x; x < lv.renderRect.x2(); x++) {
+			for(int y = lv.renderRect.y; y < lv.renderRect.y2(); y++) {
+//				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {					
+					renderBlockHighlight(x, y, lv.activeBlocks[x][y], lv, i, j, false);
+					
 //				}
 				j++;
 			}
 			i++; j = 0;
 		}
 	}
+	
+	public void renderBlockHighlight(int arrayX, int arrayY, Block block, Level lv, int i2, int j2, Boolean isAbove) {
+		int x = i2 * TILE_SIZE - lv.offsetX; //block.absRect.x - startX;
+		int y = j2 * TILE_SIZE - lv.offsetY; //block.absRect.y - startY;
+		if(block.isHighlighted) {
+			Item item = ITEM_HASH.get(Game.inventory.invBar[Game.inventory.itemSelected].item.id).createNew();
+			item.highlightItem(block, x, y);
+			Tile topTile = block.getTopTile();
+			if(topTile.currentHp < topTile.maxHp) {
+				renderTileHealth(topTile, x, y);
+			}
+		}
+	}
+	
 	
 	public void renderBlock(int arrayX, int arrayY, Block block, Level lv, int i2, int j2, Boolean isAbove) {
 		int x = i2 * TILE_SIZE - lv.offsetX; //block.absRect.x - startX;
@@ -98,24 +124,6 @@ public class RenderSystem {
 		
 		for(GameObject gameObject : block.objects) {
 			gameObject.sprite.draw(gameObject.absRect.x - startX, gameObject.absRect.y - startY, gameObject.z);
-		}
-		
-	
-		
-		if(block.isHighlighted) {
-			Item item = ITEM_HASH.get(Game.inventory.invBar[Game.inventory.itemSelected].item.id).createNew();
-			item.highlightItem(x, y);
-			
-			Tile topTile = block.getTopTile();
-//			Color highlightColor = new Color(0.7f, 0.7f, 0.7f, 1.0f);
-//			
-//			topTile.sprites[topTile.autoTile].setColor(highlightColor);
-//			topTile.render(x, y);
-//			topTile.sprites[topTile.autoTile].setColor(Color.WHITE);
-//			
-			if(topTile.currentHp < topTile.maxHp) {
-				renderTileHealth(topTile, x, y);
-			}
 		}
 		
 		renderCollisionTiles(x, y, block);
