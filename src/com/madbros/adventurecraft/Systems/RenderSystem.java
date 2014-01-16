@@ -88,6 +88,7 @@ public class RenderSystem {
 			}
 			i++; j = 0;
 		}
+		//Game.level.autoTileHighlightedBlock();
 	}
 	
 	public void renderBlockHighlight(int arrayX, int arrayY, Block block, Level lv, int i2, int j2, Boolean isAbove) {
@@ -95,7 +96,12 @@ public class RenderSystem {
 		int y = j2 * TILE_SIZE - lv.offsetY; //block.absRect.y - startY;
 		if(block.isHighlighted) {
 			Item item = ITEM_HASH.get(Game.inventory.invBar[Game.inventory.itemSelected].item.id).createNew();
-			item.highlightItem(block, x, y);
+			if(item.is32) {
+				item.highlightItem(block, x, y);
+			} else if(block.getX(Game.level.activeBlocks) % 2 == 0 && block.getY(Game.level.activeBlocks) % 2 == 0) {
+				item.highlightItem(block, x, y);
+				
+			}
 			Tile topTile = block.getTopTile();
 			if(topTile.currentHp < topTile.maxHp) {
 				renderTileHealth(topTile, x, y);

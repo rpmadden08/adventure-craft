@@ -33,7 +33,7 @@ public class DarkGrassTile extends Tile {
 		Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY+1].layers[GRASS_LAYER] = new NoTile();
 	
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(GRASS_SEED, Sprites.sprites.get(Sprites.GRASS_ITEM), collectibleRect, 1);
+		Game.collectibleController.add(DARK_GRASS_ITEM, Sprites.sprites.get(Sprites.DARK_GRASS_ITEM), collectibleRect, 1);
 		
 	}
 }

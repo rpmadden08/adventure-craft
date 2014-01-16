@@ -71,7 +71,7 @@ public class TreeTile extends CollisionTile {
 //		sprites[currentSpriteId].setColor(1f,1f,1f,1f);
 //		
 		Block b = Game.level.activeBlocks[x][y];
-		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].currentSpriteId].setColor(0.5f,0.5f,0.5f,0.8f);
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].currentSpriteId].setColor(HIGHLIGHT_COLOR);
 		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].currentSpriteId].draw(drawX, drawY, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
 		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].currentSpriteId].setColor(1f,1f,1f,1f);
 		
@@ -89,7 +89,7 @@ public class TreeTile extends CollisionTile {
 //			tile.sprites[spriteId].setColor(0.8f,0.8f,0.8f,1f);
 //			tile.render(drawXs[i], drawYs[i]);
 //			tile.sprites[spriteId].setColor(1f,1f,1f,1f);
-			b.layers[tileLayer[i]].sprites[spriteId].setColor(0.5f,0.5f,0.5f,0.8f);
+			b.layers[tileLayer[i]].sprites[spriteId].setColor(HIGHLIGHT_COLOR);
 			b.layers[tileLayer[i]].sprites[spriteId].draw(drawXs[i], drawYs[i], z);
 			b.layers[tileLayer[i]].sprites[spriteId].setColor(1f,1f,1f,1f);
 			

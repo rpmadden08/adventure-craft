@@ -2,12 +2,14 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
+import com.madbros.adventurecraft.Utils.Helpers;
 
 public class CauldronItem extends BlockItem32 {
 	public CauldronItem() {
@@ -41,6 +43,16 @@ public class CauldronItem extends BlockItem32 {
 //		int y = hB.getY(Game.level.activeBlocks);
 //		Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new FurnaceTop();
 	}
+	
+	public void highlightItem(Block block, int x, int y) {
+		
+		if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id) {
+			//Tile tile = TILE_HASH.get(tileId);
+			sprite.setColor(HIGHLIGHT_COLOR);
+			sprite.draw(x, y, Z_CHARACTER, block.absRect.w, block.absRect.h);
+			sprite.setColor(Color.WHITE);
+		}
+}
 	
 
 }

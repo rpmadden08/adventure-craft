@@ -2,6 +2,7 @@ package com.madbros.adventurecraft;
 
 import java.util.HashMap;
 
+import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.Items.*;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.*;
@@ -29,6 +30,8 @@ public class Constants {
 	public static final String CHUNKS_FOLDER = "chunks/";
 	public static final String CHESTS_FOLDER = "chests/";
 	public static final String FURNACES_FOLDER = "furnaces/";
+	
+	public static final Color HIGHLIGHT_COLOR = new Color(0.8f,0.8f,0.8f,0.6f);
 	
 	//character constants
 	public static final int CHARACTER_SIZE = 64;

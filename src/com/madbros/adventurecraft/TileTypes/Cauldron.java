@@ -29,7 +29,7 @@ public class Cauldron extends CollisionTile {
 	public Cauldron() {
 		super();
 		currentSpriteId = 0;
-		sprites = Sprites.cauldronAnimation;
+		sprites = Sprites.cauldronStatic;
 		margin = new Margin(0, 0, 0, 0);
 		id = CAULDRON;
 		layer = OBJECT_LAYER;

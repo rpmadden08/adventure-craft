@@ -35,7 +35,7 @@ public class CampfireItem extends BlockItem32 {
 			
 			if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id) {
 
-				sprite.setColor(1f,1f,1f,0.5f);
+				sprite.setColor(HIGHLIGHT_COLOR);
 				sprite.draw(x, y, Z_CHARACTER, block.absRect.w, block.absRect.h);
 				sprite.setColor(Color.WHITE);
 			}
