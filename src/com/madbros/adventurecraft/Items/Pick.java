@@ -14,6 +14,7 @@ public class Pick extends ToolItem {
 		is32 = false;
 		sprite = Sprites.sprites.get(Sprites.PICK);
 		attackPower = 5;
+		isRepeatable = true;
 	}
 	
 	@Override
@@ -31,6 +32,7 @@ public class Pick extends ToolItem {
 			swing();
 
 		}
+		Game.hero.attack(this);
 	}
 	public void impact() {
 		Game.level.tileBeingAttacked.currentHp -= attackPower;

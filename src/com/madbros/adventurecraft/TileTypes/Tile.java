@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Helpers;
@@ -59,7 +60,8 @@ public abstract class Tile {
 		Sprites.pixel.draw(sX+1, sY+1, Z_HEALTHBAR, Math.round((currentHp * 1.0f / maxHp) * w-2), h-2);
 		Sprites.pixel.setColor(Color.WHITE);
 		Helpers.drawRect(new Rect(sX, sY, w, h), Z_HEALTHBAR);
-		Game.renderSystem.renderTileHealth(this, x, y);
+		Item item = ITEM_HASH.get(Game.inventory.invBar[Game.inventory.itemSelected].item.id).createNew();
+		Game.renderSystem.renderTileHealth(this, x, y, item.is32);
 	}
 	
 	public void bloom(int x,int y, Block[][] activeBlocks) {

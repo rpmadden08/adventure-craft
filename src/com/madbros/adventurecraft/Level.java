@@ -66,7 +66,7 @@ public class Level {
 	
 //	
 	//private long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 6; // 4 is desert 0 is forest 20 is grassland
+	public long rgenseed = 19; // 6 is swamp, 2 is hole+swamp, 19 is Grass and Snow (plains)
 	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public Random rand = new Random(rgenseed);
 	public int randInt1 = rand.nextInt();

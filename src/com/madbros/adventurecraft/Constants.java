@@ -150,10 +150,11 @@ public class Constants {
 	public static final int TREE_LEFT_0 = 5;
 	public static final int TREE_CENTER_0 = 6;
 	public static final int TREE_RIGHT_0 = 7;
-	public static final int ABOVE_LAYER_1 = 8;
-	public static final int TREE_LEFT_1 = 9;
-	public static final int TREE_CENTER_1 = 10;
-	public static final int TREE_RIGHT_1 = 11;
+	
+	public static final int TREE_LEFT_1 = 8;
+	public static final int TREE_CENTER_1 = 9;
+	public static final int TREE_RIGHT_1 = 10;
+	public static final int ABOVE_LAYER_1 = 11;
 	public static final int ABOVE_LAYER_2 = 12;
 	public static final int TREE_LEFT_2 = 13;
 	public static final int TREE_CENTER_2 = 14;

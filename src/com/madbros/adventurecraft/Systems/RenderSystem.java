@@ -104,7 +104,8 @@ public class RenderSystem {
 			}
 			Tile topTile = block.getTopTile();
 			if(topTile.currentHp < topTile.maxHp) {
-				renderTileHealth(topTile, x, y);
+				
+				renderTileHealth(topTile, x, y, item.is32);
 			}
 		}
 	}
@@ -193,7 +194,11 @@ public class RenderSystem {
 				
 				Sprites.pixel.setColor(Color.RED);
 				Sprites.pixel.draw(x + hero.attackItem.originX+hero.weaponX+ hero.attackItem.weaponOffsetX, y + hero.attackItem.originY+hero.weaponY+hero.attackItem.weaponOffsetY,Z_CHARACTER);
-				
+				if(hero.dir == 0) {
+					hero.sprite.draw(x, y, Z_CHARACTER);
+					
+					renderCollisionRects(hero, x, y);
+				}
 				//Collision rectangles
 			
 	//			Rect r = new Rect(x+hero.attackItem.cRectFinal.x,y+hero.attackItem.cRectFinal.y, hero.attackItem.cRectFinal.w,hero.attackItem.cRectFinal.h);
@@ -209,7 +214,11 @@ public class RenderSystem {
 		
 	}
 	
-	public void renderTileHealth(Tile tile, int x, int y) {
+	public void renderTileHealth(Tile tile, int x, int y, Boolean is32) {
+		int tileOffset = 0;
+		if(is32 == false) {
+			tileOffset = 16;
+		}
 		double difference = (tile.maxHp - tile.currentHp);
 		double percentage = (tile.maxHp-difference) / tile.maxHp;
 		double hPCalc = percentage * 30; 
@@ -217,34 +226,34 @@ public class RenderSystem {
 		
 		//The Red/Blue/Green Part
 		Sprites.pixel.setColor(Color.RED);
-		Sprites.pixel.draw(x+1,y+1,Z_CHARACTER,hP,4);
+		Sprites.pixel.draw(x+1+tileOffset,y+1,Z_CHARACTER,hP,4);
 		
 		//Red Highlight top
 		Sprites.pixel.setColor(1f, 1f, 1f,0.4f);
-		Sprites.pixel.draw(x+2,y+1,Z_CHARACTER,hP,1);
+		Sprites.pixel.draw(x+2+tileOffset,y+1,Z_CHARACTER,hP,1);
 		
 		//Red Highlight bottom
 		Sprites.pixel.setColor(0f, 0f, 0f,0.3f);
-		Sprites.pixel.draw(x+2,y+4,Z_CHARACTER,hP,1);
+		Sprites.pixel.draw(x+2+tileOffset,y+4,Z_CHARACTER,hP,1);
 	
 		//Black Edge
 		Sprites.pixel.setColor(Color.BLACK);
-		Sprites.pixel.draw(x+1+hP,y+1,Z_CHARACTER,30-hP,4);
+		Sprites.pixel.draw(x+1+hP+tileOffset,y+1,Z_CHARACTER,30-hP,4);
 		
 		//Border left
-		Sprites.healthBarMon.draw(x,y,Z_CHARACTER,2,6);
+		Sprites.healthBarMon.draw(x+tileOffset,y,Z_CHARACTER,2,6);
 
 		
 		//Border Top
 		Sprites.pixel.setColor(0.886f, 0.914f, 0.98f,1f);
-		Sprites.pixel.draw(x+2, y, Z_CHARACTER, 28, 1);
+		Sprites.pixel.draw(x+2+tileOffset, y, Z_CHARACTER, 28, 1);
 		
 		//Border Bottom
-		Sprites.pixel.draw(x+2, y+5, Z_CHARACTER, 28, 1);
+		Sprites.pixel.draw(x+2+tileOffset, y+5, Z_CHARACTER, 28, 1);
 		
 		//Border Right
 		Sprites.healthBarMon.rotate(180);
-		Sprites.healthBarMon.draw(x+2+28,y,Z_CHARACTER,2,6);
+		Sprites.healthBarMon.draw(x+2+28+tileOffset,y,Z_CHARACTER,2,6);
 		Sprites.healthBarMon.rotate(180);
 		
 		//Reset

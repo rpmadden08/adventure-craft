@@ -108,9 +108,9 @@ public class Inventory {
 		invBar[3].item.stackSize = 1;
 		invBar[4].item = new Sapling();
 		invBar[4].item.stackSize =99;
-		invBar[5].item = new FurnaceItem();
+		invBar[5].item = new TableItem();
 		invBar[5].item.stackSize = 1;
-		invBar[6].item = new Hoe();
+		invBar[6].item = new Axe();
 		invBar[6].item.stackSize = 1;
 		invBar[7].item = new GrassSeed();
 		invBar[7].item.stackSize = 99;
