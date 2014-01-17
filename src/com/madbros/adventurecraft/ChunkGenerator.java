@@ -35,15 +35,25 @@ public class ChunkGenerator {
     		}
     		return AIR;
     	} else {
+    		
     		//DESERT
     		if(chunkGroundLayer[m][n] == 3) {
     			return AIR;
+    			
         		//GRASSLAND
-    		} else if(chunkGroundLayer[m][n] == 4) {
+    		} else if(chunkGroundLayer[m][n] == 4 || chunkGroundLayer[m][n] == 5) {
+    			if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 3 - 1 &&
+    					   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
+    						
+    		    			double a = getTree(m, n, seed, rand);
+    		    			if(a < 0.005) {
+    		    				return TREE;
+    		    			} else {
+    		    				return AIR;
+    		    			}
+    					}
     			return AIR;
-	    		//GRASSLAND
-    		}else if(chunkGroundLayer[m][n] == 4){
-    			return AIR;
+    			
 	    		//Forest
     		}else if(chunkGroundLayer[m][n] == 5){
 				if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 3 - 1 &&
