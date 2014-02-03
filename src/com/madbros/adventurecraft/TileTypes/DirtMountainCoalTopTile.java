@@ -12,7 +12,7 @@ public class DirtMountainCoalTopTile extends CollisionTile {
 		sprites = Sprites.spriteCollections.get(Sprites.MOUNTAIN_COAL_TOP);
 		margin = new Margin(9, 9, 12, 11);
 		id = DIRT_MOUNTAIN_COAL_TOP;
-		autoTileID = id;
+		autoTileID = DIRT_MOUNTAIN_TOP;
 		layer = ABOVE_LAYER_2;
 		z = Z_ABOVE_LAYER;
 		isDiggable = false;

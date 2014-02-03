@@ -41,7 +41,7 @@ public class ChunkGenerator {
     			return AIR;
     			
         		//GRASSLAND
-    		} else if(chunkGroundLayer[m][n] == 4 || chunkGroundLayer[m][n] == 5) {
+    		} else if(chunkGroundLayer[m][n] == 4) {
     			if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 3 - 1 &&
     					   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
     						
@@ -49,8 +49,15 @@ public class ChunkGenerator {
     		    			if(a < 0.005) {
     		    				return TREE;
     		    			} else {
-    		    				return AIR;
+    		    				a = getTree(m, n, seed, rand);
+        		    			if(a < 0.01 && a > 0.005) {
+        		    				return BARREL;
+        		    			} else {
+        		    				return AIR;
+        		    			}
     		    			}
+    		    			
+    		    			
     					}
     			return AIR;
     			

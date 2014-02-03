@@ -38,11 +38,6 @@ public abstract class Tile {
 	public int autoTile = MIDDLE_TILE;
 	public boolean isMiddleTile = true;
 	public boolean isTreeLeafTile = false; //When it renders treeleaftiles act differently.  
-
-//	public int topLeftAutoTile = MIDDLE_TILE;
-//	public int topRightAutoTile = MIDDLE_TILE;
-//	public int bottomRightAutoTile = MIDDLE_TILE;
-//	public int bottomLeftAutoTile = MIDDLE_TILE;
 	
 	public void render(int x, int y) {
 		sprites[autoTile].draw(x, y, z);

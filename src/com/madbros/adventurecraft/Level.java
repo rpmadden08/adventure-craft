@@ -637,11 +637,18 @@ public class Level {
     		
     	}
 		//Mountains
-		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_BOTTOM || chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_COAL_BOTTOM) {
+		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_BOTTOM) {
 			block.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
 			block2.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
 			block3.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
 			block4.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+		}
+		
+		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_COAL_BOTTOM) {
+			block.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
+			block2.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
+			block3.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
+			block4.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
 		}
 		
 		if(chunkGenerator.chunkObjectLayer[m][n] == DIRT_MOUNTAIN_COAL_BOTTOM) {
@@ -654,7 +661,13 @@ public class Level {
 		int cycle = 0;
 		for(int s = m; s < m+2; s++) {
 			for(int t = n; t < n+2; t++) {
-				
+				//Barrels
+				if(chunkGenerator.chunkObjectLayer[s][t] == BARREL) {
+					blockGrid[cycle].layers[OBJECT_LAYER] = new BarrelTile();
+				}
+				if(chunkGenerator.chunkObjectLayer[s][t+1] == BARREL) {
+					blockGrid[cycle].layers[ABOVE_LAYER_1] = new BarrelTop();
+				}
 				
 				//RainForestTree
 				if(chunkGenerator.chunkObjectLayer[s][t] == TREE_RAIN) {

@@ -53,6 +53,9 @@ public class Sprites {
 	public static final String PLATE_LEGS_ITEM = "plateLegsItem";
 	public static final String PLATE_FEET_ITEM = "plateFeetItem";
 	public static final String BAT = "bat";
+	public static final String BEE = "bee";
+	public static final String BEE_MINI = "beeMini";
+	public static final String SHEEP = "sheep_walk";
 	public static final String SWORD_ITEM = "swordItem";
 	public static final String SWORD = "sword";
 	public static final String LONG_SWORD = "longsword";
@@ -95,6 +98,21 @@ public class Sprites {
 	public static final String BAKED_POTATOES = "bakedPotatoes";
 	public static final String TABLE = "tableItem";
 	public static final String CHEST = "chestItem";
+	public static final String BARREL = "barrel";
+	public static final String BARREL_TOP = "barrelTop";
+	public static final String TALL_GRASS_A = "tallGrassA";
+	public static final String TALL_GRASS_B = "tallGrassB";
+	public static final String TALL_GRASS_C = "tallGrassC";
+	
+	
+	public static final String ROCK = "rockA";
+	public static final String FLOWERS = "flowersA";
+	public static final String WHEAT_PLANT = "wheat";
+	public static final String WHEAT= "wheatItem";
+	
+	public static final String STICKS = "stick";
+	public static final String FIRE_STARTER = "fireStarter";
+	public static final String FIRE_PIT = "firePit";
 	
 	
 	
@@ -188,6 +206,33 @@ public class Sprites {
 	public static final String BAT_STAND_LEFT = "batStandLeft";
 	public static final String BAT_STAND_UP = "batStandUp";
 	
+	public static final String BEE_WALK_DOWN = "beeWalkDown";
+	public static final String BEE_WALK_RIGHT = "beeWalkRight";
+	public static final String BEE_WALK_LEFT = "beeWalkLeft";
+	public static final String BEE_WALK_UP = "beeWalkUp";
+	public static final String BEE_STAND_DOWN = "beeStandDown";
+	public static final String BEE_STAND_RIGHT = "beeStandRight";
+	public static final String BEE_STAND_LEFT = "beeStandLeft";
+	public static final String BEE_STAND_UP = "beeStandUp";
+	
+	public static final String BEE_MINI_WALK_DOWN = "beeMiniWalkDown";
+	public static final String BEE_MINI_WALK_RIGHT = "beeMiniWalkRight";
+	public static final String BEE_MINI_WALK_LEFT = "beeMiniWalkLeft";
+	public static final String BEE_MINI_WALK_UP = "beeMiniWalkUp";
+	public static final String BEE_MINI_STAND_DOWN = "beeMiniStandDown";
+	public static final String BEE_MINI_STAND_RIGHT = "beeMiniStandRight";
+	public static final String BEE_MINI_STAND_LEFT = "beeMiniStandLeft";
+	public static final String BEE_MINI_STAND_UP = "beeMiniStandUp";
+	
+	public static final String SHEEP_WALK_DOWN = "sheep_walkDown";
+	public static final String SHEEP_WALK_RIGHT = "sheep_walkRight";
+	public static final String SHEEP_WALK_LEFT = "sheep_walkLeft";
+	public static final String SHEEP_WALK_UP = "sheep_walkUp";
+	public static final String SHEEP_STAND_DOWN = "sheep_eatDown";
+	public static final String SHEEP_STAND_RIGHT = "sheep_eatRight";
+	public static final String SHEEP_STAND_LEFT = "sheep_eatLeft";
+	public static final String SHEEP_STAND_UP = "sheep_eatUp";
+	
 	
 	public static StaticSprite[] fireAnimationSprites;
 	
@@ -267,7 +312,23 @@ public class Sprites {
 					PLATE_HELMET_SLASH_RIGHT, PLATE_LEGS_SLASH_UP, PLATE_LEGS_SLASH_DOWN, PLATE_LEGS_SLASH_LEFT, 
 					PLATE_LEGS_SLASH_RIGHT, PLATE_FEET_SLASH_UP, PLATE_FEET_SLASH_DOWN, PLATE_FEET_SLASH_LEFT, 
 					PLATE_FEET_SLASH_RIGHT, PICK, MOUNTAIN_COAL_TOP, MOUNTAIN_COAL_BOTTOM, SPACE, SNOW_ITEM,
-					DARK_GRASS_ITEM, DIRT_MOUNTAIN_ITEM
+					DARK_GRASS_ITEM, DIRT_MOUNTAIN_ITEM, BARREL, BARREL_TOP, TALL_GRASS_A, TALL_GRASS_B, TALL_GRASS_C,
+					ROCK, FLOWERS, WHEAT_PLANT, WHEAT, FIRE_STARTER, FIRE_PIT, STICKS,
+					BEE_WALK_DOWN, BEE_WALK_UP, BEE_WALK_RIGHT, BEE_WALK_LEFT,
+					BEE_STAND_DOWN, BEE_STAND_UP, BEE_STAND_RIGHT, BEE_STAND_LEFT,
+					BEE_MINI_WALK_DOWN, BEE_MINI_WALK_UP, BEE_MINI_WALK_RIGHT, BEE_MINI_WALK_LEFT,
+					BEE_MINI_STAND_DOWN, BEE_MINI_STAND_UP, BEE_MINI_STAND_RIGHT, BEE_MINI_STAND_LEFT,
+					SHEEP_WALK_DOWN, SHEEP_WALK_UP, SHEEP_WALK_RIGHT, SHEEP_WALK_LEFT,
+					SHEEP_STAND_DOWN, SHEEP_STAND_UP, SHEEP_STAND_RIGHT, SHEEP_STAND_LEFT,
+					
+//					TALL_GRASS_A, TALL_GRASS_B, TALL_GRASS_C,
+//					ROCK, FLOWERS, WHEAT_PLANT, WHEAT, FIRE_STARTER, FIRE_PIT, STICKS,
+//					BEE_WALK_DOWN, BEE_WALK_UP, BEE_WALK_RIGHT, BEE_WALK_LEFT,
+//					BEE_STAND_DOWN, BEE_STAND_UP, BEE_STAND_RIGHT, BEE_STAND_LEFT,
+//					BEE_MINI_WALK_DOWN, BEE_MINI_WALK_UP, BEE_MINI_WALK_RIGHT, BEE_MINI_WALK_LEFT,
+//					BEE_MINI_STAND_DOWN, BEE_MINI_STAND_UP, BEE_MINI_STAND_RIGHT, BEE_MINI_STAND_LEFT,
+//					SHEEP_WALK_DOWN, SHEEP_WALK_UP, SHEEP_WALK_RIGHT, SHEEP_WALK_LEFT,
+//					SHEEP_STAND_DOWN, SHEEP_STAND_UP, SHEEP_STAND_RIGHT, SHEEP_STAND_LEFT,
 			};
 			
 			String[] lightNames = {LIGHT, CAMPFIRE_LIGHT};
@@ -393,6 +454,9 @@ public class Sprites {
 			
 			Animation[] animationsMob = new Animation[animationIdsMob.length];
 			Animation[] bat = new Animation[animationIdsMob.length];
+			Animation[] bee = new Animation[animationIdsMob.length];
+			Animation[] beeMini = new Animation[animationIdsMob.length];
+			Animation[] sheep = new Animation[animationIdsMob.length];
 			
 			animations = new Animation[]{
 					Sprites.animations.get(MALE_STAND_UP),
@@ -483,11 +547,39 @@ public class Sprites {
 					Sprites.animations.get(BAT_WALK_DOWN),
 					Sprites.animations.get(BAT_WALK_RIGHT),
 					Sprites.animations.get(BAT_WALK_LEFT)
-					
-//					Sprites.animations.get(BAT_WALK_LEFT),
-//					Sprites.animations.get(BAT_WALK_LEFT),
-//					Sprites.animations.get(BAT_WALK_LEFT),
-//					Sprites.animations.get(BAT_WALK_LEFT),
+			};
+			
+			sheep = new Animation[] {
+					Sprites.animations.get(SHEEP_STAND_UP),
+					Sprites.animations.get(SHEEP_STAND_DOWN),
+					Sprites.animations.get(SHEEP_STAND_RIGHT),
+					Sprites.animations.get(SHEEP_STAND_LEFT),
+					Sprites.animations.get(SHEEP_WALK_UP),
+					Sprites.animations.get(SHEEP_WALK_DOWN),
+					Sprites.animations.get(SHEEP_WALK_RIGHT),
+					Sprites.animations.get(SHEEP_WALK_LEFT)
+			};
+			
+			bee = new Animation[] {
+					Sprites.animations.get(BEE_STAND_UP),
+					Sprites.animations.get(BEE_STAND_DOWN),
+					Sprites.animations.get(BEE_STAND_RIGHT),
+					Sprites.animations.get(BEE_STAND_LEFT),
+					Sprites.animations.get(BEE_WALK_UP),
+					Sprites.animations.get(BEE_WALK_DOWN),
+					Sprites.animations.get(BEE_WALK_RIGHT),
+					Sprites.animations.get(BEE_WALK_LEFT)
+			};
+			
+			beeMini = new Animation[] {
+					Sprites.animations.get(BEE_MINI_STAND_UP),
+					Sprites.animations.get(BEE_MINI_STAND_DOWN),
+					Sprites.animations.get(BEE_MINI_STAND_RIGHT),
+					Sprites.animations.get(BEE_MINI_STAND_LEFT),
+					Sprites.animations.get(BEE_MINI_WALK_UP),
+					Sprites.animations.get(BEE_MINI_WALK_DOWN),
+					Sprites.animations.get(BEE_MINI_WALK_RIGHT),
+					Sprites.animations.get(BEE_MINI_WALK_LEFT)
 			};
 			
 			for(int i = 0; i < animations.length; i++) {
@@ -500,6 +592,9 @@ public class Sprites {
 			
 			for(int i = 0; i < animationsMob.length; i++) {
 				bat[i].id = i;
+				bee[i].id = i;
+				beeMini[i].id = i;
+				sheep[i].id = i;
 			}
 			
 			AnimatedSprite animatedSprite = new AnimatedSprite(animations);
@@ -513,6 +608,9 @@ public class Sprites {
 			animatedBoots.stackPosition = 2;
 			
 			AnimatedSprite animatedBat = new AnimatedSprite(bat);
+			AnimatedSprite animatedSheep = new AnimatedSprite(sheep);
+			AnimatedSprite animatedBee = new AnimatedSprite(bee);
+			AnimatedSprite animatedBeeMini = new AnimatedSprite(beeMini);
 			
 			animatedSprites.put(HUMAN_BASE, animatedSprite);
 			animatedSprites.put(PLATE_HELMET_ITEM, animatedHelmet);
@@ -520,6 +618,9 @@ public class Sprites {
 			animatedSprites.put(PLATE_LEGS_ITEM, animatedPants);
 			animatedSprites.put(PLATE_FEET_ITEM, animatedBoots);
 			animatedSprites.put(BAT, animatedBat);
+			animatedSprites.put(BEE, animatedBee);
+			animatedSprites.put(BEE_MINI, animatedBeeMini);
+			animatedSprites.put(SHEEP, animatedSheep);
 			
 			fireAnimationSprites = new StaticSprite[4];
 			fireAnimationSprites[0] = new StaticSprite(atlas, 0, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);

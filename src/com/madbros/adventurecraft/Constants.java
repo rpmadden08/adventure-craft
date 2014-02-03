@@ -138,6 +138,8 @@ public class Constants {
 	public static final int DIRT_MOUNTAIN_COAL_TOP = 28;
 	public static final int TREE_RAIN = 29;
 	public static final int SPACE = 30;
+	public static final int BARREL = 31;
+	public static final int BARREL_TOP = 32;
 	
 	
 	
@@ -357,6 +359,8 @@ public class Constants {
 		TILE_HASH.put(FURNACE, new Furnace());
 		TILE_HASH.put(FURNACE_TOP, new FurnaceTop());
 		TILE_HASH.put(CAULDRON, new Cauldron());
+		TILE_HASH.put(BARREL, new BarrelTile());
+		TILE_HASH.put(BARREL_TOP, new BarrelTop());
 		
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);
