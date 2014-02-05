@@ -637,19 +637,19 @@ public class Level {
     		
     	}
 		//Mountains
-		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_BOTTOM) {
-			block.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
-			block2.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
-			block3.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
-			block4.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
-		}
+//		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_BOTTOM) {
+//			block.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+//			block2.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+//			block3.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+//			block4.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+//		}
 		
-		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_COAL_BOTTOM) {
-			block.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
-			block2.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
-			block3.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
-			block4.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
-		}
+//		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_COAL_BOTTOM) {
+//			block.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
+//			block2.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
+//			block3.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
+//			block4.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
+//		}
 		
 		if(chunkGenerator.chunkObjectLayer[m][n] == DIRT_MOUNTAIN_COAL_BOTTOM) {
 			block.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
@@ -911,8 +911,10 @@ public class Level {
 		}
 		i=0; j=0;
 		
-		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
-			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
+//		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
+//			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
+		for(int x = startX-CHUNK_BLOOM_MARGIN; x < startX+CHUNK_SIZE+CHUNK_BLOOM_MARGIN; x++) {
+			for(int y = startY-CHUNK_BLOOM_MARGIN; y < startY+CHUNK_SIZE+CHUNK_BLOOM_MARGIN; y++) {
 				chunkGenerator.secondIteration(i, j);
 				j++;
 			}

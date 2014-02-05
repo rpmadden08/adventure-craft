@@ -18,6 +18,11 @@ public class ChunkGenerator {
 	}
 	
 	public int getObjectLayerGeneration(int m, int n, long seed, Random rand, int x, int y) {
+		if(x == 165 && y == 165) {
+			System.out.println("YES");
+			return 1000;
+		}
+		//System.out.println("m = "+m+"x = "+x);
 		if(chunkGroundLayer[m][n] == 1) {
 			return AIR;
     	//MOUNTAIN
@@ -25,15 +30,21 @@ public class ChunkGenerator {
     		if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 3 - 1 &&
  				   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
  					
-	    		Random r = new Random();
-	    		int Low = 1;
-	    		int High = 10;
-	    		int R = r.nextInt(High-Low) + Low;
-	    		if(R >5) {
-	    			return DIRT_MOUNTAIN_BOTTOM;
-	    		} else {
-	    			return DIRT_MOUNTAIN_COAL_BOTTOM;
-	    		}
+    			double a = getTree(m, n, seed, rand);
+    			if(a < 0.01 && a > 0.005) {
+    				return 1001; // Return Barrel (1001)
+    			} else {
+    				return DIRT_MOUNTAIN_BOTTOM;
+    			}
+//	    		Random r = new Random();
+//	    		int Low = 1;
+//	    		int High = 10;
+//	    		int R = r.nextInt(High-Low) + Low;
+//	    		if(R >5) {
+//	    			return DIRT_MOUNTAIN_BOTTOM;
+//	    		} else {
+//	    			return DIRT_MOUNTAIN_COAL_BOTTOM;
+//	    		}
     		}
     		return AIR;
     	} else {
@@ -53,7 +64,7 @@ public class ChunkGenerator {
     		    			} else {
     		    				a = getTree(m, n, seed, rand);
         		    			if(a < 0.01 && a > 0.005) {
-        		    				return 1000;
+        		    				return AIR; // Return Barrel (1000)
         		    			} else {
         		    				return AIR;
         		    			}
@@ -173,73 +184,124 @@ public class ChunkGenerator {
 	    return a;
 	}
 	
-	public void oreGenerator(int oreAmount, int x, int y, int itemType) {
+	public void oreGenerator(int oreAmount, int x, int y, int itemType, int is32) {
+		if(is32 == 2) {
+			if(x % 2 != 0) {
+				x = x -1;
+			}
+			if(y % 2 != 0) {
+				y = y -1;
+			}
+		}
 		List<Integer> oreX = new ArrayList<Integer>();
 		List<Integer> oreY = new ArrayList<Integer>();
 		List<Integer> oreCheckX = new ArrayList<Integer>();
 		List<Integer> oreCheckY = new ArrayList<Integer>();
 		//System.out.println("TEST: "+x);
 		oreX.add(x); oreY.add(y);
+		oreCheckX.add(x); oreCheckY.add(y);
 		//System.out.println((int) oreX.get(0));
 		while(oreX.size() < oreAmount) {
 			//Add possible ores or possible ores array...
-			System.out.println(oreX.size());
+			//System.out.println(oreX.size());
 			int totalOres = oreX.size();
 			for(int a = 0; a < totalOres; a++) {
+				
 				//Check Up
 				int i = oreX.get(a);
-				int j = oreY.get(a)-1; 
+				int j = oreY.get(a)-is32; 
 				int totalCheckOres = oreCheckX.size();
-				if(totalCheckOres > 0) {
-					for(int b = 0; b < totalCheckOres; b++) {
-						if(i != oreCheckX.get(b) && j != oreCheckY.get(b)) {
-							oreCheckX.add(i); oreCheckY.add(j);
-							break;
-						}
-					}
-				} else { 
+				boolean isDuplicate = false;
+				for(int c = 0; c < totalOres; c++) {
+					if(i == oreX.get(c) && j == oreY.get(c)) {
+						isDuplicate = true;
+						break;
+					} 
+				}
+				for(int b = 0; b < totalCheckOres; b++) {
+					if(i == oreCheckX.get(b) && j == oreCheckY.get(b)) {
+						isDuplicate = true;
+						break;
+					} 
+				}
+				if(isDuplicate == false && i > -1 && j > -1 && i< 36 && j <36) {
 					oreCheckX.add(i); oreCheckY.add(j);
 				}
+				
 				//Check Down
 				i = oreX.get(a);
-				j = oreY.get(a)+1;
+				j = oreY.get(a)+is32;
 				totalCheckOres = oreCheckX.size();
+				isDuplicate = false;
+				for(int c = 0; c < totalOres; c++) {
+					if(i == oreX.get(c) && j == oreY.get(c)) {
+						isDuplicate = true;
+						break;
+					} 
+				}
 				for(int b = 0; b < totalCheckOres; b++) {
-					if(i != oreCheckX.get(b) && j != oreCheckY.get(b)) {
-							oreCheckX.add(i); oreCheckY.add(j);
-							break;
-					}
+					if(i == oreCheckX.get(b) && j == oreCheckY.get(b)) {
+						isDuplicate = true;
+						break;
+					} 
+				}
+				if(isDuplicate == false && i > -1 && j > -1 && i< 36 && j <36) {
+					oreCheckX.add(i); oreCheckY.add(j);
 				}
 				//Check Left
-				i = oreX.get(a)-1;
+				i = oreX.get(a)-is32;
 				j = oreY.get(a);
 				totalCheckOres = oreCheckX.size();
+				isDuplicate = false;
+				for(int c = 0; c < totalOres; c++) {
+					if(i == oreX.get(c) && j == oreY.get(c)) {
+						isDuplicate = true;
+						break;
+					} 
+				}
 				for(int b = 0; b < totalCheckOres; b++) {
-					if(i != oreCheckX.get(b) && j != oreCheckY.get(b)) {
-							oreCheckX.add(i); oreCheckY.add(j);
-							break;
-					}
+					if(i == oreCheckX.get(b) && j == oreCheckY.get(b)) {
+						isDuplicate = true;
+						break;
+					} 
+				}
+				if(isDuplicate == false && i > -1 && j > -1 && i< 36 && j <36) {
+					oreCheckX.add(i); oreCheckY.add(j);
 				}
 				//Check Right
-				i = oreX.get(a)+1;
+				i = oreX.get(a)+is32;
 				j = oreY.get(a);
 				totalCheckOres = oreCheckX.size();
+				isDuplicate = false;
+				for(int c = 0; c < totalOres; c++) {
+					if(i == oreX.get(c) && j == oreY.get(c)) {
+						isDuplicate = true;
+						break;
+					} 
+				}
 				for(int b = 0; b < totalCheckOres; b++) {
-					if(i != oreCheckX.get(b) && j != oreCheckY.get(b)) {
-							oreCheckX.add(i); oreCheckY.add(j);
-							break;
-					}
+					if(i == oreCheckX.get(b) && j == oreCheckY.get(b)) {
+						isDuplicate = true;
+						break;
+					} 
+				}
+				if(isDuplicate == false && i > -1 && j > -1 && i< 36 && j <36) {
+					oreCheckX.add(i); oreCheckY.add(j);
 				}
 			}
 		
 			//Randomly select one of the possible ore areas and add it to the generated ores.  
-			Random rand = new Random(); 
+			float seed = chunkNoiseElevation[x][y] * 1000000000;
+		    long seed2 = (long) seed;
+			Random rand = new Random(seed2); 
 			//int randSelection = rand.nextInt(oreCheckX.size()); 
 			int test = oreCheckX.size();
-			int randSelection = rand.nextInt(test); 
-			totalOres = oreX.size();
-			oreX.add(oreCheckX.get(randSelection)); oreY.add(oreCheckY.get(randSelection));
-			oreCheckX.remove(randSelection); oreCheckY.remove(randSelection);
+			if(test > 0) {
+				int randSelection = rand.nextInt(test); 
+				totalOres = oreX.size();
+				oreX.add(oreCheckX.get(randSelection)); oreY.add(oreCheckY.get(randSelection));
+				oreCheckX.remove(randSelection); oreCheckY.remove(randSelection);
+			}
 
 		
 		}
@@ -248,21 +310,25 @@ public class ChunkGenerator {
 		//System.out.println(totalOres);
 		for(int a = 0; a < totalOres; a++) {
 			//System.out.println(oreX.indexOf(a)+" - "+oreY.indexOf(a));
-			if(oreX.get(a) > 0 && oreY.get(a) > 0 && oreX.get(a) < 36 && oreY.get(a) < 36) {
+			//if(oreX.get(a) > -1 && oreY.get(a) > -1 && oreX.get(a) < 36 && oreY.get(a) < 36) {
 				
 				chunkObjectLayer[oreX.get(a)][oreY.get(a)] = itemType;
-			}
+			//}
 		}
 		
 	}
 	
 	public void secondIteration(int m, int n) {
-		if(chunkObjectLayer[m][n] == DIRT_MOUNTAIN_COAL_BOTTOM) {
-			//oreGenerator(3,m,n, DIRT_MOUNTAIN_COAL_BOTTOM);
+		if(chunkObjectLayer[m][n] == 1001) {
+			float seed = chunkNoiseElevation[m][n] * 1000000000;
+		    long seed2 = (long) seed;
+			Random rand = new Random(seed2); 
+			int oreAmount = rand.nextInt(6) + 3;
+			oreGenerator(oreAmount,m,n, DIRT_MOUNTAIN_COAL_BOTTOM, 2);
 		} else if(chunkObjectLayer[m][n] == 1000) {
 			//System.out.println("CHECK");
 			//System.out.println(m);
-			oreGenerator(6,m,n,BARREL);
+			oreGenerator(22,m,n,BARREL, 1);
 		}
 	}
 }
