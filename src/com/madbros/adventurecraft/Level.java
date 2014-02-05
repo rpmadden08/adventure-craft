@@ -662,7 +662,7 @@ public class Level {
 		for(int s = m; s < m+2; s++) {
 			for(int t = n; t < n+2; t++) {
 				//Barrels
-				if(chunkGenerator.chunkObjectLayer[s][t] == BARREL) {
+				if(chunkGenerator.chunkObjectLayer[s][t] == BARREL) { //BARREL
 					blockGrid[cycle].layers[OBJECT_LAYER] = new BarrelTile();
 				}
 				if(chunkGenerator.chunkObjectLayer[s][t+1] == BARREL) {
@@ -913,7 +913,7 @@ public class Level {
 		
 		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
 			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
-				
+				chunkGenerator.secondIteration(i, j);
 				j++;
 			}
 			i++; j = 0;

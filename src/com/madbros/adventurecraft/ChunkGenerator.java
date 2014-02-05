@@ -2,6 +2,8 @@ package com.madbros.adventurecraft;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ChunkGenerator {
@@ -51,7 +53,7 @@ public class ChunkGenerator {
     		    			} else {
     		    				a = getTree(m, n, seed, rand);
         		    			if(a < 0.01 && a > 0.005) {
-        		    				return BARREL;
+        		    				return 1000;
         		    			} else {
         		    				return AIR;
         		    			}
@@ -169,5 +171,98 @@ public class ChunkGenerator {
 	    Random r = new Random(seed2);
 	    a = r.nextDouble();
 	    return a;
+	}
+	
+	public void oreGenerator(int oreAmount, int x, int y, int itemType) {
+		List<Integer> oreX = new ArrayList<Integer>();
+		List<Integer> oreY = new ArrayList<Integer>();
+		List<Integer> oreCheckX = new ArrayList<Integer>();
+		List<Integer> oreCheckY = new ArrayList<Integer>();
+		//System.out.println("TEST: "+x);
+		oreX.add(x); oreY.add(y);
+		//System.out.println((int) oreX.get(0));
+		while(oreX.size() < oreAmount) {
+			//Add possible ores or possible ores array...
+			System.out.println(oreX.size());
+			int totalOres = oreX.size();
+			for(int a = 0; a < totalOres; a++) {
+				//Check Up
+				int i = oreX.get(a);
+				int j = oreY.get(a)-1; 
+				int totalCheckOres = oreCheckX.size();
+				if(totalCheckOres > 0) {
+					for(int b = 0; b < totalCheckOres; b++) {
+						if(i != oreCheckX.get(b) && j != oreCheckY.get(b)) {
+							oreCheckX.add(i); oreCheckY.add(j);
+							break;
+						}
+					}
+				} else { 
+					oreCheckX.add(i); oreCheckY.add(j);
+				}
+				//Check Down
+				i = oreX.get(a);
+				j = oreY.get(a)+1;
+				totalCheckOres = oreCheckX.size();
+				for(int b = 0; b < totalCheckOres; b++) {
+					if(i != oreCheckX.get(b) && j != oreCheckY.get(b)) {
+							oreCheckX.add(i); oreCheckY.add(j);
+							break;
+					}
+				}
+				//Check Left
+				i = oreX.get(a)-1;
+				j = oreY.get(a);
+				totalCheckOres = oreCheckX.size();
+				for(int b = 0; b < totalCheckOres; b++) {
+					if(i != oreCheckX.get(b) && j != oreCheckY.get(b)) {
+							oreCheckX.add(i); oreCheckY.add(j);
+							break;
+					}
+				}
+				//Check Right
+				i = oreX.get(a)+1;
+				j = oreY.get(a);
+				totalCheckOres = oreCheckX.size();
+				for(int b = 0; b < totalCheckOres; b++) {
+					if(i != oreCheckX.get(b) && j != oreCheckY.get(b)) {
+							oreCheckX.add(i); oreCheckY.add(j);
+							break;
+					}
+				}
+			}
+		
+			//Randomly select one of the possible ore areas and add it to the generated ores.  
+			Random rand = new Random(); 
+			//int randSelection = rand.nextInt(oreCheckX.size()); 
+			int test = oreCheckX.size();
+			int randSelection = rand.nextInt(test); 
+			totalOres = oreX.size();
+			oreX.add(oreCheckX.get(randSelection)); oreY.add(oreCheckY.get(randSelection));
+			oreCheckX.remove(randSelection); oreCheckY.remove(randSelection);
+
+		
+		}
+		//Place the ores
+		int totalOres = oreX.size();
+		//System.out.println(totalOres);
+		for(int a = 0; a < totalOres; a++) {
+			//System.out.println(oreX.indexOf(a)+" - "+oreY.indexOf(a));
+			if(oreX.get(a) > 0 && oreY.get(a) > 0 && oreX.get(a) < 36 && oreY.get(a) < 36) {
+				
+				chunkObjectLayer[oreX.get(a)][oreY.get(a)] = itemType;
+			}
+		}
+		
+	}
+	
+	public void secondIteration(int m, int n) {
+		if(chunkObjectLayer[m][n] == DIRT_MOUNTAIN_COAL_BOTTOM) {
+			//oreGenerator(3,m,n, DIRT_MOUNTAIN_COAL_BOTTOM);
+		} else if(chunkObjectLayer[m][n] == 1000) {
+			//System.out.println("CHECK");
+			//System.out.println(m);
+			oreGenerator(6,m,n,BARREL);
+		}
 	}
 }
