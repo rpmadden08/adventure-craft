@@ -140,6 +140,21 @@ public class Constants {
 	public static final int SPACE = 30;
 	public static final int BARREL = 31;
 	public static final int BARREL_TOP = 32;
+	public static final int STONE_MOUNTAIN_TOP = 33;
+	public static final int STONE_MOUNTAIN_BOTTOM = 34;
+	public static final int STONE_MOUNTAIN_COAL_TOP = 35;
+	public static final int STONE_MOUNTAIN_COAL_BOTTOM = 36;
+	public static final int STONE_MOUNTAIN_TIN_TOP = 37;
+	public static final int STONE_MOUNTAIN_TIN_BOTTOM = 38;
+	public static final int STONE_MOUNTAIN_COPPER_TOP = 39;
+	public static final int STONE_MOUNTAIN_COPPER_BOTTOM = 40;
+	
+	
+	//ore generation markings
+	public static final int COAL_MARK = 1001;
+	public static final int TIN_MARK = 1002;
+	public static final int COPPER_MARK = 1003;
+	
 	
 	
 	
@@ -252,6 +267,10 @@ public class Constants {
 	public static final int SNOW_ITEM = 26;
 	public static final int DARK_GRASS_ITEM = 27;
 	public static final int DIRT_MOUNTAIN_ITEM = 28;
+	public static final int COAL_ITEM = 29;
+	public static final int STONE_MOUNTAIN_ITEM = 30;
+	public static final int TIN_ITEM = 31;
+	public static final int COPPER_ITEM = 32;
 	
 	
 	
@@ -310,7 +329,6 @@ public class Constants {
 		ITEM_HASH.put(SWORD, new Sword());
 		ITEM_HASH.put(HOE, new Hoe());
 		ITEM_HASH.put(PICK, new Pick());
-		ITEM_HASH.put(LONG_SWORD, new LongSword());
 		ITEM_HASH.put(SAPLING_ITEM, new Sapling());
 		ITEM_HASH.put(IRON_HELMET, new IronHelmet());
 		ITEM_HASH.put(IRON_ARMOR, new IronArmor());
@@ -328,6 +346,10 @@ public class Constants {
 		ITEM_HASH.put(SNOW_ITEM, new SnowItem());
 		ITEM_HASH.put(DARK_GRASS_ITEM, new DarkGrassItem());
 		ITEM_HASH.put(DIRT_MOUNTAIN_ITEM, new DirtMountainItem());
+		ITEM_HASH.put(STONE_MOUNTAIN_ITEM, new StoneMountainItem());
+		ITEM_HASH.put(COAL_ITEM, new CoalItem());
+		ITEM_HASH.put(TIN_ITEM, new TinItem());
+		ITEM_HASH.put(COPPER_ITEM, new CopperItem());
 		
 		
 		TILE_HASH.put(GRASS, new GrassTile());
@@ -349,6 +371,14 @@ public class Constants {
 		TILE_HASH.put(SPACE, new SpaceTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_BOTTOM, new DirtMountainBottomTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_TOP, new DirtMountainTopTile());
+		TILE_HASH.put(STONE_MOUNTAIN_BOTTOM, new StoneMountainBottomTile());
+		TILE_HASH.put(STONE_MOUNTAIN_TOP, new StoneMountainTopTile());
+		TILE_HASH.put(STONE_MOUNTAIN_COAL_BOTTOM, new StoneMountainCoalBottomTile());
+		TILE_HASH.put(STONE_MOUNTAIN_COAL_TOP, new StoneMountainCoalTopTile());
+		TILE_HASH.put(STONE_MOUNTAIN_TIN_BOTTOM, new StoneMountainTinBottomTile());
+		TILE_HASH.put(STONE_MOUNTAIN_TIN_TOP, new StoneMountainTinTopTile());
+		TILE_HASH.put(STONE_MOUNTAIN_COPPER_BOTTOM, new StoneMountainCopperBottomTile());
+		TILE_HASH.put(STONE_MOUNTAIN_COPPER_TOP, new StoneMountainCopperTopTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_COAL_BOTTOM, new DirtMountainCoalBottomTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_COAL_TOP, new DirtMountainCoalTopTile());
 		TILE_HASH.put(CAMPFIRE, new Campfire());

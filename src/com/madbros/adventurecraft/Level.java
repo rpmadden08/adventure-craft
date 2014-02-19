@@ -521,14 +521,14 @@ public class Level {
     	//MOUNTAIN
     	} else if(chunkGenerator.chunkGroundLayer[m][n] == 2) {
     		PMountain++;
-    		Tile[] dirtMountainTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-    		Tile[] dirtMountainTile2 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-    		Tile[] dirtMountainTile3 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-    		Tile[] dirtMountainTile4 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new DirtMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
-	    	block = new Block(dirtMountainTile, absX, absY, true);
-	    	block2 = new Block(dirtMountainTile2, absX+TILE_SIZE, absY, true);
-	    	block3 = new Block(dirtMountainTile3, absX, absY+TILE_SIZE, true);
-	    	block4 = new Block(dirtMountainTile4, absX+TILE_SIZE, absY+TILE_SIZE, true);
+    		Tile[] stoneMountainTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new StoneMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] stoneMountainTile2 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new StoneMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] stoneMountainTile3 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new StoneMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+    		Tile[] stoneMountainTile4 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new StoneMountainBottomTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+	    	block = new Block(stoneMountainTile, absX, absY, true);
+	    	block2 = new Block(stoneMountainTile2, absX+TILE_SIZE, absY, true);
+	    	block3 = new Block(stoneMountainTile3, absX, absY+TILE_SIZE, true);
+	    	block4 = new Block(stoneMountainTile4, absX+TILE_SIZE, absY+TILE_SIZE, true);
     	} else {
     		//DESERT
     		if(chunkGenerator.chunkGroundLayer[m][n] == 3) {
@@ -637,26 +637,43 @@ public class Level {
     		
     	}
 		//Mountains
-//		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_BOTTOM) {
-//			block.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
-//			block2.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
-//			block3.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
-//			block4.layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
+//		if(chunkGenerator.chunkObjectLayer[m][n+2] == STONE_MOUNTAIN_BOTTOM) {
+//			block.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
+//			block2.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
+//			block3.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
+//			block4.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
 //		}
 		
-//		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_COAL_BOTTOM) {
-//			block.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
-//			block2.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
-//			block3.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
-//			block4.layers[ABOVE_LAYER_1] = new DirtMountainCoalTopTile();
-//		}
+
 		
-		if(chunkGenerator.chunkObjectLayer[m][n] == DIRT_MOUNTAIN_COAL_BOTTOM) {
-			block.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
-			block2.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
-			block3.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
-			block4.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
+		if(chunkGenerator.chunkObjectLayer[m][n] == STONE_MOUNTAIN_COAL_BOTTOM) {
+			block.layers[OBJECT_LAYER] = new StoneMountainCoalBottomTile();
+			block2.layers[OBJECT_LAYER] = new StoneMountainCoalBottomTile();
+			block3.layers[OBJECT_LAYER] = new StoneMountainCoalBottomTile();
+			block4.layers[OBJECT_LAYER] = new StoneMountainCoalBottomTile();
 		}
+//		if(chunkGenerator.chunkObjectLayer[m][n+2] == STONE_MOUNTAIN_COAL_BOTTOM) {
+//		block.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
+//		block2.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
+//		block3.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
+//		block4.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
+//	}
+		if(chunkGenerator.chunkObjectLayer[m][n] == STONE_MOUNTAIN_COPPER_BOTTOM) {
+			block.layers[OBJECT_LAYER] = new StoneMountainCopperBottomTile();
+			block2.layers[OBJECT_LAYER] = new StoneMountainCopperBottomTile();
+			block3.layers[OBJECT_LAYER] = new StoneMountainCopperBottomTile();
+			block4.layers[OBJECT_LAYER] = new StoneMountainCopperBottomTile();
+		}
+		
+		if(chunkGenerator.chunkObjectLayer[m][n] == STONE_MOUNTAIN_TIN_BOTTOM) {
+			block.layers[OBJECT_LAYER] = new StoneMountainTinBottomTile();
+			block2.layers[OBJECT_LAYER] = new StoneMountainTinBottomTile();
+			block3.layers[OBJECT_LAYER] = new StoneMountainTinBottomTile();
+			block4.layers[OBJECT_LAYER] = new StoneMountainTinBottomTile();
+		}
+		
+		
+		
 		Block[] blockGrid = {block, block3, block2, block4};
 		int cycle = 0;
 		for(int s = m; s < m+2; s++) {

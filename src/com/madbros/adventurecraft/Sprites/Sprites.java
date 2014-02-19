@@ -45,6 +45,7 @@ public class Sprites {
 	public static final String DARK_GRASS_ITEM = "darkGrassItem";
 	public static final String DIRT_ITEM = "dirtItem";
 	public static final String DIRT_MOUNTAIN_ITEM = "dirtMountainItem";
+	public static final String STONE_MOUNTAIN_ITEM = "stoneMountainItem";
 	public static final String SAND_ITEM = "sandItem";
 	public static final String LOG_ITEM = "logItem";
 	public static final String PLANK_ITEM = "plankItem";
@@ -58,7 +59,6 @@ public class Sprites {
 	public static final String SHEEP = "sheep_walk";
 	public static final String SWORD_ITEM = "swordItem";
 	public static final String SWORD = "sword";
-	public static final String LONG_SWORD = "longsword";
 	public static final String SHOVEL_ITEM = "shovelItem";
 	public static final String AXE_ITEM = "stoneAxe";
 	public static final String BAT_WING = "batWing";
@@ -66,6 +66,9 @@ public class Sprites {
 	public static final String TABLE_ITEM = "table";
 	public static final String CHEST_ITEM = "chest";
 	public static final String PICK = "ironPick";
+	public static final String COAL_ITEM = "coalItem";
+	public static final String TIN_ITEM = "tinItem";
+	public static final String COPPER_ITEM = "copperItem";
 	
 	//static collections
 //	public static final String GEM = "Gem Blue";
@@ -78,6 +81,14 @@ public class Sprites {
 	public static final String MOUNTAIN_TOP = "mountainTop";
 	public static final String MOUNTAIN_COAL_BOTTOM = "mountainCoalBottom";
 	public static final String MOUNTAIN_COAL_TOP = "mountainCoalTop";
+	public static final String STONE_MOUNTAIN_TOP = "stoneMountainTop";
+	public static final String STONE_MOUNTAIN_BOTTOM = "stoneMountainBottom";
+	public static final String STONE_MOUNTAIN_COAL_TOP = "stoneMountainCoalTop";
+	public static final String STONE_MOUNTAIN_COAL_BOTTOM = "stoneMountainCoalBottom";
+	public static final String STONE_MOUNTAIN_TIN_TOP = "stoneMountainTinTop";
+	public static final String STONE_MOUNTAIN_TIN_BOTTOM = "stoneMountainTinBottom";
+	public static final String STONE_MOUNTAIN_COPPER_TOP = "stoneMountainCopperTop";
+	public static final String STONE_MOUNTAIN_COPPER_BOTTOM = "stoneMountainCopperBottom";
 	public static final String TREE_TWO = "treeTwo";
 	public static final String TREE_THREE = "greentree";
 	public static final String WATER1 = "water";
@@ -303,7 +314,7 @@ public class Sprites {
 					CAMPFIRE_ANIMATION, CAMPFIRE_SINGLE, SAPLING_COLLECTION, DESERT, SNOW, TREE_FOUR, 
 					DARK_GRASS, AXE_ITEM, BAT_WALK_DOWN, BAT_WALK_UP, BAT_WALK_LEFT, BAT_WALK_RIGHT,
 					BAT_STAND_UP, BAT_STAND_DOWN, BAT_STAND_LEFT, BAT_STAND_RIGHT,MALE_SLASH_UP,
-					MALE_SLASH_DOWN, MALE_SLASH_LEFT, MALE_SLASH_RIGHT, SWORD, LONG_SWORD, HEALTH_BAR_EDGE,
+					MALE_SLASH_DOWN, MALE_SLASH_LEFT, MALE_SLASH_RIGHT, SWORD, HEALTH_BAR_EDGE,
 					MON_HEALTH_EDGE, BAT_WING, HOE, SEED_POTATO, POTATO_PLANT, POTATOES, TILLED_SOIL,
 					TABLE, TABLE_ITEM, CHEST, CHEST_ITEM, FURNACE_ANIMATION, FURNACE_SINGLE,
 					BAKED_POTATOES, FURNACE_TOP, CAULDRON_ANIMATION, CAULDRON, CAULDRON_SINGLE,
@@ -320,6 +331,9 @@ public class Sprites {
 					BEE_MINI_STAND_DOWN, BEE_MINI_STAND_UP, BEE_MINI_STAND_RIGHT, BEE_MINI_STAND_LEFT,
 					SHEEP_WALK_DOWN, SHEEP_WALK_UP, SHEEP_WALK_RIGHT, SHEEP_WALK_LEFT,
 					SHEEP_STAND_DOWN, SHEEP_STAND_UP, SHEEP_STAND_RIGHT, SHEEP_STAND_LEFT,
+					COAL_ITEM, STONE_MOUNTAIN_TOP, STONE_MOUNTAIN_BOTTOM, STONE_MOUNTAIN_ITEM,
+					STONE_MOUNTAIN_COAL_TOP, STONE_MOUNTAIN_COAL_BOTTOM, STONE_MOUNTAIN_TIN_TOP, STONE_MOUNTAIN_TIN_BOTTOM,
+					STONE_MOUNTAIN_COPPER_TOP, STONE_MOUNTAIN_COPPER_BOTTOM, TIN_ITEM, COPPER_ITEM,
 					
 //					TALL_GRASS_A, TALL_GRASS_B, TALL_GRASS_C,
 //					ROCK, FLOWERS, WHEAT_PLANT, WHEAT, FIRE_STARTER, FIRE_PIT, STICKS,

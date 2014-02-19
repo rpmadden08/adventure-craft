@@ -19,8 +19,8 @@ public class MobController {
 			//if(Game.level.activeBlocks[x][y].layers[GRASS_LAYER].id == DARK_GRASS) {
 				
 				int num = rand.nextInt(1);//100
-				if(num == 0 && mobs.size() < 10) {//57
-					//mobs.add(new Bat(this, x, y));
+				if(num == 0 && mobs.size() < 10000) {//57
+					mobs.add(new Bat(this, x, y));
 				}
 			//}
 		}
