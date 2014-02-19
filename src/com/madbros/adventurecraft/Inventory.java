@@ -112,7 +112,7 @@ public class Inventory {
 		invBar[5].item.stackSize = 1;
 		invBar[6].item = new Axe();
 		invBar[6].item.stackSize = 1;
-		invBar[7].item = new GrassSeed();
+		invBar[7].item = new CactusSeed();
 		invBar[7].item.stackSize = 99;
 		invBar[8].item = new SnowItem();
 		invBar[8].item.stackSize = 99;

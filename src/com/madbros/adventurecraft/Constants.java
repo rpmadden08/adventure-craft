@@ -148,6 +148,9 @@ public class Constants {
 	public static final int STONE_MOUNTAIN_TIN_BOTTOM = 38;
 	public static final int STONE_MOUNTAIN_COPPER_TOP = 39;
 	public static final int STONE_MOUNTAIN_COPPER_BOTTOM = 40;
+	public static final int CACTUS_SAPLING = 41;
+	public static final int CACTUS = 42;
+	public static final int CACTUS_LEAF = 43;
 	
 	
 	//ore generation markings
@@ -271,6 +274,7 @@ public class Constants {
 	public static final int STONE_MOUNTAIN_ITEM = 30;
 	public static final int TIN_ITEM = 31;
 	public static final int COPPER_ITEM = 32;
+	public static final int CACTUS_SEED = 33;
 	
 	
 	
@@ -350,6 +354,8 @@ public class Constants {
 		ITEM_HASH.put(COAL_ITEM, new CoalItem());
 		ITEM_HASH.put(TIN_ITEM, new TinItem());
 		ITEM_HASH.put(COPPER_ITEM, new CopperItem());
+		ITEM_HASH.put(CACTUS_SEED, new CactusSeed());
+		
 		
 		
 		TILE_HASH.put(GRASS, new GrassTile());
@@ -391,6 +397,9 @@ public class Constants {
 		TILE_HASH.put(CAULDRON, new Cauldron());
 		TILE_HASH.put(BARREL, new BarrelTile());
 		TILE_HASH.put(BARREL_TOP, new BarrelTop());
+		TILE_HASH.put(CACTUS, new Cactus());
+		TILE_HASH.put(CACTUS_SAPLING, new CactusSaplingTile());
+		TILE_HASH.put(CACTUS_LEAF, new CactusLeafTile());
 		
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);

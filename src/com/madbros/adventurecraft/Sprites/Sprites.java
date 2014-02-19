@@ -69,6 +69,7 @@ public class Sprites {
 	public static final String COAL_ITEM = "coalItem";
 	public static final String TIN_ITEM = "tinItem";
 	public static final String COPPER_ITEM = "copperItem";
+	public static final String CACTUS_ITEM = "cactusSeed";
 	
 	//static collections
 //	public static final String GEM = "Gem Blue";
@@ -124,6 +125,8 @@ public class Sprites {
 	public static final String STICKS = "stick";
 	public static final String FIRE_STARTER = "fireStarter";
 	public static final String FIRE_PIT = "firePit";
+	public static final String CACTUS_SAPLING = "cactusSapling";
+	public static final String CACTUS = "cactus";
 	
 	
 	
@@ -333,16 +336,8 @@ public class Sprites {
 					SHEEP_STAND_DOWN, SHEEP_STAND_UP, SHEEP_STAND_RIGHT, SHEEP_STAND_LEFT,
 					COAL_ITEM, STONE_MOUNTAIN_TOP, STONE_MOUNTAIN_BOTTOM, STONE_MOUNTAIN_ITEM,
 					STONE_MOUNTAIN_COAL_TOP, STONE_MOUNTAIN_COAL_BOTTOM, STONE_MOUNTAIN_TIN_TOP, STONE_MOUNTAIN_TIN_BOTTOM,
-					STONE_MOUNTAIN_COPPER_TOP, STONE_MOUNTAIN_COPPER_BOTTOM, TIN_ITEM, COPPER_ITEM,
-					
-//					TALL_GRASS_A, TALL_GRASS_B, TALL_GRASS_C,
-//					ROCK, FLOWERS, WHEAT_PLANT, WHEAT, FIRE_STARTER, FIRE_PIT, STICKS,
-//					BEE_WALK_DOWN, BEE_WALK_UP, BEE_WALK_RIGHT, BEE_WALK_LEFT,
-//					BEE_STAND_DOWN, BEE_STAND_UP, BEE_STAND_RIGHT, BEE_STAND_LEFT,
-//					BEE_MINI_WALK_DOWN, BEE_MINI_WALK_UP, BEE_MINI_WALK_RIGHT, BEE_MINI_WALK_LEFT,
-//					BEE_MINI_STAND_DOWN, BEE_MINI_STAND_UP, BEE_MINI_STAND_RIGHT, BEE_MINI_STAND_LEFT,
-//					SHEEP_WALK_DOWN, SHEEP_WALK_UP, SHEEP_WALK_RIGHT, SHEEP_WALK_LEFT,
-//					SHEEP_STAND_DOWN, SHEEP_STAND_UP, SHEEP_STAND_RIGHT, SHEEP_STAND_LEFT,
+					STONE_MOUNTAIN_COPPER_TOP, STONE_MOUNTAIN_COPPER_BOTTOM, TIN_ITEM, COPPER_ITEM, CACTUS, CACTUS_SAPLING,
+					CACTUS_ITEM,
 			};
 			
 			String[] lightNames = {LIGHT, CAMPFIRE_LIGHT};
