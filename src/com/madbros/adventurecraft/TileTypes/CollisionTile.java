@@ -7,8 +7,7 @@ import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public abstract class CollisionTile extends Tile {
-	public Margin margin;
-	public Rect cRect;
+	
 	public int arrayX;
 	public int arrayY;
 	
@@ -43,7 +42,7 @@ public abstract class CollisionTile extends Tile {
 		arrayY = y;
 	}
 	
-	public void setCollisionRect(Rect absRect) {
+	public void setCollisionRect() {
 		cRect = new Rect(absRect, margin);
 	}
 	

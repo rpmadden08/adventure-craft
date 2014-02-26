@@ -8,12 +8,14 @@ import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Helpers;
+import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public abstract class Tile {
 	public Sprite[] sprites;
 	public int maxHp = 10;
 	public int currentHp = 10;
+	
 
 	public int currentSpriteId = 0;
 	public int layer = DARK_DIRT_LAYER;
@@ -37,7 +39,10 @@ public abstract class Tile {
 	public int autoTileID = id;
 	public int autoTile = MIDDLE_TILE;
 	public boolean isMiddleTile = true;
-	public boolean isTreeLeafTile = false; //When it renders treeleaftiles act differently.  
+	public boolean isTreeLeafTile = false; //When it renders treeleaftiles act differently. 
+	public Margin margin = new Margin(0,0,0,0);
+	public Rect absRect = new Rect(absX, absY, 32, 32);
+	public Rect cRect = new Rect(absRect, margin);
 	
 	public void render(int x, int y) {
 		sprites[autoTile].draw(x, y, z);
@@ -77,5 +82,9 @@ public abstract class Tile {
 	
 	public void highlightEntireObject(int x, int y, int drawX, int drawY) {
 		
+	}
+	
+	public void setCollisionRect(Rect absRect) {
+		cRect = new Rect(absRect, margin);
 	}
 }

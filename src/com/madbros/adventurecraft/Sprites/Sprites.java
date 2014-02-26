@@ -70,6 +70,9 @@ public class Sprites {
 	public static final String TIN_ITEM = "tinItem";
 	public static final String COPPER_ITEM = "copperItem";
 	public static final String CACTUS_ITEM = "cactusSeed";
+	public static final String TALL_GRASS_A_ITEM = "tallGrass1";
+	public static final String TALL_GRASS_B_ITEM = "tallGrass2";
+	public static final String TALL_GRASS_C_ITEM = "tallGrass3";
 	
 	//static collections
 //	public static final String GEM = "Gem Blue";
@@ -337,7 +340,7 @@ public class Sprites {
 					COAL_ITEM, STONE_MOUNTAIN_TOP, STONE_MOUNTAIN_BOTTOM, STONE_MOUNTAIN_ITEM,
 					STONE_MOUNTAIN_COAL_TOP, STONE_MOUNTAIN_COAL_BOTTOM, STONE_MOUNTAIN_TIN_TOP, STONE_MOUNTAIN_TIN_BOTTOM,
 					STONE_MOUNTAIN_COPPER_TOP, STONE_MOUNTAIN_COPPER_BOTTOM, TIN_ITEM, COPPER_ITEM, CACTUS, CACTUS_SAPLING,
-					CACTUS_ITEM,
+					CACTUS_ITEM,TALL_GRASS_A_ITEM, TALL_GRASS_B_ITEM, TALL_GRASS_C_ITEM, 
 			};
 			
 			String[] lightNames = {LIGHT, CAMPFIRE_LIGHT};

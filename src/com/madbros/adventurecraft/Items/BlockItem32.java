@@ -16,7 +16,7 @@ public abstract class BlockItem32 extends StackableItem{
 	
 	@Override
 	public void useRight() {
-		if(isInRange) {
+		//if(isInRange) {
 			Tile tile = TILE_HASH.get(tileId).createNew();
 			Block hB = Game.level.highlightedBlock;
 			
@@ -25,6 +25,12 @@ public abstract class BlockItem32 extends StackableItem{
 				stackSize -= 1;
 				Game.inventory.deleteItemIfNecessary();
 			}
+		//}
+	}
+	@Override
+	public void checkIsInRange() {
+		if(isInRange) {
+			useRight();
 		}
 	}
 	

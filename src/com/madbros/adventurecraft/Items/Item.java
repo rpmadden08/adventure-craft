@@ -8,6 +8,7 @@ import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.*;
+import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.Utils.*;
 
 public abstract class Item {
@@ -53,6 +54,20 @@ public abstract class Item {
 		sprite.draw(x-ITEM_SIZE/2, y-ITEM_SIZE/2, Z_INV_ITEMS);
 	}
 	
+	public void getTopTile() {
+		if(Game.level.tileBeingAttacked != Game.level.highlightedBlock.getTopTile()) {
+			Game.level.tileBeingAttacked.currentHp = Game.level.tileBeingAttacked.maxHp;
+			Game.level.tileBeingAttacked = Game.level.highlightedBlock.getTopTile();
+			Game.level.tileBeingAttacked2 = Game.level.highlightedBlock2.getTopTile();
+			Game.level.tileBeingAttacked3 = Game.level.highlightedBlock3.getTopTile();
+			Game.level.tileBeingAttacked4 = Game.level.highlightedBlock4.getTopTile();
+		}
+	}
+	
+	public Tile topTile(Block block) {
+		return block.getTopTile();
+	}
+	
 	public void renderFont(int x, int y, SpriteBatch batch) {
 		Color c = new Color(1.0f, 1.0f, 1.0f, 0.8f);
 		Sprites.pixel.setColor(c);
@@ -69,6 +84,10 @@ public abstract class Item {
 		if(Game.level.tileBeingAttacked.isUseable) {
 			Game.level.tileBeingAttacked.rightClicked();
 		}
+	}
+	
+	public void checkIsInRange() {
+		useRight();
 	}
 	
 	public void useLeft() {

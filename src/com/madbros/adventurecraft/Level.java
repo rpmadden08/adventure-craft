@@ -269,21 +269,23 @@ public class Level {
 			highlightedBlock2 = activeBlocks[highlightedBlockX+1][highlightedBlockY];
 			highlightedBlock3 = activeBlocks[highlightedBlockX][highlightedBlockY+1];
 			highlightedBlock4 = activeBlocks[highlightedBlockX+1][highlightedBlockY+1];
+		
+			Game.inventory.invBar[Game.inventory.itemSelected].item.getTopTile();
+//			if(tileBeingAttacked != highlightedBlock.getTopTile()) {
+//				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
+//				tileBeingAttacked = highlightedBlock.getTopTile();
+//				tileBeingAttacked2 = highlightedBlock2.getTopTile();
+//				tileBeingAttacked3 = highlightedBlock3.getTopTile();
+//				tileBeingAttacked4 = highlightedBlock4.getTopTile();
+//			}
 			
-//			//This is so that chests know their coordinates...
-//			tileBeingAttacked.absX = highlightedBlock.getAbsX();
-//			tileBeingAttacked.absY = highlightedBlock.getAbsY();
-//			//This is so that furnaces know their activeBlocks...
-//			tileBeingAttacked.activeBlocksX = highlightedBlockX;
-//			tileBeingAttacked.activeBlocksY = highlightedBlockY;
-			
-			if(tileBeingAttacked != highlightedBlock.getTopTile()) {
-				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
-				tileBeingAttacked = highlightedBlock.getTopTile();
-				tileBeingAttacked2 = highlightedBlock2.getTopTile();
-				tileBeingAttacked3 = highlightedBlock3.getTopTile();
-				tileBeingAttacked4 = highlightedBlock4.getTopTile();
-			}
+//			if(tileBeingAttacked != highlightedBlock.getDiggableTopTile()) {
+//				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
+//				tileBeingAttacked = highlightedBlock.getDiggableTopTile();
+//				tileBeingAttacked2 = highlightedBlock2.getDiggableTopTile();
+//				tileBeingAttacked3 = highlightedBlock3.getDiggableTopTile();
+//				tileBeingAttacked4 = highlightedBlock4.getDiggableTopTile();
+//			}
 			
 			highlightedBlock.isHighlighted = true;
 			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = true;

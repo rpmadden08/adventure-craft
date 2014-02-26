@@ -19,7 +19,7 @@ public abstract class BlockItem extends StackableItem{
 	
 	@Override
 	public void useRight() {
-		if(isInRange == true) {
+		//if(isInRange == true) {
 			Tile tile = TILE_HASH.get(tileId).createNew();
 			Block hB = Game.level.highlightedBlock;
 			Block hB2 = Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY];
@@ -40,6 +40,13 @@ public abstract class BlockItem extends StackableItem{
 				//Game.level.activeBlocks[x][y-2].layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
 				Game.level.autoTileBlock(x, y-2);
 			}
+		//}
+	}
+	
+	@Override
+	public void checkIsInRange() {
+		if(isInRange) {
+			useRight();
 		}
 	}
 	

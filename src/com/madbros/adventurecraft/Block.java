@@ -108,6 +108,13 @@ public class Block {
 		return new NoTile();
 	}
 	
+//	public Tile getDiggableTopTile() {
+//		for(int i = GRASS_LAYER; i > -1; i--) {
+//			if(layers[i].id != AIR) return layers[i];
+//		}
+//		return new NoTile();
+//	}
+	
 	public Tile getObjectTile() {
 		
 		if(layers[OBJECT_LAYER].id != AIR) return layers[OBJECT_LAYER];
@@ -116,6 +123,22 @@ public class Block {
 	
 	public void deleteTopTile() {
 		for(int i = layers.length-1; i > -1; i--) {
+			if(layers[i].id != AIR && layers[i].id != DIRT && layers[i].id != DARK_DIRT ) { 
+				layers[i] = new NoTile();
+				return;
+			} else if(layers[i].id == DIRT) {
+				layers[WATER_LAYER] = new HoleTile();
+				setCollisionTile((CollisionTile)layers[WATER_LAYER]);
+				return;
+			} else if(layers[i].id == DARK_DIRT) {
+				layers[LIGHT_DIRT_LAYER] = new DirtTile();
+				layers[WATER_LAYER] = new HoleTile();
+				setCollisionTile((CollisionTile)layers[WATER_LAYER]);
+			}
+		}
+	}
+	public void deleteTopGrassTile() {
+		for(int i = GRASS_LAYER; i > -1; i--) {
 			if(layers[i].id != AIR && layers[i].id != DIRT && layers[i].id != DARK_DIRT ) { 
 				layers[i] = new NoTile();
 				return;

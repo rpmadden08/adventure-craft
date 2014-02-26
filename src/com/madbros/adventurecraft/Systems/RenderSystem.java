@@ -102,7 +102,9 @@ public class RenderSystem {
 				item.highlightItem(block, x, y);
 				
 			}
-			Tile topTile = block.getTopTile();
+			
+			//Tile topTile = block.getTopTile();
+			Tile topTile = item.topTile(block);
 			if(topTile.currentHp < topTile.maxHp) {
 				
 				renderTileHealth(topTile, x, y, item.is32);

@@ -104,7 +104,7 @@ public class Inventory {
 		invBar[1].item.stackSize = 1;
 		invBar[2].item = new CampfireItem();
 		invBar[2].item.stackSize = 1;
-		invBar[3].item = new Pick();
+		invBar[3].item = new CauldronItem();
 		invBar[3].item.stackSize = 1;
 		invBar[4].item = new Sapling();
 		invBar[4].item.stackSize =99;
@@ -116,7 +116,7 @@ public class Inventory {
 		invBar[7].item.stackSize = 99;
 		invBar[8].item = new SnowItem();
 		invBar[8].item.stackSize = 99;
-		invBar[9].item = new EarthClump();
+		invBar[9].item = new TallGrassAItem();
 		invBar[9].item.stackSize = 99;
 		
 		invBag[0].item = new IronHelmet();
@@ -205,23 +205,7 @@ public class Inventory {
 	}
 	public void update() {
 		if(isUsingLeftItem) invBar[itemSelected].item.useLeft();
-		if(isUsingRightItem) invBar[itemSelected].item.useRight();
-//		System.out.println(furnaceOn);
-//		if(furnaceOn) {
-//			System.out.println(furnaceOn);
-//			System.out.println(furnaceIsBurning);
-//			if(furnaceIsBurning == true) {
-//				//System.out.println("test12");
-//				//LOOP
-//				if(timeCheck <= 0) {
-//					System.out.println(timeCheck);
-//				} else {
-//					timeCheck = timeCheck -1;
-//					//System.out.println(timeCheck);
-//				}
-//				
-//			}
-//		}
+		if(isUsingRightItem) invBar[itemSelected].item.checkIsInRange();
 	}
 	
 	public void useItem(int button) {
