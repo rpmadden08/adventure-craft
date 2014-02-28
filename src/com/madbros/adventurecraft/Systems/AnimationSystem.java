@@ -15,6 +15,10 @@ public class AnimationSystem {
 		for(int i = 0; i < Sprites.campfireAnimation.length; i++) {
 			Sprites.campfireAnimation[i].updateCurrentAnimation();
 		}
+		for(int i = 0; i < Sprites.torchAnimation.length; i++) {
+			Sprites.torchAnimation[i].updateCurrentAnimation();
+		}
+		
 		for(int i = 0; i < Sprites.furnaceAnimation.length; i++) {
 			Sprites.furnaceAnimation[i].updateCurrentAnimation();
 		}

@@ -73,6 +73,11 @@ public class Sprites {
 	public static final String TALL_GRASS_A_ITEM = "tallGrass1";
 	public static final String TALL_GRASS_B_ITEM = "tallGrass2";
 	public static final String TALL_GRASS_C_ITEM = "tallGrass3";
+	public static final String RED_FLOWERS = "flowersItem";
+	public static final String YELLOW_FLOWERS = "flowersItemYellow";
+	public static final String BROWN_MUSHROOM = "mushroom1";
+	public static final String RED_MUSHROOM = "mushroom2";
+	public static final String TORCH= "torch0";
 	
 	//static collections
 //	public static final String GEM = "Gem Blue";
@@ -118,6 +123,11 @@ public class Sprites {
 	public static final String TALL_GRASS_A = "tallGrassA";
 	public static final String TALL_GRASS_B = "tallGrassB";
 	public static final String TALL_GRASS_C = "tallGrassC";
+	public static final String RED_FLOWERS_TILE = "redFlowers";
+	public static final String YELLOW_FLOWERS_TILE = "yellowFlowers";
+	public static final String BROWN_MUSHROOM_TILE = "brownMushroom";
+	public static final String RED_MUSHROOM_TILE = "redMushroom";
+	public static final String TORCH_TILE = "torch";
 	
 	
 	public static final String ROCK = "rockA";
@@ -135,6 +145,7 @@ public class Sprites {
 	
 	//animated collections
 	public static final String CAMPFIRE_ANIMATION = "campfire";
+	public static final String TORCH_ANIMATION = "torch";
 	public static final String FURNACE_ANIMATION = "furnaceA";
 	public static final String CAULDRON_ANIMATION = "boilingCauldronA";
 //	public static final String FURNACE_STATIC = "furnaceStatic";
@@ -261,6 +272,7 @@ public class Sprites {
 	public static StaticSprite[] treeSprites;
 	public static StaticSprite[] treeLeafSprites;
 	public static AnimatedSprite[] campfireAnimation;
+	public static AnimatedSprite[] torchAnimation;
 	public static AnimatedSprite[] furnaceAnimation;
 	public static StaticSprite[] furnaceStatic;
 	public static AnimatedSprite[] cauldronAnimation;
@@ -340,7 +352,10 @@ public class Sprites {
 					COAL_ITEM, STONE_MOUNTAIN_TOP, STONE_MOUNTAIN_BOTTOM, STONE_MOUNTAIN_ITEM,
 					STONE_MOUNTAIN_COAL_TOP, STONE_MOUNTAIN_COAL_BOTTOM, STONE_MOUNTAIN_TIN_TOP, STONE_MOUNTAIN_TIN_BOTTOM,
 					STONE_MOUNTAIN_COPPER_TOP, STONE_MOUNTAIN_COPPER_BOTTOM, TIN_ITEM, COPPER_ITEM, CACTUS, CACTUS_SAPLING,
-					CACTUS_ITEM,TALL_GRASS_A_ITEM, TALL_GRASS_B_ITEM, TALL_GRASS_C_ITEM, 
+					CACTUS_ITEM,TALL_GRASS_A_ITEM, TALL_GRASS_B_ITEM, TALL_GRASS_C_ITEM, RED_FLOWERS_TILE, YELLOW_FLOWERS_TILE,
+					RED_MUSHROOM_TILE, BROWN_MUSHROOM_TILE, RED_FLOWERS, YELLOW_FLOWERS, RED_MUSHROOM, BROWN_MUSHROOM,
+					TORCH, TORCH_TILE,
+					
 			};
 			
 			String[] lightNames = {LIGHT, CAMPFIRE_LIGHT};
@@ -418,6 +433,10 @@ public class Sprites {
 			Animation animation = animations.get(CAMPFIRE_ANIMATION);
 			animation.id = 0;
 			campfireAnimation = new AnimatedSprite[]{new AnimatedSprite(animation)};
+			
+			animation = animations.get(TORCH_ANIMATION);
+			animation.id = 0;
+			torchAnimation = new AnimatedSprite[]{new AnimatedSprite(animation)};
 			
 			animation = animations.get(FURNACE_ANIMATION);
 			animation.id = 0;

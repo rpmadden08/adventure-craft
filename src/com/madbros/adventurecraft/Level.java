@@ -159,7 +159,8 @@ public class Level {
 			}
 			
 		}
-		gameStartTime = Time.getTime();		
+		//FIXME (just checking for night time by adding 1000000
+		gameStartTime = Time.getTime()+1000000;		
 
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 	}

@@ -108,15 +108,15 @@ public class Inventory {
 		invBar[3].item.stackSize = 1;
 		invBar[4].item = new Sapling();
 		invBar[4].item.stackSize =99;
-		invBar[5].item = new TableItem();
+		invBar[5].item = new BrownMushroom();
 		invBar[5].item.stackSize = 1;
-		invBar[6].item = new Axe();
+		invBar[6].item = new RedMushroom();
 		invBar[6].item.stackSize = 1;
-		invBar[7].item = new CactusSeed();
+		invBar[7].item = new YellowFlowers();
 		invBar[7].item.stackSize = 99;
-		invBar[8].item = new SnowItem();
+		invBar[8].item = new RedFlowers();
 		invBar[8].item.stackSize = 99;
-		invBar[9].item = new TallGrassAItem();
+		invBar[9].item = new Torch();
 		invBar[9].item.stackSize = 99;
 		
 		invBag[0].item = new IronHelmet();

@@ -154,6 +154,12 @@ public class Constants {
 	public static final int TALL_GRASS_A_TILE = 44;
 	public static final int TALL_GRASS_B_TILE = 45;
 	public static final int TALL_GRASS_C_TILE = 46;
+	public static final int RED_FLOWERS_TILE = 47;
+	public static final int YELLOW_FLOWERS_TILE = 48;
+	public static final int RED_MUSHROOM_TILE = 49;
+	public static final int BROWN_MUSHROOM_TILE = 50;
+	public static final int TORCH_TILE = 51;
+	
 	
 	
 	//ore generation markings
@@ -279,6 +285,12 @@ public class Constants {
 	public static final int COPPER_ITEM = 32;
 	public static final int CACTUS_SEED = 33;
 	public static final int TALL_GRASS_A = 34;
+	public static final int RED_MUSHROOM = 35;
+	public static final int BROWN_MUSHROOM = 36;
+	public static final int RED_FLOWERS = 37;
+	public static final int YELLOW_FLOWERS = 38;
+	public static final int TORCH = 39;
+	
 	
 	
 	
@@ -361,6 +373,12 @@ public class Constants {
 		ITEM_HASH.put(CACTUS_SEED, new CactusSeed());
 		ITEM_HASH.put(TALL_GRASS_A, new TallGrassAItem());
 		
+		ITEM_HASH.put(RED_FLOWERS, new RedFlowers());
+		ITEM_HASH.put(YELLOW_FLOWERS, new YellowFlowers());
+		ITEM_HASH.put(BROWN_MUSHROOM, new BrownMushroom());
+		ITEM_HASH.put(RED_MUSHROOM, new RedMushroom());
+		ITEM_HASH.put(TORCH, new Torch());
+		
 		
 		
 		TILE_HASH.put(GRASS, new GrassTile());
@@ -408,6 +426,12 @@ public class Constants {
 		TILE_HASH.put(TALL_GRASS_A_TILE, new TallGrassATile());
 		TILE_HASH.put(TALL_GRASS_B_TILE, new TallGrassBTile());
 		TILE_HASH.put(TALL_GRASS_C_TILE, new TallGrassCTile());
+		
+		TILE_HASH.put(RED_MUSHROOM_TILE, new RedMushroomTile());
+		TILE_HASH.put(BROWN_MUSHROOM_TILE, new BrownMushroomTile());
+		TILE_HASH.put(RED_FLOWERS_TILE, new RedFlowersTile());
+		TILE_HASH.put(YELLOW_FLOWERS_TILE, new YellowFlowersTile());
+		TILE_HASH.put(TORCH_TILE, new TorchTile());
 		
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);
