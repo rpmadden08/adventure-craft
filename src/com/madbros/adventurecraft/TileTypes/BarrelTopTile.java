@@ -5,9 +5,9 @@ import static com.madbros.adventurecraft.Constants.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 
-public class BarrelTop extends CollisionTile {
+public class BarrelTopTile extends CollisionTile {
 	
-	public BarrelTop() {
+	public BarrelTopTile() {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.BARREL_TOP);
@@ -28,6 +28,6 @@ public class BarrelTop extends CollisionTile {
 	}
 	
 	public Tile createNew() {
-		return new BarrelTop();
+		return new BarrelTopTile();
 	}
 }

@@ -5,14 +5,14 @@ import static com.madbros.adventurecraft.Constants.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 
-public class FurnaceTop extends CollisionTile {
+public class WheatTopTile extends CollisionTile {
 	
-	public FurnaceTop() {
+	public WheatTopTile() {
 		super();
 		currentSpriteId = 0;
-		sprites = Sprites.spriteCollections.get(Sprites.FURNACE_TOP);
+		sprites = Sprites.spriteCollections.get(Sprites.WHEAT_TILE);
 		margin = new Margin(9, 9, 0, 11);
-		id = FURNACE_TOP;
+		id = WHEAT_TOP;
 		layer = ABOVE_LAYER_1;
 		z = Z_OBJECT;
 		isDiggable = false;
@@ -28,6 +28,6 @@ public class FurnaceTop extends CollisionTile {
 	}
 	
 	public Tile createNew() {
-		return new FurnaceTop();
+		return new WheatTopTile();
 	}
 }

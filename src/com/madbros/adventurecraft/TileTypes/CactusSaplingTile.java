@@ -34,8 +34,8 @@ public class CactusSaplingTile extends CollisionTile {
 	public void update(int x, int y) {
 		if(Time.getGameTime() - timeCreated > 300) {// 10000
 			Block b = Game.level.activeBlocks[x][y];
-			b.layers[OBJECT_LAYER] = new Cactus();
-			b.setCollisionTile(new Cactus());
+			b.layers[OBJECT_LAYER] = new CactusTile();
+			b.setCollisionTile(new CactusTile());
 			int[] xs = {x-1, x-1, x, x, x+1, x+1};
 			int[] ys = {y-1, y, y-1, y, y-1, y};
 			int[] tileLayer = {TREE_LEFT_1, TREE_LEFT_0, TREE_CENTER_1, TREE_CENTER_0, TREE_RIGHT_1, TREE_RIGHT_0};

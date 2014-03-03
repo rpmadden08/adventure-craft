@@ -28,9 +28,9 @@ import com.madbros.adventurecraft.GameObjects.Notification;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.*;
-import com.madbros.adventurecraft.TileTypes.Cauldron;
-import com.madbros.adventurecraft.TileTypes.Furnace;
-import com.madbros.adventurecraft.TileTypes.FurnaceTop;
+import com.madbros.adventurecraft.TileTypes.CauldronTile;
+import com.madbros.adventurecraft.TileTypes.FurnaceTile;
+import com.madbros.adventurecraft.TileTypes.FurnaceTopTile;
 import com.madbros.adventurecraft.TileTypes.LightTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.TileTypes.TreeLeafTile;
@@ -533,11 +533,11 @@ public class RenderSystem {
 			//System.out.println(inv.invChest[0].item.id);
 			
 		} else if(inv.furnaceOn) {
-			Furnace furnace = (Furnace) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			FurnaceTop furnaceTop = (FurnaceTop) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY-1].layers[ABOVE_LAYER_1];
+			FurnaceTile furnace = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			FurnaceTopTile furnaceTop = (FurnaceTopTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY-1].layers[ABOVE_LAYER_1];
 			furnace.sprites[0].draw(276, 396, 300);
 			furnaceTop.sprites[0].draw(276, 364, 300);
-			Furnace furnaceTile = (Furnace) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Slot[][] slots = {furnaceTile.craftedSlot, inv.invClothing, furnaceTile.furnaceSlots};
 			for(int i = 0; i < slots.length; i++) {
 				for(int j = 0; j < slots[i].length; j++) {
@@ -551,9 +551,9 @@ public class RenderSystem {
 			
 			
 		} else if(inv.cauldronOn) {
-			Cauldron cauldron = (Cauldron) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			CauldronTile cauldron = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			cauldron.sprites[0].draw(276, 396, 300);
-			Cauldron cauldronTile = (Cauldron) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Slot[][] slots = {cauldronTile.craftedSlot, inv.invClothing, cauldronTile.cauldronSlots};
 			for(int i = 0; i < slots.length; i++) {
 				for(int j = 0; j < slots[i].length; j++) {
@@ -580,7 +580,7 @@ public class RenderSystem {
 		inv.heldItem.render(Helpers.getX(), Helpers.getY());
 	}
 	
-	public void renderFurnaceBuildTime(Furnace furnace, int x, int y) {
+	public void renderFurnaceBuildTime(FurnaceTile furnace, int x, int y) {
 		x = x +4;
 		y = y +26;
 		//double difference = (10 - furnace.furnaceBuildTime);
@@ -625,7 +625,7 @@ public class RenderSystem {
 		Sprites.pixel.setColor(Color.WHITE);
 	}
 	
-	public void renderCauldronBuildTime(Cauldron cauldron, int x, int y) {
+	public void renderCauldronBuildTime(CauldronTile cauldron, int x, int y) {
 		x = x +4;
 		y = y +26;
 		//double difference = (10 - furnace.furnaceBuildTime);
@@ -670,7 +670,7 @@ public class RenderSystem {
 		Sprites.pixel.setColor(Color.WHITE);
 	}
 	
-	public void renderFurnaceFuel(Furnace furnace, int x, int y) {
+	public void renderFurnaceFuel(FurnaceTile furnace, int x, int y) {
 		x = x +4;
 		y = y +26;
 		double difference = (furnace.furnaceMaxFuel - furnace.furnaceFuel);
@@ -714,7 +714,7 @@ public class RenderSystem {
 		Sprites.pixel.setColor(Color.WHITE);
 	}
 	
-	public void renderCauldronFuel(Cauldron cauldron, int x, int y) {
+	public void renderCauldronFuel(CauldronTile cauldron, int x, int y) {
 		x = x +4;
 		y = y +26;
 		double difference = (cauldron.cauldronMaxFuel - cauldron.cauldronFuel);
@@ -768,7 +768,7 @@ public class RenderSystem {
 					}
 		}
 		if(inv.furnaceOn) {
-			Furnace furnaceTile = (Furnace) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Slot[][]slots2 = {furnaceTile.craftedSlot, inv.invClothing, furnaceTile.furnaceSlots};
 			for(int i = 0; i < slots2.length; i++) {
 				for(int j = 0; j < slots2[i].length; j++) {
@@ -777,7 +777,7 @@ public class RenderSystem {
 				}
 			}
 		}else if(inv.cauldronOn) {
-			Cauldron cauldronTile = (Cauldron) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Slot[][]slots2 = {cauldronTile.craftedSlot, inv.invClothing, cauldronTile.cauldronSlots};
 			for(int i = 0; i < slots2.length; i++) {
 				for(int j = 0; j < slots2[i].length; j++) {

@@ -8,24 +8,25 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 
-public class SeedPotato extends BlockItem32 {
-	public SeedPotato() {
-		id = SEED_POTATO;
-		tileId = POTATO_TILE;
-		name = "Potato Sprout";
+public class WheatSprout extends BlockItem32 {
+	public WheatSprout() {
+		id = WHEAT_SPROUT;
+		tileId = WHEAT_TILE;
+		name = "Wheat Sprout";
 		placeableTileIds = new int[]{DARK_DIRT};
-		sprite = Sprites.sprites.get(Sprites.SEED_POTATO);
+		sprite = Sprites.sprites.get(Sprites.WHEAT_SPROUT);
 		
 	}
 	
 	@Override
 	public BlockItem32 createNew() {
-		return new SeedPotato();
+		return new WheatSprout();
 	}
 
 	@Override
 	public void placeTile(Block hB, Tile tile) {
 		hB.layers[OBJECT_LAYER] = tile;
+		hB.setCollisionTile((CollisionTile)tile);
 	}
 	
 	public void highlightItem(Block block, int x, int y) {
@@ -33,7 +34,7 @@ public class SeedPotato extends BlockItem32 {
 		if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id) {
 
 			sprite.setColor(HIGHLIGHT_COLOR);
-			sprite.draw(x, y, Z_CHARACTER, block.absRect.w, block.absRect.h);
+			sprite.draw(x, y, Z_CHARACTER);
 			sprite.setColor(Color.WHITE);
 		}
 	}

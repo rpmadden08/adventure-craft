@@ -38,7 +38,7 @@ public class Sprites {
 	
 	public static final String PIXEL = "pixel";
 	public static final String SAPLING = "sapling";
-	public static final String SEED_POTATO = "seeds";
+	public static final String SEED_POTATO = "potatoPlant0";
 	public static final String STUMP = "stump";
 	public static final String GRASS_ITEM = "grassItem";
 	public static final String SNOW_ITEM = "snowItem";
@@ -78,9 +78,25 @@ public class Sprites {
 	public static final String BROWN_MUSHROOM = "mushroom1";
 	public static final String RED_MUSHROOM = "mushroom2";
 	public static final String TORCH= "torch0";
+	public static final String WHEAT = "wheatItem";
+	public static final String WHEAT_SPROUT = "wheat0";
+	public static final String CARROT = "carrot5";
+	public static final String CARROT_SPROUT = "carrot0";
+	public static final String TOMATO= "tomatoItem";
+	public static final String TOMATO_SPROUT= "tomato0";
+	public static final String ZUCCHINI= "zucchini5";
+	public static final String ZUCCHINI_SPROUT= "zucchini0";
+	public static final String CORN= "corn9";
+	public static final String CORN_SPROUT= "corn0";
+	public static final String ARTICHOKE= "artichoke5";
+	public static final String ARTICHOKE_SPROUT= "artichoke0";
+	public static final String PEPPER= "pepper8";
+	public static final String PEPPER_SPROUT= "pepper0";
+	public static final String TIN_BAR= "tinBarItem";
+	public static final String COPPER_BAR= "copperBarItem";
+	public static final String IRON_BAR= "ironBarItem";
 	
 	//static collections
-//	public static final String GEM = "Gem Blue";
 	public static final String DESERT = "desert";
 	public static final String GRASS = "grass";
 	public static final String SPACE = "space";
@@ -128,12 +144,17 @@ public class Sprites {
 	public static final String BROWN_MUSHROOM_TILE = "brownMushroom";
 	public static final String RED_MUSHROOM_TILE = "redMushroom";
 	public static final String TORCH_TILE = "torch";
+	public static final String WHEAT_TILE = "wheat";
+	public static final String TOMATO_TILE = "tomato";
+	public static final String CARROT_TILE = "carrot";
+	public static final String ZUCCHINI_TILE = "zucchini";
+	public static final String CORN_TILE = "corn";
+	public static final String ARTICHOKE_TILE = "artichoke";
+	public static final String PEPPER_TILE = "pepper";
 	
 	
 	public static final String ROCK = "rockA";
 	public static final String FLOWERS = "flowersA";
-	public static final String WHEAT_PLANT = "wheat";
-	public static final String WHEAT= "wheatItem";
 	
 	public static final String STICKS = "stick";
 	public static final String FIRE_STARTER = "fireStarter";
@@ -342,7 +363,7 @@ public class Sprites {
 					PLATE_LEGS_SLASH_RIGHT, PLATE_FEET_SLASH_UP, PLATE_FEET_SLASH_DOWN, PLATE_FEET_SLASH_LEFT, 
 					PLATE_FEET_SLASH_RIGHT, PICK, MOUNTAIN_COAL_TOP, MOUNTAIN_COAL_BOTTOM, SPACE, SNOW_ITEM,
 					DARK_GRASS_ITEM, DIRT_MOUNTAIN_ITEM, BARREL, BARREL_TOP, TALL_GRASS_A, TALL_GRASS_B, TALL_GRASS_C,
-					ROCK, FLOWERS, WHEAT_PLANT, WHEAT, FIRE_STARTER, FIRE_PIT, STICKS,
+					ROCK, FLOWERS, WHEAT_SPROUT, WHEAT, FIRE_STARTER, FIRE_PIT, STICKS,
 					BEE_WALK_DOWN, BEE_WALK_UP, BEE_WALK_RIGHT, BEE_WALK_LEFT,
 					BEE_STAND_DOWN, BEE_STAND_UP, BEE_STAND_RIGHT, BEE_STAND_LEFT,
 					BEE_MINI_WALK_DOWN, BEE_MINI_WALK_UP, BEE_MINI_WALK_RIGHT, BEE_MINI_WALK_LEFT,
@@ -354,7 +375,9 @@ public class Sprites {
 					STONE_MOUNTAIN_COPPER_TOP, STONE_MOUNTAIN_COPPER_BOTTOM, TIN_ITEM, COPPER_ITEM, CACTUS, CACTUS_SAPLING,
 					CACTUS_ITEM,TALL_GRASS_A_ITEM, TALL_GRASS_B_ITEM, TALL_GRASS_C_ITEM, RED_FLOWERS_TILE, YELLOW_FLOWERS_TILE,
 					RED_MUSHROOM_TILE, BROWN_MUSHROOM_TILE, RED_FLOWERS, YELLOW_FLOWERS, RED_MUSHROOM, BROWN_MUSHROOM,
-					TORCH, TORCH_TILE,
+					TORCH, TORCH_TILE, WHEAT_TILE, TOMATO, TOMATO_SPROUT, TOMATO_TILE, CARROT, CARROT_SPROUT, CARROT_TILE,
+					ZUCCHINI, ZUCCHINI_SPROUT, ZUCCHINI_TILE, CORN, CORN_SPROUT, CORN_TILE, ARTICHOKE, ARTICHOKE_SPROUT,
+					ARTICHOKE_TILE, PEPPER, PEPPER_SPROUT, PEPPER_TILE, TIN_BAR, COPPER_BAR, IRON_BAR,
 					
 			};
 			

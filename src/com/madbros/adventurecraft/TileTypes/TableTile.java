@@ -8,9 +8,9 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class Table extends CollisionTile {
+public class TableTile extends CollisionTile {
 	
-	public Table() {
+	public TableTile() {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.TABLE);
@@ -42,7 +42,7 @@ public class Table extends CollisionTile {
 	}
 	
 	public Tile createNew() {
-		return new Table();
+		return new TableTile();
 	}
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {

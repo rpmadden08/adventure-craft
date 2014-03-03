@@ -12,7 +12,7 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class Furnace extends CollisionTile {
+public class FurnaceTile extends CollisionTile {
 	//public int test = 0;
 	public int furnaceFuel = 0;
 	public int furnaceMaxFuel = 0;
@@ -26,7 +26,7 @@ public class Furnace extends CollisionTile {
 	
 	public boolean isCraftableItem = false;
 	
-	public Furnace() {
+	public FurnaceTile() {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.furnaceAnimation;
@@ -127,7 +127,7 @@ public class Furnace extends CollisionTile {
 	}
 	
 	public Tile createNew() {
-		return new Furnace();
+		return new FurnaceTile();
 	}
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {

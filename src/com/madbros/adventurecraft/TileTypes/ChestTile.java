@@ -10,9 +10,9 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class Chest extends CollisionTile {
+public class ChestTile extends CollisionTile {
 	
-	public Chest() {
+	public ChestTile() {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.CHEST);
@@ -56,7 +56,7 @@ public class Chest extends CollisionTile {
 	}
 	
 	public Tile createNew() {
-		return new Chest();
+		return new ChestTile();
 	}
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {

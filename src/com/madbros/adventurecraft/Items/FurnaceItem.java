@@ -8,8 +8,8 @@ import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
-import com.madbros.adventurecraft.TileTypes.Furnace;
-import com.madbros.adventurecraft.TileTypes.FurnaceTop;
+import com.madbros.adventurecraft.TileTypes.FurnaceTile;
+import com.madbros.adventurecraft.TileTypes.FurnaceTopTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.Utils.Helpers;
 
@@ -43,19 +43,19 @@ public class FurnaceItem extends BlockItem32 {
 		Game.level.hasPlacedItemOnClick = true;
 		int x = hB.getX(Game.level.activeBlocks);
 		int y = hB.getY(Game.level.activeBlocks);
-		Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new FurnaceTop();
+		Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new FurnaceTopTile();
 		
 	}
 	
 	public void highlightItem(Block block, int x, int y) {
 		
 		if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id) {
-			Furnace tile1 = new Furnace();
+			FurnaceTile tile1 = new FurnaceTile();
 			tile1.sprites[0].setColor(HIGHLIGHT_COLOR);
 			tile1.sprites[0].draw(x, y, Z_CHARACTER);
 			tile1.sprites[0].setColor(Color.WHITE);
 			
-			FurnaceTop tile2 = new FurnaceTop();
+			FurnaceTopTile tile2 = new FurnaceTopTile();
 			tile2.sprites[0].setColor(HIGHLIGHT_COLOR);
 			tile2.sprites[0].draw(x, y-32, Z_CHARACTER);
 			tile2.sprites[0].setColor(Color.WHITE);

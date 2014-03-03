@@ -4,8 +4,8 @@ import static com.madbros.adventurecraft.Constants.*;
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
-import com.madbros.adventurecraft.TileTypes.Cauldron;
-import com.madbros.adventurecraft.TileTypes.Furnace;
+import com.madbros.adventurecraft.TileTypes.CauldronTile;
+import com.madbros.adventurecraft.TileTypes.FurnaceTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 
 public class Helpers {		
@@ -63,7 +63,7 @@ public class Helpers {
 						int id0 = chunk.furnaceInts[furnInt][4];
 						int id1 = chunk.furnaceInts[furnInt][5];
 						//t[i] = (Furnace) t[i];
-						Furnace tempTile = (Furnace) t[i];
+						FurnaceTile tempTile = (FurnaceTile) t[i];
 						
 						tempTile.furnaceSlots[0].item = ITEM_HASH.get(id0).createNew();						
 						tempTile.furnaceSlots[1].item = ITEM_HASH.get(id1).createNew();
@@ -85,7 +85,7 @@ public class Helpers {
 						int id2 = chunk.cauldronInts[furnInt][6];
 						int id3 = chunk.cauldronInts[furnInt][7];
 						//t[i] = (Furnace) t[i];
-						Cauldron tempTile = (Cauldron) t[i];
+						CauldronTile tempTile = (CauldronTile) t[i];
 						
 						tempTile.cauldronSlots[0].item = ITEM_HASH.get(id0).createNew();						
 						tempTile.cauldronSlots[1].item = ITEM_HASH.get(id1).createNew();

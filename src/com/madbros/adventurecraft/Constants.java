@@ -159,6 +159,20 @@ public class Constants {
 	public static final int RED_MUSHROOM_TILE = 49;
 	public static final int BROWN_MUSHROOM_TILE = 50;
 	public static final int TORCH_TILE = 51;
+	public static final int WHEAT_TILE = 52;
+	public static final int TOMATO_TILE = 53;
+	public static final int ZUCCHINI_TILE = 54;
+	public static final int CORN_TILE = 55;
+	public static final int CARROT_TILE = 56;
+	public static final int ARTICHOKE_TILE = 57;
+	public static final int PEPPER_TILE = 58;
+	public static final int WHEAT_TOP = 59;
+	public static final int TOMATO_TOP = 60;
+	public static final int CORN_TOP = 61;
+	public static final int PEPPER_TOP = 62;
+	
+
+	
 	
 	
 	
@@ -290,6 +304,24 @@ public class Constants {
 	public static final int RED_FLOWERS = 37;
 	public static final int YELLOW_FLOWERS = 38;
 	public static final int TORCH = 39;
+	public static final int WHEAT = 40;
+	public static final int WHEAT_SPROUT = 41;
+	public static final int TOMATO = 42;
+	public static final int TOMATO_SPROUT = 43;
+	public static final int CARROT = 44;
+	public static final int CARROT_SPROUT = 45;
+	public static final int ZUCCHINI = 46;
+	public static final int ZUCCHINI_SPROUT = 47;
+	public static final int CORN = 48;
+	public static final int CORN_SPROUT = 49;
+	public static final int ARTICHOKE = 50;
+	public static final int ARTICHOKE_SPROUT = 51;
+	public static final int PEPPER = 52;
+	public static final int PEPPER_SPROUT = 53;
+	public static final int COPPER_BAR = 54;
+	public static final int TIN_BAR = 55;
+	public static final int IRON_BAR = 56;
+
 	
 	
 	
@@ -379,6 +411,24 @@ public class Constants {
 		ITEM_HASH.put(RED_MUSHROOM, new RedMushroom());
 		ITEM_HASH.put(TORCH, new Torch());
 		
+		ITEM_HASH.put(TOMATO, new Tomato());
+		ITEM_HASH.put(TOMATO_SPROUT, new TomatoSprout());
+		ITEM_HASH.put(CARROT, new Carrot());
+		ITEM_HASH.put(CARROT_SPROUT, new CarrotSprout());
+		ITEM_HASH.put(WHEAT, new Wheat());
+		ITEM_HASH.put(WHEAT_SPROUT, new WheatSprout());
+		ITEM_HASH.put(ZUCCHINI, new Zucchini());
+		ITEM_HASH.put(ZUCCHINI_SPROUT, new ZucchiniSprout());
+		ITEM_HASH.put(CORN, new Corn());
+		ITEM_HASH.put(CORN_SPROUT, new CornSprout());
+		ITEM_HASH.put(ARTICHOKE, new Artichoke());
+		ITEM_HASH.put(ARTICHOKE_SPROUT, new ArtichokeSprout());
+		ITEM_HASH.put(PEPPER, new Pepper());
+		ITEM_HASH.put(PEPPER_SPROUT, new PepperSprout());
+		ITEM_HASH.put(TIN_BAR, new TinBar());
+		ITEM_HASH.put(COPPER_BAR, new CopperBarItem());
+		ITEM_HASH.put(IRON_BAR, new IronBar());
+		
 		
 		
 		TILE_HASH.put(GRASS, new GrassTile());
@@ -410,17 +460,17 @@ public class Constants {
 		TILE_HASH.put(STONE_MOUNTAIN_COPPER_TOP, new StoneMountainCopperTopTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_COAL_BOTTOM, new DirtMountainCoalBottomTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_COAL_TOP, new DirtMountainCoalTopTile());
-		TILE_HASH.put(CAMPFIRE, new Campfire());
+		TILE_HASH.put(CAMPFIRE, new CampfireTile());
 		TILE_HASH.put(DARK_GRASS, new DarkGrassTile());
 		TILE_HASH.put(SNOW, new SnowTile());
-		TILE_HASH.put(TABLE, new Table());
-		TILE_HASH.put(CHEST, new Chest());
-		TILE_HASH.put(FURNACE, new Furnace());
-		TILE_HASH.put(FURNACE_TOP, new FurnaceTop());
-		TILE_HASH.put(CAULDRON, new Cauldron());
+		TILE_HASH.put(TABLE, new TableTile());
+		TILE_HASH.put(CHEST, new ChestTile());
+		TILE_HASH.put(FURNACE, new FurnaceTile());
+		TILE_HASH.put(FURNACE_TOP, new FurnaceTopTile());
+		TILE_HASH.put(CAULDRON, new CauldronTile());
 		TILE_HASH.put(BARREL, new BarrelTile());
-		TILE_HASH.put(BARREL_TOP, new BarrelTop());
-		TILE_HASH.put(CACTUS, new Cactus());
+		TILE_HASH.put(BARREL_TOP, new BarrelTopTile());
+		TILE_HASH.put(CACTUS, new CactusTile());
 		TILE_HASH.put(CACTUS_SAPLING, new CactusSaplingTile());
 		TILE_HASH.put(CACTUS_LEAF, new CactusLeafTile());
 		TILE_HASH.put(TALL_GRASS_A_TILE, new TallGrassATile());
@@ -432,6 +482,15 @@ public class Constants {
 		TILE_HASH.put(RED_FLOWERS_TILE, new RedFlowersTile());
 		TILE_HASH.put(YELLOW_FLOWERS_TILE, new YellowFlowersTile());
 		TILE_HASH.put(TORCH_TILE, new TorchTile());
+		
+		TILE_HASH.put(WHEAT_TILE, new WheatTile());
+		TILE_HASH.put(TOMATO_TILE, new TomatoTile());
+		TILE_HASH.put(CORN_TILE, new CornTile());
+		TILE_HASH.put(ZUCCHINI_TILE, new ZucchiniTile());
+		TILE_HASH.put(CARROT_TILE, new CarrotTile());
+		TILE_HASH.put(PEPPER_TILE, new PepperTile());
+		TILE_HASH.put(ARTICHOKE_TILE, new ArtichokeTile());
+		
 		
 		
 		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);

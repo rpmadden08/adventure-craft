@@ -7,9 +7,9 @@ import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class Campfire extends LightTile {
+public class CampfireTile extends LightTile {
 
-	public Campfire() {
+	public CampfireTile() {
 		super();
 		lightSize = 500;
 		id = CAMPFIRE;
@@ -22,7 +22,7 @@ public class Campfire extends LightTile {
 	}
 	@Override
 	public LightTile createNew() {
-		return new Campfire();
+		return new CampfireTile();
 	}
 	
 	@Override

@@ -11,8 +11,8 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.madbros.adventurecraft.Slots.Slot;
-import com.madbros.adventurecraft.TileTypes.Cauldron;
-import com.madbros.adventurecraft.TileTypes.Furnace;
+import com.madbros.adventurecraft.TileTypes.CauldronTile;
+import com.madbros.adventurecraft.TileTypes.FurnaceTile;
 import com.madbros.adventurecraft.Utils.Helpers;
 
 //@SuppressWarnings("unchecked")
@@ -118,7 +118,7 @@ public class SaveGame {
 					currentTextures[x][y][i] = chunk[x][y].layers[i].currentSpriteId;
 					timeCreated[x][y][i] = chunk[x][y].layers[i].timeCreated;
 					if(chunk[x][y].layers[i].id == FURNACE) {
-						Furnace furnace = (Furnace) chunk[x][y].layers[i];
+						FurnaceTile furnace = (FurnaceTile) chunk[x][y].layers[i];
 						int a1[]={furnace.furnaceFuel,
 								furnace.furnaceMaxFuel,
 								furnace.furnaceBuildTime,
@@ -134,7 +134,7 @@ public class SaveGame {
 						furnaceListBoolean.add(a2);						
 					}
 					if(chunk[x][y].layers[i].id == CAULDRON) {
-						Cauldron cauldron = (Cauldron) chunk[x][y].layers[i];
+						CauldronTile cauldron = (CauldronTile) chunk[x][y].layers[i];
 						int a1[]={cauldron.cauldronFuel,
 								cauldron.cauldronMaxFuel,
 								cauldron.cauldronBuildTime,

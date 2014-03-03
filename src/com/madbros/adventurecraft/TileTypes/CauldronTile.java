@@ -12,7 +12,7 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class Cauldron extends CollisionTile {
+public class CauldronTile extends CollisionTile {
 	//public int test = 0;
 	public int cauldronFuel = 0;
 	public int cauldronMaxFuel = 0;
@@ -26,7 +26,7 @@ public class Cauldron extends CollisionTile {
 	
 	public boolean isCraftableItem = false;
 	
-	public Cauldron() {
+	public CauldronTile() {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.cauldronStatic;
@@ -126,7 +126,7 @@ public class Cauldron extends CollisionTile {
 	}
 	
 	public Tile createNew() {
-		return new Cauldron();
+		return new CauldronTile();
 	}
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {

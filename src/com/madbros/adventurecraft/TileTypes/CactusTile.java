@@ -8,9 +8,9 @@ import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
 
-public class Cactus extends CollisionTile {
+public class CactusTile extends CollisionTile {
 	
-	public Cactus() {
+	public CactusTile() {
 		super();
 		currentSpriteId = 3;
 		maxHp = 20;
@@ -33,7 +33,7 @@ public class Cactus extends CollisionTile {
 	}
 	
 	public Tile createNew() {
-		return new Cactus();
+		return new CactusTile();
 	}
 	
 	@Override	

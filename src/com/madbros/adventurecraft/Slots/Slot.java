@@ -7,8 +7,8 @@ import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Constants.State;
 import com.madbros.adventurecraft.Items.*;
 import com.madbros.adventurecraft.Sprites.*;
-import com.madbros.adventurecraft.TileTypes.Cauldron;
-import com.madbros.adventurecraft.TileTypes.Furnace;
+import com.madbros.adventurecraft.TileTypes.CauldronTile;
+import com.madbros.adventurecraft.TileTypes.FurnaceTile;
 import com.madbros.adventurecraft.Utils.*;
 
 public class Slot {
@@ -58,10 +58,10 @@ public class Slot {
 		if(inv.craftingTableOn) {
 			handleAdditional(inv.invTable, inv.invCrafted);
 		} else if(inv.furnaceOn) {
-			Furnace furnaceTile = (Furnace) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			handleAdditional2(furnaceTile, furnaceTile.furnaceSlots, furnaceTile.craftedSlot);
 		} else if(inv.cauldronOn) {
-			Cauldron cauldronTile = (Cauldron) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			handleAdditionalCauldron(cauldronTile, cauldronTile.cauldronSlots, cauldronTile.craftedSlot);
 		} else {
 			handleAdditional(inv.invCrafting, inv.invCrafted);
@@ -90,10 +90,10 @@ public class Slot {
 		if(inv.craftingTableOn) {
 			handleAdditional(inv.invTable, inv.invCrafted);
 		} else if(inv.furnaceOn) {
-			Furnace furnaceTile = (Furnace) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			handleAdditional2(furnaceTile, furnaceTile.furnaceSlots, furnaceTile.craftedSlot);
 		} else if(inv.cauldronOn) {
-			Cauldron cauldronTile = (Cauldron) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			handleAdditionalCauldron(cauldronTile, cauldronTile.cauldronSlots, cauldronTile.craftedSlot);
 		} else {
 			handleAdditional(inv.invCrafting, inv.invCrafted);
@@ -102,11 +102,11 @@ public class Slot {
 	
 	public void handleAdditional(Slot[] invCrafting, Slot[] invCrafted) { }
 	
-	public void handleAdditional2(Furnace furnace, Slot[] invCrafting, Slot[] invCrafted) { 
+	public void handleAdditional2(FurnaceTile furnace, Slot[] invCrafting, Slot[] invCrafted) { 
 		craftAnotherItemIfPossible2(furnace, invCrafting, invCrafted);
 	}
 	
-	public void handleAdditionalCauldron(Cauldron cauldron, Slot[] invCrafting, Slot[] invCrafted) { 
+	public void handleAdditionalCauldron(CauldronTile cauldron, Slot[] invCrafting, Slot[] invCrafted) { 
 		craftAnotherItemIfPossibleCauldron(cauldron, invCrafting, invCrafted);
 	}
 	
@@ -146,7 +146,7 @@ public class Slot {
 		}
 	}
 	
-	public void craftAnotherItemIfPossible2(Furnace furnace, Slot[] invCrafting, Slot[] invCrafted) {
+	public void craftAnotherItemIfPossible2(FurnaceTile furnace, Slot[] invCrafting, Slot[] invCrafted) {
 		if(invCrafting[0].item.id != EMPTY) {
 			craftAnItemFromThisListIfPossible2(furnace, invCrafting, invCrafted, invCrafting[0].item.itemsPossiblyCraftable);
 			return;
@@ -155,7 +155,7 @@ public class Slot {
 		}
 	}
 	
-	public void craftAnotherItemIfPossibleCauldron(Cauldron cauldron, Slot[] invCrafting, Slot[] invCrafted) {
+	public void craftAnotherItemIfPossibleCauldron(CauldronTile cauldron, Slot[] invCrafting, Slot[] invCrafted) {
 		for(int i = 0; i < invCrafting.length-1; i++) {
 			if(invCrafting[i].item.id != EMPTY) {
 				craftAnItemFromThisListIfPossibleCauldron(cauldron, invCrafting, invCrafted, invCrafting[i].item.itemsPossiblyCraftable);
@@ -179,7 +179,7 @@ public class Slot {
 		
 	}
 	
-	public void craftAnItemFromThisListIfPossible2(Furnace furnace, Slot[] invCrafting, Slot[] invCrafted, int[] itemsPossiblyCraftable) {
+	public void craftAnItemFromThisListIfPossible2(FurnaceTile furnace, Slot[] invCrafting, Slot[] invCrafted, int[] itemsPossiblyCraftable) {
 		for(int i = 0; i < itemsPossiblyCraftable.length; i++) {
 			//Furnace furnace = (Furnace) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Item possiblyCraftableItem = ITEM_HASH.get(itemsPossiblyCraftable[i]);
@@ -199,7 +199,7 @@ public class Slot {
 			}
 		}
 	}
-	public void craftAnItemFromThisListIfPossibleCauldron(Cauldron cauldron, Slot[] invCrafting, Slot[] invCrafted, int[] itemsPossiblyCraftable) {
+	public void craftAnItemFromThisListIfPossibleCauldron(CauldronTile cauldron, Slot[] invCrafting, Slot[] invCrafted, int[] itemsPossiblyCraftable) {
 		for(int i = 0; i < itemsPossiblyCraftable.length; i++) {
 			//cauldron cauldron = (cauldron) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Item possiblyCraftableItem = ITEM_HASH.get(itemsPossiblyCraftable[i]);
@@ -219,7 +219,7 @@ public class Slot {
 			}
 		}
 	}
-	public void checkFuel(Furnace furnace, Slot[] invCrafting, Slot[] invCrafted) { 
+	public void checkFuel(FurnaceTile furnace, Slot[] invCrafting, Slot[] invCrafted) { 
 		if(invCrafting[1].item.isFuelSource) {
 			furnace.furnaceIsBurning = true;
 			furnace.furnaceFuel = furnace.furnaceSlots[1].item.fuelAmount;
@@ -234,7 +234,7 @@ public class Slot {
 			furnace.furnaceIsBurning = false;
 		}
 	}
-	public void checkCauldronFuel(Cauldron cauldron, Slot[] invCrafting, Slot[] invCrafted) { 
+	public void checkCauldronFuel(CauldronTile cauldron, Slot[] invCrafting, Slot[] invCrafted) { 
 		if(invCrafting[3].item.isFuelSource) {
 			cauldron.cauldronIsBurning = true;
 			cauldron.cauldronFuel = cauldron.cauldronSlots[3].item.fuelAmount;

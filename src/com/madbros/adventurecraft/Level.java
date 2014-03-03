@@ -159,8 +159,7 @@ public class Level {
 			}
 			
 		}
-		//FIXME (just checking for night time by adding 1000000
-		gameStartTime = Time.getTime()+1000000;		
+		gameStartTime = Time.getTime();		
 
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 	}
@@ -686,7 +685,7 @@ public class Level {
 					blockGrid[cycle].layers[OBJECT_LAYER] = new BarrelTile();
 				}
 				if(chunkGenerator.chunkObjectLayer[s][t+1] == BARREL) {
-					blockGrid[cycle].layers[ABOVE_LAYER_1] = new BarrelTop();
+					blockGrid[cycle].layers[ABOVE_LAYER_1] = new BarrelTopTile();
 				}
 				
 				//RainForestTree
