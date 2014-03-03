@@ -8,8 +8,8 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 
-public class DirtMountainItem extends BlockItem {
-	public DirtMountainItem() {
+public class DirtMountain extends BlockItem {
+	public DirtMountain() {
 		id = DIRT_MOUNTAIN_ITEM;
 		name = "Dirt Mountain";
 		tileId = DIRT_MOUNTAIN_BOTTOM;
@@ -18,8 +18,8 @@ public class DirtMountainItem extends BlockItem {
 	}
 	
 	@Override
-	public DirtMountainItem createNew() {
-		return new DirtMountainItem();
+	public DirtMountain createNew() {
+		return new DirtMountain();
 	}
 	
 	@Override

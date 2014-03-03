@@ -112,7 +112,7 @@ public class Inventory {
 		invBar[5].item.stackSize = 99;
 		invBar[6].item = new ZucchiniSprout();
 		invBar[6].item.stackSize = 99;
-		invBar[7].item = new CopperBarItem();
+		invBar[7].item = new CopperBar();
 		invBar[7].item.stackSize = 99;
 		invBar[8].item = new TinBar();
 		invBar[8].item.stackSize = 99;

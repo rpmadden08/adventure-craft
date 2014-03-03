@@ -8,8 +8,8 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 
-public class StoneMountainItem extends BlockItem {
-	public StoneMountainItem() {
+public class StoneMountain extends BlockItem {
+	public StoneMountain() {
 		id = STONE_MOUNTAIN_ITEM;
 		name = "Stone Mountain";
 		tileId = STONE_MOUNTAIN_BOTTOM;
@@ -18,8 +18,8 @@ public class StoneMountainItem extends BlockItem {
 	}
 	
 	@Override
-	public StoneMountainItem createNew() {
-		return new StoneMountainItem();
+	public StoneMountain createNew() {
+		return new StoneMountain();
 	}
 	
 	@Override

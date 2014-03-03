@@ -11,8 +11,8 @@ import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class TallGrassAItem extends BlockItem32 {
-	public TallGrassAItem() {
+public class TallGrassA extends BlockItem32 {
+	public TallGrassA() {
 		id = TALL_GRASS_A;
 		tileId = TALL_GRASS_A_TILE;
 		name = "Tall Grass";
@@ -32,7 +32,7 @@ public class TallGrassAItem extends BlockItem32 {
 	}
 	@Override
 	public BlockItem32 createNew() {
-		return new TallGrassAItem();
+		return new TallGrassA();
 	}
 
 	@Override

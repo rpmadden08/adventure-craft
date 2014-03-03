@@ -4,8 +4,8 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.Sprites.*;
 
-public class CopperBarItem extends CraftItem {
-	public CopperBarItem() {
+public class CopperBar extends CraftItem {
+	public CopperBar() {
 		id = COPPER_BAR;
 		name = "Copper Bar";
 		sprite = Sprites.sprites.get(Sprites.COPPER_BAR);
@@ -13,7 +13,7 @@ public class CopperBarItem extends CraftItem {
 	}
 	
 	@Override
-	public CopperBarItem createNew() {
-		return new CopperBarItem();
+	public CopperBar createNew() {
+		return new CopperBar();
 	}
 }

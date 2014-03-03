@@ -386,24 +386,24 @@ public class Constants {
 		ITEM_HASH.put(IRON_ARMOR, new IronArmor());
 		ITEM_HASH.put(IRON_BOOTS, new IronBoots());
 		ITEM_HASH.put(IRON_LEGGINGS, new IronLeggings());
-		ITEM_HASH.put(CAMPFIRE_ITEM, new CampfireItem());
+		ITEM_HASH.put(CAMPFIRE_ITEM, new Campfire());
 		ITEM_HASH.put(BAT_WING, new BatWing());
 		ITEM_HASH.put(SEED_POTATO, new SeedPotato());
 		ITEM_HASH.put(POTATOES, new Potatoes());
 		ITEM_HASH.put(BAKED_POTATOES, new BakedPotatoes());
 		ITEM_HASH.put(TABLE_ITEM, new TableItem());
-		ITEM_HASH.put(CHEST_ITEM, new ChestItem());
-		ITEM_HASH.put(FURNACE_ITEM, new FurnaceItem());
-		ITEM_HASH.put(CAULDRON_ITEM, new CauldronItem());
-		ITEM_HASH.put(SNOW_ITEM, new SnowItem());
-		ITEM_HASH.put(DARK_GRASS_ITEM, new DarkGrassItem());
-		ITEM_HASH.put(DIRT_MOUNTAIN_ITEM, new DirtMountainItem());
-		ITEM_HASH.put(STONE_MOUNTAIN_ITEM, new StoneMountainItem());
-		ITEM_HASH.put(COAL_ITEM, new CoalItem());
-		ITEM_HASH.put(TIN_ITEM, new TinItem());
-		ITEM_HASH.put(COPPER_ITEM, new CopperItem());
+		ITEM_HASH.put(CHEST_ITEM, new Chest());
+		ITEM_HASH.put(FURNACE_ITEM, new Furnace());
+		ITEM_HASH.put(CAULDRON_ITEM, new Cauldron());
+		ITEM_HASH.put(SNOW_ITEM, new Snow());
+		ITEM_HASH.put(DARK_GRASS_ITEM, new DarkGrass());
+		ITEM_HASH.put(DIRT_MOUNTAIN_ITEM, new DirtMountain());
+		ITEM_HASH.put(STONE_MOUNTAIN_ITEM, new StoneMountain());
+		ITEM_HASH.put(COAL_ITEM, new Coal());
+		ITEM_HASH.put(TIN_ITEM, new Tin());
+		ITEM_HASH.put(COPPER_ITEM, new Copper());
 		ITEM_HASH.put(CACTUS_SEED, new CactusSeed());
-		ITEM_HASH.put(TALL_GRASS_A, new TallGrassAItem());
+		ITEM_HASH.put(TALL_GRASS_A, new TallGrassA());
 		
 		ITEM_HASH.put(RED_FLOWERS, new RedFlowers());
 		ITEM_HASH.put(YELLOW_FLOWERS, new YellowFlowers());
@@ -426,7 +426,7 @@ public class Constants {
 		ITEM_HASH.put(PEPPER, new Pepper());
 		ITEM_HASH.put(PEPPER_SPROUT, new PepperSprout());
 		ITEM_HASH.put(TIN_BAR, new TinBar());
-		ITEM_HASH.put(COPPER_BAR, new CopperBarItem());
+		ITEM_HASH.put(COPPER_BAR, new CopperBar());
 		ITEM_HASH.put(IRON_BAR, new IronBar());
 		
 		

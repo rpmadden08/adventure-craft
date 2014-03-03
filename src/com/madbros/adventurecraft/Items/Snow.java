@@ -8,8 +8,8 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 
-public class SnowItem extends BlockItem {
-	public SnowItem() {
+public class Snow extends BlockItem {
+	public Snow() {
 		id = SNOW_ITEM;
 		tileId = SNOW;
 		name = "Snow";
@@ -18,8 +18,8 @@ public class SnowItem extends BlockItem {
 	}
 	
 	@Override
-	public SnowItem createNew() {
-		return new SnowItem();
+	public Snow createNew() {
+		return new Snow();
 	}
 
 	@Override

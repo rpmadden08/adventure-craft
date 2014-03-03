@@ -13,8 +13,8 @@ import com.madbros.adventurecraft.TileTypes.FurnaceTopTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.Utils.Helpers;
 
-public class FurnaceItem extends BlockItem32 {
-	public FurnaceItem() {
+public class Furnace extends BlockItem32 {
+	public Furnace() {
 		id = FURNACE_ITEM;
 		name = "Furnace";
 		tileId = FURNACE;
@@ -27,7 +27,7 @@ public class FurnaceItem extends BlockItem32 {
 	
 	@Override
 	public BlockItem32 createNew() {
-		return new FurnaceItem();
+		return new Furnace();
 	}
 	
 	@Override

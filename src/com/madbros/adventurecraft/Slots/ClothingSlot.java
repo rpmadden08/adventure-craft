@@ -4,7 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Inventory;
-import com.madbros.adventurecraft.Items.ClothingItem;
+import com.madbros.adventurecraft.Items.Clothing;
 import com.madbros.adventurecraft.Items.NoItem;
 
 public class ClothingSlot extends Slot{
@@ -15,8 +15,8 @@ public class ClothingSlot extends Slot{
 	
 	@Override
 	public void handleLeftClick(Inventory inv) {
-		if (inv.heldItem instanceof ClothingItem) {
-			ClothingItem heldItem = (ClothingItem) inv.heldItem;
+		if (inv.heldItem instanceof Clothing) {
+			Clothing heldItem = (Clothing) inv.heldItem;
 			if (heldItem.slotType == this.type) {
 				if(inv.heldItem.id == this.item.id && this.item.id != EMPTY) {
 					int total = inv.heldItem.stackSize + this.item.stackSize;
@@ -29,13 +29,13 @@ public class ClothingSlot extends Slot{
 					}
 				} else {
 					Game.hero.addClothingItem(heldItem);
-					if(item instanceof ClothingItem) Game.hero.removeClothingItem((ClothingItem)item);
+					if(item instanceof Clothing) Game.hero.removeClothingItem((Clothing)item);
 					swapItems(inv);
 					Game.hero.calcArmor();
 				}
 			}
 		} else if(inv.heldItem.id == EMPTY && item.id != EMPTY) {
-			ClothingItem item = (ClothingItem) this.item;
+			Clothing item = (Clothing) this.item;
 			Game.hero.removeClothingItem(item);
 			swapItems(inv);
 			Game.hero.calcArmor();

@@ -4,8 +4,8 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.Sprites.*;
 
-public class CoalItem extends CraftItem {
-	public CoalItem() {
+public class Coal extends CraftItem {
+	public Coal() {
 		id = COAL_ITEM;
 		name = "Coal";
 		isFuelSource = true;
@@ -15,7 +15,7 @@ public class CoalItem extends CraftItem {
 	}
 	
 	@Override
-	public CoalItem createNew() {
-		return new CoalItem();
+	public Coal createNew() {
+		return new Coal();
 	}
 }

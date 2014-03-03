@@ -7,7 +7,7 @@ import org.lwjgl.input.Keyboard;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
-import com.madbros.adventurecraft.Items.ClothingItem;
+import com.madbros.adventurecraft.Items.Clothing;
 import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
@@ -305,14 +305,14 @@ public class Actor extends GameObject {
 		if(currentSpeed < 0.9f) currentSpeed += 0.1f;
 	}
 	
-	public void addClothingItem(ClothingItem clothingItem) {
+	public void addClothingItem(Clothing clothingItem) {
 		sprite.addSprite(clothingItem.animatedSprite);
 		sprite.sort();
 		sprite.changeAnimationTo(WALK_DOWN);
 		//increase armor rating and add special effects
 	}
 	
-	public void removeClothingItem(ClothingItem clothingItem) {
+	public void removeClothingItem(Clothing clothingItem) {
 		sprite.removeSprite(clothingItem.animatedSprite);
 		sprite.changeAnimationTo(WALK_DOWN);
 	}

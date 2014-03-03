@@ -4,7 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.Sprites.Sprites;
 
-public class IronBoots extends ClothingItem {
+public class IronBoots extends Clothing {
 	public IronBoots() {
 		id = IRON_BOOTS;
 		name = "Iron Boots";

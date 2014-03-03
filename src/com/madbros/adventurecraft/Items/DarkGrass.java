@@ -8,8 +8,8 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 
-public class DarkGrassItem extends BlockItem {
-	public DarkGrassItem() {
+public class DarkGrass extends BlockItem {
+	public DarkGrass() {
 		id = DARK_GRASS_ITEM;
 		name = "Swamp Grass Seed";
 		tileId = DARK_GRASS;
@@ -18,8 +18,8 @@ public class DarkGrassItem extends BlockItem {
 	}
 	
 	@Override
-	public DarkGrassItem createNew() {
-		return new DarkGrassItem();
+	public DarkGrass createNew() {
+		return new DarkGrass();
 	}
 	
 	@Override

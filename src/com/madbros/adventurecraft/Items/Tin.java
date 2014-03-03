@@ -4,8 +4,8 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.Sprites.*;
 
-public class TinItem extends CraftItem {
-	public TinItem() {
+public class Tin extends CraftItem {
+	public Tin() {
 		id = TIN_ITEM;
 		name = "Tin Clump";
 		sprite = Sprites.sprites.get(Sprites.TIN_ITEM);
@@ -13,7 +13,7 @@ public class TinItem extends CraftItem {
 	}
 	
 	@Override
-	public TinItem createNew() {
-		return new TinItem();
+	public Tin createNew() {
+		return new Tin();
 	}
 }

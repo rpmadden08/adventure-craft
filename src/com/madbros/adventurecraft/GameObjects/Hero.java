@@ -8,7 +8,7 @@ import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.Time;
-import com.madbros.adventurecraft.Items.ClothingItem;
+import com.madbros.adventurecraft.Items.Clothing;
 import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
@@ -97,7 +97,7 @@ public class Hero extends Actor {
 		int tempArmor = 0;
 		for(int a = 0; a < Game.inventory.invClothing.length; a++) {
 			if(Game.inventory.invClothing[a].item.id != 0) {
-				ClothingItem tempClothingItem = (ClothingItem) Game.inventory.invClothing[a].item;
+				Clothing tempClothingItem = (Clothing) Game.inventory.invClothing[a].item;
 				tempArmor = tempArmor + tempClothingItem.defensePower;
 			}
 		}

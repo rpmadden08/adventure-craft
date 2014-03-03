@@ -10,8 +10,8 @@ import com.madbros.adventurecraft.TileTypes.CollisionTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.Utils.Helpers;
 
-public class CampfireItem extends BlockItem32 {
-	public CampfireItem() {
+public class Campfire extends BlockItem32 {
+	public Campfire() {
 		id = CAMPFIRE_ITEM;
 		name = "Campfire";
 		tileId = CAMPFIRE;
@@ -21,7 +21,7 @@ public class CampfireItem extends BlockItem32 {
 	
 	@Override
 	public BlockItem32 createNew() {
-		return new CampfireItem();
+		return new Campfire();
 	}
 
 	@Override
