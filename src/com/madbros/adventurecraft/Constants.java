@@ -101,12 +101,12 @@ public class Constants {
 	public static final int CHUNK_BLOOM_MARGIN = 10;
 	public static final int TILES_PER_ROW = CHUNK_SIZE*CHUNKS_IN_A_ROW;	//also columns
 	
-	//game states
+	//Game States
 	public static enum State {
 		MAIN, INVENTORY, MAIN_MENU, NEW_GAME_MENU;
 	}
 	
-	//Blocks
+	//Tiles
 	public static final int AIR = 0;
 	public static final int GRASS = 1;
 	public static final int DIRT = 2;
@@ -322,8 +322,44 @@ public class Constants {
 	public static final int TIN_BAR = 55;
 	public static final int IRON_BAR = 56;
 
+	public static final int VENOM = 57;
+	public static final int BLUE_SLIME = 58;
+	public static final int GREEN_SLIME = 59;
+	public static final int ECTOPLASM = 60;
+	public static final int EYEBALL = 61;
+	public static final int IMP_HORN = 62;
+	public static final int BEETLE_SHELL = 63;
+	public static final int FLOWER_PETAL = 64;
 	
+	public static final int WOODEN_AXE = 65;
+	public static final int WOODEN_HOE = 66;
+	public static final int WOODEN_PICK = 67;
+	public static final int WOODEN_SHOVEL = 68;
+	public static final int WOODEN_SWORD = 69;
 	
+	public static final int TIN_AXE = 70;
+	public static final int TIN_HOE = 71;
+	public static final int TIN_PICK = 72;
+	public static final int TIN_SHOVEL = 73;
+	public static final int TIN_SWORD = 74;
+	
+	public static final int STONE_AXE = 75;
+	public static final int STONE_HOE = 76;
+	public static final int STONE_PICK = 77;
+	public static final int STONE_SHOVEL = 78;
+	public static final int STONE_SWORD = 79;
+	
+	public static final int COPPER_AXE = 90;
+	public static final int COPPER_HOE = 91;
+	public static final int COPPER_PICK = 92;
+	public static final int COPPER_SHOVEL = 93;
+	public static final int COPPER_SWORD = 94;
+	
+	public static final int IRON_AXE = 95;
+	public static final int IRON_HOE = 96;
+	public static final int IRON_PICK = 97;
+	public static final int IRON_SHOVEL = 98;
+	public static final int IRON_SWORD = 99;
 	
 	
 	//Clothing Types
@@ -404,13 +440,11 @@ public class Constants {
 		ITEM_HASH.put(COPPER_ITEM, new Copper());
 		ITEM_HASH.put(CACTUS_SEED, new CactusSeed());
 		ITEM_HASH.put(TALL_GRASS_A, new TallGrassA());
-		
 		ITEM_HASH.put(RED_FLOWERS, new RedFlowers());
 		ITEM_HASH.put(YELLOW_FLOWERS, new YellowFlowers());
 		ITEM_HASH.put(BROWN_MUSHROOM, new BrownMushroom());
 		ITEM_HASH.put(RED_MUSHROOM, new RedMushroom());
 		ITEM_HASH.put(TORCH, new Torch());
-		
 		ITEM_HASH.put(TOMATO, new Tomato());
 		ITEM_HASH.put(TOMATO_SPROUT, new TomatoSprout());
 		ITEM_HASH.put(CARROT, new Carrot());
@@ -428,6 +462,44 @@ public class Constants {
 		ITEM_HASH.put(TIN_BAR, new TinBar());
 		ITEM_HASH.put(COPPER_BAR, new CopperBar());
 		ITEM_HASH.put(IRON_BAR, new IronBar());
+		ITEM_HASH.put(VENOM, new Venom());
+		ITEM_HASH.put(ECTOPLASM, new Ectoplasm());
+		ITEM_HASH.put(FLOWER_PETAL, new FlowerPetal());
+		ITEM_HASH.put(BEETLE_SHELL, new BeetleShell());
+		ITEM_HASH.put(BLUE_SLIME, new BlueSlime());
+		ITEM_HASH.put(GREEN_SLIME, new GreenSlime());
+		ITEM_HASH.put(EYEBALL, new Eyeball());
+		ITEM_HASH.put(IMP_HORN, new ImpHorn());
+		
+		ITEM_HASH.put(WOODEN_AXE, new WoodenAxe());
+		ITEM_HASH.put(WOODEN_HOE, new WoodenHoe());
+		ITEM_HASH.put(WOODEN_PICK, new WoodenPick());
+		ITEM_HASH.put(WOODEN_SHOVEL, new WoodenShovel());
+		ITEM_HASH.put(WOODEN_SWORD, new WoodenSword());
+		
+		ITEM_HASH.put(STONE_AXE, new StoneAxe());
+		ITEM_HASH.put(STONE_HOE, new StoneHoe());
+		ITEM_HASH.put(STONE_PICK, new StonePick());
+		ITEM_HASH.put(STONE_SHOVEL, new StoneShovel());
+		ITEM_HASH.put(STONE_SWORD, new StoneSword());
+		
+		ITEM_HASH.put(TIN_AXE, new TinAxe());
+		ITEM_HASH.put(TIN_HOE, new TinHoe());
+		ITEM_HASH.put(TIN_PICK, new TinPick());
+		ITEM_HASH.put(TIN_SHOVEL, new TinShovel());
+		ITEM_HASH.put(TIN_SWORD, new TinSword());
+		
+		ITEM_HASH.put(COPPER_AXE, new CopperAxe());
+		ITEM_HASH.put(COPPER_HOE, new CopperHoe());
+		ITEM_HASH.put(COPPER_PICK, new CopperPick());
+		ITEM_HASH.put(COPPER_SHOVEL, new CopperShovel());
+		ITEM_HASH.put(COPPER_SWORD, new CopperSword());
+		
+		ITEM_HASH.put(IRON_AXE, new IronAxe());
+		ITEM_HASH.put(IRON_HOE, new IronHoe());
+		ITEM_HASH.put(IRON_PICK, new IronPick());
+		ITEM_HASH.put(IRON_SHOVEL, new IronShovel());
+		ITEM_HASH.put(IRON_SWORD, new IronSword());
 		
 		
 		

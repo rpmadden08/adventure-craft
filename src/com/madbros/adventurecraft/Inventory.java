@@ -98,25 +98,25 @@ public class Inventory {
 		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +120,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +160,BOOTS_SLOT);
 		
-		invBar[0].item = new Sword();
+		invBar[0].item = new WoodenAxe();
 		invBar[0].item.stackSize =1;
-		invBar[1].item = new Shovel();
+		invBar[1].item = new StoneAxe();
 		invBar[1].item.stackSize = 1;
-		invBar[2].item = new Hoe();
+		invBar[2].item = new TinAxe();
 		invBar[2].item.stackSize = 1;
-		invBar[3].item = new PepperSprout();
-		invBar[3].item.stackSize = 99;
-		invBar[4].item = new ArtichokeSprout();
-		invBar[4].item.stackSize =99;
-		invBar[5].item = new CornSprout();
+		invBar[3].item = new CopperAxe();
+		invBar[3].item.stackSize = 1;
+		invBar[4].item = new IronAxe();
+		invBar[4].item.stackSize =1;
+		invBar[5].item = new GreenSlime();
 		invBar[5].item.stackSize = 99;
-		invBar[6].item = new ZucchiniSprout();
+		invBar[6].item = new BlueSlime();
 		invBar[6].item.stackSize = 99;
-		invBar[7].item = new CopperBar();
+		invBar[7].item = new ImpHorn();
 		invBar[7].item.stackSize = 99;
-		invBar[8].item = new TinBar();
+		invBar[8].item = new BeetleShell();
 		invBar[8].item.stackSize = 99;
-		invBar[9].item = new IronBar();
+		invBar[9].item = new Venom();
 		invBar[9].item.stackSize = 99;
 		
 		invBag[0].item = new IronHelmet();

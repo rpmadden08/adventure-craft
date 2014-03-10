@@ -95,6 +95,42 @@ public class Sprites {
 	public static final String TIN_BAR= "tinBarItem";
 	public static final String COPPER_BAR= "copperBarItem";
 	public static final String IRON_BAR= "ironBarItem";
+	public static final String VENOM= "venom";
+	public static final String GREEN_SLIME= "slimeItem";
+	public static final String BLUE_SLIME= "slimeBlueItem";
+	public static final String ECTOPLASM= "ectoplasm";
+	public static final String EYEBALL= "eyeballItem";
+	public static final String FLOWER_PETAL= "flowerPetalItem";
+	public static final String BEETLE_SHELL= "beetleShell";
+	public static final String IMP_HORN= "impHorn";
+	
+	public static final String WOODEN_AXE= "woodenAxe";
+	public static final String WOODEN_HOE= "woodenHoe";
+	public static final String WOODEN_PICK= "woodenPick";
+	public static final String WOODEN_SHOVEL= "woodenShovel";
+	public static final String WOODEN_SWORD= "woodenSword";
+	public static final String COPPER_AXE= "copperAxe";
+	public static final String COPPER_HOE= "copperHoe";
+	public static final String COPPER_PICK= "copperPick";
+	public static final String COPPER_SHOVEL= "copperShovel";
+	public static final String COPPER_SWORD= "copperSword";
+	public static final String TIN_AXE= "tinAxe";
+	public static final String TIN_HOE= "tinHoe";
+	public static final String TIN_PICK= "tinPick";
+	public static final String TIN_SHOVEL= "tinShovel";
+	public static final String TIN_SWORD= "tinSword";
+	public static final String STONE_AXE= "stoneAxe";
+	public static final String STONE_HOE= "stoneHoe";
+	public static final String STONE_PICK= "stonePick";
+	public static final String STONE_SHOVEL= "stoneShovel";
+	public static final String STONE_SWORD= "stoneSword";
+	public static final String IRON_AXE= "ironAxe";
+	public static final String IRON_HOE= "ironHoe";
+	public static final String IRON_PICK= "ironPick";
+	public static final String IRON_SHOVEL= "ironShovel";
+	public static final String IRON_SWORD= "ironSword";
+	
+	
 	
 	//static collections
 	public static final String DESERT = "desert";
@@ -377,7 +413,11 @@ public class Sprites {
 					RED_MUSHROOM_TILE, BROWN_MUSHROOM_TILE, RED_FLOWERS, YELLOW_FLOWERS, RED_MUSHROOM, BROWN_MUSHROOM,
 					TORCH, TORCH_TILE, WHEAT_TILE, TOMATO, TOMATO_SPROUT, TOMATO_TILE, CARROT, CARROT_SPROUT, CARROT_TILE,
 					ZUCCHINI, ZUCCHINI_SPROUT, ZUCCHINI_TILE, CORN, CORN_SPROUT, CORN_TILE, ARTICHOKE, ARTICHOKE_SPROUT,
-					ARTICHOKE_TILE, PEPPER, PEPPER_SPROUT, PEPPER_TILE, TIN_BAR, COPPER_BAR, IRON_BAR,
+					ARTICHOKE_TILE, PEPPER, PEPPER_SPROUT, PEPPER_TILE, TIN_BAR, COPPER_BAR, IRON_BAR, VENOM, GREEN_SLIME,
+					BLUE_SLIME, ECTOPLASM, EYEBALL, FLOWER_PETAL, BEETLE_SHELL, IMP_HORN, WOODEN_SWORD, WOODEN_SHOVEL, WOODEN_PICK,
+					WOODEN_HOE, WOODEN_AXE, STONE_AXE, STONE_HOE, STONE_PICK, STONE_SHOVEL, STONE_SWORD, TIN_AXE, TIN_HOE, TIN_PICK,
+					TIN_SHOVEL, TIN_SWORD, COPPER_AXE, COPPER_HOE, COPPER_PICK, COPPER_SHOVEL, COPPER_SWORD, IRON_AXE, IRON_HOE,
+					IRON_PICK, IRON_SHOVEL, IRON_SWORD,
 					
 			};
 			
