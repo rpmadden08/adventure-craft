@@ -517,6 +517,15 @@ public class RenderSystem {
 			inv.invBag[i].render();
 		}
 		
+		inv.heldItem.render(Helpers.getX(), Helpers.getY());
+	}
+	public void renderCrafting(Inventory inv) {
+		for(int i = 0; i < inv.craftingMenu.craftSlots.length; i++) {
+			inv.craftingMenu.craftSlots[i].render();
+		}
+	}
+	
+	public void renderInventoryPage2(Hero hero, Inventory inv) {
 		if(inv.craftingTableOn == true) {
 			Slot[][] slots = {inv.invCrafted, inv.invClothing, inv.invTable};
 			for(int i = 0; i < slots.length; i++) {
@@ -574,10 +583,6 @@ public class RenderSystem {
 			}
 			hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
 		}
-
-		
-		
-		inv.heldItem.render(Helpers.getX(), Helpers.getY());
 	}
 	
 	public void renderFurnaceBuildTime(FurnaceTile furnace, int x, int y) {
@@ -787,6 +792,16 @@ public class RenderSystem {
 			}
 		}
 		if(inv.heldItem.id != EMPTY) inv.heldItem.renderFont(Helpers.getX(), Helpers.getY(), batch);
+	}
+	
+	public void renderCraftingText(Inventory inv, SpriteBatch batch) {
+		Slot[][] slots = new Slot[][]{inv.craftingMenu.craftSlots};
+		//
+		for(int i = 0; i < slots.length; i++) {
+			for(int j = 0; j < slots[i].length; j++) {
+				slots[i][j].item.renderFont(slots[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
+			}
+		}
 	}
 	
 	/******************************************* Debug Rendering *******************************************/

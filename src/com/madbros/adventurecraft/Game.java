@@ -129,6 +129,20 @@ public class Game implements ApplicationListener {
 		}
 	}
 	
+	public static void toggleCraftingState() {
+		if(currentState.type == State.CRAFTING) {
+			inventory.craftingTableOn = false;
+			currentState = new MainState();
+			hero.stop();
+			inventory.close(hero);
+		} else {
+			currentState = new CraftingState();
+			inventory.craftingMenu.refreshCraftSlots(inventory.craftingMenu.craftableList);
+			hero.stop();
+			inventory.open(hero);
+		}
+	}
+	
 	public static void createSavesFolderIfNecessary() {
 		File f = new File(SAVE_LOC);
 		if(!f.exists()) f.mkdir();

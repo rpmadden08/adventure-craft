@@ -13,7 +13,7 @@ public class Plank extends CraftItem {
 		sprite = Sprites.sprites.get(Sprites.PLANK_ITEM);
 		numberProducedByCrafting = 4;
 		craftCost = new int[]{LOG};
-		itemsPossiblyCraftable = new int[]{TABLE_ITEM};
+		itemsPossiblyCraftable = new int[]{TABLE_ITEM, STICK};
 		//set recipes
 	}
 	

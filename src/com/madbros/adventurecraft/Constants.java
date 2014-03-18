@@ -103,7 +103,7 @@ public class Constants {
 	
 	//Game States
 	public static enum State {
-		MAIN, INVENTORY, MAIN_MENU, NEW_GAME_MENU;
+		MAIN, INVENTORY, MAIN_MENU, NEW_GAME_MENU, CRAFTING;
 	}
 	
 	//Tiles
@@ -360,6 +360,20 @@ public class Constants {
 	public static final int IRON_PICK = 97;
 	public static final int IRON_SHOVEL = 98;
 	public static final int IRON_SWORD = 99;
+	public static final int LEATHER_BOOTS = 100;
+	public static final int LEATHER_LEGGINGS = 101;
+	public static final int LEATHER_ARMOR = 102;
+	public static final int LEATHER_HAT = 103;
+	public static final int TIN_BOOTS = 104;
+	public static final int TIN_LEGGINGS = 105;
+	public static final int TIN_ARMOR = 106;
+	public static final int TIN_HELMET = 107;
+	public static final int COPPER_BOOTS = 108;
+	public static final int COPPER_LEGGINGS = 109;
+	public static final int COPPER_ARMOR = 110;
+	public static final int COPPER_HELMET = 111;
+	public static final int STICK = 112;
+	
 	
 	
 	//Clothing Types
@@ -419,9 +433,24 @@ public class Constants {
 		ITEM_HASH.put(PICK, new Pick());
 		ITEM_HASH.put(SAPLING_ITEM, new Sapling());
 		ITEM_HASH.put(IRON_HELMET, new IronHelmet());
+		ITEM_HASH.put(LEATHER_HAT, new LeatherHat());
 		ITEM_HASH.put(IRON_ARMOR, new IronArmor());
+		ITEM_HASH.put(LEATHER_ARMOR, new LeatherArmor());
 		ITEM_HASH.put(IRON_BOOTS, new IronBoots());
+		ITEM_HASH.put(LEATHER_BOOTS, new LeatherBoots());
 		ITEM_HASH.put(IRON_LEGGINGS, new IronLeggings());
+		ITEM_HASH.put(LEATHER_LEGGINGS, new LeatherLeggings());
+		
+		ITEM_HASH.put(TIN_HELMET, new TinHelmet());
+		ITEM_HASH.put(COPPER_HELMET, new CopperHelmet());
+		ITEM_HASH.put(TIN_ARMOR, new TinArmor());
+		ITEM_HASH.put(COPPER_ARMOR, new CopperArmor());
+		ITEM_HASH.put(TIN_BOOTS, new TinBoots());
+		ITEM_HASH.put(COPPER_BOOTS, new CopperBoots());
+		ITEM_HASH.put(TIN_LEGGINGS, new TinLeggings());
+		ITEM_HASH.put(COPPER_LEGGINGS, new CopperLeggings());
+		ITEM_HASH.put(STICK, new Stick());
+		
 		ITEM_HASH.put(CAMPFIRE_ITEM, new Campfire());
 		ITEM_HASH.put(BAT_WING, new BatWing());
 		ITEM_HASH.put(SEED_POTATO, new SeedPotato());

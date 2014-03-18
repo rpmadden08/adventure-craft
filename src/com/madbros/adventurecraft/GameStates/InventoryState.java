@@ -29,6 +29,7 @@ public class InventoryState extends MainState {
 			Game.renderSystem.renderHud(Game.inventory);
 			Game.renderSystem.renderText(Game.inventory, Game.batch);
 			Game.renderSystem.renderInventory(Game.hero, Game.inventory);
+			Game.renderSystem.renderInventoryPage2(Game.hero, Game.inventory);
 			Game.renderSystem.renderInventoryText(Game.inventory, Game.batch);
 		Game.batch.end();
 	}

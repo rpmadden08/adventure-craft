@@ -20,7 +20,8 @@ public class TableItem extends BlockItem32 {
 		sprite = Sprites.sprites.get(Sprites.TABLE_ITEM);
 		maxStackSize = 3;
 		numberProducedByCrafting = 1;
-		craftCost = new int[]{PLANK, PLANK, PLANK, PLANK};
+		craftCost = new int[]{PLANK};
+		craftCostAmount = new int[]{4};
 	}
 	
 	@Override

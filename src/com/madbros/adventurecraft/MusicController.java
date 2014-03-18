@@ -5,7 +5,7 @@ import com.badlogic.gdx.audio.Music;
 
 public class MusicController {
 	public int musicSelection = 0;
-	public Music music = Gdx.audio.newMusic(Gdx.files.internal("music/overworld.wav"));
+	public Music music = Gdx.audio.newMusic(Gdx.files.internal("music/swimming.wav"));
 	
 	public MusicController() {
 		
@@ -19,8 +19,8 @@ public class MusicController {
 					music.stop();
 					music.dispose();
 				}
-				music = Gdx.audio.newMusic(Gdx.files.internal("music/overworld.wav"));
-				
+				music = Gdx.audio.newMusic(Gdx.files.internal("music/swimming.wav"));
+				//music.setVolume(0);
 				music.play();
 				music.setLooping(true);
 			}
@@ -31,7 +31,7 @@ public class MusicController {
 					music.stop();
 					music.dispose();
 				}
-				music = Gdx.audio.newMusic(Gdx.files.internal("music/darkworld.wav"));
+				music = Gdx.audio.newMusic(Gdx.files.internal("music/conductingExperiments.wav"));
 				
 				music.play();
 				music.setLooping(true);

@@ -22,6 +22,9 @@ public class WoodenAxe extends ToolItem {
 		cRectR = new Rect (46,0,40,82);
 		isRepeatable = true;
 		
+		craftCost = new int[]{STICK,PLANK};
+		craftCostAmount = new int[]{1, 2};
+		
 	}
 	
 	@Override

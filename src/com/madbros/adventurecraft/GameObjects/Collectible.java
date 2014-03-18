@@ -136,7 +136,7 @@ public class Collectible extends GameObject{
 	}
 	
 	public void didCollide() {
-		Game.soundController.create(plopSound, 1);
+		Game.soundController.create(plopSound, 0.1f);
 		collectibleController.remove(this);
 		Game.inventory.add(item, stackSize);
 		Game.notificationController.add(4, sprite, absRect, item.name);

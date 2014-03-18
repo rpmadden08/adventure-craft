@@ -14,7 +14,7 @@ public class Inventory {
 	public StaticSprite selectSprite = Sprites.sprites.get(Sprites.INVENTORY_MENU_SELECTOR);
 	public StaticSprite[] menuSprites = Sprites.spriteCollections.get(Sprites.INVENTORY_MENU); // {Sprites.menuSprites1, Sprites.menuSprites2, Sprites.menuSprites3};
 	public int formerHeroAnimation;
-	
+	public CraftingMenu craftingMenu = new CraftingMenu();
 	public Slot[] invBar= new Slot[INV_LENGTH];
 	public Slot[] invBag= new Slot[INV_LENGTH * INV_HEIGHT];
 	public Slot[] invChest= new Slot[INV_LENGTH * INV_HEIGHT];
@@ -100,33 +100,59 @@ public class Inventory {
 		
 		invBar[0].item = new WoodenAxe();
 		invBar[0].item.stackSize =1;
-		invBar[1].item = new StoneAxe();
-		invBar[1].item.stackSize = 1;
-		invBar[2].item = new TinAxe();
+		invBar[1].item = new Plank();
+		invBar[1].item.stackSize = 99;
+		invBar[2].item = new TableItem();
 		invBar[2].item.stackSize = 1;
-		invBar[3].item = new CopperAxe();
-		invBar[3].item.stackSize = 1;
-		invBar[4].item = new IronAxe();
-		invBar[4].item.stackSize =1;
-		invBar[5].item = new GreenSlime();
-		invBar[5].item.stackSize = 99;
-		invBar[6].item = new BlueSlime();
-		invBar[6].item.stackSize = 99;
-		invBar[7].item = new ImpHorn();
-		invBar[7].item.stackSize = 99;
-		invBar[8].item = new BeetleShell();
-		invBar[8].item.stackSize = 99;
-		invBar[9].item = new Venom();
-		invBar[9].item.stackSize = 99;
+//		invBar[3].item = new CopperAxe();
+//		invBar[3].item.stackSize = 1;
+//		invBar[4].item = new IronAxe();
+//		invBar[4].item.stackSize =1;
+//		invBar[5].item = new GreenSlime();
+//		invBar[5].item.stackSize = 99;
+//		invBar[6].item = new BlueSlime();
+//		invBar[6].item.stackSize = 99;
+//		invBar[7].item = new ImpHorn();
+//		invBar[7].item.stackSize = 99;
+//		invBar[8].item = new BeetleShell();
+//		invBar[8].item.stackSize = 99;
+//		invBar[9].item = new Venom();
+//		invBar[9].item.stackSize = 99;
 		
-		invBag[0].item = new IronHelmet();
-		invBag[0].item.stackSize = 1;
-		invBag[1].item = new IronArmor();
-		invBag[1].item.stackSize = 1;
-		invBag[2].item = new IronLeggings();
-		invBag[2].item.stackSize = 1;
-		invBag[3].item = new IronBoots();
-		invBag[3].item.stackSize = 1;
+//		invBag[0].item = new LeatherHat();
+//		invBag[0].item.stackSize = 1;
+//		invBag[1].item = new LeatherArmor();
+//		invBag[1].item.stackSize = 1;
+//		invBag[2].item = new LeatherLeggings();
+//		invBag[2].item.stackSize = 1;
+//		invBag[3].item = new LeatherBoots();
+//		invBag[3].item.stackSize = 1;
+//		invBag[4].item = new IronBoots();
+//		invBag[4].item.stackSize = 1;
+//		invBag[5].item = new IronLeggings();
+//		invBag[5].item.stackSize = 1;
+//		invBag[6].item = new IronArmor();
+//		invBag[6].item.stackSize = 1;
+//		invBag[7].item = new IronHelmet();
+//		invBag[7].item.stackSize = 1;
+//		
+//		invBag[8].item = new TinBoots();
+//		invBag[8].item.stackSize = 1;
+//		invBag[9].item = new TinLeggings();
+//		invBag[9].item.stackSize = 1;
+//		invBag[10].item = new TinArmor();
+//		invBag[10].item.stackSize = 1;
+//		invBag[11].item = new TinHelmet();
+//		invBag[11].item.stackSize = 1;
+//		
+//		invBag[12].item = new CopperBoots();
+//		invBag[12].item.stackSize = 1;
+//		invBag[13].item = new CopperLeggings();
+//		invBag[13].item.stackSize = 1;
+//		invBag[14].item = new CopperArmor();
+//		invBag[14].item.stackSize = 1;
+//		invBag[15].item = new CopperHelmet();
+//		invBag[15].item.stackSize = 1;
 		
 
 //		invClothing[0].item = new IronHelmet();

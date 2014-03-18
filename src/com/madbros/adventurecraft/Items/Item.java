@@ -19,6 +19,7 @@ public abstract class Item {
 	public int numberProducedByCrafting = 0;
 	public int[] itemsPossiblyCraftable = {};
 	public int[] craftCost = {};
+	public int[] craftCostAmount = new int[]{1};
 	public boolean is32 = true;
 	public float originX = 2;
 	public float originY = 30;
@@ -37,6 +38,7 @@ public abstract class Item {
 	public boolean isUseable = false;
 	public boolean isFuelSource = false;
 	public int fuelAmount = 0;
+	public boolean isInactive = false;
 	
 	
 	
@@ -66,6 +68,30 @@ public abstract class Item {
 	
 	public Tile topTile(Block block) {
 		return block.getTopTile();
+	}
+	
+	public boolean areIngredientsInInventory() {
+		//boolean[] ingChecklist = new boolean[craftCost.length];
+		for(int x = 0; x < craftCost.length; x++) {
+			int currentCraftCostAmount = craftCostAmount[x];
+			for(int invBar = 0; invBar < Game.inventory.invBar.length; invBar++) {
+				if(Game.inventory.invBar[invBar].item.id == craftCost[x]) {
+					if(currentCraftCostAmount <= Game.inventory.invBar[invBar].item.stackSize) {
+						//ingChecklist[x] = true;
+						currentCraftCostAmount = currentCraftCostAmount - Game.inventory.invBar[invBar].item.stackSize;
+						break;
+					} else {
+						currentCraftCostAmount = currentCraftCostAmount - Game.inventory.invBar[invBar].item.stackSize;
+					}
+				}
+			}
+			if(currentCraftCostAmount >0) {
+				return false;
+			}
+			
+		}
+		
+		return true;
 	}
 	
 	public void renderFont(int x, int y, SpriteBatch batch) {

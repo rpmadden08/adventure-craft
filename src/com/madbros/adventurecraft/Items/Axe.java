@@ -37,7 +37,7 @@ public class Axe extends ToolItem {
 			//Game.level.autoTileHighlightedBlock();
 			calculateUsage();
 		}
-		Game.soundController.create(sound, 1);
+		Game.soundController.create(sound, 0.1f);
 		Game.particleEffectController.add("Chunks.p", 
 				Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
 

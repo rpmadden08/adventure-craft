@@ -6,7 +6,7 @@ import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class IronAxe extends ToolItem {
+public class IronAxe extends Axe {
 	public IronAxe() {
 		id = IRON_AXE;
 		name = "Iron Axe";
@@ -27,23 +27,6 @@ public class IronAxe extends ToolItem {
 	@Override
 	public IronAxe createNew() {
 		return new IronAxe();
-	}
-	public void impact() {
-		//Game.p.allowCompletion();
-		Game.level.tileBeingAttacked.currentHp -= attackPower;
-		if(Game.level.tileBeingAttacked.currentHp < 1) {
-			Game.level.highlightedBlock.deleteObjectTile();
-			Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
-			//Game.level.autoTileHighlightedBlock();
-			calculateUsage();
-		}
-		Game.soundController.create(sound, 1);
-		Game.particleEffectController.add("Chunks.p", 
-				Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
-
-//		Game.p.x= Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2);
-//		Game.p.y = Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2);
-//		Game.p.start();
 	}
 	public void useLeft() {
 		if(Game.level.tileBeingAttacked.isChoppable && isInRange == true) {

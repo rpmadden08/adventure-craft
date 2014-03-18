@@ -16,7 +16,7 @@ public class Slot {
 	private StaticSprite highlighter = Sprites.sprites.get(Sprites.PIXEL);
 	
 	private Color highlightColor = new Color(1.0f, 1.0f, 1.0f, 0.2f);
-	
+	public boolean isInactive = false;
 	public Rect slotRect;
 	
 	public Item item;
@@ -39,6 +39,12 @@ public class Slot {
 			Sprites.pixel.setColor(Color.WHITE);
 		}
 		item.render(slotRect);
+		if(isInactive) {
+			Sprites.pixel.setColor(0.2f,0.2f,0.2f,0.7f);
+			Rect newSlotRect = new Rect(slotRect.x+5, slotRect.y+5, 32, 32);
+			highlighter.draw(newSlotRect, Z_INV_HIGHLIGHT);
+			Sprites.pixel.setColor(Color.WHITE);
+		}
 	}
 	
 	/* Handle Events */
@@ -66,6 +72,19 @@ public class Slot {
 		} else {
 			handleAdditional(inv.invCrafting, inv.invCrafted);
 		}
+	}
+	
+	public void handleLeftClickCrafting(Inventory inv) {
+		//System.out.println("Need to code what happens when clicked!");
+		if(this.item.id == EMPTY) {
+			inv.craftingMenu.refreshCraftSlots(inv.craftingMenu.craftableList);
+		} else {
+			inv.craftingMenu.refreshCraftSlots(this.item.itemsPossiblyCraftable);
+		}
+	}
+	
+	public void checkIfItemHasIngredients() {
+		
 	}
 	
 	public void handleRightClick(Inventory inv) {

@@ -85,6 +85,7 @@ public class MainStateInput extends BasicInput {
 		if(!Game.hero.isAttacking) {
 			switch(key) {
 				case Keys.E: Game.toggleInventoryState(); break;
+				case Keys.C: Game.toggleCraftingState(); break;
 				case Keys.W: Game.hero.moveUp(); break;
 				case Keys.A: Game.hero.moveLeft(); break;
 				case Keys.S: Game.hero.moveDown(); break;

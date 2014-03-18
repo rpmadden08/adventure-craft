@@ -53,6 +53,20 @@ public class Sprites {
 	public static final String PLATE_TORSO_ITEM = "plateTorsoItem";
 	public static final String PLATE_LEGS_ITEM = "plateLegsItem";
 	public static final String PLATE_FEET_ITEM = "plateFeetItem";
+	
+	public static final String LEATHER_HELMET_ITEM = "leatherHatItem";
+	public static final String LEATHER_TORSO_ITEM = "leatherTorsoItem";
+	public static final String LEATHER_LEGS_ITEM = "leatherLeggingsItem";
+	public static final String LEATHER_FEET_ITEM = "leatherFeetItem";
+	public static final String TIN_HELMET_ITEM = "tinHelmetItem";
+	public static final String TIN_TORSO_ITEM = "tinTorsoItem";
+	public static final String TIN_LEGS_ITEM = "tinLeggingsItem";
+	public static final String TIN_FEET_ITEM = "tinFeetItem";
+	public static final String COPPER_HELMET_ITEM = "copperHelmetItem";
+	public static final String COPPER_TORSO_ITEM = "copperTorsoItem";
+	public static final String COPPER_LEGS_ITEM = "copperLeggingsItem";
+	public static final String COPPER_FEET_ITEM = "copperFeetItem";
+	
 	public static final String BAT = "bat";
 	public static final String BEE = "bee";
 	public static final String BEE_MINI = "beeMini";
@@ -192,7 +206,7 @@ public class Sprites {
 	public static final String ROCK = "rockA";
 	public static final String FLOWERS = "flowersA";
 	
-	public static final String STICKS = "stick";
+	public static final String STICK = "stick";
 	public static final String FIRE_STARTER = "fireStarter";
 	public static final String FIRE_PIT = "firePit";
 	public static final String CACTUS_SAPLING = "cactusSapling";
@@ -234,6 +248,45 @@ public class Sprites {
 	public static final String PLATE_FEET_SLASH_RIGHT = "plateFeetSlashRight";
 	public static final String PLATE_FEET_SLASH_UP = "plateFeetSlashUp";
 	
+	public static final String LEATHER_FEET_WALK_DOWN = "leatherFeetWalkDown";
+	public static final String LEATHER_FEET_WALK_LEFT = "leatherFeetWalkLeft";
+	public static final String LEATHER_FEET_WALK_RIGHT = "leatherFeetWalkRight";
+	public static final String LEATHER_FEET_WALK_UP = "leatherFeetWalkUp";
+	public static final String LEATHER_FEET_STAND_DOWN = "leatherFeetStandDown";
+	public static final String LEATHER_FEET_STAND_LEFT = "leatherFeetStandLeft";
+	public static final String LEATHER_FEET_STAND_RIGHT = "leatherFeetStandRight";
+	public static final String LEATHER_FEET_STAND_UP = "leatherFeetStandUp";
+	public static final String LEATHER_FEET_SLASH_DOWN = "leatherFeetSlashDown";
+	public static final String LEATHER_FEET_SLASH_LEFT = "leatherFeetSlashLeft";
+	public static final String LEATHER_FEET_SLASH_RIGHT = "leatherFeetSlashRight";
+	public static final String LEATHER_FEET_SLASH_UP = "leatherFeetSlashUp";
+	
+	public static final String TIN_FEET_WALK_DOWN = "tinFeetWalkDown";
+	public static final String TIN_FEET_WALK_LEFT = "tinFeetWalkLeft";
+	public static final String TIN_FEET_WALK_RIGHT = "tinFeetWalkRight";
+	public static final String TIN_FEET_WALK_UP = "tinFeetWalkUp";
+	public static final String TIN_FEET_STAND_DOWN = "tinFeetStandDown";
+	public static final String TIN_FEET_STAND_LEFT = "tinFeetStandLeft";
+	public static final String TIN_FEET_STAND_RIGHT = "tinFeetStandRight";
+	public static final String TIN_FEET_STAND_UP = "tinFeetStandUp";
+	public static final String TIN_FEET_SLASH_DOWN = "tinFeetSlashDown";
+	public static final String TIN_FEET_SLASH_LEFT = "tinFeetSlashLeft";
+	public static final String TIN_FEET_SLASH_RIGHT = "tinFeetSlashRight";
+	public static final String TIN_FEET_SLASH_UP = "tinFeetSlashUp";
+	
+	public static final String COPPER_FEET_WALK_DOWN = "copperFeetWalkDown";
+	public static final String COPPER_FEET_WALK_LEFT = "copperFeetWalkLeft";
+	public static final String COPPER_FEET_WALK_RIGHT = "copperFeetWalkRight";
+	public static final String COPPER_FEET_WALK_UP = "copperFeetWalkUp";
+	public static final String COPPER_FEET_STAND_DOWN = "copperFeetStandDown";
+	public static final String COPPER_FEET_STAND_LEFT = "copperFeetStandLeft";
+	public static final String COPPER_FEET_STAND_RIGHT = "copperFeetStandRight";
+	public static final String COPPER_FEET_STAND_UP = "copperFeetStandUp";
+	public static final String COPPER_FEET_SLASH_DOWN = "copperFeetSlashDown";
+	public static final String COPPER_FEET_SLASH_LEFT = "copperFeetSlashLeft";
+	public static final String COPPER_FEET_SLASH_RIGHT = "copperFeetSlashRight";
+	public static final String COPPER_FEET_SLASH_UP = "copperFeetSlashUp";
+	
 	public static final String PLATE_LEGS_WALK_DOWN = "plateLegsWalkDown";
 	public static final String PLATE_LEGS_WALK_LEFT = "plateLegsWalkLeft";
 	public static final String PLATE_LEGS_WALK_RIGHT = "plateLegsWalkRight";
@@ -246,6 +299,45 @@ public class Sprites {
 	public static final String PLATE_LEGS_SLASH_LEFT = "plateLegsSlashLeft";
 	public static final String PLATE_LEGS_SLASH_RIGHT = "plateLegsSlashRight";
 	public static final String PLATE_LEGS_SLASH_UP = "plateLegsSlashUp";
+	
+	public static final String LEATHER_LEGS_WALK_DOWN = "leatherLeggingsWalkDown";
+	public static final String LEATHER_LEGS_WALK_LEFT = "leatherLeggingsWalkLeft";
+	public static final String LEATHER_LEGS_WALK_RIGHT = "leatherLeggingsWalkRight";
+	public static final String LEATHER_LEGS_WALK_UP = "leatherLeggingsWalkUp";
+	public static final String LEATHER_LEGS_STAND_DOWN = "leatherLeggingsStandDown";
+	public static final String LEATHER_LEGS_STAND_LEFT = "leatherLeggingsStandLeft";
+	public static final String LEATHER_LEGS_STAND_RIGHT = "leatherLeggingsStandRight";
+	public static final String LEATHER_LEGS_STAND_UP = "leatherLeggingsStandUp";
+	public static final String LEATHER_LEGS_SLASH_DOWN = "leatherLeggingsSlashDown";
+	public static final String LEATHER_LEGS_SLASH_LEFT = "leatherLeggingsSlashLeft";
+	public static final String LEATHER_LEGS_SLASH_RIGHT = "leatherLeggingsSlashRight";
+	public static final String LEATHER_LEGS_SLASH_UP = "leatherLeggingsSlashUp";
+	
+	public static final String TIN_LEGS_WALK_DOWN = "tinLeggingsWalkDown";
+	public static final String TIN_LEGS_WALK_LEFT = "tinLeggingsWalkLeft";
+	public static final String TIN_LEGS_WALK_RIGHT = "tinLeggingsWalkRight";
+	public static final String TIN_LEGS_WALK_UP = "tinLeggingsWalkUp";
+	public static final String TIN_LEGS_STAND_DOWN = "tinLeggingsStandDown";
+	public static final String TIN_LEGS_STAND_LEFT = "tinLeggingsStandLeft";
+	public static final String TIN_LEGS_STAND_RIGHT = "tinLeggingsStandRight";
+	public static final String TIN_LEGS_STAND_UP = "tinLeggingsStandUp";
+	public static final String TIN_LEGS_SLASH_DOWN = "tinLeggingsSlashDown";
+	public static final String TIN_LEGS_SLASH_LEFT = "tinLeggingsSlashLeft";
+	public static final String TIN_LEGS_SLASH_RIGHT = "tinLeggingsSlashRight";
+	public static final String TIN_LEGS_SLASH_UP = "tinLeggingsSlashUp";
+	
+	public static final String COPPER_LEGS_WALK_DOWN = "copperLeggingsWalkDown";
+	public static final String COPPER_LEGS_WALK_LEFT = "copperLeggingsWalkLeft";
+	public static final String COPPER_LEGS_WALK_RIGHT = "copperLeggingsWalkRight";
+	public static final String COPPER_LEGS_WALK_UP = "copperLeggingsWalkUp";
+	public static final String COPPER_LEGS_STAND_DOWN = "copperLeggingsStandDown";
+	public static final String COPPER_LEGS_STAND_LEFT = "copperLeggingsStandLeft";
+	public static final String COPPER_LEGS_STAND_RIGHT = "copperLeggingsStandRight";
+	public static final String COPPER_LEGS_STAND_UP = "copperLeggingsStandUp";
+	public static final String COPPER_LEGS_SLASH_DOWN = "copperLeggingsSlashDown";
+	public static final String COPPER_LEGS_SLASH_LEFT = "copperLeggingsSlashLeft";
+	public static final String COPPER_LEGS_SLASH_RIGHT = "copperLeggingsSlashRight";
+	public static final String COPPER_LEGS_SLASH_UP = "copperLeggingsSlashUp";
 	
 	public static final String PLATE_HELMET_WALK_DOWN = "plateHelmetWalkDown";
 	public static final String PLATE_HELMET_WALK_LEFT = "plateHelmetWalkLeft";
@@ -260,6 +352,45 @@ public class Sprites {
 	public static final String PLATE_HELMET_SLASH_RIGHT = "plateHelmetSlashRight";
 	public static final String PLATE_HELMET_SLASH_UP = "plateHelmetSlashUp";
 	
+	public static final String LEATHER_HELMET_WALK_DOWN = "leatherHatWalkDown";
+	public static final String LEATHER_HELMET_WALK_LEFT = "leatherHatWalkLeft";
+	public static final String LEATHER_HELMET_WALK_RIGHT = "leatherHatWalkRight";
+	public static final String LEATHER_HELMET_WALK_UP = "leatherHatWalkUp";
+	public static final String LEATHER_HELMET_STAND_DOWN = "leatherHatStandDown";
+	public static final String LEATHER_HELMET_STAND_LEFT = "leatherHatStandLeft";
+	public static final String LEATHER_HELMET_STAND_RIGHT = "leatherHatStandRight";
+	public static final String LEATHER_HELMET_STAND_UP = "leatherHatStandUp";
+	public static final String LEATHER_HELMET_SLASH_DOWN = "leatherHatSlashDown";
+	public static final String LEATHER_HELMET_SLASH_LEFT = "leatherHatSlashLeft";
+	public static final String LEATHER_HELMET_SLASH_RIGHT = "leatherHatSlashRight";
+	public static final String LEATHER_HELMET_SLASH_UP = "leatherHatSlashUp";
+	
+	public static final String TIN_HELMET_WALK_DOWN = "tinHelmetWalkDown";
+	public static final String TIN_HELMET_WALK_LEFT = "tinHelmetWalkLeft";
+	public static final String TIN_HELMET_WALK_RIGHT = "tinHelmetWalkRight";
+	public static final String TIN_HELMET_WALK_UP = "tinHelmetWalkUp";
+	public static final String TIN_HELMET_STAND_DOWN = "tinHelmetStandDown";
+	public static final String TIN_HELMET_STAND_LEFT = "tinHelmetStandLeft";
+	public static final String TIN_HELMET_STAND_RIGHT = "tinHelmetStandRight";
+	public static final String TIN_HELMET_STAND_UP = "tinHelmetStandUp";
+	public static final String TIN_HELMET_SLASH_DOWN = "tinHelmetSlashDown";
+	public static final String TIN_HELMET_SLASH_LEFT = "tinHelmetSlashLeft";
+	public static final String TIN_HELMET_SLASH_RIGHT = "tinHelmetSlashRight";
+	public static final String TIN_HELMET_SLASH_UP = "tinHelmetSlashUp";
+	
+	public static final String COPPER_HELMET_WALK_DOWN = "copperHelmetWalkDown";
+	public static final String COPPER_HELMET_WALK_LEFT = "copperHelmetWalkLeft";
+	public static final String COPPER_HELMET_WALK_RIGHT = "copperHelmetWalkRight";
+	public static final String COPPER_HELMET_WALK_UP = "copperHelmetWalkUp";
+	public static final String COPPER_HELMET_STAND_DOWN = "copperHelmetStandDown";
+	public static final String COPPER_HELMET_STAND_LEFT = "copperHelmetStandLeft";
+	public static final String COPPER_HELMET_STAND_RIGHT = "copperHelmetStandRight";
+	public static final String COPPER_HELMET_STAND_UP = "copperHelmetStandUp";
+	public static final String COPPER_HELMET_SLASH_DOWN = "copperHelmetSlashDown";
+	public static final String COPPER_HELMET_SLASH_LEFT = "copperHelmetSlashLeft";
+	public static final String COPPER_HELMET_SLASH_RIGHT = "copperHelmetSlashRight";
+	public static final String COPPER_HELMET_SLASH_UP = "copperHelmetSlashUp";
+	
 	public static final String PLATE_TORSO_WALK_DOWN = "plateTorsoWalkDown";
 	public static final String PLATE_TORSO_WALK_LEFT = "plateTorsoWalkLeft";
 	public static final String PLATE_TORSO_WALK_RIGHT = "plateTorsoWalkRight";
@@ -272,6 +403,45 @@ public class Sprites {
 	public static final String PLATE_TORSO_SLASH_LEFT = "plateTorsoSlashLeft";
 	public static final String PLATE_TORSO_SLASH_RIGHT = "plateTorsoSlashRight";
 	public static final String PLATE_TORSO_SLASH_UP = "plateTorsoSlashUp";
+	
+	public static final String LEATHER_TORSO_WALK_DOWN = "leatherTorsoWalkDown";
+	public static final String LEATHER_TORSO_WALK_LEFT = "leatherTorsoWalkLeft";
+	public static final String LEATHER_TORSO_WALK_RIGHT = "leatherTorsoWalkRight";
+	public static final String LEATHER_TORSO_WALK_UP = "leatherTorsoWalkUp";
+	public static final String LEATHER_TORSO_STAND_DOWN = "leatherTorsoStandDown";
+	public static final String LEATHER_TORSO_STAND_LEFT = "leatherTorsoStandLeft";
+	public static final String LEATHER_TORSO_STAND_RIGHT = "leatherTorsoStandRight";
+	public static final String LEATHER_TORSO_STAND_UP = "leatherTorsoStandUp";
+	public static final String LEATHER_TORSO_SLASH_DOWN = "leatherTorsoSlashDown";
+	public static final String LEATHER_TORSO_SLASH_LEFT = "leatherTorsoSlashLeft";
+	public static final String LEATHER_TORSO_SLASH_RIGHT = "leatherTorsoSlashRight";
+	public static final String LEATHER_TORSO_SLASH_UP = "leatherTorsoSlashUp";
+	
+	public static final String TIN_TORSO_WALK_DOWN = "tinTorsoWalkDown";
+	public static final String TIN_TORSO_WALK_LEFT = "tinTorsoWalkLeft";
+	public static final String TIN_TORSO_WALK_RIGHT = "tinTorsoWalkRight";
+	public static final String TIN_TORSO_WALK_UP = "tinTorsoWalkUp";
+	public static final String TIN_TORSO_STAND_DOWN = "tinTorsoStandDown";
+	public static final String TIN_TORSO_STAND_LEFT = "tinTorsoStandLeft";
+	public static final String TIN_TORSO_STAND_RIGHT = "tinTorsoStandRight";
+	public static final String TIN_TORSO_STAND_UP = "tinTorsoStandUp";
+	public static final String TIN_TORSO_SLASH_DOWN = "tinTorsoSlashDown";
+	public static final String TIN_TORSO_SLASH_LEFT = "tinTorsoSlashLeft";
+	public static final String TIN_TORSO_SLASH_RIGHT = "tinTorsoSlashRight";
+	public static final String TIN_TORSO_SLASH_UP = "tinTorsoSlashUp";
+	
+	public static final String COPPER_TORSO_WALK_DOWN = "copperTorsoWalkDown";
+	public static final String COPPER_TORSO_WALK_LEFT = "copperTorsoWalkLeft";
+	public static final String COPPER_TORSO_WALK_RIGHT = "copperTorsoWalkRight";
+	public static final String COPPER_TORSO_WALK_UP = "copperTorsoWalkUp";
+	public static final String COPPER_TORSO_STAND_DOWN = "copperTorsoStandDown";
+	public static final String COPPER_TORSO_STAND_LEFT = "copperTorsoStandLeft";
+	public static final String COPPER_TORSO_STAND_RIGHT = "copperTorsoStandRight";
+	public static final String COPPER_TORSO_STAND_UP = "copperTorsoStandUp";
+	public static final String COPPER_TORSO_SLASH_DOWN = "copperTorsoSlashDown";
+	public static final String COPPER_TORSO_SLASH_LEFT = "copperTorsoSlashLeft";
+	public static final String COPPER_TORSO_SLASH_RIGHT = "copperTorsoSlashRight";
+	public static final String COPPER_TORSO_SLASH_UP = "copperTorsoSlashUp";
 	
 	public static final String SKELETON_WALK_DOWN = "skeletonWalkDown";
 	public static final String SKELETON_WALK_RIGHT = "skeletonWalkRight";
@@ -399,7 +569,7 @@ public class Sprites {
 					PLATE_LEGS_SLASH_RIGHT, PLATE_FEET_SLASH_UP, PLATE_FEET_SLASH_DOWN, PLATE_FEET_SLASH_LEFT, 
 					PLATE_FEET_SLASH_RIGHT, PICK, MOUNTAIN_COAL_TOP, MOUNTAIN_COAL_BOTTOM, SPACE, SNOW_ITEM,
 					DARK_GRASS_ITEM, DIRT_MOUNTAIN_ITEM, BARREL, BARREL_TOP, TALL_GRASS_A, TALL_GRASS_B, TALL_GRASS_C,
-					ROCK, FLOWERS, WHEAT_SPROUT, WHEAT, FIRE_STARTER, FIRE_PIT, STICKS,
+					ROCK, FLOWERS, WHEAT_SPROUT, WHEAT, FIRE_STARTER, FIRE_PIT, STICK,
 					BEE_WALK_DOWN, BEE_WALK_UP, BEE_WALK_RIGHT, BEE_WALK_LEFT,
 					BEE_STAND_DOWN, BEE_STAND_UP, BEE_STAND_RIGHT, BEE_STAND_LEFT,
 					BEE_MINI_WALK_DOWN, BEE_MINI_WALK_UP, BEE_MINI_WALK_RIGHT, BEE_MINI_WALK_LEFT,
@@ -418,6 +588,48 @@ public class Sprites {
 					WOODEN_HOE, WOODEN_AXE, STONE_AXE, STONE_HOE, STONE_PICK, STONE_SHOVEL, STONE_SWORD, TIN_AXE, TIN_HOE, TIN_PICK,
 					TIN_SHOVEL, TIN_SWORD, COPPER_AXE, COPPER_HOE, COPPER_PICK, COPPER_SHOVEL, COPPER_SWORD, IRON_AXE, IRON_HOE,
 					IRON_PICK, IRON_SHOVEL, IRON_SWORD,
+					COPPER_FEET_ITEM, COPPER_HELMET_ITEM, COPPER_TORSO_ITEM, COPPER_LEGS_ITEM, 
+					LEATHER_FEET_ITEM, LEATHER_HELMET_ITEM, LEATHER_TORSO_ITEM, LEATHER_LEGS_ITEM, 
+					TIN_FEET_ITEM, TIN_HELMET_ITEM, TIN_TORSO_ITEM, TIN_LEGS_ITEM, 
+					LEATHER_FEET_SLASH_UP, LEATHER_FEET_SLASH_DOWN, LEATHER_FEET_SLASH_LEFT, LEATHER_FEET_SLASH_RIGHT,
+					LEATHER_FEET_WALK_UP, LEATHER_FEET_WALK_DOWN, LEATHER_FEET_WALK_LEFT, LEATHER_FEET_WALK_RIGHT,
+					LEATHER_FEET_STAND_UP, LEATHER_FEET_STAND_DOWN, LEATHER_FEET_STAND_LEFT, LEATHER_FEET_STAND_RIGHT,
+					LEATHER_LEGS_SLASH_UP, LEATHER_LEGS_SLASH_DOWN, LEATHER_LEGS_SLASH_LEFT, LEATHER_LEGS_SLASH_RIGHT,
+					LEATHER_LEGS_WALK_UP, LEATHER_LEGS_WALK_DOWN, LEATHER_LEGS_WALK_LEFT, LEATHER_LEGS_WALK_RIGHT,
+					LEATHER_LEGS_STAND_UP, LEATHER_LEGS_STAND_DOWN, LEATHER_LEGS_STAND_LEFT, LEATHER_LEGS_STAND_RIGHT,
+					LEATHER_TORSO_SLASH_UP, LEATHER_TORSO_SLASH_DOWN, LEATHER_TORSO_SLASH_LEFT, LEATHER_TORSO_SLASH_RIGHT,
+					LEATHER_TORSO_WALK_UP, LEATHER_TORSO_WALK_DOWN, LEATHER_TORSO_WALK_LEFT, LEATHER_TORSO_WALK_RIGHT,
+					LEATHER_TORSO_STAND_UP, LEATHER_TORSO_STAND_DOWN, LEATHER_TORSO_STAND_LEFT, LEATHER_TORSO_STAND_RIGHT,
+					LEATHER_HELMET_SLASH_UP, LEATHER_HELMET_SLASH_DOWN, LEATHER_HELMET_SLASH_LEFT, LEATHER_HELMET_SLASH_RIGHT,
+					LEATHER_HELMET_WALK_UP, LEATHER_HELMET_WALK_DOWN, LEATHER_HELMET_WALK_LEFT, LEATHER_HELMET_WALK_RIGHT,
+					LEATHER_HELMET_STAND_UP, LEATHER_HELMET_STAND_DOWN, LEATHER_HELMET_STAND_LEFT, LEATHER_HELMET_STAND_RIGHT,
+					
+					TIN_FEET_SLASH_UP, TIN_FEET_SLASH_DOWN, TIN_FEET_SLASH_LEFT, TIN_FEET_SLASH_RIGHT,
+					TIN_FEET_WALK_UP, TIN_FEET_WALK_DOWN, TIN_FEET_WALK_LEFT, TIN_FEET_WALK_RIGHT,
+					TIN_FEET_STAND_UP, TIN_FEET_STAND_DOWN, TIN_FEET_STAND_LEFT, TIN_FEET_STAND_RIGHT,
+					TIN_LEGS_SLASH_UP, TIN_LEGS_SLASH_DOWN, TIN_LEGS_SLASH_LEFT, TIN_LEGS_SLASH_RIGHT,
+					TIN_LEGS_WALK_UP, TIN_LEGS_WALK_DOWN, TIN_LEGS_WALK_LEFT, TIN_LEGS_WALK_RIGHT,
+					TIN_LEGS_STAND_UP, TIN_LEGS_STAND_DOWN, TIN_LEGS_STAND_LEFT, TIN_LEGS_STAND_RIGHT,
+					TIN_TORSO_SLASH_UP, TIN_TORSO_SLASH_DOWN, TIN_TORSO_SLASH_LEFT, TIN_TORSO_SLASH_RIGHT,
+					TIN_TORSO_WALK_UP, TIN_TORSO_WALK_DOWN, TIN_TORSO_WALK_LEFT, TIN_TORSO_WALK_RIGHT,
+					TIN_TORSO_STAND_UP, TIN_TORSO_STAND_DOWN, TIN_TORSO_STAND_LEFT, TIN_TORSO_STAND_RIGHT,
+					TIN_HELMET_SLASH_UP, TIN_HELMET_SLASH_DOWN, TIN_HELMET_SLASH_LEFT, TIN_HELMET_SLASH_RIGHT,
+					TIN_HELMET_WALK_UP, TIN_HELMET_WALK_DOWN, TIN_HELMET_WALK_LEFT, TIN_HELMET_WALK_RIGHT,
+					TIN_HELMET_STAND_UP, TIN_HELMET_STAND_DOWN, TIN_HELMET_STAND_LEFT, TIN_HELMET_STAND_RIGHT,
+					
+					COPPER_FEET_SLASH_UP, COPPER_FEET_SLASH_DOWN, COPPER_FEET_SLASH_LEFT, COPPER_FEET_SLASH_RIGHT,
+					COPPER_FEET_WALK_UP, COPPER_FEET_WALK_DOWN, COPPER_FEET_WALK_LEFT, COPPER_FEET_WALK_RIGHT,
+					COPPER_FEET_STAND_UP, COPPER_FEET_STAND_DOWN, COPPER_FEET_STAND_LEFT, COPPER_FEET_STAND_RIGHT,
+					COPPER_LEGS_SLASH_UP, COPPER_LEGS_SLASH_DOWN, COPPER_LEGS_SLASH_LEFT, COPPER_LEGS_SLASH_RIGHT,
+					COPPER_LEGS_WALK_UP, COPPER_LEGS_WALK_DOWN, COPPER_LEGS_WALK_LEFT, COPPER_LEGS_WALK_RIGHT,
+					COPPER_LEGS_STAND_UP, COPPER_LEGS_STAND_DOWN, COPPER_LEGS_STAND_LEFT, COPPER_LEGS_STAND_RIGHT,
+					COPPER_TORSO_SLASH_UP, COPPER_TORSO_SLASH_DOWN, COPPER_TORSO_SLASH_LEFT, COPPER_TORSO_SLASH_RIGHT,
+					COPPER_TORSO_WALK_UP, COPPER_TORSO_WALK_DOWN, COPPER_TORSO_WALK_LEFT, COPPER_TORSO_WALK_RIGHT,
+					COPPER_TORSO_STAND_UP, COPPER_TORSO_STAND_DOWN, COPPER_TORSO_STAND_LEFT, COPPER_TORSO_STAND_RIGHT,
+					COPPER_HELMET_SLASH_UP, COPPER_HELMET_SLASH_DOWN, COPPER_HELMET_SLASH_LEFT, COPPER_HELMET_SLASH_RIGHT,
+					COPPER_HELMET_WALK_UP, COPPER_HELMET_WALK_DOWN, COPPER_HELMET_WALK_LEFT, COPPER_HELMET_WALK_RIGHT,
+					COPPER_HELMET_STAND_UP, COPPER_HELMET_STAND_DOWN, COPPER_HELMET_STAND_LEFT, COPPER_HELMET_STAND_RIGHT,
+					
 					
 			};
 			
@@ -546,6 +758,21 @@ public class Sprites {
 			Animation[] pants = new Animation[animationIds.length];
 			Animation[] boots = new Animation[animationIds.length];
 			
+			Animation[] leatherHelmet = new Animation[animationIds.length];
+			Animation[] leatherChest = new Animation[animationIds.length];
+			Animation[] leatherPants = new Animation[animationIds.length];
+			Animation[] leatherBoots = new Animation[animationIds.length];
+			
+			Animation[] tinHelmet = new Animation[animationIds.length];
+			Animation[] tinChest = new Animation[animationIds.length];
+			Animation[] tinPants = new Animation[animationIds.length];
+			Animation[] tinBoots = new Animation[animationIds.length];
+			
+			Animation[] copperHelmet = new Animation[animationIds.length];
+			Animation[] copperChest = new Animation[animationIds.length];
+			Animation[] copperPants = new Animation[animationIds.length];
+			Animation[] copperBoots = new Animation[animationIds.length];
+			
 			Animation[] animationsMob = new Animation[animationIdsMob.length];
 			Animation[] bat = new Animation[animationIdsMob.length];
 			Animation[] bee = new Animation[animationIdsMob.length];
@@ -584,6 +811,54 @@ public class Sprites {
 					Sprites.animations.get(PLATE_HELMET_SLASH_LEFT)
 			};
 			
+			leatherHelmet = new Animation[] {
+					Sprites.animations.get(LEATHER_HELMET_STAND_UP),
+					Sprites.animations.get(LEATHER_HELMET_STAND_DOWN),
+					Sprites.animations.get(LEATHER_HELMET_STAND_RIGHT),
+					Sprites.animations.get(LEATHER_HELMET_STAND_LEFT),
+					Sprites.animations.get(LEATHER_HELMET_WALK_UP),
+					Sprites.animations.get(LEATHER_HELMET_WALK_DOWN),
+					Sprites.animations.get(LEATHER_HELMET_WALK_RIGHT),
+					Sprites.animations.get(LEATHER_HELMET_WALK_LEFT),
+					
+					Sprites.animations.get(LEATHER_HELMET_SLASH_UP),
+					Sprites.animations.get(LEATHER_HELMET_SLASH_DOWN),
+					Sprites.animations.get(LEATHER_HELMET_SLASH_RIGHT),
+					Sprites.animations.get(LEATHER_HELMET_SLASH_LEFT)
+			};
+			
+			tinHelmet = new Animation[] {
+					Sprites.animations.get(TIN_HELMET_STAND_UP),
+					Sprites.animations.get(TIN_HELMET_STAND_DOWN),
+					Sprites.animations.get(TIN_HELMET_STAND_RIGHT),
+					Sprites.animations.get(TIN_HELMET_STAND_LEFT),
+					Sprites.animations.get(TIN_HELMET_WALK_UP),
+					Sprites.animations.get(TIN_HELMET_WALK_DOWN),
+					Sprites.animations.get(TIN_HELMET_WALK_RIGHT),
+					Sprites.animations.get(TIN_HELMET_WALK_LEFT),
+					
+					Sprites.animations.get(TIN_HELMET_SLASH_UP),
+					Sprites.animations.get(TIN_HELMET_SLASH_DOWN),
+					Sprites.animations.get(TIN_HELMET_SLASH_RIGHT),
+					Sprites.animations.get(TIN_HELMET_SLASH_LEFT)
+			};
+			
+			copperHelmet = new Animation[] {
+					Sprites.animations.get(COPPER_HELMET_STAND_UP),
+					Sprites.animations.get(COPPER_HELMET_STAND_DOWN),
+					Sprites.animations.get(COPPER_HELMET_STAND_RIGHT),
+					Sprites.animations.get(COPPER_HELMET_STAND_LEFT),
+					Sprites.animations.get(COPPER_HELMET_WALK_UP),
+					Sprites.animations.get(COPPER_HELMET_WALK_DOWN),
+					Sprites.animations.get(COPPER_HELMET_WALK_RIGHT),
+					Sprites.animations.get(COPPER_HELMET_WALK_LEFT),
+					
+					Sprites.animations.get(COPPER_HELMET_SLASH_UP),
+					Sprites.animations.get(COPPER_HELMET_SLASH_DOWN),
+					Sprites.animations.get(COPPER_HELMET_SLASH_RIGHT),
+					Sprites.animations.get(COPPER_HELMET_SLASH_LEFT)
+			};
+			
 			chest = new Animation[] {
 					Sprites.animations.get(PLATE_TORSO_STAND_UP),
 					Sprites.animations.get(PLATE_TORSO_STAND_DOWN),
@@ -598,6 +873,54 @@ public class Sprites {
 					Sprites.animations.get(PLATE_TORSO_SLASH_DOWN),
 					Sprites.animations.get(PLATE_TORSO_SLASH_RIGHT),
 					Sprites.animations.get(PLATE_TORSO_SLASH_LEFT)
+			};
+			
+			leatherChest = new Animation[] {
+					Sprites.animations.get(LEATHER_TORSO_STAND_UP),
+					Sprites.animations.get(LEATHER_TORSO_STAND_DOWN),
+					Sprites.animations.get(LEATHER_TORSO_STAND_RIGHT),
+					Sprites.animations.get(LEATHER_TORSO_STAND_LEFT),
+					Sprites.animations.get(LEATHER_TORSO_WALK_UP),
+					Sprites.animations.get(LEATHER_TORSO_WALK_DOWN),
+					Sprites.animations.get(LEATHER_TORSO_WALK_RIGHT),
+					Sprites.animations.get(LEATHER_TORSO_WALK_LEFT),
+					
+					Sprites.animations.get(LEATHER_TORSO_SLASH_UP),
+					Sprites.animations.get(LEATHER_TORSO_SLASH_DOWN),
+					Sprites.animations.get(LEATHER_TORSO_SLASH_RIGHT),
+					Sprites.animations.get(LEATHER_TORSO_SLASH_LEFT)
+			};
+			
+			tinChest = new Animation[] {
+					Sprites.animations.get(TIN_TORSO_STAND_UP),
+					Sprites.animations.get(TIN_TORSO_STAND_DOWN),
+					Sprites.animations.get(TIN_TORSO_STAND_RIGHT),
+					Sprites.animations.get(TIN_TORSO_STAND_LEFT),
+					Sprites.animations.get(TIN_TORSO_WALK_UP),
+					Sprites.animations.get(TIN_TORSO_WALK_DOWN),
+					Sprites.animations.get(TIN_TORSO_WALK_RIGHT),
+					Sprites.animations.get(TIN_TORSO_WALK_LEFT),
+					
+					Sprites.animations.get(TIN_TORSO_SLASH_UP),
+					Sprites.animations.get(TIN_TORSO_SLASH_DOWN),
+					Sprites.animations.get(TIN_TORSO_SLASH_RIGHT),
+					Sprites.animations.get(TIN_TORSO_SLASH_LEFT)
+			};
+			
+			copperChest = new Animation[] {
+					Sprites.animations.get(COPPER_TORSO_STAND_UP),
+					Sprites.animations.get(COPPER_TORSO_STAND_DOWN),
+					Sprites.animations.get(COPPER_TORSO_STAND_RIGHT),
+					Sprites.animations.get(COPPER_TORSO_STAND_LEFT),
+					Sprites.animations.get(COPPER_TORSO_WALK_UP),
+					Sprites.animations.get(COPPER_TORSO_WALK_DOWN),
+					Sprites.animations.get(COPPER_TORSO_WALK_RIGHT),
+					Sprites.animations.get(COPPER_TORSO_WALK_LEFT),
+					
+					Sprites.animations.get(COPPER_TORSO_SLASH_UP),
+					Sprites.animations.get(COPPER_TORSO_SLASH_DOWN),
+					Sprites.animations.get(COPPER_TORSO_SLASH_RIGHT),
+					Sprites.animations.get(COPPER_TORSO_SLASH_LEFT)
 			};
 			
 			pants = new Animation[] {
@@ -616,6 +939,54 @@ public class Sprites {
 					Sprites.animations.get(PLATE_LEGS_SLASH_LEFT)
 			};
 			
+			leatherPants = new Animation[] {
+					Sprites.animations.get(LEATHER_LEGS_STAND_UP),
+					Sprites.animations.get(LEATHER_LEGS_STAND_DOWN),
+					Sprites.animations.get(LEATHER_LEGS_STAND_RIGHT),
+					Sprites.animations.get(LEATHER_LEGS_STAND_LEFT),
+					Sprites.animations.get(LEATHER_LEGS_WALK_UP),
+					Sprites.animations.get(LEATHER_LEGS_WALK_DOWN),
+					Sprites.animations.get(LEATHER_LEGS_WALK_RIGHT),
+					Sprites.animations.get(LEATHER_LEGS_WALK_LEFT),
+
+					Sprites.animations.get(LEATHER_LEGS_SLASH_UP),
+					Sprites.animations.get(LEATHER_LEGS_SLASH_DOWN),
+					Sprites.animations.get(LEATHER_LEGS_SLASH_RIGHT),
+					Sprites.animations.get(LEATHER_LEGS_SLASH_LEFT)
+			};
+			
+			tinPants = new Animation[] {
+					Sprites.animations.get(TIN_LEGS_STAND_UP),
+					Sprites.animations.get(TIN_LEGS_STAND_DOWN),
+					Sprites.animations.get(TIN_LEGS_STAND_RIGHT),
+					Sprites.animations.get(TIN_LEGS_STAND_LEFT),
+					Sprites.animations.get(TIN_LEGS_WALK_UP),
+					Sprites.animations.get(TIN_LEGS_WALK_DOWN),
+					Sprites.animations.get(TIN_LEGS_WALK_RIGHT),
+					Sprites.animations.get(TIN_LEGS_WALK_LEFT),
+
+					Sprites.animations.get(TIN_LEGS_SLASH_UP),
+					Sprites.animations.get(TIN_LEGS_SLASH_DOWN),
+					Sprites.animations.get(TIN_LEGS_SLASH_RIGHT),
+					Sprites.animations.get(TIN_LEGS_SLASH_LEFT)
+			};
+			
+			copperPants = new Animation[] {
+					Sprites.animations.get(COPPER_LEGS_STAND_UP),
+					Sprites.animations.get(COPPER_LEGS_STAND_DOWN),
+					Sprites.animations.get(COPPER_LEGS_STAND_RIGHT),
+					Sprites.animations.get(COPPER_LEGS_STAND_LEFT),
+					Sprites.animations.get(COPPER_LEGS_WALK_UP),
+					Sprites.animations.get(COPPER_LEGS_WALK_DOWN),
+					Sprites.animations.get(COPPER_LEGS_WALK_RIGHT),
+					Sprites.animations.get(COPPER_LEGS_WALK_LEFT),
+
+					Sprites.animations.get(COPPER_LEGS_SLASH_UP),
+					Sprites.animations.get(COPPER_LEGS_SLASH_DOWN),
+					Sprites.animations.get(COPPER_LEGS_SLASH_RIGHT),
+					Sprites.animations.get(COPPER_LEGS_SLASH_LEFT)
+			};
+			
 			boots = new Animation[] {
 					Sprites.animations.get(PLATE_FEET_STAND_UP),
 					Sprites.animations.get(PLATE_FEET_STAND_DOWN),
@@ -630,6 +1001,54 @@ public class Sprites {
 					Sprites.animations.get(PLATE_FEET_SLASH_DOWN),
 					Sprites.animations.get(PLATE_FEET_SLASH_RIGHT),
 					Sprites.animations.get(PLATE_FEET_SLASH_LEFT)
+			};
+			
+			leatherBoots = new Animation[] {
+					Sprites.animations.get(LEATHER_FEET_STAND_UP),
+					Sprites.animations.get(LEATHER_FEET_STAND_DOWN),
+					Sprites.animations.get(LEATHER_FEET_STAND_RIGHT),
+					Sprites.animations.get(LEATHER_FEET_STAND_LEFT),
+					Sprites.animations.get(LEATHER_FEET_WALK_UP),
+					Sprites.animations.get(LEATHER_FEET_WALK_DOWN),
+					Sprites.animations.get(LEATHER_FEET_WALK_RIGHT),
+					Sprites.animations.get(LEATHER_FEET_WALK_LEFT),
+					
+					Sprites.animations.get(LEATHER_FEET_SLASH_UP),
+					Sprites.animations.get(LEATHER_FEET_SLASH_DOWN),
+					Sprites.animations.get(LEATHER_FEET_SLASH_RIGHT),
+					Sprites.animations.get(LEATHER_FEET_SLASH_LEFT)
+			};
+			
+			tinBoots = new Animation[] {
+					Sprites.animations.get(TIN_FEET_STAND_UP),
+					Sprites.animations.get(TIN_FEET_STAND_DOWN),
+					Sprites.animations.get(TIN_FEET_STAND_RIGHT),
+					Sprites.animations.get(TIN_FEET_STAND_LEFT),
+					Sprites.animations.get(TIN_FEET_WALK_UP),
+					Sprites.animations.get(TIN_FEET_WALK_DOWN),
+					Sprites.animations.get(TIN_FEET_WALK_RIGHT),
+					Sprites.animations.get(TIN_FEET_WALK_LEFT),
+					
+					Sprites.animations.get(TIN_FEET_SLASH_UP),
+					Sprites.animations.get(TIN_FEET_SLASH_DOWN),
+					Sprites.animations.get(TIN_FEET_SLASH_RIGHT),
+					Sprites.animations.get(TIN_FEET_SLASH_LEFT)
+			};
+			
+			copperBoots = new Animation[] {
+					Sprites.animations.get(COPPER_FEET_STAND_UP),
+					Sprites.animations.get(COPPER_FEET_STAND_DOWN),
+					Sprites.animations.get(COPPER_FEET_STAND_RIGHT),
+					Sprites.animations.get(COPPER_FEET_STAND_LEFT),
+					Sprites.animations.get(COPPER_FEET_WALK_UP),
+					Sprites.animations.get(COPPER_FEET_WALK_DOWN),
+					Sprites.animations.get(COPPER_FEET_WALK_RIGHT),
+					Sprites.animations.get(COPPER_FEET_WALK_LEFT),
+					
+					Sprites.animations.get(COPPER_FEET_SLASH_UP),
+					Sprites.animations.get(COPPER_FEET_SLASH_DOWN),
+					Sprites.animations.get(COPPER_FEET_SLASH_RIGHT),
+					Sprites.animations.get(COPPER_FEET_SLASH_LEFT)
 			};
 			
 			bat = new Animation[] {
@@ -679,9 +1098,21 @@ public class Sprites {
 			for(int i = 0; i < animations.length; i++) {
 				animations[i].id = i;
 				helmet[i].id = i;
+				leatherHelmet[i].id = i;
+				tinHelmet[i].id = i;
+				copperHelmet[i].id = i;
 				chest[i].id = i;
+				leatherChest[i].id = i;
+				tinChest[i].id = i;
+				copperChest[i].id = i;
 				pants[i].id = i;
+				leatherPants[i].id = i;
+				tinPants[i].id = i;
+				copperPants[i].id = i;
 				boots[i].id = i;
+				leatherBoots[i].id = i;
+				tinBoots[i].id = i;
+				copperBoots[i].id = i;
 			}
 			
 			for(int i = 0; i < animationsMob.length; i++) {
@@ -694,12 +1125,39 @@ public class Sprites {
 			AnimatedSprite animatedSprite = new AnimatedSprite(animations);
 			AnimatedSprite animatedHelmet = new AnimatedSprite(helmet);
 			animatedHelmet.stackPosition = 5;
+			AnimatedSprite animatedLeatherHelmet = new AnimatedSprite(leatherHelmet);
+			animatedLeatherHelmet.stackPosition = 5;
+			AnimatedSprite animatedTinHelmet = new AnimatedSprite(tinHelmet);
+			animatedTinHelmet.stackPosition = 5;
+			AnimatedSprite animatedCopperHelmet = new AnimatedSprite(copperHelmet);
+			animatedCopperHelmet.stackPosition = 5;
+			
 			AnimatedSprite animatedChest = new AnimatedSprite(chest);
 			animatedChest.stackPosition = 4;
+			AnimatedSprite animatedLeatherChest = new AnimatedSprite(leatherChest);
+			animatedLeatherChest.stackPosition = 4;
+			AnimatedSprite animatedTinChest = new AnimatedSprite(tinChest);
+			animatedTinChest.stackPosition = 4;
+			AnimatedSprite animatedCopperChest = new AnimatedSprite(copperChest);
+			animatedCopperChest.stackPosition = 4;
+			
 			AnimatedSprite animatedPants = new AnimatedSprite(pants);
 			animatedPants.stackPosition = 3;
+			AnimatedSprite animatedLeatherPants = new AnimatedSprite(leatherPants);
+			animatedLeatherPants.stackPosition = 3;
+			AnimatedSprite animatedTinPants = new AnimatedSprite(tinPants);
+			animatedTinPants.stackPosition = 3;
+			AnimatedSprite animatedCopperPants = new AnimatedSprite(copperPants);
+			animatedCopperPants.stackPosition = 3;
+			
 			AnimatedSprite animatedBoots = new AnimatedSprite(boots);
 			animatedBoots.stackPosition = 2;
+			AnimatedSprite animatedLeatherBoots = new AnimatedSprite(leatherBoots);
+			animatedLeatherBoots.stackPosition = 2;
+			AnimatedSprite animatedTinBoots = new AnimatedSprite(tinBoots);
+			animatedTinBoots.stackPosition = 2;
+			AnimatedSprite animatedCopperBoots = new AnimatedSprite(copperBoots);
+			animatedCopperBoots.stackPosition = 2;
 			
 			AnimatedSprite animatedBat = new AnimatedSprite(bat);
 			AnimatedSprite animatedSheep = new AnimatedSprite(sheep);
@@ -708,9 +1166,25 @@ public class Sprites {
 			
 			animatedSprites.put(HUMAN_BASE, animatedSprite);
 			animatedSprites.put(PLATE_HELMET_ITEM, animatedHelmet);
+			animatedSprites.put(LEATHER_HELMET_ITEM, animatedLeatherHelmet);
+			animatedSprites.put(TIN_HELMET_ITEM, animatedTinHelmet);
+			animatedSprites.put(COPPER_HELMET_ITEM, animatedCopperHelmet);
+			
 			animatedSprites.put(PLATE_TORSO_ITEM, animatedChest);
+			animatedSprites.put(LEATHER_TORSO_ITEM, animatedLeatherChest);
+			animatedSprites.put(TIN_TORSO_ITEM, animatedTinChest);
+			animatedSprites.put(COPPER_TORSO_ITEM, animatedCopperChest);
+			
 			animatedSprites.put(PLATE_LEGS_ITEM, animatedPants);
+			animatedSprites.put(LEATHER_LEGS_ITEM, animatedLeatherPants);
+			animatedSprites.put(TIN_LEGS_ITEM, animatedTinPants);
+			animatedSprites.put(COPPER_LEGS_ITEM, animatedCopperPants);
+			
 			animatedSprites.put(PLATE_FEET_ITEM, animatedBoots);
+			animatedSprites.put(LEATHER_FEET_ITEM, animatedLeatherBoots);
+			animatedSprites.put(TIN_FEET_ITEM, animatedTinBoots);
+			animatedSprites.put(COPPER_FEET_ITEM, animatedCopperBoots);
+			
 			animatedSprites.put(BAT, animatedBat);
 			animatedSprites.put(BEE, animatedBee);
 			animatedSprites.put(BEE_MINI, animatedBeeMini);
