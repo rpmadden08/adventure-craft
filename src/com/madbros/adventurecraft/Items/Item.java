@@ -85,6 +85,17 @@ public abstract class Item {
 					}
 				}
 			}
+			for(int invBag = 0; invBag < Game.inventory.invBag.length; invBag++) {
+				if(Game.inventory.invBag[invBag].item.id == craftCost[x]) {
+					if(currentCraftCostAmount <= Game.inventory.invBag[invBag].item.stackSize) {
+						//ingChecklist[x] = true;
+						currentCraftCostAmount = currentCraftCostAmount - Game.inventory.invBag[invBag].item.stackSize;
+						break;
+					} else {
+						currentCraftCostAmount = currentCraftCostAmount - Game.inventory.invBag[invBag].item.stackSize;
+					}
+				}
+			}
 			if(currentCraftCostAmount >0) {
 				return false;
 			}

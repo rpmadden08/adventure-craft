@@ -11,6 +11,7 @@ public class CraftingMenu {
 	public int[] craftableList = {
 		STICK, PLANK
 	};
+	public int[] currentCraftableList = craftableList;
 	
 	public CraftingMenu() {
 		int k = 0;

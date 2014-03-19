@@ -77,9 +77,10 @@ public class Slot {
 	public void handleLeftClickCrafting(Inventory inv) {
 		//System.out.println("Need to code what happens when clicked!");
 		if(this.item.id == EMPTY) {
-			inv.craftingMenu.refreshCraftSlots(inv.craftingMenu.craftableList);
+			inv.craftingMenu.currentCraftableList = inv.craftingMenu.craftableList;
 		} else {
-			inv.craftingMenu.refreshCraftSlots(this.item.itemsPossiblyCraftable);
+			inv.craftingMenu.currentCraftableList = this.item.itemsPossiblyCraftable;
+			
 		}
 	}
 	

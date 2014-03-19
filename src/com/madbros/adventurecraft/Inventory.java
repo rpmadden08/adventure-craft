@@ -181,6 +181,44 @@ public class Inventory {
 			}
 		}
 	}
+	
+	public void remove(Item removedItem, int stackSize) {
+		for(int i = 0; i < invBar.length; i++) {
+			if(invBar[i].item.id == removedItem.id ) {
+				if(stackSize > invBar[i].item.stackSize) {
+					stackSize = stackSize - invBar[i].item.stackSize;
+					invBar[i].item.stackSize = 0;
+					invBar[i].item = ITEM_HASH.get(EMPTY).createNew();
+					System.out.println(stackSize);
+				} else {
+					invBar[i].item.stackSize = invBar[i].item.stackSize - stackSize;
+					stackSize = 0;
+					if(invBar[i].item.stackSize == 0) {
+						invBar[i].item =ITEM_HASH.get(EMPTY).createNew();
+					}
+					return;
+				}
+			}
+		}
+		for(int i = 0; i < invBag.length; i++) {
+			if(invBag[i].item.id == removedItem.id ) {
+				if(stackSize > invBag[i].item.stackSize) {
+					stackSize = stackSize - invBag[i].item.stackSize;
+					invBag[i].item.stackSize = 0;
+					invBag[i].item = ITEM_HASH.get(EMPTY).createNew();
+					System.out.println(stackSize);
+				} else {
+					invBag[i].item.stackSize = invBag[i].item.stackSize - stackSize;
+					stackSize = 0;
+					if(invBag[i].item.stackSize == 0) {
+						invBag[i].item =ITEM_HASH.get(EMPTY).createNew();
+					}
+					return;
+				}
+			}
+		}
+	}
+	
 	public void add(Item addedItem, int stackSize) {
 		for(int i = 0; i < invBar.length; i++) {
 			if(invBar[i].item.id == addedItem.id ) {

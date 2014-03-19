@@ -25,7 +25,7 @@ public class CraftingStateInput extends MainStateInput {
 	public void additionalMouseDown() {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
 
-		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag};
+		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots};
 		//Boolean droppedItemInSlot = false;
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
