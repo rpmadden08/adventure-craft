@@ -15,6 +15,8 @@ public class WoodenHoe extends ToolItem {
 		sprite = Sprites.sprites.get(Sprites.WOODEN_HOE);
 		attackPower = 5;
 		isRepeatable = true;
+		craftCost = new int[]{PLANK, STICK};
+		craftCostAmount = new int[]{2, 2};
 	}
 	
 	@Override

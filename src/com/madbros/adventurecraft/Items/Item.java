@@ -19,7 +19,7 @@ public abstract class Item {
 	public int numberProducedByCrafting = 0;
 	public int[] itemsPossiblyCraftable = {};
 	public int[] craftCost = {};
-	public int[] craftCostAmount = new int[]{1};
+	public int[] craftCostAmount =new int[]{1};
 	public boolean is32 = true;
 	public float originX = 2;
 	public float originY = 30;

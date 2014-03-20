@@ -13,6 +13,8 @@ public class CopperBoots extends Clothing {
 		defensePower = 1;
 		slotType = BOOTS_SLOT;
 		maxStackSize =1;
+		craftCost = new int[]{COPPER_BAR};
+		craftCostAmount = new int[]{4};
 	}
 	
 	@Override

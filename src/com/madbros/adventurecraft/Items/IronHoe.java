@@ -15,6 +15,8 @@ public class IronHoe extends ToolItem {
 		sprite = Sprites.sprites.get(Sprites.IRON_HOE);
 		attackPower = 5;
 		isRepeatable = true;
+		craftCost = new int[]{IRON_BAR, STICK};
+		craftCostAmount = new int[]{2, 2};
 	}
 	
 	@Override

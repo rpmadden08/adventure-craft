@@ -15,6 +15,8 @@ public class TinPick extends ToolItem {
 		sprite = Sprites.sprites.get(Sprites.TIN_PICK);
 		attackPower = 5;
 		isRepeatable = true;
+		craftCost = new int[]{TIN_BAR, STICK};
+		craftCostAmount = new int[]{3, 2};
 	}
 	
 	@Override

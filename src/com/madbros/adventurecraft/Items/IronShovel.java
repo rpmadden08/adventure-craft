@@ -16,6 +16,8 @@ public class IronShovel extends ToolItem {
 		attackPower = 5;
 		is32 = false;
 		isRepeatable = true;
+		craftCost = new int[]{IRON_BAR, STICK};
+		craftCostAmount = new int[]{1, 2};
 	}
 	
 	@Override

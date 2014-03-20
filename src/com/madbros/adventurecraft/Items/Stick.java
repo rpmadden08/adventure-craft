@@ -13,7 +13,7 @@ public class Stick extends CraftItem {
 		name = "Stick";
 		sprite = Sprites.sprites.get(Sprites.STICK);
 		numberProducedByCrafting = 4;
-		itemsPossiblyCraftable = new int[]{};
+		itemsPossiblyCraftable = new int[]{WOODEN_PICK};
 		craftCost = new int[]{PLANK};
 		craftCostAmount = new int[]{2};
 		//set recipes

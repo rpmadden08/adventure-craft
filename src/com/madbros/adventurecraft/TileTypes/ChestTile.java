@@ -17,7 +17,7 @@ public class ChestTile extends CollisionTile {
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.CHEST);
 		margin = new Margin(0, 0, 0, 0);
-		id = CHEST;
+		id = CHEST_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
 		isDiggable = false;
@@ -70,7 +70,7 @@ public class ChestTile extends CollisionTile {
 		
 		
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(CHEST_ITEM, Sprites.sprites.get(Sprites.CHEST_ITEM), collectibleRect, 1);
+		Game.collectibleController.add(CHEST, Sprites.sprites.get(Sprites.CHEST_ITEM), collectibleRect, 1);
 		
 		for(int i = 0; i < Game.inventory.invChest.length; i++) {
 			if(Game.inventory.invChest[i].item.id != 0) {

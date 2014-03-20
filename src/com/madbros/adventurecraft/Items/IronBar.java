@@ -9,7 +9,7 @@ public class IronBar extends CraftItem {
 		id = IRON_BAR;
 		name = "Iron Bar";
 		sprite = Sprites.sprites.get(Sprites.IRON_BAR);
-		itemsPossiblyCraftable = new int[]{};
+		itemsPossiblyCraftable = new int[]{CAULDRON};
 	}
 	
 	@Override

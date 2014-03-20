@@ -31,7 +31,7 @@ public class FurnaceTile extends CollisionTile {
 		currentSpriteId = 0;
 		sprites = Sprites.furnaceAnimation;
 		margin = new Margin(0, 0, 0, 0);
-		id = FURNACE;
+		id = FURNACE_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
 		isDiggable = false;
@@ -137,7 +137,7 @@ public class FurnaceTile extends CollisionTile {
 		b2.layers[ABOVE_LAYER_1] = new NoTile();
 		
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(FURNACE_ITEM, Sprites.sprites.get(Sprites.FURNACE_SINGLE), collectibleRect, 1);
+		Game.collectibleController.add(FURNACE, Sprites.sprites.get(Sprites.FURNACE_SINGLE), collectibleRect, 1);
 		for(int i = 0; i < furnaceSlots.length; i++) {
 			if(furnaceSlots[i].item.id != 0) {
 				Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);

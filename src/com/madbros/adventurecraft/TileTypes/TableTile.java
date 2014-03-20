@@ -15,7 +15,7 @@ public class TableTile extends CollisionTile {
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.TABLE);
 		margin = new Margin(9, 9, 0, 11);
-		id = TABLE;
+		id = TABLE_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
 		isDiggable = false;
@@ -52,7 +52,7 @@ public class TableTile extends CollisionTile {
 		b2.layers[ABOVE_LAYER_1] = new NoTile();
 		
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(TABLE_ITEM, Sprites.sprites.get(Sprites.TABLE_ITEM), collectibleRect, 1);
+		Game.collectibleController.add(TABLE, Sprites.sprites.get(Sprites.TABLE_ITEM), collectibleRect, 1);
 		
 	}
 }

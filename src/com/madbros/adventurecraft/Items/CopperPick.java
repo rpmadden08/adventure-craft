@@ -15,6 +15,8 @@ public class CopperPick extends ToolItem {
 		sprite = Sprites.sprites.get(Sprites.COPPER_PICK);
 		attackPower = 5;
 		isRepeatable = true;
+		craftCost = new int[]{COPPER_BAR, STICK};
+		craftCostAmount = new int[]{3, 2};
 	}
 	
 	@Override

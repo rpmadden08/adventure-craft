@@ -16,6 +16,8 @@ public class CopperShovel extends ToolItem {
 		attackPower = 5;
 		is32 = false;
 		isRepeatable = true;
+		craftCost = new int[]{COPPER_BAR, STICK};
+		craftCostAmount = new int[]{1, 2};
 	}
 	
 	@Override

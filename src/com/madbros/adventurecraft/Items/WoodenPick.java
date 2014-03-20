@@ -15,6 +15,8 @@ public class WoodenPick extends ToolItem {
 		sprite = Sprites.sprites.get(Sprites.WOODEN_PICK);
 		attackPower = 5;
 		isRepeatable = true;
+		craftCost = new int[]{PLANK, STICK};
+		craftCostAmount = new int[]{3, 2};
 	}
 	
 	@Override

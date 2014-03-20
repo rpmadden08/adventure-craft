@@ -15,6 +15,8 @@ public class StoneHoe extends ToolItem {
 		sprite = Sprites.sprites.get(Sprites.STONE_HOE);
 		attackPower = 5;
 		isRepeatable = true;
+		craftCost = new int[]{STONE_MOUNTAIN_ITEM, STICK};
+		craftCostAmount = new int[]{2, 2};
 	}
 	
 	@Override

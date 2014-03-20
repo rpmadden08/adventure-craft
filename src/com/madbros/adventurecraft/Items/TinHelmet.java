@@ -13,6 +13,8 @@ public class TinHelmet extends Clothing {
 		defensePower = 1;
 		slotType = HELMET_SLOT;
 		maxStackSize =1;
+		craftCost = new int[]{TIN_BAR};
+		craftCostAmount = new int[]{5};
 	}
 	
 	@Override

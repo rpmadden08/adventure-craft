@@ -15,6 +15,8 @@ public class IronPick extends ToolItem {
 		sprite = Sprites.sprites.get(Sprites.IRON_PICK);
 		attackPower = 5;
 		isRepeatable = true;
+		craftCost = new int[]{IRON_BAR, STICK};
+		craftCostAmount = new int[]{3,2};
 	}
 	
 	@Override

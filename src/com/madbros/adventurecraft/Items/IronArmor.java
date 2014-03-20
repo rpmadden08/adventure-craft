@@ -13,6 +13,8 @@ public class IronArmor extends Clothing {
 		defensePower = 1;
 		slotType = ARMOR_SLOT;
 		maxStackSize =1;
+		craftCost = new int[]{IRON_BAR};
+		craftCostAmount = new int[]{8};
 	}
 	
 	@Override

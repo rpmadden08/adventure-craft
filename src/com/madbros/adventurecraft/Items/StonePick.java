@@ -15,6 +15,8 @@ public class StonePick extends ToolItem {
 		sprite = Sprites.sprites.get(Sprites.STONE_PICK);
 		attackPower = 5;
 		isRepeatable = true;
+		craftCost = new int[]{STONE_MOUNTAIN_ITEM, STICK};
+		craftCostAmount = new int[]{2, 3};
 	}
 	
 	@Override

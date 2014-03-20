@@ -13,6 +13,8 @@ public class CopperArmor extends Clothing {
 		defensePower = 1;
 		slotType = ARMOR_SLOT;
 		maxStackSize =1;
+		craftCost = new int[]{COPPER_BAR};
+		craftCostAmount = new int[]{8};
 	}
 	
 	@Override

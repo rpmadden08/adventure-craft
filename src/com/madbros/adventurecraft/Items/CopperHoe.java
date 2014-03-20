@@ -15,6 +15,8 @@ public class CopperHoe extends ToolItem {
 		sprite = Sprites.sprites.get(Sprites.COPPER_HOE);
 		attackPower = 5;
 		isRepeatable = true;
+		craftCost = new int[]{COPPER_BAR, STICK};
+		craftCostAmount = new int[]{2, 2};
 	}
 	
 	@Override

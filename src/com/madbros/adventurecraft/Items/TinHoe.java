@@ -15,6 +15,8 @@ public class TinHoe extends ToolItem {
 		sprite = Sprites.sprites.get(Sprites.TIN_HOE);
 		attackPower = 5;
 		isRepeatable = true;
+		craftCost = new int[]{TIN_BAR, STICK};
+		craftCostAmount = new int[]{2, 2};
 	}
 	
 	@Override

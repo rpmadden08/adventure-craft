@@ -13,6 +13,8 @@ public class CopperHelmet extends Clothing {
 		defensePower = 1;
 		slotType = HELMET_SLOT;
 		maxStackSize =1;
+		craftCost = new int[]{COPPER_BAR};
+		craftCostAmount = new int[]{5};
 	}
 	
 	@Override

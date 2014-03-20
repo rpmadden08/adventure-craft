@@ -16,6 +16,8 @@ public class TinShovel extends ToolItem {
 		attackPower = 5;
 		is32 = false;
 		isRepeatable = true;
+		craftCost = new int[]{TIN_BAR, STICK};
+		craftCostAmount = new int[]{1, 2};
 	}
 	
 	@Override

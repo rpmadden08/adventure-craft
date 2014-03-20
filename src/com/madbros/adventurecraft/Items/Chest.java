@@ -15,14 +15,15 @@ import com.madbros.adventurecraft.Utils.Helpers;
 
 public class Chest extends BlockItem32 {
 	public Chest() {
-		id = CHEST_ITEM;
+		id = CHEST;
 		name = "Chest";
-		tileId = CHEST;
+		tileId = CHEST_TILE;
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS,DARK_GRASS, SAND};
 		sprite = Sprites.sprites.get(Sprites.CHEST_ITEM);
 		maxStackSize = 99;
 		numberProducedByCrafting = 1;
-		craftCost = new int[]{PLANK, PLANK, PLANK, PLANK, PLANK, PLANK, PLANK, PLANK};
+		craftCost = new int[]{PLANK};
+		craftCostAmount = new int[]{8};
 	}
 	
 	@Override

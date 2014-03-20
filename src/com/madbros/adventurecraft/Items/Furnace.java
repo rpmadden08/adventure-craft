@@ -15,14 +15,16 @@ import com.madbros.adventurecraft.Utils.Helpers;
 
 public class Furnace extends BlockItem32 {
 	public Furnace() {
-		id = FURNACE_ITEM;
+		id = FURNACE;
 		name = "Furnace";
-		tileId = FURNACE;
+		tileId = FURNACE_TILE;
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, DARK_GRASS, GRASS, SAND};
 		sprite = Sprites.sprites.get(Sprites.FURNACE_SINGLE);
 		maxStackSize = 99;
 		numberProducedByCrafting = 1;
-		craftCost = new int[]{};
+		craftCost = new int[]{STONE_MOUNTAIN_ITEM};
+		craftCostAmount = new int[]{8};
+		
 	}
 	
 	@Override

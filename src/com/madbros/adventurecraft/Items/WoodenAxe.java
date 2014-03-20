@@ -15,6 +15,8 @@ public class WoodenAxe extends ToolItem {
 		is32 = true;
 		isInUse = false;
 		sound = "sounds/axeChop.wav";
+		craftCost = new int[]{PLANK, STICK};
+		craftCostAmount = new int[]{3, 2};
 		
 		cRectU = new Rect (0,-6,82,32);
 		cRectD = new Rect (0,54,82,32);

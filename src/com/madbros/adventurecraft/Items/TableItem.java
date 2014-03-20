@@ -13,8 +13,8 @@ import com.madbros.adventurecraft.Utils.Helpers;
 
 public class TableItem extends BlockItem32 {
 	public TableItem() {
-		id = TABLE_ITEM;
-		tileId = TABLE;
+		id = TABLE;
+		tileId = TABLE_TILE;
 		name = "Wooden Table";
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, DARK_GRASS, GRASS, SAND};
 		sprite = Sprites.sprites.get(Sprites.TABLE_ITEM);

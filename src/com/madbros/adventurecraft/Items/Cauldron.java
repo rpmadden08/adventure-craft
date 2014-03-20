@@ -13,14 +13,15 @@ import com.madbros.adventurecraft.Utils.Helpers;
 
 public class Cauldron extends BlockItem32 {
 	public Cauldron() {
-		id = CAULDRON_ITEM;
-		tileId = CAULDRON;
+		id = CAULDRON;
+		tileId = CAULDRON_TILE;
 		name = "Cauldron";
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS, SAND};
 		sprite = Sprites.sprites.get(Sprites.CAULDRON_SINGLE);
 		maxStackSize = 99;
 		numberProducedByCrafting = 1;
-		craftCost = new int[]{};
+		craftCost = new int[]{IRON_BAR};
+		craftCostAmount = new int[]{5};
 	}
 	
 	@Override

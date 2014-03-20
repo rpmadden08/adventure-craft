@@ -16,6 +16,8 @@ public class WoodenShovel extends ToolItem {
 		attackPower = 5;
 		is32 = false;
 		isRepeatable = true;
+		craftCost = new int[]{PLANK, STICK};
+		craftCostAmount = new int[]{1, 2};
 	}
 	
 	@Override

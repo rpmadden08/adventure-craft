@@ -13,6 +13,8 @@ public class LeatherBoots extends Clothing {
 		defensePower = 1;
 		slotType = BOOTS_SLOT;
 		maxStackSize =1;
+		craftCost = new int[]{PLANK};
+		craftCostAmount = new int[]{4};
 	}
 	
 	@Override

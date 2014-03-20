@@ -21,6 +21,8 @@ public class CopperAxe extends ToolItem {
 		cRectL = new Rect (-22,0,40,82);
 		cRectR = new Rect (46,0,40,82);
 		isRepeatable = true;
+		craftCost = new int[]{COPPER_BAR, STICK};
+		craftCostAmount = new int[]{3, 2};
 		
 	}
 	

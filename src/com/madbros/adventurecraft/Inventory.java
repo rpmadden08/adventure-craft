@@ -102,12 +102,12 @@ public class Inventory {
 		invBar[0].item.stackSize =1;
 		invBar[1].item = new Plank();
 		invBar[1].item.stackSize = 99;
-		invBar[2].item = new TableItem();
+		invBar[2].item = new IronHoe();
 		invBar[2].item.stackSize = 1;
-//		invBar[3].item = new CopperAxe();
-//		invBar[3].item.stackSize = 1;
-//		invBar[4].item = new IronAxe();
-//		invBar[4].item.stackSize =1;
+		invBar[3].item = new CopperPick();
+		invBar[3].item.stackSize = 1;
+		invBar[4].item = new TomatoSprout();
+		invBar[4].item.stackSize =20;
 //		invBar[5].item = new GreenSlime();
 //		invBar[5].item.stackSize = 99;
 //		invBar[6].item = new BlueSlime();
@@ -189,7 +189,7 @@ public class Inventory {
 					stackSize = stackSize - invBar[i].item.stackSize;
 					invBar[i].item.stackSize = 0;
 					invBar[i].item = ITEM_HASH.get(EMPTY).createNew();
-					System.out.println(stackSize);
+					//System.out.println(stackSize);
 				} else {
 					invBar[i].item.stackSize = invBar[i].item.stackSize - stackSize;
 					stackSize = 0;

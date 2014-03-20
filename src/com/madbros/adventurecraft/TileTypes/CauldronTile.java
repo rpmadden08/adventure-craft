@@ -31,7 +31,7 @@ public class CauldronTile extends CollisionTile {
 		currentSpriteId = 0;
 		sprites = Sprites.cauldronStatic;
 		margin = new Margin(0, 0, 0, 0);
-		id = CAULDRON;
+		id = CAULDRON_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
 		isDiggable = false;
@@ -133,7 +133,7 @@ public class CauldronTile extends CollisionTile {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(CAULDRON_ITEM, Sprites.sprites.get(Sprites.CAULDRON_SINGLE), collectibleRect, 1);
+		Game.collectibleController.add(CAULDRON, Sprites.sprites.get(Sprites.CAULDRON_SINGLE), collectibleRect, 1);
 		for(int i = 0; i < cauldronSlots.length; i++) {
 			if(cauldronSlots[i].item.id != 0) {
 				Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
