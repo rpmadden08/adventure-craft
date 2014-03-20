@@ -11,7 +11,7 @@ public class Coal extends CraftItem {
 		isFuelSource = true;
 		fuelAmount = 60;
 		sprite = Sprites.sprites.get(Sprites.COAL_ITEM);
-		itemsPossiblyCraftable = new int[]{PLANK};
+		itemsPossiblyCraftable = new int[]{TORCH};
 	}
 	
 	@Override

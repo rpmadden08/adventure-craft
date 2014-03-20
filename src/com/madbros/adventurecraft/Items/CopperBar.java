@@ -9,7 +9,7 @@ public class CopperBar extends CraftItem {
 		id = COPPER_BAR;
 		name = "Copper Bar";
 		sprite = Sprites.sprites.get(Sprites.COPPER_BAR);
-		itemsPossiblyCraftable = new int[]{};
+		itemsPossiblyCraftable = new int[]{COPPER_ARMOR, COPPER_AXE, COPPER_BOOTS, COPPER_HELMET, COPPER_HOE, COPPER_LEGGINGS, COPPER_PICK, COPPER_SHOVEL, COPPER_SWORD};
 	}
 	
 	@Override

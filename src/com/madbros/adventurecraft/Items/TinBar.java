@@ -9,7 +9,7 @@ public class TinBar extends CraftItem {
 		id = TIN_BAR;
 		name = "Tin Bar";
 		sprite = Sprites.sprites.get(Sprites.TIN_BAR);
-		itemsPossiblyCraftable = new int[]{};
+		itemsPossiblyCraftable = new int[]{TIN_ARMOR, TIN_AXE, TIN_BOOTS, TIN_HELMET, TIN_HOE, TIN_LEGGINGS, TIN_PICK, TIN_SHOVEL, TIN_SWORD};
 	}
 	
 	@Override

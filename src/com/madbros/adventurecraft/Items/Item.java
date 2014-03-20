@@ -16,7 +16,7 @@ public abstract class Item {
 	public String name = "This item needs a name";
 	public int stackSize = 1;
 	public int maxStackSize = 1;
-	public int numberProducedByCrafting = 0;
+	public int numberProducedByCrafting = 1;
 	public int[] itemsPossiblyCraftable = {};
 	public int[] craftCost = {};
 	public int[] craftCostAmount =new int[]{1};

@@ -25,7 +25,7 @@ public class WoodenAxe extends ToolItem {
 		isRepeatable = true;
 		
 		craftCost = new int[]{STICK,PLANK};
-		craftCostAmount = new int[]{1, 2};
+		craftCostAmount = new int[]{2, 3};
 		
 	}
 	
