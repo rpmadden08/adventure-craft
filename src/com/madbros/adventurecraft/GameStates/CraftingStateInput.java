@@ -3,6 +3,7 @@ package com.madbros.adventurecraft.GameStates;
 import static com.madbros.adventurecraft.Constants.OBJECT_LAYER;
 
 import com.badlogic.gdx.Input.Keys;
+import com.madbros.adventurecraft.Constants.State;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.TileTypes.CauldronTile;
 import com.madbros.adventurecraft.TileTypes.FurnaceTile;
@@ -18,13 +19,17 @@ public class CraftingStateInput extends MainStateInput {
 		}
 	}
 	
-	public void additionalKeyUp(int key) {
-		
+	@Override
+	public boolean touchUp(int x, int y, int pointer, int button) {
+		super.touchUp(x, y, pointer, button);
+		if(Game.currentState.type == State.CRAFTING) Game.inventory.craftingMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
+		return false;
 	}
 	
 	public void additionalMouseDown() {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
-
+		if(Game.currentState.type == State.CRAFTING) Game.inventory.craftingMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
+		
 		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots};
 		//Boolean droppedItemInSlot = false;
 		for(int i = 0; i < slots.length; i++) {
@@ -42,7 +47,9 @@ public class CraftingStateInput extends MainStateInput {
 	}
 	
 	public void additionalMouseMove() {
+		
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
+		if(Game.currentState.type == State.CRAFTING) Game.inventory.craftingMenu.handleMouseMove(mouseRect.x, mouseRect.y);
 			Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag};
 			for(int i = 0; i < slots.length; i++) {
 				for(int j = 0; j < slots[i].length; j++) {

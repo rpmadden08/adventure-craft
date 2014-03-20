@@ -523,6 +523,7 @@ public class RenderSystem {
 		for(int i = 0; i < inv.craftingMenu.craftSlots.length; i++) {
 			inv.craftingMenu.craftSlots[i].render();
 		}
+		
 	}
 	
 	public void renderInventoryPage2(Hero hero, Inventory inv) {

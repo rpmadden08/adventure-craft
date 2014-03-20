@@ -33,6 +33,7 @@ public class CraftingState extends MainState {
 			Game.renderSystem.renderCrafting(Game.inventory);
 			Game.renderSystem.renderCraftingText(Game.inventory, Game.batch);
 			Game.renderSystem.renderInventoryText(Game.inventory, Game.batch);
+			Game.inventory.craftingMenu.render();
 		Game.batch.end();
 	}
 }
