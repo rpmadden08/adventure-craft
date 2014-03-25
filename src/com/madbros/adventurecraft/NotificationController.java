@@ -24,8 +24,19 @@ public class NotificationController {
 		}
 	}
 	
-	public void add(int iD, Sprite sprite, Rect notificationRect, String notificationText) {
-		notifications.add(new Notification(this,sprite, notificationText));
+	public void add(int iD, Sprite sprite, Rect notificationRect, String notificationText, int notificationStackSize, int id) {
+		boolean notificationAlreadyExists = false;
+		for(int i = 0; i < notifications.size(); i++) {
+		
+			if(notifications.get(i).id == id) {
+				notificationAlreadyExists = true;
+				notifications.get(i).notificationStackSize = notifications.get(i).notificationStackSize + notificationStackSize;
+				notifications.get(i).life = 300;
+			} 
+		}
+		if(notificationAlreadyExists == false) {
+			notifications.add(new Notification(this,sprite, notificationText, notificationStackSize, id));
+		}
 	}
 
 	public void remove(Notification notification) {
