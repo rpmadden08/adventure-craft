@@ -1,4 +1,4 @@
-package com.madbros.adventurecraft;
+package com.madbros.adventurecraft.LevelTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
@@ -24,7 +24,7 @@ public class ChunkGenerator {
     	} else if(chunkGroundLayer[m][n] == 2) {
     		if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 3 - 1 &&
  				   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
- 					
+ 				
     			if(getRandom(0.1, m, n)) {
     				return COAL_MARK; // Return Barrel (1001)
     			} else if(getRandom(0.2, m, n)) {

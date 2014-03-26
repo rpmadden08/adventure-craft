@@ -143,6 +143,8 @@ public class Sprites {
 	public static final String IRON_PICK= "ironPick";
 	public static final String IRON_SHOVEL= "ironShovel";
 	public static final String IRON_SWORD= "ironSword";
+	public static final String STAIRS_UP = "stairsUpBottom";
+	public static final String STAIRS_DOWN = "stairsDown";
 	
 	
 	
@@ -201,6 +203,11 @@ public class Sprites {
 	public static final String CORN_TILE = "corn";
 	public static final String ARTICHOKE_TILE = "artichoke";
 	public static final String PEPPER_TILE = "pepper";
+	
+	public static final String STAIRS_UP_TOP_TILE = "stairsUpTopTile";
+	public static final String STAIRS_UP_BOTTOM_TILE = "stairsUpBottomTile";
+	public static final String STAIRS_DOWN_TILE = "stairsDownTile";
+	
 	
 	
 	public static final String ROCK = "rockA";

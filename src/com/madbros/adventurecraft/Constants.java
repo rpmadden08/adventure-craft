@@ -30,6 +30,9 @@ public class Constants {
 	public static final String CHUNKS_FOLDER = "chunks/";
 	public static final String CHESTS_FOLDER = "chests/";
 	public static final String FURNACES_FOLDER = "furnaces/";
+	public static final String OVERWORLD_FOLDER = "overworld/";
+	public static final String UNDERGROUND_1_FOLDER = "underground1/";
+	
 	
 	public static final Color HIGHLIGHT_COLOR = new Color(0.8f,0.8f,0.8f,0.6f);
 	

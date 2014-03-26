@@ -17,6 +17,7 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector3;
 import com.madbros.adventurecraft.GameObjects.*;
 import com.madbros.adventurecraft.GameStates.*;
+import com.madbros.adventurecraft.LevelTypes.*;
 import com.madbros.adventurecraft.Menus.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Systems.AnimationSystem;
@@ -50,6 +51,8 @@ public class Game implements ApplicationListener {
 	public static CollectibleController collectibleController;
 	public static NotificationController notificationController;
 	public static ParticleEffectController particleEffectController;
+	
+	public static String currentLevel = OVERWORLD_FOLDER;
 	
 	public static Inventory inventory;
 	public static MiniMap map;
@@ -143,6 +146,25 @@ public class Game implements ApplicationListener {
 		}
 	}
 	
+	public static void switchLevel() {
+		if(currentLevel == OVERWORLD_FOLDER) {
+			level.saveGame.saveGame();
+			level.saveCurrentChunks();
+			currentLevel = UNDERGROUND_1_FOLDER;
+			
+			level = new Underground1();
+			//level = new Overworld();
+		} else if (currentLevel == UNDERGROUND_1_FOLDER) {
+			level.saveGame.saveGame();
+			level.saveCurrentChunks();
+			currentLevel = OVERWORLD_FOLDER;
+			level = new Overworld();
+		}
+			
+		level.loadGame();
+		hero = new Hero();
+	}
+	
 	public static void createSavesFolderIfNecessary() {
 		File f = new File(SAVE_LOC);
 		if(!f.exists()) f.mkdir();
@@ -159,8 +181,12 @@ public class Game implements ApplicationListener {
 		File f = new File(loc);
 		if(!f.exists()) f.mkdir();
 		
-		f = new File(Game.locOfSavedGame + CHUNKS_FOLDER);
+		f = new File(Game.locOfSavedGame + CHUNKS_FOLDER);  
 		if(!f.exists()) f.mkdir();
+//		f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + OVERWORLD_FOLDER);  
+//		if(!f.exists()) f.mkdir();
+//		f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + UNDERGROUND_1_FOLDER);  
+//		if(!f.exists()) f.mkdir();
 		f = new File(Game.locOfSavedGame + CHESTS_FOLDER);
 		if(!f.exists()) f.mkdir();
 		f = new File(Game.locOfSavedGame + FURNACES_FOLDER);
@@ -168,7 +194,8 @@ public class Game implements ApplicationListener {
 		//make other folders...
 		
 		
-		level = new Level();
+		//level = new Level();
+		level = new Overworld();
 		hero = new Hero();
 		mobController = new MobController();
 		soundController = new SoundController();
@@ -183,6 +210,7 @@ public class Game implements ApplicationListener {
 		
 		collisionDetectionSystem = new CollisionDetectionSystem();
 		level.loadGame();
+		isNewGame = false;
 		
 		Game.currentState = new MainState();
 	}

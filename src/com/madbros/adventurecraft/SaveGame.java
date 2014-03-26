@@ -199,7 +199,7 @@ public class SaveGame {
 		Kryo kryo = new Kryo();
 
 		try {
-			Output output = new Output(new FileOutputStream(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv"));
+			Output output = new Output(new FileOutputStream(Game.locOfSavedGame +CHUNKS_FOLDER + Game.currentLevel + chunkX + "-" + chunkY + ".sv"));
 			
 			kryo.writeObject(output, chunkData);
 			output.close();
@@ -214,7 +214,7 @@ public class SaveGame {
 		Kryo kryo = new Kryo();
 		
 		try {
-			Input input = new Input(new FileInputStream(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv"));
+			Input input = new Input(new FileInputStream(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel +chunkX + "-" + chunkY + ".sv"));
 			chunk = kryo.readObject(input, Chunk.class);
 			input.close();
 		} catch (IOException e) {
