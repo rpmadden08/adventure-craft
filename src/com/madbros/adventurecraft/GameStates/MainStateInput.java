@@ -87,6 +87,7 @@ public class MainStateInput extends BasicInput {
 				case Keys.E: Game.toggleInventoryState(); break;
 				case Keys.C: Game.toggleCraftingState(); break;
 				case Keys.J: Game.switchLevel(); break;
+				case Keys.T: Game.level.teleportHero(158,158); break;
 				case Keys.W: Game.hero.moveUp(); break;
 				case Keys.A: Game.hero.moveLeft(); break;
 				case Keys.S: Game.hero.moveDown(); break;

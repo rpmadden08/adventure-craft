@@ -16,6 +16,7 @@ public class WaterTile extends CollisionTile {
 		autoTileID = id;
 		isDiggable = false;
 		sprites = Sprites.waterSprites;
+		is32 = false;
 	}
 	
 	public Tile createNew() {

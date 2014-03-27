@@ -19,6 +19,7 @@ public class DirtTile extends Tile {
 		id = DIRT;
 		autoTileID = id;
 		isTillable = true;
+		is32 = false;
 	}
 	
 	public Tile createNew() {

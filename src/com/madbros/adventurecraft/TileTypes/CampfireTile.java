@@ -20,9 +20,14 @@ public class CampfireTile extends LightTile {
 		currentHp = 1;
 		maxHp = 1;
 	}
+	
 	@Override
 	public LightTile createNew() {
 		return new CampfireTile();
+	}
+	
+	public void update(int x,int y) {
+		System.out.println(cRect.x);
 	}
 	
 	@Override

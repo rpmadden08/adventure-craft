@@ -173,6 +173,10 @@ public class Constants {
 	public static final int TOMATO_TOP = 60;
 	public static final int CORN_TOP = 61;
 	public static final int PEPPER_TOP = 62;
+	public static final int STAIRS_UP_BOTTOM_TILE = 63;
+	public static final int STAIRS_UP_TOP_TILE = 64;
+	public static final int STAIRS_DOWN_TILE = 65;
+	
 	
 
 	
@@ -376,6 +380,8 @@ public class Constants {
 	public static final int COPPER_ARMOR = 110;
 	public static final int COPPER_HELMET = 111;
 	public static final int STICK = 112;
+	public static final int STAIRS_UP = 113;
+	public static final int STAIRS_DOWN = 114;
 	
 	
 	
@@ -453,6 +459,9 @@ public class Constants {
 		ITEM_HASH.put(TIN_LEGGINGS, new TinLeggings());
 		ITEM_HASH.put(COPPER_LEGGINGS, new CopperLeggings());
 		ITEM_HASH.put(STICK, new Stick());
+		
+		ITEM_HASH.put(STAIRS_UP, new StairsUp());
+		ITEM_HASH.put(STAIRS_DOWN, new StairsDown());
 		
 		ITEM_HASH.put(CAMPFIRE_ITEM, new Campfire());
 		ITEM_HASH.put(BAT_WING, new BatWing());
@@ -594,6 +603,10 @@ public class Constants {
 		TILE_HASH.put(CARROT_TILE, new CarrotTile());
 		TILE_HASH.put(PEPPER_TILE, new PepperTile());
 		TILE_HASH.put(ARTICHOKE_TILE, new ArtichokeTile());
+		
+		TILE_HASH.put(STAIRS_UP_TOP_TILE, new StairsUpTopTile());
+		TILE_HASH.put(STAIRS_UP_BOTTOM_TILE, new StairsUpBottomTile());
+		TILE_HASH.put(STAIRS_DOWN_TILE, new StairsDownTile());
 		
 		
 		

@@ -18,6 +18,7 @@ public class SnowTile extends Tile {
 		sprites = Sprites.spriteCollections.get(Sprites.SNOW);
 		id = SNOW;
 		autoTileID = id;
+		is32 = false;
 	}
 	
 	public Tile createNew() {

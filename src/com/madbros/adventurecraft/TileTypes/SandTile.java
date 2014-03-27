@@ -18,6 +18,7 @@ public class SandTile extends Tile {
 		sprites = Sprites.spriteCollections.get(Sprites.DESERT);
 		id = SAND;
 		autoTileID = id;
+		is32 = false;
 	}
 	
 	public Tile createNew() {

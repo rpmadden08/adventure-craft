@@ -20,6 +20,7 @@ public class DarkGrassTile extends Tile {
 		id = DARK_GRASS;
 		autoTileID = id;
 		isDiggable = true;
+		is32 = false;
 	}
 
 	public Tile createNew() {

@@ -21,6 +21,7 @@ public class DarkDirtTile extends Tile{
 		id = DARK_DIRT;
 		isDiggable = true;
 		autoTile = 0;
+		is32 = false;
 	}
 	
 	public Tile createNew() {

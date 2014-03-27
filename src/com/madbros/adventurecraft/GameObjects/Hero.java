@@ -33,8 +33,8 @@ public class Hero extends Actor {
 				  CHARACTER_SIZE, CHARACTER_SIZE);
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_BASE));
 		margin = new Margin(17, 17, 29, 1);
-		moveSpeed = 0.5f; //0.19
-		currentSpeed = 0.5f; //0.19
+		moveSpeed = 0.19f; //0.19
+		currentSpeed = 0.19f; //0.19
 		knockBackSpeed = 0.3f;
 		hitSound = "sounds/pain.wav";
 		
@@ -62,7 +62,7 @@ public class Hero extends Actor {
 		weaponXArray[3] = new int[]{41,39,45,50,48};
 		weaponYArray[3] = new int[]{17,15,14,4,2};
 		weaponRArray[3] = new float[]{45,90,45,20,0};
-		
+		stopDown();
 		
 		
 	}
@@ -157,7 +157,7 @@ public class Hero extends Actor {
 			if(deathWait > 60) {
 				Game.level.saveGame.saveGame();
 				Game.level.saveCurrentChunks();
-				Game.level = new Level();
+				Game.level.loadGame();
 				Game.hero = new Hero();
 			} else {
 				deathWait ++;
@@ -289,7 +289,6 @@ public class Hero extends Actor {
 			Game.level.offsetX += TILE_SIZE;
 			Game.level.renderRect.x--;
 		}
-		//System.out.println("x="+absRect.x);
 	}
 	
 	public void yMove(int moveY) {

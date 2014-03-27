@@ -18,6 +18,7 @@ public class HoleTile extends CollisionTile {
 		id = HOLE;
 		autoTileID = id;
 		isDiggable = false;
+		is32 = false;
 	}
 	
 	public Tile createNew() {

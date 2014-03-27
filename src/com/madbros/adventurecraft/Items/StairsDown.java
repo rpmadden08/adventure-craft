@@ -9,24 +9,36 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.Utils.Helpers;
+import com.madbros.adventurecraft.Utils.Margin;
 
-public class Campfire extends BlockItem32 {
-	public Campfire() {
-		id = CAMPFIRE_ITEM;
-		name = "Campfire";
-		tileId = CAMPFIRE;
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS};
-		sprite = Sprites.sprites.get(Sprites.CAMPFIRE_SINGLE);
+public class StairsDown extends BlockItem32 {
+	public StairsDown() {
+		id = STAIRS_DOWN;
+		name = "Stairs Down";
+		tileId = STAIRS_DOWN_TILE;
+		placeableTileIds = new int[]{DIRT};
+		sprite = Sprites.sprites.get(Sprites.STAIRS_DOWN);
+		
+		
 	}
 	
 	@Override
 	public BlockItem32 createNew() {
-		return new Campfire();
+		return new StairsDown();
 	}
 
 	@Override
+	public void useRight() {
+		if(Game.currentLevel != UNDERGROUND_1_FOLDER) {
+			super.useRight();
+		}
+	}
+	
+	@Override
 	public void placeTile(Block hB, Tile tile) {
 		hB.layers[OBJECT_LAYER] = tile;
+		hB.layers[OBJECT_LAYER].cRect.x = hB.getAbsX()* TILE_SIZE;
+		hB.layers[OBJECT_LAYER].cRect.y = hB.getAbsY()* TILE_SIZE;
 		//hB.setCollisionTile((CollisionTile)tile);
 	}
 

@@ -19,6 +19,7 @@ public class StoneMountainCoalBottomTile extends CollisionTile {
 		z = Z_OBJECT;
 		isDiggable = false;
 		isPickable = true;
+		is32 = false;
 	}
 	
 	public void render(int x, int y, int layer) {

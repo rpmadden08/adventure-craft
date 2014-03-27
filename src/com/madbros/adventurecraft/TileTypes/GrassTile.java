@@ -19,6 +19,7 @@ public class GrassTile extends Tile {
 		id = GRASS;
 		autoTileID = id;
 		isTillable = true;
+		is32 = false;
 	}
 
 	public Tile createNew() {

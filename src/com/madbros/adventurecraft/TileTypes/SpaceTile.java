@@ -18,6 +18,7 @@ public class SpaceTile extends CollisionTile {
 		id = SPACE;
 		autoTileID = id;
 		isDiggable = false;
+		is32 = false;
 	}
 	
 	public Tile createNew() {

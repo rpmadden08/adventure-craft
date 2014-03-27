@@ -153,6 +153,7 @@ public class Game implements ApplicationListener {
 			currentLevel = UNDERGROUND_1_FOLDER;
 			
 			level = new Underground1();
+			
 			//level = new Overworld();
 		} else if (currentLevel == UNDERGROUND_1_FOLDER) {
 			level.saveGame.saveGame();
@@ -161,7 +162,7 @@ public class Game implements ApplicationListener {
 			level = new Overworld();
 		}
 			
-		level.loadGame();
+		//level.loadGame();
 		hero = new Hero();
 	}
 	

@@ -7,9 +7,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.Items.Clothing;
 import com.madbros.adventurecraft.Items.IronArmor;
 import com.madbros.adventurecraft.LevelTypes.ChunkGenerator;
+import com.madbros.adventurecraft.LevelTypes.Overworld;
+import com.madbros.adventurecraft.LevelTypes.Underground1;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Point;
@@ -50,6 +53,8 @@ public class Level {
 //total chunks * chunk_size * Tile_size /2 - character
 	public int spawnX = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE /2 - CHARACTER_SIZE/2;
 	public int spawnY = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE /2 - CHARACTER_SIZE/2;
+	public int masterSpawnX = spawnX;
+	public int masterSpawnY = spawnY;
 //	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+900;
 	//public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+700;
 	
@@ -114,6 +119,8 @@ public class Level {
 			SaveGameData saveData = saveGame.saveData();
 			spawnX = saveData.heroX;
 			spawnY = saveData.heroY;
+			masterSpawnX = spawnX;
+			masterSpawnY = spawnY;
 			startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 			startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 			chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
@@ -166,6 +173,28 @@ public class Level {
 		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 	}
 	
+	
+	public void teleportHero(int x, int y) {
+		//THIS FUNCTION IS INCOMPLETE (in particular it doesn't address switching between levels)
+		System.out.println(spawnX);
+		Game.hero.absRect.x = x *TILE_SIZE;
+		Game.hero.absRect.y = y *TILE_SIZE;
+		System.out.println(Game.hero.absRect.x);
+		
+		offsetX = 15;
+		offsetY = 16;
+		saveGame.saveGame();
+		saveCurrentChunks();
+		Game.level = new Level();
+		Game.hero = new Hero();
+		Game.hero.absRect.x = Game.hero.absRect.x + 15;
+		//offsetX = 15;
+		
+		
+		
+	}
+	
+	
 	public void loadGame() {
 		if(Game.isNewGame) {
 			saveGame.saveGame();
@@ -211,6 +240,14 @@ public class Level {
 			}
 			Game.timeSpentInPreviousSaves = saveData.gameTime;
 		}
+	}
+	
+	public int getXFromAbs(int abs) {
+		return abs - (chunkRect.x * CHUNK_SIZE);
+	}
+	
+	public int getYFromAbs(int abs) {
+		return abs - (chunkRect.y * CHUNK_SIZE);
 	}
 	
 	public void saveCurrentChunks() {

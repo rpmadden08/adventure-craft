@@ -16,7 +16,7 @@ public abstract class Tile {
 	public int maxHp = 10;
 	public int currentHp = 10;
 	
-
+	public boolean is32 = true;
 	public int currentSpriteId = 0;
 	public int layer = DARK_DIRT_LAYER;
 	public float z = Z_DARK_DIRT;
@@ -46,10 +46,6 @@ public abstract class Tile {
 	
 	public void render(int x, int y) {
 		sprites[autoTile].draw(x, y, z);
-//		sprites[topLeftAutoTile].draw(x, y, z);
-//		sprites[topRightAutoTile].draw(x+TEXTURE_SIZE, y, z);
-//		sprites[bottomLeftAutoTile].draw(x, y+TEXTURE_SIZE, z);
-//		sprites[bottomRightAutoTile].draw(x+TEXTURE_SIZE, y+TEXTURE_SIZE, z);
 	}
 	
 	public void renderHp(int x, int y) {
@@ -79,6 +75,47 @@ public abstract class Tile {
 	}
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {}
+	
+	public void deleteThisTile(int x, int y, Block[][] activeBlocks) {
+		if(is32 == true) {
+			deleteMe(x,y, activeBlocks);
+		} else {
+			int finalX = x;
+			int finalY = y;
+			if(x % 2 == 0 && y % 2 == 0) {
+
+			} else if (x % 2 == 1 && y % 2 == 0) {
+				finalX= x-1;
+			} else if (x % 2 == 0 && y % 2 == 1) {
+				finalY = y-1;
+			} else {
+				finalX = x-1;
+				finalY = y-1;
+			}
+			activeBlocks[finalX][finalY].layers[OBJECT_LAYER].deleteMe(finalX, finalY, activeBlocks);
+			activeBlocks[finalX+1][finalY].layers[OBJECT_LAYER].deleteMe(finalX+1, finalY, activeBlocks);
+			activeBlocks[finalX][finalY+1].layers[OBJECT_LAYER].deleteMe(finalX, finalY+1, activeBlocks);
+			activeBlocks[finalX+1][finalY+1].layers[OBJECT_LAYER].deleteMe(finalX+1, finalY+1, activeBlocks);
+			
+			activeBlocks[finalX][finalY].layers[OBJECT_LAYER] = new NoTile();
+			activeBlocks[finalX+1][finalY].layers[OBJECT_LAYER] = new NoTile();
+			activeBlocks[finalX][finalY+1].layers[OBJECT_LAYER] = new NoTile();
+			activeBlocks[finalX+1][finalY+1].layers[OBJECT_LAYER] = new NoTile();
+			
+			activeBlocks[finalX][finalY].collisionTile = null;
+			activeBlocks[finalX+1][finalY].collisionTile = null;
+			activeBlocks[finalX][finalY+1].collisionTile = null;
+			activeBlocks[finalX+1][finalY+1].collisionTile = null;
+			
+			activeBlocks[finalX][finalY].layers[ABOVE_LAYER_1].deleteMe(finalX, finalY, activeBlocks);
+			activeBlocks[finalX+1][finalY].layers[ABOVE_LAYER_1].deleteMe(finalX+1, finalY, activeBlocks);
+			activeBlocks[finalX][finalY+1].layers[ABOVE_LAYER_1].deleteMe(finalX, finalY+1, activeBlocks);
+			activeBlocks[finalX+1][finalY+1].layers[ABOVE_LAYER_1].deleteMe(finalX+1, finalY+1, activeBlocks);
+			
+			Game.level.autoTileBlock(finalX, finalY);
+			
+		}
+	}
 	
 	public void highlightEntireObject(int x, int y, int drawX, int drawY) {
 		
