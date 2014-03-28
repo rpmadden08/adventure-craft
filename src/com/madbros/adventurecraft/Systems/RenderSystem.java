@@ -24,8 +24,8 @@ import com.madbros.adventurecraft.GameObjects.Collectible;
 import com.madbros.adventurecraft.GameObjects.GameObject;
 import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.GameObjects.Mob;
-import com.madbros.adventurecraft.GameObjects.Notification;
 import com.madbros.adventurecraft.Items.Item;
+import com.madbros.adventurecraft.Notifications.Notification;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.TileTypes.CauldronTile;
@@ -443,10 +443,12 @@ public class RenderSystem {
 	
 	public void renderNotifications(NotificationController notificationController, SpriteBatch batch) {
 		for(Notification notification : notificationController.notifications) {
+			
 //			int x = notification.absRect.x - startX;
 //			int y = notification.absRect.y - startY;
 			notification.renderFont(notification.absRect.x, notification.absRect.y, batch);
-			notification.sprite.draw(notification.absRect.x-(int)notification.size-38, notification.absRect.y, Z_CHARACTER);
+			notification.render();
+			//notification.sprite.draw(notification.absRect.x-(int)notification.size-38, notification.absRect.y, Z_CHARACTER);
 			
 			//renderCollisionRects(collectible, x, y);
 		}

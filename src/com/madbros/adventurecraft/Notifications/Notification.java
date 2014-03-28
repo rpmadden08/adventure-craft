@@ -1,11 +1,14 @@
-package com.madbros.adventurecraft.GameObjects;
+package com.madbros.adventurecraft.Notifications;
 
+
+import static com.madbros.adventurecraft.Constants.Z_CHARACTER;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.NotificationController;
+import com.madbros.adventurecraft.GameObjects.GameObject;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -19,14 +22,11 @@ public class Notification extends GameObject {
 	public float size;
 	
 	
-	public Notification(NotificationController notificationController, Sprite spriteID, String notificationText, int notificationStackSize, int id) {
+	public Notification(NotificationController notificationController, String notificationText) {
 		this.notificationController = notificationController;
 		absRect = new Rect(Game.currentScreenSizeX, Game.currentScreenSizeY-32, 32,32);
 		margin = new Margin(0, 0, 0, 0);
-		sprite = (com.madbros.adventurecraft.Sprites.Sprite) spriteID;
 		this.notificationText = notificationText;
-		this.notificationStackSize = notificationStackSize;
-		this.id = id;
 		//item = ITEM_HASH.get(iD).createNew();
 		
 		
@@ -44,6 +44,9 @@ public class Notification extends GameObject {
 		
 		
 	}
+	
+	public void render() {}
+	
 	
 	public void renderFont(int x, int y, SpriteBatch batch) {
 		Color c = new Color(1.0f, 1.0f, 1.0f, 0.8f);

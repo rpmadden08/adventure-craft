@@ -139,7 +139,7 @@ public class Collectible extends GameObject{
 		Game.soundController.create(plopSound, 0.1f);
 		collectibleController.remove(this);
 		Game.inventory.add(item, stackSize);
-		Game.notificationController.add(4, sprite, absRect, item.name, stackSize, item.id);
+		Game.notificationController.addCollectible(sprite, absRect, item.name, stackSize, item.id);
 		
 	}
 }

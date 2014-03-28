@@ -28,6 +28,9 @@ public class StairsUp extends BlockItem32 {
 	public void useRight() {
 		if(Game.currentLevel != OVERWORLD_FOLDER) {
 			super.useRight();
+		} else {
+			Game.notificationController.addAlert("Cannot go up!");
+			Game.level.hasPlacedItemOnClick = true;
 		}
 	}
 

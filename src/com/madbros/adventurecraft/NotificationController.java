@@ -1,7 +1,8 @@
 package com.madbros.adventurecraft;
 
 import java.util.ArrayList;
-import com.madbros.adventurecraft.GameObjects.Notification;
+
+import com.madbros.adventurecraft.Notifications.*;
 import com.madbros.adventurecraft.Sprites.Sprite;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -24,7 +25,7 @@ public class NotificationController {
 		}
 	}
 	
-	public void add(int iD, Sprite sprite, Rect notificationRect, String notificationText, int notificationStackSize, int id) {
+	public void addCollectible(Sprite sprite, Rect notificationRect, String notificationText, int notificationStackSize, int id) {
 		boolean notificationAlreadyExists = false;
 		for(int i = 0; i < notifications.size(); i++) {
 		
@@ -35,7 +36,21 @@ public class NotificationController {
 			} 
 		}
 		if(notificationAlreadyExists == false) {
-			notifications.add(new Notification(this,sprite, notificationText, notificationStackSize, id));
+			notifications.add(new CollectibleNotification(this,sprite, notificationText, notificationStackSize, id));
+		}
+	}
+	
+	public void addAlert(String notificationText) {
+		boolean notificationAlreadyExists = false;
+		for(int i = 0; i < notifications.size(); i++) {
+		
+			if(notifications.get(i).notificationText.equals(notificationText)) {
+				notificationAlreadyExists = true;
+				notifications.get(i).life = 300;
+			} 
+		}
+		if(notificationAlreadyExists == false) {
+			notifications.add(new AlertNotification(this, notificationText));
 		}
 	}
 
