@@ -6,16 +6,15 @@ import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Helpers;
 
-public class Plank extends CraftItem {
-	public Plank() {
-		id = PLANK;
-		name = "Plank";
-		sprite = Sprites.sprites.get(Sprites.PLANK_ITEM);
-		numberProducedByCrafting = 4;
-		craftCost = new int[]{LOG};
+public class Leather extends CraftItem {
+	public Leather() {
+		id = LEATHER;
+		name = "Leather";
+		sprite = Sprites.sprites.get(Sprites.LEATHER);
+		numberProducedByCrafting = 1;
+		craftCost = new int[]{};
 		craftCostAmount = new int[]{1};
-		itemsPossiblyCraftable = new int[]{CHEST,STICK, TABLE,WOODEN_AXE, WOODEN_HOE, WOODEN_PICK, WOODEN_SHOVEL, WOODEN_SWORD};
-		//set recipes
+		itemsPossiblyCraftable = new int[]{LEATHER_ARMOR, LEATHER_BOOTS, LEATHER_HAT, LEATHER_LEGGINGS};
 	}
 	
 	@Override
@@ -31,7 +30,7 @@ public class Plank extends CraftItem {
 	}
 	
 	@Override
-	public Plank createNew() {
-		return new Plank();
+	public Leather createNew() {
+		return new Leather();
 	}
 }

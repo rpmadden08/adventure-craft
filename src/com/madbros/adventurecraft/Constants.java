@@ -382,6 +382,8 @@ public class Constants {
 	public static final int STICK = 112;
 	public static final int STAIRS_UP = 113;
 	public static final int STAIRS_DOWN = 114;
+	public static final int LEATHER = 115;
+	
 	
 	
 	
@@ -511,6 +513,7 @@ public class Constants {
 		ITEM_HASH.put(GREEN_SLIME, new GreenSlime());
 		ITEM_HASH.put(EYEBALL, new Eyeball());
 		ITEM_HASH.put(IMP_HORN, new ImpHorn());
+		ITEM_HASH.put(LEATHER, new Leather());
 		
 		ITEM_HASH.put(WOODEN_AXE, new WoodenAxe());
 		ITEM_HASH.put(WOODEN_HOE, new WoodenHoe());

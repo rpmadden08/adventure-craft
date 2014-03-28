@@ -13,7 +13,7 @@ public class LeatherLeggings extends Clothing {
 		defensePower = 1;
 		slotType = LEGGINGS_SLOT;
 		maxStackSize =1;
-		craftCost = new int[]{PLANK};
+		craftCost = new int[]{LEATHER};
 		craftCostAmount = new int[]{7};
 	}
 	

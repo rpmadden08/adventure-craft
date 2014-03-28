@@ -13,7 +13,7 @@ public class LeatherHat extends Clothing {
 		defensePower = 1;
 		slotType = HELMET_SLOT;
 		maxStackSize =1;
-		craftCost = new int[]{PLANK};
+		craftCost = new int[]{LEATHER};
 		craftCostAmount = new int[]{5};
 	}
 	
