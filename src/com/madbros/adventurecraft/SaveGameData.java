@@ -7,6 +7,7 @@ public class SaveGameData {
 	public int heroY;
 	public int offsetX;
 	public int offsetY;
+	public String currentLevel;
 	
 	public int hP;
 	public int maxHP;

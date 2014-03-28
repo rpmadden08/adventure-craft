@@ -6,6 +6,12 @@ import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.TileTypes.*;
 
 public class Underground1 extends Level{
+	public Underground1() {
+		//currentLevel = UNDERGROUND_1_FOLDER;
+		Game.currentLevel = UNDERGROUND_1_FOLDER;
+		initialize();
+		
+	}
 	public void createNewBlock(int i, int j, int chunkX, int chunkY, int x, int y, Underground1ChunkGenerator chunkGenerator) {
 		Block block;  //top left
 		Block block2; //top right
@@ -395,6 +401,6 @@ public class Underground1 extends Level{
 			}
 			i++; j = 0;
 		}
-		saveGame.saveChunk(currentChunk, chunkX, chunkY);
+		Game.saveGame.saveChunk(currentChunk, chunkX, chunkY);
 	}
 }

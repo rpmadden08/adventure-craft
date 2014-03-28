@@ -41,12 +41,13 @@ public class Level {
 	
 	public ArrayList<Block> blooming = new ArrayList<Block>();
 	
-	public SaveGame saveGame = new SaveGame();
+	//public SaveGame saveGame = new SaveGame();
 	public Point test = new Point(0, 0);
 	public float noise;
 	public float noiseTemperature;
 	public float noiseRainfall;
 	public int debuggerTest = 0;
+	//public String currentLevel = OVERWORLD_FOLDER;
 	
 	//Keeps track of what part of the activeBlocks array we're rendering. Starts off in the very center.
 	//renderRect, spawnX, spawnY should all be the same
@@ -111,12 +112,17 @@ public class Level {
 	
 	
 	public Level() {	
+		initialize();
+	}
+	
+	public void initialize() {
 		Game.gameStartTime = Time.getTime();
 		if(Game.isNewGame) {
 			if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
 			if(Game.getCenterScreenY() % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.getCenterScreenY() % TILE_SIZE;
 		} else {
-			SaveGameData saveData = saveGame.saveData();
+			SaveGameData saveData = Game.saveGame.saveData();
+			//Game.currentLevel = saveData.currentLevel;
 			spawnX = saveData.heroX;
 			spawnY = saveData.heroY;
 			masterSpawnX = spawnX;
@@ -176,14 +182,12 @@ public class Level {
 	
 	public void teleportHero(int x, int y) {
 		//THIS FUNCTION IS INCOMPLETE (in particular it doesn't address switching between levels)
-		System.out.println(spawnX);
 		Game.hero.absRect.x = x *TILE_SIZE;
 		Game.hero.absRect.y = y *TILE_SIZE;
-		System.out.println(Game.hero.absRect.x);
 		
 		offsetX = 15;
 		offsetY = 16;
-		saveGame.saveGame();
+		Game.saveGame.saveGame();
 		saveCurrentChunks();
 		Game.level = new Level();
 		Game.hero = new Hero();
@@ -197,10 +201,10 @@ public class Level {
 	
 	public void loadGame() {
 		if(Game.isNewGame) {
-			saveGame.saveGame();
+			Game.saveGame.saveGame();
 			//NO NEED to saveCurrentChunks();  It's already been done...
 		} else {
-			SaveGameData saveData = saveGame.saveData();
+			SaveGameData saveData = Game.saveGame.saveData();
 			Game.hero.hP = saveData.hP;
 			Game.hero.maxHP = saveData.maxHP;
 			Game.hero.mP = saveData.mP;
@@ -272,7 +276,7 @@ public class Level {
 			x2++; y2 = 0;
 		}
 		
-		saveGame.saveChunk(chunk, chunkX, chunkY);
+		Game.saveGame.saveChunk(chunk, chunkX, chunkY);
 	}
 	
 	private void highlight64() {
@@ -939,7 +943,7 @@ public class Level {
 	public void loadChunk(int startX, int startY, int chunkX, int chunkY) {
 		isLoading = true;
 		
-		Block[][] chunk = saveGame.loadChunk(chunkX, chunkY);
+		Block[][] chunk = Game.saveGame.loadChunk(chunkX, chunkY);
 		int i = 0; int j = 0;
 		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
 			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
@@ -989,7 +993,7 @@ public class Level {
 			}
 			i++; j = 0;
 		}
-		saveGame.saveChunk(currentChunk, chunkX, chunkY);
+		Game.saveGame.saveChunk(currentChunk, chunkX, chunkY);
 	}
 
 	

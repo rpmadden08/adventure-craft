@@ -53,7 +53,7 @@ public class Game implements ApplicationListener {
 	public static ParticleEffectController particleEffectController;
 	
 	public static String currentLevel = OVERWORLD_FOLDER;
-	
+	public static SaveGame saveGame = new SaveGame();
 	public static Inventory inventory;
 	public static MiniMap map;
 	public static RenderSystem renderSystem;
@@ -102,9 +102,9 @@ public class Game implements ApplicationListener {
 //				System.out.println(x);
 //				System.out.println(y);
 				System.out.println(inventory.invChest[0].item.id);
-				level.saveGame.saveChest(Game.inventory.invChest,x, y);
+				saveGame.saveChest(Game.inventory.invChest,x, y);
 				
-				level.saveGame.saveGame();
+				saveGame.saveGame();
 				level.saveCurrentChunks();
 			} else if(inventory.furnaceOn) {
 				inventory.furnaceOn = false;
@@ -147,18 +147,18 @@ public class Game implements ApplicationListener {
 	}
 	
 	public static void switchLevel() {
-		if(currentLevel == OVERWORLD_FOLDER) {
-			level.saveGame.saveGame();
+		if(Game.currentLevel == OVERWORLD_FOLDER) {
+			saveGame.saveGame();
 			level.saveCurrentChunks();
-			currentLevel = UNDERGROUND_1_FOLDER;
+			//currentLevel = UNDERGROUND_1_FOLDER;
 			
 			level = new Underground1();
 			
 			//level = new Overworld();
-		} else if (currentLevel == UNDERGROUND_1_FOLDER) {
-			level.saveGame.saveGame();
+		} else if (Game.currentLevel == UNDERGROUND_1_FOLDER) {
+			saveGame.saveGame();
 			level.saveCurrentChunks();
-			currentLevel = OVERWORLD_FOLDER;
+			//currentLevel = OVERWORLD_FOLDER;
 			level = new Overworld();
 		}
 			
@@ -196,7 +196,17 @@ public class Game implements ApplicationListener {
 		
 		
 		//level = new Level();
-		level = new Overworld();
+		if(isNewGame == false) {
+			SaveGame saveGame = new SaveGame();
+			SaveGameData saveData = saveGame.saveData();
+			if(saveData.currentLevel.equals(UNDERGROUND_1_FOLDER)) {
+				level = new Underground1();
+			} else {
+				level = new Overworld();
+			}
+		} else {
+			level = new Overworld();
+		}
 		hero = new Hero();
 		mobController = new MobController();
 		soundController = new SoundController();
@@ -289,7 +299,7 @@ public class Game implements ApplicationListener {
 
 	public static void quit() {
 		if(level != null) {
-			Game.level.saveGame.saveGame();
+			Game.saveGame.saveGame();
 			Game.level.saveCurrentChunks();
 		}
 		batch.dispose();
