@@ -176,6 +176,7 @@ public class Constants {
 	public static final int STAIRS_UP_BOTTOM_TILE = 63;
 	public static final int STAIRS_UP_TOP_TILE = 64;
 	public static final int STAIRS_DOWN_TILE = 65;
+	public static final int FIRE_PIT_TILE = 66;
 	
 	
 
@@ -383,6 +384,8 @@ public class Constants {
 	public static final int STAIRS_UP = 113;
 	public static final int STAIRS_DOWN = 114;
 	public static final int LEATHER = 115;
+	public static final int FIRE_PIT = 116;
+	public static final int FIRE_STARTER = 117;
 	
 	
 	
@@ -464,6 +467,8 @@ public class Constants {
 		
 		ITEM_HASH.put(STAIRS_UP, new StairsUp());
 		ITEM_HASH.put(STAIRS_DOWN, new StairsDown());
+		ITEM_HASH.put(FIRE_PIT, new FirePit());
+		ITEM_HASH.put(FIRE_STARTER, new FireStarter());
 		
 		ITEM_HASH.put(CAMPFIRE_ITEM, new Campfire());
 		ITEM_HASH.put(BAT_WING, new BatWing());
@@ -548,6 +553,7 @@ public class Constants {
 		
 		
 		TILE_HASH.put(GRASS, new GrassTile());
+		TILE_HASH.put(FIRE_PIT_TILE, new FirePitTile());
 		TILE_HASH.put(DIRT, new DirtTile());
 		TILE_HASH.put(WATER, new WaterTile());
 		TILE_HASH.put(TREE, new TreeTile());

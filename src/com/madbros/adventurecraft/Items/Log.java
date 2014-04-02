@@ -11,7 +11,7 @@ public class Log extends CraftItem {
 		isFuelSource = true;
 		fuelAmount = 60;
 		sprite = Sprites.sprites.get(Sprites.LOG_ITEM);
-		itemsPossiblyCraftable = new int[]{PLANK};
+		itemsPossiblyCraftable = new int[]{PLANK, FIRE_PIT};
 	}
 	
 	@Override

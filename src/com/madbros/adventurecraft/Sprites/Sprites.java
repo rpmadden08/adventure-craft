@@ -208,6 +208,7 @@ public class Sprites {
 	public static final String STAIRS_UP_TOP_TILE = "stairsUpTopTile";
 	public static final String STAIRS_UP_BOTTOM_TILE = "stairsUpBottomTile";
 	public static final String STAIRS_DOWN_TILE = "stairsDownTile";
+	public static final String FIRE_PIT_TILE = "firePitTile";
 	
 	
 	
@@ -638,6 +639,7 @@ public class Sprites {
 					COPPER_HELMET_WALK_UP, COPPER_HELMET_WALK_DOWN, COPPER_HELMET_WALK_LEFT, COPPER_HELMET_WALK_RIGHT,
 					COPPER_HELMET_STAND_UP, COPPER_HELMET_STAND_DOWN, COPPER_HELMET_STAND_LEFT, COPPER_HELMET_STAND_RIGHT,
 					STAIRS_UP, STAIRS_DOWN, STAIRS_UP_BOTTOM_TILE, STAIRS_UP_TOP_TILE, STAIRS_DOWN_TILE, LEATHER,
+					FIRE_PIT_TILE,
 					
 					
 			};

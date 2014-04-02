@@ -108,9 +108,9 @@ public class Inventory {
 		invBar[3].item.stackSize = 1;
 		invBar[4].item = new StairsDown();
 		invBar[4].item.stackSize =1;
-		invBar[5].item = new StairsUp();
+		invBar[5].item = new FireStarter();
 		invBar[5].item.stackSize = 1;
-		invBar[6].item = new Campfire();
+		invBar[6].item = new FirePit();
 		invBar[6].item.stackSize = 1;
 //		invBar[7].item = new ImpHorn();
 //		invBar[7].item.stackSize = 99;

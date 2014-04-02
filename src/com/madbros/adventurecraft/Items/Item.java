@@ -118,6 +118,7 @@ public abstract class Item {
 	
 	public void useRight() {
 		//place 
+		System.out.println("TEST");
 		if(Game.level.tileBeingAttacked.isUseable) {
 			Game.level.tileBeingAttacked.rightClicked();
 		}
