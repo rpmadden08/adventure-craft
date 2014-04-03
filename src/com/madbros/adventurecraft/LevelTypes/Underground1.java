@@ -18,9 +18,9 @@ public class Underground1 extends Level{
 		Block block3; //bottom left
 		Block block4; //bottom right
 		PTotal++;
-		noise = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
-		noiseTemperature = perlin2.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
-		noiseRainfall = perlin3.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
+		//noise = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
+		//noiseTemperature = perlin2.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
+	//	noiseRainfall = perlin3.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
 		
 		int absX = i*TILE_SIZE+chunkX*CHUNK_SIZE*TILE_SIZE;
 		int absY = j*TILE_SIZE+chunkY*CHUNK_SIZE*TILE_SIZE;
@@ -364,6 +364,9 @@ public class Underground1 extends Level{
 		
 //		block.mapHeight = noise;
 	}
+	
+	
+	
 	
 	@Override
 	public void createNewChunk(int startX, int startY, int chunkX, int chunkY) {

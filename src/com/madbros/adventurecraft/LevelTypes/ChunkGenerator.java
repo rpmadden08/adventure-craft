@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.madbros.adventurecraft.Game;
+
 public class ChunkGenerator {
 	public float chunkNoiseElevation[][] = new float [CHUNK_SIZE+20][CHUNK_SIZE+20];
 	public float chunkNoiseRainfall[][] = new float [CHUNK_SIZE+20][CHUNK_SIZE+20];
@@ -117,40 +119,51 @@ public class ChunkGenerator {
 
 	public int getGroundLayerGeneration(int m, int n, Random rand) {
 		//BELOW SEA LEVEL
-		if(chunkNoiseElevation[m][n] < -0.1) {//FIXME Should be < -0.1
+		if(chunkNoiseElevation[m][n] < 0.5) {//FIXME Should be < 0.5
+			Game.oceanTally = Game.oceanTally +1;
 			return 1;
     	//MOUNTAIN
-    	} else if(chunkNoiseElevation[m][n] > 0.1) {
+    	} else if(chunkNoiseElevation[m][n] > 0.87) {
+    		Game.mountainTally = Game.mountainTally +1;
     		return 2;
     	} else {
     		//DESERT
-    		if(chunkNoiseTemperature[m][n] < -0.1 && chunkNoiseRainfall[m][n] < -0.1) {
+    		if(chunkNoiseTemperature[m][n] < 0.5 && chunkNoiseRainfall[m][n] < 0.5) {
+    			Game.desertTally = Game.desertTally +1;
     			return 3;
         		//GRASSLAND
-    		} else if(chunkNoiseTemperature[m][n] >= -0.1 && chunkNoiseTemperature[m][n] < 0.1 && chunkNoiseRainfall[m][n] < -0.1){
+    		} else if(chunkNoiseTemperature[m][n] >= 0.5 && chunkNoiseTemperature[m][n] < 0.87 && chunkNoiseRainfall[m][n] < 0.5){
+    			Game.grasslandTally = Game.grasslandTally +1;
     			return 4;
 	    		//GRASSLAND
-    		}else if(chunkNoiseTemperature[m][n] < -0.1 && chunkNoiseRainfall[m][n] >= -0.1 && chunkNoiseRainfall[m][n] < 0.1){
+    		}else if(chunkNoiseTemperature[m][n] < 0.5 && chunkNoiseRainfall[m][n] >= 0.5 && chunkNoiseRainfall[m][n] < 0.87){
+    			Game.grasslandTally = Game.grasslandTally +1;
     			return 4;
 	    		//Forest
-    		}else if(chunkNoiseTemperature[m][n] >= -0.1 && chunkNoiseTemperature[m][n] < 0.1 && chunkNoiseRainfall[m][n] >= -0.1 && chunkNoiseRainfall[m][n] < 0.1){
+    		}else if(chunkNoiseTemperature[m][n] >= 0.5 && chunkNoiseTemperature[m][n] < 0.87 && chunkNoiseRainfall[m][n] >= 0.5 && chunkNoiseRainfall[m][n] < 0.87){
+    			Game.forestTally = Game.forestTally +1;
     			return 5;
 	    		
 				//RainForest
-    		}else if(chunkNoiseTemperature[m][n] < -0.1 && chunkNoiseRainfall[m][n] >= 0.1){
-    			return 6;
+    		}else if(chunkNoiseTemperature[m][n] < 0.5 && chunkNoiseRainfall[m][n] >= 0.87){
+    			Game.desertTally = Game.desertTally +1;
+    			return 3;
 				//Swamp
-    		}else if(chunkNoiseTemperature[m][n] >= -0.1 && chunkNoiseTemperature[m][n] < 0.1 && chunkNoiseRainfall[m][n] >= 0.1){
-    			return 7;
+    		}else if(chunkNoiseTemperature[m][n] >= 0.5 && chunkNoiseTemperature[m][n] < 0.87 && chunkNoiseRainfall[m][n] >= 0.87){
+    			Game.desertTally = Game.desertTally +1;
+    			return 3;
 	    		//Taiga (snowy forest)
-    		}else if(chunkNoiseRainfall[m][n] >= -0.1 && chunkNoiseRainfall[m][n] < 0.1 && chunkNoiseTemperature[m][n] >= 0.1){
-    			return 8;
+    		}else if(chunkNoiseRainfall[m][n] >= 0.5 && chunkNoiseRainfall[m][n] < 0.87 && chunkNoiseTemperature[m][n] >= 0.87){
+    			Game.forestTally = Game.forestTally +1;
+    			return 5;
 				//Tundra (snowy)
-    		}else if(chunkNoiseRainfall[m][n] < -0.1 && chunkNoiseTemperature[m][n] >= 0.1){
-    			return 9;
+    		}else if(chunkNoiseRainfall[m][n] < 0.5 && chunkNoiseTemperature[m][n] >= 0.87){
+    			Game.desertTally = Game.desertTally +1;
+    			return 3;
 	    		//HOLES
     		}else {
-    			return 0;
+    			Game.desertTally = Game.desertTally +1;
+    			return 3;
     			
     		}
     	}

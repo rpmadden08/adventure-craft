@@ -27,8 +27,8 @@ import com.madbros.adventurecraft.TileTypes.TreeRainTile;
 import com.madbros.adventurecraft.TileTypes.TreeTile;
 import com.madbros.adventurecraft.TileTypes.WaterTile;
 
-public class Overworld extends Level{
-	public Overworld() {
+public class OriginalOverworld extends Level{
+	public OriginalOverworld() {
 		//currentLevel = OVERWORLD_FOLDER;
 		Game.currentLevel = OVERWORLD_FOLDER;
 		initialize();
@@ -41,10 +41,10 @@ public class Overworld extends Level{
 		Block block3; //bottom left
 		Block block4; //bottom right
 		PTotal++;
-//		noise = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
-//		noiseTemperature = perlin2.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
-//		noiseRainfall = perlin3.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
-//		
+		noise = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
+		noiseTemperature = perlin2.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
+		noiseRainfall = perlin3.Noise(4 * ((chunkX*CHUNK_SIZE)+i) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j) / (float)size, 0);
+		
 		int absX = i*TILE_SIZE+chunkX*CHUNK_SIZE*TILE_SIZE;
 		int absY = j*TILE_SIZE+chunkY*CHUNK_SIZE*TILE_SIZE;
 		int m = i+CHUNK_BLOOM_MARGIN;
@@ -384,20 +384,19 @@ public class Overworld extends Level{
 		currentChunk[i+1][j] = block2;
 		currentChunk[i][j+1] = block3;
 		currentChunk[i+1][j+1] = block4;
+		
+//		block.mapHeight = noise;
 	}
 	
 	public void createNewChunk(int startX, int startY, int chunkX, int chunkY) {
+//		Block[][] chunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
 		int i = 0; int j = 0;
 		ChunkGenerator chunkGenerator = new ChunkGenerator();
 		for(int x = startX-CHUNK_BLOOM_MARGIN; x < startX+CHUNK_SIZE+CHUNK_BLOOM_MARGIN; x++) {
 			for(int y = startY-CHUNK_BLOOM_MARGIN; y < startY+CHUNK_SIZE+CHUNK_BLOOM_MARGIN; y++) {
-				chunkGenerator.chunkNoiseElevation[i][j] = (float) noise1.noise.get(4*((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
-				chunkGenerator.chunkNoiseTemperature[i][j] = (float) noise2.noise.get(4*((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4* ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
-				chunkGenerator.chunkNoiseRainfall[i][j] = (float) noise3.noise.get(4*((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4* ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
-				
-//				chunkGenerator.chunkNoiseElevation[i][j] = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
-//				chunkGenerator.chunkNoiseTemperature[i][j] = perlin2.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
-//				chunkGenerator.chunkNoiseRainfall[i][j] = perlin3.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
+				chunkGenerator.chunkNoiseElevation[i][j] = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
+				chunkGenerator.chunkNoiseTemperature[i][j] = perlin2.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
+				chunkGenerator.chunkNoiseRainfall[i][j] = perlin3.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
 				chunkGenerator.chunkGroundLayer[i][j] = chunkGenerator.getGroundLayerGeneration(i, j, rand);
 				chunkGenerator.chunkObjectLayer[i][j] = chunkGenerator.getObjectLayerGeneration(i, j, rgenseed, rand, x, y);
 				j++;
@@ -405,7 +404,9 @@ public class Overworld extends Level{
 			i++; j = 0;
 		}
 		i=0; j=0;
-	
+		
+//		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
+//			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
 		for(int x = startX-CHUNK_BLOOM_MARGIN; x < startX+CHUNK_SIZE+CHUNK_BLOOM_MARGIN; x++) {
 			for(int y = startY-CHUNK_BLOOM_MARGIN; y < startY+CHUNK_SIZE+CHUNK_BLOOM_MARGIN; y++) {
 				chunkGenerator.secondIteration(i, j);

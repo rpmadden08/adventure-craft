@@ -34,6 +34,10 @@ public class Game implements ApplicationListener {
 	public static int currentScreenSizeX = INITIAL_WINDOW_WIDTH;
 	public static int currentScreenSizeY = INITIAL_WINDOW_HEIGHT;
 	
+	public static double oceanTally, mountainTally, desertTally, grasslandTally, forestTally, jungleTally, swampTally, taigaTally, tundraTally = 0;
+	
+	
+	
 	public static GameState currentState;
 	public static String locOfSavedGame = null;
 	public static String gameFileName = null;

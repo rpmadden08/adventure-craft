@@ -36,8 +36,6 @@ public class BarrelTile extends CollisionTile {
 	
 	@Override
 	public void update(int x, int y) {
-		//Rect cRect = new Rect(Game.hero.absRect.x+ Game.hero.attackItem.cRectFinal.x, Game.hero.absRect.y + Game.hero.attackItem.cRectFinal.y, Game.hero.attackItem.cRectFinal.w,Game.hero.attackItem.cRectFinal.h);
-		System.out.println("BARREL:  "+cRect.x);
 		if(Game.hero.isAttacking) {
 			Rect wRect = new Rect(Game.hero.absRect.x+ Game.hero.attackItem.cRectFinal.x, Game.hero.absRect.y + Game.hero.attackItem.cRectFinal.y, Game.hero.attackItem.cRectFinal.w,Game.hero.attackItem.cRectFinal.h);
 			
