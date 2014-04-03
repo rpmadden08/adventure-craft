@@ -166,7 +166,7 @@ public class Level {
 			f.mkdir();
 			for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
 				for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
-					System.out.println("Chunk being created..."+i+"-"+j);
+					//System.out.println("Chunk being created..."+i+"-"+j);
 					createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
 				}
 			}

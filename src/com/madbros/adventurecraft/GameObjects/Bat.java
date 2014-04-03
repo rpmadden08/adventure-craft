@@ -26,7 +26,7 @@ public class Bat extends Mob {
 				  32, 32);
 		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
 		detectRange = 100;
-		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BAT));
+		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BEE_MINI));
 		margin = new Margin(0, 0, 0, 0);
 		currentSpeed = 0.1f;
 		collisionDetectionBlocks = new Block[9];

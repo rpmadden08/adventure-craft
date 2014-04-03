@@ -157,8 +157,10 @@ public class Hero extends Actor {
 			if(deathWait > 60) {
 				Game.saveGame.saveGame();
 				Game.level.saveCurrentChunks();
-				Game.level.loadGame();
+				//Game.level.loadGame();
+				Game.level = new Level();
 				Game.hero = new Hero();
+				//Game.level.teleportHero(Game.level.spawnX, Game.level.spawnY);
 			} else {
 				deathWait ++;
 			}
