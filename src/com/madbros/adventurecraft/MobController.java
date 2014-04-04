@@ -21,6 +21,11 @@ public class MobController {
 				int num = rand.nextInt(1);//100
 				if(num == 0 && mobs.size() < 1) {//57
 					mobs.add(new Bat(this, x, y));
+					mobs.add(new Cow(this, x, y));
+					mobs.add(new Slime(this, x, y));
+					mobs.add(new Worm(this, x, y));
+					mobs.add(new Bee(this, x, y));
+					mobs.add(new QueenBee(this, x, y));
 				}
 			//}
 		}

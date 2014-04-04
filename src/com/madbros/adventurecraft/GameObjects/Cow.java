@@ -12,21 +12,21 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class Bat extends Mob {
+public class Cow extends Mob {
 	int length = 0;
 	int framesNum = 0;
 	MobController mobController;
 	//Rect detectRect;
 	
-	public Bat(MobController mobController, int x, int y) {
+	public Cow(MobController mobController, int x, int y) {
 		super(mobController);
 		attack = 20;
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
-				  32, 32);
+				  128, 128);
 		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
 		detectRange = 100;
-		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BAT));
+		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.COW));
 		margin = new Margin(0, 0, 0, 0);
 		currentSpeed = 0.1f;
 		collisionDetectionBlocks = new Block[9];
@@ -43,7 +43,7 @@ public class Bat extends Mob {
 	@Override
 	public void deathDrop() {
 		Rect collectibleRect = new Rect(absRect.x, absRect.y, 16, 16);
-		Game.collectibleController.add(BAT_WING, Sprites.sprites.get(Sprites.BAT_WING), collectibleRect, 1);
+		Game.collectibleController.add(STEAK, Sprites.sprites.get(Sprites.STEAK), collectibleRect, 1);
 	}
 	
 	@Override

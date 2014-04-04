@@ -13,7 +13,8 @@ public abstract class FoodItem extends StackableItem{
 	
 	@Override
 	public void useRight() {
-		if(Game.hero.eP != Game.hero.maxEP) {
+		if(Game.hero.eP != Game.hero.maxEP && Game.level.hasPlacedItemOnClick == false) {
+			Game.level.hasPlacedItemOnClick = true;
 			double amountToGain = energyPercentage * Game.hero.maxEP;
 			if(amountToGain + Game.hero.eP > Game.hero.maxEP) {
 				Game.hero.eP = Game.hero.maxEP;

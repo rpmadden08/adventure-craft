@@ -12,13 +12,13 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class Bat extends Mob {
+public class Slime extends Mob {
 	int length = 0;
 	int framesNum = 0;
 	MobController mobController;
 	//Rect detectRect;
 	
-	public Bat(MobController mobController, int x, int y) {
+	public Slime(MobController mobController, int x, int y) {
 		super(mobController);
 		attack = 20;
 		this.mobController = mobController;
@@ -26,7 +26,7 @@ public class Bat extends Mob {
 				  32, 32);
 		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
 		detectRange = 100;
-		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BAT));
+		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.SLIME));
 		margin = new Margin(0, 0, 0, 0);
 		currentSpeed = 0.1f;
 		collisionDetectionBlocks = new Block[9];
@@ -43,7 +43,7 @@ public class Bat extends Mob {
 	@Override
 	public void deathDrop() {
 		Rect collectibleRect = new Rect(absRect.x, absRect.y, 16, 16);
-		Game.collectibleController.add(BAT_WING, Sprites.sprites.get(Sprites.BAT_WING), collectibleRect, 1);
+		Game.collectibleController.add(SLIME_BALL, Sprites.sprites.get(Sprites.SLIME_BALL), collectibleRect, 1);
 	}
 	
 	@Override

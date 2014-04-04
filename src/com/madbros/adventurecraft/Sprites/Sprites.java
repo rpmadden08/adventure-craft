@@ -70,6 +70,9 @@ public class Sprites {
 	public static final String BAT = "bat";
 	public static final String BEE = "bee";
 	public static final String BEE_MINI = "beeMini";
+	public static final String SLIME = "slime";
+	public static final String WORM = "small_worm";
+	public static final String COW = "cow_walk";
 	public static final String SHEEP = "sheep_walk";
 	public static final String SWORD_ITEM = "swordItem";
 	public static final String SWORD = "sword";
@@ -118,6 +121,18 @@ public class Sprites {
 	public static final String BEETLE_SHELL= "beetleShell";
 	public static final String IMP_HORN= "impHorn";
 	public static final String LEATHER= "leather";
+	
+	public static final String STEAK= "rawSteak";
+	public static final String COOKED_STEAK= "cookedSteak";
+	public static final String HONEY= "honey";
+	public static final String SLIME_BALL= "slimeItem";
+	public static final String WORM_GUTS= "wormGuts";
+	public static final String STINGER_SWORD= "stingerSword";
+	
+	public static final String HEALTH_POTION= "healthPotion";
+	public static final String SPEED_POTION= "speedPotion";
+	public static final String SLOWNESS_POTION= "slownessPotion";
+	public static final String HARMING_POTION= "harmingPotion";
 	
 	public static final String WOODEN_AXE= "woodenAxe";
 	public static final String WOODEN_HOE= "woodenHoe";
@@ -470,6 +485,33 @@ public class Sprites {
 	public static final String BAT_STAND_LEFT = "batStandLeft";
 	public static final String BAT_STAND_UP = "batStandUp";
 	
+	public static final String COW_WALK_DOWN = "cow_walkDown";
+	public static final String COW_WALK_RIGHT = "cow_walkRight";
+	public static final String COW_WALK_LEFT = "cow_walkLeft";
+	public static final String COW_WALK_UP = "cow_walkUp";
+	public static final String COW_STAND_DOWN = "cow_eatStandDown";
+	public static final String COW_STAND_RIGHT = "cow_eatStandRight";
+	public static final String COW_STAND_LEFT = "cow_eatStandLeft";
+	public static final String COW_STAND_UP = "cow_eatStandUp";
+	
+	public static final String WORM_WALK_DOWN = "small_wormWalkDown";
+	public static final String WORM_WALK_RIGHT = "small_wormWalkRight";
+	public static final String WORM_WALK_LEFT = "small_wormWalkLeft";
+	public static final String WORM_WALK_UP = "small_wormWalkUp";
+	public static final String WORM_STAND_DOWN = "small_wormStandDown";
+	public static final String WORM_STAND_RIGHT = "small_wormStandRight";
+	public static final String WORM_STAND_LEFT = "small_wormStandLeft";
+	public static final String WORM_STAND_UP = "small_wormStandUp";
+	
+	public static final String SLIME_WALK_DOWN = "slimeWalkDown";
+	public static final String SLIME_WALK_RIGHT = "slimeWalkRight";
+	public static final String SLIME_WALK_LEFT = "slimeWalkLeft";
+	public static final String SLIME_WALK_UP = "slimeWalkUp";
+	public static final String SLIME_STAND_DOWN = "slimeStandDown";
+	public static final String SLIME_STAND_RIGHT = "slimeStandRight";
+	public static final String SLIME_STAND_LEFT = "slimeStandLeft";
+	public static final String SLIME_STAND_UP = "slimeStandUp";
+	
 	public static final String BEE_WALK_DOWN = "beeWalkDown";
 	public static final String BEE_WALK_RIGHT = "beeWalkRight";
 	public static final String BEE_WALK_LEFT = "beeWalkLeft";
@@ -641,6 +683,18 @@ public class Sprites {
 					STAIRS_UP, STAIRS_DOWN, STAIRS_UP_BOTTOM_TILE, STAIRS_UP_TOP_TILE, STAIRS_DOWN_TILE, LEATHER,
 					FIRE_PIT_TILE,
 					
+					SLIME, SLIME_WALK_DOWN, SLIME_WALK_UP, SLIME_WALK_RIGHT, SLIME_WALK_LEFT,
+					SLIME_STAND_DOWN, SLIME_STAND_UP, SLIME_STAND_RIGHT, SLIME_STAND_LEFT,
+					
+					WORM, WORM_WALK_DOWN, WORM_WALK_UP, WORM_WALK_RIGHT, WORM_WALK_LEFT,
+					WORM_STAND_DOWN, WORM_STAND_UP, WORM_STAND_RIGHT, WORM_STAND_LEFT,
+					
+					COW, COW_WALK_DOWN, COW_WALK_UP, COW_WALK_RIGHT, COW_WALK_LEFT,
+					COW_STAND_DOWN, COW_STAND_UP, COW_STAND_RIGHT, COW_STAND_LEFT,
+					
+					STINGER_SWORD, STEAK, COOKED_STEAK, HONEY, SLIME_BALL, WORM_GUTS,
+					HEALTH_POTION, SPEED_POTION, HARMING_POTION, SLOWNESS_POTION,
+					
 					
 			};
 			
@@ -789,6 +843,9 @@ public class Sprites {
 			Animation[] bee = new Animation[animationIdsMob.length];
 			Animation[] beeMini = new Animation[animationIdsMob.length];
 			Animation[] sheep = new Animation[animationIdsMob.length];
+			Animation[] slime = new Animation[animationIdsMob.length];
+			Animation[] worm = new Animation[animationIdsMob.length];
+			Animation[] cow = new Animation[animationIdsMob.length];
 			
 			animations = new Animation[]{
 					Sprites.animations.get(MALE_STAND_UP),
@@ -1095,6 +1152,39 @@ public class Sprites {
 					Sprites.animations.get(BEE_WALK_LEFT)
 			};
 			
+			cow = new Animation[] {
+					Sprites.animations.get(COW_STAND_UP),
+					Sprites.animations.get(COW_STAND_DOWN),
+					Sprites.animations.get(COW_STAND_RIGHT),
+					Sprites.animations.get(COW_STAND_LEFT),
+					Sprites.animations.get(COW_WALK_UP),
+					Sprites.animations.get(COW_WALK_DOWN),
+					Sprites.animations.get(COW_WALK_RIGHT),
+					Sprites.animations.get(COW_WALK_LEFT)
+			};
+			
+			worm = new Animation[] {
+					Sprites.animations.get(WORM_STAND_UP),
+					Sprites.animations.get(WORM_STAND_DOWN),
+					Sprites.animations.get(WORM_STAND_RIGHT),
+					Sprites.animations.get(WORM_STAND_LEFT),
+					Sprites.animations.get(WORM_WALK_UP),
+					Sprites.animations.get(WORM_WALK_DOWN),
+					Sprites.animations.get(WORM_WALK_RIGHT),
+					Sprites.animations.get(WORM_WALK_LEFT)
+			};
+			
+			slime = new Animation[] {
+					Sprites.animations.get(SLIME_STAND_UP),
+					Sprites.animations.get(SLIME_STAND_DOWN),
+					Sprites.animations.get(SLIME_STAND_RIGHT),
+					Sprites.animations.get(SLIME_STAND_LEFT),
+					Sprites.animations.get(SLIME_WALK_UP),
+					Sprites.animations.get(SLIME_WALK_DOWN),
+					Sprites.animations.get(SLIME_WALK_RIGHT),
+					Sprites.animations.get(SLIME_WALK_LEFT)
+			};
+			
 			beeMini = new Animation[] {
 					Sprites.animations.get(BEE_MINI_STAND_UP),
 					Sprites.animations.get(BEE_MINI_STAND_DOWN),
@@ -1131,6 +1221,9 @@ public class Sprites {
 				bee[i].id = i;
 				beeMini[i].id = i;
 				sheep[i].id = i;
+				slime[i].id = i;
+				worm[i].id = i;
+				cow[i].id = i;
 			}
 			
 			AnimatedSprite animatedSprite = new AnimatedSprite(animations);
@@ -1173,6 +1266,9 @@ public class Sprites {
 			AnimatedSprite animatedBat = new AnimatedSprite(bat);
 			AnimatedSprite animatedSheep = new AnimatedSprite(sheep);
 			AnimatedSprite animatedBee = new AnimatedSprite(bee);
+			AnimatedSprite animatedWorm = new AnimatedSprite(worm);
+			AnimatedSprite animatedSlime = new AnimatedSprite(slime);
+			AnimatedSprite animatedCow = new AnimatedSprite(cow);
 			AnimatedSprite animatedBeeMini = new AnimatedSprite(beeMini);
 			
 			animatedSprites.put(HUMAN_BASE, animatedSprite);
@@ -1198,8 +1294,11 @@ public class Sprites {
 			
 			animatedSprites.put(BAT, animatedBat);
 			animatedSprites.put(BEE, animatedBee);
+			animatedSprites.put(SLIME, animatedSlime);
 			animatedSprites.put(BEE_MINI, animatedBeeMini);
 			animatedSprites.put(SHEEP, animatedSheep);
+			animatedSprites.put(WORM, animatedWorm);
+			animatedSprites.put(COW, animatedCow);
 			
 			fireAnimationSprites = new StaticSprite[4];
 			fireAnimationSprites[0] = new StaticSprite(atlas, 0, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);

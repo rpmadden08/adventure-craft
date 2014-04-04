@@ -323,6 +323,7 @@ public class Game implements ApplicationListener {
 		quit();
 		Display.destroy();
 		System.exit(0);
+		
 //		bitmapFont.dispose();
 //		tilemap.dispose();
 	}

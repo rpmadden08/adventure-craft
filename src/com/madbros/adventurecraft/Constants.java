@@ -16,9 +16,9 @@ public class Constants {
 	public static HashMap<Integer, Integer> BOTTOM_LEFT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
 	public static HashMap<Integer, Integer> BOTTOM_RIGHT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
 	
-	//game constants
-	public static final int INITIAL_WINDOW_WIDTH = 640;// 640 1280
-	public static final int INITIAL_WINDOW_HEIGHT = 480;//480 800
+	//game constants                                       Small  Big    Retina
+	public static final int INITIAL_WINDOW_WIDTH = 1440;// 640    1280   1440
+	public static final int INITIAL_WINDOW_HEIGHT = 900;// 480    800    900
 	public static final int RENDER_MARGIN = 1;
 	public static final int FRAME_RATE = 60;
 	public static final String GAME_TITLE = "Adventure Craft";
@@ -386,6 +386,16 @@ public class Constants {
 	public static final int LEATHER = 115;
 	public static final int FIRE_PIT = 116;
 	public static final int FIRE_STARTER = 117;
+	public static final int STEAK = 118;
+	public static final int COOKED_STEAK = 119;
+	public static final int SLIME_BALL = 120;
+	public static final int HONEY = 121;
+	public static final int WORM_GUTS = 122;
+	public static final int STINGER_SWORD = 123;
+	public static final int HEALTH_POTION = 124;
+	public static final int SLOWNESS_POTION = 125;
+	public static final int HARMING_POTION = 126;
+	public static final int SPEED_POTION = 127;
 	
 	
 	
@@ -520,6 +530,11 @@ public class Constants {
 		ITEM_HASH.put(IMP_HORN, new ImpHorn());
 		ITEM_HASH.put(LEATHER, new Leather());
 		
+		ITEM_HASH.put(HEALTH_POTION, new HealthPotion());
+		ITEM_HASH.put(SPEED_POTION, new HealthPotion());
+		ITEM_HASH.put(SLOWNESS_POTION, new HealthPotion());
+		ITEM_HASH.put(HARMING_POTION, new HealthPotion());
+		
 		ITEM_HASH.put(WOODEN_AXE, new WoodenAxe());
 		ITEM_HASH.put(WOODEN_HOE, new WoodenHoe());
 		ITEM_HASH.put(WOODEN_PICK, new WoodenPick());
@@ -549,6 +564,13 @@ public class Constants {
 		ITEM_HASH.put(IRON_PICK, new IronPick());
 		ITEM_HASH.put(IRON_SHOVEL, new IronShovel());
 		ITEM_HASH.put(IRON_SWORD, new IronSword());
+		
+		ITEM_HASH.put(STEAK, new Steak());
+		ITEM_HASH.put(COOKED_STEAK, new CookedSteak());
+		ITEM_HASH.put(HONEY, new Honey());
+		ITEM_HASH.put(SLIME_BALL, new SlimeBall());
+		ITEM_HASH.put(WORM_GUTS, new WormGuts());
+		ITEM_HASH.put(STINGER_SWORD, new StingerSword());
 		
 		
 		
