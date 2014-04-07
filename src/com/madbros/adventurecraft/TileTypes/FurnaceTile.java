@@ -53,6 +53,7 @@ public class FurnaceTile extends CollisionTile {
 	
 	@Override
 	public void update(int x, int y) {
+		System.out.println("id");
 //		System.out.println("FUEL:  "+furnaceFuel);
 //		System.out.println("MAX FUEL:  "+furnaceMaxFuel);
 		if(furnaceIsBurning == true) {

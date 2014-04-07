@@ -170,7 +170,7 @@ public class Slot {
 	
 	public void craftAnotherItemIfPossible2(FurnaceTile furnace, Slot[] invCrafting, Slot[] invCrafted) {
 		if(invCrafting[0].item.id != EMPTY) {
-			craftAnItemFromThisListIfPossible2(furnace, invCrafting, invCrafted, invCrafting[0].item.itemsPossiblyCraftable);
+			craftAnItemFromThisListIfPossible2(furnace, invCrafting, invCrafted, invCrafting[0].item.itemsPossiblyBurnable);
 			return;
 		} else {
 			furnace.isCraftableItem = false;
@@ -180,7 +180,7 @@ public class Slot {
 	public void craftAnotherItemIfPossibleCauldron(CauldronTile cauldron, Slot[] invCrafting, Slot[] invCrafted) {
 		for(int i = 0; i < invCrafting.length-1; i++) {
 			if(invCrafting[i].item.id != EMPTY) {
-				craftAnItemFromThisListIfPossibleCauldron(cauldron, invCrafting, invCrafted, invCrafting[i].item.itemsPossiblyCraftable);
+				craftAnItemFromThisListIfPossibleCauldron(cauldron, invCrafting, invCrafted, invCrafting[i].item.itemsPossiblyBrewable);
 				return;
 			} else {
 				cauldron.isCraftableItem = false;
@@ -223,7 +223,6 @@ public class Slot {
 	}
 	public void craftAnItemFromThisListIfPossibleCauldron(CauldronTile cauldron, Slot[] invCrafting, Slot[] invCrafted, int[] itemsPossiblyCraftable) {
 		for(int i = 0; i < itemsPossiblyCraftable.length; i++) {
-			//cauldron cauldron = (cauldron) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Item possiblyCraftableItem = ITEM_HASH.get(itemsPossiblyCraftable[i]);
 			if(possiblyCraftableItem.isValidCauldronRecipe(cauldron.cauldronSlots)) {
 				cauldron.isCraftableItem = true;
@@ -232,8 +231,6 @@ public class Slot {
 				if(cauldron.cauldronIsBurning == false) {
 					checkCauldronFuel(cauldron, invCrafting, invCrafted);
 				}
-				//System.out.println("DID IT!");
-				//cauldron.cauldronBuildTime = 10;
 				return;
 			} else {
 				cauldron.isCraftableItem = false;

@@ -118,7 +118,7 @@ public class SaveGame {
 					ids[x][y][i] = chunk[x][y].layers[i].id;
 					currentTextures[x][y][i] = chunk[x][y].layers[i].currentSpriteId;
 					timeCreated[x][y][i] = chunk[x][y].layers[i].timeCreated;
-					if(chunk[x][y].layers[i].id == FURNACE) {
+					if(chunk[x][y].layers[i].id == FURNACE_TILE) {
 						FurnaceTile furnace = (FurnaceTile) chunk[x][y].layers[i];
 						int a1[]={furnace.furnaceFuel,
 								furnace.furnaceMaxFuel,
@@ -134,7 +134,7 @@ public class SaveGame {
 						furnaceListInt.add(a1);
 						furnaceListBoolean.add(a2);						
 					}
-					if(chunk[x][y].layers[i].id == CAULDRON) {
+					if(chunk[x][y].layers[i].id == CAULDRON_TILE) {
 						CauldronTile cauldron = (CauldronTile) chunk[x][y].layers[i];
 						int a1[]={cauldron.cauldronFuel,
 								cauldron.cauldronMaxFuel,

@@ -3,13 +3,18 @@ package com.madbros.adventurecraft.LevelTypes;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.LevelTypes.FractalTypes.CaveNoise;
 import com.madbros.adventurecraft.TileTypes.*;
 
 public class Underground1 extends Level{
 	public Underground1() {
 		//currentLevel = UNDERGROUND_1_FOLDER;
 		Game.currentLevel = UNDERGROUND_1_FOLDER;
+		noise1 = new CaveNoise(898456);
+//		noise1 = new CaveNoise(898456);
+//		noise1 = new CaveNoise(898456);
 		initialize();
+		
 		
 	}
 	public void createNewBlock(int i, int j, int chunkX, int chunkY, int x, int y, Underground1ChunkGenerator chunkGenerator) {
@@ -147,6 +152,17 @@ public class Underground1 extends Level{
 				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new SnowTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new SnowTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new SnowTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+	    		block = new Block(grassTile, absX, absY, false);
+	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
+	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
+	    		block4 = new Block(grassTile4, absX+TILE_SIZE, absY+TILE_SIZE, false);
+	    		//DIRT
+    		}else if(chunkGenerator.chunkGroundLayer[m][n] == 10){
+    			PTundra++;
+    			Tile[] grassTile = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile2 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile3 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
+				Tile[] grassTile4 = {new DarkDirtTile(), new DirtTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(), new NoTile(),new NoTile(), new NoTile()};
 	    		block = new Block(grassTile, absX, absY, false);
 	    		block2 = new Block(grassTile2, absX+TILE_SIZE, absY, false);
 	    		block3 = new Block(grassTile3, absX, absY+TILE_SIZE, false);
@@ -370,14 +386,22 @@ public class Underground1 extends Level{
 	
 	@Override
 	public void createNewChunk(int startX, int startY, int chunkX, int chunkY) {
+		System.out.println(chunkX);
 //		Block[][] chunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
 		int i = 0; int j = 0;
 		Underground1ChunkGenerator chunkGenerator = new Underground1ChunkGenerator();
 		for(int x = startX-CHUNK_BLOOM_MARGIN; x < startX+CHUNK_SIZE+CHUNK_BLOOM_MARGIN; x++) {
 			for(int y = startY-CHUNK_BLOOM_MARGIN; y < startY+CHUNK_SIZE+CHUNK_BLOOM_MARGIN; y++) {
-				chunkGenerator.chunkNoiseElevation[i][j] = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
+//				chunkGenerator.chunkNoiseElevation[i][j] = perlin.Noise(4 * ((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
+//				chunkGenerator.chunkGroundLayer[i][j] = chunkGenerator.getGroundLayerGeneration(i, j, rand);
+//				chunkGenerator.chunkObjectLayer[i][j] = chunkGenerator.getObjectLayerGeneration(i, j, rgenseed, rand, x, y);
+				//noise1 = new CaveNoise(898456);
+				chunkGenerator.chunkNoiseElevation[i][j] = (float) noise1.noise.get(4*((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
 				chunkGenerator.chunkGroundLayer[i][j] = chunkGenerator.getGroundLayerGeneration(i, j, rand);
 				chunkGenerator.chunkObjectLayer[i][j] = chunkGenerator.getObjectLayerGeneration(i, j, rgenseed, rand, x, y);
+				//chunkGenerator.chunkNoiseTemperature[i][j] = (float) noise2.noise.get(4*((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4* ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
+				//chunkGenerator.chunkNoiseRainfall[i][j] = (float) noise3.noise.get(4*((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4* ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
+				
 				j++;
 			}
 			i++; j = 0;

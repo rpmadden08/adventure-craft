@@ -13,7 +13,7 @@ public class Potatoes extends FoodItem {
 		name = "Potatoes";
 		sprite = Sprites.sprites.get(Sprites.POTATOES);
 		
-		itemsPossiblyCraftable = new int[]{BAKED_POTATOES};
+		itemsPossiblyCraftable = new int[]{};
 		
 	}
 	@Override

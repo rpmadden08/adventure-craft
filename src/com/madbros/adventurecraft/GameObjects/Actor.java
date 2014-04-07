@@ -10,6 +10,9 @@ import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Items.Clothing;
 import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
+import com.madbros.adventurecraft.StatusEffects.AppliedStatusEffect;
+import com.madbros.adventurecraft.StatusEffects.StatusEffect;
+import com.madbros.adventurecraft.StatusEffects.TimedStatusEffect;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -30,6 +33,9 @@ public class Actor extends GameObject {
 	boolean isMovingLeft = false, isMovingRight = false, isMovingUp = false, isMovingDown = false;
 	boolean isKnockingLeft = false, isKnockingRight = false, isKnockingUp = false, isKnockingDown = false;
 	public boolean isAttacking = false;
+	
+	public TimedStatusEffect[] timedStatusEffects = new TimedStatusEffect[3]; 
+	public AppliedStatusEffect[] appliedStatusEffects = new AppliedStatusEffect[3]; 
 	
 	public int hP = 10;
 	public int maxHP = 10;
@@ -55,6 +61,16 @@ public class Actor extends GameObject {
 	public boolean startWeaponAnimation = false;
 	public String hitSound;
 	public String deathSound;
+	
+	public Actor() {
+		for(int i = 0; i < appliedStatusEffects.length; i++) {
+			appliedStatusEffects[i] = new AppliedStatusEffect();
+		}
+		
+		for(int i = 0; i < timedStatusEffects.length; i++) {
+			timedStatusEffects[i] = new TimedStatusEffect();
+		}
+	}
 	
 	/************************** Movement **************************/
 	public boolean isMoving() {
@@ -282,11 +298,22 @@ public class Actor extends GameObject {
 	}
 	
 	public void update() {
-		if(isMoving() && !isAttacking) {
-			move(Time.getDelta());
-		} else if(isAttacking) {
-			
+		if(appliedStatusEffects[1].id == 1) {
+			//System.out.println(appliedStatusEffects[1].usesLeft);
 		}
+//		if(isMoving() && !isAttacking) {
+//			move(Time.getDelta());
+//		} else if(isAttacking) {
+//			
+//		}
+	}
+	
+	public void eraseAppliedStatusEffect(int ID) {
+		this.appliedStatusEffects[ID] = new AppliedStatusEffect();
+	}
+	
+	public void eraseTimedStatusEffect(int ID) {
+		this.timedStatusEffects[ID] = new TimedStatusEffect();
 	}
 
 	public float getCurrentSpeed() {

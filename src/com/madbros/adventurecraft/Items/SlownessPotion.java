@@ -5,7 +5,10 @@ import static com.madbros.adventurecraft.Constants.*;
 import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.StatusEffects.HarmingApplied;
+import com.madbros.adventurecraft.StatusEffects.SlownessApplied;
 import com.madbros.adventurecraft.Utils.Helpers;
 
 public class SlownessPotion extends PotionItem {
@@ -13,8 +16,7 @@ public class SlownessPotion extends PotionItem {
 		id = SLOWNESS_POTION;
 		name = "Slowness Potion";
 		sprite = Sprites.sprites.get(Sprites.SLOWNESS_POTION);
-		
-		itemsPossiblyCraftable = new int[]{};
+		craftCost = new int[]{SLIME_BALL, ARTICHOKE, GLASS_BOTTLE};
 		
 	}
 	@Override
@@ -23,11 +25,23 @@ public class SlownessPotion extends PotionItem {
 	}
 	
 	public boolean canUsePotion() {
-		//FIXME  Need to implement a method here...
-		return true;
+		if(Game.hero.appliedStatusEffects[SLOWNESS_APPLIED].usesLeft <5) { 
+			return true;
+			} else {
+			return false;
+			}
 	}
 	
 	public void applyPotionEffect() {
-		//FIXME  Need to implement a method here...
+		Game.hero.appliedStatusEffects[SLOWNESS_APPLIED] = new SlownessApplied();
+		stackSize -= 1;
+		Game.inventory.deleteItemIfNecessary();
+	}
+	
+	@Override
+	public boolean isValidCauldronRecipe(Slot[] craftingSlots) {
+		return Helpers.containsXNumberOfItemsInSlots(1, SLIME_BALL, craftingSlots) &&
+				   Helpers.containsXNumberOfItemsInSlots(1, ARTICHOKE, craftingSlots) &&
+				   Helpers.containsXNumberOfItemsInSlots(1, GLASS_BOTTLE, craftingSlots);
 	}
 }

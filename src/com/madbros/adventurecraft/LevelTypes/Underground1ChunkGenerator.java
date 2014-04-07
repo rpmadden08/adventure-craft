@@ -119,13 +119,14 @@ public class Underground1ChunkGenerator extends ChunkGenerator{
 
 	public int getGroundLayerGeneration(int m, int n, Random rand) {
 		//BELOW SEA LEVEL
-		if(chunkNoiseElevation[m][n] < -0.1) {
-			return 1;
+		System.out.println(chunkNoiseElevation[m][n]);
+		if(chunkNoiseElevation[m][n] < 0.4) {
+			return 2;
     	//MOUNTAIN
-    	} else if(chunkNoiseElevation[m][n] > 0.01) {
-    		return 2;
+    	} else if(chunkNoiseElevation[m][n] >= 0.4) {
+    		return 10;
     	} else {
-    		return 2;
+    		return 1;
     	}
 	}
 	public void secondIteration(int m, int n) {

@@ -14,6 +14,7 @@ public class SandClump extends BlockItem {
 		tileId = SAND;
 		name = "Sand";
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, DARK_GRASS, GRASS, WATER};
+		itemsPossiblyBurnable = new int[]{GLASS_BOTTLE};
 		sprite = Sprites.sprites.get(Sprites.SAND_ITEM);
 	}
 	

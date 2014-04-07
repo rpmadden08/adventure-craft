@@ -49,6 +49,12 @@ public class Mob extends Actor {
 	}
 	
 	public void takeDamage(int damage) {
+		//Get Harming Potion increase
+		damage = Game.hero.appliedStatusEffects[1].getHarmingDamageIncrease(damage);
+		if(Game.hero.appliedStatusEffects[2].canApplyEffect(this)) {
+			Game.hero.appliedStatusEffects[2].applySlownessEffect(this);
+		}
+		
 		if(knockBackTime <= 0) {
 			hP = hP - damage;
 			Game.soundController.create(hitSound, 1);
@@ -111,6 +117,9 @@ public class Mob extends Actor {
 		//mobController.remove(this);
 	}
 	public void update() {
+		for(int i =0; i < timedStatusEffects.length; i++) {
+			timedStatusEffects[i].update(this);
+		}
 		//Check if the mob has stepped out of bounds
 		
 		if(knockBackTime > 0) {

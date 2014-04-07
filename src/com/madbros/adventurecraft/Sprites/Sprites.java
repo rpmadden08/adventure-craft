@@ -133,6 +133,7 @@ public class Sprites {
 	public static final String SPEED_POTION= "speedPotion";
 	public static final String SLOWNESS_POTION= "slownessPotion";
 	public static final String HARMING_POTION= "harmingPotion";
+	public static final String GLASS_BOTTLE= "glassBottle";
 	
 	public static final String WOODEN_AXE= "woodenAxe";
 	public static final String WOODEN_HOE= "woodenHoe";
@@ -693,7 +694,7 @@ public class Sprites {
 					COW_STAND_DOWN, COW_STAND_UP, COW_STAND_RIGHT, COW_STAND_LEFT,
 					
 					STINGER_SWORD, STEAK, COOKED_STEAK, HONEY, SLIME_BALL, WORM_GUTS,
-					HEALTH_POTION, SPEED_POTION, HARMING_POTION, SLOWNESS_POTION,
+					HEALTH_POTION, SPEED_POTION, HARMING_POTION, SLOWNESS_POTION, GLASS_BOTTLE
 					
 					
 			};

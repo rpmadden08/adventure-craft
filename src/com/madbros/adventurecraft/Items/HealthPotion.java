@@ -5,6 +5,7 @@ import static com.madbros.adventurecraft.Constants.*;
 import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Helpers;
 
@@ -13,8 +14,7 @@ public class HealthPotion extends PotionItem {
 		id = HEALTH_POTION;
 		name = "Health Potion";
 		sprite = Sprites.sprites.get(Sprites.HEALTH_POTION);
-		
-		itemsPossiblyCraftable = new int[]{};
+		craftCost = new int[]{RED_FLOWERS, HONEY, GLASS_BOTTLE};
 		
 	}
 	@Override
@@ -39,5 +39,12 @@ public class HealthPotion extends PotionItem {
 		}
 		stackSize -= 1;
 		Game.inventory.deleteItemIfNecessary();
+	}
+	
+	@Override
+	public boolean isValidCauldronRecipe(Slot[] craftingSlots) {
+		return Helpers.containsXNumberOfItemsInSlots(1, HONEY, craftingSlots) &&
+				   Helpers.containsXNumberOfItemsInSlots(1, RED_FLOWERS, craftingSlots) &&
+				   Helpers.containsXNumberOfItemsInSlots(1, GLASS_BOTTLE, craftingSlots);
 	}
 }

@@ -18,6 +18,8 @@ public abstract class Item {
 	public int maxStackSize = 1;
 	public int numberProducedByCrafting = 1;
 	public int[] itemsPossiblyCraftable = {};
+	public int[] itemsPossiblyBurnable = {};
+	public int[] itemsPossiblyBrewable = {};
 	public int[] craftCost = {};
 	public int[] craftCostAmount =new int[]{1};
 	public boolean is32 = true;
