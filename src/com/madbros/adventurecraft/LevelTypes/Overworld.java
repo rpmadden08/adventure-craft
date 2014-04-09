@@ -18,6 +18,7 @@ import com.madbros.adventurecraft.TileTypes.StoneMountainBottomTile;
 import com.madbros.adventurecraft.TileTypes.StoneMountainCoalBottomTile;
 import com.madbros.adventurecraft.TileTypes.StoneMountainCopperBottomTile;
 import com.madbros.adventurecraft.TileTypes.StoneMountainTinBottomTile;
+import com.madbros.adventurecraft.TileTypes.StoneMountainTopTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.TileTypes.TreeLeafPineTile;
 import com.madbros.adventurecraft.TileTypes.TreeLeafRainTile;
@@ -189,40 +190,41 @@ public class Overworld extends Level{
     		
     	}
 		//Mountains
-//		if(chunkGenerator.chunkObjectLayer[m][n+2] == STONE_MOUNTAIN_BOTTOM) {
-//			block.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
-//			block2.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
-//			block3.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
-//			block4.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
-//		}
+		if(chunkGenerator.chunkObjectLayer[m][n+2] == STONE_MOUNTAIN_BOTTOM) {
+			block.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
+			block2.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
+			block3.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
+			block4.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
+		}
 		
 
 		
-		if(chunkGenerator.chunkObjectLayer[m][n] == STONE_MOUNTAIN_COAL_BOTTOM) {
-			block.layers[OBJECT_LAYER] = new StoneMountainCoalBottomTile();
-			block2.layers[OBJECT_LAYER] = new StoneMountainCoalBottomTile();
-			block3.layers[OBJECT_LAYER] = new StoneMountainCoalBottomTile();
-			block4.layers[OBJECT_LAYER] = new StoneMountainCoalBottomTile();
-		}
+//		if(chunkGenerator.chunkObjectLayer[m][n] == STONE_MOUNTAIN_COAL_BOTTOM) {
+//			block.layers[OBJECT_LAYER] = new StoneMountainCoalBottomTile();
+//			block2.layers[OBJECT_LAYER] = new StoneMountainCoalBottomTile();
+//			block3.layers[OBJECT_LAYER] = new StoneMountainCoalBottomTile();
+//			block4.layers[OBJECT_LAYER] = new StoneMountainCoalBottomTile();
+//		}
 //		if(chunkGenerator.chunkObjectLayer[m][n+2] == STONE_MOUNTAIN_COAL_BOTTOM) {
 //		block.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
 //		block2.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
 //		block3.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
 //		block4.layers[ABOVE_LAYER_1] = new StoneMountainTopTile();
 //	}
-		if(chunkGenerator.chunkObjectLayer[m][n] == STONE_MOUNTAIN_COPPER_BOTTOM) {
-			block.layers[OBJECT_LAYER] = new StoneMountainCopperBottomTile();
-			block2.layers[OBJECT_LAYER] = new StoneMountainCopperBottomTile();
-			block3.layers[OBJECT_LAYER] = new StoneMountainCopperBottomTile();
-			block4.layers[OBJECT_LAYER] = new StoneMountainCopperBottomTile();
-		}
 		
-		if(chunkGenerator.chunkObjectLayer[m][n] == STONE_MOUNTAIN_TIN_BOTTOM) {
-			block.layers[OBJECT_LAYER] = new StoneMountainTinBottomTile();
-			block2.layers[OBJECT_LAYER] = new StoneMountainTinBottomTile();
-			block3.layers[OBJECT_LAYER] = new StoneMountainTinBottomTile();
-			block4.layers[OBJECT_LAYER] = new StoneMountainTinBottomTile();
-		}
+//		if(chunkGenerator.chunkObjectLayer[m][n] == STONE_MOUNTAIN_COPPER_BOTTOM) {
+//			block.layers[OBJECT_LAYER] = new StoneMountainCopperBottomTile();
+//			block2.layers[OBJECT_LAYER] = new StoneMountainCopperBottomTile();
+//			block3.layers[OBJECT_LAYER] = new StoneMountainCopperBottomTile();
+//			block4.layers[OBJECT_LAYER] = new StoneMountainCopperBottomTile();
+//		}
+//		
+//		if(chunkGenerator.chunkObjectLayer[m][n] == STONE_MOUNTAIN_TIN_BOTTOM) {
+//			block.layers[OBJECT_LAYER] = new StoneMountainTinBottomTile();
+//			block2.layers[OBJECT_LAYER] = new StoneMountainTinBottomTile();
+//			block3.layers[OBJECT_LAYER] = new StoneMountainTinBottomTile();
+//			block4.layers[OBJECT_LAYER] = new StoneMountainTinBottomTile();
+//		}
 		
 		
 		

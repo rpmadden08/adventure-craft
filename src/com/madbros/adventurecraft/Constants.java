@@ -70,6 +70,14 @@ public class Constants {
 	public static final int SLOWNESS = 1;
 	public static final int SPEED = 2;
 	
+	//Loot probabilities
+	//public static final int ALWAYS_LOOT = 0;      //Will always get this..
+	public static final int COMMON_LOOT = 1;      //70% chance to get 
+	public static final int UNCOMMON_LOOT = 2;    //29% chance to get
+	public static final int RARE_LOOT = 3;        //0.9% chance to get
+	public static final int ULTRA_RARE_LOOT = 4;  //0.1% chance to get
+	
+	
 	
 	
 	

@@ -1,7 +1,14 @@
 package com.madbros.adventurecraft.Utils;
 
 import static com.madbros.adventurecraft.Constants.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Items.Item;
+import com.madbros.adventurecraft.Items.NoItem;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.CauldronTile;
@@ -130,8 +137,138 @@ public class Helpers {
 	
 	public static void println(String s) {
 		Game.debugger.displayedExtra = s;
+		//getRandomLoot(new int[]{SWORD}, new int[]{1},new int[]{0},new int[]{0}, 1, 5);
+		//public int[] itemsPossiblyCraftable = {};
 	}
-//	public Rect sRectToARect(Rect sRect) {
-//		return new Rect(Game.hero.aRect.x - (Game.hero.sRect.x - sRect.x), Game.hero.aRect.y - (Game.hero.sRect.y - sRect.y), sRect.w, sRect.h);
-//	}
+	//getRandomLoot(new Item[])
+	
+	public static int getRandomMaxMin(int min, int max) {
+		int totalItems = max - min;
+		Random rand = new Random();
+		int totalItems2 = rand.nextInt(totalItems);
+		totalItems = min +totalItems2;
+		return totalItems;
+	}
+	
+	public static Item[] getRandomLoot(int possibleItems[], int[] probabilities, int[] stackSizeMin, int stackSizeMax[], int min, int max) {
+		//figure out how many items will be in loot randomly
+		int totalItems = max - min;
+		Random rand = new Random();
+		int totalItems2 = rand.nextInt(totalItems);
+		totalItems = min +totalItems2;
+		System.out.println("TOTAL ITEMS:  "+totalItems);
+		
+	     Item[] items = new Item[totalItems];
+	     
+	     boolean prob1= false, prob2 = false, prob3 = false, prob4 = false;
+	     for(int i = 0; i<probabilities.length; i++) {
+	    	 if(probabilities[i] == 1) {
+					prob1 = true;
+	    	 } else  if(probabilities[i] == 2) {
+					prob2 = true;
+	    	 } else  if(probabilities[i] == 3) {
+					prob3 = true;
+	    	 } else  if(probabilities[i] == 4) {
+					prob4 = true;
+	    	 }
+	     }
+		for(int x = 0; x < totalItems; x++) {
+			double randomPercent = rand.nextDouble();
+			//double randomPercent = 0.323;
+			System.out.println(randomPercent);
+			
+			if(randomPercent < 0.001 && prob4 == true) {
+				List<Item> itemList = new ArrayList<Item>();
+				for(int i = 0; i<probabilities.length; i++) {
+					if(probabilities[i] == 4) {
+						itemList.add(ITEM_HASH.get(possibleItems[i]).createNew());
+						itemList.get(itemList.size() - 1).stackSize = getRandomMaxMin(stackSizeMin[i], stackSizeMax[i]);
+					}
+				}
+				int itemNumber = rand.nextInt(itemList.size());
+				items[x] = itemList.get(itemNumber);
+				items[x].stackSize = 1;
+			}else if(randomPercent < 0.01 && prob3 == true) {
+				List<Item> itemList = new ArrayList<Item>();
+				for(int i = 0; i<probabilities.length; i++) {
+					if(probabilities[i] == 3) {
+						itemList.add(ITEM_HASH.get(possibleItems[i]).createNew());
+						itemList.get(itemList.size() - 1).stackSize = getRandomMaxMin(stackSizeMin[i], stackSizeMax[i]);
+					}
+				}
+				int itemNumber = rand.nextInt(itemList.size());
+				items[x] = itemList.get(itemNumber);
+				items[x].stackSize = 1;
+			} else if(randomPercent < 0.3 && prob2 == true) {
+				List<Item> itemList = new ArrayList<Item>();
+				for(int i = 0; i<probabilities.length; i++) {
+					if(probabilities[i] == 2) {
+						itemList.add(ITEM_HASH.get(possibleItems[i]).createNew());
+						itemList.get(itemList.size() - 1).stackSize = getRandomMaxMin(stackSizeMin[i], stackSizeMax[i]);
+					}
+				}
+				int itemNumber = rand.nextInt(itemList.size());
+				items[x] = itemList.get(itemNumber);
+				items[x].stackSize = 1;
+			} else if(prob1 == true && randomPercent >= 0.3) {
+				List<Item> itemList = new ArrayList<Item>();
+				for(int i = 0; i<probabilities.length; i++) {
+					if(probabilities[i] == 1) {
+						itemList.add(ITEM_HASH.get(possibleItems[i]).createNew());
+						itemList.get(itemList.size() - 1).stackSize = getRandomMaxMin(stackSizeMin[i], stackSizeMax[i]);
+					}
+				}
+				int itemNumber = rand.nextInt(itemList.size());
+				items[x] = itemList.get(itemNumber);
+				items[x].stackSize = 1;
+			} else if(prob1 == true) {
+				List<Item> itemList = new ArrayList<Item>();
+				for(int i = 0; i<probabilities.length; i++) {
+					if(probabilities[i] == 1) {
+						itemList.add(ITEM_HASH.get(possibleItems[i]).createNew());
+						itemList.get(itemList.size() - 1).stackSize = getRandomMaxMin(stackSizeMin[i], stackSizeMax[i]);
+					}
+				}
+				int itemNumber = rand.nextInt(itemList.size());
+				items[x] = itemList.get(itemNumber);
+				items[x].stackSize = 1;
+			} else if(prob2 == true) {
+				List<Item> itemList = new ArrayList<Item>();
+				for(int i = 0; i<probabilities.length; i++) {
+					if(probabilities[i] == 2) {
+						itemList.add(ITEM_HASH.get(possibleItems[i]).createNew());
+						itemList.get(itemList.size() - 1).stackSize = getRandomMaxMin(stackSizeMin[i], stackSizeMax[i]);
+					}
+				}
+				int itemNumber = rand.nextInt(itemList.size());
+				items[x] = itemList.get(itemNumber);
+				items[x].stackSize = 1;
+			} else if(prob3 == true) {
+				System.out.println("Just as I thought...");
+				List<Item> itemList = new ArrayList<Item>();
+				for(int i = 0; i<probabilities.length; i++) {
+					if(probabilities[i] == 3) {
+						itemList.add(ITEM_HASH.get(possibleItems[i]).createNew());
+						itemList.get(itemList.size() - 1).stackSize = getRandomMaxMin(stackSizeMin[i], stackSizeMax[i]);
+					}
+				}
+				System.out.println(itemList.size());
+				int itemNumber = rand.nextInt(itemList.size());
+				items[x] = itemList.get(itemNumber);
+				items[x].stackSize = 1;
+			} else {
+				List<Item> itemList = new ArrayList<Item>();
+				for(int i = 0; i<probabilities.length; i++) {
+					if(probabilities[i] == 4) {
+						itemList.add(ITEM_HASH.get(possibleItems[i]).createNew());
+						itemList.get(itemList.size() - 1).stackSize = getRandomMaxMin(stackSizeMin[i], stackSizeMax[i]);
+					}
+				}
+				int itemNumber = rand.nextInt(itemList.size());
+				items[x] = itemList.get(itemNumber);
+				items[x].stackSize = 1;
+			}
+		}
+		return items;
+	}
 }

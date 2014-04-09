@@ -3,7 +3,9 @@ package com.madbros.adventurecraft.TileTypes;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -54,8 +56,22 @@ public class BarrelTile extends CollisionTile {
 		
 		
 		//FIXME this needs to randomly drop basic goodies:)
-		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(POTATOES, Sprites.sprites.get(Sprites.POTATOES), collectibleRect, 1);
-		
+		Item items[] = Helpers.getRandomLoot(
+					  new int[]{TORCH, HEALTH_POTION, COAL_ITEM, STICK, STONE_MOUNTAIN_ITEM, WHEAT}, 
+					  new int[]{2,3,1,1,2,2},
+					  new int[]{1,1,1,1,1,1},
+					  new int[]{5,3,5,4,3,3}, 
+					  1, 
+					  3);
+		//System.out.println(items[0].id);
+		for(int a=0; a<items.length;a++) {
+			//System.out.println(items[a].stackSize);
+			Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+			Game.collectibleController.add(items[a].id, items[a].sprite, collectibleRect, items[a].stackSize);
+		}
+		//Helpers.getRandomLoot(int, probabilities, stackSizeMin, stackSizeMax, min, max)
+//		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+//		Game.collectibleController.add(POTATOES, Sprites.sprites.get(Sprites.POTATOES), collectibleRect, 1);
+//		
 	}
 }
