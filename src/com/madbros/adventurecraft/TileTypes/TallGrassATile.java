@@ -7,7 +7,7 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class TallGrassATile extends Tile {
+public class TallGrassATile extends CollisionTile {
 	
 	public TallGrassATile() {
 		super();
@@ -23,6 +23,7 @@ public class TallGrassATile extends Tile {
 		isBreakable = true;
 		currentHp = 1;
 		maxHp = 1;
+		isCollidable = false;
 	}
 	
 	@Override
@@ -42,11 +43,6 @@ public class TallGrassATile extends Tile {
 			if(cRect.detectCollision(wRect)) {
 				deleteMe(x,y, Game.level.activeBlocks);
 			}
-		}
-		if(Game.level.activeBlocks[x][y].layers[GRASS_LAYER].autoTile == 4 && Game.level.activeBlocks[x][y].layers[GRASS_LAYER].id == GRASS) {
-			
-		} else {
-			deleteMe(x,y, Game.level.activeBlocks);
 		}
 	}
 	

@@ -29,7 +29,7 @@ public class CactusTile extends CollisionTile {
 	
 	@Override
 	public void render(int x, int y) {
-		sprites[currentSpriteId].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+		sprites[currentSpriteId].draw(x, y, z);
 	}
 	
 	public Tile createNew() {

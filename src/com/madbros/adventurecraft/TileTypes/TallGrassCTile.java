@@ -14,7 +14,7 @@ public class TallGrassCTile extends TallGrassATile {
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.TALL_GRASS_C);
 		margin = new Margin(9, 9, 12, 11);
-		id = TALL_GRASS_A_TILE;
+		id = TALL_GRASS_C_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
 		isDiggable = true;

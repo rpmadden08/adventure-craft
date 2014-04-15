@@ -1,23 +1,22 @@
 package com.madbros.adventurecraft.TileTypes;
 
-import com.madbros.adventurecraft.Sprites.*;
-import com.madbros.adventurecraft.Utils.Margin;
-
 import static com.madbros.adventurecraft.Constants.*;
 
-public class WaterTile extends CollisionTile {
-	public WaterTile() {
+import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.Utils.Margin;
+
+public class DirtMountainMiddleTile extends CollisionTile {
+	public DirtMountainMiddleTile() {
 		super();
 		currentSpriteId = 0;
-		layer = WATER_LAYER;
-		z = Z_WATER;
-		margin = new Margin(2, 2, 2, 3);
-		id = WATER;
+		sprites = Sprites.spriteCollections.get(Sprites.DIRT_MOUNTAIN_MIDDLE_NEW);
+		margin = new Margin(9, 9, 12, 11);
+		id = DIRT_MOUNTAIN_MIDDLE;
 		autoTileID = id;
+		layer = ABOVE_LAYER_1;
+		z = Z_ABOVE_LAYER;
 		isDiggable = false;
-		//sprites = Sprites.waterSprites;
-		sprites = Sprites.spriteCollections.get(Sprites.WATER_NEW);
-		is32 = false;
+		isPickable = true;
 	}
 	
 	public void render(int x, int y) {
@@ -36,8 +35,7 @@ public class WaterTile extends CollisionTile {
 		}
 	}
 	
-	
 	public Tile createNew() {
-		return new WaterTile();
+		return new DirtMountainMiddleTile();
 	}
 }

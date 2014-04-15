@@ -19,7 +19,7 @@ public class DarkDirtTile extends Tile{
 		currentSpriteId= 0;
 		sprites = new StaticSprite[]{(StaticSprite)Sprites.sprites.get(Sprites.TILLED_SOIL)};
 		id = DARK_DIRT;
-		isDiggable = true;
+		isDiggable = false;
 		autoTile = 0;
 		is32 = false;
 	}

@@ -75,7 +75,7 @@ public class Level {
 	
 //	
 	//private long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 1; // 6 is swamp, 2 is hole+swamp, 19 is Grass and Snow (plains)
+	public long rgenseed = 2; // 6 is swamp, 2 is hole+swamp, 19 is Grass and Snow (plains)
 	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public Random rand = new Random(rgenseed);
 	public int randInt1 = rand.nextInt();
@@ -209,13 +209,14 @@ public class Level {
 		Game.hero.absRect.x = x *TILE_SIZE;
 		Game.hero.absRect.y = y *TILE_SIZE;
 		
-		offsetX = 15;
-		offsetY = 16;
+		offsetX = 0;
+		offsetY = 0;
 		Game.saveGame.saveGame();
 		saveCurrentChunks();
 		Game.level = new Level();
 		Game.hero = new Hero();
-		Game.hero.absRect.x = Game.hero.absRect.x + 15;
+		Game.hero.absRect.x = Game.hero.absRect.x - 16;
+		Game.hero.absRect.y = Game.hero.absRect.y +2;
 		//offsetX = 15;
 		
 		
@@ -385,7 +386,6 @@ public class Level {
 			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = true;
 			highlightedBlockX = renderRect.x + (mRect.x + offsetX) / TILE_SIZE;
 			highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
-			
 			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
 			//This is so that chests know their coordinates...
 			tileBeingAttacked.absX = highlightedBlock.getAbsX();
@@ -394,11 +394,11 @@ public class Level {
 			tileBeingAttacked.activeBlocksX = highlightedBlockX;
 			tileBeingAttacked.activeBlocksY = highlightedBlockY;
 			
-			if(tileBeingAttacked != highlightedBlock.getObjectTile()) {
-				
+			//if(tileBeingAttacked != highlightedBlock.getObjectTile()) {
+			if(tileBeingAttacked != highlightedBlock.getTopTile()) {	
 				
 				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
-				tileBeingAttacked = highlightedBlock.getObjectTile();
+				tileBeingAttacked = highlightedBlock.getTopTile();
 				
 			}
 			highlightedBlock.isHighlighted = true;
@@ -559,31 +559,26 @@ public class Level {
 		for(int i = LIGHT_DIRT_LAYER; i < blocks[x][y].layers.length; i++) {
 			if(block.layers[i].isAutoTileable) {
 				int left = 0, topLeft = 0, top = 0, topRight = 0, right = 0, bottomRight = 0, bottom = 0, bottomLeft = 0;
-				if(blocks[x-2][y-2].layers[i].autoTileID == block.layers[i].autoTileID) topLeft = 1;
-				if(blocks[x][y-2].layers[i].autoTileID == block.layers[i].autoTileID) top = 2;
-				if(blocks[x+2][y-2].layers[i].autoTileID == block.layers[i].autoTileID) topRight = 4;
-				if(blocks[x-2][y].layers[i].autoTileID == block.layers[i].autoTileID) left = 8;
-				if(blocks[x+2][y].layers[i].autoTileID == block.layers[i].autoTileID) right = 16;
-				if(blocks[x-2][y+2].layers[i].autoTileID == block.layers[i].autoTileID) bottomLeft = 32;
-				if(blocks[x][y+2].layers[i].autoTileID == block.layers[i].autoTileID) bottom = 64;
-				if(blocks[x+2][y+2].layers[i].autoTileID == block.layers[i].autoTileID) bottomRight = 128;
+				if(blocks[x-1][y-1].layers[i].autoTileID == block.layers[i].autoTileID) topLeft = 1;
+				if(blocks[x][y-1].layers[i].autoTileID == block.layers[i].autoTileID) top = 2;
+				if(blocks[x+1][y-1].layers[i].autoTileID == block.layers[i].autoTileID) topRight = 4;
+				if(blocks[x-1][y].layers[i].autoTileID == block.layers[i].autoTileID) left = 8;
+				if(blocks[x+1][y].layers[i].autoTileID == block.layers[i].autoTileID) right = 16;
+				if(blocks[x-1][y+1].layers[i].autoTileID == block.layers[i].autoTileID) bottomLeft = 32;
+				if(blocks[x][y+1].layers[i].autoTileID == block.layers[i].autoTileID) bottom = 64;
+				if(blocks[x+1][y+1].layers[i].autoTileID == block.layers[i].autoTileID) bottomRight = 128;
 				
-				block.layers[i].autoTile = TOP_LEFT_AUTO_TILE_HASH.get(left + topLeft + top);
-				blocks[x+1][y].layers[i].autoTile = TOP_RIGHT_AUTO_TILE_HASH.get(right + topRight + top);
-				blocks[x][y+1].layers[i].autoTile = BOTTOM_LEFT_AUTO_TILE_HASH.get(left + bottomLeft + bottom);
-				blocks[x+1][y+1].layers[i].autoTile = BOTTOM_RIGHT_AUTO_TILE_HASH.get(right + bottomRight + bottom);
+				block.layers[i].topLeftAutoTile = TOP_LEFT_AUTO_TILE_HASH.get(left + topLeft + top);
+				block.layers[i].topRightAutoTile = TOP_RIGHT_AUTO_TILE_HASH.get(right + topRight + top);
+				block.layers[i].bottomLeftAutoTile = BOTTOM_LEFT_AUTO_TILE_HASH.get(left + bottomLeft + bottom);
+				block.layers[i].bottomRightAutoTile = BOTTOM_RIGHT_AUTO_TILE_HASH.get(right + bottomRight + bottom);
 				
-				if(block.layers[i].autoTile != MIDDLE_TILE || blocks[x+1][y].layers[i].autoTile != MIDDLE_TILE ||
-				   blocks[x][y+1].layers[i].autoTile != MIDDLE_TILE || blocks[x+1][y+1].layers[i].autoTile != MIDDLE_TILE) {
+				
+				if(block.layers[i].topLeftAutoTile != MIDDLE_TILE || block.layers[i].topRightAutoTile != MIDDLE_TILE ||
+				   block.layers[i].bottomLeftAutoTile != MIDDLE_TILE || block.layers[i].bottomRightAutoTile != MIDDLE_TILE) {
 					block.layers[i].isMiddleTile = false;
-					blocks[x+1][y].layers[i].isMiddleTile = false;
-					blocks[x][y+1].layers[i].isMiddleTile = false;
-					blocks[x+1][y+1].layers[i].isMiddleTile = false;
 				} else {
 					block.layers[i].isMiddleTile = true;
-					blocks[x+1][y].layers[i].isMiddleTile = true;
-					blocks[x][y+1].layers[i].isMiddleTile = true;
-					blocks[x+1][y+1].layers[i].isMiddleTile = true;
 				}
 			}
 		}
@@ -612,9 +607,9 @@ public class Level {
 	public void autoTileNewArea(int startX, int startY, int endX, int endY) {
 		for(int x = startX; x < endX; x++) {
 			for(int y = startY; y < endY; y++) {
-				if(x % 2 == 0 && y % 2 == 0) {
+				//if(x % 2 == 0 && y % 2 == 0) {
 					activeBlocks[x][y] = autoTile(activeBlocks, activeBlocks[x][y], x, y);
-				}
+				//}
 			}
 		}
 	}
@@ -622,27 +617,45 @@ public class Level {
 	public void autoTileHighlightedBlock() {
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY], highlightedBlockX, highlightedBlockY);
 		
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY-2], highlightedBlockX-2, highlightedBlockY-2);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY-2], highlightedBlockX, highlightedBlockY-2);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY-2], highlightedBlockX+2, highlightedBlockY-2);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY], highlightedBlockX-2, highlightedBlockY);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY], highlightedBlockX+2, highlightedBlockY);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY+2], highlightedBlockX-2, highlightedBlockY+2);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY+2], highlightedBlockX, highlightedBlockY+2);
-		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY+2], highlightedBlockX+2, highlightedBlockY+2);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX-1][highlightedBlockY-1], highlightedBlockX-1, highlightedBlockY-1);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY-1], highlightedBlockX, highlightedBlockY-1);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX+1][highlightedBlockY-1], highlightedBlockX+1, highlightedBlockY-1);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX-1][highlightedBlockY], highlightedBlockX-1, highlightedBlockY);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX+1][highlightedBlockY], highlightedBlockX+1, highlightedBlockY);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX-1][highlightedBlockY+1], highlightedBlockX-1, highlightedBlockY+1);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY+1], highlightedBlockX, highlightedBlockY+1);
+		autoTile(activeBlocks, activeBlocks[highlightedBlockX+1][highlightedBlockY+1], highlightedBlockX+1, highlightedBlockY+1);
+		
+//		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY-2], highlightedBlockX-2, highlightedBlockY-2);
+//		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY-2], highlightedBlockX, highlightedBlockY-2);
+//		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY-2], highlightedBlockX+2, highlightedBlockY-2);
+//		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY], highlightedBlockX-2, highlightedBlockY);
+//		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY], highlightedBlockX+2, highlightedBlockY);
+//		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY+2], highlightedBlockX-2, highlightedBlockY+2);
+//		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY+2], highlightedBlockX, highlightedBlockY+2);
+//		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY+2], highlightedBlockX+2, highlightedBlockY+2);
 	}
 	
 	public void autoTileBlock(int x, int y) {
 		autoTile(activeBlocks, activeBlocks[x][y], x, y);
 		
-		autoTile(activeBlocks, activeBlocks[x-2][y-2], x-2, y-2);
-		autoTile(activeBlocks, activeBlocks[x][y-2], x, y-2);
-		autoTile(activeBlocks, activeBlocks[x+2][y-2], x+2, y-2);
-		autoTile(activeBlocks, activeBlocks[x-2][y], x-2, y);
-		autoTile(activeBlocks, activeBlocks[x+2][y], x+2, y);
-		autoTile(activeBlocks, activeBlocks[x-2][y+2], x-2, y+2);
-		autoTile(activeBlocks, activeBlocks[x][y+2], x, y+2);
-		autoTile(activeBlocks, activeBlocks[x+2][y+2], x+2, y+2);
+		autoTile(activeBlocks, activeBlocks[x-1][y-1], x-1, y-1);
+		autoTile(activeBlocks, activeBlocks[x][y-1], x, y-1);
+		autoTile(activeBlocks, activeBlocks[x+1][y-1], x+1, y-1);
+		autoTile(activeBlocks, activeBlocks[x-1][y], x-1, y);
+		autoTile(activeBlocks, activeBlocks[x+1][y], x+1, y);
+		autoTile(activeBlocks, activeBlocks[x-1][y+1], x-1, y+1);
+		autoTile(activeBlocks, activeBlocks[x][y+1], x, y+1);
+		autoTile(activeBlocks, activeBlocks[x+1][y+1], x+1, y+1);
+		
+//		autoTile(activeBlocks, activeBlocks[x-2][y-2], x-2, y-2);
+//		autoTile(activeBlocks, activeBlocks[x][y-2], x, y-2);
+//		autoTile(activeBlocks, activeBlocks[x+2][y-2], x+2, y-2);
+//		autoTile(activeBlocks, activeBlocks[x-2][y], x-2, y);
+//		autoTile(activeBlocks, activeBlocks[x+2][y], x+2, y);
+//		autoTile(activeBlocks, activeBlocks[x-2][y+2], x-2, y+2);
+//		autoTile(activeBlocks, activeBlocks[x][y+2], x, y+2);
+//		autoTile(activeBlocks, activeBlocks[x+2][y+2], x+2, y+2);
 
 	}
 	

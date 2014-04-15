@@ -7,14 +7,14 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class DirtMountainBottomTile extends CollisionTile {
-	public DirtMountainBottomTile() {
+public class DirtMountainCopperBottomTile extends CollisionTile {
+	public DirtMountainCopperBottomTile() {
 		super();
 		currentSpriteId = 0;
-		sprites = Sprites.spriteCollections.get(Sprites.DIRT_MOUNTAIN_BOTTOM_NEW);
+		sprites = Sprites.spriteCollections.get(Sprites.DIRT_MOUNTAIN_COPPER_BOTTOM_NEW);
 		margin = new Margin(3, 3, 0, 12);
-		id = DIRT_MOUNTAIN_BOTTOM;
-		autoTileID = id;
+		id = DIRT_MOUNTAIN_COPPER_BOTTOM;
+		autoTileID = DIRT_MOUNTAIN_BOTTOM;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
 		isDiggable = false;
@@ -39,7 +39,7 @@ public class DirtMountainBottomTile extends CollisionTile {
 	}
 	
 	public Tile createNew() {
-		return new DirtMountainBottomTile();
+		return new DirtMountainCopperBottomTile();
 	}
 	
 	@Override
@@ -54,11 +54,9 @@ public class DirtMountainBottomTile extends CollisionTile {
 	}
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
-		activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new NoTile();
-		activeBlocks[x][y-2].layers[ABOVE_LAYER_2] = new NoTile();
-		
+		Block b = activeBlocks[x][y];
+		b.layers[OBJECT_LAYER] = new NoTile();
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Game.collectibleController.add(DIRT_MOUNTAIN_ITEM, Sprites.sprites.get(Sprites.DIRT_MOUNTAIN_ITEM), collectibleRect, 1);
-		
 	}
 }

@@ -47,7 +47,7 @@ public class StairsDownTile extends CollisionTile {
 				int x2 = Game.level.activeBlocks[x][y].getAbsX();
 				int y2 = Game.level.activeBlocks[x][y].getAbsY();
 				Game.switchLevel();
-				Game.level.teleportHero(x2-1, y2-1);
+				Game.level.teleportHero(x2, y2-1);
 				x = Game.level.getXFromAbs(x2);
 				y = Game.level.getYFromAbs(y2);
 				if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_UP_BOTTOM_TILE) {
@@ -58,6 +58,16 @@ public class StairsDownTile extends CollisionTile {
 					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.y = Game.level.activeBlocks[x][y].getAbsY()* TILE_SIZE;
 					
 				}
+				Game.level.autoTileBlock(x, y);
+				Game.level.autoTileBlock(x, y+1);
+				Game.level.autoTileBlock(x, y+2);
+				Game.level.autoTileBlock(x-1, y);
+				Game.level.autoTileBlock(x-1, y-1);
+				Game.level.autoTileBlock(x-1, y-2);
+				Game.level.autoTileBlock(x-2, y);
+				Game.level.autoTileBlock(x-2, y-1);
+				Game.level.autoTileBlock(x-2, y-2);
+				//Game.level.autoTileHighlightedBlock();
 			}
 			
 		} else {

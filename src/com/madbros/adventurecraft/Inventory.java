@@ -100,24 +100,24 @@ public class Inventory {
 		
 		invBar[0].item = new Sword();
 		invBar[0].item.stackSize =1;
-		invBar[1].item = new Plank();
+		invBar[1].item = new Pick();
 		invBar[1].item.stackSize = 99;
-		invBar[2].item = new BatWing();
+		invBar[2].item = new Hoe();
 		invBar[2].item.stackSize = 1;
-		invBar[3].item = new Furnace();
+		invBar[3].item = new Shovel();
 		invBar[3].item.stackSize = 1;
-		invBar[4].item = new StairsUp();
+		invBar[4].item = new Axe();
 		invBar[4].item.stackSize =1;
-		invBar[5].item = new StairsDown();
+		invBar[5].item = new WoodenSword();
 		invBar[5].item.stackSize = 1;
-		invBar[6].item = new Log();
+		invBar[6].item = new StairsDown();
 		invBar[6].item.stackSize = 99;
-		invBar[7].item = new Potatoes();
+		invBar[7].item = new TinSword();
 		invBar[7].item.stackSize = 1;
-		invBar[8].item = new HealthPotion();
+		invBar[8].item = new StoneSword();
 		invBar[8].item.stackSize = 99;
-//		invBar[9].item = new Venom();
-//		invBar[9].item.stackSize = 99;
+		invBar[9].item = new RedFlowers();
+		invBar[9].item.stackSize = 1;
 		
 //		invBag[0].item = new LeatherHat();
 //		invBag[0].item.stackSize = 1;

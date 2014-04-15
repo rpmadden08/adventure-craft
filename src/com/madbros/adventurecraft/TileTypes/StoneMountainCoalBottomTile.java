@@ -11,7 +11,7 @@ public class StoneMountainCoalBottomTile extends CollisionTile {
 	public StoneMountainCoalBottomTile() {
 		super();
 		currentSpriteId = 0;
-		sprites = Sprites.spriteCollections.get(Sprites.STONE_MOUNTAIN_COAL_BOTTOM);
+		sprites = Sprites.spriteCollections.get(Sprites.GRASS_NEW);
 		margin = new Margin(3, 3, 0, 12);
 		id = STONE_MOUNTAIN_COAL_BOTTOM;
 		autoTileID = STONE_MOUNTAIN_BOTTOM;

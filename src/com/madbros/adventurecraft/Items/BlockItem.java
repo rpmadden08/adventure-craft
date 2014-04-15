@@ -12,7 +12,7 @@ public abstract class BlockItem extends StackableItem{
 	int tileId = DIRT;
 	int[] placeableTileIds;
 	public BlockItem() {
-		is32 = false;
+		is32 = true;
 	}
 	@Override
 	public abstract BlockItem createNew();
@@ -22,16 +22,9 @@ public abstract class BlockItem extends StackableItem{
 		//if(isInRange == true) {
 			Tile tile = TILE_HASH.get(tileId).createNew();
 			Block hB = Game.level.highlightedBlock;
-			Block hB2 = Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY];
-			Block hB3 = Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1];
-			Block hB4 = Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY+1];
 			
-			if(Helpers.arrayDoesContainInt(placeableTileIds, hB.getTopTerrainTile().id) && AIR == hB.layers[OBJECT_LAYER].id &&
-					AIR == hB2.layers[OBJECT_LAYER].id && AIR == hB3.layers[OBJECT_LAYER].id  && AIR == hB4.layers[OBJECT_LAYER].id) {
+			if(Helpers.arrayDoesContainInt(placeableTileIds, hB.getTopTerrainTile().id) && AIR == hB.layers[OBJECT_LAYER].id) {
 				placeTile(hB, tile);
-				placeTile(hB2, TILE_HASH.get(tileId).createNew());
-				placeTile(hB3, TILE_HASH.get(tileId).createNew());
-				placeTile(hB4, TILE_HASH.get(tileId).createNew());
 				stackSize -= 1;
 				Game.inventory.deleteItemIfNecessary();
 				Game.level.autoTileHighlightedBlock();

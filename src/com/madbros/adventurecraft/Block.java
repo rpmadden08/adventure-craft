@@ -77,6 +77,9 @@ public class Block {
 		layers[ABOVE_LAYER_5] = t[ABOVE_LAYER_5];
 		layers[ABOVE_LAYER_6] = t[ABOVE_LAYER_6];
 		
+		for(int a = 0;a < t.length;a++) {
+			t[a].setCollisionRect(absRect);
+		}
 		
 		if(t[WATER_LAYER].isCollidable) setCollisionTile((CollisionTile)t[WATER_LAYER]);
 		else if(t[OBJECT_LAYER].isCollidable) setCollisionTile((CollisionTile)t[OBJECT_LAYER]);
@@ -87,7 +90,7 @@ public class Block {
 		} else if(t[OBJECT_LAYER].isCollidable) {
 			collisionTile = (CollisionTile)t[OBJECT_LAYER];
 			cRect = new Rect(absRect, collisionTile.margin);
-		}
+		} 
 	}
 	
 	public boolean isCollidable() {

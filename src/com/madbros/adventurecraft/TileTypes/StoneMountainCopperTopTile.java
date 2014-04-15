@@ -9,7 +9,7 @@ public class StoneMountainCopperTopTile extends CollisionTile {
 	public StoneMountainCopperTopTile() {
 		super();
 		currentSpriteId = 0;
-		sprites = Sprites.spriteCollections.get(Sprites.STONE_MOUNTAIN_COPPER_TOP);
+		sprites = Sprites.spriteCollections.get(Sprites.GRASS_NEW);
 		margin = new Margin(9, 9, 12, 11);
 		id = STONE_MOUNTAIN_COPPER_TOP;
 		autoTileID = STONE_MOUNTAIN_TOP;

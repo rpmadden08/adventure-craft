@@ -38,5 +38,11 @@ public class CompoundStaticSprite extends CompoundSprite{
 			sprites[i].draw(x, y, z, scale);
 		}
 	}
+	
+	public void draw(float x, float y, float w, float h, float newX, float newY, float newW, float newH) {
+		for(int i = 0; i < sprites.length; i++) {
+			sprites[i].draw(x, y, w, h);
+		}
+	}
 
 }

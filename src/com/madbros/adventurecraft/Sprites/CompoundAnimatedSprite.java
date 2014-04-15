@@ -55,6 +55,12 @@ public class CompoundAnimatedSprite extends CompoundSprite {
 		}
 	}
 	
+	public void draw(float x, float y, float w, float h, float newX, float newY, float newW, float newH) {
+		for(AnimatedSprite sprite : sprites) {
+			sprite.draw(x, y, w, h);
+		}
+	}
+	
 	/*********************************** Other ***********************************/
 	public void addSprite(AnimatedSprite sprite) {
 		sprites.add(sprite);

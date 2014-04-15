@@ -46,7 +46,7 @@ public class StairsUpBottomTile extends CollisionTile {
 				int x2 = Game.level.activeBlocks[x][y].getAbsX();
 				int y2 = Game.level.activeBlocks[x][y].getAbsY();
 				Game.switchLevel();
-				Game.level.teleportHero(x2-1, y2-1);
+				Game.level.teleportHero(x2, y2-1);
 				x = Game.level.getXFromAbs(x2);
 				y = Game.level.getYFromAbs(y2);
 				if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_DOWN_TILE) {

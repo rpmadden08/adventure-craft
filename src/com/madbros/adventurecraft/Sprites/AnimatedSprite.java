@@ -43,6 +43,10 @@ public class AnimatedSprite extends Sprite {
 		currentAnimation.draw(x, y, z, scale);
 	}
 	
+	public void draw(float x, float y, float w, float h, float newX, float newY, float newW, float newH) {
+		currentAnimation.draw(x, y, w, h);
+	}
+	
 	/*********************************** Other ***********************************/
 	private void addAnimation(Animation animation) {
 		animations.put(animation.id, animation);

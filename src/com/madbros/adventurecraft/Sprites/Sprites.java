@@ -168,6 +168,20 @@ public class Sprites {
 	//static collections
 	public static final String DESERT = "desert";
 	public static final String GRASS = "grass";
+	public static final String GRASS_NEW = "grassNew";
+	public static final String DIRT_NEW = "dirtNew";
+	public static final String HOLE_NEW = "holeNew";
+	public static final String WATER_NEW = "waterNew";
+	public static final String SAND_NEW = "sandNew";
+	public static final String DIRT_MOUNTAIN_BOTTOM_NEW = "dirtMountainBottomNew";
+	public static final String DIRT_MOUNTAIN_MIDDLE_NEW = "dirtMountainMiddleNew";
+	public static final String DIRT_MOUNTAIN_TOP_NEW = "dirtMountainTopNew";
+	public static final String DIRT_MOUNTAIN_COPPER_BOTTOM_NEW = "dirtMountainCopperBottomNew";
+	public static final String DIRT_MOUNTAIN_COPPER_MIDDLE_NEW = "dirtMountainCopperMiddleNew";
+	public static final String DIRT_MOUNTAIN_TIN_BOTTOM_NEW = "dirtMountainTinBottomNew";
+	public static final String DIRT_MOUNTAIN_TIN_MIDDLE_NEW = "dirtMountainTinMiddleNew";
+	public static final String DIRT_MOUNTAIN_COAL_BOTTOM_NEW = "dirtMountainCoalBottomNew";
+	public static final String DIRT_MOUNTAIN_COAL_MIDDLE_NEW = "dirtMountainCoalMiddleNew";
 	public static final String SPACE = "space";
 	public static final String HOLE = "hole";
 	public static final String LIGHT_DIRT = "lightDirt";
@@ -694,8 +708,12 @@ public class Sprites {
 					COW_STAND_DOWN, COW_STAND_UP, COW_STAND_RIGHT, COW_STAND_LEFT,
 					
 					STINGER_SWORD, STEAK, COOKED_STEAK, HONEY, SLIME_BALL, WORM_GUTS,
-					HEALTH_POTION, SPEED_POTION, HARMING_POTION, SLOWNESS_POTION, GLASS_BOTTLE
+					HEALTH_POTION, SPEED_POTION, HARMING_POTION, SLOWNESS_POTION, GLASS_BOTTLE,
 					
+					GRASS_NEW, DIRT_NEW, HOLE_NEW, SAND_NEW, DIRT_MOUNTAIN_BOTTOM_NEW,DIRT_MOUNTAIN_TOP_NEW,
+					DIRT_MOUNTAIN_MIDDLE_NEW, WATER_NEW, DIRT_MOUNTAIN_COPPER_BOTTOM_NEW,
+					DIRT_MOUNTAIN_COPPER_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_BOTTOM_NEW,
+					DIRT_MOUNTAIN_COAL_MIDDLE_NEW, DIRT_MOUNTAIN_COAL_BOTTOM_NEW,
 					
 			};
 			

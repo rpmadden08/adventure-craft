@@ -15,7 +15,7 @@ public class SnowTile extends Tile {
 		z = Z_GRASS;
 		isCollidable = false;
 		currentSpriteId = 0;
-		sprites = Sprites.spriteCollections.get(Sprites.SNOW);
+		sprites = Sprites.spriteCollections.get(Sprites.GRASS_NEW);
 		id = SNOW;
 		autoTileID = id;
 		is32 = false;

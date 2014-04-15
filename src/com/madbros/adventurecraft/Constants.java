@@ -17,8 +17,8 @@ public class Constants {
 	public static HashMap<Integer, Integer> BOTTOM_RIGHT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
 	
 	//game constants                                       Small  Big    Retina
-	public static final int INITIAL_WINDOW_WIDTH = 640;// 640    1280   1440
-	public static final int INITIAL_WINDOW_HEIGHT = 480;// 480    800    900
+	public static final int INITIAL_WINDOW_WIDTH = 1440;// 640    1280   1440
+	public static final int INITIAL_WINDOW_HEIGHT = 900;// 480    800    900
 	public static final int RENDER_MARGIN = 1;
 	public static final int FRAME_RATE = 60;
 	public static final String GAME_TITLE = "Adventure Craft";
@@ -158,7 +158,7 @@ public class Constants {
 	public static final int FURNACE_TOP = 25;
 	public static final int CAULDRON_TILE = 26;
 	public static final int DIRT_MOUNTAIN_COAL_BOTTOM = 27;
-	public static final int DIRT_MOUNTAIN_COAL_TOP = 28;
+	public static final int DIRT_MOUNTAIN_COAL_MIDDLE = 28;
 	public static final int TREE_RAIN = 29;
 	public static final int SPACE = 30;
 	public static final int BARREL = 31;
@@ -197,6 +197,11 @@ public class Constants {
 	public static final int STAIRS_UP_TOP_TILE = 64;
 	public static final int STAIRS_DOWN_TILE = 65;
 	public static final int FIRE_PIT_TILE = 66;
+	public static final int DIRT_MOUNTAIN_MIDDLE = 67;
+	public static final int DIRT_MOUNTAIN_COPPER_MIDDLE = 68;
+	public static final int DIRT_MOUNTAIN_COPPER_BOTTOM = 69;
+	public static final int DIRT_MOUNTAIN_TIN_BOTTOM = 70;
+	public static final int DIRT_MOUNTAIN_TIN_MIDDLE = 71;
 	
 	
 
@@ -208,6 +213,7 @@ public class Constants {
 	public static final int COAL_MARK = 1001;
 	public static final int TIN_MARK = 1002;
 	public static final int COPPER_MARK = 1003;
+	public static final int GRASS_MARK = 1004;
 	
 	
 	
@@ -444,19 +450,64 @@ public class Constants {
 	
 	//Auto Tiling
 	public static final int TOP_LEFT_TILE= 0;
-	public static final int TOP_TILE = 3;
-	public static final int TOP_RIGHT_TILE= 6;
-	public static final int LEFT_TILE = 1;
-	public static final int MIDDLE_TILE = 4;
-	public static final int RIGHT_TILE = 7;
-	public static final int BOTTOM_LEFT_TILE = 2;
-	public static final int BOTTOM_TILE = 5;
-	public static final int BOTTOM_RIGHT_TILE = 8;
+	public static final int TOP_TILE = 12;
+	public static final int TOP_RIGHT_TILE= 24;
+	public static final int LEFT_TILE = 2;
+	public static final int MIDDLE_TILE = 14;
+	public static final int RIGHT_TILE = 26;
+	public static final int BOTTOM_LEFT_TILE = 4;
+	public static final int BOTTOM_TILE = 16;
+	public static final int BOTTOM_RIGHT_TILE = 28;
 	
-	public static final int MERGE_TILE_TOP_LEFT = 9;
-	public static final int MERGE_TILE_TOP_RIGHT = 11;
-	public static final int MERGE_TILE_BOTTOM_LEFT = 10;
-	public static final int MERGE_TILE_BOTTOM_RIGHT = 12;
+	public static final int MERGE_TILE_TOP_LEFT = 39;
+	public static final int MERGE_TILE_TOP_RIGHT = 37;
+	public static final int MERGE_TILE_BOTTOM_LEFT = 38;
+	public static final int MERGE_TILE_BOTTOM_RIGHT = 36;
+	
+	public static final int bTOP_LEFT_TILE= 6;
+	public static final int bTOP_TILE = 18;
+	public static final int bTOP_RIGHT_TILE= 30;
+	public static final int bLEFT_TILE = 8;
+	public static final int bMIDDLE_TILE = 20;
+	public static final int bRIGHT_TILE = 32;
+	public static final int bBOTTOM_LEFT_TILE =10;
+	public static final int bBOTTOM_TILE = 22;
+	public static final int bBOTTOM_RIGHT_TILE = 34;
+	
+//	public static final int bMERGE_TILE_TOP_LEFT = 9;
+//	public static final int bMERGE_TILE_TOP_RIGHT = 11;
+//	public static final int bMERGE_TILE_BOTTOM_LEFT = 10;
+//	public static final int bMERGE_TILE_BOTTOM_RIGHT = 12;
+	
+	public static final int cTOP_LEFT_TILE= 1;
+	public static final int cTOP_TILE = 13;
+	public static final int cTOP_RIGHT_TILE= 25;
+	public static final int cLEFT_TILE = 3;
+	public static final int cMIDDLE_TILE = 15;
+	public static final int cRIGHT_TILE = 27;
+	public static final int cBOTTOM_LEFT_TILE = 5;
+	public static final int cBOTTOM_TILE = 17;
+	public static final int cBOTTOM_RIGHT_TILE = 29;
+	
+//	public static final int cMERGE_TILE_TOP_LEFT = 9;
+//	public static final int cMERGE_TILE_TOP_RIGHT = 11;
+//	public static final int cMERGE_TILE_BOTTOM_LEFT = 10;
+//	public static final int cMERGE_TILE_BOTTOM_RIGHT = 12;
+	
+	public static final int dTOP_LEFT_TILE= 7;
+	public static final int dTOP_TILE = 19;
+	public static final int dTOP_RIGHT_TILE= 31;
+	public static final int dLEFT_TILE = 9;
+	public static final int dMIDDLE_TILE = 21;
+	public static final int dRIGHT_TILE = 33;
+	public static final int dBOTTOM_LEFT_TILE = 11;
+	public static final int dBOTTOM_TILE = 23;
+	public static final int dBOTTOM_RIGHT_TILE = 35;
+	
+//	public static final int dMERGE_TILE_TOP_LEFT = 9;
+//	public static final int dMERGE_TILE_TOP_RIGHT = 11;
+//	public static final int dMERGE_TILE_BOTTOM_LEFT = 10;
+//	public static final int dMERGE_TILE_BOTTOM_RIGHT = 12;
 	
 	//Main Menu
 	public static final int MAIN_MENU_WIDTH = 100;
@@ -616,6 +667,11 @@ public class Constants {
 		TILE_HASH.put(HOLE, new HoleTile());
 		TILE_HASH.put(SPACE, new SpaceTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_BOTTOM, new DirtMountainBottomTile());
+		TILE_HASH.put(DIRT_MOUNTAIN_MIDDLE, new DirtMountainMiddleTile());
+		TILE_HASH.put(DIRT_MOUNTAIN_COPPER_BOTTOM, new DirtMountainCopperBottomTile());
+		TILE_HASH.put(DIRT_MOUNTAIN_COPPER_MIDDLE, new DirtMountainCopperMiddleTile());
+		TILE_HASH.put(DIRT_MOUNTAIN_TIN_BOTTOM, new DirtMountainTinBottomTile());
+		TILE_HASH.put(DIRT_MOUNTAIN_TIN_MIDDLE, new DirtMountainTinMiddleTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_TOP, new DirtMountainTopTile());
 		TILE_HASH.put(STONE_MOUNTAIN_BOTTOM, new StoneMountainBottomTile());
 		TILE_HASH.put(STONE_MOUNTAIN_TOP, new StoneMountainTopTile());
@@ -626,7 +682,7 @@ public class Constants {
 		TILE_HASH.put(STONE_MOUNTAIN_COPPER_BOTTOM, new StoneMountainCopperBottomTile());
 		TILE_HASH.put(STONE_MOUNTAIN_COPPER_TOP, new StoneMountainCopperTopTile());
 		TILE_HASH.put(DIRT_MOUNTAIN_COAL_BOTTOM, new DirtMountainCoalBottomTile());
-		TILE_HASH.put(DIRT_MOUNTAIN_COAL_TOP, new DirtMountainCoalTopTile());
+		TILE_HASH.put(DIRT_MOUNTAIN_COAL_MIDDLE, new DirtMountainCoalMiddleTile());
 		TILE_HASH.put(CAMPFIRE, new CampfireTile());
 		TILE_HASH.put(DARK_GRASS, new DarkGrassTile());
 		TILE_HASH.put(SNOW, new SnowTile());
@@ -661,43 +717,51 @@ public class Constants {
 		TILE_HASH.put(STAIRS_UP_TOP_TILE, new StairsUpTopTile());
 		TILE_HASH.put(STAIRS_UP_BOTTOM_TILE, new StairsUpBottomTile());
 		TILE_HASH.put(STAIRS_DOWN_TILE, new StairsDownTile());
+			
+//		if(blocks[x-1][y-1].layers[i].autoTileID == block.layers[i].autoTileID) topLeft = 1;
+//		if(blocks[x][y-1].layers[i].autoTileID == block.layers[i].autoTileID) top = 2;
+//		if(blocks[x+1][y-1].layers[i].autoTileID == block.layers[i].autoTileID) topRight = 4;
+//		if(blocks[x-1][y].layers[i].autoTileID == block.layers[i].autoTileID) left = 8;
+//		if(blocks[x+1][y].layers[i].autoTileID == block.layers[i].autoTileID) right = 16;
+//		if(blocks[x-1][y+1].layers[i].autoTileID == block.layers[i].autoTileID) bottomLeft = 32;
+//		if(blocks[x][y+1].layers[i].autoTileID == block.layers[i].autoTileID) bottom = 64;
+//		if(blocks[x+1][y+1].layers[i].autoTileID == block.layers[i].autoTileID) bottomRight = 128;
 		
 		
+		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);  //No connections
+		TOP_LEFT_AUTO_TILE_HASH.put(1, TOP_LEFT_TILE);  //Corner is true
+		TOP_LEFT_AUTO_TILE_HASH.put(2, LEFT_TILE);		//Top is true
+		TOP_LEFT_AUTO_TILE_HASH.put(3, LEFT_TILE);		//Top and Corner is true
+		TOP_LEFT_AUTO_TILE_HASH.put(8, TOP_TILE);		//Left is true
+		TOP_LEFT_AUTO_TILE_HASH.put(9, TOP_TILE);		//Left and Corner is true
+		TOP_LEFT_AUTO_TILE_HASH.put(10, MERGE_TILE_BOTTOM_RIGHT);	//Left and Top is true            MERGE_TILE_TOP_LEFT);
+		TOP_LEFT_AUTO_TILE_HASH.put(11, MIDDLE_TILE);     //All are true
 		
-		TOP_LEFT_AUTO_TILE_HASH.put(0, TOP_LEFT_TILE);
-		TOP_LEFT_AUTO_TILE_HASH.put(1, TOP_LEFT_TILE);
-		TOP_LEFT_AUTO_TILE_HASH.put(2, LEFT_TILE);
-		TOP_LEFT_AUTO_TILE_HASH.put(3, LEFT_TILE);
-		TOP_LEFT_AUTO_TILE_HASH.put(8, TOP_TILE);
-		TOP_LEFT_AUTO_TILE_HASH.put(9, TOP_TILE);
-		TOP_LEFT_AUTO_TILE_HASH.put(10, MERGE_TILE_BOTTOM_RIGHT);	//MERGE_TILE_TOP_LEFT);
-		TOP_LEFT_AUTO_TILE_HASH.put(11, MIDDLE_TILE);
-		
-		TOP_RIGHT_AUTO_TILE_HASH.put(0, TOP_RIGHT_TILE);
-		TOP_RIGHT_AUTO_TILE_HASH.put(2, RIGHT_TILE);
-		TOP_RIGHT_AUTO_TILE_HASH.put(4, TOP_RIGHT_TILE);
-		TOP_RIGHT_AUTO_TILE_HASH.put(6, RIGHT_TILE);
-		TOP_RIGHT_AUTO_TILE_HASH.put(16, TOP_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(0, bTOP_RIGHT_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(2, bRIGHT_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(4, bTOP_RIGHT_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(6, bRIGHT_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(16, bTOP_TILE);
 		TOP_RIGHT_AUTO_TILE_HASH.put(18, MERGE_TILE_BOTTOM_LEFT);	//MERGE_TILE_TOP_RIGHT);
-		TOP_RIGHT_AUTO_TILE_HASH.put(20, TOP_TILE);
-		TOP_RIGHT_AUTO_TILE_HASH.put(22, MIDDLE_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(20, bTOP_TILE);
+		TOP_RIGHT_AUTO_TILE_HASH.put(22, bMIDDLE_TILE);
 
-		BOTTOM_LEFT_AUTO_TILE_HASH.put(0, BOTTOM_LEFT_TILE);
-		BOTTOM_LEFT_AUTO_TILE_HASH.put(8, BOTTOM_TILE);
-		BOTTOM_LEFT_AUTO_TILE_HASH.put(32, BOTTOM_LEFT_TILE);
-		BOTTOM_LEFT_AUTO_TILE_HASH.put(40, BOTTOM_TILE);
-		BOTTOM_LEFT_AUTO_TILE_HASH.put(64, LEFT_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(0, cBOTTOM_LEFT_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(8, cBOTTOM_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(32, cBOTTOM_LEFT_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(40, cBOTTOM_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(64, cLEFT_TILE);
 		BOTTOM_LEFT_AUTO_TILE_HASH.put(72, MERGE_TILE_TOP_RIGHT);	//MERGE_TILE_BOTTOM_LEFT);
-		BOTTOM_LEFT_AUTO_TILE_HASH.put(96, LEFT_TILE);
-		BOTTOM_LEFT_AUTO_TILE_HASH.put(104, MIDDLE_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(96, cLEFT_TILE);
+		BOTTOM_LEFT_AUTO_TILE_HASH.put(104, cMIDDLE_TILE);
 
-		BOTTOM_RIGHT_AUTO_TILE_HASH.put(0, BOTTOM_RIGHT_TILE);
-		BOTTOM_RIGHT_AUTO_TILE_HASH.put(16, BOTTOM_TILE);
-		BOTTOM_RIGHT_AUTO_TILE_HASH.put(64, RIGHT_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(0, dBOTTOM_RIGHT_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(16, dBOTTOM_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(64, dRIGHT_TILE);
 		BOTTOM_RIGHT_AUTO_TILE_HASH.put(80, MERGE_TILE_TOP_LEFT);	//MERGE_TILE_BOTTOM_RIGHT);
-		BOTTOM_RIGHT_AUTO_TILE_HASH.put(128, BOTTOM_RIGHT_TILE);
-		BOTTOM_RIGHT_AUTO_TILE_HASH.put(144, BOTTOM_TILE);
-		BOTTOM_RIGHT_AUTO_TILE_HASH.put(192, RIGHT_TILE);
-		BOTTOM_RIGHT_AUTO_TILE_HASH.put(208, MIDDLE_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(128, dBOTTOM_RIGHT_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(144, dBOTTOM_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(192, dRIGHT_TILE);
+		BOTTOM_RIGHT_AUTO_TILE_HASH.put(208, dMIDDLE_TILE);
 	}
 }

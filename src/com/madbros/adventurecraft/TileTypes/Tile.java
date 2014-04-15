@@ -43,6 +43,10 @@ public abstract class Tile {
 	public Margin margin = new Margin(0,0,0,0);
 	public Rect absRect = new Rect(absX, absY, 32, 32);
 	public Rect cRect = new Rect(absRect, margin);
+	public int topLeftAutoTile = 0;
+	public int topRightAutoTile = 0;
+	public int bottomRightAutoTile = 0;
+	public int bottomLeftAutoTile = 0;
 	
 	public void render(int x, int y) {
 		sprites[autoTile].draw(x, y, z);

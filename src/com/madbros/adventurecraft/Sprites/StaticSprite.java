@@ -4,7 +4,7 @@ package com.madbros.adventurecraft.Sprites;
 //import org.newdawn.slick.opengl.Texture;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.madbros.adventurecraft.Utils.*;
 
 public class StaticSprite extends Sprite {
@@ -41,7 +41,28 @@ public class StaticSprite extends Sprite {
 	@Override
 	public void draw(float x, float y, float z, float w, float h) {
 		x += leftRenderOffset; y += topRenderOffset;
+	    //TextureRegion regions = new TextureRegion(getTexture(), 0, 0, 32, 32);      // #3
+	       
+		//setBounds(x, y, w, h);
 		setBounds(x, y, w, h);
+		draw(spriteBatch);
+		//spriteBatch.draw(regions, 0,0,32,32);
+		
+//		GL11.glTexCoord3f(textureOffsetX, textureOffsetY, z); //TOP LEFT
+//		GL11.glVertex3f(x, y, z); 
+//		GL11.glTexCoord3f(textureOffsetX, textureOffsetY+normalizedHeight, z); //BOTTOM LEFT
+//		GL11.glVertex3f(x, y+h, z);         
+//		GL11.glTexCoord3f(textureOffsetX+normalizedWidth, textureOffsetY+normalizedHeight, z); //BOTTOM RIGHT 
+//		GL11.glVertex3f(x+w, y+h, z); 
+//		GL11.glTexCoord3f(textureOffsetX+normalizedWidth, textureOffsetY, z); //TOP RIGHT
+//		GL11.glVertex3f(x+w, y, z);
+	}
+	
+	@Override
+	public void draw(float x, float y, float w, float h, float newX, float newY, float newW, float newH) {
+		x += leftRenderOffset; y += topRenderOffset;
+		setBounds(x, y, w, h);
+		
 		draw(spriteBatch);
 //		GL11.glTexCoord3f(textureOffsetX, textureOffsetY, z); //TOP LEFT
 //		GL11.glVertex3f(x, y, z); 

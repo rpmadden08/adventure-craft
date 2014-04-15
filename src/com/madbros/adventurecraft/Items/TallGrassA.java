@@ -24,9 +24,9 @@ public class TallGrassA extends BlockItem32 {
 	public void useRight() {
 		//if(isInRange) {
 			Block hB = Game.level.highlightedBlock;
-			if(hB.layers[GRASS_LAYER].autoTile == 4) {
+			//if(hB.layers[GRASS_LAYER].autoTile == 4) {
 				super.useRight();
-			}
+			//}
 		//}
 		
 	}

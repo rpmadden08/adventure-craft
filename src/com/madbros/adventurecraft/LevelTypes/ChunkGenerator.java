@@ -31,10 +31,10 @@ public class ChunkGenerator {
     				return COAL_MARK; // Return Barrel (1001)
     			} else if(getRandom(0.2, m, n)) {
     				return TIN_MARK;
-    			} else if(getRandom(0.3, m, n)) {
+    			} else if(getRandom(0.3, m, n)) {//0.3
         			return COPPER_MARK;
         		} else {
-    				return STONE_MOUNTAIN_BOTTOM;
+    				return DIRT_MOUNTAIN_BOTTOM;
     			}
     		}
     		return AIR;
@@ -42,6 +42,12 @@ public class ChunkGenerator {
     		
     		//DESERT
     		if(chunkGroundLayer[m][n] == 3) {
+    			if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 3 - 1 &&
+ 					   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
+    				if(getRandom(25, m, n)) {
+	    				return CACTUS;
+	    			}
+    			}
     			return AIR;
     			
         		//GRASSLAND
@@ -50,14 +56,15 @@ public class ChunkGenerator {
     					   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
     		    			if(getRandom(0.5, m, n)) {
     		    				return TREE;
-    		    			} else if(getRandom(50, m, n)){ // 0.7
-        		    			return BARREL; // Return Barrel (1000)
-        		    				
+    		    			} else if(getRandom(0.7, m, n)){ // 0.7
+        		    			return BARREL; // Return Barrel (1000)	
+    		    			} else if(getRandom(2, m, n)){ // 0.7
+            		    			return RED_FLOWERS_TILE; // Return Barrel (1000)	
+    		    			} else if(getRandom(6, m, n)){ // 0.7
+        		    			return GRASS_MARK; // Return Barrel (1000)	
     		    			} else {
-    		    				return BARREL;
+    		    				return AIR;
     		    			}
-    		    			
-    		    			
     					}
     			return AIR;
     			
@@ -118,7 +125,7 @@ public class ChunkGenerator {
 
 	public int getGroundLayerGeneration(int m, int n, Random rand) {
 		//BELOW SEA LEVEL
-		if(chunkNoiseElevation[m][n] < 0.5) {//FIXME Should be < 0.5
+		if(chunkNoiseElevation[m][n] < 0.5) {
 			Game.oceanTally = Game.oceanTally +1;
 			return 1;
     	//MOUNTAIN
@@ -170,9 +177,9 @@ public class ChunkGenerator {
 	
 	
 	
-	boolean getRandom(double chance, int x, int y) {
+	public boolean getRandom(double chance, int x, int y) {
 	    double a;
-	    float seed = chunkNoiseElevation[x][y] * 1000000000;
+	    float seed = chunkNoiseRainfall[x][y] * 1000000000;
 	    long seed2 = (long) seed;
 	    Random r = new Random(seed2);
 	    a = r.nextDouble();
@@ -184,7 +191,7 @@ public class ChunkGenerator {
 	    }
 	}
 	
-	public void oreGenerator(int oreAmount, int x, int y, int itemType, int is32) {
+	public void oreGenerator(int oreAmount, int x, int y, int itemType, int is32, int[] possibleBiomes) {
 		if(is32 == 2) {
 			if(x % 2 != 0) {
 				x = x -1;
@@ -311,8 +318,13 @@ public class ChunkGenerator {
 		for(int a = 0; a < totalOres; a++) {
 			//System.out.println(oreX.indexOf(a)+" - "+oreY.indexOf(a));
 			//if(oreX.get(a) > -1 && oreY.get(a) > -1 && oreX.get(a) < 36 && oreY.get(a) < 36) {
+			for(int b = 0; b < possibleBiomes.length; b++){
+				if(chunkGroundLayer[oreX.get(a)][oreY.get(a)] == possibleBiomes[b]) {
+					chunkObjectLayer[oreX.get(a)][oreY.get(a)] = itemType;
+					break;
+				}
+			}
 				
-				chunkObjectLayer[oreX.get(a)][oreY.get(a)] = itemType;
 			//}
 		}
 		
@@ -324,23 +336,29 @@ public class ChunkGenerator {
 		    long seed2 = (long) seed;
 			Random rand = new Random(seed2); 
 			int oreAmount = rand.nextInt(6) + 3;
-			oreGenerator(oreAmount,m,n, STONE_MOUNTAIN_COAL_BOTTOM, 2);
+			oreGenerator(oreAmount,m,n, DIRT_MOUNTAIN_COAL_BOTTOM, 1, new int[] {2});
 		} else if(chunkObjectLayer[m][n] == 1000) {
 			//System.out.println("CHECK");
 			//System.out.println(m);
-			oreGenerator(22,m,n,BARREL, 1);
+			oreGenerator(22,m,n,BARREL, 1, new int[] {4});
 		} else if(chunkObjectLayer[m][n] == TIN_MARK) {
 			float seed = chunkNoiseElevation[m][n] * 1000000000;
 		    long seed2 = (long) seed;
 			Random rand = new Random(seed2); 
 			int oreAmount = rand.nextInt(6) + 3;
-			oreGenerator(oreAmount,m,n, STONE_MOUNTAIN_TIN_BOTTOM, 2);
+			oreGenerator(oreAmount,m,n, DIRT_MOUNTAIN_TIN_BOTTOM, 1, new int[] {2});
 		} else if(chunkObjectLayer[m][n] == COPPER_MARK) {
 			float seed = chunkNoiseElevation[m][n] * 1000000000;
 		    long seed2 = (long) seed;
 			Random rand = new Random(seed2); 
 			int oreAmount = rand.nextInt(6) + 3;
-			oreGenerator(oreAmount,m,n, STONE_MOUNTAIN_COPPER_BOTTOM, 2);
+			oreGenerator(oreAmount,m,n, DIRT_MOUNTAIN_COPPER_BOTTOM, 1, new int[] {2});
+		} else if(chunkObjectLayer[m][n] == GRASS_MARK) {
+			float seed = chunkNoiseElevation[m][n] * 1000000000;
+		    long seed2 = (long) seed;
+			Random rand = new Random(seed2); 
+			int oreAmount = rand.nextInt(6) + 3;
+			oreGenerator(oreAmount,m,n, TALL_GRASS_A_TILE, 1, new int[] {4});
 		} 
 	}
 }

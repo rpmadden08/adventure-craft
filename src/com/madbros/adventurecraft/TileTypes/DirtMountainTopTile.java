@@ -9,7 +9,7 @@ public class DirtMountainTopTile extends CollisionTile {
 	public DirtMountainTopTile() {
 		super();
 		currentSpriteId = 0;
-		sprites = Sprites.spriteCollections.get(Sprites.MOUNTAIN_TOP);
+		sprites = Sprites.spriteCollections.get(Sprites.DIRT_MOUNTAIN_TOP_NEW);
 		margin = new Margin(9, 9, 12, 11);
 		id = DIRT_MOUNTAIN_TOP;
 		autoTileID = id;
@@ -19,12 +19,20 @@ public class DirtMountainTopTile extends CollisionTile {
 		isPickable = true;
 	}
 	
-	public void render(int x, int y, int layer) {
-//		float z;
-//		Helpers.println(String.valueOf(layer / 100f));	//FIXME!!
-//		z = this.z + Math.max(layer / 100f, layer / 100f);
-	//sprites[currentSpriteId].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
-	sprites[autoTile].draw(x, y, z);
+	public void render(int x, int y) {
+		int size = TILE_SIZE/2;
+
+		//This one if statement often increases render time by about 300-400 ms.
+		if(topLeftAutoTile == MIDDLE_TILE && topRightAutoTile == MIDDLE_TILE &&
+		   bottomLeftAutoTile == MIDDLE_TILE && bottomRightAutoTile == MIDDLE_TILE) {
+			sprites[MIDDLE_TILE].draw(x, y, z);
+		} else {
+			//sprites[topLeftAutoTile].draw(x, y, z, size, size);
+			sprites[topLeftAutoTile].draw(x, y, z);
+			sprites[topRightAutoTile].draw(x+size, y, z);
+			sprites[bottomLeftAutoTile].draw(x, y+size, z);
+			sprites[bottomRightAutoTile].draw(x+size, y+size, z);
+		}
 	}
 	
 	public Tile createNew() {

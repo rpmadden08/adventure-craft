@@ -14,7 +14,9 @@ public abstract class Sprite extends com.badlogic.gdx.graphics.g2d.Sprite{
 	
 	public abstract void draw(Rect r, float z);
 	
-	public abstract void draw(float x, float y, float z, float w, float h);
+	public abstract void draw(float x, float y, float z, float width, float height);
+	
+	public abstract void draw(float x, float y, float w, float h, float newX, float newY, float newW, float newH);
 	
 	public abstract void draw(float x, float y, float z, float scale);
 }

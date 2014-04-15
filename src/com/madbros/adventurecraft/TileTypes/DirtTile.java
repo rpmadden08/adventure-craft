@@ -15,11 +15,27 @@ public class DirtTile extends Tile {
 		z = Z_LIGHT_DIRT;
 		isCollidable = false;
 		currentSpriteId = 0;
-		sprites = Sprites.spriteCollections.get(Sprites.LIGHT_DIRT);
+		sprites = Sprites.spriteCollections.get(Sprites.DIRT_NEW);
 		id = DIRT;
 		autoTileID = id;
 		isTillable = true;
-		is32 = false;
+		is32 = true;
+	}
+	
+	public void render(int x, int y) {
+		int size = TILE_SIZE/2;
+
+		//This one if statement often increases render time by about 300-400 ms.
+		if(topLeftAutoTile == MIDDLE_TILE && topRightAutoTile == MIDDLE_TILE &&
+		   bottomLeftAutoTile == MIDDLE_TILE && bottomRightAutoTile == MIDDLE_TILE) {
+			sprites[MIDDLE_TILE].draw(x, y, z);
+		} else {
+			//sprites[topLeftAutoTile].draw(x, y, z, size, size);
+			sprites[topLeftAutoTile].draw(x, y, z);
+			sprites[topRightAutoTile].draw(x+size, y, z);
+			sprites[bottomLeftAutoTile].draw(x, y+size, z);
+			sprites[bottomRightAutoTile].draw(x+size, y+size, z);
+		}
 	}
 	
 	public Tile createNew() {

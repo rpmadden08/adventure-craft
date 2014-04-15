@@ -14,7 +14,7 @@ public class TallGrassBTile extends TallGrassATile {
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.TALL_GRASS_B);
 		margin = new Margin(9, 9, 12, 11);
-		id = TALL_GRASS_A_TILE;
+		id = TALL_GRASS_B_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
 		isDiggable = true;
@@ -23,6 +23,7 @@ public class TallGrassBTile extends TallGrassATile {
 		isBreakable = true;
 		currentHp = 1;
 		maxHp = 1;
+		isCollidable = false;
 	}
 	
 	@Override

@@ -11,7 +11,7 @@ public class Pick extends ToolItem {
 	public Pick() {
 		id = PICK;
 		name = "Iron Pickaxe";
-		is32 = false;
+		is32 = true;
 		sprite = Sprites.sprites.get(Sprites.PICK);
 		attackPower = 5;
 		isRepeatable = true;
@@ -26,9 +26,7 @@ public class Pick extends ToolItem {
 		
 //		Tile topTile = Game.level.highlightedBlock.getTopTile();
 		
-		if(Game.level.tileBeingAttacked.isPickable && Game.level.tileBeingAttacked2.isPickable 
-				&& Game.level.tileBeingAttacked3.isPickable 
-				&& Game.level.tileBeingAttacked4.isPickable &&isInRange == true) {
+		if(Game.level.tileBeingAttacked.isPickable &&isInRange == true) {
 			swing();
 
 		}
@@ -38,19 +36,9 @@ public class Pick extends ToolItem {
 		Game.level.tileBeingAttacked.currentHp -= attackPower;
 		if(Game.level.tileBeingAttacked.currentHp < 1) {
 			Game.level.highlightedBlock.deleteObjectTile();
-			Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY].deleteObjectTile();
-			Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].deleteObjectTile();
-			Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY+1].deleteObjectTile();
-			
 			Game.level.highlightedBlock.collisionTile = null;
-			Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY].collisionTile = null;
-			Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].collisionTile = null;
-			Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY+1].collisionTile = null;
-			
-			Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY-2].deleteTile(ABOVE_LAYER_1);
 			Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY-1].deleteTile(ABOVE_LAYER_1);
-			Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY-2].deleteTile(ABOVE_LAYER_1);
-			Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY-1].deleteTile(ABOVE_LAYER_1);
+			Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY-2].deleteTile(ABOVE_LAYER_2);
 			
 			Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
 			
@@ -63,27 +51,24 @@ public class Pick extends ToolItem {
 	
 	public void highlightItem(Block block, int x, int y) {
 		
-		if(Game.level.tileBeingAttacked.isPickable && 
-				Game.level.tileBeingAttacked2.isPickable && 
-				Game.level.tileBeingAttacked3.isPickable && 
-				Game.level.tileBeingAttacked4.isPickable) {
+		if(Game.level.tileBeingAttacked.isPickable) {
 
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.autoTile].setColor(HIGHLIGHT_COLOR);
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.autoTile].draw(x, y, Z_CHARACTER);
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.autoTile].setColor(1f,1f,1f,1f);
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topLeftAutoTile].setColor(HIGHLIGHT_COLOR);
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topLeftAutoTile].draw(x, y, Z_CHARACTER);
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topLeftAutoTile].setColor(1f,1f,1f,1f);
 			
-			Game.level.tileBeingAttacked2.sprites[Game.level.tileBeingAttacked2.autoTile].setColor(HIGHLIGHT_COLOR);
-			Game.level.tileBeingAttacked2.sprites[Game.level.tileBeingAttacked2.autoTile].draw(x+32, y, Z_CHARACTER);
-			Game.level.tileBeingAttacked2.sprites[Game.level.tileBeingAttacked2.autoTile].setColor(1f,1f,1f,1f);
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topRightAutoTile].setColor(HIGHLIGHT_COLOR);
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topRightAutoTile].draw(x+16, y, Z_CHARACTER);
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topRightAutoTile].setColor(1f,1f,1f,1f);
 			
-			Game.level.tileBeingAttacked3.sprites[Game.level.tileBeingAttacked3.autoTile].setColor(HIGHLIGHT_COLOR);
-			Game.level.tileBeingAttacked3.sprites[Game.level.tileBeingAttacked3.autoTile].draw(x, y+32, Z_CHARACTER);
-			Game.level.tileBeingAttacked3.sprites[Game.level.tileBeingAttacked3.autoTile].setColor(1f,1f,1f,1f);
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomLeftAutoTile].setColor(HIGHLIGHT_COLOR);
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomLeftAutoTile].draw(x, y+16, Z_CHARACTER);
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomLeftAutoTile].setColor(1f,1f,1f,1f);
 			
-			Game.level.tileBeingAttacked4.sprites[Game.level.tileBeingAttacked4.autoTile].setColor(HIGHLIGHT_COLOR);
-			Game.level.tileBeingAttacked4.sprites[Game.level.tileBeingAttacked4.autoTile].draw(x+32, y+32, Z_CHARACTER);
-			Game.level.tileBeingAttacked4.sprites[Game.level.tileBeingAttacked4.autoTile].setColor(1f,1f,1f,1f);
-			//Someday maybe add the above layer 1 highlighting...
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomRightAutoTile].setColor(HIGHLIGHT_COLOR);
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomRightAutoTile].draw(x+16, y+16, Z_CHARACTER);
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomRightAutoTile].setColor(1f,1f,1f,1f);
+			//Someday maybe add the above layer 1 and 2 highlighting...
 		}
 	}
 }
