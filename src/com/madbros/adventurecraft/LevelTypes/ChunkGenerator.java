@@ -56,12 +56,12 @@ public class ChunkGenerator {
     					   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
     		    			if(getRandom(0.5, m, n)) {
     		    				return TREE;
-    		    			} else if(getRandom(0.7, m, n)){ // 0.7
-        		    			return BARREL; // Return Barrel (1000)	
-    		    			} else if(getRandom(2, m, n)){ // 0.7
-            		    			return RED_FLOWERS_TILE; // Return Barrel (1000)	
-    		    			} else if(getRandom(6, m, n)){ // 0.7
-        		    			return GRASS_MARK; // Return Barrel (1000)	
+    		    			} else if(getRandom(0.7, m, n)){ 
+        		    			return CHEST; // Should be Barrel Barrel 
+    		    			} else if(getRandom(2, m, n)){ 
+            		    			return RED_FLOWERS_TILE; 
+    		    			} else if(getRandom(6, m, n)){ 
+        		    			return GRASS_MARK; 
     		    			} else {
     		    				return AIR;
     		    			}

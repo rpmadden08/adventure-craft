@@ -2,9 +2,12 @@ package com.madbros.adventurecraft.LevelTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.io.File;
 import java.util.Random;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Items.IronSword;
+import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.TileTypes.*;
 
 public class Overworld extends Level{
@@ -150,7 +153,33 @@ public class Overworld extends Level{
 						
 					}
 				}
-				
+				if(chunkGenerator.chunkObjectLayer[s][t] == CHEST) { //BARREL
+					//block.layers[OBJECT_LAYER] = new ChestTile();
+					//System.out.println(Game.locOfSavedGame);
+					int absXNew = absX / TILE_SIZE;
+					int absYNew = absY / TILE_SIZE;
+					File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + absXNew + "-" + absYNew + ".sv");
+					if(f.exists()) { 
+						f.delete();
+					}
+					Tile tile = new ChestTile();
+					block.layers[OBJECT_LAYER] = tile;
+					block.setCollisionTile((CollisionTile)tile);
+					//public Slot[] invChest= new Slot[INV_LENGTH * INV_HEIGHT];
+					Slot[] slot = new Slot[INV_LENGTH * INV_HEIGHT];
+					int c = 0;
+					for(int g = 0; g < INV_LENGTH; g++) {
+						for(int h = 0; h < INV_HEIGHT; h++) {
+							slot[c] = new Slot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.right) * h+200,
+												 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.bottom) * g);
+							c++;
+						}
+					}
+					slot[0].item = new IronSword();
+					Game.saveGame.saveChest(slot, absXNew, absYNew);
+					
+					//Game.level.hasPlacedItemOnClick = true;
+				}
 				
 				
 				if(chunkGenerator.chunkObjectLayer[s][t] == BARREL) {

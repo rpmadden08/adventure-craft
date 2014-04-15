@@ -112,10 +112,11 @@ public class Underground1ChunkGenerator extends ChunkGenerator{
     			if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 3 - 1 &&
  					   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
  						
- 		    			if(getRandom(0.7, m, n)){
- 		    				System.out.println("YES");
-     		    			return BARREL; // Return Barrel (1000)		
- 		    			} else {
+ 		    			if(getRandom(0.2, m, n)){
+     		    			return BARREL; 	
+ 		    			} else if(getRandom(10, m, n)){ //0.3
+     		    			return CHEST; 		
+ 		    			}else {
  		    				return AIR;
  		    			}
  		    			

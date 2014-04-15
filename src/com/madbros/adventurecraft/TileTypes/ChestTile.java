@@ -46,9 +46,9 @@ public class ChestTile extends CollisionTile {
 //			System.out.println(y);
 			File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + x + "-" + y + ".sv");
 			if(f.exists()) {
-				//System.out.println("Before:"+ Game.inventory.invChest[0].item.id);
+				System.out.println("Before:"+ Game.inventory.invChest[0].item.id);
 				Game.saveGame.loadChest(x, y);
-				//System.out.println("After:"+ Game.inventory.invChest[0].item.id);
+				System.out.println("After:"+ Game.inventory.invChest[0].item.id);
 			}
 			Game.toggleInventoryState();
 			

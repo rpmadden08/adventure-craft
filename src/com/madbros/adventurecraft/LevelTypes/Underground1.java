@@ -143,11 +143,11 @@ public class Underground1 extends Level{
 		}
 		
 //		
-		if(chunkGenerator.chunkObjectLayer[m][n] == STONE_MOUNTAIN_TIN_BOTTOM) {
+		if(chunkGenerator.chunkObjectLayer[m][n] == DIRT_MOUNTAIN_TIN_BOTTOM) {
 			block.layers[OBJECT_LAYER] = new DirtMountainTinBottomTile();
 		}
 		
-		if(chunkGenerator.chunkObjectLayer[m][n+1] == STONE_MOUNTAIN_TIN_BOTTOM) {
+		if(chunkGenerator.chunkObjectLayer[m][n+1] == DIRT_MOUNTAIN_TIN_BOTTOM) {
 			block.layers[ABOVE_LAYER_1] = new DirtMountainTinMiddleTile();
 		}
 		
@@ -159,23 +159,23 @@ public class Underground1 extends Level{
 			int s = m;
 			int t = n;
 				//Barrels
-//				if(chunkGenerator.chunkObjectLayer[s][t] == BARREL) { //BARREL
-//					//block.layers[OBJECT_LAYER] = new ChestTile();
-//					File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + Game.level.tileBeingAttacked.absX + "-" + Game.level.tileBeingAttacked.absY + ".sv");
-//					if(f.exists()) { 
-//						f.delete();
-//					}
-//					Tile tile = new ChestTile();
-//					block.layers[OBJECT_LAYER] = tile;
-//					block.setCollisionTile((CollisionTile)tile);
-//					Game.inventory.invChest[0].item = new IronSword();
-//					Game.saveGame.saveChest(Game.inventory.invChest, absX, absY);
-//					
-//					//Game.level.hasPlacedItemOnClick = true;
-//				}
-			if(chunkGenerator.chunkObjectLayer[s][t] == BARREL) {
-				block.layers[OBJECT_LAYER] = new BarrelTile();
-			}
+				if(chunkGenerator.chunkObjectLayer[s][t] == CHEST) { //BARREL
+					//block.layers[OBJECT_LAYER] = new ChestTile();
+					File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + Game.level.tileBeingAttacked.absX + "-" + Game.level.tileBeingAttacked.absY + ".sv");
+					if(f.exists()) { 
+						f.delete();
+					}
+					Tile tile = new ChestTile();
+					block.layers[OBJECT_LAYER] = tile;
+					block.setCollisionTile((CollisionTile)tile);
+					Game.inventory.invChest[0].item = new IronSword();
+					Game.saveGame.saveChest(Game.inventory.invChest, absX, absY);
+					
+					//Game.level.hasPlacedItemOnClick = true;
+				}
+				if(chunkGenerator.chunkObjectLayer[s][t] == BARREL) {
+					block.layers[OBJECT_LAYER] = new BarrelTile();
+				}
 				if(chunkGenerator.chunkObjectLayer[s][t+1] == BARREL) {
 					block.layers[ABOVE_LAYER_1] = new BarrelTopTile();
 				}
