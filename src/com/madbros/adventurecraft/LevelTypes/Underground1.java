@@ -6,8 +6,11 @@ import java.io.File;
 
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Items.IronSword;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.LevelTypes.FractalTypes.CaveNoise;
+import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.TileTypes.*;
+import com.madbros.adventurecraft.Utils.Helpers;
 
 public class Underground1 extends Level{
 	public Underground1() {
@@ -159,20 +162,47 @@ public class Underground1 extends Level{
 			int s = m;
 			int t = n;
 				//Barrels
-				if(chunkGenerator.chunkObjectLayer[s][t] == CHEST) { //BARREL
-					//block.layers[OBJECT_LAYER] = new ChestTile();
-					File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + Game.level.tileBeingAttacked.absX + "-" + Game.level.tileBeingAttacked.absY + ".sv");
-					if(f.exists()) { 
-						f.delete();
-					}
-					Tile tile = new ChestTile();
-					block.layers[OBJECT_LAYER] = tile;
-					block.setCollisionTile((CollisionTile)tile);
-					Game.inventory.invChest[0].item = new IronSword();
-					Game.saveGame.saveChest(Game.inventory.invChest, absX, absY);
-					
-					//Game.level.hasPlacedItemOnClick = true;
+			if(chunkGenerator.chunkObjectLayer[s][t] == CHEST) { //BARREL
+				//block.layers[OBJECT_LAYER] = new ChestTile();
+				//System.out.println(Game.locOfSavedGame);
+				int absXNew = absX / TILE_SIZE;
+				int absYNew = absY / TILE_SIZE;
+				File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + absXNew + "-" + absYNew + ".sv");
+				if(f.exists()) { 
+					f.delete();
 				}
+				Tile tile = new ChestTile();
+				block.layers[OBJECT_LAYER] = tile;
+				block.setCollisionTile((CollisionTile)tile);
+				//public Slot[] invChest= new Slot[INV_LENGTH * INV_HEIGHT];
+				Slot[] slot = new Slot[INV_LENGTH * INV_HEIGHT];
+				
+				
+				int c = 0;
+				for(int g = 0; g < INV_LENGTH; g++) {
+					for(int h = 0; h < INV_HEIGHT; h++) {
+						slot[c] = new Slot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.right) * h+200,
+											 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.bottom) * g);
+						c++;
+					}
+				}
+				Item items[] = Helpers.getRandomLoot(
+						  new int[]{TIN_BAR, BAT_WING, WORM_GUTS, SLIME_BALL, HONEY, COOKED_STEAK,
+								  HEALTH_POTION, ARTICHOKE, TIN_SWORD, TIN_PICK, TIN_AXE, TIN_HOE, TIN_SHOVEL, TIN_HELMET, TIN_LEGGINGS, TIN_ARMOR, TIN_BOOTS,
+								  COPPER_SWORD, COPPER_PICK}, 
+						  new int[]{1,1,1,1,1,1,  2,2,2,2,2,2,2,2,2,2,2, 3,3}, //Probabilities
+						  new int[]{1,1,1,1,1,1,  1,1,1,1,1,1,1,1,1,1,1, 1,1}, //min stack size
+						  new int[]{5,5,5,5,5,5,  3,5,1,1,1,1,1,1,1,1,1, 1,1}, //maxstacksize
+						  1, //min items in chest
+						  6); //max items in chest
+				for(int g = 0; g < items.length; g++) {
+					slot[g].item = items[g];
+					slot[g].item.stackSize = items[g].stackSize;
+				}
+				Game.saveGame.saveChest(slot, absXNew, absYNew);
+				
+				//Game.level.hasPlacedItemOnClick = true;
+			}
 				if(chunkGenerator.chunkObjectLayer[s][t] == BARREL) {
 					block.layers[OBJECT_LAYER] = new BarrelTile();
 				}
