@@ -1,6 +1,7 @@
 package com.madbros.adventurecraft;
 
 import com.badlogic.gdx.Gdx;
+import static com.madbros.adventurecraft.Constants.*;
 
 public class Time {
 	private static long lastFrame = 0;
@@ -79,78 +80,87 @@ public class Time {
 		long seconds = getMilliseconds();
 		long minutes = getSeconds();
 		long hours = getMinutes();
-		
-		if(hours >= 6 && hours < 19) {
-			Game.currentShader = Game.defaultShader; // Should be default
-			Game.level.isDay = true;
-//			Game.currentShader = Game.finalShader; // Should be default
-//			Game.level.isDay = true;
-		} else if (hours >= 5 && hours < 6) {
-			if(minutes >= 30) {
-				Game.currentShader = Game.finalShader;
-				double currentTime = minutes;
-				currentTime = currentTime + (seconds * 0.01);
-				double amountCompleted = currentTime - 30;
-				double percentage = amountCompleted / 30;
-				float shaderInfo[] = {Game.ambientIntensity, Game.ambientColor.x, Game.ambientColor.y,Game.ambientColor.z};
-				for(int a = 0;a < 4; a++) {
-					float x = shaderInfo[a];
-					float shaderTotal = 1f - x;
-					float amountToAdd = (float) (shaderTotal * percentage);
-					switch (a) {
-						case 0: Game.ambientIntensity2 = x + amountToAdd;
-						break;
-						case 1: Game.ambientColor2.x = x + amountToAdd;
-						break;
-						case 2: Game.ambientColor2.y = x + amountToAdd;
-						break;
-						case 3: Game.ambientColor2.z = x + amountToAdd;
-						break;
-					} 
+		if(Game.currentLevel == OVERWORLD_FOLDER) {
+			if(hours >= 6 && hours < 19) {
+				Game.currentShader = Game.defaultShader; // Should be default
+				Game.level.isDay = true;
+	//			Game.currentShader = Game.finalShader; // Should be default
+	//			Game.level.isDay = true;
+			} else if (hours >= 5 && hours < 6) {
+				if(minutes >= 30) {
+					Game.currentShader = Game.finalShader;
+					double currentTime = minutes;
+					currentTime = currentTime + (seconds * 0.01);
+					double amountCompleted = currentTime - 30;
+					double percentage = amountCompleted / 30;
+					float shaderInfo[] = {Game.ambientIntensity, Game.ambientColor.x, Game.ambientColor.y,Game.ambientColor.z};
+					for(int a = 0;a < 4; a++) {
+						float x = shaderInfo[a];
+						float shaderTotal = 1f - x;
+						float amountToAdd = (float) (shaderTotal * percentage);
+						switch (a) {
+							case 0: Game.ambientIntensity2 = x + amountToAdd;
+							break;
+							case 1: Game.ambientColor2.x = x + amountToAdd;
+							break;
+							case 2: Game.ambientColor2.y = x + amountToAdd;
+							break;
+							case 3: Game.ambientColor2.z = x + amountToAdd;
+							break;
+						} 
+					}
+					float amountToAddLighting = 1f * (float)percentage;
+					Game.lightTransparency2 = Game.lightTransparency -amountToAddLighting;
+					Game.reShade(Game.ambientColor2, Game.ambientIntensity2);
+					
 				}
-				float amountToAddLighting = 1f * (float)percentage;
-				Game.lightTransparency2 = Game.lightTransparency -amountToAddLighting;
-				Game.reShade(Game.ambientColor2, Game.ambientIntensity2);
-				
-			}
-		} else if (hours >= 19 &&  hours < 20) {
-			if(minutes >= 30) {
-				
-				double currentTime = minutes;
-				currentTime = currentTime + (seconds * 0.01); //IE 16.45
-				double amountCompleted = currentTime - 30; //IE 15
-				double percentage = amountCompleted / 30; 
-				float shaderInfo[] = {Game.ambientIntensity, Game.ambientColor.x, Game.ambientColor.y,Game.ambientColor.z};
-				for(int a = 0;a < 4; a++) {
-					float x = shaderInfo[a];
-					float shaderTotal = 1f - x; // to get 100% value
-					float amountToAdd = (float) (shaderTotal * percentage);
-					//float amountToSubtract = shaderTotal-amountToAdd;
-					switch (a) {
-						case 0: Game.ambientIntensity2 = 1f - amountToAdd;
-						break;
-						case 1: Game.ambientColor2.x = 1f - amountToAdd;
-						break;
-						case 2: Game.ambientColor2.y = 1f - amountToAdd;
-						break;
-						case 3: Game.ambientColor2.z = 1f - amountToAdd;
-						break;
-					} 
+			} else if (hours >= 19 &&  hours < 20) {
+				if(minutes >= 30) {
+					
+					double currentTime = minutes;
+					currentTime = currentTime + (seconds * 0.01); //IE 16.45
+					double amountCompleted = currentTime - 30; //IE 15
+					double percentage = amountCompleted / 30; 
+					float shaderInfo[] = {Game.ambientIntensity, Game.ambientColor.x, Game.ambientColor.y,Game.ambientColor.z};
+					for(int a = 0;a < 4; a++) {
+						float x = shaderInfo[a];
+						float shaderTotal = 1f - x; // to get 100% value
+						float amountToAdd = (float) (shaderTotal * percentage);
+						//float amountToSubtract = shaderTotal-amountToAdd;
+						switch (a) {
+							case 0: Game.ambientIntensity2 = 1f - amountToAdd;
+							break;
+							case 1: Game.ambientColor2.x = 1f - amountToAdd;
+							break;
+							case 2: Game.ambientColor2.y = 1f - amountToAdd;
+							break;
+							case 3: Game.ambientColor2.z = 1f - amountToAdd;
+							break;
+						} 
+					}
+					float amountToAddLighting = 1f * (float)percentage;
+					
+					Game.reShade(Game.ambientColor2, Game.ambientIntensity2);
+					Game.currentShader = Game.finalShader;
+					Game.lightTransparency2 = amountToAddLighting;
+				} else {
+					Game.currentShader = Game.defaultShader;
+					Game.lightTransparency2 = 0f;
 				}
-				float amountToAddLighting = 1f * (float)percentage;
-				
-				Game.reShade(Game.ambientColor2, Game.ambientIntensity2);
-				Game.currentShader = Game.finalShader;
-				Game.lightTransparency2 = amountToAddLighting;
 			} else {
-				Game.currentShader = Game.defaultShader;
-				Game.lightTransparency2 = 0f;
+				Game.level.isDay = false;
+				Game.currentShader = Game.finalShader;
+				Game.lightTransparency2 = 1f;
 			}
 		} else {
-			Game.level.isDay = false;
+			Game.ambientColor2.x = 0f;
+			Game.ambientColor2.y = 0f;
+			Game.ambientColor2.z = 0f;
+			Game.ambientIntensity2 = 0f;
+			Game.reShade(Game.ambientColor2, Game.ambientIntensity2);
 			Game.currentShader = Game.finalShader;
-			Game.lightTransparency2 = 1f;
 		}
+		
 	}
 	
 	public static void setDelta() {

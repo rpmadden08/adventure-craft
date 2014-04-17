@@ -10,7 +10,7 @@ public class TinArmor extends Clothing {
 		name = "Tin Armor";
 		sprite = Sprites.sprites.get(Sprites.TIN_TORSO_ITEM);
 		animatedSprite = Sprites.animatedSprites.get(Sprites.TIN_TORSO_ITEM);
-		defensePower = 1;
+		defensePower = 3;
 		slotType = ARMOR_SLOT;
 		maxStackSize =1;
 		craftCost = new int[]{TIN_BAR};

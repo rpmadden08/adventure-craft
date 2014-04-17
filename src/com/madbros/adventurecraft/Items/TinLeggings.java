@@ -10,7 +10,7 @@ public class TinLeggings extends Clothing {
 		name = "Tin Leggings";
 		sprite = Sprites.sprites.get(Sprites.TIN_LEGS_ITEM);
 		animatedSprite = Sprites.animatedSprites.get(Sprites.TIN_LEGS_ITEM);
-		defensePower = 1;
+		defensePower = 2;
 		slotType = LEGGINGS_SLOT;
 		maxStackSize =1;
 		craftCost = new int[]{TIN_BAR};

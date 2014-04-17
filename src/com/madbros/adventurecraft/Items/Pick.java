@@ -6,6 +6,7 @@ import static com.madbros.adventurecraft.Constants.*;
 //import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class Pick extends ToolItem {
 	public Pick() {
@@ -15,6 +16,11 @@ public class Pick extends ToolItem {
 		sprite = Sprites.sprites.get(Sprites.PICK);
 		attackPower = 5;
 		isRepeatable = true;
+		isInUse = false;
+		cRectU = new Rect (0,-6,82,32);
+		cRectD = new Rect (0,54,82,32);
+		cRectL = new Rect (-22,0,40,82);
+		cRectR = new Rect (46,0,40,82);
 	}
 	
 	@Override
@@ -23,8 +29,6 @@ public class Pick extends ToolItem {
 	}
 	
 	public void useLeft() {
-		
-//		Tile topTile = Game.level.highlightedBlock.getTopTile();
 		
 		if(Game.level.tileBeingAttacked.isPickable &&isInRange == true) {
 			swing();

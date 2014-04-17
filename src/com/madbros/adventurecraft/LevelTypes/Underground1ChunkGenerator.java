@@ -7,12 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Underground1ChunkGenerator extends ChunkGenerator{
-//	public float chunkNoiseElevation[][] = new float [CHUNK_SIZE+20][CHUNK_SIZE+20];
-//	public float chunkNoiseRainfall[][] = new float [CHUNK_SIZE+20][CHUNK_SIZE+20];
-//	public float chunkNoiseTemperature[][] = new float [CHUNK_SIZE+20][CHUNK_SIZE+20];
-//	public float chunkGroundLayer[][] = new float [CHUNK_SIZE+20][CHUNK_SIZE+20];
-//	public float chunkObjectLayer[][] = new float [CHUNK_SIZE+20][CHUNK_SIZE+20];
-	
+
 	public Underground1ChunkGenerator() {
 	}
 	
@@ -114,7 +109,7 @@ public class Underground1ChunkGenerator extends ChunkGenerator{
  						
  		    			if(getRandom(0.2, m, n)){
      		    			return BARREL; 	
- 		    			} else if(getRandom(10, m, n)){ //0.3
+ 		    			} else if(getRandom(0.25, m, n)){ //0.3
      		    			return CHEST; 		
  		    			}else {
  		    				return AIR;
@@ -137,7 +132,7 @@ public class Underground1ChunkGenerator extends ChunkGenerator{
 	public int getGroundLayerGeneration(int m, int n, Random rand) {
 		//BELOW SEA LEVEL
 		if(chunkNoiseElevation[m][n] < 0.4) {
-			return 10;  // should be return 2
+			return 2; 
     	//MOUNTAIN
     	} else if(chunkNoiseElevation[m][n] >= 0.4) {
     		return 10;

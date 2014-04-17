@@ -10,7 +10,7 @@ public class LeatherArmor extends Clothing {
 		name = "Leather Armor";
 		sprite = Sprites.sprites.get(Sprites.LEATHER_TORSO_ITEM);
 		animatedSprite = Sprites.animatedSprites.get(Sprites.LEATHER_TORSO_ITEM);
-		defensePower = 1;
+		defensePower = 2;
 		slotType = ARMOR_SLOT;
 		maxStackSize =1;
 		craftCost = new int[]{LEATHER};

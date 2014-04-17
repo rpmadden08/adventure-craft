@@ -2,6 +2,8 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.util.ArrayList;
+
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.Sprites;
@@ -27,7 +29,20 @@ public class CampfireTile extends LightTile {
 	}
 	
 	public void update(int x,int y) {
-		System.out.println(cRect.x);
+		cRect = new Rect(absX *TILE_SIZE, absY*TILE_SIZE, 32,32);
+		Rect detectRect = new Rect(cRect.x - ((int)lightSize /2), cRect.y - ((int)lightSize/2), cRect.w +((int)lightSize), cRect.h +((int)lightSize));
+		
+		for(int a = 0; a < Game.mobController.mobs.size(); a++) {
+//			System.out.println(Game.mobController.mobs.get(a).absRect.x+","+Game.mobController.mobs.get(a).absRect.x);
+//			System.out.println("CAMPFIRE:  "+cRect.x+","+cRect.y);
+			if(Game.mobController.mobs.get(a).isInRangeOfCampfire == false) {
+				if(Game.mobController.mobs.get(a).absRect.detectCollision(detectRect)) {
+					Game.mobController.mobs.get(a).isInRangeOfCampfire = true;
+					
+					Game.mobController.mobs.get(a).campFireRect = cRect;
+				}
+			}
+		}
 	}
 	
 	@Override

@@ -7,6 +7,7 @@ import static com.madbros.adventurecraft.Constants.*;
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.Tile;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class Shovel extends ToolItem {
 	public Shovel() {
@@ -16,6 +17,11 @@ public class Shovel extends ToolItem {
 		attackPower = 5;
 		is32 = true;
 		isRepeatable = true;
+		isInUse = false;
+		cRectU = new Rect (0,-6,82,32);
+		cRectD = new Rect (0,54,82,32);
+		cRectL = new Rect (-22,0,40,82);
+		cRectR = new Rect (46,0,40,82);
 	}
 	
 	@Override
@@ -70,7 +76,6 @@ public class Shovel extends ToolItem {
 		
 		if(Game.level.tileBeingAttacked.isDiggable ) {
 			int objectTileID = Game.level.activeBlocks[block.getX(Game.level.activeBlocks)][block.getY(Game.level.activeBlocks)].layers[OBJECT_LAYER].id;
-			//System.out.println(objectTileID+","+objectTileID2+","+objectTileID3+","+objectTileID4);
 			if (checkID(objectTileID)) {
 
 				Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topLeftAutoTile].setColor(HIGHLIGHT_COLOR);

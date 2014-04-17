@@ -20,6 +20,9 @@ public class CopperSword extends WeaponItem {
 		sound = "sounds/swordSwing1.wav";
 		craftCost = new int[]{COPPER_BAR, STICK};
 		craftCostAmount = new int[]{2, 1};
+		attackPower = 12;
+		maxUses = 200;
+		uses = 200;
 		
 		cRectU = new Rect (0,-6,82,32);
 		cRectD = new Rect (0,54,82,32);

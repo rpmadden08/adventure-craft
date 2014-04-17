@@ -41,48 +41,69 @@ public void highlightItem(Block block, int x, int y) {
 			int j = block.getY(Game.level.activeBlocks);
 	
 			
-			//Tile autoTileCheckTile = Game.level.activeBlocks[i][j].layers[ABOVE_LAYER_6];
 			Tile tile = TILE_HASH.get(tileId);
 			tile.sprites[0].setColor(HIGHLIGHT_COLOR);
 			tile.sprites[0].draw(x, y, Z_CHARACTER);
 			tile.sprites[0].setColor(Color.WHITE);
 			
 			//autoTileCheckTile = Game.level.activeBlocks[i+1][j].layers[ABOVE_LAYER_6];
-			tile.sprites[2].setColor(HIGHLIGHT_COLOR);
-			tile.sprites[2].draw(x, y+32, Z_CHARACTER);
-			tile.sprites[2].setColor(Color.WHITE);
+			tile.sprites[5].setColor(HIGHLIGHT_COLOR);
+			tile.sprites[5].draw(x, y+16, Z_CHARACTER);
+			tile.sprites[5].setColor(Color.WHITE);
 			
 			//autoTileCheckTile = Game.level.activeBlocks[i][j+1].layers[ABOVE_LAYER_6];
-			tile.sprites[6].setColor(HIGHLIGHT_COLOR);
-			tile.sprites[6].draw(x+32, y, Z_CHARACTER);
-			tile.sprites[6].setColor(Color.WHITE);
+			tile.sprites[30].setColor(HIGHLIGHT_COLOR);
+			tile.sprites[30].draw(x+16, y, Z_CHARACTER);
+			tile.sprites[30].setColor(Color.WHITE);
 			
 			//autoTileChe0kTile = Game.level.activeBlocks[i+1][j+1].layers[ABOVE_LAYER_6];
-			tile.sprites[8].setColor(HIGHLIGHT_COLOR);
-			tile.sprites[8].draw(x+32, y+32, Z_CHARACTER);
-			tile.sprites[8].setColor(Color.WHITE);
+			tile.sprites[35].setColor(HIGHLIGHT_COLOR);
+			tile.sprites[35].draw(x+16, y+16, Z_CHARACTER);
+			tile.sprites[35].setColor(Color.WHITE);
 			
+			//FIXME Need to add stone mountain middle to make this work
 			
-			//Tile autoTileCheckTile = Game.level.activeBlocks[i][j].layers[ABOVE_LAYER_6];
-			tile = TILE_HASH.get(12);
+			//tile = TILE_HASH.get(STONE_MOUNTAIN_MIDDLE_TILE);
+			tile.sprites[0].setColor(HIGHLIGHT_COLOR);
+			tile.sprites[0].draw(x, y-32, Z_CHARACTER);
+			tile.sprites[0].setColor(Color.WHITE);
+			
+			//autoTileCheckTile = Game.level.activeBlocks[i+1][j].layers[ABOVE_LAYER_6];
+			tile.sprites[5].setColor(HIGHLIGHT_COLOR);
+			tile.sprites[5].draw(x, y-16, Z_CHARACTER);
+			tile.sprites[5].setColor(Color.WHITE);
+			
+			//autoTileCheckTile = Game.level.activeBlocks[i][j+1].layers[ABOVE_LAYER_6];
+			tile.sprites[30].setColor(HIGHLIGHT_COLOR);
+			tile.sprites[30].draw(x+16, y-32, Z_CHARACTER);
+			tile.sprites[30].setColor(Color.WHITE);
+			
+			//autoTileChe0kTile = Game.level.activeBlocks[i+1][j+1].layers[ABOVE_LAYER_6];
+			tile.sprites[35].setColor(HIGHLIGHT_COLOR);
+			tile.sprites[35].draw(x+16, y-16, Z_CHARACTER);
+			tile.sprites[35].setColor(Color.WHITE);
+			
+			//block2 = Game.level.activeBlocks[i][j-2];
+			
+			tile = TILE_HASH.get(STONE_MOUNTAIN_TOP);
 			tile.sprites[0].setColor(HIGHLIGHT_COLOR);
 			tile.sprites[0].draw(x, y-64, Z_CHARACTER);
 			tile.sprites[0].setColor(Color.WHITE);
 			
 			//autoTileCheckTile = Game.level.activeBlocks[i+1][j].layers[ABOVE_LAYER_6];
-			tile.sprites[2].setColor(HIGHLIGHT_COLOR);
-			tile.sprites[2].draw(x, y-32, Z_CHARACTER);
-			tile.sprites[2].setColor(Color.WHITE);
+			tile.sprites[5].setColor(HIGHLIGHT_COLOR);
+			tile.sprites[5].draw(x, y-48, Z_CHARACTER);
+			tile.sprites[5].setColor(Color.WHITE);
 			
 			//autoTileCheckTile = Game.level.activeBlocks[i][j+1].layers[ABOVE_LAYER_6];
-			tile.sprites[6].setColor(HIGHLIGHT_COLOR);
-			tile.sprites[6].draw(x+32, y-64, Z_CHARACTER);
-			tile.sprites[6].setColor(Color.WHITE);
+			tile.sprites[30].setColor(HIGHLIGHT_COLOR);
+			tile.sprites[30].draw(x+16, y-64, Z_CHARACTER);
+			tile.sprites[30].setColor(Color.WHITE);
 			
 			//autoTileChe0kTile = Game.level.activeBlocks[i+1][j+1].layers[ABOVE_LAYER_6];
-			tile.sprites[8].setColor(HIGHLIGHT_COLOR);
-			tile.sprites[8].draw(x+32, y-32, Z_CHARACTER);
-			tile.sprites[8].setColor(Color.WHITE);
+			tile.sprites[35].setColor(HIGHLIGHT_COLOR);
+			tile.sprites[35].draw(x+16, y-48, Z_CHARACTER);
+			tile.sprites[35].setColor(Color.WHITE);
 		}
 	}
 }

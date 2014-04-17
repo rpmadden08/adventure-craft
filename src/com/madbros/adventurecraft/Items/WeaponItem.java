@@ -1,5 +1,7 @@
 package com.madbros.adventurecraft.Items;
 
+import com.madbros.adventurecraft.Game;
+
 
 public abstract class WeaponItem extends Item {
 	public int swingSpeed = 30;
@@ -7,4 +9,6 @@ public abstract class WeaponItem extends Item {
 
 	@Override
 	public abstract WeaponItem createNew();
+	
+	
 }

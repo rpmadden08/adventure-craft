@@ -21,6 +21,8 @@ public class Worm extends Mob {
 	public Worm(MobController mobController, int x, int y) {
 		super(mobController);
 		attack = 20;
+		hP = 15;
+		maxHP = 15;
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
@@ -28,7 +30,8 @@ public class Worm extends Mob {
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.WORM));
 		margin = new Margin(0, 0, 0, 0);
-		currentSpeed = 0.1f;
+		moveSpeed = 0.03f;
+		currentSpeed = 0.03f;
 		collisionDetectionBlocks = new Block[9];
 	}
 
@@ -62,46 +65,17 @@ public class Worm extends Mob {
 //	}
 	
 	public void updateAI() {
-		detectRect = new Rect(absRect.x - detectRange, absRect.y - detectRange, absRect.w +(detectRange*2), absRect.h +(detectRange*2));
-		if(detectRect.detectCollision(Game.hero.absRect) && !Game.hero.isDead) {
-			isChasing = true;
-			//stop();
+		super.updateAI();
+		checkForChasing();
+		checkForFleeingCampfire();
+		if(isInRangeOfCampfire) {
+			fleeRect(campFireRect, this.absRect);
+		} else if(isChasing) {
+			checkForChasing();
 			chaseHero(Game.hero.absRect, this.absRect);
-		} else {
-			isChasing = false;
-		}
-		if(framesNum > length && isChasing == false) {
-			framesNum = 0;
-			Random rand2 = new Random();
-			length = rand2.nextInt(100);
-			
-			Random rand = new Random();
-			int number = rand.nextInt(9);
-			stop();
-			if(number == 0) {
-				moveUp();
-			} else if(number == 1) {
-				moveLeft();
-			} else if(number == 2) {
-				moveRight();
-			} else if(number == 3) {
-				moveDown();
-			} else if(number == 4) {
-				moveUp();
-				moveLeft();
-			} else if(number == 5) {
-				moveUp();
-				moveRight();
-			} else if(number == 6) {
-				moveDown();
-				moveLeft();
-			} else if(number == 7) {
-				moveDown();
-				moveRight();
-			} else if(number == 8) {}
-		}
-		framesNum++;
-		
+		}else{
+			moveInRandomDirection(30);
+		}	
 	}
 	
 	public void xMove(int moveX) {

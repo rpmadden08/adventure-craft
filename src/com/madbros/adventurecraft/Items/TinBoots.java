@@ -10,7 +10,7 @@ public class TinBoots extends Clothing {
 		name = "Tin Boots";
 		sprite = Sprites.sprites.get(Sprites.TIN_FEET_ITEM);
 		animatedSprite = Sprites.animatedSprites.get(Sprites.TIN_FEET_ITEM);
-		defensePower = 1;
+		defensePower = 2;
 		slotType = BOOTS_SLOT;
 		maxStackSize =1;
 		craftCost = new int[]{TIN_BAR};

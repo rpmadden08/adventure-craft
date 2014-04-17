@@ -10,7 +10,7 @@ public class CopperHelmet extends Clothing {
 		name = "Copper Hat";
 		sprite = Sprites.sprites.get(Sprites.COPPER_HELMET_ITEM);
 		animatedSprite = Sprites.animatedSprites.get(Sprites.COPPER_HELMET_ITEM);
-		defensePower = 1;
+		defensePower = 3;
 		slotType = HELMET_SLOT;
 		maxStackSize =1;
 		craftCost = new int[]{COPPER_BAR};

@@ -20,6 +20,9 @@ public class TinSword extends WeaponItem {
 		sound = "sounds/swordSwing1.wav";
 		craftCost = new int[]{TIN_BAR, STICK};
 		craftCostAmount = new int[]{2, 1};
+		attackPower = 9;
+		maxUses = 100;
+		uses = 100;
 		
 		cRectU = new Rect (0,-6,82,32);
 		cRectD = new Rect (0,54,82,32);

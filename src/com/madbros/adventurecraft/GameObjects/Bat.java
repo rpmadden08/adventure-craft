@@ -20,7 +20,9 @@ public class Bat extends Mob {
 	
 	public Bat(MobController mobController, int x, int y) {
 		super(mobController);
-		attack = 20;
+		attack = 15;
+		hP = 20;
+		maxHP = 20;
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
@@ -62,45 +64,13 @@ public class Bat extends Mob {
 //	}
 	
 	public void updateAI() {
-		detectRect = new Rect(absRect.x - detectRange, absRect.y - detectRange, absRect.w +(detectRange*2), absRect.h +(detectRange*2));
-		if(detectRect.detectCollision(Game.hero.absRect) && !Game.hero.isDead) {
-			isChasing = true;
-			//stop();
-			chaseHero(Game.hero.absRect, this.absRect);
+		//checkForChasing();
+		checkForFleeingCampfire();
+		if(isInRangeOfCampfire) {
+			fleeRect(campFireRect, this.absRect);
 		} else {
-			isChasing = false;
+			moveInRandomDirection(100);
 		}
-		if(framesNum > length && isChasing == false) {
-			framesNum = 0;
-			Random rand2 = new Random();
-			length = rand2.nextInt(100);
-			
-			Random rand = new Random();
-			int number = rand.nextInt(9);
-			stop();
-			if(number == 0) {
-				moveUp();
-			} else if(number == 1) {
-				moveLeft();
-			} else if(number == 2) {
-				moveRight();
-			} else if(number == 3) {
-				moveDown();
-			} else if(number == 4) {
-				moveUp();
-				moveLeft();
-			} else if(number == 5) {
-				moveUp();
-				moveRight();
-			} else if(number == 6) {
-				moveDown();
-				moveLeft();
-			} else if(number == 7) {
-				moveDown();
-				moveRight();
-			} else if(number == 8) {}
-		}
-		framesNum++;
 		
 	}
 	

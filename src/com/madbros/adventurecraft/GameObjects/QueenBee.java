@@ -21,6 +21,8 @@ public class QueenBee extends Mob {
 	public QueenBee(MobController mobController, int x, int y) {
 		super(mobController);
 		attack = 20;
+		hP = 500;
+		maxHP = 500;
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
@@ -28,7 +30,9 @@ public class QueenBee extends Mob {
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BEE));
 		margin = new Margin(0, 0, 0, 0);
-		currentSpeed = 0.1f;
+		currentSpeed = 0.2f;
+		moveSpeed = 0.15f;
+		maxSpeed = 0.15f;
 		collisionDetectionBlocks = new Block[9];
 	}
 
@@ -62,46 +66,53 @@ public class QueenBee extends Mob {
 //	}
 	
 	public void updateAI() {
-		detectRect = new Rect(absRect.x - detectRange, absRect.y - detectRange, absRect.w +(detectRange*2), absRect.h +(detectRange*2));
-		if(detectRect.detectCollision(Game.hero.absRect) && !Game.hero.isDead) {
-			isChasing = true;
-			//stop();
-			chaseHero(Game.hero.absRect, this.absRect);
-		} else {
-			isChasing = false;
-		}
-		if(framesNum > length && isChasing == false) {
+		super.updateAI();
+		checkForFleeing();
+		if(isFleeing && mobState != 3) {
+			moveSpeed = maxSpeed;
+			fleeRect(Game.hero.absRect, this.absRect);
+		} else if(mobState == 1) {
+			summonBees();
+			length = 100;
 			framesNum = 0;
-			Random rand2 = new Random();
-			length = rand2.nextInt(100);
+			mobState = 2;
 			
-			Random rand = new Random();
-			int number = rand.nextInt(9);
-			stop();
-			if(number == 0) {
-				moveUp();
-			} else if(number == 1) {
-				moveLeft();
-			} else if(number == 2) {
-				moveRight();
-			} else if(number == 3) {
-				moveDown();
-			} else if(number == 4) {
-				moveUp();
-				moveLeft();
-			} else if(number == 5) {
-				moveUp();
-				moveRight();
-			} else if(number == 6) {
-				moveDown();
-				moveLeft();
-			} else if(number == 7) {
-				moveDown();
-				moveRight();
-			} else if(number == 8) {}
+		} else if(mobState == 2) {
+			moveSpeed = 0;
+			if(framesNum > length) {
+				framesNum = 0;
+				Random rand2 = new Random();
+				length = rand2.nextInt(100+100);
+				mobState = 3;
+			}
+			framesNum++;
+		} else if(mobState == 3) {
+			moveSpeed = maxSpeed;
+			chaseHero(Game.hero.absRect, this.absRect);
+			if(framesNum > length) {
+				framesNum = 0;
+				Random rand2 = new Random();
+				//length = rand2.nextInt(100);
+				mobState = 1;
+			}
+			framesNum++;
 		}
-		framesNum++;
 		
+	}
+	
+	public void summonBees() {
+		stop();
+		
+		moveDown();
+		//currentSpeed = 0f;
+		moveSpeed = 0f;
+		Random rand2 = new Random();
+		int randomAmount = rand2.nextInt(3+1);
+		for(int a = 0; a < 20; a++) {
+			
+			mobController.mobs.add(new QueenBeeMinion(Game.mobController, (absRect.x - Game.level.activeBlocks[0][0].absRect.x)/TILE_SIZE, (absRect.y- Game.level.activeBlocks[0][0].absRect.y)/TILE_SIZE));
+			mobController.mobs.get(mobController.mobs.size()-1).isChasing = true;
+		}
 	}
 	
 	public void xMove(int moveX) {

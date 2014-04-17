@@ -48,6 +48,10 @@ public abstract class Tile {
 	public int bottomRightAutoTile = 0;
 	public int bottomLeftAutoTile = 0;
 	
+//	public Tile() {
+//		
+//	}
+	
 	public void render(int x, int y) {
 		sprites[autoTile].draw(x, y, z);
 	}

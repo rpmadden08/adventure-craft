@@ -336,6 +336,7 @@ public class RenderSystem {
 				double difference = (mob.maxHP - mob.hP);
 				double percentage = (mob.maxHP-difference) / mob.maxHP;
 				double hPCalc = percentage * 29;
+			
 				int hP = (int) hPCalc;
 				
 				//The Red/Blue/Green Part

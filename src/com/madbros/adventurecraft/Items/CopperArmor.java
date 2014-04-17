@@ -10,7 +10,7 @@ public class CopperArmor extends Clothing {
 		name = "Copper Armor";
 		sprite = Sprites.sprites.get(Sprites.COPPER_TORSO_ITEM);
 		animatedSprite = Sprites.animatedSprites.get(Sprites.COPPER_TORSO_ITEM);
-		defensePower = 1;
+		defensePower = 5;
 		slotType = ARMOR_SLOT;
 		maxStackSize =1;
 		craftCost = new int[]{COPPER_BAR};

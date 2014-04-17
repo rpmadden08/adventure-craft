@@ -12,24 +12,28 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class Cow extends Mob {
+public class QueenBeeMinion extends Bee {
 	int length = 0;
 	int framesNum = 0;
 	MobController mobController;
 	//Rect detectRect;
 	
-	public Cow(MobController mobController, int x, int y) {
-		super(mobController);
-		attack = 20;
+	public QueenBeeMinion(MobController mobController, int x, int y) {
+		super(mobController, x, y);
+		attack = 2;
+		hP = 6;
+		maxHP = 6;
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
-				  128, 128);
+				  32, 32);
 		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
 		detectRange = 100;
-		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.COW));
+		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BEE_MINI));
 		margin = new Margin(0, 0, 0, 0);
-		currentSpeed = 0.1f;
+		moveSpeed = 0.06f;
+		currentSpeed = 0.06f;
 		collisionDetectionBlocks = new Block[9];
+		isChasing = true;
 	}
 
 //	public void startAttacking() {
@@ -43,7 +47,12 @@ public class Cow extends Mob {
 	@Override
 	public void deathDrop() {
 		Rect collectibleRect = new Rect(absRect.x, absRect.y, 16, 16);
-		Game.collectibleController.add(STEAK, Sprites.sprites.get(Sprites.STEAK), collectibleRect, 1);
+		Game.collectibleController.add(HONEY, Sprites.sprites.get(Sprites.HONEY), collectibleRect, 1);
+	}
+	
+	public void takeDamage(int damage) {
+		super.takeDamage(damage);
+		isChasing = true;
 	}
 	
 	@Override
@@ -62,7 +71,17 @@ public class Cow extends Mob {
 //	}
 	
 	public void updateAI() {
-		super.updateAI();	
+
+			super.updateAI();
+			if(framesNum > 50) {
+				chaseHero(Game.hero.absRect, this.absRect);
+				framesNum = 51;
+			} else {
+				moveInRandomDirection(50);
+			}
+			framesNum++;
+			
+		
 	}
 	
 	public void xMove(int moveX) {

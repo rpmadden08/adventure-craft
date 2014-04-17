@@ -4,7 +4,6 @@ import com.madbros.adventurecraft.Game;
 
 
 public abstract class ToolItem extends WeaponItem {
-	protected boolean isInUse = false;
 	protected int swingSpeed = 30;
 	protected int swingRemaining = swingSpeed;
 	
@@ -17,14 +16,7 @@ public abstract class ToolItem extends WeaponItem {
 		
 	}
 	
-	public void calculateUsage() {
-		isInUse = false;
-		uses = uses -1;
-		if(uses <= 0) {
-			stackSize = stackSize - 1;
-			Game.inventory.deleteItemIfNecessary();
-		}
-	}
+	
 	public void swing() {
 		if(isInUse == false) {
 			swingRemaining = 0;

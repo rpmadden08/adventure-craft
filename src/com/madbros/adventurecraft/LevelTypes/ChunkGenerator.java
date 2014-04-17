@@ -44,7 +44,7 @@ public class ChunkGenerator {
     		if(chunkGroundLayer[m][n] == 3) {
     			if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 3 - 1 &&
  					   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
-    				if(getRandom(25, m, n)) {
+    				if(getRandom(0.3, m, n)) {
 	    				return CACTUS;
 	    			}
     			}
@@ -57,7 +57,7 @@ public class ChunkGenerator {
     		    			if(getRandom(0.5, m, n)) {
     		    				return TREE;
     		    			} else if(getRandom(0.7, m, n)){ 
-        		    			return CHEST; // Should be Barrel Barrel 
+        		    			return BARREL; 
     		    			} else if(getRandom(2, m, n)){ 
             		    			return RED_FLOWERS_TILE; 
     		    			} else if(getRandom(6, m, n)){ 

@@ -10,7 +10,7 @@ public class CopperBoots extends Clothing {
 		name = "Copper Boots";
 		sprite = Sprites.sprites.get(Sprites.COPPER_FEET_ITEM);
 		animatedSprite = Sprites.animatedSprites.get(Sprites.COPPER_FEET_ITEM);
-		defensePower = 1;
+		defensePower = 3;
 		slotType = BOOTS_SLOT;
 		maxStackSize =1;
 		craftCost = new int[]{COPPER_BAR};

@@ -2,12 +2,17 @@ package com.madbros.adventurecraft.GameObjects;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.MobController;
 import com.madbros.adventurecraft.Time;
+import com.madbros.adventurecraft.Items.Campfire;
+import com.madbros.adventurecraft.Items.Item;
+import com.madbros.adventurecraft.Items.ToolItem;
+import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
@@ -22,6 +27,11 @@ public class Mob extends Actor {
 	int detectRange = 100;
 	boolean isChasing = true;
 	float damping = 1;
+	public boolean isInRangeOfCampfire = false;
+	public Rect campFireRect = new Rect(0,0,0,0);
+	public int mobState = 1;
+	public float maxSpeed;
+	public boolean isFleeing = false;
 	
 	
 	public Mob(MobController mobController) {
@@ -50,11 +60,15 @@ public class Mob extends Actor {
 	
 	public void takeDamage(int damage) {
 		//Get Harming Potion increase
+		
 		damage = Game.hero.appliedStatusEffects[1].getHarmingDamageIncrease(damage);
 		if(Game.hero.appliedStatusEffects[2].canApplyEffect(this)) {
 			Game.hero.appliedStatusEffects[2].applySlownessEffect(this);
 		}
 		
+//		Game.hero.eP = Game.hero.eP - 0.1;
+		Item equippedWeapon = Game.inventory.invBar[Game.inventory.itemSelected].item;
+		equippedWeapon.calculateUsage();
 		if(knockBackTime <= 0) {
 			hP = hP - damage;
 			Game.soundController.create(hitSound, 1);
@@ -212,11 +226,88 @@ public class Mob extends Actor {
 		}
 	}
 	
-	public void updateAI() {
+	public void fleeRect(Rect rect, Rect mob) {
+		float speedX = (rect.x+(rect.w/2)) - (mob.x+(mob.w/2));
+		float speedY = (rect.y+(rect.h/2)) - (mob.y +(mob.h/2));
+		
+		float maxSpeed = moveSpeed;
+		
+		if(speedX > maxSpeed && speedY > maxSpeed) {
+			moveLeft();
+			moveUp();
+		} else if(speedX > maxSpeed && speedY < -maxSpeed) {
+			moveLeft();
+			moveDown();
+		} else if(speedX < -maxSpeed && speedY < -maxSpeed) {
+			moveRight();
+			moveDown();
+		} else if(speedX < -maxSpeed && speedY > maxSpeed) {
+			moveRight();
+			moveUp();
+		} else if(speedX > maxSpeed) {
+			moveLeft();
+			if(isMovingUp || isMovingDown) {
+				stopUp();
+				stopDown();
+			}
+		} else if(speedX < -maxSpeed) {
+			moveRight();
+			if(isMovingUp || isMovingDown) {
+				stopUp();
+				stopDown();
+			}
+		} else if(speedY > maxSpeed) {
+			moveUp();
+			if(isMovingLeft || isMovingRight) {
+				stopLeft();
+				stopRight();
+			}
+		} else if(speedY < -maxSpeed) {
+			moveDown();
+			if(isMovingLeft || isMovingRight) {
+				stopLeft();
+				stopRight();
+			}
+		}
+	}
+	
+	public void checkForChasing() {
+		detectRect = new Rect(absRect.x - detectRange, absRect.y - detectRange, absRect.w +(detectRange*2), absRect.h +(detectRange*2));
+		if(detectRect.detectCollision(Game.hero.absRect) && !Game.hero.isDead) {
+			isChasing = true;
+			//stop();
+			
+		} else {
+			isChasing = false;
+		}
+	}
+	
+	public void checkForFleeing() {
+		detectRect = new Rect(absRect.x - detectRange, absRect.y - detectRange, absRect.w +(detectRange*2), absRect.h +(detectRange*2));
+		if(detectRect.detectCollision(Game.hero.absRect) && !Game.hero.isDead) {
+			isFleeing = true;
+			//stop();
+			
+		} else {
+			isFleeing = false;
+		}
+	}
+	
+	public void checkForFleeingCampfire() {
+		Rect detectRect2 = new Rect(campFireRect.x - (500 /2), campFireRect.y - (500/2), campFireRect.w +(500), campFireRect.h +(500));
+		if(detectRect2.detectCollision(absRect)) {
+			isInRangeOfCampfire = true;
+			//stop();
+		} else {
+			isInRangeOfCampfire = false;
+		}
+	}
+	
+	public void moveInRandomDirection(int possibleLength) {
 		if(framesNum > length) {
 			framesNum = 0;
 			Random rand2 = new Random();
-			length = rand2.nextInt(100);
+			length = rand2.nextInt(possibleLength);
 			
 			Random rand = new Random();
 			int number = rand.nextInt(9);
@@ -244,6 +335,9 @@ public class Mob extends Actor {
 			} else if(number == 8) {}
 		}
 		framesNum++;
+	}
+	
+	public void updateAI() {				
 		
 	}
 	

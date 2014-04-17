@@ -35,12 +35,23 @@ public abstract class Item {
 	public Rect range = new Rect(0,0, 256,256);
 	public String sound;
 	public int attackPower = 1;
-	public int maxUses = 10;
-	public int uses = 10;
+	public int maxUses = 0;
+	public int uses = 0;
 	public boolean isUseable = false;
 	public boolean isFuelSource = false;
 	public int fuelAmount = 0;
 	public boolean isInactive = false;
+	public boolean isInUse = false;
+	
+	public void calculateUsage() {
+		isInUse = false;
+		Game.hero.eP = Game.hero.eP - 0.1;
+		uses = uses -1;
+		if(uses <= 0) {
+			stackSize = stackSize - 1;
+			Game.inventory.deleteItemIfNecessary();
+		}
+	}
 	
 	
 	
@@ -62,9 +73,6 @@ public abstract class Item {
 		if(Game.level.tileBeingAttacked != Game.level.highlightedBlock.getTopTile()) {
 			Game.level.tileBeingAttacked.currentHp = Game.level.tileBeingAttacked.maxHp;
 			Game.level.tileBeingAttacked = Game.level.highlightedBlock.getTopTile();
-			Game.level.tileBeingAttacked2 = Game.level.highlightedBlock2.getTopTile();
-			Game.level.tileBeingAttacked3 = Game.level.highlightedBlock3.getTopTile();
-			Game.level.tileBeingAttacked4 = Game.level.highlightedBlock4.getTopTile();
 		}
 	}
 	

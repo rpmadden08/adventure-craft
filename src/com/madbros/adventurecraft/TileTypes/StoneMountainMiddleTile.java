@@ -1,25 +1,24 @@
 package com.madbros.adventurecraft.TileTypes;
 
-import com.madbros.adventurecraft.Sprites.*;
-import com.madbros.adventurecraft.Utils.Margin;
-
 import static com.madbros.adventurecraft.Constants.*;
 
-public class SpaceTile extends CollisionTile {
-	public SpaceTile() {
+import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.Utils.Margin;
+
+public class StoneMountainMiddleTile extends CollisionTile {
+	public StoneMountainMiddleTile() {
 		super();
 		currentSpriteId = 0;
-		layer = WATER_LAYER;
-		z = Z_WATER;
-
-		sprites = Sprites.spriteCollections.get(Sprites.HOLE_NEW);
-
-		margin = new Margin(14, 14, 14, 14);
-		id = SPACE;
+		sprites = Sprites.spriteCollections.get(Sprites.DIRT_MOUNTAIN_MIDDLE_NEW);
+		margin = new Margin(9, 9, 12, 11);
+		id = DIRT_MOUNTAIN_MIDDLE;
 		autoTileID = id;
+		layer = ABOVE_LAYER_1;
+		z = Z_ABOVE_LAYER;
 		isDiggable = false;
-		is32 = true;
+		isPickable = true;
 	}
+	
 	public void render(int x, int y) {
 		int size = TILE_SIZE/2;
 
@@ -35,7 +34,8 @@ public class SpaceTile extends CollisionTile {
 			sprites[bottomRightAutoTile].draw(x+size, y+size, z);
 		}
 	}
+	
 	public Tile createNew() {
-		return new SpaceTile();
+		return new StoneMountainMiddleTile();
 	}
 }

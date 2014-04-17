@@ -20,6 +20,9 @@ public class WoodenSword extends WeaponItem {
 		sound = "sounds/swordSwing1.wav";
 		craftCost = new int[]{PLANK, STICK};
 		craftCostAmount = new int[]{2, 1};
+		attackPower = 4;
+		maxUses = 15;
+		uses = 15;
 		
 		cRectU = new Rect (0,-6,82,32);
 		cRectD = new Rect (0,54,82,32);

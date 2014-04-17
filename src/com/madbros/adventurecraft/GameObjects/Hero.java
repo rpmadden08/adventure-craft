@@ -82,6 +82,7 @@ public class Hero extends Actor {
 	
 	public void takeDamage(int damage) {
 		damage = damage - armor;
+		eP = eP - 0.1;
 		if(damage<1) {damage = 1;}
 		if(knockBackTime <= 0) {
 			if(hP - damage < 0) {

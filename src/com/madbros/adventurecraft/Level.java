@@ -307,9 +307,9 @@ public class Level {
 	private void highlight64() {
 		if(highlightedBlock != null) {
 			highlightedBlock.isHighlighted = false;
-			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = false;
-			activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = false;
-			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = false;
+//			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = false;
+//			activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = false;
+//			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = false;
 		}
 		
 		Rect mRect = Helpers.getMouseRect();
@@ -413,7 +413,7 @@ public class Level {
 		if(Game.inventory.invBar[Game.inventory.itemSelected].item.is32 == true) {
 			highlight32();
 		} else {
-			highlight64();
+			highlight32();
 		}
 		
 	}

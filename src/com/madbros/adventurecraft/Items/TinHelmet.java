@@ -10,7 +10,7 @@ public class TinHelmet extends Clothing {
 		name = "Tin Hat";
 		sprite = Sprites.sprites.get(Sprites.TIN_HELMET_ITEM);
 		animatedSprite = Sprites.animatedSprites.get(Sprites.TIN_HELMET_ITEM);
-		defensePower = 1;
+		defensePower = 2;
 		slotType = HELMET_SLOT;
 		maxStackSize =1;
 		craftCost = new int[]{TIN_BAR};
