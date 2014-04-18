@@ -16,7 +16,7 @@ public class StairsUpBottomTile extends CollisionTile {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.STAIRS_UP_BOTTOM_TILE);
-		margin = new Margin(9, 9, 12, 11);
+		margin = new Margin(9, 9, 9, 9);
 		id = STAIRS_UP_BOTTOM_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;

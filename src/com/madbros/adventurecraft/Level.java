@@ -206,17 +206,17 @@ public class Level {
 	
 	public void teleportHero(int x, int y) {
 		//THIS FUNCTION IS INCOMPLETE (in particular it doesn't address switching between levels)
-		Game.hero.absRect.x = x *TILE_SIZE;
-		Game.hero.absRect.y = y *TILE_SIZE;
-		
-		offsetX = 0;
-		offsetY = 0;
+//		Game.hero.absRect.x = x *TILE_SIZE;
+//		Game.hero.absRect.y = y *TILE_SIZE;
+//		
+//		offsetX = 0;
+//		offsetY = 0;
 		Game.saveGame.saveGame();
 		saveCurrentChunks();
 		Game.level = new Level();
 		Game.hero = new Hero();
-		Game.hero.absRect.x = Game.hero.absRect.x - 16;
-		Game.hero.absRect.y = Game.hero.absRect.y +2;
+//		Game.hero.absRect.x = Game.hero.absRect.x - 16;
+//		Game.hero.absRect.y = Game.hero.absRect.y +2;
 		//offsetX = 15;
 		
 		

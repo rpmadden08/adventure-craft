@@ -20,7 +20,7 @@ public class DirtMountainBottomTile extends CollisionTile {
 		z = Z_OBJECT;
 		isDiggable = false;
 		isPickable = true;
-		is32 = false;
+		is32 = true;
 	}
 	
 	public void render(int x, int y) {
@@ -55,8 +55,10 @@ public class DirtMountainBottomTile extends CollisionTile {
 	}
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
+		activeBlocks[x][y].layers[OBJECT_LAYER] = new NoTile();
 		activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new NoTile();
 		activeBlocks[x][y-2].layers[ABOVE_LAYER_2] = new NoTile();
+		activeBlocks[x][y].collisionTile = null;
 		
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(DIRT_MOUNTAIN_ITEM).createNew();

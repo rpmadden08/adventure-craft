@@ -52,22 +52,40 @@ public class StairsDownTile extends CollisionTile {
 				x = Game.level.getXFromAbs(x2);
 				y = Game.level.getYFromAbs(y2);
 				if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_UP_BOTTOM_TILE) {
+					Game.level.activeBlocks[x-1][y-1].layers[OBJECT_LAYER].deleteThisTile(x-1, y-1, Game.level.activeBlocks);
+					Game.level.activeBlocks[x][y-1].layers[OBJECT_LAYER].deleteThisTile(x, y-1, Game.level.activeBlocks);
+					Game.level.activeBlocks[x+1][y-1].layers[OBJECT_LAYER].deleteThisTile(x+1, y-1, Game.level.activeBlocks);
+					Game.level.activeBlocks[x-1][y].layers[OBJECT_LAYER].deleteThisTile(x-1, y, Game.level.activeBlocks);
 					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].deleteThisTile(x, y, Game.level.activeBlocks);
+					Game.level.activeBlocks[x+1][y].layers[OBJECT_LAYER].deleteThisTile(x+1, y, Game.level.activeBlocks);
+					Game.level.activeBlocks[x-1][y+1].layers[OBJECT_LAYER].deleteThisTile(x-1, y+1, Game.level.activeBlocks);
+					Game.level.activeBlocks[x][y+1].layers[OBJECT_LAYER].deleteThisTile(x, y+1, Game.level.activeBlocks);
+					Game.level.activeBlocks[x+1][y+1].layers[OBJECT_LAYER].deleteThisTile(x+1, y+1, Game.level.activeBlocks);
+					
 					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new StairsUpBottomTile();
 					Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new StairsUpTopTile();
+					
 					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.x = Game.level.activeBlocks[x][y].getAbsX()* TILE_SIZE;
 					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.y = Game.level.activeBlocks[x][y].getAbsY()* TILE_SIZE;
 					
 				}
-				Game.level.autoTileBlock(x, y);
 				Game.level.autoTileBlock(x, y+1);
-				Game.level.autoTileBlock(x, y+2);
+				Game.level.autoTileBlock(x, y);
+				Game.level.autoTileBlock(x, y-1);
+				Game.level.autoTileBlock(x, y-2);
+				Game.level.autoTileBlock(x, y-3);
+				
+				Game.level.autoTileBlock(x-1, y+1);
 				Game.level.autoTileBlock(x-1, y);
 				Game.level.autoTileBlock(x-1, y-1);
 				Game.level.autoTileBlock(x-1, y-2);
-				Game.level.autoTileBlock(x-2, y);
-				Game.level.autoTileBlock(x-2, y-1);
-				Game.level.autoTileBlock(x-2, y-2);
+				Game.level.autoTileBlock(x-1, y-3);
+				
+				Game.level.autoTileBlock(x+1, y+1);
+				Game.level.autoTileBlock(x+1, y);
+				Game.level.autoTileBlock(x+1, y-1);
+				Game.level.autoTileBlock(x+1, y-2);
+				Game.level.autoTileBlock(x+1, y-3);
 				//Game.level.autoTileHighlightedBlock();
 			}
 			

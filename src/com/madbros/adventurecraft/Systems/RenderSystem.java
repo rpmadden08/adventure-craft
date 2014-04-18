@@ -520,7 +520,7 @@ public class RenderSystem {
 			inv.invBag[i].render();
 		}
 		
-		inv.heldItem.render(Helpers.getX(), Helpers.getY());
+		
 	}
 	public void renderCrafting(Inventory inv) {
 		for(int i = 0; i < inv.craftingMenu.craftSlots.length; i++) {
@@ -587,6 +587,7 @@ public class RenderSystem {
 			}
 			hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
 		}
+		inv.heldItem.render(Helpers.getX(), Helpers.getY());
 	}
 	
 	public void renderFurnaceBuildTime(FurnaceTile furnace, int x, int y) {

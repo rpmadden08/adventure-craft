@@ -55,6 +55,9 @@ public class DirtMountainCoalBottomTile extends CollisionTile {
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
+		activeBlocks[x][y].collisionTile = null;
+		activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new NoTile();
+		activeBlocks[x][y-2].layers[ABOVE_LAYER_2] = new NoTile();
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(DIRT_MOUNTAIN_ITEM).createNew();
 		Game.collectibleController.add(DIRT_MOUNTAIN_ITEM, Sprites.sprites.get(Sprites.DIRT_MOUNTAIN_ITEM), collectibleRect, 1, item.maxUses);
