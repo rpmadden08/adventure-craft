@@ -74,7 +74,7 @@ public class Level {
 			(int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
 //	
-	//private long rgenseed = System.currentTimeMillis();
+	//public long rgenseed = System.currentTimeMillis();
 	public long rgenseed = 2; // 6 is swamp, 2 is hole+swamp, 19 is Grass and Snow (plains)
 	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public Random rand = new Random(rgenseed);

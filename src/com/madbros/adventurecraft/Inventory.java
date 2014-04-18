@@ -264,7 +264,7 @@ public class Inventory {
 			if(invBag[i].item.id == 0) {
 				invBag[i].item = addedItem;
 				invBag[i].item.stackSize = stackSize;
-				invBar[i].item.uses = uses;
+				invBag[i].item.uses = uses;
 				return;
 			}
 		}
