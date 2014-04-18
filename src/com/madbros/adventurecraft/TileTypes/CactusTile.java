@@ -3,6 +3,7 @@ package com.madbros.adventurecraft.TileTypes;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -54,8 +55,9 @@ public class CactusTile extends CollisionTile {
 		//new Rect(Game.level.activeBlocks[x][y].absRect.x,Game.level.activeBlocks[x][y].absRect.y,CHARACTER_SIZE, CHARACTER_SIZE);
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(CACTUS_SEED, Sprites.sprites.get(Sprites.CACTUS_ITEM), collectibleRect, 1 );
-		Game.collectibleController.add(CACTUS_SEED, Sprites.sprites.get(Sprites.CACTUS_ITEM), collectibleRect2, 1 );
+		Item item = ITEM_HASH.get(CACTUS_SEED).createNew();
+		Game.collectibleController.add(CACTUS_SEED, Sprites.sprites.get(Sprites.CACTUS_ITEM), collectibleRect, 1, item.maxUses );
+		Game.collectibleController.add(CACTUS_SEED, Sprites.sprites.get(Sprites.CACTUS_ITEM), collectibleRect2, 1, item.maxUses );
 
 	}
 	

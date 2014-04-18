@@ -27,7 +27,7 @@ public class CraftingSlot extends Slot{
 				Game.inventory.remove(removedItem, this.item.craftCostAmount[x]);
 			}
 			System.out.println(this.item.id);
-			Game.inventory.add(this.item, this.item.stackSize);
+			Game.inventory.add(this.item, this.item.stackSize, this.item.maxUses);
 			System.out.println(this.item.stackSize);
 		}
 	}

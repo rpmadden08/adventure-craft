@@ -138,16 +138,20 @@ public class FurnaceTile extends CollisionTile {
 		b2.layers[ABOVE_LAYER_1] = new NoTile();
 		
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(FURNACE, Sprites.sprites.get(Sprites.FURNACE_SINGLE), collectibleRect, 1);
+		Item item = ITEM_HASH.get(FURNACE).createNew();
+		Game.collectibleController.add(FURNACE, Sprites.sprites.get(Sprites.FURNACE_SINGLE), collectibleRect, 1, item.maxUses);
+		
 		for(int i = 0; i < furnaceSlots.length; i++) {
 			if(furnaceSlots[i].item.id != 0) {
 				Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-				Game.collectibleController.add(furnaceSlots[i].item.id, furnaceSlots[i].item.sprite, collectibleRect2, 1);
+				item = ITEM_HASH.get(furnaceSlots[i].item.id).createNew();
+				Game.collectibleController.add(furnaceSlots[i].item.id, furnaceSlots[i].item.sprite, collectibleRect2, 1, item.maxUses);
 			}
 		}
 		if(craftedSlot[0].item.id != 0) {
 			Rect collectibleRect3 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-			Game.collectibleController.add(craftedSlot[0].item.id, craftedSlot[0].item.sprite, collectibleRect3, 1);
+			item = ITEM_HASH.get(craftedSlot[0].item.id).createNew();
+			Game.collectibleController.add(craftedSlot[0].item.id, craftedSlot[0].item.sprite, collectibleRect3, 1, item.maxUses);
 			
 		}
 	}

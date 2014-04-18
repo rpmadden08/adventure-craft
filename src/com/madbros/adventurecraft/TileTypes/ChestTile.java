@@ -6,6 +6,7 @@ import java.io.File;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -70,12 +71,14 @@ public class ChestTile extends CollisionTile {
 		
 		
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(CHEST, Sprites.sprites.get(Sprites.CHEST_ITEM), collectibleRect, 1);
+		Item item = ITEM_HASH.get(CHEST).createNew();
+		Game.collectibleController.add(CHEST, Sprites.sprites.get(Sprites.CHEST_ITEM), collectibleRect, 1, item.maxUses);
 		
 		for(int i = 0; i < Game.inventory.invChest.length; i++) {
 			if(Game.inventory.invChest[i].item.id != 0) {
 				Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-				Game.collectibleController.add(Game.inventory.invChest[i].item.id, Game.inventory.invChest[i].item.sprite, collectibleRect2, 1);
+				item = ITEM_HASH.get(Game.inventory.invChest[i].item.id).createNew();
+				Game.collectibleController.add(Game.inventory.invChest[i].item.id, Game.inventory.invChest[i].item.sprite, collectibleRect2, 1, item.maxUses);
 			}
 		}
 		

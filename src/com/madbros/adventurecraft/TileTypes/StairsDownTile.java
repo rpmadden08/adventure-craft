@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.StairsUp;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
@@ -15,7 +16,7 @@ public class StairsDownTile extends CollisionTile {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.STAIRS_DOWN_TILE);
-		margin = new Margin(0, 0, 0, 0);
+		margin = new Margin(9, 9, 9, 9);
 		id = STAIRS_DOWN_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
@@ -83,7 +84,8 @@ public class StairsDownTile extends CollisionTile {
 		
 		//FIXME this needs to randomly drop basic goodies:)
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(STAIRS_DOWN, Sprites.sprites.get(Sprites.STAIRS_DOWN), collectibleRect, 1);
+		Item item = ITEM_HASH.get(STAIRS_DOWN).createNew();
+		Game.collectibleController.add(STAIRS_DOWN, Sprites.sprites.get(Sprites.STAIRS_DOWN), collectibleRect, 1, item.maxUses);
 		
 	}
 }

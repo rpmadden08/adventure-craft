@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -46,7 +47,8 @@ public class GrassTile extends Tile {
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		Game.level.highlightedBlock.layers[GRASS_LAYER] = new NoTile();
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(GRASS_SEED, Sprites.sprites.get(Sprites.GRASS_ITEM), collectibleRect, 1);
+		Item item = ITEM_HASH.get(GRASS_SEED).createNew();
+		Game.collectibleController.add(GRASS_SEED, Sprites.sprites.get(Sprites.GRASS_ITEM), collectibleRect, 1, item.maxUses);
 		
 	}
 }

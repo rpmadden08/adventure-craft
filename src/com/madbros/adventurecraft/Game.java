@@ -124,7 +124,7 @@ public class Game implements ApplicationListener {
 			inventory.close(hero);
 			if(inventory.heldItem.id != 0) {
 				Rect collectibleRect = new Rect(hero.absRect.x, hero.absRect.y, 16, 16);
-				Game.collectibleController.add(inventory.heldItem.id, inventory.heldItem.sprite, collectibleRect, inventory.heldItem.stackSize);
+				Game.collectibleController.add(inventory.heldItem.id, inventory.heldItem.sprite, collectibleRect, inventory.heldItem.stackSize, inventory.heldItem.uses);
 				inventory.heldItem.stackSize = 0;
 				inventory.heldItem = new NoItem();
 				

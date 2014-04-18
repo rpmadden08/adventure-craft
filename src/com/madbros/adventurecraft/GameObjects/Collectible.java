@@ -28,9 +28,10 @@ public class Collectible extends GameObject{
 	int stackSize = 1;
 	float damping = 1;
 	int range = 100;
+	int uses;
 	String plopSound = "sounds/plop.wav";
 
-	public Collectible(CollectibleController collectibleController, int iD, Sprite spriteID, Rect collectible, int stackSize) {
+	public Collectible(CollectibleController collectibleController, int iD, Sprite spriteID, Rect collectible, int stackSize, int uses) {
 		this.collectibleController = collectibleController;
 		absRect = collectible;
 		margin = new Margin(0, 0, 0, 0);
@@ -45,6 +46,7 @@ public class Collectible extends GameObject{
 		length = length +ud -2;
 		int ud2 = rand.nextInt(4);
 		length2 = length2 +ud2 -2;
+		this.uses = uses;
 		
 	}
 	
@@ -138,7 +140,7 @@ public class Collectible extends GameObject{
 	public void didCollide() {
 		Game.soundController.create(plopSound, 0.1f);
 		collectibleController.remove(this);
-		Game.inventory.add(item, stackSize);
+		Game.inventory.add(item, stackSize, uses);
 		Game.notificationController.addCollectible(sprite, absRect, item.name, stackSize, item.id);
 		
 	}

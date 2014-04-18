@@ -5,6 +5,7 @@ package com.madbros.adventurecraft.TileTypes;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -73,7 +74,8 @@ public class StairsUpBottomTile extends CollisionTile {
 		
 		//FIXME this needs to randomly drop basic goodies:)
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(STAIRS_UP, Sprites.sprites.get(Sprites.STAIRS_UP), collectibleRect, 1);
+		Item item = ITEM_HASH.get(STAIRS_UP).createNew();
+		Game.collectibleController.add(STAIRS_UP, Sprites.sprites.get(Sprites.STAIRS_UP), collectibleRect, 1, item.maxUses);
 		
 	}
 }

@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -35,6 +36,7 @@ public class TorchTile extends LightTile {
 		b.collisionTile = null;
 		b.layers[OBJECT_LAYER] = new NoTile();
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(TORCH, Sprites.sprites.get(Sprites.TORCH), collectibleRect, 1);
+		Item item = ITEM_HASH.get(TORCH).createNew();
+		Game.collectibleController.add(TORCH, Sprites.sprites.get(Sprites.TORCH), collectibleRect, 1, item.maxUses);
 	}
 }

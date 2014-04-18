@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -79,15 +80,18 @@ public class WheatTile extends CollisionTile {
 		if(currentSpriteId == 7) {
 			for(int i = dropAmount1; i >-1 ; i--) {
 				Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-				Game.collectibleController.add(WHEAT_SPROUT, Sprites.sprites.get(Sprites.WHEAT_SPROUT), collectibleRect, 1);
+				Item item = ITEM_HASH.get(WHEAT_SPROUT).createNew();
+				Game.collectibleController.add(WHEAT_SPROUT, Sprites.sprites.get(Sprites.WHEAT_SPROUT), collectibleRect, 1, item.maxUses);
 			}
 			for(int i = dropAmount2; i >-1 ; i--) {
 				Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-				Game.collectibleController.add(WHEAT, Sprites.sprites.get(Sprites.WHEAT), collectibleRect, 1);
+				Item item = ITEM_HASH.get(WHEAT).createNew();
+				Game.collectibleController.add(WHEAT, Sprites.sprites.get(Sprites.WHEAT), collectibleRect, 1, item.maxUses);
 			}
 		} else {
 			Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-			Game.collectibleController.add(WHEAT_SPROUT, Sprites.sprites.get(Sprites.WHEAT_SPROUT), collectibleRect, 1);
+			Item item = ITEM_HASH.get(WHEAT_SPROUT).createNew();
+			Game.collectibleController.add(WHEAT_SPROUT, Sprites.sprites.get(Sprites.WHEAT_SPROUT), collectibleRect, 1, item.maxUses);
 		}
 	}
 }

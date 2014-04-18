@@ -4,6 +4,7 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -39,6 +40,7 @@ public class FirePitTile extends CollisionTile {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(FIRE_PIT, Sprites.sprites.get(Sprites.FIRE_PIT), collectibleRect, 1);
+		Item item = ITEM_HASH.get(FIRE_PIT).createNew();
+		Game.collectibleController.add(FIRE_PIT, Sprites.sprites.get(Sprites.FIRE_PIT), collectibleRect, 1, item.maxUses);
 	}
 }

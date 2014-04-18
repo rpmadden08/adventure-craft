@@ -2,6 +2,7 @@ package com.madbros.adventurecraft.TileTypes;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -45,7 +46,8 @@ public class SandTile extends Tile {
 		Game.level.highlightedBlock.layers[GRASS_LAYER] = new NoTile();
 		
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(SAND_CLUMP, Sprites.sprites.get(Sprites.SAND_ITEM), collectibleRect, 1);
+		Item item = ITEM_HASH.get(SAND_CLUMP).createNew();
+		Game.collectibleController.add(SAND_CLUMP, Sprites.sprites.get(Sprites.SAND_ITEM), collectibleRect, 1, item.maxUses);
 		
 	}
 }

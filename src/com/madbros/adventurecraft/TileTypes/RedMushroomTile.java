@@ -3,6 +3,7 @@ package com.madbros.adventurecraft.TileTypes;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -59,7 +60,8 @@ public class RedMushroomTile extends Tile {
 		
 		//FIXME this should drop something other than tall grass
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(RED_MUSHROOM, Sprites.sprites.get(Sprites.RED_MUSHROOM), collectibleRect, 1);
+		Item item = ITEM_HASH.get(RED_MUSHROOM).createNew();
+		Game.collectibleController.add(RED_MUSHROOM, Sprites.sprites.get(Sprites.RED_MUSHROOM), collectibleRect, 1, item.maxUses);
 		
 	}
 }

@@ -24,9 +24,9 @@ public class CollectibleController {
 		}
 	}
 	
-	public void add(int iD, Sprite sprite, Rect collectibleRect, int stackSize) {
+	public void add(int iD, Sprite sprite, Rect collectibleRect, int stackSize, int uses) {
 		
-		collectibles.add(new Collectible(this, iD, sprite, collectibleRect, stackSize));
+		collectibles.add(new Collectible(this, iD, sprite, collectibleRect, stackSize, uses));
 	}
 
 	public void remove(Collectible collectible) {

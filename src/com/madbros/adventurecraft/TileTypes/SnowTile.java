@@ -2,6 +2,7 @@ package com.madbros.adventurecraft.TileTypes;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -32,7 +33,8 @@ public class SnowTile extends Tile {
 		Game.level.activeBlocks[Game.level.highlightedBlockX+1][Game.level.highlightedBlockY+1].layers[GRASS_LAYER] = new NoTile();
 		
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(SNOW_ITEM, Sprites.sprites.get(Sprites.SNOW_ITEM), collectibleRect, 1);
+		Item item = ITEM_HASH.get(SNOW_ITEM).createNew();
+		Game.collectibleController.add(SNOW_ITEM, Sprites.sprites.get(Sprites.SNOW_ITEM), collectibleRect, 1,item.maxUses);
 		
 	}
 }

@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -67,15 +68,18 @@ public class PotatoTile extends CollisionTile {
 		if(currentSpriteId == 3) {
 			for(int i = dropAmount1; i >-1 ; i--) {
 				Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-				Game.collectibleController.add(SEED_POTATO, Sprites.sprites.get(Sprites.SEED_POTATO), collectibleRect, 1);
+				Item item = ITEM_HASH.get(SEED_POTATO).createNew();
+				Game.collectibleController.add(SEED_POTATO, Sprites.sprites.get(Sprites.SEED_POTATO), collectibleRect, 1, item.maxUses);
 			}
 			for(int i = dropAmount2; i >-1 ; i--) {
 				Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-				Game.collectibleController.add(POTATOES, Sprites.sprites.get(Sprites.POTATOES), collectibleRect, 1);
+				Item item = ITEM_HASH.get(POTATOES).createNew();
+				Game.collectibleController.add(POTATOES, Sprites.sprites.get(Sprites.POTATOES), collectibleRect, 1, item.maxUses);
 			}
 		} else {
 			Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-			Game.collectibleController.add(SEED_POTATO, Sprites.sprites.get(Sprites.SEED_POTATO), collectibleRect, 1);
+			Item item = ITEM_HASH.get(SEED_POTATO).createNew();
+			Game.collectibleController.add(SEED_POTATO, Sprites.sprites.get(Sprites.SEED_POTATO), collectibleRect, 1, item.maxUses);
 		}
 	}
 }

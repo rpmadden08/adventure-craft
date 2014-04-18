@@ -67,7 +67,8 @@ public class BarrelTile extends CollisionTile {
 		for(int a=0; a<items.length;a++) {
 			//System.out.println(items[a].stackSize);
 			Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-			Game.collectibleController.add(items[a].id, items[a].sprite, collectibleRect, items[a].stackSize);
+			Item item = ITEM_HASH.get(items[a].id).createNew();
+			Game.collectibleController.add(items[a].id, items[a].sprite, collectibleRect, items[a].stackSize, item.maxUses);
 		}
 		//Helpers.getRandomLoot(int, probabilities, stackSizeMin, stackSizeMax, min, max)
 //		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);

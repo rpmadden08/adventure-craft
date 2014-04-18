@@ -165,7 +165,7 @@ public class Inventory {
 		for(int i = 0; i < invBar.length; i++) {
 			if(invBar[i].item.id != 0) {
 				Rect collectibleRect = new Rect(Game.hero.absRect.x, Game.hero.absRect.y, 16, 16);
-				Game.collectibleController.add(invBar[i].item.id, invBar[i].item.sprite, collectibleRect, invBar[i].item.stackSize);
+				Game.collectibleController.add(invBar[i].item.id, invBar[i].item.sprite, collectibleRect, invBar[i].item.stackSize, invBar[i].item.uses);
 				invBar[i].item.stackSize = 0;
 				invBar[i].item = new NoItem();
 			}
@@ -175,7 +175,7 @@ public class Inventory {
 		for(int i = 0; i < invBag.length; i++) {
 			if(invBag[i].item.id != 0) {
 				Rect collectibleRect = new Rect(Game.hero.absRect.x, Game.hero.absRect.y, 16, 16);
-				Game.collectibleController.add(invBag[i].item.id, invBag[i].item.sprite, collectibleRect, invBag[i].item.stackSize);
+				Game.collectibleController.add(invBag[i].item.id, invBag[i].item.sprite, collectibleRect, invBag[i].item.stackSize, invBar[i].item.uses);
 				invBag[i].item.stackSize = 0;
 				invBag[i].item = new NoItem();
 			}
@@ -219,7 +219,7 @@ public class Inventory {
 		}
 	}
 	
-	public void add(Item addedItem, int stackSize) {
+	public void add(Item addedItem, int stackSize, int uses) {
 		for(int i = 0; i < invBar.length; i++) {
 			if(invBar[i].item.id == addedItem.id ) {
 				if(invBar[i].item.stackSize != addedItem.maxStackSize ) {
@@ -256,6 +256,7 @@ public class Inventory {
 			if(invBar[i].item.id == 0 ) {
 				invBar[i].item = addedItem;
 				invBar[i].item.stackSize = stackSize;
+				invBar[i].item.uses = uses;
 				return;
 			}
 		}
@@ -263,6 +264,7 @@ public class Inventory {
 			if(invBag[i].item.id == 0) {
 				invBag[i].item = addedItem;
 				invBag[i].item.stackSize = stackSize;
+				invBar[i].item.uses = uses;
 				return;
 			}
 		}

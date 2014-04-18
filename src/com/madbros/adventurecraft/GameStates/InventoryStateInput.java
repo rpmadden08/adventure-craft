@@ -121,7 +121,7 @@ public class InventoryStateInput extends MainStateInput {
 		if(droppedItemInSlot == false) {
 			if(mouseLeftDown && Game.inventory.heldItem.id != 0) {
 				Rect collectibleRect = new Rect(Game.hero.absRect.x, Game.hero.absRect.y, 16, 16);
-				Game.collectibleController.add(Game.inventory.heldItem.id, Game.inventory.heldItem.sprite, collectibleRect, Game.inventory.heldItem.stackSize);
+				Game.collectibleController.add(Game.inventory.heldItem.id, Game.inventory.heldItem.sprite, collectibleRect, Game.inventory.heldItem.stackSize, Game.inventory.heldItem.uses);
 				Game.inventory.heldItem.stackSize = 0;
 				Game.inventory.heldItem = new NoItem();
 			}

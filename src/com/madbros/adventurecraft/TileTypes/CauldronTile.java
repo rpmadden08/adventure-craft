@@ -133,16 +133,19 @@ public class CauldronTile extends CollisionTile {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(CAULDRON, Sprites.sprites.get(Sprites.CAULDRON_SINGLE), collectibleRect, 1);
+		Item item = ITEM_HASH.get(CAULDRON).createNew();
+		Game.collectibleController.add(CAULDRON, Sprites.sprites.get(Sprites.CAULDRON_SINGLE), collectibleRect, 1, item.maxUses);
 		for(int i = 0; i < cauldronSlots.length; i++) {
 			if(cauldronSlots[i].item.id != 0) {
 				Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-				Game.collectibleController.add(cauldronSlots[i].item.id, cauldronSlots[i].item.sprite, collectibleRect2, 1);
+				item = ITEM_HASH.get(cauldronSlots[i].item.id).createNew();
+				Game.collectibleController.add(cauldronSlots[i].item.id, cauldronSlots[i].item.sprite, collectibleRect2, 1, item.maxUses);
 			}
 		}
 		if(craftedSlot[0].item.id != 0) {
 			Rect collectibleRect3 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-			Game.collectibleController.add(craftedSlot[0].item.id, craftedSlot[0].item.sprite, collectibleRect3, 1);
+			item = ITEM_HASH.get(craftedSlot[0].item.id).createNew();
+			Game.collectibleController.add(craftedSlot[0].item.id, craftedSlot[0].item.sprite, collectibleRect3, 1, item.maxUses);
 			
 		}
 	}

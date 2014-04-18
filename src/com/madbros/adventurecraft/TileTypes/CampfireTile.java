@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -54,6 +55,7 @@ public class CampfireTile extends LightTile {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Game.collectibleController.add(CAMPFIRE, Sprites.sprites.get(Sprites.CAMPFIRE_SINGLE), collectibleRect, 1);
+		Item item = ITEM_HASH.get(CAMPFIRE).createNew();
+		Game.collectibleController.add(CAMPFIRE, Sprites.sprites.get(Sprites.CAMPFIRE_SINGLE), collectibleRect, 1, item.maxUses);
 	}
 }
