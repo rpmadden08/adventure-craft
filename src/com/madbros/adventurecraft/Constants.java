@@ -202,6 +202,10 @@ public class Constants {
 	public static final int DIRT_MOUNTAIN_COPPER_BOTTOM = 69;
 	public static final int DIRT_MOUNTAIN_TIN_BOTTOM = 70;
 	public static final int DIRT_MOUNTAIN_TIN_MIDDLE = 71;
+	public static final int DIRT_MOUNTAIN_CLUMP = 72;
+	public static final int STONE_MOUNTAIN_CLUMP = 73;
+	public static final int STONE = 74;
+	
 	
 	
 
@@ -645,6 +649,10 @@ public class Constants {
 		ITEM_HASH.put(STINGER_SWORD, new StingerSword());
 		
 		ITEM_HASH.put(GLASS_BOTTLE, new GlassBottle());
+		
+		ITEM_HASH.put(DIRT_MOUNTAIN_CLUMP, new DirtMountainClump());
+		ITEM_HASH.put(STONE_MOUNTAIN_CLUMP, new StoneMountainClump());
+		ITEM_HASH.put(STONE, new Stone());
 		
 		
 		

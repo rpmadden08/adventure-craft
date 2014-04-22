@@ -13,7 +13,9 @@ public class StoneMountain extends BlockItem {
 		id = STONE_MOUNTAIN_ITEM;
 		name = "Stone Mountain";
 		tileId = STONE_MOUNTAIN_BOTTOM;
-		itemsPossiblyCraftable = new int[]{FURNACE, STONE_AXE, STONE_HOE, STONE_PICK, STONE_SHOVEL, STONE_SWORD};
+		craftCost = new int[]{STONE_MOUNTAIN_CLUMP};
+		craftCostAmount = new int[]{};
+		itemsPossiblyCraftable = new int[]{};
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS};
 		sprite = Sprites.sprites.get(Sprites.STONE_MOUNTAIN_ITEM);
 	}
