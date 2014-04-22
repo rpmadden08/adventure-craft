@@ -211,10 +211,10 @@ public class Level {
 //		
 //		offsetX = 0;
 //		offsetY = 0;
-		Game.saveGame.saveGame();
-		saveCurrentChunks();
-		Game.level = new Level();
-		Game.hero = new Hero();
+//		Game.saveGame.saveGame();
+//		saveCurrentChunks();
+//		Game.level = new Level();
+//		Game.hero = new Hero();
 //		Game.hero.absRect.x = Game.hero.absRect.x - 16;
 //		Game.hero.absRect.y = Game.hero.absRect.y +2;
 		//offsetX = 15;
@@ -227,6 +227,7 @@ public class Level {
 	public void loadGame() {
 		if(Game.isNewGame) {
 			Game.saveGame.saveGame();
+			Game.isNewGame = false;
 			//NO NEED to saveCurrentChunks();  It's already been done...
 		} else {
 			SaveGameData saveData = Game.saveGame.saveData();
@@ -418,9 +419,9 @@ public class Level {
 		
 	}
 	
-	public void update() {
-		Time.checkTime();
+	public void update() {		
 		
+		Time.checkTime();
 		if(Game.currentState.type == State.MAIN) highlightBlock();
 		
 		if(renderRect.y <= CHUNK_SIZE/2) {
@@ -442,21 +443,19 @@ public class Level {
 		}
 	}
 	
-	//removes the unfinished blocks from the blooming arraylist
-	
-	public void removeUnfinished(int startX, int startY) {
-		Iterator<Block> iterator = blooming.iterator();
-		while (iterator.hasNext()) {
-			
-				Block b = iterator.next();
-				int x = b.getX(activeBlocks);
-				int y = b.getY(activeBlocks);
-				if(x >= startX && y >= startY && x <= startX + CHUNK_SIZE+1 && y <= startY + CHUNK_SIZE+1) {
-					iterator.remove();
-				}
-				
-			}
-	}
+//	public void removeUnfinished(int startX, int startY) {
+//		Iterator<Block> iterator = blooming.iterator();
+//		while (iterator.hasNext()) {
+//			
+//				Block b = iterator.next();
+//				int x = b.getX(activeBlocks);
+//				int y = b.getY(activeBlocks);
+//				if(x >= startX && y >= startY && x <= startX + CHUNK_SIZE+1 && y <= startY + CHUNK_SIZE+1) {
+//					iterator.remove();
+//				}
+//				
+//			}
+//	}
 	
 	public void getNorthernChunks() {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {

@@ -154,6 +154,8 @@ public class Hero extends Actor {
 	@Override
 	public void update() {
 		super.update();
+		//System.out.println(Time.getDelta());
+		//System.out.println("Hero Coordinates: "+ this.absRect.x+","+this.absRect.y);
 		for(int i =0; i < timedStatusEffects.length; i++) {
 			timedStatusEffects[i].update(this);
 		}

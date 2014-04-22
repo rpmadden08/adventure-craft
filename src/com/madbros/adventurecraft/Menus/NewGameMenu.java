@@ -5,6 +5,7 @@ import java.io.File;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.Constants.State;
 
 import static com.madbros.adventurecraft.Constants.*;
 
@@ -75,6 +76,7 @@ public class NewGameMenu extends Menu {
 	}
 	
 	public void create() {
+		Game.currentState = new LoadingState(Game.batch);
 		Game.createNewGameAtLoc(SAVE_LOC + Game.gameFileName + "/");
 	}
 	

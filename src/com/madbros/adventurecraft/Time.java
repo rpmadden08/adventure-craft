@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import static com.madbros.adventurecraft.Constants.*;
 
 public class Time {
-	private static long lastFrame = 0;
+	public static long lastFrame = 0;
 	public static float delta;
 	
 	public Time() {
@@ -162,6 +162,12 @@ public class Time {
 //			Game.currentShader = Game.finalShader;
 		}
 		
+	}
+	
+	public static void setDeltaToZero() {
+		long time = getTime();
+		delta = 0;
+		lastFrame = time;
 	}
 	
 	public static void setDelta() {

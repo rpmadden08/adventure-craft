@@ -148,26 +148,27 @@ public class Game implements ApplicationListener {
 			hero.stop();
 			inventory.open(hero);
 		}
+		
+	
 	}
+	
+//	public static void switchToMainState() {
+//		currentState = new MainState();
+//	}
 	
 	public static void switchLevel() {
 		if(Game.currentLevel == OVERWORLD_FOLDER) {
 			saveGame.saveGame();
 			level.saveCurrentChunks();
-			//currentLevel = UNDERGROUND_1_FOLDER;
-			
 			level = new Underground1();
-			
-			//level = new Overworld();
 		} else if (Game.currentLevel == UNDERGROUND_1_FOLDER) {
 			saveGame.saveGame();
 			level.saveCurrentChunks();
-			//currentLevel = OVERWORLD_FOLDER;
 			level = new Overworld();
-		}
 			
-		//level.loadGame();
+		}
 		hero = new Hero();
+		
 	}
 	
 	public static void createSavesFolderIfNecessary() {
@@ -188,10 +189,6 @@ public class Game implements ApplicationListener {
 		
 		f = new File(Game.locOfSavedGame + CHUNKS_FOLDER);  
 		if(!f.exists()) f.mkdir();
-//		f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + OVERWORLD_FOLDER);  
-//		if(!f.exists()) f.mkdir();
-//		f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + UNDERGROUND_1_FOLDER);  
-//		if(!f.exists()) f.mkdir();
 		f = new File(Game.locOfSavedGame + CHESTS_FOLDER);
 		if(!f.exists()) f.mkdir();
 		f = new File(Game.locOfSavedGame + FURNACES_FOLDER);

@@ -150,7 +150,7 @@ public class Helpers {
 			Random rand = new Random();
 			int totalItems2 = rand.nextInt(totalItems);
 			totalItems = min +totalItems2;
-			System.out.println(totalItems);
+			//System.out.println(totalItems);
 			return totalItems;
 		}
 	}
