@@ -12,7 +12,9 @@ public class StoneHoe extends Hoe {
 		id = STONE_HOE;
 		name = "Stone Hoe";
 		sprite = Sprites.sprites.get(Sprites.STONE_HOE);
-		attackPower = 5;
+		swingSprite = sprite;
+		attackPower = 3;
+		itemPower = 5;
 		isRepeatable = true;
 		craftCost = new int[]{STONE_MOUNTAIN_ITEM, STICK};
 		craftCostAmount = new int[]{2, 2};

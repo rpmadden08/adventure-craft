@@ -11,7 +11,9 @@ public class StoneAxe extends Axe {
 		id = STONE_AXE;
 		name = "Stone Axe";
 		sprite = Sprites.sprites.get(Sprites.STONE_AXE);
+		swingSprite = sprite;
 		attackPower = 3;
+		itemPower = 3;
 		is32 = true;
 		isInUse = false;
 		sound = "sounds/axeChop.wav";

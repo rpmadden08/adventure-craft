@@ -14,7 +14,8 @@ public class Hoe extends ToolItem {
 		name = "Hoe";
 		is32 = true;
 		sprite = Sprites.sprites.get(Sprites.HOE);
-		attackPower = 5;
+		swingSprite = sprite;
+		itemPower = 5;
 		isRepeatable = true;
 		isInUse = false;
 		cRectU = new Rect (0,-6,82,32);
@@ -48,7 +49,7 @@ public class Hoe extends ToolItem {
 		Game.hero.attack(this);
 	}
 	public void impact() {
-		Game.level.tileBeingAttacked.currentHp -= attackPower;
+		Game.level.tileBeingAttacked.currentHp -= itemPower;
 		if(Game.level.tileBeingAttacked.currentHp < 1) {
 			Game.level.highlightedBlock.deleteTopTileTilled();
 			Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);

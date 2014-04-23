@@ -35,6 +35,7 @@ public abstract class Item {
 	public Rect range = new Rect(0,0, 256,256);
 	public String sound;
 	public int attackPower = 1;
+	public int itemPower = 1;
 	public int maxUses = 0;
 	public int uses = 0;
 	public boolean isUseable = false;
@@ -56,6 +57,7 @@ public abstract class Item {
 	
 	
 	public StaticSprite sprite;
+	public StaticSprite swingSprite = sprite;
 	public boolean isInRange;
 	
 	public void render(Rect slotRect) {

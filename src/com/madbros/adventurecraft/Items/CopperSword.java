@@ -12,6 +12,7 @@ public class CopperSword extends WeaponItem {
 		id = COPPER_SWORD;
 		name = "Copper Sword";
 		sprite = Sprites.sprites.get(Sprites.COPPER_SWORD);
+		swingSprite = sprite;
 		originX = 0;
 		originY = 32;
 		weaponOffsetX = 0;

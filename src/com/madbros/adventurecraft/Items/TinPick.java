@@ -12,7 +12,9 @@ public class TinPick extends Pick {
 		id = TIN_PICK;
 		name = "Tin Pickaxe";
 		sprite = Sprites.sprites.get(Sprites.TIN_PICK);
-		attackPower = 7;
+		swingSprite = sprite;
+		attackPower = 4;
+		itemPower = 7;
 		isRepeatable = true;
 		craftCost = new int[]{TIN_BAR, STICK};
 		craftCostAmount = new int[]{3, 2};

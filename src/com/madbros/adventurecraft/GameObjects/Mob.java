@@ -60,7 +60,7 @@ public class Mob extends Actor {
 	
 	public void takeDamage(int damage) {
 		//Get Harming Potion increase
-		
+		//System.out.println("DAMAGE: "+damage);
 		damage = Game.hero.appliedStatusEffects[1].getHarmingDamageIncrease(damage);
 		if(Game.hero.appliedStatusEffects[2].canApplyEffect(this)) {
 			Game.hero.appliedStatusEffects[2].applySlownessEffect(this);
@@ -176,7 +176,7 @@ public class Mob extends Actor {
 	@Override
 	public void didGetHit() {
 		if(knockBackTime <= 0) {
-			takeDamage(5);
+			takeDamage(Game.hero.attackItem.attackPower);
 			knockBack(Game.hero);
 		}
 	}

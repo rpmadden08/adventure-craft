@@ -62,7 +62,7 @@ public class MobController {
 			int num = rand.nextInt(1);//100
 			if(num == 0 && mobs.size() < 10) {
 				int topTile = Game.level.activeBlocks[x][y].getTopTile().id;
-				System.out.println(topTile);
+				//System.out.println(topTile);
 				Block[] tileArea = getTileArea(x,y);
 				if(Game.currentLevel == OVERWORLD_FOLDER) {
 					

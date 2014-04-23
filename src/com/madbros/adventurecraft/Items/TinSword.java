@@ -12,6 +12,7 @@ public class TinSword extends WeaponItem {
 		id = TIN_SWORD;
 		name = "Tin Sword";
 		sprite = Sprites.sprites.get(Sprites.TIN_SWORD);
+		swingSprite = sprite;
 		originX = 0;
 		originY = 32;
 		weaponOffsetX = 0;

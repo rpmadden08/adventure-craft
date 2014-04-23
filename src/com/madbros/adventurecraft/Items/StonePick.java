@@ -11,9 +11,10 @@ public class StonePick extends Pick {
 	public StonePick() {
 		id = STONE_PICK;
 		name = "Stone Pickaxe";
-		is32 = false;
 		sprite = Sprites.sprites.get(Sprites.STONE_PICK);
-		attackPower = 5;
+		swingSprite = sprite;
+		attackPower = 3;
+		itemPower = 5;
 		isRepeatable = true;
 		craftCost = new int[]{STONE_MOUNTAIN_ITEM, STICK};
 		craftCostAmount = new int[]{2, 3};

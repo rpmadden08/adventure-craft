@@ -12,6 +12,7 @@ public class WoodenSword extends WeaponItem {
 		id = WOODEN_SWORD;
 		name = "Wooden Sword";
 		sprite = Sprites.sprites.get(Sprites.WOODEN_SWORD);
+		swingSprite = sprite;
 		originX = 0;
 		originY = 32;
 		weaponOffsetX = 0;
@@ -21,6 +22,7 @@ public class WoodenSword extends WeaponItem {
 		craftCost = new int[]{PLANK, STICK};
 		craftCostAmount = new int[]{2, 1};
 		attackPower = 4;
+		itemPower = 2;
 		maxUses = 15;
 		uses = 15;
 		

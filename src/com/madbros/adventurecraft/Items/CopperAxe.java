@@ -11,7 +11,9 @@ public class CopperAxe extends Axe {
 		id = COPPER_AXE;
 		name = "Copper Axe";
 		sprite = Sprites.sprites.get(Sprites.COPPER_AXE);
+		swingSprite = sprite;
 		attackPower = 5;
+		itemPower = 5;
 		is32 = true;
 		isInUse = false;
 		sound = "sounds/axeChop.wav";

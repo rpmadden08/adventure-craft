@@ -12,7 +12,9 @@ public class TinHoe extends Hoe {
 		id = TIN_HOE;
 		name = "Tin Hoe";
 		sprite = Sprites.sprites.get(Sprites.TIN_HOE);
-		attackPower = 7;
+		swingSprite = sprite;
+		attackPower = 4;
+		itemPower = 7;
 		isRepeatable = true;
 		craftCost = new int[]{TIN_BAR, STICK};
 		craftCostAmount = new int[]{2, 2};

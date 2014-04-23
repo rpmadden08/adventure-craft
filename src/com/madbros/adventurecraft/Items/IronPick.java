@@ -13,6 +13,7 @@ public class IronPick extends ToolItem {
 		name = "Iron Pickaxe";
 		is32 = false;
 		sprite = Sprites.sprites.get(Sprites.IRON_PICK);
+		swingSprite = sprite;
 		attackPower = 5;
 		isRepeatable = true;
 		craftCost = new int[]{IRON_BAR, STICK};

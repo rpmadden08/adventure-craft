@@ -99,9 +99,7 @@ public class Overworld extends Level{
     		
     	}
 		//Mountains
-		if(chunkGenerator.chunkObjectLayer[m][n+1] == DIRT_MOUNTAIN_BOTTOM) {
-			block.layers[ABOVE_LAYER_1] = new DirtMountainMiddleTile();
-		}
+		
 		
 		if(chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_BOTTOM ||
 			chunkGenerator.chunkObjectLayer[m][n+2] == DIRT_MOUNTAIN_COPPER_BOTTOM ||
@@ -110,7 +108,9 @@ public class Overworld extends Level{
 			block.layers[ABOVE_LAYER_2] = new DirtMountainTopTile();
 		}
 		
-
+		if(chunkGenerator.chunkObjectLayer[m][n+1] == DIRT_MOUNTAIN_BOTTOM) {
+			block.layers[ABOVE_LAYER_1] = new DirtMountainMiddleTile();
+		}
 		
 		if(chunkGenerator.chunkObjectLayer[m][n] == DIRT_MOUNTAIN_COAL_BOTTOM) {
 			block.layers[OBJECT_LAYER] = new DirtMountainCoalBottomTile();
@@ -127,11 +127,11 @@ public class Overworld extends Level{
 		}
 		
 //		
-		if(chunkGenerator.chunkObjectLayer[m][n] == STONE_MOUNTAIN_TIN_BOTTOM) {
+		if(chunkGenerator.chunkObjectLayer[m][n] == DIRT_MOUNTAIN_TIN_BOTTOM) {
 			block.layers[OBJECT_LAYER] = new DirtMountainTinBottomTile();
 		}
 		
-		if(chunkGenerator.chunkObjectLayer[m][n+1] == STONE_MOUNTAIN_TIN_BOTTOM) {
+		if(chunkGenerator.chunkObjectLayer[m][n+1] == DIRT_MOUNTAIN_TIN_BOTTOM) {
 			block.layers[ABOVE_LAYER_1] = new DirtMountainTinMiddleTile();
 		}
 		

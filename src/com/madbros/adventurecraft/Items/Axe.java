@@ -11,7 +11,8 @@ public class Axe extends ToolItem {
 		id = AXE;
 		name = "Axe";
 		sprite = Sprites.sprites.get(Sprites.IRON_AXE);
-		attackPower = 5;
+		swingSprite = sprite;
+		itemPower = 5;
 		is32 = true;
 		isInUse = false;
 		sound = "sounds/axeChop.wav";
@@ -30,7 +31,7 @@ public class Axe extends ToolItem {
 	}
 	public void impact() {
 		//Game.p.allowCompletion();
-		Game.level.tileBeingAttacked.currentHp -= attackPower;
+		Game.level.tileBeingAttacked.currentHp -= itemPower;
 		if(Game.level.tileBeingAttacked.currentHp < 1) {
 			Game.level.highlightedBlock.deleteObjectTile();
 			Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
@@ -39,7 +40,7 @@ public class Axe extends ToolItem {
 		}
 		Game.soundController.create(sound, 0.1f);
 		Game.particleEffectController.add("Chunks.p", 
-				Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
+		Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
 
 //		Game.p.x= Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2);
 //		Game.p.y = Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2);

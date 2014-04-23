@@ -2,6 +2,8 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.util.Random;
+
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
@@ -60,8 +62,17 @@ public class DirtMountainTinBottomTile extends CollisionTile {
 		activeBlocks[x][y].collisionTile = null;
 		activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new NoTile();
 		activeBlocks[x][y-2].layers[ABOVE_LAYER_2] = new NoTile();
-		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Item item = ITEM_HASH.get(DIRT_MOUNTAIN_ITEM).createNew();
-		Game.collectibleController.add(DIRT_MOUNTAIN_ITEM, Sprites.sprites.get(Sprites.DIRT_MOUNTAIN_ITEM), collectibleRect, 1,item.maxUses);
+		Random rnd = new Random();
+		int dropAmount1 = rnd.nextInt(2)+2;
+			for(int i = dropAmount1; i >-1 ; i--) {
+				Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+				Item item = ITEM_HASH.get(DIRT_MOUNTAIN_CLUMP).createNew();
+				Game.collectibleController.add(DIRT_MOUNTAIN_CLUMP, Sprites.sprites.get(Sprites.DIRT_MOUNTAIN_CLUMP), collectibleRect, 1, item.maxUses);
+			}
+
+			Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+			Item item = ITEM_HASH.get(TIN_ITEM).createNew();
+			Game.collectibleController.add(TIN_ITEM, Sprites.sprites.get(Sprites.TIN_ITEM), collectibleRect, 1, item.maxUses);
+	
 	}
 }

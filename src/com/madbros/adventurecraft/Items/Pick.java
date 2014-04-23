@@ -14,7 +14,8 @@ public class Pick extends ToolItem {
 		name = "Iron Pickaxe";
 		is32 = true;
 		sprite = Sprites.sprites.get(Sprites.PICK);
-		attackPower = 5;
+		swingSprite = sprite;
+		itemPower = 5;
 		isRepeatable = true;
 		isInUse = false;
 		cRectU = new Rect (0,-6,82,32);
@@ -37,7 +38,7 @@ public class Pick extends ToolItem {
 		Game.hero.attack(this);
 	}
 	public void impact() {
-		Game.level.tileBeingAttacked.currentHp -= attackPower;
+		Game.level.tileBeingAttacked.currentHp -= itemPower;
 		if(Game.level.tileBeingAttacked.currentHp < 1) {
 			Game.level.highlightedBlock.deleteObjectTile();
 			Game.level.highlightedBlock.collisionTile = null;

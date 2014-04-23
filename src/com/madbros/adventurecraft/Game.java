@@ -105,7 +105,7 @@ public class Game implements ApplicationListener {
 				int y = inventory.currentInvBlockY;
 //				System.out.println(x);
 //				System.out.println(y);
-				System.out.println(inventory.invChest[0].item.id);
+				//System.out.println(inventory.invChest[0].item.id);
 				saveGame.saveChest(Game.inventory.invChest,x, y);
 				
 				saveGame.saveGame();

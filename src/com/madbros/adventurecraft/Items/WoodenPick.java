@@ -12,7 +12,9 @@ public class WoodenPick extends Pick {
 		id = WOODEN_PICK;
 		name = "Wooden Pickaxe";
 		sprite = Sprites.sprites.get(Sprites.WOODEN_PICK);
-		attackPower = 4;
+		swingSprite = sprite;
+		attackPower = 2;
+		itemPower = 4;
 		isRepeatable = true;
 		craftCost = new int[]{PLANK, STICK};
 		craftCostAmount = new int[]{3, 2};

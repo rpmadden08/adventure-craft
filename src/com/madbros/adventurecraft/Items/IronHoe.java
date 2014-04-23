@@ -13,6 +13,7 @@ public class IronHoe extends ToolItem {
 		name = "Iron Hoe";
 		is32 = false;
 		sprite = Sprites.sprites.get(Sprites.IRON_HOE);
+		swingSprite = sprite;
 		attackPower = 5;
 		isRepeatable = true;
 		craftCost = new int[]{IRON_BAR, STICK};

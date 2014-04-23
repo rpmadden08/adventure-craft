@@ -13,7 +13,9 @@ public class StoneShovel extends Shovel {
 		id = STONE_SHOVEL;
 		name = "Stone Shovel";
 		sprite = Sprites.sprites.get(Sprites.STONE_SHOVEL);
-		attackPower = 5;
+		swingSprite = sprite;
+		attackPower = 3;
+		itemPower = 5;
 		isRepeatable = true;
 		craftCost = new int[]{STONE_MOUNTAIN_ITEM, STICK};
 		craftCostAmount = new int[]{1, 2};

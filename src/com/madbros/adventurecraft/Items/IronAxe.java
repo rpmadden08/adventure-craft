@@ -11,6 +11,7 @@ public class IronAxe extends Axe {
 		id = IRON_AXE;
 		name = "Iron Axe";
 		sprite = Sprites.sprites.get(Sprites.IRON_AXE);
+		swingSprite = sprite;
 		attackPower = 5;
 		is32 = true;
 		isInUse = false;

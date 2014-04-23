@@ -12,6 +12,7 @@ public class StingerSword extends WeaponItem {
 		id = STINGER_SWORD;
 		name = "Stinger Sword";
 		sprite = Sprites.sprites.get(Sprites.STINGER_SWORD);
+		swingSprite = sprite;
 		originX = 0;
 		originY = 32;
 		weaponOffsetX = 0;

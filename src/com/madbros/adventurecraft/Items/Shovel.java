@@ -14,7 +14,8 @@ public class Shovel extends ToolItem {
 		id = SHOVEL;
 		name = "Shovel";
 		sprite = Sprites.sprites.get(Sprites.SHOVEL_ITEM);
-		attackPower = 5;
+		swingSprite = sprite;
+		itemPower = 5;
 		is32 = true;
 		isRepeatable = true;
 		isInUse = false;
@@ -37,8 +38,11 @@ public class Shovel extends ToolItem {
 		Game.hero.attack(this);
 	}
 	public void impact() {
-		Game.level.tileBeingAttacked.currentHp -= attackPower;
-		if(Game.level.tileBeingAttacked.currentHp < 1) {
+		Game.level.tileBeingAttacked.currentHp -= itemPower;
+		if(Game.level.tileBeingAttacked.layer == OBJECT_LAYER) {
+			Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
+			calculateUsage();
+		} else if(Game.level.tileBeingAttacked.currentHp < 1) {
 			
 			Game.level.highlightedBlock.deleteTopGrassTile();
 			

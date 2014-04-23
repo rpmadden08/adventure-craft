@@ -185,14 +185,14 @@ public class RenderSystem {
 			if(hero.isAttacking && hero.startWeaponAnimation == true) {
 				//Item item = Game.inventory.heldItem;
 				//item.sprite.setColor(Color.WHITE);
-				hero.attackItem.sprite.setOrigin(hero.attackItem.originX, hero.attackItem.originY);
+				hero.attackItem.swingSprite.setOrigin(hero.attackItem.originX, hero.attackItem.originY);
 				//hero.attackItem.sprite.
 				Sprites.pixel.setColor(Color.RED);
 				Sprites.pixel.draw(hero.attackItem.originX, hero.attackItem.originY,Z_CHARACTER);
 				
-				hero.attackItem.sprite.rotate(hero.weaponR);
-				hero.attackItem.sprite.draw(x+hero.weaponX+ hero.attackItem.weaponOffsetX, y+hero.weaponY+hero.attackItem.weaponOffsetY, Z_CHARACTER);
-				hero.attackItem.sprite.rotate(-hero.weaponR);
+				hero.attackItem.swingSprite.rotate(hero.weaponR);
+				hero.attackItem.swingSprite.draw(x+hero.weaponX+ hero.attackItem.weaponOffsetX, y+hero.weaponY+hero.attackItem.weaponOffsetY, Z_CHARACTER);
+				hero.attackItem.swingSprite.rotate(-hero.weaponR);
 				
 				Sprites.pixel.setColor(Color.RED);
 				Sprites.pixel.draw(x + hero.attackItem.originX+hero.weaponX+ hero.attackItem.weaponOffsetX, y + hero.attackItem.originY+hero.weaponY+hero.attackItem.weaponOffsetY,Z_CHARACTER);

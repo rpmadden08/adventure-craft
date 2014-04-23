@@ -13,7 +13,9 @@ public class CopperShovel extends Shovel {
 		id = COPPER_SHOVEL;
 		name = "Copper Shovel";
 		sprite = Sprites.sprites.get(Sprites.COPPER_SHOVEL);
-		attackPower = 10;
+		swingSprite = sprite;
+		attackPower = 5;
+		itemPower = 10;
 		isRepeatable = true;
 		craftCost = new int[]{COPPER_BAR, STICK};
 		craftCostAmount = new int[]{1, 2};

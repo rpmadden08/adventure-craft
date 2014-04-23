@@ -190,17 +190,17 @@ public class Level {
 	
 	public void checkPercentages() {
 		double total = Game.tundraTally + Game.taigaTally + Game.forestTally + Game.jungleTally+ Game.grasslandTally + Game.mountainTally +Game.oceanTally + Game.desertTally +Game.swampTally;
-		System.out.println(Game.tundraTally);
-		System.out.println(Game.tundraTally /total *100);
-		System.out.println("Tundra = " + Game.tundraTally /total *100+"%");
-		System.out.println("Taiga = " + Game.taigaTally /total *100+"%");
-		System.out.println("Forest = " + Game.forestTally /total *100+"%");
-		System.out.println("Jungle = " + Game.jungleTally /total *100+"%");
-		System.out.println("Grassland= " + Game.grasslandTally /total *100+"%");
-		System.out.println("Mountain = " + Game.mountainTally /total *100+"%");
-		System.out.println("Ocean = " + Game.oceanTally /total *100+"%");
-		System.out.println("Desert = " + Game.desertTally /total *100+"%");
-		System.out.println("Swamp = " + Game.swampTally /total *100+"%");
+//		System.out.println(Game.tundraTally);
+//		System.out.println(Game.tundraTally /total *100);
+//		System.out.println("Tundra = " + Game.tundraTally /total *100+"%");
+//		System.out.println("Taiga = " + Game.taigaTally /total *100+"%");
+//		System.out.println("Forest = " + Game.forestTally /total *100+"%");
+//		System.out.println("Jungle = " + Game.jungleTally /total *100+"%");
+//		System.out.println("Grassland= " + Game.grasslandTally /total *100+"%");
+//		System.out.println("Mountain = " + Game.mountainTally /total *100+"%");
+//		System.out.println("Ocean = " + Game.oceanTally /total *100+"%");
+//		System.out.println("Desert = " + Game.desertTally /total *100+"%");
+//		System.out.println("Swamp = " + Game.swampTally /total *100+"%");
 	}
 	
 	
@@ -340,21 +340,7 @@ public class Level {
 			highlightedBlock4 = activeBlocks[highlightedBlockX+1][highlightedBlockY+1];
 		
 			Game.inventory.invBar[Game.inventory.itemSelected].item.getTopTile();
-//			if(tileBeingAttacked != highlightedBlock.getTopTile()) {
-//				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
-//				tileBeingAttacked = highlightedBlock.getTopTile();
-//				tileBeingAttacked2 = highlightedBlock2.getTopTile();
-//				tileBeingAttacked3 = highlightedBlock3.getTopTile();
-//				tileBeingAttacked4 = highlightedBlock4.getTopTile();
-//			}
-			
-//			if(tileBeingAttacked != highlightedBlock.getDiggableTopTile()) {
-//				tileBeingAttacked.currentHp = tileBeingAttacked.maxHp;
-//				tileBeingAttacked = highlightedBlock.getDiggableTopTile();
-//				tileBeingAttacked2 = highlightedBlock2.getDiggableTopTile();
-//				tileBeingAttacked3 = highlightedBlock3.getDiggableTopTile();
-//				tileBeingAttacked4 = highlightedBlock4.getDiggableTopTile();
-//			}
+
 			
 			highlightedBlock.isHighlighted = true;
 			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = true;

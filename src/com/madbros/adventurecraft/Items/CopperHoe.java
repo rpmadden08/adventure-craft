@@ -12,7 +12,9 @@ public class CopperHoe extends Hoe {
 		id = COPPER_HOE;
 		name = "Copper Hoe";
 		sprite = Sprites.sprites.get(Sprites.COPPER_HOE);
-		attackPower = 10;
+		swingSprite = sprite;
+		attackPower = 5;
+		itemPower = 10;
 		isRepeatable = true;
 		craftCost = new int[]{COPPER_BAR, STICK};
 		craftCostAmount = new int[]{2, 2};

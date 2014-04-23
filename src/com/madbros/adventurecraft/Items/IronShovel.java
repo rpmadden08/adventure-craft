@@ -13,6 +13,7 @@ public class IronShovel extends ToolItem {
 		id = IRON_SHOVEL;
 		name = "Iron Shovel";
 		sprite = Sprites.sprites.get(Sprites.IRON_SHOVEL);
+		swingSprite = sprite;
 		attackPower = 5;
 		is32 = false;
 		isRepeatable = true;

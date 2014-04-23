@@ -12,6 +12,7 @@ public class Sword extends WeaponItem {
 		id = SWORD;
 		name = "Sword";
 		sprite = Sprites.sprites.get(Sprites.SWORD);
+		swingSprite = sprite;
 		originX = 0;
 		originY = 32;
 		weaponOffsetX = 0;
