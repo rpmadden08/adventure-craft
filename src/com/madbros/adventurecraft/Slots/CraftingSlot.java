@@ -17,18 +17,14 @@ public class CraftingSlot extends Slot{
 //		craftAnotherItemIfPossible(invCrafting, invCrafted);
 //	}
 	public void handleLeftClickCrafting(Inventory inv) {
-		//System.out.println("Need to code what happens when clicked!");
 		if(this.item.id == EMPTY || this.isInactive == true) {
 		} else {
 			//Add items to inventory.  
-			
 			for(int x = 0; x < this.item.craftCost.length; x++) {
 				Item removedItem = ITEM_HASH.get(this.item.craftCost[x]).createNew();
 				Game.inventory.remove(removedItem, this.item.craftCostAmount[x]);
 			}
-			System.out.println(this.item.id);
 			Game.inventory.add(this.item, this.item.stackSize, this.item.maxUses);
-			System.out.println(this.item.stackSize);
 		}
 	}
 }

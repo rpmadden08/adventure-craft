@@ -19,7 +19,7 @@ public class StoneSword extends WeaponItem {
 		weaponOffsetY = 0;
 		cRectFinal = new Rect (0,0,0,0);
 		sound = "sounds/swordSwing1.wav";
-		craftCost = new int[]{STONE_MOUNTAIN_ITEM, STICK};
+		craftCost = new int[]{STONE, STICK};
 		craftCostAmount = new int[]{2, 1};
 		attackPower = 6;
 		maxUses = 40;

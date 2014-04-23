@@ -20,7 +20,7 @@ public class Cauldron extends BlockItem32 {
 		sprite = Sprites.sprites.get(Sprites.CAULDRON_SINGLE);
 		maxStackSize = 99;
 		numberProducedByCrafting = 1;
-		craftCost = new int[]{IRON_BAR};
+		craftCost = new int[]{TIN_BAR};
 		craftCostAmount = new int[]{5};
 	}
 	

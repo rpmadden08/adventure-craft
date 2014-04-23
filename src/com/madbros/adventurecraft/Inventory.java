@@ -100,24 +100,24 @@ public class Inventory {
 		
 //		invBar[0].item = new CopperShovel();
 //		invBar[0].item.stackSize = 1;
-		invBar[1].item = new StairsDown();
-		invBar[1].item.stackSize = 1;
-		invBar[2].item = new Torch();
-		invBar[2].item.stackSize = 99;
-		invBar[3].item = new CopperSword();
-		invBar[3].item.stackSize = 1;
-		invBar[4].item = new CopperArmor();
-		invBar[4].item.stackSize =1;
-		invBar[5].item = new CopperPick();
-		invBar[5].item.stackSize = 1;
-		invBar[6].item = new CopperBoots();
-		invBar[6].item.stackSize = 1;
-		invBar[7].item = new CopperShovel();
-		invBar[7].item.stackSize = 1;
-		invBar[8].item = new CopperAxe();
-		invBar[8].item.stackSize = 1;
-		invBar[9].item = new DirtMountain();
-		invBar[9].item.stackSize = 99;
+//		invBar[1].item = new WoodenShovel();
+//		invBar[1].item.stackSize = 1;
+//		invBar[2].item = new Torch();
+//		invBar[2].item.stackSize = 99;
+//		invBar[3].item = new CopperSword();
+//		invBar[3].item.stackSize = 1;
+//		invBar[4].item = new CopperArmor();
+//		invBar[4].item.stackSize =1;
+//		invBar[5].item = new CopperPick();
+//		invBar[5].item.stackSize = 1;
+//		invBar[6].item = new CopperBoots();
+//		invBar[6].item.stackSize = 1;
+//		invBar[7].item = new CopperShovel();
+//		invBar[7].item.stackSize = 1;
+//		invBar[8].item = new CopperAxe();
+//		invBar[8].item.stackSize = 1;
+//		invBar[9].item = new DirtMountain();
+//		invBar[9].item.stackSize = 99;
 		
 //		invBag[0].item = new LeatherHat();
 //		invBag[0].item.stackSize = 1;
@@ -175,9 +175,18 @@ public class Inventory {
 		for(int i = 0; i < invBag.length; i++) {
 			if(invBag[i].item.id != 0) {
 				Rect collectibleRect = new Rect(Game.hero.absRect.x, Game.hero.absRect.y, 16, 16);
-				Game.collectibleController.add(invBag[i].item.id, invBag[i].item.sprite, collectibleRect, invBag[i].item.stackSize, invBar[i].item.uses);
+				Game.collectibleController.add(invBag[i].item.id, invBag[i].item.sprite, collectibleRect, invBag[i].item.stackSize, invBag[i].item.uses);
 				invBag[i].item.stackSize = 0;
 				invBag[i].item = new NoItem();
+			}
+		}
+		
+		for(int i = 0; i < invClothing.length; i++) {
+			if(invClothing[i].item.id != 0) {
+				Rect collectibleRect = new Rect(Game.hero.absRect.x, Game.hero.absRect.y, 16, 16);
+				Game.collectibleController.add(invClothing[i].item.id, invClothing[i].item.sprite, collectibleRect, invClothing[i].item.stackSize, invClothing[i].item.uses);
+				invClothing[i].item.stackSize = 0;
+				invClothing[i].item = new NoItem();
 			}
 		}
 	}

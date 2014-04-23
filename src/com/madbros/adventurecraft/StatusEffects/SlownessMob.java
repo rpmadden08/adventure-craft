@@ -4,9 +4,9 @@ import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.GameObjects.Actor;
 
-public class Slowness extends TimedStatusEffect{
+public class SlownessMob extends TimedStatusEffect{
 	
-	public Slowness() {
+	public SlownessMob() {
 		potionEffectTime = 5000;
 		speedAmount = 0.02f;
 		id = 1;

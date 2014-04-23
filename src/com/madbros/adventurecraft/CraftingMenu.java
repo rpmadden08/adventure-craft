@@ -5,6 +5,7 @@ import static com.madbros.adventurecraft.Constants.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Items.Item;
+import com.madbros.adventurecraft.Items.Stick;
 import com.madbros.adventurecraft.Slots.CraftingSlot;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.UI.PlainUIButton;
@@ -85,7 +86,6 @@ public class CraftingMenu {
 		int itemStartPoint = currentPage * 40;
 		for(int x = 0; x <craftSlots.length; x++) {
 			if(x+ itemStartPoint < itemsPossiblyCraftable.length) {
-				
 				craftSlots[x].item = ITEM_HASH.get(itemsPossiblyCraftable[x+ itemStartPoint]).createNew();
 				craftSlots[x].item.stackSize = craftSlots[x].item.numberProducedByCrafting;
 				//If the item is craftable then do nothing.  If it is then mark the slot as uncraftable.  

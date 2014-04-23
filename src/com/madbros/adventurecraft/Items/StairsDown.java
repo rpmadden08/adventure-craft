@@ -17,6 +17,8 @@ public class StairsDown extends BlockItem32 {
 		name = "Stairs Down";
 		tileId = STAIRS_DOWN_TILE;
 		placeableTileIds = new int[]{DIRT};
+		craftCost = new int[]{STONE};
+		craftCostAmount = new int[]{10};
 		sprite = Sprites.sprites.get(Sprites.STAIRS_DOWN);
 		
 		

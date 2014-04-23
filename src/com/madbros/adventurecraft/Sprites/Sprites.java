@@ -109,8 +109,8 @@ public class Sprites {
 	public static final String ARTICHOKE_SPROUT= "artichoke0";
 	public static final String PEPPER= "pepper8";
 	public static final String PEPPER_SPROUT= "pepper0";
-	public static final String TIN_BAR= "tinBarItem";
-	public static final String COPPER_BAR= "copperBarItem";
+	public static final String TIN_BAR= "tinBar";
+	public static final String COPPER_BAR= "copperBar";
 	public static final String IRON_BAR= "ironBarItem";
 	public static final String VENOM= "venom";
 	public static final String GREEN_SLIME= "slimeItem";

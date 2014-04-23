@@ -17,7 +17,7 @@ public class StoneShovel extends Shovel {
 		attackPower = 3;
 		itemPower = 5;
 		isRepeatable = true;
-		craftCost = new int[]{STONE_MOUNTAIN_ITEM, STICK};
+		craftCost = new int[]{STONE, STICK};
 		craftCostAmount = new int[]{1, 2};
 		maxUses = 40;
 		uses = 40;

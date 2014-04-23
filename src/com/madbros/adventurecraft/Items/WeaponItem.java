@@ -10,5 +10,4 @@ public abstract class WeaponItem extends Item {
 	@Override
 	public abstract WeaponItem createNew();
 	
-	
 }

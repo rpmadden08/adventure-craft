@@ -17,8 +17,8 @@ public class Constants {
 	public static HashMap<Integer, Integer> BOTTOM_RIGHT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
 	
 	//game constants                                       Small  Big    Retina
-	public static final int INITIAL_WINDOW_WIDTH = 640;// 640    1280   1440
-	public static final int INITIAL_WINDOW_HEIGHT = 480;// 480    800    900
+	public static final int INITIAL_WINDOW_WIDTH = 1440;// 640    1280   1440
+	public static final int INITIAL_WINDOW_HEIGHT = 900;// 480    800    900
 	public static final int RENDER_MARGIN = 1;
 	public static final int FRAME_RATE = 60;
 	public static final String GAME_TITLE = "Adventure Craft";
@@ -67,8 +67,9 @@ public class Constants {
 	
 	//status effects timed
 	public static final int NO_STATUS_EFFECT_TIMED = 0;
-	public static final int SLOWNESS = 1;
+	public static final int SLOWNESS_MOB = 1;
 	public static final int SPEED = 2;
+	public static final int SLOWNESS = 3;
 	
 	//Loot probabilities
 	//public static final int ALWAYS_LOOT = 0;      //Will always get this..
@@ -202,9 +203,7 @@ public class Constants {
 	public static final int DIRT_MOUNTAIN_COPPER_BOTTOM = 69;
 	public static final int DIRT_MOUNTAIN_TIN_BOTTOM = 70;
 	public static final int DIRT_MOUNTAIN_TIN_MIDDLE = 71;
-	public static final int DIRT_MOUNTAIN_CLUMP = 72;
-	public static final int STONE_MOUNTAIN_CLUMP = 73;
-	public static final int STONE = 74;
+	
 	
 	
 	
@@ -427,6 +426,9 @@ public class Constants {
 	public static final int HARMING_POTION = 126;
 	public static final int SPEED_POTION = 127;
 	public static final int GLASS_BOTTLE = 128;
+	public static final int DIRT_MOUNTAIN_CLUMP = 129;
+	public static final int STONE_MOUNTAIN_CLUMP = 130;
+	public static final int STONE = 131;
 	
 	
 	

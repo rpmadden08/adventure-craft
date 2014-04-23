@@ -7,7 +7,7 @@ import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Helpers;
 
-public class Stick extends CraftItem {
+public class Stick extends CraftItem{
 	public Stick() {
 		id = STICK;
 		name = "Stick";

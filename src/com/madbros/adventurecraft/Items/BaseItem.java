@@ -21,9 +21,7 @@ import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
-public class BaseItem extends ToolItem {
-	public int[] craftCost = {};
-	public int[] craftCostAmount = new int[]{0};
+public abstract class BaseItem extends ToolItem {
 	
 	public BaseItem() {
 		maxStackSize = 99;
@@ -47,7 +45,8 @@ public class BaseItem extends ToolItem {
 	}
 	
 	public void calculateUsage() {
-		
+		Game.hero.eP = Game.hero.eP - 0.1; //0.1
+		//Game.hero.eP = Game.hero.eP - 1;
 	}
 	
 	@Override
@@ -126,9 +125,7 @@ public class BaseItem extends ToolItem {
 	}
 	
 	@Override
-	public BaseItem createNew() {
-		return new BaseItem();
-	}
+	public abstract BaseItem createNew();
 	
 	public boolean checkID(int id) {
 		if(id == AIR  || id == TALL_GRASS_A_TILE || id == TALL_GRASS_B_TILE || id == TALL_GRASS_C_TILE || 

@@ -7,7 +7,7 @@ import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.Sprites;
-import com.madbros.adventurecraft.StatusEffects.Slowness;
+import com.madbros.adventurecraft.StatusEffects.SlownessMob;
 import com.madbros.adventurecraft.StatusEffects.Speed;
 import com.madbros.adventurecraft.Utils.Helpers;
 

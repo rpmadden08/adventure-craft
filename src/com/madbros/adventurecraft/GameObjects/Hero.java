@@ -12,6 +12,8 @@ import com.madbros.adventurecraft.Items.Clothing;
 import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.StatusEffects.Slowness;
+import com.madbros.adventurecraft.StatusEffects.Speed;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -151,9 +153,42 @@ public class Hero extends Actor {
 	}
 	public void didCollide() {}
 	
+	private int counter;
+	public void checkEnergy() {
+		//get hunger percentage
+		double percentage = eP / maxEP;
+		if(percentage < 0.25) {
+			if(Game.hero.timedStatusEffects[SLOWNESS].id != SLOWNESS) {
+				Game.hero.timedStatusEffects[SLOWNESS] = new Slowness();
+				Game.hero.moveSpeed = Game.hero.moveSpeed - Slowness.speedAmount;
+				Game.hero.currentSpeed = Game.hero.moveSpeed;
+			}
+		} else {
+			if(Game.hero.timedStatusEffects[SLOWNESS].id == SLOWNESS) {
+				moveSpeed = moveSpeed + Slowness.speedAmount;
+				currentSpeed = moveSpeed ;
+				
+				eraseTimedStatusEffect(SLOWNESS);
+			}
+		}
+		if(percentage < 0.1) {
+			counter++;
+			if(counter >= 60) {
+				//TODO  Add sound effect for when you get hit to indicate something is happening
+				counter = 0;
+				hP = hP - 1;
+				Game.soundController.create(hitSound, 1);
+				
+			}
+			
+		}
+	}
+	
+	
 	@Override
 	public void update() {
 		super.update();
+		checkEnergy();
 		//System.out.println(Time.getDelta());
 		//System.out.println("Hero Coordinates: "+ this.absRect.x+","+this.absRect.y);
 		for(int i =0; i < timedStatusEffects.length; i++) {

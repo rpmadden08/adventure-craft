@@ -34,7 +34,7 @@ public class Actor extends GameObject {
 	boolean isKnockingLeft = false, isKnockingRight = false, isKnockingUp = false, isKnockingDown = false;
 	public boolean isAttacking = false;
 	
-	public TimedStatusEffect[] timedStatusEffects = new TimedStatusEffect[3]; 
+	public TimedStatusEffect[] timedStatusEffects = new TimedStatusEffect[4]; 
 	public AppliedStatusEffect[] appliedStatusEffects = new AppliedStatusEffect[3]; 
 	
 	public int hP = 10;

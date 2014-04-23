@@ -22,7 +22,7 @@ public class Furnace extends BlockItem32 {
 		sprite = Sprites.sprites.get(Sprites.FURNACE_SINGLE);
 		maxStackSize = 99;
 		numberProducedByCrafting = 1;
-		craftCost = new int[]{STONE_MOUNTAIN_ITEM};
+		craftCost = new int[]{STONE};
 		craftCostAmount = new int[]{8};
 		
 	}

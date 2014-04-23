@@ -17,7 +17,7 @@ public class StoneAxe extends Axe {
 		is32 = true;
 		isInUse = false;
 		sound = "sounds/axeChop.wav";
-		craftCost = new int[]{STONE_MOUNTAIN_ITEM, STICK};
+		craftCost = new int[]{STONE, STICK};
 		craftCostAmount = new int[]{3, 2};
 		maxUses = 40;
 		uses = 40;
