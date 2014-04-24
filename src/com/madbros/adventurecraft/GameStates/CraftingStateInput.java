@@ -15,7 +15,7 @@ import com.madbros.adventurecraft.Slots.*;
 public class CraftingStateInput extends MainStateInput {
 	public void additionalKeyDown(int key){
 		switch(key) {
-			case Keys.E: Game.toggleInventoryState(); break; //TODO: Game.inventory.dropItemsInCraftingGrid();
+			case Keys.C: Game.toggleCraftingState(); break; //TODO: Game.inventory.dropItemsInCraftingGrid();
 		}
 	}
 	

@@ -427,6 +427,15 @@ public class Level {
 				activeBlocks[x][y].layers[TREE_LEFT_0].update(x, y);
 			}
 		}
+		
+		for(int i = 0; i < Game.level.activeBlocks.length; i++) {
+			for(int j = 0; j < Game.level.activeBlocks.length; j++) {
+				if(Game.level.activeBlocks[i][j].layers[OBJECT_LAYER].isLightSource) {
+					Game.renderSystem.lightTiles.add(Game.level.activeBlocks[i][j]);
+				}
+			}
+		}
+		
 	}
 	
 //	public void removeUnfinished(int startX, int startY) {

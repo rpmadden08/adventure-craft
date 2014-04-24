@@ -165,6 +165,7 @@ public class Sprites {
 	public static final String DIRT_MOUNTAIN_CLUMP = "dirtMountainClump";
 	public static final String STONE_MOUNTAIN_CLUMP = "stoneMountainClump";
 	public static final String STONE = "stone";
+	public static final String BREAD = "bread";
 	
 	
 	
@@ -718,7 +719,7 @@ public class Sprites {
 					DIRT_MOUNTAIN_MIDDLE_NEW, WATER_NEW, DIRT_MOUNTAIN_COPPER_BOTTOM_NEW,
 					DIRT_MOUNTAIN_COPPER_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_BOTTOM_NEW,
 					DIRT_MOUNTAIN_COAL_MIDDLE_NEW, DIRT_MOUNTAIN_COAL_BOTTOM_NEW, STONE, DIRT_MOUNTAIN_CLUMP,
-					STONE_MOUNTAIN_CLUMP,
+					STONE_MOUNTAIN_CLUMP,BREAD,
 					
 			};
 			

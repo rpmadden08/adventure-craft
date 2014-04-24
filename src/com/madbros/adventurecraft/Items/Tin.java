@@ -9,7 +9,7 @@ public class Tin extends CraftItem {
 		id = TIN_ITEM;
 		name = "Tin Clump";
 		sprite = Sprites.sprites.get(Sprites.TIN_ITEM);
-		itemsPossiblyCraftable = new int[]{};
+		itemsPossiblyBurnable = new int[]{TIN_BAR};
 	}
 	
 	@Override

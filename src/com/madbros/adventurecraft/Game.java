@@ -97,7 +97,7 @@ public class Game implements ApplicationListener {
 	
 /*#########################################################*/
 	public static void toggleInventoryState() {
-		if(currentState.type == State.INVENTORY) {
+		if(currentState.type == State.INVENTORY || currentState.type == State.CRAFTING) {
 			inventory.craftingTableOn = false;
 			if(inventory.chestOn) {
 				inventory.chestOn = false;
@@ -137,7 +137,7 @@ public class Game implements ApplicationListener {
 	}
 	
 	public static void toggleCraftingState() {
-		if(currentState.type == State.CRAFTING) {
+		if(currentState.type == State.CRAFTING || currentState.type == State.INVENTORY) {
 			inventory.craftingTableOn = false;
 			currentState = new MainState();
 			hero.stop();

@@ -41,12 +41,12 @@ public class RenderSystem {
 //	private ArrayList<GameObject> alreadyRenderedObjects;
 	public int startX;
 	public int startY;
-	private ArrayList<Block> lightTiles;
+	public ArrayList<Block> lightTiles = new ArrayList<Block>();
 	private int frameCutter = 0;
 	private float lightSizeRandom = 0;
 
 	public void setStartPosition(Level lv) {
-		lightTiles = new ArrayList<Block>();
+//		lightTiles = new ArrayList<Block>();
 		startX = lv.activeBlocks[lv.renderRect.x][lv.renderRect.y].absRect.x + lv.offsetX;
 		startY = lv.activeBlocks[lv.renderRect.x][lv.renderRect.y].absRect.y + lv.offsetY;
 	}
@@ -127,9 +127,11 @@ public class RenderSystem {
 			if(renderTiles[i].isVisible) {
 				if(renderTiles[i].isTreeLeafTile == true) ((TreeLeafTile)renderTiles[i]).render(x, y, i);
 				else renderTiles[i].render(x, y);
-				if(renderTiles[i].isLightSource) lightTiles.add(block);
+				//if(renderTiles[i].isLightSource) lightTiles.add(block);
 			}
 		}
+		
+		
 		
 		for(GameObject gameObject : block.objects) {
 			gameObject.sprite.draw(gameObject.absRect.x - startX, gameObject.absRect.y - startY, gameObject.z);
@@ -498,6 +500,7 @@ public class RenderSystem {
 			y = light.absRect.midY() - startY - lightSize/2;
 			campFireSprite.draw(x, y, 0.4f, lightSize, lightSize);
 		}
+		lightTiles = new ArrayList<Block>();
 		frameCutter ++;
 	}
 	

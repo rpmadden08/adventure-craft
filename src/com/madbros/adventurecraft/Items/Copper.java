@@ -9,7 +9,7 @@ public class Copper extends CraftItem {
 		id = COPPER_ITEM;
 		name = "Copper Clump";
 		sprite = Sprites.sprites.get(Sprites.COPPER_ITEM);
-		itemsPossiblyCraftable = new int[]{};
+		itemsPossiblyBurnable = new int[]{COPPER_BAR};
 	}
 	
 	@Override

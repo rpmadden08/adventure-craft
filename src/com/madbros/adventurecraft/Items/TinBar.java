@@ -2,6 +2,7 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.*;
 
 public class TinBar extends CraftItem {
@@ -15,5 +16,14 @@ public class TinBar extends CraftItem {
 	@Override
 	public TinBar createNew() {
 		return new TinBar();
+	}
+	
+	@Override
+	public boolean isValidFurnaceRecipe(Slot[] craftingSlots) {
+		if(craftingSlots[0].item.id == TIN_ITEM) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

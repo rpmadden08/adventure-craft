@@ -17,8 +17,8 @@ public class Constants {
 	public static HashMap<Integer, Integer> BOTTOM_RIGHT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
 	
 	//game constants                                       Small  Big    Retina
-	public static final int INITIAL_WINDOW_WIDTH = 1440;// 640    1280   1440
-	public static final int INITIAL_WINDOW_HEIGHT = 900;// 480    800    900
+	public static final int INITIAL_WINDOW_WIDTH = 640;// 640    1280   1440
+	public static final int INITIAL_WINDOW_HEIGHT = 480;// 480    800    900
 	public static final int RENDER_MARGIN = 1;
 	public static final int FRAME_RATE = 60;
 	public static final String GAME_TITLE = "Adventure Craft";
@@ -429,6 +429,7 @@ public class Constants {
 	public static final int DIRT_MOUNTAIN_CLUMP = 129;
 	public static final int STONE_MOUNTAIN_CLUMP = 130;
 	public static final int STONE = 131;
+	public static final int BREAD = 132;
 	
 	
 	
@@ -655,6 +656,7 @@ public class Constants {
 		ITEM_HASH.put(DIRT_MOUNTAIN_CLUMP, new DirtMountainClump());
 		ITEM_HASH.put(STONE_MOUNTAIN_CLUMP, new StoneMountainClump());
 		ITEM_HASH.put(STONE, new Stone());
+		ITEM_HASH.put(BREAD, new Bread());
 		
 		
 		

@@ -98,14 +98,14 @@ public class Inventory {
 		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +120,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +160,BOOTS_SLOT);
 		
-//		invBar[0].item = new CopperShovel();
-//		invBar[0].item.stackSize = 1;
-//		invBar[1].item = new WoodenShovel();
-//		invBar[1].item.stackSize = 1;
-//		invBar[2].item = new Torch();
-//		invBar[2].item.stackSize = 99;
-//		invBar[3].item = new CopperSword();
-//		invBar[3].item.stackSize = 1;
+		invBar[0].item = new Furnace();
+		invBar[0].item.stackSize = 1;
+		invBar[1].item = new Torch();
+		invBar[1].item.stackSize = 99;
+		invBar[2].item = new Coal();
+		invBar[2].item.stackSize = 99;
+		invBar[3].item = new CopperSword();
+		invBar[3].item.stackSize = 1;
 //		invBar[4].item = new CopperArmor();
 //		invBar[4].item.stackSize =1;
 //		invBar[5].item = new CopperPick();
@@ -322,7 +322,7 @@ public class Inventory {
 	
 	public void open(Hero hero) {
 		formerHeroAnimation = hero.sprite.getCurrentAnimation();
-		hero.sprite.changeAnimationTo(WALK_DOWN);
+		hero.sprite.changeAnimationTo(STAND_DOWN);
 	}
 	
 	public void close(Hero hero) {

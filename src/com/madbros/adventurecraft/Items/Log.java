@@ -9,7 +9,7 @@ public class Log extends CraftItem {
 		id = LOG;
 		name = "Log";
 		isFuelSource = true;
-		fuelAmount = 60;
+		fuelAmount = 10;
 		sprite = Sprites.sprites.get(Sprites.LOG_ITEM);
 		itemsPossiblyCraftable = new int[]{PLANK, FIRE_PIT};
 	}
