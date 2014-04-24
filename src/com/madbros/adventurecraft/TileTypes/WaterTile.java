@@ -1,5 +1,9 @@
 package com.madbros.adventurecraft.TileTypes;
 
+import java.util.Random;
+
+import com.madbros.adventurecraft.Block;
+import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.Margin;
 
@@ -34,6 +38,22 @@ public class WaterTile extends CollisionTile {
 			sprites[bottomLeftAutoTile].draw(x, y+size, z);
 			sprites[bottomRightAutoTile].draw(x+size, y+size, z);
 		}
+	}
+	
+	public void update(int x, int y) {
+		//System.out.println("YESSS");
+		Random rand = new Random();
+		Block[] b = new Block[] {Game.level.activeBlocks[x+1][y],Game.level.activeBlocks[x-1][y],Game.level.activeBlocks[x][y+1],Game.level.activeBlocks[x][y-1]};
+		for(int a = 0; a<b.length;a++) {
+			if(b[a].layers[WATER_LAYER].id == HOLE) {
+				if(rand.nextInt(100)== 0) {
+					b[a].layers[WATER_LAYER] = new WaterTile();
+					Game.level.autoTileBlock(b[a].getX(Game.level.activeBlocks), b[a].getY(Game.level.activeBlocks));
+				}
+			}
+		}
+		
+		
 	}
 	
 	

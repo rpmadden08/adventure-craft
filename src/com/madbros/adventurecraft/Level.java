@@ -423,6 +423,8 @@ public class Level {
 		}
 		for(int x = renderRect.x; x < renderRect.x2(); x++) {
 			for(int y = renderRect.y; y < renderRect.y2(); y++) {
+				activeBlocks[x][y].layers[WATER_LAYER].update(x, y);
+				activeBlocks[x][y].layers[GRASS_LAYER].update(x, y);
 				activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
 				activeBlocks[x][y].layers[TREE_LEFT_0].update(x, y);
 			}

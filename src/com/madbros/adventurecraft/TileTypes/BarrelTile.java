@@ -57,7 +57,7 @@ public class BarrelTile extends CollisionTile {
 		
 		//FIXME this needs to randomly drop basic goodies:)
 		Item items[] = Helpers.getRandomLoot(
-					  new int[]{TORCH, HEALTH_POTION, COAL_ITEM, STICK, STONE_MOUNTAIN_ITEM, WHEAT}, 
+					  new int[]{TORCH, HEALTH_POTION, COAL_ITEM, STICK, STONE_MOUNTAIN_ITEM, WHEAT_SPROUT}, 
 					  new int[]{2,3,1,1,2,2},
 					  new int[]{1,1,1,1,1,1},
 					  new int[]{5,3,5,4,3,3}, 

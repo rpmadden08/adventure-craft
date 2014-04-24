@@ -16,7 +16,7 @@ public class HoleTile extends CollisionTile {
 
 		margin = new Margin(14, 14, 14, 14);
 		id = HOLE;
-		autoTileID = id;
+		autoTileID = WATER;
 		isDiggable = false;
 		is32 = false;
 	}

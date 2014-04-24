@@ -2,6 +2,8 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.util.Random;
+
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Items.Item;
@@ -42,6 +44,22 @@ public class GrassTile extends Tile {
 	
 	public Tile createNew() {
 		return new GrassTile();
+	}
+	
+	public void update(int x, int y) {
+		//System.out.println("YESSS");
+		Random rand = new Random();
+		Block[] b = new Block[] {Game.level.activeBlocks[x+1][y],Game.level.activeBlocks[x-1][y],Game.level.activeBlocks[x][y+1],Game.level.activeBlocks[x][y-1]};
+		for(int a = 0; a<b.length;a++) {
+			if(b[a].layers[GRASS_LAYER].id == AIR && b[a].layers[WATER_LAYER].id == AIR && b[a].layers[OBJECT_LAYER].id == AIR) {
+				if(rand.nextInt(10000)== 0) {
+					b[a].layers[GRASS_LAYER] = new GrassTile();
+					Game.level.autoTileBlock(b[a].getX(Game.level.activeBlocks), b[a].getY(Game.level.activeBlocks));
+				}
+			}
+		}
+		
+		
 	}
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
