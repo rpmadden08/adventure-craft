@@ -61,6 +61,15 @@ public abstract class BaseItem extends ToolItem {
 				swing();
 			}
 		}
+		if(Game.level.tileBeingAttacked.isBreakable && isInRange == true) {
+			Game.level.tileBeingAttacked.currentHp -= attackPower;
+			if(Game.level.tileBeingAttacked.currentHp < 1) {
+				Game.level.highlightedBlock.deleteObjectTile();
+				Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
+				
+				//Game.level.autoTileHighlightedBlock();
+			}
+		}
 		
 	}
 	
