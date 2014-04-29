@@ -29,7 +29,8 @@ public class Cow extends Mob {
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.COW));
 		margin = new Margin(51, 50, 40, 18);
-		currentSpeed = 0.1f;
+		currentSpeed = 0.05f;
+		moveSpeed = 0.05f;
 		collisionDetectionBlocks = new Block[9];
 	}
 
@@ -62,9 +63,11 @@ public class Cow extends Mob {
 //		//This is when the weapon hits the bat
 //		//mobController.remove(this);
 //	}
-	
 	public void updateAI() {
-		super.updateAI();	
+		//checkForChasing();
+			super.updateAI();
+			moveInRandomDirection(300);
+		
 	}
 	
 	public void xMove(int moveX) {

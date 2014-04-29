@@ -71,7 +71,12 @@ public class MobController {
 						if(checkTileArea(tileArea, OBJECT_LAYER, TREE, 2)) {
 							mobs.add(new Slime(this, x, y));
 						} else {
-							mobs.add(new Cow(this, x, y));
+							int num2 = rand.nextInt(2);//100
+							if(num2 == 0) {
+								mobs.add(new Bee(this, x, y));
+							} else {
+								mobs.add(new Cow(this, x, y));
+							}
 						}
 					}
 				} else if(Game.currentLevel == UNDERGROUND_1_FOLDER) {
