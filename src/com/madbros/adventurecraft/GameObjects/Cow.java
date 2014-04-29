@@ -21,14 +21,14 @@ public class Cow extends Mob {
 	
 	public Cow(MobController mobController, int x, int y) {
 		super(mobController);
-		attack = 20;
+		attack = 1;
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  128, 128);
 		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.COW));
-		margin = new Margin(0, 0, 0, 0);
+		margin = new Margin(51, 50, 40, 18);
 		currentSpeed = 0.1f;
 		collisionDetectionBlocks = new Block[9];
 	}

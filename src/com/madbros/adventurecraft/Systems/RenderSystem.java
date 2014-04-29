@@ -333,8 +333,8 @@ public class RenderSystem {
 	}
 	
 	public void renderMobHealth(Mob mob) {
-				int x = mob.absRect.x - startX;
-				int y = mob.absRect.y - startY - 6;
+				int x = mob.absRect.x+(mob.absRect.w /2 -15) - startX;
+				int y = mob.absRect.y+(mob.margin.top-10) - startY - 6;
 				double difference = (mob.maxHP - mob.hP);
 				double percentage = (mob.maxHP-difference) / mob.maxHP;
 				double hPCalc = percentage * 29;
@@ -388,7 +388,17 @@ public class RenderSystem {
 		int hP = (int) hPCalc;
 		
 		//The Red/Blue/Green Part
-		Sprites.pixel.setColor(Color.RED);
+		float green;
+		float red;
+		if(percentage > 0.5) {
+			green = 1f;
+			red = (1f - (float)percentage) * 2;
+		} else {
+			green = (float)percentage*2;
+			red = 1f;
+		}
+		System.out.println(red);
+		Sprites.pixel.setColor(red, green, 0f, 1f);
 		Sprites.pixel.draw(x+1,y+1,Z_CHARACTER,hP,4);
 		
 		//Red Highlight top
@@ -429,7 +439,10 @@ public class RenderSystem {
 			//int width = mob.absRect.w / 2;
 			//int height = mob.absRect.h / 2;
 			mob.sprite.draw(x, y, Z_CHARACTER);
-			renderCollisionRects(mob, x, y);
+//			Rect test = new Rect(mob.absRect, mob.margin);
+//			//Sprites.pixel.draw(x, y);
+//			Sprites.pixel.draw(x+64,y+64, Z_CHARACTER, 1, 1);
+			renderMobCollisionRects(mob, x, y);
 			renderMobHealth(mob);
 		}
 	}
@@ -823,7 +836,8 @@ public class RenderSystem {
 	public void renderCollisionRects(Actor h, int x, int y) {
 		if(Game.debugMenu.collisionRectsAreOn)  {
 			Sprites.pixel.setColor(Color.RED);
-			Sprites.pixel.draw(new Rect(new Rect(x, y, CHARACTER_SIZE, CHARACTER_SIZE), h.margin), Z_CHARACTER + 0.01f);
+			Sprites.pixel.draw(new Rect(new Rect(x, y, CHARACTER_SIZE, CHARACTER_SIZE), h.margin), Z_CHARACTER);
+			//Sprites.pixel.draw(new Rect(x + h.margin.left, y+ h.margin.top, CHARACTER_SIZE-h.margin.right, CHARACTER_SIZE- h.margin.bottom), Z_CHARACTER);
 			
 			Sprites.pixel.setColor(Color.YELLOW);
 			if(h.collisionDetectionBlocks[0] != null) {
@@ -833,6 +847,23 @@ public class RenderSystem {
 				}
 			}
 			Sprites.pixel.setColor(Color.WHITE);
+		}
+	}
+	
+	public void renderMobCollisionRects(Actor h, int x, int y) {
+		if(Game.debugMenu.collisionRectsAreOn)  {
+			Sprites.pixel.setColor(1f, 0f,0f,0.7f);
+			//Sprites.pixel.draw(new Rect(new Rect(x, y, CHARACTER_SIZE, CHARACTER_SIZE), h.margin), Z_CHARACTER);
+			Sprites.pixel.draw(new Rect(x + h.margin.left, y+ h.margin.top, h.absRect.w-h.margin.right-h.margin.left, h.absRect.h- h.margin.bottom- h.margin.top), Z_CHARACTER);
+			
+//			Sprites.pixel.setColor(Color.YELLOW);
+//			if(h.collisionDetectionBlocks[0] != null) {
+//				for(int i = 0; i < h.collisionDetectionBlocks.length; i++) {
+//					if(h.collisionDetectionBlocks[i].sRect != null && h.collisionDetectionBlocks[i].isCollidable())
+//						Sprites.pixel.draw(h.collisionDetectionBlocks[i].sRect, Z_COLLISION_RECTS + 0.01f);
+//				}
+//			}
+//			Sprites.pixel.setColor(Color.WHITE);
 		}
 	}
 	
