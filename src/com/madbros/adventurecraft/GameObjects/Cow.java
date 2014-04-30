@@ -27,8 +27,8 @@ public class Cow extends Mob {
 				  128, 128);
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.COW));
-		margin = new Margin(51, 50, 40, 18);
-		currentSpeed = 0.03f;
+		margin = new Margin(20, 36, 40, 18);
+		currentSpeed = 0.03f; //0.03
 		moveSpeed = 0.03f;
 		collisionDetectionBlocks = new Block[9];
 		sprite.changeFrameTimes(150);
@@ -51,10 +51,10 @@ public class Cow extends Mob {
 	
 	@Override
 	public void didCollide() {
-		if(!Game.hero.isDead) {
-			Game.hero.takeDamage(attack);
-			Game.hero.knockBack(this);
-		}
+//		if(!Game.hero.isDead) {
+//			Game.hero.takeDamage(attack);
+//			Game.hero.knockBack(this);
+//		}
 	}
 
 	public void updateAI() {
