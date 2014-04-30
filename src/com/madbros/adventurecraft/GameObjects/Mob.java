@@ -32,6 +32,7 @@ public class Mob extends Actor {
 	public int mobState = 1;
 	public float maxSpeed;
 	public boolean isFleeing = false;
+	public String deathParticles = "death.p";
 	
 	
 	public Mob(MobController mobController) {
@@ -77,7 +78,7 @@ public class Mob extends Actor {
 				deathDrop();
 				Game.soundController.create(deathSound, 1);
 				//Create a new particle effect...
-				Game.particleEffectController.add("death.p", absRect.x+ (absRect.w/2), absRect.y+ (absRect.h/2));
+				Game.particleEffectController.add(deathParticles, absRect.x+ (absRect.w/2), absRect.y+ (absRect.h/2));
 
 				mobController.remove(this);
 			}

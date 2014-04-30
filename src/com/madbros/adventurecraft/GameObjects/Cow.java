@@ -25,46 +25,39 @@ public class Cow extends Mob {
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  128, 128);
-		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.COW));
 		margin = new Margin(51, 50, 40, 18);
-		currentSpeed = 0.05f;
-		moveSpeed = 0.05f;
+		currentSpeed = 0.03f;
+		moveSpeed = 0.03f;
 		collisionDetectionBlocks = new Block[9];
+		sprite.changeFrameTimes(150);
+		deathParticles = "cowDeath.p";
 	}
 
-//	public void startAttacking() {
-//		timeSinceLastAnimation = 0;	//getTime()
-//		isAttacking = true;
-//	}
-//	
-//	public void stopAttacking() {
-//		isAttacking = false;
-//	}
 	@Override
 	public void deathDrop() {
 		Rect collectibleRect = new Rect(absRect.x, absRect.y, 16, 16);
-		Item item = ITEM_HASH.get(STEAK).createNew();
-		Game.collectibleController.add(STEAK, Sprites.sprites.get(Sprites.STEAK), collectibleRect, 1, item.maxUses);
+		Item item = ITEM_HASH.get(LEATHER).createNew();
+		Game.collectibleController.add(LEATHER, Sprites.sprites.get(Sprites.LEATHER), collectibleRect, 1, item.maxUses);
+		Random rand = new Random();
+		int num = rand.nextInt(4)+1;
+		for(int a = 0; a< num; a++) {
+			collectibleRect = new Rect(absRect.x, absRect.y, 16, 16);
+			item = ITEM_HASH.get(STEAK).createNew();
+			Game.collectibleController.add(STEAK, Sprites.sprites.get(Sprites.STEAK), collectibleRect, 1, item.maxUses);
+		}
 	}
 	
 	@Override
 	public void didCollide() {
-		//mobController.remove(this);
 		if(!Game.hero.isDead) {
 			Game.hero.takeDamage(attack);
 			Game.hero.knockBack(this);
 		}
 	}
-//	@Override
-//	public void didGetHit() {
-//		
-//		//This is when the weapon hits the bat
-//		//mobController.remove(this);
-//	}
+
 	public void updateAI() {
-		//checkForChasing();
 			super.updateAI();
 			moveInRandomDirection(300);
 		

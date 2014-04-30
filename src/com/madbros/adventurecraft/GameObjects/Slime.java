@@ -33,6 +33,7 @@ public class Slime extends Mob {
 		margin = new Margin(0, 0, 0, 0);
 		currentSpeed = 0.1f;
 		collisionDetectionBlocks = new Block[9];
+		deathParticles = "slimeDeath.p";
 	}
 	
 	@Override

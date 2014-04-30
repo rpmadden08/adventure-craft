@@ -34,6 +34,7 @@ public class Worm extends Mob {
 		moveSpeed = 0.03f;
 		currentSpeed = 0.03f;
 		collisionDetectionBlocks = new Block[9];
+		deathParticles = "wormDeath.p";
 	}
 
 //	public void startAttacking() {

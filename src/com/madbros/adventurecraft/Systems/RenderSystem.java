@@ -229,7 +229,16 @@ public class RenderSystem {
 		int hP = (int) hPCalc;
 		
 		//The Red/Blue/Green Part
-		Sprites.pixel.setColor(Color.RED);
+		float green;
+		float red;
+		if(percentage > 0.5) {
+			green = 1f;
+			red = (1f - (float)percentage) * 2;
+		} else {
+			green = (float)percentage*2;
+			red = 1f;
+		}
+		Sprites.pixel.setColor(red, green, 0f, 1f);
 		Sprites.pixel.draw(x+1+tileOffset,y+1,Z_CHARACTER,hP,4);
 		
 		//Red Highlight top
@@ -397,7 +406,6 @@ public class RenderSystem {
 			green = (float)percentage*2;
 			red = 1f;
 		}
-		System.out.println(red);
 		Sprites.pixel.setColor(red, green, 0f, 1f);
 		Sprites.pixel.draw(x+1,y+1,Z_CHARACTER,hP,4);
 		

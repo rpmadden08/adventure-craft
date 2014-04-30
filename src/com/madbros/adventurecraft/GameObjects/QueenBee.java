@@ -35,6 +35,7 @@ public class QueenBee extends Mob {
 		moveSpeed = 0.15f;
 		maxSpeed = 0.15f;
 		collisionDetectionBlocks = new Block[9];
+		deathParticles = "beeDeath.p";
 	}
 
 //	public void startAttacking() {

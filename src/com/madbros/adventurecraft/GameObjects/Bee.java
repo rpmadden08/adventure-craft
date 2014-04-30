@@ -34,6 +34,7 @@ public class Bee extends Mob {
 		moveSpeed = 0.03f;
 		currentSpeed = 0.03f;
 		collisionDetectionBlocks = new Block[9];
+		deathParticles = "beeDeath.p";
 	}
 
 //	public void startAttacking() {
