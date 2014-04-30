@@ -17,6 +17,7 @@ public class NoItem extends BaseItem {
 		weaponOffsetY = 0;
 		cRectFinal = new Rect (0,0,0,0);
 		sound = "sounds/swordSwing1.wav";
+		hitSound = "sounds/swordImpact.wav";
 		attackPower = 1;
 		
 		cRectU = new Rect (0,-6,82,32);

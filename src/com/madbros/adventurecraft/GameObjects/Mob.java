@@ -72,7 +72,8 @@ public class Mob extends Actor {
 		equippedWeapon.calculateUsage();
 		if(knockBackTime <= 0) {
 			hP = hP - damage;
-			Game.soundController.create(hitSound, 1);
+			Item item = ITEM_HASH.get(Game.inventory.itemSelected).createNew();
+			Game.soundController.create(item.hitSound, 1);
 			knockBackTime = 10; //30
 			if(hP <= 0) {
 				deathDrop();

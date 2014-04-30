@@ -34,6 +34,7 @@ public abstract class Item {
 	public Rect cRectL = new Rect (0,0,0,0);
 	public Rect range = new Rect(0,0, 256,256);
 	public String sound;
+	public String hitSound = "sounds/batmanPunch.wav";
 	public int attackPower = 1;
 	public int itemPower = 1;
 	public int maxUses = 0;
