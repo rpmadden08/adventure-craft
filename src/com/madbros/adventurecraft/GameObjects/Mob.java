@@ -77,7 +77,7 @@ public class Mob extends Actor {
 			knockBackTime = 10; //30
 			if(hP <= 0) {
 				deathDrop();
-				Game.soundController.create(deathSound, 1);
+				Game.soundController.create(deathSound, 0.8f);
 				//Create a new particle effect...
 				Game.particleEffectController.add(deathParticles, absRect.x+ (absRect.w/2), absRect.y+ (absRect.h/2));
 

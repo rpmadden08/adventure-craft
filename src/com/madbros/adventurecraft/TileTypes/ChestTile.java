@@ -63,6 +63,7 @@ public class ChestTile extends CollisionTile {
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
+		b.collisionTile = null;
 		File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + x + "-" + y + ".sv");
 		if(f.exists()) {
 			Game.saveGame.loadChest(x, y);

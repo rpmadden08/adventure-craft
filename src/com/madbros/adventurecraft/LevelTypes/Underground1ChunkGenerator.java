@@ -103,7 +103,7 @@ public class Underground1ChunkGenerator extends ChunkGenerator{
     		}else if(chunkGroundLayer[m][n] == 9){
     			return AIR;
 	    		//HOLES
-    		}else if(chunkGroundLayer[m][n] == 10) {
+    		}else if(chunkGroundLayer[m][n] == 11) {
     			if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 + 1 && y > CHUNK_SIZE * 3 - 1 &&
  					   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
  						
@@ -129,16 +129,21 @@ public class Underground1ChunkGenerator extends ChunkGenerator{
 	}
 	
 
-	public int getGroundLayerGeneration(int m, int n, Random rand) {
-		//BELOW SEA LEVEL
-		if(chunkNoiseElevation[m][n] < 0.4) {
-			return 2; 
-    	//MOUNTAIN
-    	} else if(chunkNoiseElevation[m][n] >= 0.4) {
-    		return 10;
-    	} else {
-    		return 1;
-    	}
+	public int getGroundLayerGeneration(int m, int n, Random rand, int x, int y) {
+		if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 - 1 && y > CHUNK_SIZE * 3 - 1 &&
+				   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
+			//BELOW SEA LEVEL
+			if(chunkNoiseElevation[m][n] < 0.4) {
+				return 2; 
+	    	//MOUNTAIN
+	    	} else if(chunkNoiseElevation[m][n] >= 0.4) {
+	    		return 11;
+	    	} else {
+	    		return 1;
+	    	}
+		} else {
+			return 10;
+		}
 	}
 	
 	public void secondIteration(int m, int n) {

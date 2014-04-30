@@ -41,7 +41,7 @@ public class Cow extends Mob {
 		Item item = ITEM_HASH.get(LEATHER).createNew();
 		Game.collectibleController.add(LEATHER, Sprites.sprites.get(Sprites.LEATHER), collectibleRect, 1, item.maxUses);
 		Random rand = new Random();
-		int num = rand.nextInt(4)+1;
+		int num = rand.nextInt(3)+1;
 		for(int a = 0; a< num; a++) {
 			collectibleRect = new Rect(absRect.x, absRect.y, 16, 16);
 			item = ITEM_HASH.get(STEAK).createNew();
