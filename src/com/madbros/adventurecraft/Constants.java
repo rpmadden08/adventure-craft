@@ -17,8 +17,8 @@ public class Constants {
 	public static HashMap<Integer, Integer> BOTTOM_RIGHT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
 	
 	//game constants                                       Small  Big    Retina
-	public static final int INITIAL_WINDOW_WIDTH = 1280;// 640    1280   1440
-	public static final int INITIAL_WINDOW_HEIGHT = 720;// 480    800    900
+	public static final int INITIAL_WINDOW_WIDTH = 640;// 640    1280   1440
+	public static final int INITIAL_WINDOW_HEIGHT = 480;// 480    800    900
 	public static final int RENDER_MARGIN = 1;
 	public static final int FRAME_RATE = 60;
 	public static final String GAME_TITLE = "Adventure Craft";
@@ -98,10 +98,10 @@ public class Constants {
 	public static final Margin INV_SLOT_MARGIN = new Margin(0, 2, 0, 2);
 	public static final Margin INV_MENU_SLOT_MARGIN =new Margin(0, 0, 0, 0);
 	
-	public static final Rect INV_BACKDROP_RECT = new Rect(INV_MENU_MARGIN.left, INV_MENU_MARGIN.top,INV_SLOT_SIZE*INV_LENGTH, INV_SLOT_SIZE*INV_LENGTH+18);
+	public static final Rect INV_BACKDROP_RECT = new Rect(INV_MENU_MARGIN.left, INV_MENU_MARGIN.top,INV_SLOT_SIZE*INV_LENGTH+150, INV_SLOT_SIZE*INV_LENGTH+18);
 	public static final Rect INV_BAR_RECT = new Rect(2,50, 64, 64);
 	public static final Rect INV_BAG_RECT = new Rect(56, 60, INV_SLOT_SIZE*4, INV_SLOT_SIZE*INV_LENGTH);
-	public static final Rect INV_CHAR_RECT = new Rect(180, 50,100,100);
+	public static final Rect INV_CHAR_RECT = new Rect(400, 50,100,100);
 	
 	public static final Rect INV_CRAFTING_RECT = new Rect(230, 347, 2*(INV_SLOT_SIZE+2), 2*(INV_SLOT_SIZE+2));
 	public static final int INV_ANIMATION_CHANGE = 100;
@@ -121,7 +121,7 @@ public class Constants {
 	//level constants
 	public static final int CHUNK_SIZE = 16;
 	public static final int CHUNKS_IN_A_ROW = 5;	//also columns
-	public static final int CHUNKS_LENGTH_TOTAL = 20; //200
+	public static final int CHUNKS_LENGTH_TOTAL = 10; //200
 	public static final int CHUNK_BLOOM_MARGIN = 10;
 	public static final int TILES_PER_ROW = CHUNK_SIZE*CHUNKS_IN_A_ROW;	//also columns
 	

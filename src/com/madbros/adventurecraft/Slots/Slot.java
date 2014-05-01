@@ -39,12 +39,6 @@ public class Slot {
 			Sprites.pixel.setColor(Color.WHITE);
 		}
 		item.render(slotRect);
-		if(isInactive) {
-			Sprites.pixel.setColor(0.2f,0.2f,0.2f,0.7f);
-			Rect newSlotRect = new Rect(slotRect.x+5, slotRect.y+5, 32, 32);
-			highlighter.draw(newSlotRect, Z_INV_HIGHLIGHT);
-			Sprites.pixel.setColor(Color.WHITE);
-		}
 	}
 	
 	/* Handle Events */

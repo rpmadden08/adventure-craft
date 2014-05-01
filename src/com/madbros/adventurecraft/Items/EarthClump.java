@@ -14,7 +14,7 @@ public class EarthClump extends BlockItem {
 		name = "Dirt";
 		tileId = DIRT;
 		sprite = Sprites.sprites.get(Sprites.DIRT_ITEM);
-		placeableTileIds = new int[]{WATER, SAND, DARK_DIRT, HOLE};
+		placeableTileIds = new int[]{WATER, DARK_DIRT, HOLE};
 		is32 = true;
 	}
 	
@@ -27,6 +27,7 @@ public class EarthClump extends BlockItem {
 	public void useRight() {
 		Tile tile = TILE_HASH.get(tileId).createNew();
 		Block hB = Game.level.highlightedBlock;
+		Game.level.highlightedBlock.collisionTile = null;
 		
 //		if(hB.canPlace == false) {
 //			if(Time.getTime() - hB.timePlaced > 300) {

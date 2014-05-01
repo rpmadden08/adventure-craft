@@ -54,7 +54,7 @@ public abstract class BaseItem extends ToolItem {
 		if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
 			
 			Game.hero.attack(this);
-			Game.soundController.create(sound, 1);
+			Game.soundController.create(sound, 0.1f);
 		}
 		if(Game.level.tileBeingAttacked.isPickable || Game.level.tileBeingAttacked.isDiggable || Game.level.tileBeingAttacked.isChoppable) {
 			if(isInRange == true) {

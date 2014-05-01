@@ -553,6 +553,65 @@ public class RenderSystem {
 		
 	}
 	
+	public void renderArmorSlots(Hero hero, Inventory inv) {
+		Slot[][] slots = {inv.invClothing};
+		for(int i = 0; i < slots.length; i++) {
+			for(int j = 0; j < slots[i].length; j++) {
+				slots[i][j].render();
+			}
+		}
+		hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
+	}
+	
+	public void renderHeldItem(Inventory inv) {
+		inv.heldItem.render(Helpers.getX(), Helpers.getY());
+		
+	}
+	
+	public void renderChest(Hero hero, Inventory inv) {
+		for(int i = 0; i < inv.invChest.length; i++) {
+			inv.invChest[i].render();
+		}
+		//System.out.println(inv.invChest[0].item.id);
+		
+	}
+	
+	public void renderFurnace(Hero hero, Inventory inv) {
+		FurnaceTile furnace = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+		FurnaceTopTile furnaceTop = (FurnaceTopTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY-1].layers[ABOVE_LAYER_1];
+		furnace.sprites[0].draw(276, 396, 300);
+		furnaceTop.sprites[0].draw(276, 364, 300);
+		FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+		Slot[][] slots = {furnaceTile.craftedSlot, inv.invClothing, furnaceTile.furnaceSlots};
+		for(int i = 0; i < slots.length; i++) {
+			for(int j = 0; j < slots[i].length; j++) {
+				slots[i][j].render();
+			}
+		}
+		hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
+	
+		renderFurnaceFuel(furnace, 272, 396);
+		renderFurnaceBuildTime(furnace, 330, 390);
+		
+		
+	}
+	
+	public void renderCauldron(Hero hero, Inventory inv) {
+		CauldronTile cauldron = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+		cauldron.sprites[0].draw(276, 396, 300);
+		CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+		Slot[][] slots = {cauldronTile.craftedSlot, inv.invClothing, cauldronTile.cauldronSlots};
+		for(int i = 0; i < slots.length; i++) {
+			for(int j = 0; j < slots[i].length; j++) {
+				slots[i][j].render();
+			}
+		}
+		hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
+	
+		renderCauldronFuel(cauldron, 272, 396);
+		renderCauldronBuildTime(cauldron, 330, 390);
+	}
+	
 	public void renderInventoryPage2(Hero hero, Inventory inv) {
 		if(inv.craftingTableOn == true) {
 			Slot[][] slots = {inv.invCrafted, inv.invClothing, inv.invTable};
@@ -611,7 +670,7 @@ public class RenderSystem {
 			}
 			hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
 		}
-		inv.heldItem.render(Helpers.getX(), Helpers.getY());
+		
 	}
 	
 	public void renderFurnaceBuildTime(FurnaceTile furnace, int x, int y) {
