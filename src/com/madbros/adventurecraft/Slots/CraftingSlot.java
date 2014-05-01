@@ -13,9 +13,9 @@ public class CraftingSlot extends Slot{
 	}
 	
 	@Override
-//	public void handleAdditional(Slot[] invCrafting, Slot[] invCrafted) {
-//		craftAnotherItemIfPossible(invCrafting, invCrafted);
-//	}
+	public void handleAdditional(Slot[] invCrafting, Slot[] invCrafted) {
+		craftAnotherItemIfPossible(invCrafting, invCrafted);
+	}
 	public void handleLeftClickCrafting(Inventory inv) {
 //		if(this.item.id == EMPTY || this.isInactive == true) {
 //		} else {

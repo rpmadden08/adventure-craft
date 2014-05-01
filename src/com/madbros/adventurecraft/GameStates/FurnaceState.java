@@ -5,10 +5,10 @@ import static com.madbros.adventurecraft.Constants.*;
 import com.badlogic.gdx.Gdx;
 import com.madbros.adventurecraft.*;
 
-public class CraftingState extends MainState {
-	public CraftingState() {
-		type = State.CRAFTING;
-		input = new CraftingStateInput();
+public class FurnaceState extends MainState {
+	public FurnaceState() {
+		type = State.FURNACE;
+		input = new FurnaceStateInput();
 		Gdx.input.setInputProcessor(input);
 	}
 	
@@ -30,10 +30,14 @@ public class CraftingState extends MainState {
 			Game.renderSystem.renderHud(Game.inventory);
 			Game.renderSystem.renderText(Game.inventory, Game.batch);
 			Game.renderSystem.renderInventory(Game.hero, Game.inventory);
+			//Game.renderSystem.renderInventoryPage2(Game.hero, Game.inventory);
 			Game.renderSystem.renderCrafting(Game.inventory);
-			Game.renderSystem.renderCraftingText(Game.inventory, Game.batch);
-			Game.renderSystem.renderInventoryText(Game.inventory, Game.batch);
+			Game.renderSystem.renderArmorSlots(Game.hero, Game.inventory);
+			Game.renderSystem.renderFurnace(Game.inventory);
 			Game.inventory.craftingMenu.render();
+			Game.renderSystem.renderHeldItem(Game.inventory);
+			Game.renderSystem.renderInventoryText(Game.inventory, Game.batch);
+			Game.renderSystem.renderCraftingText(Game.inventory, Game.batch);
 		Game.batch.end();
 	}
 }

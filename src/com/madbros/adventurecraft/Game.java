@@ -97,7 +97,8 @@ public class Game implements ApplicationListener {
 	
 /*#########################################################*/
 	public static void toggleInventoryState() {
-		if(currentState.type == State.INVENTORY || currentState.type == State.CRAFTING) {
+		//TODO if current state == Furnace/Cauldron/Chest
+		if(currentState.type == State.INVENTORY) {
 			inventory.craftingTableOn = false;
 			if(inventory.chestOn) {
 				inventory.chestOn = false;
@@ -136,21 +137,27 @@ public class Game implements ApplicationListener {
 		}
 	}
 	
-	public static void toggleCraftingState() {
-		if(currentState.type == State.CRAFTING || currentState.type == State.INVENTORY) {
-			inventory.craftingTableOn = false;
+	public static void toggleFurnaceState() {
+		if(currentState.type == State.FURNACE) {
+			
 			currentState = new MainState();
 			hero.stop();
 			inventory.close(hero);
+			if(inventory.heldItem.id != 0) {
+				Rect collectibleRect = new Rect(hero.absRect.x, hero.absRect.y, 16, 16);
+				Game.collectibleController.add(inventory.heldItem.id, inventory.heldItem.sprite, collectibleRect, inventory.heldItem.stackSize, inventory.heldItem.uses);
+				inventory.heldItem.stackSize = 0;
+				inventory.heldItem = new NoItem();
+				
+			}
 		} else {
-			currentState = new CraftingState();
-			inventory.craftingMenu.refreshCraftSlots(inventory.craftingMenu.craftableList);
+			currentState = new FurnaceState();
 			hero.stop();
 			inventory.open(hero);
 		}
-		
-	
 	}
+	
+
 	
 //	public static void switchToMainState() {
 //		currentState = new MainState();

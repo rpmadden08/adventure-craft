@@ -53,6 +53,7 @@ public class Furnace extends BlockItem32 {
 		
 		if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id) {
 			FurnaceTile tile1 = new FurnaceTile();
+			tile1.sprites = Sprites.furnaceStatic;
 			tile1.sprites[0].setColor(HIGHLIGHT_COLOR);
 			tile1.sprites[0].draw(x, y, Z_CHARACTER);
 			tile1.sprites[0].setColor(Color.WHITE);

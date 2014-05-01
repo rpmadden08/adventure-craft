@@ -127,7 +127,7 @@ public class Constants {
 	
 	//Game States
 	public static enum State {
-		MAIN, INVENTORY, MAIN_MENU, NEW_GAME_MENU, CRAFTING, LOADING;
+		MAIN, INVENTORY, MAIN_MENU, NEW_GAME_MENU, FURNACE, LOADING, CHEST, CAULDRON;
 	}
 	
 	//Tiles

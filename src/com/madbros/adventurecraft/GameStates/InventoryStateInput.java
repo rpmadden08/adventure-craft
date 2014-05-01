@@ -14,6 +14,7 @@ import com.madbros.adventurecraft.Slots.*;
 
 public class InventoryStateInput extends MainStateInput {
 	public boolean altKeyDown = false;
+	public boolean droppedItemInSlot = false;
 	public void additionalKeyDown(int key){
 		switch(key) {
 			case Keys.E: Game.toggleInventoryState(); break; //TODO: Game.inventory.dropItemsInCraftingGrid();
@@ -40,7 +41,7 @@ public class InventoryStateInput extends MainStateInput {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
 		Game.inventory.craftingMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots, Game.inventory.invClothing};
-		Boolean droppedItemInSlot = false;
+		droppedItemInSlot = false;
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
 				if(mouseRect.detectCollision(slots[i][j].slotRect)) {
@@ -57,24 +58,7 @@ public class InventoryStateInput extends MainStateInput {
 				}
 			}
 		}
-		if(Game.inventory.furnaceOn == true) {
-			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			Slot[][] slots2 = {furnaceTile.craftedSlot, furnaceTile.furnaceSlots};
-			for(int i = 0; i < slots2.length; i++) {
-				for(int j = 0; j < slots2[i].length; j++) {
-					if(mouseRect.detectCollision(slots2[i][j].slotRect)) {
-						slots2[i][j].isHighlighted = true;
-						
-						if(mouseLeftDown) slots2[i][j].handleLeftClick(Game.inventory);
-						else if(mouseRightDown) slots2[i][j].handleRightClick(Game.inventory);
-						droppedItemInSlot = true;
-					} else {
-						slots2[i][j].isHighlighted = false;
-						
-					}
-				}
-			}
-		} else if(Game.inventory.cauldronOn == true) {
+		if(Game.inventory.cauldronOn == true) {
 			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Slot[][] slots2 = {cauldronTile.craftedSlot, cauldronTile.cauldronSlots};
 			for(int i = 0; i < slots2.length; i++) {

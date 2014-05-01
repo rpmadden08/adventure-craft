@@ -8,6 +8,7 @@ import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.NoItem;
 import com.madbros.adventurecraft.Slots.CraftedSlot;
 import com.madbros.adventurecraft.Slots.CraftingSlot;
+import com.madbros.adventurecraft.Slots.FurnaceSlot;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -21,7 +22,7 @@ public class FurnaceTile extends CollisionTile {
 	public boolean furnaceIsBurning = false;
 	public int timeCheck = 0;	
 	
-	public CraftingSlot[] furnaceSlots = new CraftingSlot[2];
+	public FurnaceSlot[] furnaceSlots = new FurnaceSlot[2];
 	public CraftedSlot[] craftedSlot = new CraftedSlot[1];
 	
 	public boolean isCraftableItem = false;
@@ -29,7 +30,7 @@ public class FurnaceTile extends CollisionTile {
 	public FurnaceTile() {
 		super();
 		currentSpriteId = 0;
-		sprites = Sprites.furnaceAnimation;
+		sprites = Sprites.furnaceStatic;
 		margin = new Margin(0, 0, 0, 0);
 		id = FURNACE_TILE;
 		layer = OBJECT_LAYER;
@@ -41,13 +42,10 @@ public class FurnaceTile extends CollisionTile {
 		isUseable = true;
 		currentHp = 1;
 		maxHp = 1;
+		furnaceSlots[0] = new FurnaceSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+178, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
+		furnaceSlots[1] = new FurnaceSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+178, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)+INV_SLOT_SIZE);
 		
-//		for(int i = 0; i < 2; i++) {
-			furnaceSlots[0] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE), INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
-			furnaceSlots[1] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE), INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)+INV_SLOT_SIZE);
-//		}
-		
-		craftedSlot[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 75, INV_CRAFTING_RECT.y+INV_SLOT_SIZE);
+		craftedSlot[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 200, INV_CRAFTING_RECT.y+INV_SLOT_SIZE-20);
 		
 	}
 	
@@ -122,7 +120,7 @@ public class FurnaceTile extends CollisionTile {
 //			if(f.exists()) {
 //				Game.level.saveGame.loadChest(x, y);
 //			}
-			Game.toggleInventoryState();
+			Game.toggleFurnaceState();
 			
 		}
 	}
@@ -133,6 +131,7 @@ public class FurnaceTile extends CollisionTile {
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		Block b = activeBlocks[x][y];
+		b.collisionTile = null;
 		Block b2 = activeBlocks[x][y-1];
 		b.layers[OBJECT_LAYER] = new NoTile();
 		b2.layers[ABOVE_LAYER_1] = new NoTile();

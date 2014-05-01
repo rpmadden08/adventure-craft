@@ -12,10 +12,10 @@ import com.madbros.adventurecraft.TileTypes.FurnaceTile;
 import com.madbros.adventurecraft.Utils.*;
 
 public class Slot {
-	private StaticSprite slotSprite = Sprites.sprites.get(Sprites.INVENTORY_MENU_SLOT);
-	private StaticSprite highlighter = Sprites.sprites.get(Sprites.PIXEL);
+	public StaticSprite slotSprite = Sprites.sprites.get(Sprites.INVENTORY_MENU_SLOT);
+	public StaticSprite highlighter = Sprites.sprites.get(Sprites.PIXEL);
 	
-	private Color highlightColor = new Color(1.0f, 1.0f, 1.0f, 0.2f);
+	public Color highlightColor = new Color(1.0f, 1.0f, 1.0f, 0.2f);
 	public boolean isInactive = false;
 	public Rect slotRect;
 	
@@ -55,12 +55,10 @@ public class Slot {
 		} else {
 			swapItems(inv);
 		}
-		if(inv.craftingTableOn) {
-			handleAdditional(inv.invTable, inv.invCrafted);
-		} else if(inv.furnaceOn) {
+		if(Game.currentState.type == State.FURNACE) {
 			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			handleAdditional2(furnaceTile, furnaceTile.furnaceSlots, furnaceTile.craftedSlot);
-		} else if(inv.cauldronOn) {
+			burnAnotherItemIfPossible(furnaceTile, furnaceTile.furnaceSlots, furnaceTile.craftedSlot);
+		} else if(Game.currentState.type == State.CAULDRON) {
 			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			handleAdditionalCauldron(cauldronTile, cauldronTile.cauldronSlots, cauldronTile.craftedSlot);
 		} else {
@@ -103,12 +101,10 @@ public class Slot {
 			swapItems(inv);
 		}
 		
-		if(inv.craftingTableOn) {
-			handleAdditional(inv.invTable, inv.invCrafted);
-		} else if(inv.furnaceOn) {
+		if(Game.currentState.type == State.FURNACE) {
 			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			handleAdditional2(furnaceTile, furnaceTile.furnaceSlots, furnaceTile.craftedSlot);
-		} else if(inv.cauldronOn) {
+			burnAnotherItemIfPossible(furnaceTile, furnaceTile.furnaceSlots, furnaceTile.craftedSlot);
+		} else if(Game.currentState.type == State.CAULDRON) {
 			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			handleAdditionalCauldron(cauldronTile, cauldronTile.cauldronSlots, cauldronTile.craftedSlot);
 		} else {
@@ -119,7 +115,7 @@ public class Slot {
 	public void handleAdditional(Slot[] invCrafting, Slot[] invCrafted) { }
 	
 	public void handleAdditional2(FurnaceTile furnace, Slot[] invCrafting, Slot[] invCrafted) { 
-		craftAnotherItemIfPossible2(furnace, invCrafting, invCrafted);
+		
 	}
 	
 	public void handleAdditionalCauldron(CauldronTile cauldron, Slot[] invCrafting, Slot[] invCrafted) { 
@@ -151,18 +147,18 @@ public class Slot {
 	}
 	
 	public void craftAnotherItemIfPossible(Slot[] invCrafting, Slot[] invCrafted) {
-		for(int i = 0; i < invCrafting.length; i++) {
-			if(invCrafting[i].item.id != EMPTY) {
-				craftAnItemFromThisListIfPossible(invCrafting, invCrafted, invCrafting[i].item.itemsPossiblyCraftable);
-				return;
-			}
-		}
-		if(Game.currentState.type == State.INVENTORY && Game.inventory.furnaceOn == false) {
+//		for(int i = 0; i < invCrafting.length; i++) {
+//			if(invCrafting[i].item.id != EMPTY) {
+//				craftAnItemFromThisListIfPossible(invCrafting, invCrafted, invCrafting[i].item.itemsPossiblyCraftable);
+//				return;
+//			}
+//		}
+		if(Game.currentState.type == State.FURNACE) {
 			invCrafted[0].item = new NoItem();
 		}
 	}
 	
-	public void craftAnotherItemIfPossible2(FurnaceTile furnace, Slot[] invCrafting, Slot[] invCrafted) {
+	public void burnAnotherItemIfPossible(FurnaceTile furnace, Slot[] invCrafting, Slot[] invCrafted) {
 		if(invCrafting[0].item.id != EMPTY) {
 			craftAnItemFromThisListIfPossible2(furnace, invCrafting, invCrafted, invCrafting[0].item.itemsPossiblyBurnable);
 			return;
