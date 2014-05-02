@@ -335,12 +335,13 @@ public class Actor extends GameObject {
 	public void addClothingItem(Clothing clothingItem) {
 		sprite.addSprite(clothingItem.animatedSprite);
 		sprite.sort();
-		sprite.changeAnimationTo(WALK_DOWN);
+		sprite.changeAnimationTo(STAND_DOWN);
+		//sprite.changeAnimationTo(WALK_DOWN);
 		//increase armor rating and add special effects
 	}
 	
 	public void removeClothingItem(Clothing clothingItem) {
 		sprite.removeSprite(clothingItem.animatedSprite);
-		sprite.changeAnimationTo(WALK_DOWN);
+		sprite.changeAnimationTo(STAND_DOWN);
 	}
 }
