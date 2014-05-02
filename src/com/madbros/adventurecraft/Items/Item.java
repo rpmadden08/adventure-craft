@@ -70,7 +70,7 @@ public abstract class Item {
 	
 	public void renderLarge(Rect slotRect) {
 		if(sprite != null) {
-			sprite.draw(slotRect.x + (ITEM_OFFSET*2), slotRect.y + (ITEM_OFFSET*2), Z_INV_ITEMS, (int)(sprite.getWidth()*2), (int)(sprite.getHeight()* 2));
+			sprite.draw(slotRect.x + (ITEM_OFFSET*3), slotRect.y + (ITEM_OFFSET*2), Z_INV_ITEMS, (int)(sprite.getWidth()*2), (int)(sprite.getHeight()* 2));
 		}
 		if(uses != maxUses) {
 			Game.renderSystem.renderItemHealth(this, slotRect.x, slotRect.y);

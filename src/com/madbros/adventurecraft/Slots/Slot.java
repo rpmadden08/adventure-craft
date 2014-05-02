@@ -60,7 +60,7 @@ public class Slot {
 			burnAnotherItemIfPossible(furnaceTile, furnaceTile.furnaceSlots, furnaceTile.craftedSlot);
 		} else if(Game.currentState.type == State.CAULDRON) {
 			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			handleAdditionalCauldron(cauldronTile, cauldronTile.cauldronSlots, cauldronTile.craftedSlot);
+			boilAnotherItemIfPossible(cauldronTile, cauldronTile.cauldronSlots, cauldronTile.craftedSlot);
 		} else {
 			handleAdditional(inv.invCrafting, inv.invCrafted);
 		}
@@ -106,7 +106,7 @@ public class Slot {
 			burnAnotherItemIfPossible(furnaceTile, furnaceTile.furnaceSlots, furnaceTile.craftedSlot);
 		} else if(Game.currentState.type == State.CAULDRON) {
 			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			handleAdditionalCauldron(cauldronTile, cauldronTile.cauldronSlots, cauldronTile.craftedSlot);
+			boilAnotherItemIfPossible(cauldronTile, cauldronTile.cauldronSlots, cauldronTile.craftedSlot);
 		} else {
 			handleAdditional(inv.invCrafting, inv.invCrafted);
 		}
@@ -118,9 +118,9 @@ public class Slot {
 		
 	}
 	
-	public void handleAdditionalCauldron(CauldronTile cauldron, Slot[] invCrafting, Slot[] invCrafted) { 
-		craftAnotherItemIfPossibleCauldron(cauldron, invCrafting, invCrafted);
-	}
+//	public void handleAdditionalCauldron(CauldronTile cauldron, Slot[] invCrafting, Slot[] invCrafted) { 
+//		craftAnotherItemIfPossibleCauldron(cauldron, invCrafting, invCrafted);
+//	}
 	
 	/* Helpers */
 	public void swapItems(Inventory inv) {
@@ -167,7 +167,7 @@ public class Slot {
 		}
 	}
 	
-	public void craftAnotherItemIfPossibleCauldron(CauldronTile cauldron, Slot[] invCrafting, Slot[] invCrafted) {
+	public void boilAnotherItemIfPossible(CauldronTile cauldron, Slot[] invCrafting, Slot[] invCrafted) {
 		for(int i = 0; i < invCrafting.length-1; i++) {
 			if(invCrafting[i].item.id != EMPTY) {
 				craftAnItemFromThisListIfPossibleCauldron(cauldron, invCrafting, invCrafted, invCrafting[i].item.itemsPossiblyBrewable);

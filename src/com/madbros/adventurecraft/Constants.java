@@ -121,7 +121,7 @@ public class Constants {
 	//level constants
 	public static final int CHUNK_SIZE = 16;
 	public static final int CHUNKS_IN_A_ROW = 5;	//also columns
-	public static final int CHUNKS_LENGTH_TOTAL = 10; //200
+	public static final int CHUNKS_LENGTH_TOTAL = 20; //200
 	public static final int CHUNK_BLOOM_MARGIN = 10;
 	public static final int TILES_PER_ROW = CHUNK_SIZE*CHUNKS_IN_A_ROW;	//also columns
 	

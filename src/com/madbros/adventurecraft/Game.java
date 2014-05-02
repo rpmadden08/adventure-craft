@@ -157,6 +157,53 @@ public class Game implements ApplicationListener {
 		}
 	}
 	
+	public static void toggleCauldronState() {
+		if(currentState.type == State.CAULDRON) {
+			
+			currentState = new MainState();
+			hero.stop();
+			inventory.close(hero);
+			if(inventory.heldItem.id != 0) {
+				Rect collectibleRect = new Rect(hero.absRect.x, hero.absRect.y, 16, 16);
+				Game.collectibleController.add(inventory.heldItem.id, inventory.heldItem.sprite, collectibleRect, inventory.heldItem.stackSize, inventory.heldItem.uses);
+				inventory.heldItem.stackSize = 0;
+				inventory.heldItem = new NoItem();
+				
+			}
+		} else {
+			currentState = new CauldronState();
+			hero.stop();
+			inventory.open(hero);
+		}
+	}
+	
+	public static void toggleChestState() {
+		if(currentState.type == State.CHEST) {
+			inventory.chestOn = false;
+			int x = inventory.currentInvBlockX;
+			int y = inventory.currentInvBlockY;
+			saveGame.saveChest(Game.inventory.invChest,x, y);
+			
+			saveGame.saveGame();
+			level.saveCurrentChunks();
+			
+			currentState = new MainState();
+			hero.stop();
+			inventory.close(hero);
+			if(inventory.heldItem.id != 0) {
+				Rect collectibleRect = new Rect(hero.absRect.x, hero.absRect.y, 16, 16);
+				Game.collectibleController.add(inventory.heldItem.id, inventory.heldItem.sprite, collectibleRect, inventory.heldItem.stackSize, inventory.heldItem.uses);
+				inventory.heldItem.stackSize = 0;
+				inventory.heldItem = new NoItem();
+				
+			}
+		} else {
+			currentState = new ChestState();
+			hero.stop();
+			inventory.open(hero);
+		}
+	}
+	
 
 	
 //	public static void switchToMainState() {

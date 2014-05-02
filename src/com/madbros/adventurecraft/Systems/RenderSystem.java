@@ -499,8 +499,7 @@ public class RenderSystem {
 			}
 		}
 	}
-	
-	//FIXME (placeholder)
+
 	public void renderLight(Hero hero) {
 		float lightSize = 100;
 		if(frameCutter >= 5) {
@@ -569,7 +568,7 @@ public class RenderSystem {
 		
 	}
 	
-	public void renderChest(Hero hero, Inventory inv) {
+	public void renderChest(Inventory inv) {
 		for(int i = 0; i < inv.invChest.length; i++) {
 			inv.invChest[i].render();
 		}
@@ -596,9 +595,9 @@ public class RenderSystem {
 		
 	}
 	
-	public void renderCauldron(Hero hero, Inventory inv) {
+	public void renderCauldron(Inventory inv) {
 		CauldronTile cauldron = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-		cauldron.sprites[0].draw(276, 396, 300);
+		cauldron.sprites[0].draw(454, 396, 300);
 		CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 		Slot[][] slots = {cauldronTile.craftedSlot, cauldronTile.cauldronSlots};
 		for(int i = 0; i < slots.length; i++) {
@@ -606,10 +605,9 @@ public class RenderSystem {
 				slots[i][j].render();
 			}
 		}
-		hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
 	
-		renderCauldronFuel(cauldron, 272, 396);
-		renderCauldronBuildTime(cauldron, 330, 390);
+		renderCauldronFuel(cauldron, 450, 396);
+		renderCauldronBuildTime(cauldron, 522, 430);
 	}
 	
 	public void renderInventoryPage2(Hero hero, Inventory inv) {
@@ -729,34 +727,34 @@ public class RenderSystem {
 		
 		//The Red/Blue/Green Part
 		Sprites.pixel.setColor(Color.WHITE);
-		Sprites.pixel.draw(x+1,y+1,Z_CHARACTER,hP,4);
+		Sprites.pixel.draw(x+2,y+2,Z_CHARACTER,hP*2,4*2);
 		
 		//Red Highlight top
 		Sprites.pixel.setColor(1f, 1f, 1f,0.4f);
-		Sprites.pixel.draw(x+2,y+1,Z_CHARACTER,hP,1);
+		Sprites.pixel.draw(x+4,y+2,Z_CHARACTER,hP*2,1*2);
 		
 		//Red Highlight bottom
 		Sprites.pixel.setColor(0f, 0f, 0f,0.3f);
-		Sprites.pixel.draw(x+2,y+4,Z_CHARACTER,hP,1);
+		Sprites.pixel.draw(x+4,y+8,Z_CHARACTER,hP*2,1*2);
 	
 		//Black Edge
 		Sprites.pixel.setColor(Color.BLACK);
-		Sprites.pixel.draw(x+1+hP,y+1,Z_CHARACTER,29-hP,4);
+		Sprites.pixel.draw(x+2+(hP*2),y+2,Z_CHARACTER,(29*2)-hP*2,4*2);
 		
 		//Border left
-		Sprites.healthBarMon.draw(x,y,Z_CHARACTER,2,6);
+		Sprites.healthBarMon.draw(x,y,Z_CHARACTER,2*2,6*2);
 
 		
 		//Border Top
 		Sprites.pixel.setColor(0.886f, 0.914f, 0.98f,1f);
-		Sprites.pixel.draw(x+2, y, Z_CHARACTER, 28, 1);
+		Sprites.pixel.draw(x+4, y, Z_CHARACTER, 28*2, 1*2);
 		
 		//Border Bottom
-		Sprites.pixel.draw(x+2, y+5, Z_CHARACTER, 28, 1);
+		Sprites.pixel.draw(x+4, y+10, Z_CHARACTER, 28*2, 1*2);
 		
 		//Border Right
 		Sprites.healthBarMon.rotate(180);
-		Sprites.healthBarMon.draw(x+2+28,y,Z_CHARACTER,2,6);
+		Sprites.healthBarMon.draw(x+2+58,y+6,Z_CHARACTER,2*2,6*2);
 		Sprites.healthBarMon.rotate(180);
 		
 		//Reset
@@ -852,7 +850,7 @@ public class RenderSystem {
 	}
 	
 	public void renderInventoryText(Inventory inv, SpriteBatch batch) {
-		Slot[][] slots = new Slot[][]{inv.invBag, inv.invCrafting, inv.invCrafted, inv.invTable, inv.invChest};
+		Slot[][] slots = new Slot[][]{inv.invBag, inv.invCrafting, inv.invCrafted};
 		//
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
@@ -860,7 +858,15 @@ public class RenderSystem {
 				
 					}
 		}
-		if(Game.currentState.type == State.FURNACE) {
+		if(Game.currentState.type == State.CHEST) {
+			Slot[][]slots2 = {inv.invChest};
+			for(int i = 0; i < slots2.length; i++) {
+				for(int j = 0; j < slots2[i].length; j++) {
+					slots2[i][j].item.renderFont(slots2[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots2[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
+					
+				}
+			}
+		}else if(Game.currentState.type == State.FURNACE) {
 			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Slot[][]slots2 = {furnaceTile.craftedSlot, inv.invClothing, furnaceTile.furnaceSlots};
 			for(int i = 0; i < slots2.length; i++) {
@@ -869,7 +875,7 @@ public class RenderSystem {
 					
 				}
 			}
-		}else if(inv.cauldronOn) {
+		}else if(Game.currentState.type == State.CAULDRON) {
 			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Slot[][]slots2 = {cauldronTile.craftedSlot, inv.invClothing, cauldronTile.cauldronSlots};
 			for(int i = 0; i < slots2.length; i++) {

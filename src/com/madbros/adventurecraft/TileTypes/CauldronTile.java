@@ -6,6 +6,7 @@ import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.NoItem;
+import com.madbros.adventurecraft.Slots.CauldronSlot;
 import com.madbros.adventurecraft.Slots.CraftedSlot;
 import com.madbros.adventurecraft.Slots.CraftingSlot;
 import com.madbros.adventurecraft.Sprites.Sprites;
@@ -21,7 +22,7 @@ public class CauldronTile extends CollisionTile {
 	public boolean cauldronIsBurning = false;
 	public int timeCheck = 0;
 	
-	public CraftingSlot[] cauldronSlots = new CraftingSlot[4];
+	public CauldronSlot[] cauldronSlots = new CauldronSlot[4];
 	public CraftedSlot[] craftedSlot = new CraftedSlot[1];
 	
 	public boolean isCraftableItem = false;
@@ -43,14 +44,14 @@ public class CauldronTile extends CollisionTile {
 		maxHp = 1;
 		
 
-			cauldronSlots[0] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)- (INV_SLOT_SIZE/2), INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
-			cauldronSlots[1] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE), INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE- (INV_SLOT_SIZE));
-			cauldronSlots[2] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+ (INV_SLOT_SIZE/2), INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
-			
-			cauldronSlots[3] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE), INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)+INV_SLOT_SIZE);
-			
+		cauldronSlots[0] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)- (INV_SLOT_SIZE/2)+178, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
+		cauldronSlots[1] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+178, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE- (INV_SLOT_SIZE));
+		cauldronSlots[2] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+ (INV_SLOT_SIZE/2)+178, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
 		
-		craftedSlot[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 75, INV_CRAFTING_RECT.y+INV_SLOT_SIZE);
+		cauldronSlots[3] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+178, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)+INV_SLOT_SIZE);
+		
+		
+		craftedSlot[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 200, INV_CRAFTING_RECT.y+INV_SLOT_SIZE-20);
 		
 	}
 	
@@ -83,9 +84,9 @@ public class CauldronTile extends CollisionTile {
 					}
 					//Remove the items from the ingredients area
 					craftedSlot[0].removeRecipeItemsFromCraftingSlots(craftedSlot[0].item.craftCost, cauldronSlots);
-					cauldronSlots[0].handleAdditionalCauldron(this, cauldronSlots, craftedSlot);
-					cauldronSlots[1].handleAdditionalCauldron(this, cauldronSlots, craftedSlot);
-					cauldronSlots[2].handleAdditionalCauldron(this, cauldronSlots, craftedSlot);
+					cauldronSlots[0].boilAnotherItemIfPossible(this, cauldronSlots, craftedSlot);
+					cauldronSlots[1].boilAnotherItemIfPossible(this, cauldronSlots, craftedSlot);
+					cauldronSlots[2].boilAnotherItemIfPossible(this, cauldronSlots, craftedSlot);
 					
 				} else if(isCraftableItem == false) {
 					cauldronBuildTime = 10;
@@ -120,7 +121,7 @@ public class CauldronTile extends CollisionTile {
 //			if(f.exists()) {
 //				Game.level.saveGame.loadChest(x, y);
 //			}
-			Game.toggleInventoryState();
+			Game.toggleCauldronState();
 			
 		}
 	}
