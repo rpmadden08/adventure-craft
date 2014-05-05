@@ -29,16 +29,16 @@ public class CraftingMenu {
 	
 	public CraftingMenu() {
 		ButtonFunction nextPageFunction = new ButtonFunction() { public void invoke() { nextPage2(); } };
-		nextPage =  new PlainUIButton(425,440,20,20, ">",nextPageFunction, Game.batch );
+		nextPage =  new PlainUIButton(366,35,20,20, ">",nextPageFunction, Game.batch );
 		//nextPage.buttonColor = Color.GREEN;
 		ButtonFunction lastPageFunction = new ButtonFunction() { public void invoke() { lastPage2(); } };
-		lastPage =  new PlainUIButton(232,440,20,20, "<",lastPageFunction, Game.batch );
+		lastPage =  new PlainUIButton(344,35,20,20, "<",lastPageFunction, Game.batch );
 		//lastPage.buttonColor = Color.GREEN;
 		//public TextUIButton(int x, int y, int w, int h, String s, ButtonFunction func, SpriteBatch batch)
 		int k = 0;
 		for(int x = 0; x < INV_LENGTH; x++) {
 			for(int y = 0; y < INV_HEIGHT; y++) {
-				craftSlots[k] = new CraftingSlot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.right) * y+200,
+				craftSlots[k] = new CraftingSlot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.right) * y+173,
 									 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.bottom) * x);
 				k++;
 			}

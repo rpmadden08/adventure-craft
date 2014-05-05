@@ -594,6 +594,7 @@ public class Sprites {
 	public static BitmapFont font;
 	//public static BitmapFont font2;
 	public static BitmapFont arial24;
+	public static BitmapFont arial10;
 	public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"«`'<>";
 	public static HashMap<String, StaticSprite> sprites = new HashMap<String, StaticSprite>();
 	public static HashMap<String, StaticSprite[]> spriteCollections = new HashMap<String, StaticSprite[]>();
@@ -1346,11 +1347,15 @@ public class Sprites {
 			
 			texture = new Texture(Gdx.files.internal("res/Arial24.png"));
 			arial24 = new BitmapFont(Gdx.files.internal("res/Arial24.fnt"),new TextureRegion(texture), false);
+			
+			texture = new Texture(Gdx.files.internal("res/Arial10.png"));
+			arial10 = new BitmapFont(Gdx.files.internal("res/Arial10.fnt"),new TextureRegion(texture), false);
 //			font = new BitmapFont();
 			
 			font.setColor(1f, 1f, 1f, 1f);
 			font.setScale(1f, -1f);
 			arial24.setScale(1f, -1f);
+			arial10.setScale(1f, -1f);
 			font.setColor(1f, 1f, 1f, 1f);
 	}
 }

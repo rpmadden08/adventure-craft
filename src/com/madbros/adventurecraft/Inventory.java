@@ -66,7 +66,7 @@ public class Inventory {
 		k = 0;
 		for(int x = 0; x < INV_LENGTH; x++) {
 			for(int y = 0; y < INV_HEIGHT; y++) {
-				invChest[k] = new Slot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.right) * y+200,
+				invChest[k] = new Slot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.right) * y+173,
 									 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.bottom) * x);
 				k++;
 			}
@@ -96,18 +96,18 @@ public class Inventory {
 		
 		invCrafted[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 75, INV_CRAFTING_RECT.y);
 
-		invClothing[0] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y+40, HELMET_SLOT);
-		invClothing[1] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +80,ARMOR_SLOT);
-		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +120,LEGGINGS_SLOT);
-		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x +150,INV_CHAR_RECT.y +160,BOOTS_SLOT);
+		invClothing[0] = new ClothingSlot(INV_CHAR_RECT.x +147,INV_CHAR_RECT.y+40, HELMET_SLOT);
+		invClothing[1] = new ClothingSlot(INV_CHAR_RECT.x +147,INV_CHAR_RECT.y +80,ARMOR_SLOT);
+		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x +147,INV_CHAR_RECT.y +120,LEGGINGS_SLOT);
+		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x +147,INV_CHAR_RECT.y +160,BOOTS_SLOT);
 		
-		invBar[0].item = new EarthClump();
-		invBar[0].item.stackSize = 99;
+		invBar[0].item = new Cauldron();
+		invBar[0].item.stackSize = 1;
 		invBar[1].item = new CopperShovel();
 		invBar[1].item.stackSize = 88;
-		invBar[2].item = new Log();
-		invBar[2].item.stackSize = 8;
-		invBar[3].item = new GlassBottle();
+		invBar[2].item = new Furnace();
+		invBar[2].item.stackSize = 1;
+		invBar[3].item = new TableItem();
 		invBar[3].item.stackSize = 88;
 		invBar[4].item = new Chest();
 		invBar[4].item.stackSize =99;

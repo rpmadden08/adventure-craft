@@ -101,7 +101,7 @@ public class Constants {
 	public static final Rect INV_BACKDROP_RECT = new Rect(INV_MENU_MARGIN.left, INV_MENU_MARGIN.top,INV_SLOT_SIZE*INV_LENGTH+181, INV_SLOT_SIZE*INV_LENGTH+18);
 	public static final Rect INV_BAR_RECT = new Rect(2,50, 64, 64);
 	public static final Rect INV_BAG_RECT = new Rect(56, 60, INV_SLOT_SIZE*4, INV_SLOT_SIZE*INV_LENGTH);
-	public static final Rect INV_CHAR_RECT = new Rect(400, 50,100,100);
+	public static final Rect INV_CHAR_RECT = new Rect(351, 35,100,100);
 	
 	public static final Rect INV_CRAFTING_RECT = new Rect(230, 347, 2*(INV_SLOT_SIZE+2), 2*(INV_SLOT_SIZE+2));
 	public static final int INV_ANIMATION_CHANGE = 100;

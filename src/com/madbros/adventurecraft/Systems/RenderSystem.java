@@ -539,11 +539,15 @@ public class RenderSystem {
 		
 		inv.menuSprites[4].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2); //middle
 		
-		//Slot[][] slots = {inv.invBag, inv.invCrafted, inv.invClothing};
+		
 		for(int i = 0; i < inv.invBag.length; i++) {
 			inv.invBag[i].render();
 		}
-		
+		if(inv.currentWorkSpace == TABLE_WORKSPACE) {
+			Sprite sprite = Sprites.sprites.get(Sprites.TABLE_ITEM);
+			sprite.draw(402,260,0f,(int)(sprite.getWidth()*7), (int)(sprite.getHeight()* 7));
+			
+		}
 		
 	}
 	public void renderCrafting(Inventory inv) {
@@ -573,14 +577,25 @@ public class RenderSystem {
 			inv.invChest[i].render();
 		}
 		//System.out.println(inv.invChest[0].item.id);
+			Sprite sprite = Sprites.sprites.get(Sprites.CHEST_ITEM);
+			sprite.draw(408,260,0f,(int)(sprite.getWidth()*6.5), (int)(sprite.getHeight()* 6.5));
+			
 		
 	}
 	
 	public void renderFurnace(Inventory inv) {
 		FurnaceTile furnace = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 		FurnaceTopTile furnaceTop = (FurnaceTopTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY-1].layers[ABOVE_LAYER_1];
-		furnace.sprites[0].draw(454, 396, 300);
-		furnaceTop.sprites[0].draw(454, 364, 300);
+//		furnace.sprites[0].draw(454, 396, 300);
+//		furnaceTop.sprites[0].draw(454, 364, 300);
+		Sprite sprite2 = Sprites.sprites.get(Sprites.FURNACE_SINGLE);
+		sprite2.draw(449,349,0f,(int)(sprite2.getWidth()*4.7), (int)(sprite2.getHeight()* 4.7));
+		Sprite[] sprite = Sprites.spriteCollections.get(Sprites.FURNACE_TOP);
+		sprite[0].draw(449,247,0f,(int)(sprite[0].getWidth()*4.7), (int)(sprite[0].getHeight()* 4.7));
+		
+//		Sprite sprite2 = Sprites.sprites.get(Sprites.FURNACE_TOP);
+//		sprite2.draw(408,200,0f,(int)(sprite2.getWidth()*6), (int)(sprite2.getHeight()* 6));
+//		
 		FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 		Slot[][] slots = {furnaceTile.craftedSlot, furnaceTile.furnaceSlots};
 		for(int i = 0; i < slots.length; i++) {
@@ -589,15 +604,17 @@ public class RenderSystem {
 			}
 		}
 	
-		renderFurnaceFuel(furnace, 450, 396);
+		renderFurnaceFuel(furnace, 450, 429);
 		renderFurnaceBuildTime(furnace, 522, 430);
 		
 		
 	}
 	
 	public void renderCauldron(Inventory inv) {
+		Sprite sprite2 = Sprites.sprites.get(Sprites.CAULDRON_SINGLE);
+		sprite2.draw(402,260,0f,(int)(sprite2.getWidth()*7), (int)(sprite2.getHeight()* 7));
 		CauldronTile cauldron = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-		cauldron.sprites[0].draw(454, 396, 300);
+		
 		CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 		Slot[][] slots = {cauldronTile.craftedSlot, cauldronTile.cauldronSlots};
 		for(int i = 0; i < slots.length; i++) {
@@ -605,70 +622,8 @@ public class RenderSystem {
 				slots[i][j].render();
 			}
 		}
-	
-		renderCauldronFuel(cauldron, 450, 396);
+		renderCauldronFuel(cauldron, 450, 429);
 		renderCauldronBuildTime(cauldron, 522, 430);
-	}
-	
-	public void renderInventoryPage2(Hero hero, Inventory inv) {
-		if(inv.craftingTableOn == true) {
-			Slot[][] slots = {inv.invCrafted, inv.invClothing, inv.invTable};
-			for(int i = 0; i < slots.length; i++) {
-				for(int j = 0; j < slots[i].length; j++) {
-					slots[i][j].render();
-				}
-			}
-			hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
-			
-		} else if(inv.chestOn) {
-			for(int i = 0; i < inv.invChest.length; i++) {
-				inv.invChest[i].render();
-			}
-			//System.out.println(inv.invChest[0].item.id);
-			
-		} else if(inv.furnaceOn) {
-			FurnaceTile furnace = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			FurnaceTopTile furnaceTop = (FurnaceTopTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY-1].layers[ABOVE_LAYER_1];
-			furnace.sprites[0].draw(276, 396, 300);
-			furnaceTop.sprites[0].draw(276, 364, 300);
-			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			Slot[][] slots = {furnaceTile.craftedSlot, inv.invClothing, furnaceTile.furnaceSlots};
-			for(int i = 0; i < slots.length; i++) {
-				for(int j = 0; j < slots[i].length; j++) {
-					slots[i][j].render();
-				}
-			}
-			hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
-		
-			renderFurnaceFuel(furnace, 272, 396);
-			renderFurnaceBuildTime(furnace, 332, 390);
-			
-			
-		} else if(inv.cauldronOn) {
-			CauldronTile cauldron = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			cauldron.sprites[0].draw(276, 396, 300);
-			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			Slot[][] slots = {cauldronTile.craftedSlot, inv.invClothing, cauldronTile.cauldronSlots};
-			for(int i = 0; i < slots.length; i++) {
-				for(int j = 0; j < slots[i].length; j++) {
-					slots[i][j].render();
-				}
-			}
-			hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
-		
-			renderCauldronFuel(cauldron, 272, 396);
-			renderCauldronBuildTime(cauldron, 330, 390);
-			
-		} else {
-			Slot[][] slots = {inv.invCrafted, inv.invClothing, inv.invCrafting};
-			for(int i = 0; i < slots.length; i++) {
-				for(int j = 0; j < slots[i].length; j++) {
-					slots[i][j].render();
-				}
-			}
-			hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
-		}
-		
 	}
 	
 	public void renderFurnaceBuildTime(FurnaceTile furnace, int x, int y) {
@@ -853,10 +808,6 @@ public class RenderSystem {
 		Slot[][] slots = new Slot[][]{inv.invBag, inv.invCrafting, inv.invCrafted};
 		//
 		
-		Sprites.arial24.draw(batch, inv.menu1Title, 80, 32);
-		Sprites.arial24.draw(batch, inv.menu2Title, 288, 32);
-
-		
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
 				slots[i][j].item.renderFont(slots[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
@@ -871,6 +822,7 @@ public class RenderSystem {
 					
 				}
 			}
+			Sprites.arial24.draw(batch, "Chest", 226, 32);
 		}else if(Game.currentState.type == State.FURNACE) {
 			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Slot[][]slots2 = {furnaceTile.craftedSlot, inv.invClothing, furnaceTile.furnaceSlots};
@@ -880,6 +832,7 @@ public class RenderSystem {
 					
 				}
 			}
+			Sprites.arial24.draw(batch, inv.menu2Title, 226, 32);
 		}else if(Game.currentState.type == State.CAULDRON) {
 			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Slot[][]slots2 = {cauldronTile.craftedSlot, inv.invClothing, cauldronTile.cauldronSlots};
@@ -889,7 +842,17 @@ public class RenderSystem {
 					
 				}
 			}
+			Sprites.arial24.draw(batch, inv.menu2Title, 226, 32);
+		}else {
+			Sprites.arial24.draw(batch, inv.menu2Title, 226, 32);
 		}
+		Sprites.arial24.draw(batch, inv.menu1Title, 53, 32);
+		Sprites.arial24.draw(batch, "Character", 400, 32);
+		Sprites.arial24.draw(batch, "Workspace", 400, 236);
+		Sprites.arial10.draw(batch, "Armor", 502, 60);
+		//Sprites.arial24.draw(batch, inv.menu2Title, 288, 32);
+		
+		//inv.menu1Title = "Crafting";
 		if(inv.heldItem.id != EMPTY) inv.heldItem.renderFont(Helpers.getX(), Helpers.getY(), batch);
 	}
 	
