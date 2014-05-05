@@ -17,6 +17,7 @@ public abstract class Item {
 	public int stackSize = 1;
 	public int maxStackSize = 1;
 	public int numberProducedByCrafting = 1;
+	public int[] workSpaceNeeded = {TABLE_WORKSPACE};
 	public int[] itemsPossiblyCraftable = {};
 	public int[] itemsPossiblyBurnable = {};
 	public int[] itemsPossiblyBrewable = {};
@@ -121,10 +122,17 @@ public abstract class Item {
 			if(currentCraftCostAmount >0) {
 				return false;
 			}
+
 			
 		}
 		
-		return true;
+		for(int a = 0; a < workSpaceNeeded.length; a++) {
+			if(Game.inventory.currentWorkSpace == workSpaceNeeded[a]) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public void renderFont(int x, int y, SpriteBatch batch) {

@@ -21,6 +21,7 @@ public class FireStarter extends BlockItem32 {
 		craftCost = new int[]{STICK};
 		craftCostAmount = new int[]{2};
 		placeableTileIds = new int[]{FIRE_PIT_TILE};
+		workSpaceNeeded = new int[]{BARE_HANDS_WORKSPACE,TABLE_WORKSPACE};
 		//set recipes
 	}
 	

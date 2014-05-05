@@ -37,7 +37,7 @@ public class TableTile extends CollisionTile {
 	public void rightClicked() {
 		
 		if(Game.currentState.type == State.MAIN && Game.level.hasPlacedItemOnClick == false) {
-			Game.inventory.craftingTableOn = true;
+			Game.inventory.currentWorkSpace = TABLE_WORKSPACE;
 			Game.toggleInventoryState();
 		}
 	}

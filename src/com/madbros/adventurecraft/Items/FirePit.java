@@ -19,6 +19,7 @@ public class FirePit extends BlockItem32 {
 		craftCostAmount = new int[]{10, 2};
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS};
 		sprite = Sprites.sprites.get(Sprites.FIRE_PIT);
+		workSpaceNeeded = new int[]{BARE_HANDS_WORKSPACE,TABLE_WORKSPACE};
 	}
 	
 	@Override

@@ -19,6 +19,7 @@ public class Torch extends BlockItem32 {
 		sprite = Sprites.sprites.get(Sprites.TORCH);
 		craftCost = new int[]{STICK, COAL_ITEM};
 		craftCostAmount = new int[]{1, 1};
+		workSpaceNeeded = new int[]{BARE_HANDS_WORKSPACE,TABLE_WORKSPACE};
 	}
 	
 	@Override

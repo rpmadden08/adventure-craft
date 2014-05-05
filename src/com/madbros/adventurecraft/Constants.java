@@ -218,7 +218,9 @@ public class Constants {
 	public static final int COPPER_MARK = 1003;
 	public static final int GRASS_MARK = 1004;
 	
-	
+	//Types of WorkSpaces
+	public static final int BARE_HANDS_WORKSPACE = 0;
+	public static final int TABLE_WORKSPACE = 1;
 	
 	
 	//Layers

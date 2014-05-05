@@ -15,6 +15,7 @@ public class Plank extends CraftItem {
 		craftCost = new int[]{LOG};
 		craftCostAmount = new int[]{1};
 		itemsPossiblyCraftable = new int[]{CHEST,STICK, TABLE,WOODEN_AXE, WOODEN_HOE, WOODEN_PICK, WOODEN_SHOVEL, WOODEN_SWORD};
+		workSpaceNeeded = new int[]{BARE_HANDS_WORKSPACE,TABLE_WORKSPACE};
 		//set recipes
 	}
 	
