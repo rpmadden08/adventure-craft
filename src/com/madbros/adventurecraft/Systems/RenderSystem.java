@@ -853,7 +853,8 @@ public class RenderSystem {
 		Slot[][] slots = new Slot[][]{inv.invBag, inv.invCrafting, inv.invCrafted};
 		//
 		
-		Sprites.arial24.draw(batch, inv.menu1Title, 80, 26);
+		Sprites.arial24.draw(batch, inv.menu1Title, 80, 32);
+		Sprites.arial24.draw(batch, inv.menu2Title, 288, 32);
 
 		
 		for(int i = 0; i < slots.length; i++) {
