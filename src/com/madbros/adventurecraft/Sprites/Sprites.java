@@ -3,18 +3,24 @@ package com.madbros.adventurecraft.Sprites;
 //import java.awt.Font;
 
 import java.io.FileNotFoundException;
-
 import java.io.FileReader;
 import java.io.IOException;
 //import java.io.InputStream;
 import java.util.HashMap;
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.stbtt.TrueTypeFontFactory;
 import com.madbros.adventurecraft.Game;
 //import org.newdawn.slick.TrueTypeFont;
 //import org.newdawn.slick.opengl.Texture;
 //import org.newdawn.slick.opengl.TextureLoader;
 //import org.newdawn.slick.util.ResourceLoader;
+
+
+
 
 import static com.madbros.adventurecraft.Constants.*;
 
@@ -586,6 +592,8 @@ public class Sprites {
 	public static StaticSprite healthBarMon;
 	
 	public static BitmapFont font;
+	//public static BitmapFont font2;
+	public static BitmapFont arial24;
 	public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"«`'<>";
 	public static HashMap<String, StaticSprite> sprites = new HashMap<String, StaticSprite>();
 	public static HashMap<String, StaticSprite[]> spriteCollections = new HashMap<String, StaticSprite[]>();
@@ -1331,10 +1339,18 @@ public class Sprites {
 			fireAnimationSprites[2] = new StaticSprite(atlas, 128, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);
 			fireAnimationSprites[3] = new StaticSprite(atlas, 192, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);
 		
-			//font = TrueTypeFontFactory.createBitmapFont(Gdx.files.internal("res/8Bit16.ttf"), FONT_CHARACTERS, 12.5f, 7.5f, 1.0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-			font = new BitmapFont();
+			
+			//font = TrueTypeFontFactory.createBitmapFont(Gdx.files.internal("res/arial.ttf"), FONT_CHARACTERS, 12.5f, 7.5f, 1.0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+			Texture texture = new Texture(Gdx.files.internal("res/Arial.png"));
+			font = new BitmapFont(Gdx.files.internal("res/Arial.fnt"),new TextureRegion(texture), false);
+			
+			texture = new Texture(Gdx.files.internal("res/Arial24.png"));
+			arial24 = new BitmapFont(Gdx.files.internal("res/Arial24.fnt"),new TextureRegion(texture), false);
+//			font = new BitmapFont();
+			
 			font.setColor(1f, 1f, 1f, 1f);
 			font.setScale(1f, -1f);
+			arial24.setScale(1f, -1f);
 			font.setColor(1f, 1f, 1f, 1f);
 	}
 }

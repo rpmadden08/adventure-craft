@@ -138,8 +138,8 @@ public abstract class Item {
 	public void renderFont(int x, int y, SpriteBatch batch) {
 		Color c = new Color(1.0f, 1.0f, 1.0f, 0.8f);
 		Sprites.pixel.setColor(c);
-		int adjX = x+1; int adjY = y + 4;
-		if(stackSize < 10) adjX += 4;
+		int adjX = x-1; int adjY = y+2;
+		if(stackSize < 10) adjX += 9;
 		
 		Sprites.font.setColor(Color.WHITE);
 		if(stackSize > 1) Sprites.font.draw(batch, String.valueOf(stackSize), adjX, adjY);

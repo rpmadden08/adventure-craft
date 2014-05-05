@@ -177,6 +177,7 @@ public class Game implements ApplicationListener {
 			level = new Overworld();
 			
 		}
+		mobController = new MobController();
 		hero = new Hero();
 		
 	}

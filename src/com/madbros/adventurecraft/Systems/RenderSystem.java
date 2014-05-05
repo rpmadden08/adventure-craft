@@ -852,6 +852,10 @@ public class RenderSystem {
 	public void renderInventoryText(Inventory inv, SpriteBatch batch) {
 		Slot[][] slots = new Slot[][]{inv.invBag, inv.invCrafting, inv.invCrafted};
 		//
+		
+		Sprites.arial24.draw(batch, inv.menu1Title, 80, 26);
+
+		
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
 				slots[i][j].item.renderFont(slots[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);

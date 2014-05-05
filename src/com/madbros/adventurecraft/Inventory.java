@@ -14,6 +14,8 @@ public class Inventory {
 	public StaticSprite selectSprite = Sprites.sprites.get(Sprites.INVENTORY_MENU_SELECTOR);
 	public StaticSprite[] menuSprites = Sprites.spriteCollections.get(Sprites.INVENTORY_MENU); // {Sprites.menuSprites1, Sprites.menuSprites2, Sprites.menuSprites3};
 	public int formerHeroAnimation;
+	public String menu1Title = "Inventory";
+	public String menu2Title = "Crafting";
 	public CraftingMenu craftingMenu = new CraftingMenu();
 	public Slot[] invBar= new Slot[INV_LENGTH];
 	public Slot[] invBag= new Slot[INV_LENGTH * INV_HEIGHT];
@@ -102,11 +104,11 @@ public class Inventory {
 		invBar[0].item = new EarthClump();
 		invBar[0].item.stackSize = 99;
 		invBar[1].item = new CopperShovel();
-		invBar[1].item.stackSize = 1;
+		invBar[1].item.stackSize = 88;
 		invBar[2].item = new Log();
-		invBar[2].item.stackSize = 99;
+		invBar[2].item.stackSize = 8;
 		invBar[3].item = new GlassBottle();
-		invBar[3].item.stackSize = 45;
+		invBar[3].item.stackSize = 88;
 		invBar[4].item = new Chest();
 		invBar[4].item.stackSize =99;
 		invBar[5].item = new CopperArmor();
