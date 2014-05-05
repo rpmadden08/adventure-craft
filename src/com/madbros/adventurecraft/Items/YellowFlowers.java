@@ -21,16 +21,6 @@ public class YellowFlowers extends BlockItem32 {
 		
 	}
 	@Override
-	public void useRight() {
-		//if(isInRange) {
-			Block hB = Game.level.highlightedBlock;
-			if(hB.layers[GRASS_LAYER].autoTile == 4) {
-				super.useRight();
-			}
-		//}
-		
-	}
-	@Override
 	public BlockItem32 createNew() {
 		return new YellowFlowers();
 	}

@@ -157,6 +157,15 @@ public abstract class Item {
 		useRight();
 	}
 	
+	public boolean isPlacementCollidingWithHero(Block b, int layer) {
+		Rect heroCRect = new Rect(Game.hero.absRect, Game.hero.margin);
+		if(heroCRect.detectCollision(b.layers[layer].cRect)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public void useLeft() {
 		//attack
 		if(Game.level.tileBeingAttacked.isBreakable && isInRange == true) {

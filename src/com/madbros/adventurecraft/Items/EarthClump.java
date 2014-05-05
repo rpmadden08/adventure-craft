@@ -23,28 +23,23 @@ public class EarthClump extends BlockItem {
 		return new EarthClump();
 	}
 	
-	@Override
-	public void useRight() {
-		Tile tile = TILE_HASH.get(tileId).createNew();
-		Block hB = Game.level.highlightedBlock;
-		Game.level.highlightedBlock.collisionTile = null;
-		
-//		if(hB.canPlace == false) {
-//			if(Time.getTime() - hB.timePlaced > 300) {
-//				hB.canPlace = true;
-//			}
+//	@Override
+//	public void useRight() {
+//		Tile tile = TILE_HASH.get(tileId).createNew();
+//		Block hB = Game.level.highlightedBlock;
+//		Game.level.highlightedBlock.collisionTile = null;
+//		
+//		if(Helpers.arrayDoesContainInt(placeableTileIds, hB.getTopTerrainTile().id)) {
+//			placeTile(hB, tile);
+//			stackSize -= 1;
+//			Game.inventory.deleteItemIfNecessary();
+//			Game.level.autoTileHighlightedBlock();
 //		}
-		
-		if(Helpers.arrayDoesContainInt(placeableTileIds, hB.getTopTerrainTile().id)) {
-			placeTile(hB, tile);
-			stackSize -= 1;
-			Game.inventory.deleteItemIfNecessary();
-			Game.level.autoTileHighlightedBlock();
-		}
-	}
+//	}
 	
 	@Override
 	public void placeTile(Block hB, Tile tile) {
+		Game.level.highlightedBlock.collisionTile = null;
 		if(hB.layers[WATER_LAYER].id == HOLE || hB.layers[WATER_LAYER].id == WATER) {
 			placeLightDirt(Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY], tile);
 		} else if(hB.canPlace == true) {

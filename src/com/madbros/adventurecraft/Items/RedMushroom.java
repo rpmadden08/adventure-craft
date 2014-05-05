@@ -20,16 +20,7 @@ public class RedMushroom extends BlockItem32 {
 		sprite = Sprites.sprites.get(Sprites.RED_MUSHROOM);
 		
 	}
-	@Override
-	public void useRight() {
-		//if(isInRange) {
-			Block hB = Game.level.highlightedBlock;
-			if(hB.layers[GRASS_LAYER].autoTile == 4) {
-				super.useRight();
-			}
-		//}
-		
-	}
+
 	@Override
 	public BlockItem32 createNew() {
 		return new RedMushroom();
