@@ -569,6 +569,9 @@ public class RenderSystem {
 	
 	public void renderHeldItem(Inventory inv) {
 		inv.heldItem.render(Helpers.getX(), Helpers.getY());
+		if(inv.heldItem.id != EMPTY) {
+			inv.heldItem.renderFont(Helpers.getX(), Helpers.getY(), Game.batch);
+		}
 		
 	}
 	
@@ -586,16 +589,11 @@ public class RenderSystem {
 	public void renderFurnace(Inventory inv) {
 		FurnaceTile furnace = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 		FurnaceTopTile furnaceTop = (FurnaceTopTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY-1].layers[ABOVE_LAYER_1];
-//		furnace.sprites[0].draw(454, 396, 300);
-//		furnaceTop.sprites[0].draw(454, 364, 300);
 		Sprite sprite2 = Sprites.sprites.get(Sprites.FURNACE_SINGLE);
-		sprite2.draw(449,349,0f,(int)(sprite2.getWidth()*4.7), (int)(sprite2.getHeight()* 4.7));
+		sprite2.draw(441,349,0f,(int)(sprite2.getWidth()*4.7), (int)(sprite2.getHeight()* 4.7));
 		Sprite[] sprite = Sprites.spriteCollections.get(Sprites.FURNACE_TOP);
-		sprite[0].draw(449,247,0f,(int)(sprite[0].getWidth()*4.7), (int)(sprite[0].getHeight()* 4.7));
+		sprite[0].draw(441,247,0f,(int)(sprite[0].getWidth()*4.7), (int)(sprite[0].getHeight()* 4.7));
 		
-//		Sprite sprite2 = Sprites.sprites.get(Sprites.FURNACE_TOP);
-//		sprite2.draw(408,200,0f,(int)(sprite2.getWidth()*6), (int)(sprite2.getHeight()* 6));
-//		
 		FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 		Slot[][] slots = {furnaceTile.craftedSlot, furnaceTile.furnaceSlots};
 		for(int i = 0; i < slots.length; i++) {
@@ -604,8 +602,8 @@ public class RenderSystem {
 			}
 		}
 	
-		renderFurnaceFuel(furnace, 450, 429);
-		renderFurnaceBuildTime(furnace, 522, 430);
+		renderFurnaceFuel(furnace, 440, 429);
+		renderFurnaceBuildTime(furnace, 514, 430);
 		
 		
 	}
@@ -622,8 +620,8 @@ public class RenderSystem {
 				slots[i][j].render();
 			}
 		}
-		renderCauldronFuel(cauldron, 450, 429);
-		renderCauldronBuildTime(cauldron, 522, 430);
+		renderCauldronFuel(cauldron, 442, 429);
+		renderCauldronBuildTime(cauldron, 514, 430);
 	}
 	
 	public void renderFurnaceBuildTime(FurnaceTile furnace, int x, int y) {
@@ -833,6 +831,9 @@ public class RenderSystem {
 				}
 			}
 			Sprites.arial24.draw(batch, inv.menu2Title, 226, 32);
+			Sprites.arial10.draw(batch, "Fuel", 404, 440);
+			Sprites.arial10.draw(batch, "Input", 402, 356);
+			Sprites.arial10.draw(batch, "Output", 592, 401);
 		}else if(Game.currentState.type == State.CAULDRON) {
 			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Slot[][]slots2 = {cauldronTile.craftedSlot, inv.invClothing, cauldronTile.cauldronSlots};
@@ -843,6 +844,9 @@ public class RenderSystem {
 				}
 			}
 			Sprites.arial24.draw(batch, inv.menu2Title, 226, 32);
+			Sprites.arial10.draw(batch, "Fuel", 404, 440);
+			Sprites.arial10.draw(batch, "Input", 400, 318);
+			Sprites.arial10.draw(batch, "Output", 592, 401);
 		}else {
 			Sprites.arial24.draw(batch, inv.menu2Title, 226, 32);
 		}
@@ -853,7 +857,7 @@ public class RenderSystem {
 		//Sprites.arial24.draw(batch, inv.menu2Title, 288, 32);
 		
 		//inv.menu1Title = "Crafting";
-		if(inv.heldItem.id != EMPTY) inv.heldItem.renderFont(Helpers.getX(), Helpers.getY(), batch);
+		
 	}
 	
 	public void renderCraftingText(Inventory inv, SpriteBatch batch) {

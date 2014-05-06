@@ -58,53 +58,6 @@ public class InventoryStateInput extends MainStateInput {
 				}
 			}
 		}
-		if(Game.inventory.cauldronOn == true) {
-			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			Slot[][] slots2 = {cauldronTile.craftedSlot, cauldronTile.cauldronSlots};
-			for(int i = 0; i < slots2.length; i++) {
-				for(int j = 0; j < slots2[i].length; j++) {
-					if(mouseRect.detectCollision(slots2[i][j].slotRect)) {
-						slots2[i][j].isHighlighted = true;
-						
-						if(mouseLeftDown) slots2[i][j].handleLeftClick(Game.inventory);
-						else if(mouseRightDown) slots2[i][j].handleRightClick(Game.inventory);
-						droppedItemInSlot = true;
-					} else {
-						slots2[i][j].isHighlighted = false;
-						
-					}
-				}
-			}
-		}
-		else if (Game.inventory.chestOn == true) {
-			for(int i = 0; i < Game.inventory.invChest.length; i++) {
-				if(mouseRect.detectCollision(Game.inventory.invChest[i].slotRect)) {
-					Game.inventory.invChest[i].isHighlighted = true;
-					
-					if(mouseLeftDown) Game.inventory.invChest[i].handleLeftClick(Game.inventory);
-					else if(mouseRightDown) Game.inventory.invChest[i].handleRightClick(Game.inventory);
-					droppedItemInSlot = true;
-				} else {
-					Game.inventory.invChest[i].isHighlighted = false;
-					
-				}
-			}
-			
-		} else {
-			for(int i = 0; i < Game.inventory.invCrafting.length; i++) {
-				if(mouseRect.detectCollision(Game.inventory.invCrafting[i].slotRect)) {
-					Game.inventory.invCrafting[i].isHighlighted = true;
-					
-					if(mouseLeftDown) Game.inventory.invCrafting[i].handleLeftClick(Game.inventory);
-					else if(mouseRightDown) Game.inventory.invCrafting[i].handleRightClick(Game.inventory);
-					droppedItemInSlot = true;
-				} else {
-					Game.inventory.invCrafting[i].isHighlighted = false;
-					
-				}
-			}
-		}
-		
 		if(droppedItemInSlot == false) {
 			if(mouseLeftDown && Game.inventory.heldItem.id != 0) {
 				Rect collectibleRect = new Rect(Game.hero.absRect.x, Game.hero.absRect.y, 16, 16);
@@ -118,39 +71,13 @@ public class InventoryStateInput extends MainStateInput {
 	public void additionalMouseMove() {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
 		Game.inventory.craftingMenu.handleMouseMove(mouseRect.x, mouseRect.y);
-		if(Game.inventory.furnaceOn) { 
-			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing, Game.inventory.invTable, Game.inventory.invChest, furnaceTile.furnaceSlots};
-			for(int i = 0; i < slots.length; i++) {
-				for(int j = 0; j < slots[i].length; j++) {
-					if(mouseRect.detectCollision(slots[i][j].slotRect)) {
-						slots[i][j].isHighlighted = true;
-					} else {
-						slots[i][j].isHighlighted = false;
-					}
-				}
-			}
-		} else if(Game.inventory.cauldronOn) {
-			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing, Game.inventory.invTable, Game.inventory.invChest, cauldronTile.cauldronSlots};
-			for(int i = 0; i < slots.length; i++) {
-				for(int j = 0; j < slots[i].length; j++) {
-					if(mouseRect.detectCollision(slots[i][j].slotRect)) {
-						slots[i][j].isHighlighted = true;
-					} else {
-						slots[i][j].isHighlighted = false;
-					}
-				}
-			}
-		} else {
-			Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots, Game.inventory.invCrafted, Game.inventory.invClothing, Game.inventory.invTable, Game.inventory.invChest};
-			for(int i = 0; i < slots.length; i++) {
-				for(int j = 0; j < slots[i].length; j++) {
-					if(mouseRect.detectCollision(slots[i][j].slotRect)) {
-						slots[i][j].isHighlighted = true;
-					} else {
-						slots[i][j].isHighlighted = false;
-					}
+		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots, Game.inventory.invCrafted, Game.inventory.invClothing};
+		for(int i = 0; i < slots.length; i++) {
+			for(int j = 0; j < slots[i].length; j++) {
+				if(mouseRect.detectCollision(slots[i][j].slotRect)) {
+					slots[i][j].isHighlighted = true;
+				} else {
+					slots[i][j].isHighlighted = false;
 				}
 			}
 		}
@@ -160,25 +87,5 @@ public class InventoryStateInput extends MainStateInput {
 	public void additionalMouseUp() {
 		
 	}
-	
-//	@Override
-//	protected void getAdditionalMouseInput() {
-//		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
-//
-//		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.invCrafting, Game.inventory.invCrafted, Game.inventory.invClothing};
-//		
-//		for(int i = 0; i < slots.length; i++) {
-//			for(int j = 0; j < slots[i].length; j++) {
-//				if(mouseRect.detectCollision(slots[i][j].slotRect)) {
-//					slots[i][j].isHighlighted = true;
-//					
-//					if(leftMouseButtonPressed) slots[i][j].handleLeftClick(Game.inventory);
-//					else if(rightMouseButtonPressed) slots[i][j].handleRightClick(Game.inventory);
-//				} else {
-//					slots[i][j].isHighlighted = false;
-//				}
-//			}
-//		}
-//	}
 	
 }

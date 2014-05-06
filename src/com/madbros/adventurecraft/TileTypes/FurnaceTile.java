@@ -42,10 +42,10 @@ public class FurnaceTile extends CollisionTile {
 		isUseable = true;
 		currentHp = 1;
 		maxHp = 1;
-		furnaceSlots[0] = new FurnaceSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+178, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
-		furnaceSlots[1] = new FurnaceSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+178, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)+INV_SLOT_SIZE);
+		furnaceSlots[0] = new FurnaceSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+170, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
+		furnaceSlots[1] = new FurnaceSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+170, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)+INV_SLOT_SIZE);
 		
-		craftedSlot[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 200, INV_CRAFTING_RECT.y+INV_SLOT_SIZE-20);
+		craftedSlot[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 192, INV_CRAFTING_RECT.y+INV_SLOT_SIZE-20);
 		
 	}
 	

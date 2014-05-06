@@ -34,9 +34,10 @@ public class ChestState extends MainState {
 //			Game.renderSystem.renderCrafting(Game.inventory);
 			Game.renderSystem.renderChest(Game.inventory);
 			Game.renderSystem.renderArmorSlots(Game.hero, Game.inventory);
-			Game.inventory.craftingMenu.render();
-			Game.renderSystem.renderHeldItem(Game.inventory);
+//			Game.inventory.craftingMenu.render();
+			
 			Game.renderSystem.renderInventoryText(Game.inventory, Game.batch);
+			Game.renderSystem.renderHeldItem(Game.inventory);
 			//Game.renderSystem.renderCraftingText(Game.inventory, Game.batch);
 		Game.batch.end();
 	}

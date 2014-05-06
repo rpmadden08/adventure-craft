@@ -35,9 +35,11 @@ public class CauldronState extends MainState {
 			Game.renderSystem.renderArmorSlots(Game.hero, Game.inventory);
 			Game.renderSystem.renderCauldron(Game.inventory);
 			Game.inventory.craftingMenu.render();
-			Game.renderSystem.renderHeldItem(Game.inventory);
+			
 			Game.renderSystem.renderInventoryText(Game.inventory, Game.batch);
 			Game.renderSystem.renderCraftingText(Game.inventory, Game.batch);
+			Game.renderSystem.renderCrafting(Game.inventory);
+			Game.renderSystem.renderHeldItem(Game.inventory);
 		Game.batch.end();
 	}
 }

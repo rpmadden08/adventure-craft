@@ -44,14 +44,14 @@ public class CauldronTile extends CollisionTile {
 		maxHp = 1;
 		
 
-		cauldronSlots[0] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)- (INV_SLOT_SIZE/2)+178, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
-		cauldronSlots[1] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+178, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE- (INV_SLOT_SIZE));
-		cauldronSlots[2] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+ (INV_SLOT_SIZE/2)+178, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
+		cauldronSlots[0] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)- (INV_SLOT_SIZE/2)+170, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
+		cauldronSlots[1] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+170, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE- (INV_SLOT_SIZE));
+		cauldronSlots[2] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+ (INV_SLOT_SIZE/2)+170, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
 		
-		cauldronSlots[3] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+178, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)+INV_SLOT_SIZE);
+		cauldronSlots[3] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+170, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)+INV_SLOT_SIZE);
 		
 		
-		craftedSlot[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 200, INV_CRAFTING_RECT.y+INV_SLOT_SIZE-20);
+		craftedSlot[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 192, INV_CRAFTING_RECT.y+INV_SLOT_SIZE-20);
 		
 	}
 	
