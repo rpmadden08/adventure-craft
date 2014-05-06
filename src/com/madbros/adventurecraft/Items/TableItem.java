@@ -18,10 +18,11 @@ public class TableItem extends BlockItem32 {
 		name = "Wooden Table";
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, DARK_GRASS, GRASS, SAND};
 		sprite = Sprites.sprites.get(Sprites.TABLE_ITEM);
-		maxStackSize = 3;
+		maxStackSize = 1;
 		numberProducedByCrafting = 1;
 		craftCost = new int[]{PLANK};
 		craftCostAmount = new int[]{4};
+		workSpaceNeeded = new int[]{BARE_HANDS_WORKSPACE,TABLE_WORKSPACE};
 	}
 	
 	@Override

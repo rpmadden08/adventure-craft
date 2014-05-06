@@ -103,7 +103,7 @@ public class Inventory {
 		
 		invBar[0].item = new Cauldron();
 		invBar[0].item.stackSize = 1;
-		invBar[1].item = new CopperShovel();
+		invBar[1].item = new Log();
 		invBar[1].item.stackSize = 88;
 		invBar[2].item = new Furnace();
 		invBar[2].item.stackSize = 1;
@@ -111,7 +111,7 @@ public class Inventory {
 		invBar[3].item.stackSize = 88;
 		invBar[4].item = new Chest();
 		invBar[4].item.stackSize =99;
-		invBar[5].item = new CopperArmor();
+		invBar[5].item = new Tin();
 		invBar[5].item.stackSize = 1;
 //		invBar[6].item = new CopperBoots();
 //		invBar[6].item.stackSize = 1;
