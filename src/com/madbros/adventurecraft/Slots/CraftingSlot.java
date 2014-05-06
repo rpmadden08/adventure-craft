@@ -64,7 +64,11 @@ public class CraftingSlot extends Slot{
 			slotYCoord = slotYCoord + 44;
 			
 		}
+		
+		CraftedSlot craftedSlot = new CraftedSlot(536, 288);
+		craftedSlot.render();
 		Sprites.font.draw(Game.batch, "Recipe", 402, 268);
+		Sprites.font.draw(Game.batch, "Workspace", 536, 268);
 	
 	}
 	
