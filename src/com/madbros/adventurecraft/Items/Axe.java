@@ -38,20 +38,17 @@ public class Axe extends ToolItem {
 			//Game.level.autoTileHighlightedBlock();
 			calculateUsage();
 		}
-		Game.soundController.create(sound, 0.1f);
+		Game.soundController.create(sound, 0.3f);
 		Game.particleEffectController.add("Chunks.p", 
 		Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
-
-//		Game.p.x= Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2);
-//		Game.p.y = Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2);
-//		Game.p.start();
 	}
 	public void useLeft() {
 		if(Game.level.tileBeingAttacked.isChoppable && isInRange == true) {
 			swing();
+		} else if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
+			Game.soundController.create("sounds/swordSwing1.wav", 0.5f);
 		}
-		
-			Game.hero.attack(this);
+		Game.hero.attack(this);
 			//Game.soundController.create(sound);
 	}
 	

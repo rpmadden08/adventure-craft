@@ -72,19 +72,29 @@ public class Mob extends Actor {
 		equippedWeapon.calculateUsage();
 		if(knockBackTime <= 0) {
 			hP = hP - damage;
-			Item item = ITEM_HASH.get(Game.inventory.itemSelected).createNew();
-			Game.soundController.create(item.hitSound, 1);
+			Item item = ITEM_HASH.get(Game.inventory.invBar[Game.inventory.itemSelected].item.id).createNew();
+			
 			knockBackTime = 10; //30
 			if(hP <= 0) {
 				deathDrop();
-				Game.soundController.create(deathSound, 0.8f);
+				Game.soundController.create(deathSound, 0.2f);
 				//Create a new particle effect...
-				Game.particleEffectController.add(deathParticles, absRect.x+ (absRect.w/2), absRect.y+ (absRect.h/2));
+				deathParticle();
+				//Game.particleEffectController.add(deathParticles, absRect.x+ (absRect.w/2), absRect.y+ (absRect.h/2));
 
 				mobController.remove(this);
+			} else {
+				//System.out.println(item.hitSound);
+				item.playHitSound();
 			}
 		}
 	}
+	
+	public void deathParticle() {
+		Game.particleEffectController.add(deathParticles, absRect.x+ (absRect.w/2), absRect.y+ (absRect.h/2));
+
+	}
+	
 	
 	public void knockBack(Hero hero) {
 		double p1x = (double) absRect.x + (absRect.w/2);

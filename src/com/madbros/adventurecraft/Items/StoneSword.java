@@ -7,7 +7,7 @@ import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class StoneSword extends WeaponItem {
+public class StoneSword extends Sword {
 	public StoneSword() {
 		id = STONE_SWORD;
 		name = "Stone Sword";
@@ -29,15 +29,6 @@ public class StoneSword extends WeaponItem {
 		cRectD = new Rect (0,54,82,32);
 		cRectL = new Rect (-22,0,40,82);
 		cRectR = new Rect (46,0,40,82);
-	}
-	
-	@Override
-	public void useLeft() {
-		if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
-			
-			Game.hero.attack(this);
-			Game.soundController.create(sound, 1);
-		}
 	}
 	
 	@Override

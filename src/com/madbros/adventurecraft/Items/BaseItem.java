@@ -33,6 +33,7 @@ public abstract class BaseItem extends ToolItem {
 		weaponOffsetY = 0;
 		cRectFinal = new Rect (0,0,0,0);
 		sound = "sounds/swordSwing1.wav";
+		hitSound = "sounds/batmanPunch.wav";
 		attackPower = 1;
 		itemPower = 1;
 		isInUse = false;
@@ -54,7 +55,7 @@ public abstract class BaseItem extends ToolItem {
 		if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
 			
 			Game.hero.attack(this);
-			Game.soundController.create(sound, 0.1f);
+			Game.soundController.create(sound, 0.5f);
 		}
 		if(Game.level.tileBeingAttacked.isPickable || Game.level.tileBeingAttacked.isDiggable || Game.level.tileBeingAttacked.isChoppable) {
 			if(isInRange == true) {
@@ -188,5 +189,9 @@ public abstract class BaseItem extends ToolItem {
 		} else if(Game.level.tileBeingAttacked.isChoppable && Game.level.activeBlocks[block.getX(Game.level.activeBlocks)][block.getY(Game.level.activeBlocks)].layers[OBJECT_LAYER].id != AIR) {
 			Game.level.tileBeingAttacked.highlightEntireObject(block.getX(Game.level.activeBlocks),block.getY(Game.level.activeBlocks), x, y);
 		}
+	}
+	
+	public void playHitSound() {
+		Game.soundController.create(hitSound, 0.5f);
 	}
 }

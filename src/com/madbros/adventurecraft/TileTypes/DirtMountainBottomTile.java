@@ -23,6 +23,8 @@ public class DirtMountainBottomTile extends CollisionTile {
 		isDiggable = false;
 		isPickable = true;
 		is32 = true;
+		maxHp = 20;
+		currentHp = 20;
 	}
 	
 	public void render(int x, int y) {

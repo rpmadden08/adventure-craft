@@ -14,6 +14,7 @@ public class Shovel extends ToolItem {
 		id = SHOVEL;
 		name = "Shovel";
 		sprite = Sprites.sprites.get(Sprites.SHOVEL_ITEM);
+		sound = "sounds/shovelDig.wav";
 		swingSprite = sprite;
 		itemPower = 5;
 		is32 = true;
@@ -35,6 +36,8 @@ public class Shovel extends ToolItem {
 			
 			swing();
 
+		} else if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
+			Game.soundController.create("sounds/swordSwing1.wav", 0.5f);
 		}
 		Game.hero.attack(this);
 	}
@@ -51,6 +54,8 @@ public class Shovel extends ToolItem {
 			
 			Game.level.autoTileHighlightedBlock();
 			calculateUsage();
+		} else {
+			Game.soundController.create(sound, 0.2f);
 		}
 	}
 	public boolean checkID(int id) {

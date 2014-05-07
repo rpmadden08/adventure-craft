@@ -12,8 +12,8 @@ import com.madbros.adventurecraft.Utils.Rect;
 
 public class GrassTile extends Tile {
 	public GrassTile() {
-		maxHp = 20;
-		currentHp = 20;
+		maxHp = 4;
+		currentHp = 4;
 		layer = GRASS_LAYER;
 		z = Z_GRASS;
 		isCollidable = false;
@@ -23,6 +23,7 @@ public class GrassTile extends Tile {
 		autoTileID = id;
 		isTillable = true;
 		is32 = false;
+		
 
 	}
 

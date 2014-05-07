@@ -18,6 +18,7 @@ public class Pick extends ToolItem {
 		itemPower = 5;
 		isRepeatable = true;
 		isInUse = false;
+		sound = "sounds/pickSound.wav";
 		cRectU = new Rect (0,-6,82,32);
 		cRectD = new Rect (0,54,82,32);
 		cRectL = new Rect (-22,0,40,82);
@@ -34,12 +35,16 @@ public class Pick extends ToolItem {
 		if(Game.level.tileBeingAttacked.isPickable &&isInRange == true) {
 			swing();
 
+		} else if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
+			Game.soundController.create("sounds/swordSwing1.wav", 0.5f);
 		}
 		Game.hero.attack(this);
 	}
 	public void impact() {
 		Game.level.tileBeingAttacked.currentHp -= itemPower;
+		
 		if(Game.level.tileBeingAttacked.currentHp < 1) {
+			Game.soundController.create("sounds/stoneRubble.wav", 0.8f);
 			Game.level.highlightedBlock.deleteObjectTile();
 			Game.level.highlightedBlock.collisionTile = null;
 			Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY-1].deleteTile(ABOVE_LAYER_1);
@@ -51,6 +56,8 @@ public class Pick extends ToolItem {
 			Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-2);
 			Game.level.autoTileHighlightedBlock();
 			calculateUsage();
+		} else {
+			Game.soundController.create(sound, 0.5f);
 		}
 	}
 	

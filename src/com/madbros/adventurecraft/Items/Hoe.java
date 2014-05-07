@@ -45,6 +45,8 @@ public class Hoe extends ToolItem {
 		if(Game.level.tileBeingAttacked.isTillable && isInRange == true) {
 			swing();
 
+		} else if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
+			Game.soundController.create("sounds/swordSwing1.wav", 0.5f);
 		}
 		Game.hero.attack(this);
 	}

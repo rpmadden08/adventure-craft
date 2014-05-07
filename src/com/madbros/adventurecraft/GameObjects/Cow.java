@@ -37,13 +37,14 @@ public class Cow extends Mob {
 
 	@Override
 	public void deathDrop() {
-		Rect collectibleRect = new Rect(absRect.x, absRect.y, 16, 16);
+
+		Rect collectibleRect = new Rect(absRect.x+(absRect.w/2), absRect.y+(absRect.h/2), 16, 16);
 		Item item = ITEM_HASH.get(LEATHER).createNew();
 		Game.collectibleController.add(LEATHER, Sprites.sprites.get(Sprites.LEATHER), collectibleRect, 1, item.maxUses);
 		Random rand = new Random();
 		int num = rand.nextInt(3)+1;
 		for(int a = 0; a< num; a++) {
-			collectibleRect = new Rect(absRect.x, absRect.y, 16, 16);
+			collectibleRect = new Rect(absRect.x+(absRect.w/2), absRect.y+(absRect.h/2), 16, 16);
 			item = ITEM_HASH.get(STEAK).createNew();
 			Game.collectibleController.add(STEAK, Sprites.sprites.get(Sprites.STEAK), collectibleRect, 1, item.maxUses);
 		}
