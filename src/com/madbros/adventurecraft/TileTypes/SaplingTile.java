@@ -2,12 +2,13 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 
 public class SaplingTile extends CollisionTile {
-	
+	public int growthTime;
 	public SaplingTile() {
 		super();
 		currentSpriteId = 0;
@@ -19,6 +20,7 @@ public class SaplingTile extends CollisionTile {
 		isDiggable = false;
 		isAutoTileable = false;
 		autoTile = 0;
+		growthTime = setGrowthTime();
 	}
 	
 	@Override
@@ -30,9 +32,13 @@ public class SaplingTile extends CollisionTile {
 		return new SaplingTile();
 	}
 	
+	private int setGrowthTime() {
+		return MathUtils.random(180000, 300000); //Every 1000 is 1 second.  180000 is 3 minutes.
+	}
+	
 	@Override
 	public void update(int x, int y) {
-		if(Time.getGameTime() - timeCreated > 10000) {// 3000
+		if(Time.getGameTime() - timeCreated > growthTime) {// 3000
 			Block b = Game.level.activeBlocks[x][y];
 			b.layers[OBJECT_LAYER] = new TreeTile();
 			b.setCollisionTile(new TreeTile());

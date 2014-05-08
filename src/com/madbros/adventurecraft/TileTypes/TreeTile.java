@@ -2,6 +2,8 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.util.Random;
+
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
@@ -64,14 +66,16 @@ public class TreeTile extends CollisionTile {
 		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect3, 1, item.maxUses );
 		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect4, 1, item.maxUses );
 		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect5, 1, item.maxUses );
+		Random rnd = new Random();
+		int dropAmount1 = rnd.nextInt(2)+1;
+		for(int i = dropAmount1; i >-1 ; i--) {
+			collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+			item = ITEM_HASH.get(SAPLING_ITEM).createNew();
+			Game.collectibleController.add(SAPLING_ITEM, Sprites.sprites.get(Sprites.SAPLING), collectibleRect, 1, item.maxUses);
+		}
 	}
 	
 	public void highlightEntireObject(int x, int y, int drawX, int drawY) {
-		//Tile tile = Game.level.tileBeingAttacked;
-//		sprites[currentSpriteId].setColor(1f,1f,1f,0.3f);
-//		sprites[currentSpriteId].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
-//		sprites[currentSpriteId].setColor(1f,1f,1f,1f);
-//		
 		Block b = Game.level.activeBlocks[x][y];
 		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].currentSpriteId].setColor(HIGHLIGHT_COLOR);
 		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].currentSpriteId].draw(drawX, drawY, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);

@@ -41,7 +41,7 @@ public class ArtichokeTile extends CollisionTile {
 	private int setGrowthTime() {
 		
 		//return MathUtils.random(180000, 300000); //Every 1000 is 1 second.  180000 is 3 minutes.
-		return MathUtils.random(3000, 7000); //Every 1000 is 1 second.  180000 is 3 minutes.
+		return MathUtils.random(180000, 300000); //Every 1000 is 1 second.  180000 is 3 minutes.
 		
 	}
 	
