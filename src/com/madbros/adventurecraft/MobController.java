@@ -48,6 +48,22 @@ public class MobController {
 		
 	}
 	
+	public boolean isDark(Rect possibleSpawnPoint) {
+		if(Game.level.isDay == true) {
+			return false;
+		} else {
+			for(int a = 0; a < Game.renderSystem.lightTiles.size(); a++) {
+				Rect tempRect = Game.renderSystem.lightTiles.get(a).absRect;
+				Rect lightTileRect = new Rect(tempRect.x-250, tempRect.y-250, tempRect.w+500, tempRect.h+500);
+				if(lightTileRect.detectCollision(possibleSpawnPoint)) {
+					return false;
+				}
+				
+			}
+			return true;
+			
+		}
+	}
 	public void update() {
 		Random rand = new Random();
 		int x = rand.nextInt(CHUNK_SIZE * 3)+ CHUNK_SIZE;
@@ -57,51 +73,53 @@ public class MobController {
 		Rect possibleSpawnPoint = new Rect(absX, absY, 1,1);
 		Rect heroRect = new Rect(Game.hero.absRect.x-250, Game.hero.absRect.y-250, Game.hero.absRect.w +500, Game.hero.absRect.h+500);
 		//if(x > CHUNK_SIZE*2 && x< CHUNK_SIZE *3+1 && y > CHUNK_SIZE*2 && y< CHUNK_SIZE *3+1 ) {
-		if(possibleSpawnPoint.detectCollision(heroRect)) {
-		} else {
-			int num = rand.nextInt(1);//100
-			if(num == 0 && mobs.size() < 10) {
-				int topTile = Game.level.activeBlocks[x][y].getTopTile().id;
-				//System.out.println(topTile);
-				Block[] tileArea = getTileArea(x,y);
+		int topTile = Game.level.activeBlocks[x][y].getTopTile().id;
+		//System.out.println(topTile);
+		Block[] tileArea = getTileArea(x,y);
+		int num = rand.nextInt(100);//100
+		if(num == 0 && mobs.size() < 10) {
+			if(possibleSpawnPoint.detectCollision(heroRect)) {
+			} else if(isDark(possibleSpawnPoint)){
 				if(Game.currentLevel == OVERWORLD_FOLDER) {
-					
 					if(topTile == GRASS) {
-						
 						if(checkTileArea(tileArea, OBJECT_LAYER, TREE, 2)) {
 							mobs.add(new Slime(this, x, y));
 						} else {
 							int num2 = rand.nextInt(2);//100
 							if(num2 == 0) {
-								mobs.add(new Bee(this, x, y));
-							} else {
-								mobs.add(new Cow(this, x, y));
+								mobs.add(new QueenBeeMinion(this, x, y));
 							}
 						}
 					}
 				} else if(Game.currentLevel == UNDERGROUND_1_FOLDER) {
-					
-				
 					if(topTile== DIRT) {
-						
 						if(checkTileArea(tileArea, OBJECT_LAYER, DIRT_MOUNTAIN_BOTTOM, 2)) {
 							mobs.add(new Bat(this, x, y));
 						} else {
 							mobs.add(new Worm(this, x, y));
 						}
-						//mobs.add(new Worm(this, x, y));
 					} 
 				}
-			
+			} else {
+				if(Game.currentLevel == OVERWORLD_FOLDER) {
+					if(topTile == GRASS) {
+							int num2 = rand.nextInt(6);//100
+							if(num2 == 0) {
+								mobs.add(new Bee(this, x, y));
+							} else {
+								mobs.add(new Cow(this, x, y));
+							}
+					}
+				}
 			}
+		}
 		
 		//for every mob in this list do...
-			for(int i = 0; i < mobs.size(); i++) {
-				mobs.get(i).updateAI();
-				mobs.get(i).update();
-				//DO NOT remove the mob before checkCollisions...  Causes a crash
-				mobs.get(i).checkCollisions();
-			}
+		for(int i = 0; i < mobs.size(); i++) {
+			mobs.get(i).updateAI();
+			mobs.get(i).update();
+			//DO NOT remove the mob before checkCollisions...  Causes a crash
+			mobs.get(i).checkCollisions();
 		}
 	}
 	
