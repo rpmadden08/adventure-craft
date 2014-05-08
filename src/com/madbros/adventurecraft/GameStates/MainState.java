@@ -91,13 +91,17 @@ public class MainState extends GameState {
 
 			Game.renderSystem.renderWorld(Game.level);
 			//Game.renderSystem.renderCollectibles(Game.collectibleController);
-			Game.renderSystem.renderParticle(Game.particleEffectController);
+			
 			
 			
 			Game.renderSystem.renderHero(Game.hero, Game.getCenterScreenX() - CHARACTER_SIZE/2, Game.getCenterScreenY() - CHARACTER_SIZE/2);
-			Game.renderSystem.renderWorldAbove(Game.level);
+
 			Game.renderSystem.renderCollectibles(Game.collectibleController);
 			Game.renderSystem.renderMobs(Game.mobController);
+			Game.renderSystem.renderParticle(Game.particleEffectController);
+			Game.renderSystem.renderWorldAbove(Game.level);
+			
+			
 			Game.map.render(Game.level.activeBlocks);
 			
 			
