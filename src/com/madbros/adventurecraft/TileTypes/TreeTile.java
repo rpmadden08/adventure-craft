@@ -17,7 +17,7 @@ public class TreeTile extends CollisionTile {
 		maxHp = 20;
 		currentHp = 20;
 		sprites = Sprites.spriteCollections.get(Sprites.TREE_TWO);
-		margin = new Margin(9, 9, 12, 11);	//3, 3, 0, 12
+		margin = new Margin(0, 0, 0, 0);	//3, 3, 0, 12
 
 		id = TREE;
 		layer = OBJECT_LAYER;

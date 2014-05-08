@@ -17,7 +17,7 @@ public class CactusTile extends CollisionTile {
 		maxHp = 20;
 		currentHp = 20;
 		sprites = Sprites.spriteCollections.get(Sprites.CACTUS);
-		margin = new Margin(9, 9, 12, 11);	//3, 3, 0, 12
+		margin = new Margin(1, 0, 0, 5);	//3, 3, 0, 12
 
 		id = CACTUS;
 		layer = OBJECT_LAYER;

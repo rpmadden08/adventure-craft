@@ -452,7 +452,8 @@ public class RenderSystem {
 //			//Sprites.pixel.draw(x, y);
 //			Sprites.pixel.draw(x+64,y+64, Z_CHARACTER, 1, 1);
 			renderMobCollisionRects(mob, x, y);
-			renderMobHealth(mob);
+			if(mob.hP != mob.maxHP) renderMobHealth(mob);
+			
 		}
 	}
 	
