@@ -49,6 +49,7 @@ public class TableTile extends CollisionTile {
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		Block b = activeBlocks[x][y];
 		Block b2 = activeBlocks[x][y-1];
+		b.collisionTile = null;
 		b.layers[OBJECT_LAYER] = new NoTile();
 		b2.layers[ABOVE_LAYER_1] = new NoTile();
 		

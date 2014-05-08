@@ -3,14 +3,16 @@ package com.madbros.adventurecraft.StatusEffects;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.GameObjects.Actor;
+import com.madbros.adventurecraft.Sprites.Sprites;
 
 public class Speed extends TimedStatusEffect{
 	
 	public Speed() {
-		potionEffectTime = 15000;
+		potionEffectTime = 65000; //15000
 		speedAmount = 0.1f;
 		id = 2;
 		timeTriggered = Time.getTime();
+		sprite = Sprites.sprites.get(Sprites.SPEED_STATUS);
 		
 	}
 	

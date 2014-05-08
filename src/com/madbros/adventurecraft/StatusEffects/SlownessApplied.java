@@ -2,6 +2,8 @@ package com.madbros.adventurecraft.StatusEffects;
 
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.GameObjects.Actor;
+import com.madbros.adventurecraft.Sprites.Sprites;
+
 import static com.madbros.adventurecraft.Constants.*;
 
 
@@ -9,6 +11,7 @@ public class SlownessApplied extends AppliedStatusEffect{
 	public SlownessApplied() {
 		id = SLOWNESS_APPLIED;
 		usesLeft = 5;
+		sprite = Sprites.sprites.get(Sprites.SLOWNESS_APPLIED);
 	}
 
 	public boolean canApplyEffect(Actor actor) {

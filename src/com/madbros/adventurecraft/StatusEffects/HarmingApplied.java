@@ -2,12 +2,14 @@ package com.madbros.adventurecraft.StatusEffects;
 
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.GameObjects.Actor;
+import com.madbros.adventurecraft.Sprites.Sprites;
 
 
 public class HarmingApplied extends AppliedStatusEffect{
 	public HarmingApplied() {
 		id = 1;
-		usesLeft = 5;
+		usesLeft = 10;//5
+		sprite = Sprites.sprites.get(Sprites.HARMING_APPLIED);
 	}
 
 	public int getHarmingDamageIncrease(int damage) {

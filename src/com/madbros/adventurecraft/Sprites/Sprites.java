@@ -262,7 +262,11 @@ public class Sprites {
 	public static final String CACTUS_SAPLING = "cactusSapling";
 	public static final String CACTUS = "cactus";
 	
-	
+	//Status effects
+	public static final String SPEED_STATUS = "speedStatus";
+	public static final String SLOWNESS_APPLIED = "slownessApplied";
+	public static final String HARMING_APPLIED = "harmingApplied";
+	public static final String SLOWNESS_STATUS = "slowStatus";
 	
 	//animated collections
 	public static final String CAMPFIRE_ANIMATION = "campfire";
@@ -728,7 +732,7 @@ public class Sprites {
 					DIRT_MOUNTAIN_MIDDLE_NEW, WATER_NEW, DIRT_MOUNTAIN_COPPER_BOTTOM_NEW,
 					DIRT_MOUNTAIN_COPPER_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_BOTTOM_NEW,
 					DIRT_MOUNTAIN_COAL_MIDDLE_NEW, DIRT_MOUNTAIN_COAL_BOTTOM_NEW, STONE, DIRT_MOUNTAIN_CLUMP,
-					STONE_MOUNTAIN_CLUMP,BREAD,
+					STONE_MOUNTAIN_CLUMP,BREAD, SLOWNESS_APPLIED, SLOWNESS_STATUS, SPEED_STATUS, HARMING_APPLIED,
 					
 			};
 			

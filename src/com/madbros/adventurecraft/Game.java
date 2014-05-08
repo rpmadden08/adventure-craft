@@ -107,6 +107,7 @@ public class Game implements ApplicationListener {
 			inventory.heldItem.stackSize = 0;
 			inventory.heldItem = new NoItem();
 		}
+		Game.inventory.craftingMenu.refreshCraftSlots(Game.inventory.craftingMenu.craftableList);
 	}
 	
 	public static void toggleInventoryState() {

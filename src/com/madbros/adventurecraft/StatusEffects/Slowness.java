@@ -3,6 +3,7 @@ package com.madbros.adventurecraft.StatusEffects;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.GameObjects.Actor;
+import com.madbros.adventurecraft.Sprites.Sprites;
 
 public class Slowness extends TimedStatusEffect{
 	
@@ -11,6 +12,7 @@ public class Slowness extends TimedStatusEffect{
 		speedAmount = 0.05f;
 		id = 3;
 		timeTriggered = Time.getTime();
+		sprite = Sprites.sprites.get(Sprites.SLOWNESS_STATUS);
 		
 	}
 	

@@ -20,6 +20,7 @@ import com.madbros.adventurecraft.MobController;
 import com.madbros.adventurecraft.NotificationController;
 import com.madbros.adventurecraft.ParticleEffect;
 import com.madbros.adventurecraft.ParticleEffectController;
+import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.GameObjects.Actor;
 import com.madbros.adventurecraft.GameObjects.Collectible;
 import com.madbros.adventurecraft.GameObjects.GameObject;
@@ -489,7 +490,70 @@ public class RenderSystem {
 			
 		}
 		renderHealth(Game.hero);
+		renderStatusEffects();
 	}
+	//ASLDKFJALSKDJFLASKDJF
+	//ASLDKFJALSKDJFLASKDJF
+	//ASLDKFJALSKDJFLASKDJF
+	//ASLDKFJALSKDJFLASKDJF
+	//ASLDKFJALSKDJFLASKDJF
+	//ASLDKFJALSKDJFLASKDJF
+	//ASLDKFJALSKDJFLASKDJF
+	//ASLDKFJALSKDJFLASKDJF
+	//ASLDKFJALSKDJFLASKDJF
+	//ASLDKFJALSKDJFLASKDJF
+	//ASLDKFJALSKDJFLASKDJF
+	//ASLDKFJALSKDJFLASKDJF
+	//ASLDKFJALSKDJFLASKDJF
+	public void renderStatusEffects() {
+		int x = INITIAL_WINDOW_WIDTH - 32;
+		for(int a = 1; a < Game.hero.appliedStatusEffects.length; a++) {
+			if(Game.hero.appliedStatusEffects[a].id == a) {
+				StaticSprite sprite = Game.hero.appliedStatusEffects[a].sprite;
+				sprite.draw(x, 0, 0f);
+				if(Game.hero.appliedStatusEffects[a].usesLeft >9) {
+					Sprites.arial10.draw(Game.batch, String.valueOf(Game.hero.appliedStatusEffects[a].usesLeft), x+18, 32);
+				} else {
+					Sprites.arial10.draw(Game.batch, String.valueOf(Game.hero.appliedStatusEffects[a].usesLeft), x+25, 32);
+					//Sprites.font.draw(Game.batch, String.valueOf(Game.hero.appliedStatusEffects[a].usesLeft), x, 32);
+				}
+				
+				x= x-32;
+			}
+		}
+		
+		for(int a = 1; a < Game.hero.timedStatusEffects.length; a++) {
+			if(Game.hero.timedStatusEffects[a].id == a) {
+				StaticSprite sprite = Game.hero.timedStatusEffects[a].sprite;
+				sprite.draw(x, 0, 0f);
+				x= x-32;
+				//long time = Time.getTime() -Game.hero.timedStatusEffects[a].timeTriggered +Game.hero.timedStatusEffects[a].potionEffectTime;
+				long time = Game.hero.timedStatusEffects[a].potionEffectTime - (Time.getTime() -Game.hero.timedStatusEffects[a].timeTriggered);
+				
+				long totalSeconds = time / 1000;
+				long minutes = totalSeconds / 60;
+				long secondsTens = totalSeconds % 60 /10;
+				long seconds = totalSeconds % 60 % 10;
+				String mString = String.valueOf(minutes)+" min";
+				String sString = String.valueOf(seconds)+" sec";
+				String totalString = String.valueOf(minutes)+"."+String.valueOf(secondsTens)+String.valueOf(seconds);
+				
+				Sprites.arial10.setColor(Color.RED);
+    			Sprites.arial10.draw(Game.batch, totalString, x+32+6, 32);
+    			Sprites.arial10.setColor(Color.WHITE);
+//				if(minutes > 0) {
+//					int mWidth = (int) Sprites.arial10.getBounds(mString).width;
+//					Sprites.arial10.draw(Game.batch, mString, x+32-(mWidth/2), 32);
+//				} else {
+//					int sWidth = (int) Sprites.arial10.getBounds(sString).width;
+//					Sprites.arial10.draw(Game.batch, sString, x+32-(sWidth/2), 32);
+//				}
+				//int m = Time.getTime() -Game.hero.appliedStatusEffects[a].timeTriggered +Game.hero.appliedStatusEffects[a].potionEffectTime)
+				//Sprites.arial10.draw(Game.batch, String.valueOf(minutes)+"."+String.valueOf(seconds)+ " min", x, 32);
+			}
+		}
+	}
+	
 	
 	public void renderText(Inventory inv, SpriteBatch batch) {
 		Slot[][] slots = {inv.invBar};
