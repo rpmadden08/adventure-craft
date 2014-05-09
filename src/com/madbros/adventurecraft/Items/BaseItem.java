@@ -55,7 +55,7 @@ public abstract class BaseItem extends ToolItem {
 		if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
 			
 			Game.hero.attack(this);
-			Game.soundController.create(sound, 0.5f);
+			Game.soundController.create(sound, 0.2f);
 		}
 		if(Game.level.tileBeingAttacked.isPickable || Game.level.tileBeingAttacked.isDiggable || Game.level.tileBeingAttacked.isChoppable) {
 			if(isInRange == true) {
@@ -99,7 +99,7 @@ public abstract class BaseItem extends ToolItem {
 				//Game.level.autoTileHighlightedBlock();
 				calculateUsage();
 			}
-			Game.soundController.create(sound, 0.1f);
+			Game.soundController.create(sound, 0.2f);
 			Game.particleEffectController.add("Chunks.p", 
 			Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
 

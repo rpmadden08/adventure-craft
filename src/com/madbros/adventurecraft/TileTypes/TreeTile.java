@@ -28,6 +28,7 @@ public class TreeTile extends CollisionTile {
 		isChoppable = true;
 		isAutoTileable = false;
 		autoTile = 0;
+		particleEffect = "treeChunks.p";
 	}
 	
 	@Override

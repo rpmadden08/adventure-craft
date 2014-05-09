@@ -43,6 +43,7 @@ public class Shovel extends ToolItem {
 	}
 	public void impact() {
 		Game.level.tileBeingAttacked.currentHp -= itemPower;
+		String tileParticle = Game.level.tileBeingAttacked.particleEffect;
 		if(Game.level.tileBeingAttacked.layer == OBJECT_LAYER) {
 			Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
 			calculateUsage();
@@ -57,6 +58,8 @@ public class Shovel extends ToolItem {
 		} else {
 			Game.soundController.create(sound, 0.2f);
 		}
+		Game.particleEffectController.add(tileParticle, 
+				Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
 	}
 	public boolean checkID(int id) {
 		if(id == AIR  || id == TALL_GRASS_A_TILE || id == TALL_GRASS_B_TILE || id == TALL_GRASS_C_TILE || 

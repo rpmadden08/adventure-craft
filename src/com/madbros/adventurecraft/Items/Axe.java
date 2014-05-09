@@ -32,6 +32,7 @@ public class Axe extends ToolItem {
 	public void impact() {
 		//Game.p.allowCompletion();
 		Game.level.tileBeingAttacked.currentHp -= itemPower;
+		String tileParticle = Game.level.tileBeingAttacked.particleEffect;
 		if(Game.level.tileBeingAttacked.currentHp < 1) {
 			Game.level.highlightedBlock.deleteObjectTile();
 			Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
@@ -39,7 +40,7 @@ public class Axe extends ToolItem {
 			calculateUsage();
 		}
 		Game.soundController.create(sound, 0.3f);
-		Game.particleEffectController.add("Chunks.p", 
+		Game.particleEffectController.add(tileParticle, 
 		Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
 	}
 	public void useLeft() {

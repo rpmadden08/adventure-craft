@@ -23,6 +23,7 @@ public class GrassTile extends Tile {
 		autoTileID = id;
 		isTillable = true;
 		is32 = false;
+		particleEffect = "grassChunks.p";
 		
 
 	}

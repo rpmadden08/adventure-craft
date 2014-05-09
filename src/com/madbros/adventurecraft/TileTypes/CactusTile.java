@@ -26,6 +26,7 @@ public class CactusTile extends CollisionTile {
 		isChoppable = true;
 		isAutoTileable = false;
 		autoTile = 0;
+		particleEffect = "cactusChunks.p";
 	}
 	
 	@Override

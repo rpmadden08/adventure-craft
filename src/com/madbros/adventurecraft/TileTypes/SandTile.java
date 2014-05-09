@@ -20,6 +20,7 @@ public class SandTile extends Tile {
 		id = SAND;
 		autoTileID = id;
 		is32 = false;
+		particleEffect = "sandChunks.p";
 	}
 	
 	public void render(int x, int y) {

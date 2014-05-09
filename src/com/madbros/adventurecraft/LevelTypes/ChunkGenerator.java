@@ -25,12 +25,12 @@ public class ChunkGenerator {
     	//MOUNTAIN
     	} else if(chunkGroundLayer[m][n] == 2) {
  				
-    			if(getRandom(0.1, m, n)) {
+    			if(getRandom(0.8, m, n)) {
     				return COAL_MARK; 
-    			} else if(getRandom(0.2, m, n)) {
+    			} else if(getRandom(1.6, m, n)) {
     				return TIN_MARK;
-    			} else if(getRandom(0.3, m, n)) {//0.3
-        			return COPPER_MARK;
+//    			} else if(getRandom(0.6, m, n)) {//0.3
+//        			return COPPER_MARK;
         		} else {
     				return DIRT_MOUNTAIN_BOTTOM;
     			}

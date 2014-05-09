@@ -25,6 +25,7 @@ public class DirtMountainBottomTile extends CollisionTile {
 		is32 = true;
 		maxHp = 20;
 		currentHp = 20;
+		particleEffect = "mountainChunks.p";
 	}
 	
 	public void render(int x, int y) {

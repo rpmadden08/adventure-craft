@@ -21,6 +21,7 @@ public class DirtTile extends Tile {
 		autoTileID = id;
 		isTillable = true;
 		is32 = true;
+		particleEffect = "dirtChunks.p";
 	}
 	
 	public void render(int x, int y) {

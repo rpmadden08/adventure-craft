@@ -42,7 +42,7 @@ public class Pick extends ToolItem {
 	}
 	public void impact() {
 		Game.level.tileBeingAttacked.currentHp -= itemPower;
-		
+		String tileParticle = Game.level.tileBeingAttacked.particleEffect;
 		if(Game.level.tileBeingAttacked.currentHp < 1) {
 			Game.soundController.create("sounds/stoneRubble.wav", 0.8f);
 			Game.level.highlightedBlock.deleteObjectTile();
@@ -59,6 +59,8 @@ public class Pick extends ToolItem {
 		} else {
 			Game.soundController.create(sound, 0.5f);
 		}
+		Game.particleEffectController.add(tileParticle, 
+				Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
 	}
 	
 	public void highlightItem(Block block, int x, int y) {

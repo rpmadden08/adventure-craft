@@ -47,6 +47,7 @@ public abstract class Tile {
 	public int topRightAutoTile = 0;
 	public int bottomRightAutoTile = 0;
 	public int bottomLeftAutoTile = 0;
+	public String particleEffect = "chunks.p";
 	
 //	public Tile() {
 //		
