@@ -77,7 +77,7 @@ public class ChestTile extends CollisionTile {
 			if(Game.inventory.invChest[i].item.id != 0) {
 				Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 				item = ITEM_HASH.get(Game.inventory.invChest[i].item.id).createNew();
-				Game.collectibleController.add(Game.inventory.invChest[i].item.id, Game.inventory.invChest[i].item.sprite, collectibleRect2, 1, item.maxUses);
+				Game.collectibleController.add(Game.inventory.invChest[i].item.id, Game.inventory.invChest[i].item.sprite, collectibleRect2, Game.inventory.invChest[i].item.stackSize, item.maxUses);
 			}
 		}
 		

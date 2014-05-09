@@ -144,13 +144,13 @@ public class FurnaceTile extends CollisionTile {
 			if(furnaceSlots[i].item.id != 0) {
 				Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 				item = ITEM_HASH.get(furnaceSlots[i].item.id).createNew();
-				Game.collectibleController.add(furnaceSlots[i].item.id, furnaceSlots[i].item.sprite, collectibleRect2, 1, item.maxUses);
+				Game.collectibleController.add(furnaceSlots[i].item.id, furnaceSlots[i].item.sprite, collectibleRect2, furnaceSlots[0].item.stackSize, item.maxUses);
 			}
 		}
 		if(craftedSlot[0].item.id != 0) {
 			Rect collectibleRect3 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 			item = ITEM_HASH.get(craftedSlot[0].item.id).createNew();
-			Game.collectibleController.add(craftedSlot[0].item.id, craftedSlot[0].item.sprite, collectibleRect3, 1, item.maxUses);
+			Game.collectibleController.add(craftedSlot[0].item.id, craftedSlot[0].item.sprite, collectibleRect3, craftedSlot[0].item.stackSize, item.maxUses);
 			
 		}
 	}
