@@ -2,6 +2,7 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 
@@ -33,6 +34,15 @@ public class DirtMountainTopTile extends CollisionTile {
 			sprites[bottomLeftAutoTile].draw(x, y+size, z);
 			sprites[bottomRightAutoTile].draw(x+size, y+size, z);
 		}
+	}
+	
+	public void update(int x,int y) {
+		//if(bottomLeftAutoTile == 0 ||bottomLeftAutoTile == 8 ||bottomLeftAutoTile == 32 )  {
+			//Game.level.activeBlocks[x][y].layers[TREE_RIGHT_2].isVisible = false;//96 //104
+		//} else {
+			//isVisible = true;
+		//}
+		//System.out.println("yo");
 	}
 	
 	public Tile createNew() {

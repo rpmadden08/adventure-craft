@@ -71,7 +71,7 @@ public abstract class Item {
 	
 	public void renderLarge(Rect slotRect) {
 		if(sprite != null) {
-			sprite.draw(slotRect.x + (ITEM_OFFSET*2), slotRect.y + (ITEM_OFFSET*2), Z_INV_ITEMS, (int)(sprite.getWidth()*2), (int)(sprite.getHeight()* 2));
+			sprite.draw(slotRect.x + (ITEM_OFFSET*2), slotRect.y + (ITEM_OFFSET*3), Z_INV_ITEMS, (int)(sprite.getWidth()*2), (int)(sprite.getHeight()* 2));
 		}
 		if(uses != maxUses) {
 			Game.renderSystem.renderItemHealth(this, slotRect.x, slotRect.y);
@@ -91,6 +91,37 @@ public abstract class Item {
 	
 	public Tile topTile(Block block) {
 		return block.getTopTile();
+	}
+	
+	public boolean isInInventory() {
+		int currentCraftCostAmount = stackSize;
+		for(int invBar = 0; invBar < Game.inventory.invBar.length; invBar++) {
+			if(Game.inventory.invBar[invBar].item.id == this.id) {
+				if(currentCraftCostAmount <= Game.inventory.invBar[invBar].item.stackSize) {
+					//ingChecklist[x] = true;
+					currentCraftCostAmount = currentCraftCostAmount - Game.inventory.invBar[invBar].item.stackSize;
+					break;
+				} else {
+					currentCraftCostAmount = currentCraftCostAmount - Game.inventory.invBar[invBar].item.stackSize;
+				}
+			}
+		}
+		for(int invBag = 0; invBag < Game.inventory.invBag.length; invBag++) {
+			if(Game.inventory.invBag[invBag].item.id == this.id) {
+				if(currentCraftCostAmount <= Game.inventory.invBag[invBag].item.stackSize) {
+					//ingChecklist[x] = true;
+					currentCraftCostAmount = currentCraftCostAmount - Game.inventory.invBag[invBag].item.stackSize;
+					break;
+				} else {
+					currentCraftCostAmount = currentCraftCostAmount - Game.inventory.invBag[invBag].item.stackSize;
+				}
+			}
+		}
+		if(currentCraftCostAmount >0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	public boolean areIngredientsInInventory() {

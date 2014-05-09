@@ -572,18 +572,28 @@ public class RenderSystem {
 			frameCutter = 0;
 		}
 		//lightSize = lightSize + lightSizeRandom;
-		float x = hero.absRect.midX() - startX - lightSize/2;
-		float y = hero.absRect.midY() - startY - lightSize/2;
-		StaticSprite lightSprite = Sprites.sprites.get(Sprites.LIGHT);
-		lightSprite.draw(x, y, 0.4f, lightSize, lightSize);
-		lightSprite.setColor(1,1,1,Game.lightTransparency2);
+		
+		if(Game.inventory.invBar[Game.inventory.itemSelected].item.id == TORCH) {
+			lightSize = 500 + lightSizeRandom;
+			float x = hero.absRect.midX() - startX - lightSize/2;
+			float y = hero.absRect.midY() - startY - lightSize/2;
+			StaticSprite lightSprite = Sprites.sprites.get(Sprites.CAMPFIRE_LIGHT);
+			lightSprite.draw(x, y, 0.4f, lightSize, lightSize);
+			lightSprite.setColor(1,1,1,Game.lightTransparency2);
+		} else {
+			float x = hero.absRect.midX() - startX - lightSize/2;
+			float y = hero.absRect.midY() - startY - lightSize/2;
+			StaticSprite lightSprite = Sprites.sprites.get(Sprites.LIGHT);
+			lightSprite.draw(x, y, 0.4f, lightSize, lightSize);
+			lightSprite.setColor(1,1,1,Game.lightTransparency2);
+		}
 		
 		StaticSprite campFireSprite = Sprites.sprites.get(Sprites.CAMPFIRE_LIGHT);
 		for(Block light : lightTiles) {
 			LightTile tile = (LightTile)light.layers[OBJECT_LAYER];
 			lightSize = tile.lightSize + lightSizeRandom;
-			x = light.absRect.midX() - startX - lightSize/2;
-			y = light.absRect.midY() - startY - lightSize/2;
+			float x = light.absRect.midX() - startX - lightSize/2;
+			float y = light.absRect.midY() - startY - lightSize/2;
 			campFireSprite.draw(x, y, 0.4f, lightSize, lightSize);
 		}
 		lightTiles = new ArrayList<Block>();

@@ -59,12 +59,6 @@ public class Bat extends Mob {
 			Game.hero.knockBack(this);
 		}
 	}
-//	@Override
-//	public void didGetHit() {
-//		
-//		//This is when the weapon hits the bat
-//		//mobController.remove(this);
-//	}
 	
 	public void updateAI() {
 		//checkForChasing();

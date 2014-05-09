@@ -9,7 +9,7 @@ public class Steak extends FoodItem {
 		id = STEAK;
 		name = "Raw Steak";
 		sprite = Sprites.sprites.get(Sprites.STEAK);
-		itemsPossiblyCraftable = new int[]{};
+		itemsPossiblyBurnable = new int[]{COOKED_STEAK};
 	}
 	
 	@Override

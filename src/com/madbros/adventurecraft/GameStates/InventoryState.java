@@ -14,6 +14,10 @@ public class InventoryState extends MainState {
 	
 	@Override
 	protected void updateStates() {
+		dt = Gdx.graphics.getRawDeltaTime();
+		Game.zAngle += dt * Game.zSpeed;
+		while(Game.zAngle > Game.PI2)
+			Game.zAngle -= Game.PI2;
 		Game.animationSystem.updateInventory(Game.hero, Game.inventory, Game.mobController);
 		Game.hero.update();
 		Game.mobController.update();

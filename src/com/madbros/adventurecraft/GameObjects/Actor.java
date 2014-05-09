@@ -95,6 +95,14 @@ public class Actor extends GameObject {
 		isMovingRight = false;
 	}
 	
+	public boolean isKnockingBack() {
+		if(!isKnockingLeft && !isKnockingRight && !isKnockingDown && !isKnockingUp) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 	public void moveRight() {
 		if(!isMoving() || isMovingLeft) sprite.changeAnimationTo(WALK_RIGHT);
 		isMovingLeft = false;

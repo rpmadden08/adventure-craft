@@ -86,7 +86,7 @@ public class Hero extends Actor {
 		damage = damage - armor;
 		eP = eP - 0.1;
 		if(damage<1) {damage = 1;}
-		if(knockBackTime <= 0) {
+		if(knockBackTime <= 0 && isKnockingBack()) {
 			if(hP - damage < 0) {
 				hP = 0;
 			} else {
@@ -214,6 +214,12 @@ public class Hero extends Actor {
 			if(knockBackTime > 0) {
 				currentSpeed = knockBackSpeed;
 				moveKnockBack(Time.getDelta());
+			}
+			if(knockBackTime == 1) {
+				isKnockingLeft = false;
+				isKnockingDown = false;
+				isKnockingRight = false;
+				isKnockingUp = false;
 			}
 		} else if(isMoving() && !isAttacking) {
 			if(eP > 0) {

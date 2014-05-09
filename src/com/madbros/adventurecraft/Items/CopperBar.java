@@ -2,6 +2,7 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.*;
 
 public class CopperBar extends CraftItem {
@@ -15,5 +16,13 @@ public class CopperBar extends CraftItem {
 	@Override
 	public CopperBar createNew() {
 		return new CopperBar();
+	}
+	
+	public boolean isValidFurnaceRecipe(Slot[] craftingSlots) {
+		if(craftingSlots[0].item.id == COPPER_ITEM) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

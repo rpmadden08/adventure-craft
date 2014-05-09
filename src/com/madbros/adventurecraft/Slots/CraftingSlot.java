@@ -2,6 +2,7 @@ package com.madbros.adventurecraft.Slots;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Inventory;
 import com.madbros.adventurecraft.Items.Item;
@@ -55,13 +56,27 @@ public class CraftingSlot extends Slot{
 			
 			for(int a = 0; a < item.craftCost.length; a++) {
 				
-				Rect recipeSlotRect = new Rect(402,slotYCoord, slotRect.w, slotRect.h);
-				slotSprite.draw(402,slotYCoord, Z_INV_SLOTS);
+				
 				Item recipeItem = ITEM_HASH.get(item.craftCost[a]).createNew();
 				recipeItem.stackSize = item.craftCostAmount[a];
-				recipeItem.render(recipeSlotRect);
-				recipeItem.renderFont(recipeSlotRect.x2()-INV_SLOT_SIZE/2,recipeSlotRect.y2()-INV_SLOT_SIZE/2, Game.batch);
-				Sprites.arial10.draw(Game.batch, recipeItem.name, recipeSlotRect.x+ 44, recipeSlotRect.y+ 12);
+				if(recipeItem.isInInventory()) {
+					Rect recipeSlotRect = new Rect(402,slotYCoord, slotRect.w, slotRect.h);
+					slotSprite.draw(402,slotYCoord, Z_INV_SLOTS);
+					recipeItem.render(recipeSlotRect);
+					recipeItem.renderFont(recipeSlotRect.x2()-INV_SLOT_SIZE/2,recipeSlotRect.y2()-INV_SLOT_SIZE/2, Game.batch);
+					Sprites.arial10.draw(Game.batch, recipeItem.name, recipeSlotRect.x+ 44, recipeSlotRect.y+ 12);
+				} else {
+					Rect recipeSlotRect = new Rect(402,slotYCoord, slotRect.w, slotRect.h);
+					slotSprite.setColor(Color.RED);
+					slotSprite.draw(402,slotYCoord, Z_INV_SLOTS);
+					slotSprite.setColor(Color.WHITE);
+					//recipeItem.sprite.setColor(Color.RED);
+					recipeItem.render(recipeSlotRect);
+					//recipeItem.sprite.setColor(Color.WHITE);
+					recipeItem.renderFont(recipeSlotRect.x2()-INV_SLOT_SIZE/2,recipeSlotRect.y2()-INV_SLOT_SIZE/2, Game.batch);
+					Sprites.arial10.draw(Game.batch, recipeItem.name, recipeSlotRect.x+ 44, recipeSlotRect.y+ 12);
+				}
+				
 				slotYCoord = slotYCoord + 44;
 				
 			}
@@ -71,9 +86,18 @@ public class CraftingSlot extends Slot{
 				CraftedSlot craftedSlot = new CraftedSlot(536, 379);
 				
 				if(item.workSpaceNeeded[0] == 1) {
+					
 					craftedSlot.item = ITEM_HASH.get(TABLE).createNew();
+					
 				}
-				craftedSlot.render();
+				if(Game.inventory.currentWorkSpace != 1) {
+					craftedSlot.slotSprite.setColor(Color.RED);
+					craftedSlot.render();
+					craftedSlot.slotSprite.setColor(Color.WHITE);
+				} else {
+					
+					craftedSlot.render();
+				}
 				Sprites.font.draw(Game.batch, "Workspace", 534, 345);
 				Sprites.font.draw(Game.batch, "Needed", 550, 360);
 			}

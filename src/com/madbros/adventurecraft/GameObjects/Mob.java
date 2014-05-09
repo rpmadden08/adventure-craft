@@ -152,6 +152,12 @@ public class Mob extends Actor {
 			knockBackTime = knockBackTime - 1;
 			currentSpeed = knockBackSpeed;
 			moveKnockBack(Time.getDelta());
+			if(knockBackTime == 1) {
+				isKnockingLeft = false;
+				isKnockingDown = false;
+				isKnockingRight = false;
+				isKnockingUp = false;
+			}
 		} else if(isMoving() && !isAttacking) {
 			currentSpeed = moveSpeed;
 			move(Time.getDelta());
@@ -172,22 +178,23 @@ public class Mob extends Actor {
 			Rect charCRect = new Rect(Game.hero.absRect, Game.hero.margin);
 			Rect cRect = new Rect(absRect, margin);
 			
-			if(cRect.detectCollision(charCRect)) {
+			if(cRect.detectCollision(charCRect) && Game.hero.knockBackTime <=0) {
 				didCollide();
 			}
-			if(Game.hero.isAttacking) {
+			if(Game.hero.isAttacking ) {
 				Rect wRect = new Rect(Game.hero.absRect.x+ Game.hero.attackItem.cRectFinal.x, Game.hero.absRect.y + Game.hero.attackItem.cRectFinal.y, Game.hero.attackItem.cRectFinal.w,Game.hero.attackItem.cRectFinal.h);
 	
-				if(cRect.detectCollision(wRect)) {
+				if(cRect.detectCollision(wRect)&& knockBackTime <= 0) {
 					didGetHit();
 				}
 			}
 		}
 	};
+
 	
 	@Override
 	public void didGetHit() {
-		if(knockBackTime <= 0) {
+		if(knockBackTime <= 0 && !isKnockingBack()) {
 			takeDamage(Game.hero.attackItem.attackPower);
 			knockBack(Game.hero);
 		}

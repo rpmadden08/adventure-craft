@@ -427,6 +427,9 @@ public class Level {
 				activeBlocks[x][y].layers[GRASS_LAYER].update(x, y);
 				activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
 				activeBlocks[x][y].layers[TREE_LEFT_0].update(x, y);
+				activeBlocks[x][y].layers[ABOVE_LAYER_2].update(x, y);
+				activeBlocks[x][y].layers[TREE_RIGHT_1].update(x, y);
+				activeBlocks[x][y].layers[TREE_RIGHT_0].update(x, y);
 			}
 		}
 		
