@@ -3,6 +3,7 @@
 	<name>TileCraft</name>
 	<comment></comment>
 	<projects>
+		<project>Joise</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
