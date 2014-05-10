@@ -10,6 +10,7 @@ public class SlimeBall extends CraftItem {
 		name = "Slime Ball";
 		sprite = Sprites.sprites.get(Sprites.SLIME_BALL);
 		itemsPossiblyCraftable = new int[]{};
+		itemsPossiblyBrewable = new int[]{SLOWNESS_POTION};
 	}
 	
 	@Override

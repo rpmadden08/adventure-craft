@@ -18,6 +18,7 @@ public class RedFlowers extends BlockItem32 {
 		name = "Red Flowers";
 		placeableTileIds = new int[]{GRASS};
 		sprite = Sprites.sprites.get(Sprites.RED_FLOWERS);
+		itemsPossiblyBrewable = new int[]{HEALTH_POTION};
 		
 	}
 	

@@ -28,6 +28,10 @@ public class Actor extends GameObject {
 	public float currentSpeed;
 	public float knockBackSpeed;
 	public float moveSpeed;
+	public float runningSpeed;
+	public float slownessSpeed;
+	public float speedSpeed;
+	public float hungerSpeed = 0;
 	public Block[] collisionDetectionBlocks;
 	
 	boolean isMovingLeft = false, isMovingRight = false, isMovingUp = false, isMovingDown = false;
@@ -75,6 +79,16 @@ public class Actor extends GameObject {
 	/************************** Movement **************************/
 	public boolean isMoving() {
 		return (isMovingDown || isMovingUp || isMovingLeft || isMovingRight);
+	}
+	
+	public void checkSpeed() {
+		float baseSpeed;
+		if(knockBackTime <=0) {
+			baseSpeed = moveSpeed + runningSpeed;
+			currentSpeed = baseSpeed - (baseSpeed * slownessSpeed) + (baseSpeed * speedSpeed)-(baseSpeed*hungerSpeed);
+		} else {
+			currentSpeed = knockBackSpeed;
+		}
 	}
 	
 	public void moveUp() {

@@ -21,6 +21,7 @@ public class Hero extends Actor {
 	public boolean attackButtonReleased = true;
 	public boolean isDead = false;
 	public int deathWait = 0;
+
 	public Hero() {
 		super();
 		//STATS
@@ -37,10 +38,9 @@ public class Hero extends Actor {
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_BASE));
 		margin = new Margin(17, 17, 29, 1);
 		moveSpeed = 0.19f; //0.19
-		currentSpeed = 0.19f; //0.19
+		currentSpeed = 0f; //0.19
 		knockBackSpeed = 0.3f;
 		hitSound = "sounds/pain.wav";
-		
 		collisionDetectionBlocks = new Block[9];
 		weaponX = 0;
 		weaponY= 0;
@@ -157,19 +157,22 @@ public class Hero extends Actor {
 	public void checkEnergy() {
 		//get hunger percentage
 		double percentage = eP / maxEP;
+		hungerSpeed = 0;
 		if(percentage < 0.25) {
-			if(Game.hero.timedStatusEffects[SLOWNESS].id != SLOWNESS) {
-				Game.hero.timedStatusEffects[SLOWNESS] = new Slowness();
-				Game.hero.moveSpeed = Game.hero.moveSpeed - Slowness.speedAmount;
-				Game.hero.currentSpeed = Game.hero.moveSpeed;
-			}
+			hungerSpeed = 0.25f;
+			checkSpeed();
+			
+//			if(Game.hero.timedStatusEffects[SLOWNESS].id != SLOWNESS) {
+//				Game.hero.timedStatusEffects[SLOWNESS] = new Slowness();
+//				
+//			}
 		} else {
-			if(Game.hero.timedStatusEffects[SLOWNESS].id == SLOWNESS) {
-				moveSpeed = moveSpeed + Slowness.speedAmount;
-				currentSpeed = moveSpeed ;
-				
-				eraseTimedStatusEffect(SLOWNESS);
-			}
+//			if(Game.hero.timedStatusEffects[SLOWNESS].id == SLOWNESS) {
+//				moveSpeed = moveSpeed + Slowness.speedAmount;
+//				currentSpeed = moveSpeed ;
+//				
+//				eraseTimedStatusEffect(SLOWNESS);
+//			}
 		}
 		if(percentage < 0.1) {
 			counter++;
@@ -212,7 +215,7 @@ public class Hero extends Actor {
 		} else if(knockBackTime > 0) {
 			knockBackTime = knockBackTime - 1;
 			if(knockBackTime > 0) {
-				currentSpeed = knockBackSpeed;
+				checkSpeed();
 				moveKnockBack(Time.getDelta());
 			}
 			if(knockBackTime == 1) {
@@ -226,7 +229,7 @@ public class Hero extends Actor {
 				eP = eP - 0.0005;
 			}
 			
-			currentSpeed = moveSpeed;
+			checkSpeed();
 			move(Time.getDelta());
 		} else if(isAttacking) {
 

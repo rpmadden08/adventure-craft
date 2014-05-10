@@ -30,9 +30,10 @@ public class Mob extends Actor {
 	public boolean isInRangeOfCampfire = false;
 	public Rect campFireRect = new Rect(0,0,0,0);
 	public int mobState = 1;
-	public float maxSpeed;
+	//public float maxSpeed;
 	public boolean isFleeing = false;
 	public String deathParticles = "death.p";
+	
 	
 	
 	public Mob(MobController mobController) {
@@ -43,18 +44,22 @@ public class Mob extends Actor {
 		detectRect = new Rect(absRect.x - detectRange, absRect.y - detectRange, absRect.w +(detectRange*2), absRect.h +(detectRange*2));
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_BASE));
 		margin = new Margin(17, 17, 29, 1);
-		currentSpeed = 0.05f;
 		collisionDetectionBlocks = new Block[9];
 		
 		hitSound = "sounds/bat.wav";
 		deathSound = "sounds/splat.wav";
 		
-		moveSpeed = 0.05f;//0.05
-		currentSpeed = 0.05f; //0.05
+		moveSpeed = 0f;//0.05
+		currentSpeed = 0f; //0.05
 		knockBackSpeed = 0.3f; //0.3
+		speedSpeed = 0f;
+		slownessSpeed = 0f;
 	}
 
-
+	
+	
+	
+	
 	public void deathDrop() {
 		
 	}
@@ -150,7 +155,7 @@ public class Mob extends Actor {
 		
 		if(knockBackTime > 0) {
 			knockBackTime = knockBackTime - 1;
-			currentSpeed = knockBackSpeed;
+			checkSpeed();
 			moveKnockBack(Time.getDelta());
 			if(knockBackTime == 1) {
 				isKnockingLeft = false;
@@ -159,7 +164,8 @@ public class Mob extends Actor {
 				isKnockingUp = false;
 			}
 		} else if(isMoving() && !isAttacking) {
-			currentSpeed = moveSpeed;
+			//currentSpeed = moveSpeed;
+			checkSpeed();
 			move(Time.getDelta());
 		} else if(isAttacking) {
 			
@@ -204,8 +210,9 @@ public class Mob extends Actor {
 		float speedX = (hero.x+(hero.w/2)) - (mob.x+(mob.w/2));
 		float speedY = (hero.y+(hero.h/2)) - (mob.y +(mob.h/2));
 		
-		float maxSpeed = moveSpeed;
-		
+		//float maxSpeed = moveSpeed;
+		float maxSpeed = currentSpeed;
+		//System.out.println(currentSpeed);
 		if(speedX > maxSpeed && speedY > maxSpeed) {
 			moveRight();
 			moveDown();
@@ -357,7 +364,9 @@ public class Mob extends Actor {
 	}
 	
 	public void updateAI() {				
-		
+		runningSpeed = 0;
+		currentSpeed = 0;
+		checkSpeed();
 	}
 	
 	public void xMove(int moveX) {

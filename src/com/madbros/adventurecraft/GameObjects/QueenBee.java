@@ -33,7 +33,7 @@ public class QueenBee extends Mob {
 		margin = new Margin(0, 0, 0, 0);
 		currentSpeed = 0.2f;
 		moveSpeed = 0.15f;
-		maxSpeed = 0.15f;
+		//maxSpeed = 0.15f;
 		collisionDetectionBlocks = new Block[9];
 		deathParticles = "beeDeath.p";
 	}
@@ -72,7 +72,7 @@ public class QueenBee extends Mob {
 		super.updateAI();
 		checkForFleeing();
 		if(isFleeing && mobState != 3) {
-			moveSpeed = maxSpeed;
+			//moveSpeed = maxSpeed;
 			fleeRect(Game.hero.absRect, this.absRect);
 		} else if(mobState == 1) {
 			summonBees();
@@ -90,7 +90,7 @@ public class QueenBee extends Mob {
 			}
 			framesNum++;
 		} else if(mobState == 3) {
-			moveSpeed = maxSpeed;
+			//moveSpeed = maxSpeed;
 			chaseHero(Game.hero.absRect, this.absRect);
 			if(framesNum > length) {
 				framesNum = 0;

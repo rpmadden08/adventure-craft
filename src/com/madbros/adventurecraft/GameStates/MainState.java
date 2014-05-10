@@ -97,7 +97,7 @@ public class MainState extends GameState {
 			Game.renderSystem.renderCollectibles(Game.collectibleController);
 			
 			
-			Game.map.render(Game.level.activeBlocks);
+			//Game.map.render(Game.level.activeBlocks);
 			
 			
 			

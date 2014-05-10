@@ -12,7 +12,7 @@ public class Artichoke extends FoodItem {
 		id = ARTICHOKE;
 		name = "Artichoke";
 		sprite = Sprites.sprites.get(Sprites.ARTICHOKE);
-		
+		itemsPossiblyBrewable = new int[]{SLOWNESS_POTION};
 		itemsPossiblyCraftable = new int[]{};
 		
 	}

@@ -229,7 +229,7 @@ public class Game implements ApplicationListener {
 		particleEffectController = new ParticleEffectController();
 		musicController = new MusicController();
 		inventory = new Inventory();
-		map = new MiniMap();
+		//map = new MiniMap();
 		renderSystem = new RenderSystem();
 		animationSystem = new AnimationSystem();
 		
@@ -258,6 +258,7 @@ public class Game implements ApplicationListener {
 		
 		camera= new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		
 		batch = new SpriteBatch();
 		particleBatch = new SpriteBatch();
 		new Sprites();

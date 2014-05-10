@@ -17,6 +17,7 @@ public class DesktopLauncher {
 		cfg.vSyncEnabled = true;
 		cfg.resizable = false;
 		
+		
 		new LwjglApplication(new Game(), cfg);
 	}
 }

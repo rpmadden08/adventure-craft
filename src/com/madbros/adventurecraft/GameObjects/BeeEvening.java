@@ -13,36 +13,49 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class Slime extends Mob {
+public class BeeEvening extends Mob {
 	int length = 0;
 	int framesNum = 0;
 	MobController mobController;
 	//Rect detectRect;
 	
-	public Slime(MobController mobController, int x, int y) {
+	public BeeEvening(MobController mobController, int x, int y) {
 		super(mobController);
-		attack = 5;
-		hP = 10;
-		maxHP = 10;
+		attack = 2;
+		hP = 6;
+		maxHP = 6;
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
 		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
 		detectRange = 100;
-		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.SLIME));
+		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BEE_MINI));
 		margin = new Margin(0, 0, 0, 0);
-		currentSpeed = 0.03f;
-		moveSpeed = 0.03f;
+		moveSpeed = 0.06f;
+		currentSpeed = 0f;
 		collisionDetectionBlocks = new Block[9];
-		deathParticles = "slimeDeath.p";
-		sprite.changeFrameTimes(200);
+		deathParticles = "beeDeath.p";
+		isChasing = false;
 	}
-	
+
+//	public void startAttacking() {
+//		timeSinceLastAnimation = 0;	//getTime()
+//		isAttacking = true;
+//	}
+//	
+//	public void stopAttacking() {
+//		isAttacking = false;
+//	}
 	@Override
 	public void deathDrop() {
 		Rect collectibleRect = new Rect(absRect.x, absRect.y, 16, 16);
-		Item item = ITEM_HASH.get(SLIME_BALL).createNew();
-		Game.collectibleController.add(SLIME_BALL, Sprites.sprites.get(Sprites.SLIME_BALL), collectibleRect, 1, item.maxUses);
+		Item item = ITEM_HASH.get(HONEY).createNew();
+		Game.collectibleController.add(HONEY, Sprites.sprites.get(Sprites.HONEY), collectibleRect, 1,item.maxUses);
+	}
+	
+	public void takeDamage(int damage) {
+		super.takeDamage(damage);
+		isChasing = true;
 	}
 	
 	@Override
@@ -55,23 +68,22 @@ public class Slime extends Mob {
 	}
 	
 	public void updateAI() {
-		
-		super.updateAI();	
 		checkForChasing();
-		checkForFleeingCampfire();
-		if(isInRangeOfCampfire) {
-			fleeRect(campFireRect, this.absRect);
-		} else if(isChasing) {
-			moveSpeed = 0.06f;
-			currentSpeed = 0.06f;
-			checkForChasing();
-			chaseHero(Game.hero.absRect, this.absRect);
-		}else{
-			moveSpeed = 0.03f;
-			currentSpeed = 0.03f;
-			moveInRandomDirection(100);
-		}
-		//System.out.println(moveSpeed);
+			super.updateAI();
+		//	System.out.println(currentSpeed+":"+moveSpeed);
+				checkForFleeingCampfire();
+				if(isInRangeOfCampfire) {
+					fleeRect(campFireRect, this.absRect);
+				} else if(isChasing) {
+					runningSpeed = 0.06f;
+					checkSpeed();
+					checkForChasing();
+					chaseHero(Game.hero.absRect, this.absRect);
+				}else{
+					runningSpeed = 0f;
+					checkSpeed();
+					moveInRandomDirection(30);
+				}	
 		
 	}
 	

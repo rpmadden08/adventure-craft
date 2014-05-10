@@ -15,7 +15,7 @@ public class CactusSeed extends BlockItem32 {
 		name = "Baby Cactus";
 		placeableTileIds = new int[]{SAND, DIRT};
 		sprite = Sprites.sprites.get(Sprites.CACTUS_ITEM);
-		itemsPossiblyBrewable = new int[]{SLOWNESS_POTION};
+		itemsPossiblyBrewable = new int[]{SPEED_POTION};
 		
 	}
 	

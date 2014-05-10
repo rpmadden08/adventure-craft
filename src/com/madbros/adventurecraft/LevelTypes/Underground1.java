@@ -188,11 +188,11 @@ public class Underground1 extends Level{
 				}
 				Item items[] = Helpers.getRandomLoot(
 						  new int[]{TIN_BAR, BAT_WING, WORM_GUTS, SLIME_BALL, HONEY, COOKED_STEAK,
-								  HEALTH_POTION, ARTICHOKE, TIN_SWORD, TIN_PICK, TIN_AXE, TIN_HOE, TIN_SHOVEL, TIN_HELMET, TIN_LEGGINGS, TIN_ARMOR, TIN_BOOTS,
-								  COPPER_SWORD, COPPER_PICK}, 
-						  new int[]{1,1,1,1,1,1,  2,2,2,2,2,2,2,2,2,2,2, 3,3}, //Probabilities
-						  new int[]{1,1,1,1,1,1,  1,1,1,1,1,1,1,1,1,1,1, 1,1}, //min stack size
-						  new int[]{5,5,5,5,5,5,  3,5,1,1,1,1,1,1,1,1,1, 1,1}, //maxstacksize
+								  PEPPER_SPROUT, HEALTH_POTION, ARTICHOKE_SPROUT, TIN_SWORD, TIN_PICK, TIN_AXE, TIN_HOE, TIN_SHOVEL, TIN_HELMET, TIN_LEGGINGS, TIN_ARMOR, TIN_BOOTS,
+								  COPPER_SWORD, COPPER_PICK, PEPPER_SPROUT}, 
+						  new int[]{1,1,1,1,1,1,  2,2,2,2,2,2,2,2,2,2,2,2, 3,3}, //Probabilities
+						  new int[]{1,1,1,1,1,1,  1,1,1,1,1,1,1,1,1,1,1,1, 1,1}, //min stack size
+						  new int[]{5,5,5,5,5,5,  5,3,5,1,1,1,1,1,1,1,1,1, 1,1}, //maxstacksize
 						  1, //min items in chest
 						  6); //max items in chest
 				for(int g = 0; g < items.length; g++) {

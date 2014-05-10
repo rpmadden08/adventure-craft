@@ -32,9 +32,10 @@ public class Bee extends Mob {
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BEE_MINI));
 		margin = new Margin(0, 0, 0, 0);
 		moveSpeed = 0.03f;
-		currentSpeed = 0.03f;
+		currentSpeed = 0f;
 		collisionDetectionBlocks = new Block[9];
 		deathParticles = "beeDeath.p";
+		isChasing = false;
 	}
 
 //	public void startAttacking() {
@@ -65,23 +66,21 @@ public class Bee extends Mob {
 			Game.hero.knockBack(this);
 		}
 	}
-//	@Override
-//	public void didGetHit() {
-//		
-//		//This is when the weapon hits the bat
-//		//mobController.remove(this);
-//	}
 	
 	public void updateAI() {
-		//checkForChasing();
 			super.updateAI();
 				checkForFleeingCampfire();
 				if(isInRangeOfCampfire) {
 					fleeRect(campFireRect, this.absRect);
 				} else if(isChasing) {
+					//moveSpeed = 0.09f;
+					runningSpeed = 0.06f;
+					checkSpeed();
 					checkForChasing();
 					chaseHero(Game.hero.absRect, this.absRect);
 				}else{
+					runningSpeed = 0f;
+					checkSpeed();
 					moveInRandomDirection(30);
 				}	
 		

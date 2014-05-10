@@ -35,16 +35,24 @@ public class SpeedPotion extends PotionItem {
 	
 	public void applyPotionEffect() {
 		Game.hero.timedStatusEffects[SPEED] = new Speed();
-		Game.hero.moveSpeed = Game.hero.moveSpeed + Speed.speedAmount;
-		Game.hero.currentSpeed = Game.hero.moveSpeed;
+		Game.hero.speedSpeed = Speed.speedAmount;
+		Game.hero.checkSpeed();
 		stackSize -= 1;
 		Game.inventory.deleteItemIfNecessary();
 	}
 	
 	@Override
 	public boolean isValidCauldronRecipe(Slot[] craftingSlots) {
+//		boolean a = Helpers.containsXNumberOfItemsInSlots(1, BAT_WING, craftingSlots);
+//		boolean b = Helpers.containsXNumberOfItemsInSlots(1, GLASS_BOTTLE, craftingSlots);
+//		boolean c = Helpers.containsXNumberOfItemsInSlots(1, CACTUS_SEED, craftingSlots);
+//		if(a && b && c) {
+//			return true;
+//		} else {
+//			return false;
+//		}
 		return Helpers.containsXNumberOfItemsInSlots(1, BAT_WING, craftingSlots) &&
-				   Helpers.containsXNumberOfItemsInSlots(1, CACTUS_SEED, craftingSlots) &&
-				   Helpers.containsXNumberOfItemsInSlots(1, GLASS_BOTTLE, craftingSlots);
+				Helpers.containsXNumberOfItemsInSlots(1, GLASS_BOTTLE, craftingSlots) &&
+				   Helpers.containsXNumberOfItemsInSlots(1, CACTUS_SEED, craftingSlots);
 	}
 }

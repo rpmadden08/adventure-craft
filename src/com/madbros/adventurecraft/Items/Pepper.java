@@ -14,6 +14,7 @@ public class Pepper extends FoodItem {
 		sprite = Sprites.sprites.get(Sprites.PEPPER);
 		
 		itemsPossiblyCraftable = new int[]{};
+		itemsPossiblyBrewable = new int[]{HARMING_POTION};
 		
 	}
 	@Override

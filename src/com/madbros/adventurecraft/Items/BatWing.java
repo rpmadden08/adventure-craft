@@ -10,7 +10,7 @@ public class BatWing extends CraftItem {
 		name = "Bat Wing";
 		sprite = Sprites.sprites.get(Sprites.BAT_WING);
 		itemsPossiblyCraftable = new int[]{};
-		itemsPossiblyBrewable = new int[]{SLOWNESS_POTION};
+		itemsPossiblyBrewable = new int[]{SPEED_POTION};
 	}
 	
 	@Override

@@ -76,9 +76,10 @@ public class MobController {
 		int topTile = Game.level.activeBlocks[x][y].getTopTile().id;
 		//System.out.println(topTile);
 		Block[] tileArea = getTileArea(x,y);
-		int num = rand.nextInt(100);//100
-		if(num == 0 && mobs.size() < 10) {
+		int num = rand.nextInt(10);//100
+		if(num == 0 && mobs.size() < 20) { //50
 			if(possibleSpawnPoint.detectCollision(heroRect)) {
+			//    ***************IF THE WORLD IS DARK	
 			} else if(isDark(possibleSpawnPoint)){
 				if(Game.currentLevel == OVERWORLD_FOLDER) {
 					if(topTile == GRASS) {
@@ -87,7 +88,7 @@ public class MobController {
 						} else {
 							int num2 = rand.nextInt(2);//100
 							if(num2 == 0) {
-								mobs.add(new QueenBeeMinion(this, x, y));
+								mobs.add(new BeeEvening(this, x, y));
 							}
 						}
 					}
@@ -100,14 +101,15 @@ public class MobController {
 						}
 					} 
 				}
-			} else {
+			} else { 
+				// **************** IF THE WORLD IS LIGHT
 				if(Game.currentLevel == OVERWORLD_FOLDER) {
 					if(topTile == GRASS) {
-							int num2 = rand.nextInt(6);//100
+							int num2 = rand.nextInt(6);
 							if(num2 == 0) {
 								mobs.add(new Bee(this, x, y));
 							} else {
-								mobs.add(new Cow(this, x, y));
+								mobs.add(new Bee(this, x, y));  //Should be cow
 							}
 					}
 				}

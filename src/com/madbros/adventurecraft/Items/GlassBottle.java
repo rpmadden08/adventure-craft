@@ -12,8 +12,8 @@ public class GlassBottle extends CraftItem {
 		name = "Glass Bottle";
 		sprite = Sprites.sprites.get(Sprites.GLASS_BOTTLE);
 		numberProducedByCrafting = 1;
-		craftCost = new int[]{};
-		craftCostAmount = new int[]{};
+		craftCost = new int[]{1};
+		craftCostAmount = new int[]{1};
 		itemsPossiblyCraftable = new int[]{};
 		itemsPossiblyBrewable = new int[]{SPEED_POTION, HEALTH_POTION, SLOWNESS_POTION, HARMING_POTION};
 		//set recipes

@@ -33,8 +33,9 @@ public class Helpers {
 		int count = 0;
 		for(int i = 0; i < slots.length; i++) {
 			if(slots[i].item.id == itemId) count++;
+			//System.out.println("ITEM ID: "+itemId+" = "+slots[i].item.id);
 		}
-		
+		//System.out.println("ITEM ID: "+itemId+" = "+slots[i].item.id);
 		if(count == x) {
 			return true;
 		}

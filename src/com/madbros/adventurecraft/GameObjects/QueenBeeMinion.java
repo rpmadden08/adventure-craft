@@ -80,6 +80,7 @@ public class QueenBeeMinion extends Bee {
 				chaseHero(Game.hero.absRect, this.absRect);
 				framesNum = 51;
 			} else {
+				isChasing = false;
 				moveInRandomDirection(50);
 			}
 			framesNum++;

@@ -21,7 +21,7 @@ public abstract class UIButton {
 	
 	public UIButton(int x, int y, int w, int h, String s, ButtonFunction func, SpriteBatch batch) {
 		rect = new Rect(x, y, w, h);
-		text = new Text(Sprites.font, s, batch);
+		text = new Text(Sprites.arial24, s, batch);
 		buttonFunction = func;
 	}
 	

@@ -8,7 +8,7 @@ public class SlownessMob extends TimedStatusEffect{
 	
 	public SlownessMob() {
 		potionEffectTime = 5000;
-		speedAmount = 0.02f;
+		speedAmount = 0.25f;
 		id = 1;
 		timeTriggered = Time.getTime();
 		
@@ -19,8 +19,8 @@ public class SlownessMob extends TimedStatusEffect{
 //		System.out.println("timeTriggered+potioneffecttime:  "+timeTriggered+ potionEffectTime);
 		if(Time.getTime() >= timeTriggered+ potionEffectTime) {
 			//System.out.println("Potion time is up!");
-			actor.moveSpeed = actor.moveSpeed + speedAmount;
-			actor.currentSpeed = actor.moveSpeed ;
+			actor.slownessSpeed = 0f;
+			actor.checkSpeed();
 			
 			actor.eraseTimedStatusEffect(this.id);
 			

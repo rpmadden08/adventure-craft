@@ -522,7 +522,7 @@ public class Constants {
 	public static final int MAIN_MENU_WIDTH = 100;
 	public static final int MAIN_MENU_HEIGHT = 30;
 	public static final int MAIN_MENU_STARTX = INITIAL_WINDOW_WIDTH/2 - MAIN_MENU_WIDTH / 2;
-	public static final int MAIN_MENU_STARTY = 40;
+	public static final int MAIN_MENU_STARTY = 300;
 	
 	public Constants() {
 		ITEM_HASH.put(NONE, new NoItem());
