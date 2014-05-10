@@ -7,10 +7,10 @@ import org.lwjgl.opengl.Display;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.MyTextInputListener;
 import com.madbros.adventurecraft.GameStates.MainMenuState;
+import com.madbros.adventurecraft.Sprites.StaticSprite;
 import com.madbros.adventurecraft.UI.*;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -19,6 +19,8 @@ public class MainMenu extends Menu{
 	public MainMenu(SpriteBatch batch) {
 		super(batch);
 	}
+	public StaticSprite sprite;
+	public StaticSprite sprite2;
 	
 	@Override
 	public void setupMenu(SpriteBatch batch) {
@@ -37,6 +39,11 @@ public class MainMenu extends Menu{
 		for(int i = 0; i < menuButtons.length; i++) {
 			menuButtons[i] = new TextUIButton(r.x, r.y + i * (r.h + marginY), r.w, r.h, strings[i], functions[i], batch);
 		}
+		Texture backdrop1 = new Texture(Gdx.files.internal("data/backdrop1.png"));
+		Texture logo = new Texture(Gdx.files.internal("data/logo.png"));
+
+		sprite = new StaticSprite(backdrop1, 0,0,1440,900,Game.batch);
+		sprite2 = new StaticSprite(logo, 0,0,logo.getWidth(),logo.getHeight(),Game.batch);
 	}
 	
 	private void newGame() {
@@ -60,13 +67,7 @@ public class MainMenu extends Menu{
 	
 	public void render() {
 		super.render();
-		Texture backdrop1 = new Texture(Gdx.files.internal("data/backdrop1.png"));
-		Texture logo = new Texture(Gdx.files.internal("data/logo.png"));
-		//TextureRegion backdrop1Region = new TextureRegion( backdrop1, 0, 0, INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT );
-
-		Game.batch.draw(backdrop1, 0, INITIAL_WINDOW_HEIGHT, INITIAL_WINDOW_WIDTH, -INITIAL_WINDOW_HEIGHT);
-		Game.batch.draw(logo, INITIAL_WINDOW_WIDTH /2 - logo.getWidth()*2 / 2, logo.getHeight()*2+40, logo.getWidth()*2, -logo.getHeight()*2);
-		
-			
+		sprite.draw(Game.batch);
+		sprite2.draw(INITIAL_WINDOW_WIDTH /2 - sprite2.getWidth()*2 / 2, 40,0f, sprite2.getWidth()*2, sprite2.getHeight()*2);	
 	}
 }
