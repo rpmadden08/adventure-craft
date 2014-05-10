@@ -31,4 +31,12 @@ public class TextUIButton extends UIButton {
 		Sprites.pixel.setColor(Color.WHITE);
 	}
 	
+	public void disableButton() {
+		//Currently only disables the colors...
+		this.fontColor = Color.GRAY;
+		this.highlight = Color.GRAY;
+		this.pressedColor =  Color.GRAY;
+				
+	}
+	
 }

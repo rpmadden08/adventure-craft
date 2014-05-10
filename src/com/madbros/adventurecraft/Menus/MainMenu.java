@@ -2,9 +2,13 @@ package com.madbros.adventurecraft.Menus;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.io.File;
+import java.io.FilenameFilter;
+
 import org.lwjgl.opengl.Display;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Game;
@@ -16,11 +20,12 @@ import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class MainMenu extends Menu{
+	public boolean isNewGameAvailable;
+	public File[] listOfFiles;
 	public MainMenu(SpriteBatch batch) {
 		super(batch);
 	}
-	public StaticSprite sprite;
-	public StaticSprite sprite2;
+
 	
 	@Override
 	public void setupMenu(SpriteBatch batch) {
@@ -39,17 +44,49 @@ public class MainMenu extends Menu{
 		for(int i = 0; i < menuButtons.length; i++) {
 			menuButtons[i] = new TextUIButton(r.x, r.y + i * (r.h + marginY), r.w, r.h, strings[i], functions[i], batch);
 		}
-		Texture backdrop1 = new Texture(Gdx.files.internal("data/backdrop1.png"));
-		Texture logo = new Texture(Gdx.files.internal("data/logo.png"));
 
-		sprite = new StaticSprite(backdrop1, 0,0,1440,900,Game.batch);
-		sprite2 = new StaticSprite(logo, 0,0,logo.getWidth(),logo.getHeight(),Game.batch);
+
+	
+		File folder = new File(SAVE_LOC);
+		listOfFiles = folder.listFiles(new FilenameFilter() {
+		    public boolean accept(File dir, String name) {
+		    	return new File(dir, name).isDirectory();
+		    }
+		});
+		if(listOfFiles.length >10) {
+			System.out.println("TEST");
+			isNewGameAvailable = false;
+			menuButtons[0].disableButton();
+			
+		} else {
+			isNewGameAvailable = true;
+		}
 	}
 	
 	private void newGame() {
-		MyTextInputListener listener = new MyTextInputListener();
-		Gdx.input.getTextInput(listener, "Name of New Game", "New Game");
-		//MainMenuState.newGame(Game.batch);
+//		MyTextInputListener listener = new MyTextInputListener();
+//		Gdx.input.getTextInput(listener, "Name of New Game", "New Game");
+//		//MainMenuState.newGame(Game.batch);
+		if(isNewGameAvailable == true) {
+			Game.gameFileName = "Adventure 1";
+			//MainMenuState.newGame(Game.batch);
+			File f = new File(SAVE_LOC + Game.gameFileName);
+			if(f.exists()) {
+				int gameNumber = 1;
+				String baseName = "Adventure ";
+				while(true) {
+					f = new File(SAVE_LOC + baseName + String.valueOf(gameNumber));
+					if(!f.exists()) {
+						Game.gameFileName = baseName + String.valueOf(gameNumber);
+						break;
+					}
+					gameNumber++;
+				}
+			}
+			Game.createNewGameAtLoc(SAVE_LOC + Game.gameFileName + "/");
+		} else {
+			System.out.println("test2");
+		}
 	}
 	
 	private void loadGame() {
@@ -67,7 +104,6 @@ public class MainMenu extends Menu{
 	
 	public void render() {
 		super.render();
-		sprite.draw(Game.batch);
-		sprite2.draw(INITIAL_WINDOW_WIDTH /2 - sprite2.getWidth()*2 / 2, 40,0f, sprite2.getWidth()*2, sprite2.getHeight()*2);	
+		super.renderSplashScreen();
 	}
 }

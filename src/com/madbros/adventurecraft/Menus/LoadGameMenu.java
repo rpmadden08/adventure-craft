@@ -59,18 +59,36 @@ public class LoadGameMenu extends Menu {
 		Rect[] r = {r1, r3, r2};
 
 		menuButtons = new UIButton[functions.length];
-		for(int i = 0; i < functions.length; i++) {
-			menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i], batch);
-		}
+			for(int i = 0; i < functions.length; i++) {
+				menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i], batch);
+			}
+		
 		
 
-		r1 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
-		int marginY = 3;
 		
+		
+		refreshMenu();
+	}
+	
+	public void refreshMenu() {
+		int marginY = 3;
+		Rect r1 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		selectUIButtons = new SelectUIButton[saveFolders.length];
-		for(int i = 0; i < selectUIButtons.length; i++) {
-			selectUIButtons[i] = new SelectUIButton(r1.x, r1.y + i * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
-			selectUIButtons[i].iD = i;
+		if(selectUIButtons.length < 6) {
+			for(int i = 0; i < selectUIButtons.length; i++) {
+				selectUIButtons[i] = new SelectUIButton(r1.x, r1.y + i * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
+				selectUIButtons[i].iD = i;
+			}
+		} else {
+			for(int i = 0; i < selectUIButtons.length; i++) {
+				if(i< 5) {
+					selectUIButtons[i] = new SelectUIButton(r1.x-r1.w/2-4, r1.y + i * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
+					selectUIButtons[i].iD = i;
+				} else {
+					selectUIButtons[i] = new SelectUIButton(r1.x+r1.w/2+4, r1.y + (i-5) * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
+					selectUIButtons[i].iD = i;
+				}
+			}
 		}
 	}
 	
@@ -88,6 +106,7 @@ public class LoadGameMenu extends Menu {
 	
 	@Override
 	public void render() {
+		super.renderSplashScreen();
 		super.render();
 		for(int i = 0; i < selectUIButtons.length; i++) {
 			selectUIButtons[i].render();
@@ -122,6 +141,7 @@ public class LoadGameMenu extends Menu {
 			currentlySelectedButton = null;
 		}
 		setupMenu(batch);
+		//refreshMenu();
 		
 		
 	}

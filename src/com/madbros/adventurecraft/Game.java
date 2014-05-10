@@ -2,7 +2,9 @@ package com.madbros.adventurecraft;
 
 import java.io.File;
 
+import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
 
 import com.madbros.adventurecraft.Items.*;
 import com.badlogic.gdx.ApplicationListener;
@@ -250,6 +252,17 @@ public class Game implements ApplicationListener {
 
 	@Override
 	public void create() {
+		try {
+			DisplayMode[] modes = Display.getAvailableDisplayModes();
+			
+			for (int i=0;i<modes.length;i++) {
+			    DisplayMode current = modes[i];
+			    System.out.println(current.getWidth() + "x" + current.getHeight() + "x" +
+			                        current.getBitsPerPixel() + " " + current.getFrequency() + "Hz"+ current.isFullscreenCapable());
+			}
+		} catch(LWJGLException e) {
+			throw new RuntimeException("Could not initiate LWJGL.", e);
+		}
 		gameStartTime = Time.getTime();
 		timeSpentInPreviousSaves = 0;  //TODO set this on game load:)
 		

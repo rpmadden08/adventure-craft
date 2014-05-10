@@ -68,4 +68,7 @@ public abstract class UIButton {
 	public void setString(String s) {
 		text.setString(s);
 	}
+	public void disableButton() {
+		
+	}
 }
