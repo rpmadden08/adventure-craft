@@ -231,7 +231,7 @@ public abstract class Item {
 	}
 	
 	public void playHitSound() {
-		Game.soundController.create(hitSound, 0.8f);
+		Game.soundController.create(hitSound, 0.3f);
 	}
 	
 	abstract public Item createNew(); 
