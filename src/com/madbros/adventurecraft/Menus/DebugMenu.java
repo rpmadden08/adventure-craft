@@ -60,11 +60,11 @@ public class DebugMenu extends Menu {
 	
 	public void tester() {
 		if(fullscreenIsOn == false) {
-			Gdx.graphics.setDisplayMode(INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT, true);
+			Gdx.graphics.setDisplayMode(Game.currentScreenSizeX, Game.currentScreenSizeY, true);
 			fullscreenIsOn = true;
 			menuButtons[6].setString("Fullscreen Is On");
 		} else {
-			Gdx.graphics.setDisplayMode(INITIAL_WINDOW_WIDTH, INITIAL_WINDOW_HEIGHT, false);
+			Gdx.graphics.setDisplayMode(Game.currentScreenSizeX, Game.currentScreenSizeY, false);
 			fullscreenIsOn = false;
 			menuButtons[6].setString("Fullscreen Is Off");
 		}

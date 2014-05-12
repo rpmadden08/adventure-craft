@@ -17,8 +17,8 @@ public class Constants {
 	public static HashMap<Integer, Integer> BOTTOM_RIGHT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
 	
 	//game constants                                       Small  Big    Retina
-	public static final int INITIAL_WINDOW_WIDTH = 1920;// 640    1280   1440
-	public static final int INITIAL_WINDOW_HEIGHT = 1080;// 480    800    900
+	public static final int INITIAL_WINDOW_WIDTH = 640;// 640    1280   1440
+	public static final int INITIAL_WINDOW_HEIGHT = 480;// 480    800    900
 	public static final int RENDER_MARGIN = 1;
 	public static final int FRAME_RATE = 60;
 	public static final String GAME_TITLE = "Adventure Craft";
@@ -521,8 +521,8 @@ public class Constants {
 	//Main Menu
 	public static final int MAIN_MENU_WIDTH = 100;
 	public static final int MAIN_MENU_HEIGHT = 30;
-	public static final int MAIN_MENU_STARTX = INITIAL_WINDOW_WIDTH/2 - MAIN_MENU_WIDTH / 2;
-	public static final int MAIN_MENU_STARTY = 250;
+	public static int MAIN_MENU_STARTX = Game.currentScreenSizeX/2 - MAIN_MENU_WIDTH / 2;
+	public static int MAIN_MENU_STARTY = Game.currentScreenSizeY-230;
 	
 	public Constants() {
 		ITEM_HASH.put(NONE, new NoItem());

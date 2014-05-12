@@ -59,8 +59,8 @@ public class Menu {
 	}
 	
 	public void renderSplashScreen() {
-		sprite.draw(0,0,0);
-		sprite2.draw(INITIAL_WINDOW_WIDTH /2 - sprite2.getWidth()*2 / 2, 20,0f, sprite2.getWidth()*2, sprite2.getHeight()*2);	
+		sprite.draw(0,0,0, Game.currentScreenSizeX, Game.currentScreenSizeY);
+		sprite2.draw(Game.currentScreenSizeX /2 - sprite2.getWidth()*2 / 2, 20,0f, sprite2.getWidth()*2, sprite2.getHeight()*2);	
 	
 	}
 }

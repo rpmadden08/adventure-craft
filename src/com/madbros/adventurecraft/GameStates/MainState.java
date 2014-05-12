@@ -19,9 +19,9 @@ public class MainState extends GameState {
 		type = State.MAIN;
 		if(isQuickLoad) Game.createDefaultSaveGameIfNecessary();
 		
-		Game.camera= new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		Game.camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		Game.camera.update();
+//		Game.camera= new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+//		Game.camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+//		Game.camera.update();
 		
 		Game.fbo = new FrameBuffer(Format.RGBA8888, Game.currentScreenSizeX, Game.currentScreenSizeY, false);
 		 
@@ -39,9 +39,9 @@ public class MainState extends GameState {
 	
 	@Override
 	public void resize(int width, int height) {
-		Game.camera= new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		Game.camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		Game.camera.update();
+//		Game.camera= new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+//		Game.camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+//		Game.camera.update();
 		
 		Game.fbo = new FrameBuffer(Format.RGBA8888, width, height, false);
 		 

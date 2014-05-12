@@ -1,6 +1,7 @@
 package com.madbros.adventurecraft;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -9,6 +10,7 @@ import org.lwjgl.opengl.DisplayMode;
 import com.madbros.adventurecraft.Items.*;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -30,8 +32,8 @@ import com.madbros.adventurecraft.Utils.Rect;
 import static com.madbros.adventurecraft.Constants.*;
 
 public class Game implements ApplicationListener {
-	public static int renderWidth = (int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN;
-	public static int renderHeight = (int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN;
+	public static int renderWidth = (int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN;
+	public static int renderHeight = (int)Math.ceil(Game.currentScreenSizeY * 1.0 / TILE_SIZE) + RENDER_MARGIN;
 	public static int pixelModifier = 1;
 	public static int currentScreenSizeX = INITIAL_WINDOW_WIDTH;
 	public static int currentScreenSizeY = INITIAL_WINDOW_HEIGHT;
@@ -252,25 +254,57 @@ public class Game implements ApplicationListener {
 
 	@Override
 	public void create() {
+		ArrayList<DisplayMode> resolutions = new ArrayList<DisplayMode>();
 		try {
 			DisplayMode[] modes = Display.getAvailableDisplayModes();
 			
 			for (int i=0;i<modes.length;i++) {
-			    DisplayMode current = modes[i];
-			    System.out.println(current.getWidth() + "x" + current.getHeight() + "x" +
-			                        current.getBitsPerPixel() + " " + current.getFrequency() + "Hz"+ current.isFullscreenCapable());
+			    DisplayMode current = modes[i]; 
+			    if((float)current.getWidth()/(float)current.getHeight() == (float)Gdx.graphics.getDesktopDisplayMode().width/(float)Gdx.graphics.getDesktopDisplayMode().height
+			    		&& current.getBitsPerPixel() == 32 && current.getWidth() <= 1920 && current.getHeight() <=1080 ) {
+			    	resolutions.add(current);
+//			    	System.out.println(current.getWidth() + "x" + current.getHeight() + "x" +
+//			                        	current.getBitsPerPixel() + " " + current.getFrequency() + "Hz"+ current.isFullscreenCapable());
+			    }
 			}
 		} catch(LWJGLException e) {
 			throw new RuntimeException("Could not initiate LWJGL.", e);
 		}
 		gameStartTime = Time.getTime();
 		timeSpentInPreviousSaves = 0;  //TODO set this on game load:)
-		
 		//p.load(Gdx.files.internal("data/Chunks.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
 		//death.load(Gdx.files.internal("data/death.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
-		
-		camera= new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		int smallestX = resolutions.get(0).getWidth();
+		int smallestY = resolutions.get(0).getHeight();
+		int displayMode = 0;
+		for (int i=0;i<resolutions.size();i++) {
+			if(smallestX > resolutions.get(i).getWidth()) {
+				smallestX = resolutions.get(i).getWidth();
+				smallestY = resolutions.get(i).getHeight();
+				try {
+					Display.setDisplayMode(resolutions.get(i));
+				} catch (LWJGLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//Gdx.graphics.setDisplayMode(resolutions.get(i).getWidth(),resolutions.get(i).getHeight(), true);  
+				displayMode = i;
+				
+			}
+		}
+
+		//DesktopLauncher.cfg.width =smallestX;
+		//DesktopLauncher.cfg.height =smallestY;
+		//Gdx.graphics.getDisplayModes();
+		currentScreenSizeX = smallestX;
+		currentScreenSizeY = smallestY;
+		System.out.println(currentScreenSizeX);
+		System.out.println(currentScreenSizeY);
+	
+		camera= new OrthographicCamera(currentScreenSizeX,currentScreenSizeY);
+		camera.setToOrtho(true, currentScreenSizeX, currentScreenSizeY);
+
+		camera.update();
 		
 		batch = new SpriteBatch();
 		particleBatch = new SpriteBatch();

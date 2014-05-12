@@ -506,7 +506,7 @@ public class RenderSystem {
 	//ASLDKFJALSKDJFLASKDJF
 	//ASLDKFJALSKDJFLASKDJF
 	public void renderStatusEffects() {
-		int x = INITIAL_WINDOW_WIDTH - 32;
+		int x = Game.currentScreenSizeX - 32;
 		for(int a = 1; a < Game.hero.appliedStatusEffects.length; a++) {
 			if(Game.hero.appliedStatusEffects[a].id == a) {
 				StaticSprite sprite = Game.hero.appliedStatusEffects[a].sprite;

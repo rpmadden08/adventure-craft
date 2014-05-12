@@ -53,8 +53,7 @@ public class MainMenu extends Menu{
 		    	return new File(dir, name).isDirectory();
 		    }
 		});
-		if(listOfFiles.length >10) {
-			System.out.println("TEST");
+		if(listOfFiles.length >9) {
 			isNewGameAvailable = false;
 			menuButtons[0].disableButton();
 			
@@ -94,7 +93,7 @@ public class MainMenu extends Menu{
 	}
 	
 	private void options() {
-		System.out.println("options");
+		MainMenuState.options(Game.batch);
 	}
 	
 	public void quitGame() {

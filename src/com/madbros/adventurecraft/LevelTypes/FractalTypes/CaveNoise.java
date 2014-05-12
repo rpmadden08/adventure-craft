@@ -13,7 +13,7 @@ import com.sudoplay.joise.module.ModuleTranslateDomain;
 import com.sudoplay.joise.module.ModuleBasisFunction.BasisType;
 import com.sudoplay.joise.module.ModuleBasisFunction.InterpolationType;
 import com.sudoplay.joise.module.ModuleFractal.FractalType;
-import com.sudoplay.main.Canvas;
+//import com.sudoplay.main.Canvas;
 
 public class CaveNoise extends BasicNoise{
 	//public ModuleAutoCorrect noise;

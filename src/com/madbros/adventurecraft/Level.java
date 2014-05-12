@@ -70,8 +70,8 @@ public class Level {
 	public Rect renderRect = new Rect(
 			spawnX / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE),
 			spawnY / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
-			(int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
-			(int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
+			(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN,
+			(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
 //	
 	//public long rgenseed = System.currentTimeMillis();
@@ -140,8 +140,6 @@ public class Level {
 			
 			offsetX = saveData.offsetX;
 			offsetY = saveData.offsetY;
-			//System.out.println("SPAWNLOAD: "+spawnX+"-"+spawnY);
-			//System.out.println("OFFSETLOAD: "+offsetX+"-"+offsetY);
 			int renderRectX;
 			if(offsetX > 15) {
 				renderRectX = (spawnX+(offsetX)) / TILE_SIZE -(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
@@ -151,8 +149,8 @@ public class Level {
 			renderRect = new Rect(
 					renderRectX,
 					(spawnY+(TILE_SIZE -offsetY)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
-					(int)Math.ceil(INITIAL_WINDOW_WIDTH * 1.0 / TILE_SIZE) + RENDER_MARGIN,
-					(int)Math.ceil(INITIAL_WINDOW_HEIGHT * 1.0 / TILE_SIZE) + RENDER_MARGIN);
+					(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN,
+					(int)Math.ceil(Game.currentScreenSizeY * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 			
 		}
 		
@@ -428,7 +426,7 @@ public class Level {
 				activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
 				activeBlocks[x][y].layers[TREE_LEFT_0].update(x, y);
 				activeBlocks[x][y].layers[ABOVE_LAYER_2].update(x, y);
-				activeBlocks[x][y].layers[TREE_RIGHT_1].update(x, y);
+				//activeBlocks[x][y].layers[TREE_RIGHT_1].update(x, y);
 				activeBlocks[x][y].layers[TREE_RIGHT_0].update(x, y);
 			}
 		}
