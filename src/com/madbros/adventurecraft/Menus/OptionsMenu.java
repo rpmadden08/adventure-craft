@@ -35,6 +35,7 @@ public class OptionsMenu extends Menu {
 	public ArrayList<DisplayMode> resolutions = new ArrayList<DisplayMode>();
 	public int currentlySelectedR = 0;
 	public String resolution;
+	public String isStretched = " ";
 	
 	public OptionsMenu(SpriteBatch batch) {
 		super(batch);
@@ -42,7 +43,7 @@ public class OptionsMenu extends Menu {
 
 	@Override
 	public void setupMenu(SpriteBatch batch) {
-		
+		isStretched = " ";
 		refreshMenu();
 		
 		
@@ -59,9 +60,8 @@ public class OptionsMenu extends Menu {
 			
 			for (int i=0;i<modes.length;i++) {
 			    DisplayMode current = modes[i]; 
-			    if((float)current.getWidth()/(float)current.getHeight() == (float)Gdx.graphics.getDesktopDisplayMode().width/(float)Gdx.graphics.getDesktopDisplayMode().height
-			    		&& current.getBitsPerPixel() == 32 && current.getWidth() <= 1920 && current.getHeight() <=1080 ) {
-			    
+			    if(current.getBitsPerPixel() == 32 && current.getWidth() <= 1440 && current.getHeight() <=900 ) {
+			    	
 			    	resolutions.add(current);
 			    	if(current.getWidth() == Game.currentScreenSizeX) {
 			    		currentlySelectedR = resolutions.size()-1;
@@ -79,7 +79,7 @@ public class OptionsMenu extends Menu {
 		ButtonFunction rightResolution = new ButtonFunction() { public void invoke() { rightResolution(); } };
 		ButtonFunction cancel = new ButtonFunction() { public void invoke() { cancel(); } };
 		
-		resolution = Game.currentScreenSizeX+"x"+Game.currentScreenSizeY;
+		resolution = Game.currentScreenSizeX+"x"+Game.currentScreenSizeY+isStretched;
 		
 		
 		//ButtonFunction cancel = new ButtonFunction() { public void invoke() { cancel(); } };
@@ -129,6 +129,12 @@ public class OptionsMenu extends Menu {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if((float)resolutions.get(currentlySelectedR).getWidth()/(float)resolutions.get(currentlySelectedR).getHeight() == (float)Gdx.graphics.getDesktopDisplayMode().width/(float)Gdx.graphics.getDesktopDisplayMode().height
+		    	) {
+		    		isStretched = " ";
+		    	} else {
+		    		isStretched = "(STRETCHED)";
+		    	}
 		Game.currentScreenSizeX = resolutions.get(currentlySelectedR).getWidth();
 		Game.currentScreenSizeY = resolutions.get(currentlySelectedR).getHeight();
 		Game.camera= new OrthographicCamera(Game.currentScreenSizeX,Game.currentScreenSizeY);

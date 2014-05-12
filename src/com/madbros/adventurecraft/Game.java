@@ -261,7 +261,7 @@ public class Game implements ApplicationListener {
 			for (int i=0;i<modes.length;i++) {
 			    DisplayMode current = modes[i]; 
 			    if((float)current.getWidth()/(float)current.getHeight() == (float)Gdx.graphics.getDesktopDisplayMode().width/(float)Gdx.graphics.getDesktopDisplayMode().height
-			    		&& current.getBitsPerPixel() == 32 && current.getWidth() <= 1920 && current.getHeight() <=1080 ) {
+			    		&& current.getBitsPerPixel() == 32 && current.getWidth() <= 1440 && current.getHeight() <=900 ) {
 			    	resolutions.add(current);
 //			    	System.out.println(current.getWidth() + "x" + current.getHeight() + "x" +
 //			                        	current.getBitsPerPixel() + " " + current.getFrequency() + "Hz"+ current.isFullscreenCapable());
@@ -276,7 +276,6 @@ public class Game implements ApplicationListener {
 		//death.load(Gdx.files.internal("data/death.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
 		int smallestX = resolutions.get(0).getWidth();
 		int smallestY = resolutions.get(0).getHeight();
-		int displayMode = 0;
 		for (int i=0;i<resolutions.size();i++) {
 			if(smallestX > resolutions.get(i).getWidth()) {
 				smallestX = resolutions.get(i).getWidth();
@@ -287,22 +286,19 @@ public class Game implements ApplicationListener {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				//Gdx.graphics.setDisplayMode(resolutions.get(i).getWidth(),resolutions.get(i).getHeight(), true);  
-				displayMode = i;
 				
 			}
 		}
 
-		//DesktopLauncher.cfg.width =smallestX;
-		//DesktopLauncher.cfg.height =smallestY;
-		//Gdx.graphics.getDisplayModes();
+
 		currentScreenSizeX = smallestX;
 		currentScreenSizeY = smallestY;
 		System.out.println(currentScreenSizeX);
 		System.out.println(currentScreenSizeY);
-	
+//	
 		camera= new OrthographicCamera(currentScreenSizeX,currentScreenSizeY);
 		camera.setToOrtho(true, currentScreenSizeX, currentScreenSizeY);
+		
 
 		camera.update();
 		
