@@ -261,7 +261,7 @@ public class Game implements ApplicationListener {
 			for (int i=0;i<modes.length;i++) {
 			    DisplayMode current = modes[i]; 
 			    if((float)current.getWidth()/(float)current.getHeight() == (float)Gdx.graphics.getDesktopDisplayMode().width/(float)Gdx.graphics.getDesktopDisplayMode().height
-			    		&& current.getBitsPerPixel() == 32 && current.getWidth() <= 1440 && current.getHeight() <=900 ) {
+			    		&& current.getBitsPerPixel() == 16 && current.getWidth() <= 1440 && current.getHeight() <=900 ) {
 			    	resolutions.add(current);
 //			    	System.out.println(current.getWidth() + "x" + current.getHeight() + "x" +
 //			                        	current.getBitsPerPixel() + " " + current.getFrequency() + "Hz"+ current.isFullscreenCapable());

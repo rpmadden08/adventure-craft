@@ -269,7 +269,7 @@ public class RenderSystem {
 		//Border Right
 		Sprites.healthBarMon.rotate(180);
 		Sprites.healthBarMon.draw(x+2+28+tileOffset,y,Z_CHARACTER,2,6);
-		Sprites.healthBarMon.rotate(180);
+		Sprites.healthBarMon.rotate(-180);
 		
 		//Reset
 		Sprites.pixel.setColor(Color.WHITE);
@@ -328,7 +328,7 @@ public class RenderSystem {
 		Sprites.healthBar.draw(2+hero.maxHP,2,Z_CHARACTER,4,14);
 		Sprites.healthBar.draw(2+hero.maxMP,18,Z_CHARACTER,4,14);
 		Sprites.healthBar.draw(2+(int)hero.maxEP,34,Z_CHARACTER,4,14);
-		Sprites.healthBar.rotate(180);
+		Sprites.healthBar.rotate(-180);
 		
 		//Reset
 		Sprites.pixel.setColor(Color.WHITE);
@@ -382,7 +382,7 @@ public class RenderSystem {
 				//Border Right
 				Sprites.healthBarMon.rotate(180);
 				Sprites.healthBarMon.draw(x+2+27,y,Z_CHARACTER,2,6);
-				Sprites.healthBarMon.rotate(180);
+				Sprites.healthBarMon.rotate(-180);
 				
 				//Reset
 				Sprites.pixel.setColor(Color.WHITE);
@@ -437,7 +437,7 @@ public class RenderSystem {
 		//Border Right
 		Sprites.healthBarMon.rotate(180);
 		Sprites.healthBarMon.draw(x+2+28,y,Z_CHARACTER,2,6);
-		Sprites.healthBarMon.rotate(180);
+		Sprites.healthBarMon.rotate(-180);
 		
 		//Reset
 		Sprites.pixel.setColor(Color.WHITE);
@@ -738,7 +738,7 @@ public class RenderSystem {
 		//Border Right
 		Sprites.healthBarMon.rotate(180);
 		Sprites.healthBarMon.draw(x+2+58,y+6,Z_CHARACTER,2*2,6*2);
-		Sprites.healthBarMon.rotate(180);
+		Sprites.healthBarMon.rotate(-180);
 		
 		//Reset
 		Sprites.pixel.setColor(Color.WHITE);
@@ -783,7 +783,7 @@ public class RenderSystem {
 		//Border Right
 		Sprites.healthBarMon.rotate(180);
 		Sprites.healthBarMon.draw(x+2+58,y+6,Z_CHARACTER,2*2,6*2);
-		Sprites.healthBarMon.rotate(180);
+		Sprites.healthBarMon.rotate(-180);
 		
 		//Reset
 		Sprites.pixel.setColor(Color.WHITE);
@@ -827,7 +827,7 @@ public class RenderSystem {
 		//Border Right
 		Sprites.healthBarMon.rotate(180);
 		Sprites.healthBarMon.draw(x+2+28,y,Z_CHARACTER,2,6);
-		Sprites.healthBarMon.rotate(180);
+		Sprites.healthBarMon.rotate(-180);
 		
 		//Reset
 		Sprites.pixel.setColor(Color.WHITE);
@@ -871,7 +871,7 @@ public class RenderSystem {
 		//Border Right
 		Sprites.healthBarMon.rotate(180);
 		Sprites.healthBarMon.draw(x+2+28,y,Z_CHARACTER,2,6);
-		Sprites.healthBarMon.rotate(180);
+		Sprites.healthBarMon.rotate(-180);
 		
 		//Reset
 		Sprites.pixel.setColor(Color.WHITE);

@@ -13,7 +13,7 @@ public class DesktopLauncher {
 		cfg.width = INITIAL_WINDOW_WIDTH;
 		cfg.height = INITIAL_WINDOW_HEIGHT;
 		
-		cfg.fullscreen = true;
+		cfg.fullscreen = false;
 		cfg.vSyncEnabled = true;
 		cfg.resizable = false;
 		

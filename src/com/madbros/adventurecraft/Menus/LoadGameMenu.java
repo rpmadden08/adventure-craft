@@ -51,8 +51,8 @@ public class LoadGameMenu extends Menu {
 		//create an array of all the saved games...
 		
 		Rect r1 = new Rect(20, Game.currentScreenSizeY - 60, 100, 50);
-		Rect r2 = new Rect(Game.currentScreenSizeX - 120, Game.currentScreenSizeY - 60, 100, 50);
-		Rect r3 = new Rect(Game.currentScreenSizeX /2-50, Game.currentScreenSizeY - 60, 100, 50);
+		Rect r2 = new Rect(Game.currentScreenSizeX /2-50, Game.currentScreenSizeY - 60, 100, 50);
+		Rect r3 = new Rect(Game.currentScreenSizeX - 120, Game.currentScreenSizeY - 60, 100, 50);
 		
 		String[] strings = {"Load","Delete", "Cancel"};
 		ButtonFunction[] functions = {load, delete, cancel};

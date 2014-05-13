@@ -8,6 +8,7 @@ import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.Stick;
 import com.madbros.adventurecraft.Slots.CraftingSlot;
 import com.madbros.adventurecraft.Slots.Slot;
+import com.madbros.adventurecraft.UI.InGameMenuUIButton;
 import com.madbros.adventurecraft.UI.PlainUIButton;
 import com.madbros.adventurecraft.UI.SelectUIButton;
 import com.madbros.adventurecraft.UI.TextUIButton;
@@ -30,17 +31,17 @@ public class CraftingMenu {
 	};
 	public int[] currentCraftableList = craftableList;
 	public int currentPage = 0;
-	public PlainUIButton nextPage;
-	public PlainUIButton lastPage;
+	public InGameMenuUIButton nextPage;
+	public InGameMenuUIButton lastPage;
 	
 	
 	
 	public CraftingMenu() {
 		ButtonFunction nextPageFunction = new ButtonFunction() { public void invoke() { nextPage2(); } };
-		nextPage =  new PlainUIButton(366,35,20,20, ">",nextPageFunction, Game.batch );
+		nextPage =  new InGameMenuUIButton(366,35,20,20, ">",nextPageFunction, Game.batch );
 		//nextPage.buttonColor = Color.GREEN;
 		ButtonFunction lastPageFunction = new ButtonFunction() { public void invoke() { lastPage2(); } };
-		lastPage =  new PlainUIButton(344,35,20,20, "<",lastPageFunction, Game.batch );
+		lastPage =  new InGameMenuUIButton(344,35,20,20, "<",lastPageFunction, Game.batch );
 		//lastPage.buttonColor = Color.GREEN;
 		//public TextUIButton(int x, int y, int w, int h, String s, ButtonFunction func, SpriteBatch batch)
 		int k = 0;

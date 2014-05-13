@@ -1,7 +1,5 @@
 package com.madbros.adventurecraft.UI;
 
-import static com.madbros.adventurecraft.Constants.*;
-
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Sprites.*;
@@ -16,6 +14,8 @@ public class PlainUIButton extends UIButton {
 	
 	public PlainUIButton(int x, int y, int w, int h, String s, ButtonFunction func, SpriteBatch batch) {
 		super(x, y, w, h, s, func, batch);
+
+		rect = new Rect(text.getX(rect), text.getY(rect), text.getW()+10, text.getH()+10);
 	}
 	
 	public PlainUIButton(Rect r, String s, Color fontColor, Color buttonColor, Color highlight, Color pressedColor, ButtonFunction func, SpriteBatch batch) {
@@ -28,15 +28,25 @@ public class PlainUIButton extends UIButton {
 
 	@Override
 	public void render() {
-		Sprites.pixel.setColor(buttonColor);
-
-		sprite.draw(rect, Z_BUTTONS);
 		if(mouseIsHovering && buttonIsPressedDown) {
-			Sprites.pixel.setColor(pressedColor);
-			sprite.draw(rect, Z_BUTTONS);
+			Sprites.pixel.setColor(Color.WHITE);
+			Sprites.pixel.draw(rect.x-2, rect.y-2, 0, rect.w+4, rect.h+4);
+			Sprites.pixel.setColor(0.431f, 0.247f, 0.176f, 1f);
+			Sprites.pixel.draw(rect, 0);
+			text.drawCenter(rect, fontColor);
+			text.drawCenter(rect, pressedColor);
 		} else if(mouseIsHovering) {
-			Sprites.pixel.setColor(highlight);
-			sprite.draw(rect, Z_BUTTONS_HIGHLIGHT);
+			Sprites.pixel.setColor(Color.BLACK);
+			Sprites.pixel.draw(rect.x-2, rect.y-2, 0, rect.w+4, rect.h+4);
+			Sprites.pixel.setColor(0.643f, 0.396f, 0.302f, 1f);
+			Sprites.pixel.draw(rect, 0);
+			text.drawCenter(rect, highlight);
+		} else {
+			Sprites.pixel.setColor(Color.BLACK);
+			Sprites.pixel.draw(rect.x-2, rect.y-2, 0, rect.w+4, rect.h+4);
+			Sprites.pixel.setColor(0.431f, 0.247f, 0.176f, 1f);
+			Sprites.pixel.draw(rect, 0);
+			text.drawCenter(rect, fontColor);
 		}
 		Sprites.pixel.setColor(Color.WHITE);
 	}
