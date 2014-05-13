@@ -82,8 +82,10 @@ public class FurnaceTile extends CollisionTile {
 					//
 					if(furnaceSlots[0].item.stackSize >1) {
 						furnaceSlots[0].item.stackSize = furnaceSlots[0].item.stackSize -1;
+//						if(furnaceSlots[0].item.stackSize < 1) furnaceSlots[0].item = new NoItem();
 					} else {
 						furnaceSlots[0].item = new NoItem();
+						isCraftableItem = false;
 					}
 					furnaceSlots[0].handleAdditional2(this, furnaceSlots, craftedSlot);
 					

@@ -105,11 +105,11 @@ public class Inventory {
 		invBar[0].item.stackSize = 1;
 		invBar[1].item = new Cauldron();
 		invBar[1].item.stackSize = 1;
-		invBar[2].item = new Stick();
+		invBar[2].item = new CactusSeed();
 		invBar[2].item.stackSize = 99;
-		invBar[3].item = new Coal();
+		invBar[3].item = new BatWing();
 		invBar[3].item.stackSize = 99;
-		invBar[4].item = new Steak();
+		invBar[4].item = new GlassBottle();
 		invBar[4].item.stackSize =99;
 		invBar[5].item = new WoodenSword();
 		invBar[5].item.stackSize = 1;
