@@ -133,6 +133,7 @@ public class CauldronTile extends CollisionTile {
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
+		b.collisionTile = null;
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(CAULDRON).createNew();
 		Game.collectibleController.add(CAULDRON, Sprites.sprites.get(Sprites.CAULDRON_SINGLE), collectibleRect, 1, item.maxUses);
