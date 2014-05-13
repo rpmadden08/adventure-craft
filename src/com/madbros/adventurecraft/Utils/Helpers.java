@@ -87,7 +87,7 @@ public class Helpers {
 						tempTile.possiblyCraftableItem = ITEM_HASH.get(possiblyCraftableId).createNew();
 						t[i] = tempTile;
 						furnInt = furnInt +1;
-					} else if(chunk.ids[x][y][i] == CAULDRON) {
+					} else if(chunk.ids[x][y][i] == CAULDRON_TILE) {
 						int id0 = chunk.cauldronInts[furnInt][4];
 						int id1 = chunk.cauldronInts[furnInt][5];
 						int id2 = chunk.cauldronInts[furnInt][6];

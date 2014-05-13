@@ -13,7 +13,7 @@ public class TorchTile extends LightTile {
 	public TorchTile() {
 		super();
 		lightSize = 500;
-		id = TORCH;
+		id = TORCH_TILE;
 		sprites = Sprites.torchAnimation;
 		autoTile = 0;
 		isAutoTileable = false;
