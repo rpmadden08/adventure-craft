@@ -10,6 +10,9 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Rect;
 public class CraftingSlot extends Slot{
 	public boolean hasIngedients = false;
+	private int maxToolTipDelay = 20;
+	private int toolTipDelay = maxToolTipDelay;
+	
 	public CraftingSlot(int x, int y) {
 		super(x, y);
 		type = CRAFTING_SLOT;
@@ -32,8 +35,15 @@ public class CraftingSlot extends Slot{
 			}
 		}
 		if(isHighlighted) {
-			renderCraftingInfo();
+			if(toolTipDelay <=0) {
+				renderCraftingInfo();
+				//toolTipDelay = maxToolTipDelay;
+			} else {
+				toolTipDelay = toolTipDelay -1;
+			}
 			
+		} else {
+			toolTipDelay = maxToolTipDelay;
 		}
 	}
 	
