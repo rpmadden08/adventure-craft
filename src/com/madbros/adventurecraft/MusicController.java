@@ -10,7 +10,12 @@ public class MusicController {
 	public MusicController() {
 		
 	}
-	
+	public void stopPlaying() {
+		if(music.isPlaying()) {
+			music.stop();
+			music.dispose();
+		}
+	}
 	public void update() {
 		if(Game.isMusicOn == true) {
 			if(Game.level.isDay == true) {

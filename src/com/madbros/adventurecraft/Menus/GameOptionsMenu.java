@@ -5,6 +5,7 @@ import static com.madbros.adventurecraft.Constants.*;
 import org.lwjgl.opengl.Display;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.madbros.adventurecraft.GameStates.MainMenuState;
 import com.madbros.adventurecraft.UI.PlainUIButton;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -12,49 +13,74 @@ import com.madbros.adventurecraft.Utils.Rect;
 //Chris' test imports
 import com.madbros.adventurecraft.Game;
 
-public class GameMainMenu extends Menu {
+public class GameOptionsMenu extends GameMainMenu {
 
 	public boolean menuIsActive;
 	
-	public GameMainMenu(SpriteBatch batch) {
+	public GameOptionsMenu(SpriteBatch batch) {
 		super(batch);
 	}
 	
 	@Override
 	public void setupMenu(SpriteBatch batch) {
+		refreshMenu();
 
+	}
+	
+	public void refreshMenu() {
 		menuIsActive = false;
 
 		Rect r = new Rect(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY, DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY);
-		ButtonFunction resumeGame = new ButtonFunction() { public void invoke() { resumeGameFunction(); } };
-		ButtonFunction options = new ButtonFunction() { public void invoke() { optionsFunction(); } };
-		ButtonFunction howToPlay = new ButtonFunction() { public void invoke() { howToPlayFunction(); } };
-		//ButtonFunction saveGame = new ButtonFunction() { public void invoke() { saveGameFunction(); } };
-		ButtonFunction quitGame = new ButtonFunction() { public void invoke() { quitGameFunction(); } };
+		ButtonFunction toggleSound = new ButtonFunction() { public void invoke() { toggleSound(); } };
+		ButtonFunction toggleMusic = new ButtonFunction() { public void invoke() { toggleMusic(); } };
+		ButtonFunction cancel = new ButtonFunction() { public void invoke() { cancel(); } };
 
-		
-		String s1, s2, s3, s4;
-		s1 = "Resume";
-		s2 = "Options";
-		s3 = "How To Play";
-		s4 = "Save & Quit";
+
+		String sound;
+		String music;
+		if(Game.isSoundOn) {sound = "On";} else {sound = "Off";}
+		if(Game.isMusicOn) {music = "On";} else {music = "Off";}
+		String s1, s2, s3;
+		s1 = "Sound is "+sound;
+		s2 = "Music is "+music;
+		s3 = "Back";
 		
 		//Rect r = new Rect(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY, DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY);
 
-		String[] strings = {s1, s2, s3,s4};
-		ButtonFunction[] functions = {resumeGame, options, howToPlay, quitGame};
+		String[] strings = {s1, s2, s3};
+		ButtonFunction[] functions = {toggleSound, toggleMusic, cancel};
 	
 		menuButtons = new PlainUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {
-			menuButtons[i] = new PlainUIButton(r.x/2, r.y*i+Game.currentScreenSizeY/2-DEBUG_MENU_SIZEY*menuButtons.length/2, r.w, r.h, strings[i], functions[i], batch);
+			menuButtons[i] = new PlainUIButton(r.x/2, r.y*i+Game.currentScreenSizeY/2-DEBUG_MENU_SIZEY*menuButtons.length/2, r.w, r.h, strings[i], functions[i], Game.batch);
 			
 		}
 	}
+	public void toggleSound() {
+		if(Game.isSoundOn) {
+			Game.isSoundOn = false;
+			
+		} else {
+			Game.isSoundOn = true;
+		}
+		refreshMenu();
+	}
 	
-//	public void toggleMenu() {
-//		if(menuIsActive) menuIsActive = false;
-//		else menuIsActive = true;
-//	}
+	public void toggleMusic() {
+		if(Game.isMusicOn) {
+			Game.isMusicOn = false;
+			Game.musicController.stopPlaying();
+		} else {
+			Game.isMusicOn = true;
+			Game.musicController.musicSelection = 0;
+		}
+		refreshMenu();
+	}
+	
+	public void cancel() {
+		Game.gameMainMenu = new GameMainMenu(Game.batch);
+		Game.gameMainMenu.menuIsActive = true;
+	}
 	
 	private void resumeGameFunction() {
 		Game.toggleMainMenu();
@@ -66,7 +92,7 @@ public class GameMainMenu extends Menu {
 	}
 	
 	private void optionsFunction() {
-		Game.gameMainMenu = new GameOptionsMenu(Game.batch);
+		Game.gameMainMenu = new GameHowToPlay(Game.batch);
 		Game.gameMainMenu.menuIsActive = true;
 	}
 
