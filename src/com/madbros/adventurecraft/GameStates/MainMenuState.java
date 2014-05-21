@@ -63,4 +63,7 @@ public class MainMenuState extends GameState{
 		input = new MainMenuStateInput(mainMenu);
 		Gdx.input.setInputProcessor(input);
 	}
+	public static void delete() {
+		mainMenu.delete();
+	}
 }

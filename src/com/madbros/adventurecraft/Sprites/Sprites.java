@@ -127,6 +127,8 @@ public class Sprites {
 	public static final String BEETLE_SHELL= "beetleShell";
 	public static final String IMP_HORN= "impHorn";
 	public static final String LEATHER= "leather";
+	public static final String BEEHIVE= "beehive";
+	public static final String BEEHIVE_TILE= "beehiveTile";
 	
 	public static final String STEAK= "rawSteak";
 	public static final String COOKED_STEAK= "cookedSteak";
@@ -733,6 +735,7 @@ public class Sprites {
 					DIRT_MOUNTAIN_COPPER_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_BOTTOM_NEW,
 					DIRT_MOUNTAIN_COAL_MIDDLE_NEW, DIRT_MOUNTAIN_COAL_BOTTOM_NEW, STONE, DIRT_MOUNTAIN_CLUMP,
 					STONE_MOUNTAIN_CLUMP,BREAD, SLOWNESS_APPLIED, SLOWNESS_STATUS, SPEED_STATUS, HARMING_APPLIED,
+					BEEHIVE, BEEHIVE_TILE,
 					
 			};
 			

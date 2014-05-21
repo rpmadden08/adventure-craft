@@ -14,19 +14,23 @@ public class Menu {
 	public UIButton[] menuButtons;
 	public StaticSprite sprite;
 	public StaticSprite sprite2;
+	public StaticSprite howToPlaySprite;
 //	public SelectUIButton[] selectUIButtons;
 	
 	public Menu(SpriteBatch batch) {
 		setupMenu(batch);
 		Texture backdrop1 = new Texture(Gdx.files.internal("data/backdrop1.png"));
 		Texture logo = new Texture(Gdx.files.internal("data/logo.png"));
+		Texture howToPlay = new Texture(Gdx.files.internal("res/howToPlay.png"));
 		sprite = new StaticSprite(backdrop1, 0,0,1440,900,Game.batch);
 		sprite2 = new StaticSprite(logo, 0,0,logo.getWidth(),logo.getHeight(),Game.batch);
+		howToPlaySprite = new StaticSprite(howToPlay, 0,0,howToPlay.getWidth(),howToPlay.getHeight(),Game.batch);
 	}
 	
 	public void setupMenu(SpriteBatch batch) {
 
 	}
+	public void delete(){};
 	
 	public void handleMouseInput(boolean leftMousePressed, boolean leftMouseUp) {
 		for(int i = 0; i < menuButtons.length; i++) {
@@ -47,9 +51,11 @@ public class Menu {
 //	}
 	
 	public void render() {
+		renderBefore();
 		for(int i = 0; i < menuButtons.length; i++) {
 			menuButtons[i].render();
 		}
+		renderExtra();
 	}
 	
 	public void renderText() {
@@ -63,4 +69,12 @@ public class Menu {
 		sprite2.draw(Game.currentScreenSizeX /2 - sprite2.getWidth()*2 / 2, 20,0f, sprite2.getWidth()*2, sprite2.getHeight()*2);	
 	
 	}
+	public void renderExtra() {
+		
+	}
+	
+	public void renderBefore() {
+		
+	}
+	
 }

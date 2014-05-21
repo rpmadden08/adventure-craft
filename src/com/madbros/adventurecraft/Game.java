@@ -252,6 +252,14 @@ public class Game implements ApplicationListener {
 		return (int)Math.floor(currentScreenSizeY/2);
 	}
 
+	public static void toggleMainMenu() {
+		if(gameMainMenu.menuIsActive) gameMainMenu.menuIsActive = false;
+		else {
+			gameMainMenu = new GameMainMenu(batch);
+			gameMainMenu.menuIsActive = true;
+		}		
+	}
+	
 	@Override
 	public void create() {
 		ArrayList<DisplayMode> resolutions = new ArrayList<DisplayMode>();

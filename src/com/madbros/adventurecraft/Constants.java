@@ -203,6 +203,7 @@ public class Constants {
 	public static final int DIRT_MOUNTAIN_COPPER_BOTTOM = 69;
 	public static final int DIRT_MOUNTAIN_TIN_BOTTOM = 70;
 	public static final int DIRT_MOUNTAIN_TIN_MIDDLE = 71;
+	public static final int BEEHIVE_TILE = 72;
 	
 	
 	
@@ -432,6 +433,7 @@ public class Constants {
 	public static final int STONE_MOUNTAIN_CLUMP = 130;
 	public static final int STONE = 131;
 	public static final int BREAD = 132;
+	public static final int BEEHIVE = 133;
 	
 	
 	
@@ -445,7 +447,7 @@ public class Constants {
 	//Debugger
 	public static final int	BYTES_IN_MEGABYTE = 1048576;
 	public static final int DEBUG_MENU_SIZEX = 200;
-	public static final int DEBUG_MENU_SIZEY = 30;
+	public static final int DEBUG_MENU_SIZEY = 40;
 	public static final float DEBUG_FONT_SIZE = 14f;
 	public static final int NUMBER_OF_FRAMES_USED_FOR_SAMPLE_MEAN = 30;
 	public static final int DISPLAY_STARTX = 10;
@@ -523,6 +525,13 @@ public class Constants {
 	public static final int MAIN_MENU_HEIGHT = 30;
 	public static int MAIN_MENU_STARTX = Game.currentScreenSizeX/2 - MAIN_MENU_WIDTH / 2;
 	public static int MAIN_MENU_STARTY = Game.currentScreenSizeY-230;
+	
+//	public static final int HOW_TO_PLAY_WIDTH = 640;
+//	public static final int HOW_TO_PLAY_HEIGHT = 480;
+//	public static int HOW_TO_PLAY_STARTX = Game.currentScreenSizeX /2 - 640 / 2-4;
+//	public static int HOW_TO_PLAY_STARTY = Game.currentScreenSizeY /2 - 480 / 2-4;
+//	public static Rect HOW_TO_PLAY_RECT = new Rect(HOW_TO_PLAY_STARTX, HOW_TO_PLAY_STARTY,HOW_TO_PLAY_WIDTH,HOW_TO_PLAY_HEIGHT);
+//	
 	
 	public Constants() {
 		ITEM_HASH.put(NONE, new NoItem());
@@ -659,6 +668,7 @@ public class Constants {
 		ITEM_HASH.put(STONE_MOUNTAIN_CLUMP, new StoneMountainClump());
 		ITEM_HASH.put(STONE, new Stone());
 		ITEM_HASH.put(BREAD, new Bread());
+		ITEM_HASH.put(BEEHIVE, new Beehive());
 		
 		
 		
@@ -727,6 +737,7 @@ public class Constants {
 		TILE_HASH.put(CARROT_TILE, new CarrotTile());
 		TILE_HASH.put(PEPPER_TILE, new PepperTile());
 		TILE_HASH.put(ARTICHOKE_TILE, new ArtichokeTile());
+		TILE_HASH.put(BEEHIVE_TILE, new BeehiveTile());
 		
 		TILE_HASH.put(STAIRS_UP_TOP_TILE, new StairsUpTopTile());
 		TILE_HASH.put(STAIRS_UP_BOTTOM_TILE, new StairsUpBottomTile());

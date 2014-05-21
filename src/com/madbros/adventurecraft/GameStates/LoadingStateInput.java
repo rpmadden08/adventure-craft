@@ -1,4 +1,5 @@
 package com.madbros.adventurecraft.GameStates;
+import com.badlogic.gdx.Input.Keys;
 import com.madbros.adventurecraft.Menus.Menu;
 
 public class LoadingStateInput extends BasicInput {
@@ -60,6 +61,8 @@ public class LoadingStateInput extends BasicInput {
 	public boolean keyDown(int key) {
 //		super.keyDown(key);
 //		additionalKeyDown(key);
+
+
 		return false;
 	}
 	

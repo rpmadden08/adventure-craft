@@ -101,7 +101,7 @@ public class Inventory {
 		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x +147,INV_CHAR_RECT.y +120,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x +147,INV_CHAR_RECT.y +160,BOOTS_SLOT);
 		
-		invBar[0].item = new Furnace();
+		invBar[0].item = new Beehive();
 		invBar[0].item.stackSize = 1;
 		invBar[1].item = new Cauldron();
 		invBar[1].item.stackSize = 1;

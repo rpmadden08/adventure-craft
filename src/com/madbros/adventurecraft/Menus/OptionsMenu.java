@@ -91,7 +91,7 @@ public class OptionsMenu extends Menu {
 		Rect r3 = new Rect(Game.currentScreenSizeX /2-50, Game.currentScreenSizeY - 60, 100, 50);
 		Rect r4 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		
-		String[] strings = {"<",">", "cancel", resolution};
+		String[] strings = {"<",">", "Back", resolution};
 		ButtonFunction[] functions = {leftResolution, rightResolution, cancel, rightResolution};
 		Rect[] r = {r1, r2, r3, r4};
 

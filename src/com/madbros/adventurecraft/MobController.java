@@ -64,6 +64,8 @@ public class MobController {
 			
 		}
 	}
+	
+	
 	public void update() {
 		Random rand = new Random();
 		int x = rand.nextInt(CHUNK_SIZE * 3)+ CHUNK_SIZE;

@@ -13,7 +13,7 @@ public class LoadingState extends GameState{
 	public static Menu mainMenu;
 	
 	public LoadingState(SpriteBatch batch) {
-//		mainMenu = new MainMenu(batch);
+		//mainMenu = new MainMenu(batch);
 		type = State.LOADING;
 		
 		input = new LoadingStateInput();
@@ -44,6 +44,8 @@ public class LoadingState extends GameState{
 	protected void renderText() {
 //		mainMenu.renderText();
 	}
+	
+
 	
 //	public static void newGame(SpriteBatch batch) {
 //		mainMenu = new NewGameMenu(batch);
