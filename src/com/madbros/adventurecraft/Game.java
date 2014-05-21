@@ -41,7 +41,8 @@ public class Game implements ApplicationListener {
 	public static double oceanTally, mountainTally, desertTally, grasslandTally, forestTally, jungleTally, swampTally, taigaTally, tundraTally = 0;
 	
 	
-	
+	public static boolean isSoundOn = true;
+	public static boolean isMusicOn = true;
 	public static GameState currentState;
 	public static String locOfSavedGame = null;
 	public static String gameFileName = null;

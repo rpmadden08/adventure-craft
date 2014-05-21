@@ -14,6 +14,7 @@ public class GrassSeed extends BlockItem {
 		name = "Grass Seed";
 		tileId = GRASS;
 		placeableTileIds = new int[]{DIRT};
+		itemsPossiblyCraftable = new int[]{BEEHIVE};
 		sprite = Sprites.sprites.get(Sprites.GRASS_ITEM);
 	}
 	

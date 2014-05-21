@@ -10,21 +10,22 @@ public class SoundController {
 	public ArrayList<SoundData> soundsData = new ArrayList<SoundData>();
 	
 	public void update() {
-		
+		if(Game.isSoundOn == true) {
 		//for every sound in this list do...
-		for(int i = 0; i < sounds.size(); i++) {
-			//Plays the sound on update
-			if(!soundsData.get(i).isPlayed) {
-				sounds.get(i).play(soundsData.get(i).volume);
-				soundsData.get(i).isPlayed = true;
-			}
-			soundsData.get(i).timePlayed = Time.getTime();
-			int test = (int) (soundsData.get(i).timePlayed -soundsData.get(i).timeStarted);
-			//Deletes the sound if its been played.  
-			if(test >= 1000) {
-				sounds.get(i).dispose();
-				sounds.remove(i);
-				soundsData.remove(i);
+			for(int i = 0; i < sounds.size(); i++) {
+				//Plays the sound on update
+				if(!soundsData.get(i).isPlayed) {
+					sounds.get(i).play(soundsData.get(i).volume);
+					soundsData.get(i).isPlayed = true;
+				}
+				soundsData.get(i).timePlayed = Time.getTime();
+				int test = (int) (soundsData.get(i).timePlayed -soundsData.get(i).timeStarted);
+				//Deletes the sound if its been played.  
+				if(test >= 1000) {
+					sounds.get(i).dispose();
+					sounds.remove(i);
+					soundsData.remove(i);
+				}
 			}
 		}
 	}

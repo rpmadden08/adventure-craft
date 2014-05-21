@@ -20,8 +20,8 @@ public class Beehive extends BlockItem32 {
 		sprite = Sprites.sprites.get(Sprites.BEEHIVE);
 		maxStackSize = 1;
 		numberProducedByCrafting = 1;
-		craftCost = new int[]{};
-		craftCostAmount = new int[]{};
+		craftCost = new int[]{STICK, GRASS, HONEY};
+		craftCostAmount = new int[]{4,4,1};
 	}
 	
 	@Override
