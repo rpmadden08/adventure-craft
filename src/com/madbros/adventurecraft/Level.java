@@ -174,14 +174,19 @@ public class Level {
 				try {
 					File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
 					if(!f.exists()) {
+						Game.totalLoadingPoints = CHUNKS_LENGTH_TOTAL *CHUNKS_LENGTH_TOTAL +1;
+						Game.currentLoadingPoints = 0;
 						f.mkdir();
 						for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
 							for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
 								createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
-								
+								Game.currentLoadingPoints = Game.currentLoadingPoints+1;
 							}
 						}	
-					} 
+					} else {
+						Game.totalLoadingPoints = 1;
+						Game.currentLoadingPoints = 0;
+					}
 					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
 							loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
@@ -189,6 +194,7 @@ public class Level {
 						}
 						
 					}
+					Game.currentLoadingPoints = Game.currentLoadingPoints+1;
 					gameStartTime = Time.getTime();		
 
 					autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);

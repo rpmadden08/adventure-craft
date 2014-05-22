@@ -72,6 +72,9 @@ public class Game implements ApplicationListener {
 	public static long gameStartTime;
 	public static long timeSpentInPreviousSaves;
 	
+	public static float totalLoadingPoints;
+	public static float currentLoadingPoints;
+	
 	public static OrthographicCamera camera;
 	public static float zAngle;
 	public static final float zSpeed = 15.0f;
