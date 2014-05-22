@@ -151,6 +151,7 @@ public class Game implements ApplicationListener {
 	
 	public static void toggleChestState() {
 		if(currentState.type == State.CHEST) {
+			//Not sure why but this doesn't change state?  Could be a bug...
 			inventory.chestOn = false;
 			int x = inventory.currentInvBlockX;
 			int y = inventory.currentInvBlockY;
@@ -166,6 +167,14 @@ public class Game implements ApplicationListener {
 			inventory.open(hero);
 		}
 	}
+	
+//	public static void toggleLoadingState() {
+//		if(currentState.type == State.LOADING) {
+//			currentState = new MainState();
+//		} else {
+//			currentState = new LoadingState(batch);
+//		}
+//	}
 	
 
 	
@@ -226,6 +235,7 @@ public class Game implements ApplicationListener {
 		} else {
 			level = new Overworld();
 		}
+		
 		hero = new Hero();
 		mobController = new MobController();
 		soundController = new SoundController();
@@ -242,7 +252,7 @@ public class Game implements ApplicationListener {
 		level.loadGame();
 		isNewGame = false;
 		
-		Game.currentState = new MainState();
+		//Game.currentState = new MainState();
 	}
 	
 	public static int getCenterScreenX() {
@@ -279,6 +289,9 @@ public class Game implements ApplicationListener {
 		} catch(LWJGLException e) {
 			throw new RuntimeException("Could not initiate LWJGL.", e);
 		}
+		
+		
+		
 		gameStartTime = Time.getTime();
 		timeSpentInPreviousSaves = 0;  //TODO set this on game load:)
 		//p.load(Gdx.files.internal("data/Chunks.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
@@ -391,7 +404,7 @@ public class Game implements ApplicationListener {
 //		tilemap.dispose();
 	}
 
-	@Override
+//	@Override
 	public void render() {
 		currentState.update();
 		

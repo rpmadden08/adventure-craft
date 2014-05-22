@@ -11,6 +11,7 @@ import com.madbros.adventurecraft.Game;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.madbros.adventurecraft.GameStates.LoadingState;
 import com.madbros.adventurecraft.GameStates.MainMenuState;
 import com.madbros.adventurecraft.UI.*;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
@@ -123,6 +124,7 @@ public class LoadGameMenu extends Menu {
 	}
 	
 	public void load() {
+		Game.currentState = new LoadingState(Game.batch);
 		Game.isNewGame = false;
 		if(currentlySelectedButton != null) Game.createNewGameAtLoc(SAVE_LOC + currentlySelectedButton.text.getString() + "/");
 		

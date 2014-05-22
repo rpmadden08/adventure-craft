@@ -3,17 +3,18 @@ package com.madbros.adventurecraft.GameStates;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Menus.*;
+import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class LoadingState extends GameState{
-	public static Menu mainMenu;
 	
 	public LoadingState(SpriteBatch batch) {
-		//mainMenu = new MainMenu(batch);
 		type = State.LOADING;
 		
 		input = new LoadingStateInput();
@@ -24,44 +25,32 @@ public class LoadingState extends GameState{
 	protected void renderTextures() {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		Game.batch.setProjectionMatrix(Game.camera.combined);
+		//Game.batch.setShader(Game.currentShader);
 		Game.batch.begin();
-//			mainMenu.render();
-//			mainMenu.renderText();
+			Rect test = new Rect(Game.currentScreenSizeX/2-40,Game.currentScreenSizeX/2-10, 80, 20);
+			Sprites.pixel.setColor(Color.GREEN);
+			Sprites.pixel.draw(0,0,0,100,100);
+			Sprites.pixel.setColor(Color.WHITE);
+
 		Game.batch.end();
 	}
 	
-	public void update() {
-//		Game.debugger.start();
-//		Time.setDelta();
-//		
-//		delta = Time.getDelta();
-//		updateStates();
-//		
-//		Game.debugger.stopUpdateTime();
-	}
-	
 	@Override
-	protected void renderText() {
-//		mainMenu.renderText();
+	protected void updateStates() {
+		dt = Gdx.graphics.getRawDeltaTime();
+		Game.zAngle += dt * Game.zSpeed;
+		while(Game.zAngle > Game.PI2)
+			Game.zAngle -= Game.PI2;
+		
 	}
 	
-
-	
-//	public static void newGame(SpriteBatch batch) {
-//		mainMenu = new NewGameMenu(batch);
-//		input = new MainMenuStateInput(mainMenu);
-//		Gdx.input.setInputProcessor(input);
-//	}
-	
-//	public static void cancel(SpriteBatch batch) {
-//		mainMenu = new MainMenu(batch);
-//		input = new MainMenuStateInput(mainMenu);
-//		Gdx.input.setInputProcessor(input);
-//	}
-	
-//	public static void loadGame(SpriteBatch batch) {
-//		mainMenu = new LoadGameMenu(batch);
-//		input = new MainMenuStateInput(mainMenu);
-//		Gdx.input.setInputProcessor(input);
+//	public void update() {
+////		Game.debugger.start();
+////		Time.setDelta();
+////		
+////		delta = Time.getDelta();
+////		updateStates();
+////		
+////		Game.debugger.stopUpdateTime();
 //	}
 }
