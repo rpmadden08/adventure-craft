@@ -77,7 +77,7 @@ public class MainState extends GameState {
 		
 	@Override
 	protected void renderTextures() {
-		Game.renderSystem.setStartPosition(Game.level);
+		Game.renderSystem.setStartPosition(Game.level, Game.hero);
 		
 		
 		

@@ -331,33 +331,33 @@ public class Hero extends Actor {
 		}
 	}
 	
-	public void xMove(int moveX) {
-		
-		super.xMove(moveX);
-		Game.level.offsetX += moveX;
-		while(Game.level.offsetX >= TILE_SIZE) {
-			Game.level.offsetX -= TILE_SIZE;
-			Game.level.renderRect.x++;
-		} 
-		while(Game.level.offsetX < 0) {
-			Game.level.offsetX += TILE_SIZE;
-			Game.level.renderRect.x--;
-		}
-	}
-	
-	public void yMove(int moveY) {
-		
-		super.yMove(moveY);
-		
-		Game.level.offsetY += moveY;
-		while(Game.level.offsetY >= TILE_SIZE) {
-			Game.level.offsetY -= TILE_SIZE;
-			Game.level.renderRect.y++;
-		} 
-		while(Game.level.offsetY < 0) {
-			Game.level.offsetY += TILE_SIZE;
-			Game.level.renderRect.y--;
-		}
-		//System.out.println("y="+absRect.y);
-	}
+//	public void xMove(int moveX) {
+//		
+//		super.xMove(moveX);
+//		Game.level.offsetX += moveX;
+//		while(Game.level.offsetX >= TILE_SIZE) {
+//			Game.level.offsetX -= TILE_SIZE;
+//			Game.level.renderRect.x++;
+//		} 
+//		while(Game.level.offsetX < 0) {
+//			Game.level.offsetX += TILE_SIZE;
+//			Game.level.renderRect.x--;
+//		}
+//	}
+//	
+//	public void yMove(int moveY) {
+//		
+//		super.yMove(moveY);
+//		
+//		Game.level.offsetY += moveY;
+//		while(Game.level.offsetY >= TILE_SIZE) {
+//			Game.level.offsetY -= TILE_SIZE;
+//			Game.level.renderRect.y++;
+//		} 
+//		while(Game.level.offsetY < 0) {
+//			Game.level.offsetY += TILE_SIZE;
+//			Game.level.renderRect.y--;
+//		}
+//		//System.out.println("y="+absRect.y);
+//	}
 }
