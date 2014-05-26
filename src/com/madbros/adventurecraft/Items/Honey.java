@@ -9,7 +9,7 @@ public class Honey extends CraftItem {
 		id = HONEY;
 		name = "Honey";
 		sprite = Sprites.sprites.get(Sprites.HONEY);
-		itemsPossiblyCraftable = new int[]{};
+		itemsPossiblyCraftable = new int[]{BEEHIVE};
 		itemsPossiblyBrewable = new int[]{HEALTH_POTION};
 	}
 	

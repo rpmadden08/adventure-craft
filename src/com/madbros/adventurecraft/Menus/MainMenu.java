@@ -102,6 +102,8 @@ public class MainMenu extends Menu{
 		System.exit(0);
 	}
 	
+
+	
 	public void render() {
 		super.render();
 		super.renderSplashScreen();

@@ -1,4 +1,5 @@
 package com.madbros.adventurecraft.GameStates;
+import com.badlogic.gdx.Input.Keys;
 import com.madbros.adventurecraft.Menus.Menu;
 
 public class MainMenuStateInput extends BasicInput {
@@ -59,6 +60,10 @@ public class MainMenuStateInput extends BasicInput {
 	@Override
 	public boolean keyDown(int key) {
 		super.keyDown(key);
+		switch(key) {
+			case Keys.DEL: MainMenuState.mainMenu.delete(); 
+			break;
+		}
 		additionalKeyDown(key);
 		return false;
 	}

@@ -61,7 +61,7 @@ public class MainStateInput extends BasicInput {
 		super.keyDown(key);
 		switch(key) {
 		case Keys.M: Game.debugger.toggle(); break;
-		case Keys.ESCAPE: Game.gameMainMenu.toggleMenu(); break;
+		case Keys.ESCAPE: Game.toggleMainMenu(); break;
 		case Keys.P: Game.debugMenu.toggleMenu(); break;
 		case Keys.NUM_1: Game.inventory.changeSelectedItemTo(key); break;
 		case Keys.NUM_2: Game.inventory.changeSelectedItemTo(key); break;

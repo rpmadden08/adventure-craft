@@ -41,7 +41,8 @@ public class Game implements ApplicationListener {
 	public static double oceanTally, mountainTally, desertTally, grasslandTally, forestTally, jungleTally, swampTally, taigaTally, tundraTally = 0;
 	
 	
-	
+	public static boolean isSoundOn = true;
+	public static boolean isMusicOn = true;
 	public static GameState currentState;
 	public static String locOfSavedGame = null;
 	public static String gameFileName = null;
@@ -70,6 +71,9 @@ public class Game implements ApplicationListener {
 	
 	public static long gameStartTime;
 	public static long timeSpentInPreviousSaves;
+	
+	public static float totalLoadingPoints;
+	public static float currentLoadingPoints;
 	
 	public static OrthographicCamera camera;
 	public static float zAngle;
@@ -150,6 +154,7 @@ public class Game implements ApplicationListener {
 	
 	public static void toggleChestState() {
 		if(currentState.type == State.CHEST) {
+			//Not sure why but this doesn't change state?  Could be a bug...
 			inventory.chestOn = false;
 			int x = inventory.currentInvBlockX;
 			int y = inventory.currentInvBlockY;
@@ -165,6 +170,14 @@ public class Game implements ApplicationListener {
 			inventory.open(hero);
 		}
 	}
+	
+//	public static void toggleLoadingState() {
+//		if(currentState.type == State.LOADING) {
+//			currentState = new MainState();
+//		} else {
+//			currentState = new LoadingState(batch);
+//		}
+//	}
 	
 
 	
@@ -225,6 +238,7 @@ public class Game implements ApplicationListener {
 		} else {
 			level = new Overworld();
 		}
+		
 		hero = new Hero();
 		mobController = new MobController();
 		soundController = new SoundController();
@@ -241,7 +255,7 @@ public class Game implements ApplicationListener {
 		level.loadGame();
 		isNewGame = false;
 		
-		Game.currentState = new MainState();
+		//Game.currentState = new MainState();
 	}
 	
 	public static int getCenterScreenX() {
@@ -252,6 +266,14 @@ public class Game implements ApplicationListener {
 		return (int)Math.floor(currentScreenSizeY/2);
 	}
 
+	public static void toggleMainMenu() {
+		if(gameMainMenu.menuIsActive) gameMainMenu.menuIsActive = false;
+		else {
+			gameMainMenu = new GameMainMenu(batch);
+			gameMainMenu.menuIsActive = true;
+		}		
+	}
+	
 	@Override
 	public void create() {
 		ArrayList<DisplayMode> resolutions = new ArrayList<DisplayMode>();
@@ -270,7 +292,7 @@ public class Game implements ApplicationListener {
 		} catch(LWJGLException e) {
 			throw new RuntimeException("Could not initiate LWJGL.", e);
 		}
-		
+
 		gameStartTime = Time.getTime();
 		timeSpentInPreviousSaves = 0;  //TODO set this on game load:)
 		//p.load(Gdx.files.internal("data/Chunks.p"), Gdx.files.internal("data")); //files.internal loads from the "assets" folder
@@ -384,7 +406,7 @@ public class Game implements ApplicationListener {
 //		tilemap.dispose();
 	}
 
-	@Override
+//	@Override
 	public void render() {
 		currentState.update();
 		

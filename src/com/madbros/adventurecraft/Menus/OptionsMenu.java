@@ -39,6 +39,8 @@ public class OptionsMenu extends Menu {
 	
 	public OptionsMenu(SpriteBatch batch) {
 		super(batch);
+		
+		
 	}
 
 	@Override
@@ -46,9 +48,7 @@ public class OptionsMenu extends Menu {
 		isStretched = " ";
 		refreshMenu();
 		
-		
 
-		
 		getResolutions();
 		//refreshMenu();
 	}
@@ -78,6 +78,9 @@ public class OptionsMenu extends Menu {
 		ButtonFunction leftResolution = new ButtonFunction() { public void invoke() { leftResolution(); } };
 		ButtonFunction rightResolution = new ButtonFunction() { public void invoke() { rightResolution(); } };
 		ButtonFunction cancel = new ButtonFunction() { public void invoke() { cancel(); } };
+		ButtonFunction toggleSound = new ButtonFunction() { public void invoke() { toggleSound(); } };
+
+		ButtonFunction toggleMusic = new ButtonFunction() { public void invoke() { toggleMusic(); } };
 		
 		resolution = Game.currentScreenSizeX+"x"+Game.currentScreenSizeY+isStretched;
 		
@@ -90,10 +93,16 @@ public class OptionsMenu extends Menu {
 		Rect r2 = new Rect(MAIN_MENU_STARTX+200, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		Rect r3 = new Rect(Game.currentScreenSizeX /2-50, Game.currentScreenSizeY - 60, 100, 50);
 		Rect r4 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+		Rect r5 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+40, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+		Rect r6 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+80, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		
-		String[] strings = {"<",">", "cancel", resolution};
-		ButtonFunction[] functions = {leftResolution, rightResolution, cancel, rightResolution};
-		Rect[] r = {r1, r2, r3, r4};
+		String sound;
+		String music;
+		if(Game.isSoundOn) {sound = "On";} else {sound = "Off";}
+		if(Game.isMusicOn) {music = "On";} else {music = "Off";}
+		String[] strings = {"<",">", "Back", resolution, "Sound is "+sound,  "Music is "+music};
+		ButtonFunction[] functions = {leftResolution, rightResolution, cancel, rightResolution, toggleSound, toggleMusic};
+		Rect[] r = {r1, r2, r3, r4, r5, r6};
 
 		menuButtons = new UIButton[functions.length];
 		for(int i = 0; i < functions.length; i++) {
@@ -145,6 +154,25 @@ public class OptionsMenu extends Menu {
 		MAIN_MENU_STARTY = Game.currentScreenSizeY-230;
 		refreshMenu();
 	}
+	
+	public void toggleSound() {
+		if(Game.isSoundOn) {
+			Game.isSoundOn = false;
+		} else {
+			Game.isSoundOn = true;
+		}
+		refreshMenu();
+	}
+	
+	public void toggleMusic() {
+		if(Game.isMusicOn) {
+			Game.isMusicOn = false;
+		} else {
+			Game.isMusicOn = true;
+		}
+		refreshMenu();
+	}
+	
 	
 	@Override
 	public void handleMouseInput(boolean leftMousePressed, boolean leftMouseReleased) {

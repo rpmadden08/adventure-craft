@@ -186,7 +186,6 @@ public class ChunkGenerator {
 		List<Integer> oreY = new ArrayList<Integer>();
 		List<Integer> oreCheckX = new ArrayList<Integer>();
 		List<Integer> oreCheckY = new ArrayList<Integer>();
-		//System.out.println("TEST: "+x);
 		oreX.add(x); oreY.add(y);
 		oreCheckX.add(x); oreCheckY.add(y);
 		//System.out.println((int) oreX.get(0));

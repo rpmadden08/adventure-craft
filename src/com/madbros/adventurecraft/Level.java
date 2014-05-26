@@ -8,7 +8,10 @@ import java.util.Iterator;
 import java.util.Random;
 
 import com.madbros.adventurecraft.Constants.State;
+import com.badlogic.gdx.Gdx;
 import com.madbros.adventurecraft.GameObjects.Hero;
+import com.madbros.adventurecraft.GameStates.LoadingState;
+import com.madbros.adventurecraft.GameStates.MainState;
 import com.madbros.adventurecraft.Items.Clothing;
 import com.madbros.adventurecraft.Items.IronArmor;
 import com.madbros.adventurecraft.LevelTypes.ChunkGenerator;
@@ -120,7 +123,7 @@ public class Level {
 	
 	
 	public Level() {	
-		initialize();
+		//initialize();
 	}
 	
 	public void initialize() {
@@ -160,32 +163,64 @@ public class Level {
 		activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
 		currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
 		
-		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
-		if(!f.exists()) {
-			f.mkdir();
-			for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
-				for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
-					//System.out.println("Chunk being created..."+i+"-"+j);
-					createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
-				}
-			}
-			
-		} 
 		
+		Game.currentState = new LoadingState(Game.batch);
 		
-		
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
-				loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
-				
-			}
-			
-		}
-		gameStartTime = Time.getTime();		
+		//This runs the game loading in a separate thread for loading purposes...
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				// we are in the custom thread here, let's wait a little
+				// (and enjoy checked exceptions)
+				try {
+					File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
+					if(!f.exists()) {
+						Game.totalLoadingPoints = CHUNKS_LENGTH_TOTAL *CHUNKS_LENGTH_TOTAL +1;
+						Game.currentLoadingPoints = 0;
+						f.mkdir();
+						for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
+							for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
+								createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
+								Game.currentLoadingPoints = Game.currentLoadingPoints+1;
+							}
+						}	
+					} else {
+						Game.totalLoadingPoints = 1;
+						Game.currentLoadingPoints = 0;
+					}
+					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
+							loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
+							
+						}
+						
+					}
+					Game.currentLoadingPoints = Game.currentLoadingPoints+1;
+					gameStartTime = Time.getTime();		
 
-		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+					autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+				} catch (Exception e) {
+				}
+
+				// time to post on the main thread!
+				Gdx.app.postRunnable(new Runnable() {
+					@Override
+					public void run() {
+						
+						Game.currentState = new MainState();
+					}
+				});
+			}
+		}).start();
+		
+		
+		
+		
+		
 		
 	}
+	
+	
 	
 	public void checkPercentages() {
 		double total = Game.tundraTally + Game.taigaTally + Game.forestTally + Game.jungleTally+ Game.grasslandTally + Game.mountainTally +Game.oceanTally + Game.desertTally +Game.swampTally;

@@ -11,6 +11,7 @@ import com.madbros.adventurecraft.Game;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import com.madbros.adventurecraft.GameStates.LoadingState;
 import com.madbros.adventurecraft.GameStates.MainMenuState;
 import com.madbros.adventurecraft.UI.*;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
@@ -54,7 +55,7 @@ public class LoadGameMenu extends Menu {
 		Rect r2 = new Rect(Game.currentScreenSizeX /2-50, Game.currentScreenSizeY - 60, 100, 50);
 		Rect r3 = new Rect(Game.currentScreenSizeX - 120, Game.currentScreenSizeY - 60, 100, 50);
 		
-		String[] strings = {"Load","Delete", "Cancel"};
+		String[] strings = {"Load","Delete", "Back"};
 		ButtonFunction[] functions = {load, delete, cancel};
 		Rect[] r = {r1, r3, r2};
 
@@ -82,10 +83,10 @@ public class LoadGameMenu extends Menu {
 		} else {
 			for(int i = 0; i < selectUIButtons.length; i++) {
 				if(i< 5) {
-					selectUIButtons[i] = new SelectUIButton(r1.x-r1.w/2-4, r1.y + i * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
+					selectUIButtons[i] = new SelectUIButton(r1.x-r1.w/2-9, r1.y + i * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
 					selectUIButtons[i].iD = i;
 				} else {
-					selectUIButtons[i] = new SelectUIButton(r1.x+r1.w/2+4, r1.y + (i-5) * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
+					selectUIButtons[i] = new SelectUIButton(r1.x+r1.w/2+9, r1.y + (i-5) * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
 					selectUIButtons[i].iD = i;
 				}
 			}
@@ -123,6 +124,7 @@ public class LoadGameMenu extends Menu {
 	}
 	
 	public void load() {
+		Game.currentState = new LoadingState(Game.batch);
 		Game.isNewGame = false;
 		if(currentlySelectedButton != null) Game.createNewGameAtLoc(SAVE_LOC + currentlySelectedButton.text.getString() + "/");
 		

@@ -31,8 +31,8 @@ public class QueenBee extends Mob {
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BEE));
 		margin = new Margin(0, 0, 0, 0);
-		currentSpeed = 0.2f;
-		moveSpeed = 0.15f;
+		currentSpeed = 0.0f; //0.2f
+		moveSpeed = 0.0f; //0.15
 		//maxSpeed = 0.15f;
 		collisionDetectionBlocks = new Block[9];
 		deathParticles = "beeDeath.p";
