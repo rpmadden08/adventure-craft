@@ -31,15 +31,15 @@ public class Helpers {
 	}
 	
 	public static Point getOffsetPoint(Hero hero, Block firstBlockInActiveBlocks) {
-		return new Point((hero.absRect.x - firstBlockInActiveBlocks.absRect.x) % TILE_SIZE,
-						 (hero.absRect.y + TILE_SIZE / 2 - firstBlockInActiveBlocks.absRect.y) % TILE_SIZE);
+		return new Point(((hero.absRect.x - Game.currentScreenSizeX / 2) - firstBlockInActiveBlocks.absRect.x) % TILE_SIZE,
+						 ((hero.absRect.y - Game.currentScreenSizeY / 2) - firstBlockInActiveBlocks.absRect.y) % TILE_SIZE);
 	}
 	
 	public static Rect getRenderRect(Hero hero, Block firstBlockInActiveBlocks) {
 		return new Rect((int)Math.ceil(((hero.absRect.x - Game.currentScreenSizeX / 2) - firstBlockInActiveBlocks.absRect.x) / TILE_SIZE) + RENDER_MARGIN,
 						(int) Math.ceil(((hero.absRect.y - Game.currentScreenSizeY / 2) - firstBlockInActiveBlocks.absRect.y) / TILE_SIZE) + RENDER_MARGIN,
 						(int)Math.ceil(Game.currentScreenSizeX / TILE_SIZE) + RENDER_MARGIN,
-						(int)Math.ceil(Game.currentScreenSizeY / TILE_SIZE) + RENDER_MARGIN);
+						(int)Math.ceil(Game.currentScreenSizeY / TILE_SIZE) + RENDER_MARGIN + 1);
 	}
 	
 	public static boolean containsXNumberOfItemsInSlots(int x, int itemId, Slot[] slots) {
