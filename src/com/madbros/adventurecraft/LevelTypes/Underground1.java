@@ -5,6 +5,7 @@ import static com.madbros.adventurecraft.Constants.*;
 import java.io.File;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.GameStates.MainState;
 import com.madbros.adventurecraft.Items.IronSword;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.LevelTypes.FractalTypes.CaveNoise;
@@ -23,6 +24,51 @@ public class Underground1 extends Level{
 		
 		
 	}
+	
+	public void finishLoading() {
+		System.out.println(Game.hero.absRect.x);
+		int x = getYFromAbs(Game.replaceableX);
+		int y = getYFromAbs(Game.replaceableY);
+		if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_UP_BOTTOM_TILE) {
+			Game.level.activeBlocks[x-1][y-1].layers[OBJECT_LAYER].deleteThisTile(x-1, y-1, Game.level.activeBlocks);
+			Game.level.activeBlocks[x][y-1].layers[OBJECT_LAYER].deleteThisTile(x, y-1, Game.level.activeBlocks);
+			Game.level.activeBlocks[x+1][y-1].layers[OBJECT_LAYER].deleteThisTile(x+1, y-1, Game.level.activeBlocks);
+			Game.level.activeBlocks[x-1][y].layers[OBJECT_LAYER].deleteThisTile(x-1, y, Game.level.activeBlocks);
+			Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].deleteThisTile(x, y, Game.level.activeBlocks);
+			Game.level.activeBlocks[x+1][y].layers[OBJECT_LAYER].deleteThisTile(x+1, y, Game.level.activeBlocks);
+			Game.level.activeBlocks[x-1][y+1].layers[OBJECT_LAYER].deleteThisTile(x-1, y+1, Game.level.activeBlocks);
+			Game.level.activeBlocks[x][y+1].layers[OBJECT_LAYER].deleteThisTile(x, y+1, Game.level.activeBlocks);
+			Game.level.activeBlocks[x+1][y+1].layers[OBJECT_LAYER].deleteThisTile(x+1, y+1, Game.level.activeBlocks);
+			
+			Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new StairsUpBottomTile();
+			Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new StairsUpTopTile();
+			
+			Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.x = Game.level.activeBlocks[x][y].getAbsX()* TILE_SIZE;
+			Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.y = Game.level.activeBlocks[x][y].getAbsY()* TILE_SIZE;
+			
+		}
+		Game.level.autoTileBlock(x, y+1);
+		Game.level.autoTileBlock(x, y);
+		Game.level.autoTileBlock(x, y-1);
+		Game.level.autoTileBlock(x, y-2);
+		Game.level.autoTileBlock(x, y-3);
+		
+		Game.level.autoTileBlock(x-1, y+1);
+		Game.level.autoTileBlock(x-1, y);
+		Game.level.autoTileBlock(x-1, y-1);
+		Game.level.autoTileBlock(x-1, y-2);
+		Game.level.autoTileBlock(x-1, y-3);
+		
+		Game.level.autoTileBlock(x+1, y+1);
+		Game.level.autoTileBlock(x+1, y);
+		Game.level.autoTileBlock(x+1, y-1);
+		Game.level.autoTileBlock(x+1, y-2);
+		Game.level.autoTileBlock(x+1, y-3);
+		
+		Game.currentState = new MainState();
+	}
+	
+	
 	public void createNewBlock(int i, int j, int chunkX, int chunkY, int x, int y, Underground1ChunkGenerator chunkGenerator) {
 		Block block;  //top left
 

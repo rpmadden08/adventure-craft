@@ -74,7 +74,7 @@ public class CaveNoise extends BasicNoise{
 		    noise.setRange(0.0f, 1.0f); // set the range to auto-correct to
 		    noise.setSamples(10000); // set how many samples to take
 		    noise.calculate(); // perform the caclulations
-		    System.out.println("CHECK");
+//		    System.out.println("CHECK");
 
 	}
 }

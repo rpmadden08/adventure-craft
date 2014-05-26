@@ -37,6 +37,7 @@ import com.madbros.adventurecraft.TileTypes.LightTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.TileTypes.TreeLeafTile;
 import com.madbros.adventurecraft.Utils.Helpers;
+import com.madbros.adventurecraft.Utils.Point;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class RenderSystem {
@@ -46,18 +47,24 @@ public class RenderSystem {
 	public ArrayList<Block> lightTiles = new ArrayList<Block>();
 	private int frameCutter = 0;
 	private float lightSizeRandom = 0;
+	private Rect renderRect;
+	private Point offsetPoint;
 
-	public void setStartPosition(Level lv) {
+	public void setStartPosition(Level lv, Hero hero) {
 //		lightTiles = new ArrayList<Block>();
-		startX = lv.activeBlocks[lv.renderRect.x][lv.renderRect.y].absRect.x + lv.offsetX;
-		startY = lv.activeBlocks[lv.renderRect.x][lv.renderRect.y].absRect.y + lv.offsetY;
+		Block firstBlock = lv.activeBlocks[0][0];
+		offsetPoint = Helpers.getOffsetPoint(hero, firstBlock);
+		renderRect = Helpers.getRenderRect(hero, firstBlock);
+		
+		startX = lv.activeBlocks[renderRect.x][renderRect.y].absRect.x + offsetPoint.x;
+		startY = lv.activeBlocks[renderRect.x][renderRect.y].absRect.y + offsetPoint.y;
 	}
 	/******************************************* Main State Rendering *******************************************/
 	public void renderWorld(Level lv) {
 //		alreadyRenderedObjects = new ArrayList<GameObject>();
 		int i = 0; int j = 0;
-		for(int x = lv.renderRect.x; x < lv.renderRect.x2(); x++) {
-			for(int y = lv.renderRect.y; y < lv.renderRect.y2(); y++) {
+		for(int x = renderRect.x; x < renderRect.x2(); x++) {
+			for(int y = renderRect.y; y < renderRect.y2(); y++) {
 //				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {					
 					renderBlock(x, y, lv.activeBlocks[x][y], lv, i, j, true);
 //				}
@@ -69,8 +76,8 @@ public class RenderSystem {
 	public void renderWorldAbove(Level lv) {
 //		alreadyRenderedObjects = new ArrayList<GameObject>();
 		int i = 0; int j = 0;
-		for(int x = lv.renderRect.x; x < lv.renderRect.x2(); x++) {
-			for(int y = lv.renderRect.y; y < lv.renderRect.y2(); y++) {
+		for(int x = renderRect.x; x < renderRect.x2(); x++) {
+			for(int y = renderRect.y; y < renderRect.y2(); y++) {
 //				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {					
 					renderBlock(x, y, lv.activeBlocks[x][y], lv, i, j, false);
 					
@@ -80,8 +87,8 @@ public class RenderSystem {
 			i++; j = 0;
 		}
 		i = 0; j = 0;
-		for(int x = lv.renderRect.x; x < lv.renderRect.x2(); x++) {
-			for(int y = lv.renderRect.y; y < lv.renderRect.y2(); y++) {
+		for(int x = renderRect.x; x < renderRect.x2(); x++) {
+			for(int y = renderRect.y; y < renderRect.y2(); y++) {
 //				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {					
 					renderBlockHighlight(x, y, lv.activeBlocks[x][y], lv, i, j, false);
 					
@@ -94,8 +101,8 @@ public class RenderSystem {
 	}
 	
 	public void renderBlockHighlight(int arrayX, int arrayY, Block block, Level lv, int i2, int j2, Boolean isAbove) {
-		int x = i2 * TILE_SIZE - lv.offsetX; //block.absRect.x - startX;
-		int y = j2 * TILE_SIZE - lv.offsetY; //block.absRect.y - startY;
+		int x = i2 * TILE_SIZE - offsetPoint.x; //block.absRect.x - startX;
+		int y = j2 * TILE_SIZE - offsetPoint.y; //block.absRect.y - startY;
 		if(block.isHighlighted) {
 			Item item = ITEM_HASH.get(Game.inventory.invBar[Game.inventory.itemSelected].item.id).createNew();
 			if(item.is32) {
@@ -116,8 +123,8 @@ public class RenderSystem {
 	
 	
 	public void renderBlock(int arrayX, int arrayY, Block block, Level lv, int i2, int j2, Boolean isAbove) {
-		int x = i2 * TILE_SIZE - lv.offsetX; //block.absRect.x - startX;
-		int y = j2 * TILE_SIZE - lv.offsetY; //block.absRect.y - startY;
+		int x = i2 * TILE_SIZE - offsetPoint.x; //block.absRect.x - startX;
+		int y = j2 * TILE_SIZE - offsetPoint.y; //block.absRect.y - startY;
 		Tile[] renderTiles;
 		if(isAbove == true) {
 			renderTiles = block.getRenderTilesBottom();

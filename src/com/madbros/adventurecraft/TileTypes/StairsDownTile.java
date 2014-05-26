@@ -44,78 +44,82 @@ public class StairsDownTile extends CollisionTile {
 	}
 	
 	@Override
-	public void update(int x, int y) {
+	public boolean updateStairs(int x, int y) {
 		Game.level.activeBlocks[x][y].collisionTile = null;
 		Rect finalCRect = new Rect(cRect, margin);
 		if(finalCRect.detectCollision(new Rect(Game.hero.absRect, Game.hero.margin))) {
 			if(hasReset == true) {
 				
-				Game.hero.moveSpeed = 0;
-				Game.hero.currentSpeed = 0;
+//				Game.hero.moveSpeed = 0;
+//				Game.hero.currentSpeed = 0;
 				
 				Game.currentState = new LoadingState(Game.batch);
 				
-				int x2 = Game.level.activeBlocks[x][y].getAbsX();
-				int y2 = Game.level.activeBlocks[x][y].getAbsY();
-				
+				Game.replaceableX = Game.level.activeBlocks[x][y].getAbsX();
+				Game.replaceableY = Game.level.activeBlocks[x][y].getAbsY();
+				//System.out.println(Game.level.activeBlocks[x][y].getAbsY());
+				Game.musicController.music.stop();
+				Game.hero.stop();
 				Game.switchLevel();
 				//Game.hero = null;
 				
 				//Game.level.teleportHero(x2, y2-1);
-				x = Game.level.getXFromAbs(x2);
-				y = Game.level.getYFromAbs(y2);
-				if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_UP_BOTTOM_TILE) {
-					Game.level.activeBlocks[x-1][y-1].layers[OBJECT_LAYER].deleteThisTile(x-1, y-1, Game.level.activeBlocks);
-					Game.level.activeBlocks[x][y-1].layers[OBJECT_LAYER].deleteThisTile(x, y-1, Game.level.activeBlocks);
-					Game.level.activeBlocks[x+1][y-1].layers[OBJECT_LAYER].deleteThisTile(x+1, y-1, Game.level.activeBlocks);
-					Game.level.activeBlocks[x-1][y].layers[OBJECT_LAYER].deleteThisTile(x-1, y, Game.level.activeBlocks);
-					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].deleteThisTile(x, y, Game.level.activeBlocks);
-					Game.level.activeBlocks[x+1][y].layers[OBJECT_LAYER].deleteThisTile(x+1, y, Game.level.activeBlocks);
-					Game.level.activeBlocks[x-1][y+1].layers[OBJECT_LAYER].deleteThisTile(x-1, y+1, Game.level.activeBlocks);
-					Game.level.activeBlocks[x][y+1].layers[OBJECT_LAYER].deleteThisTile(x, y+1, Game.level.activeBlocks);
-					Game.level.activeBlocks[x+1][y+1].layers[OBJECT_LAYER].deleteThisTile(x+1, y+1, Game.level.activeBlocks);
-					
-					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new StairsUpBottomTile();
-					Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new StairsUpTopTile();
-					
-					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.x = Game.level.activeBlocks[x][y].getAbsX()* TILE_SIZE;
-					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.y = Game.level.activeBlocks[x][y].getAbsY()* TILE_SIZE;
-					
-				}
-				Game.level.autoTileBlock(x, y+1);
-				Game.level.autoTileBlock(x, y);
-				Game.level.autoTileBlock(x, y-1);
-				Game.level.autoTileBlock(x, y-2);
-				Game.level.autoTileBlock(x, y-3);
-				
-				Game.level.autoTileBlock(x-1, y+1);
-				Game.level.autoTileBlock(x-1, y);
-				Game.level.autoTileBlock(x-1, y-1);
-				Game.level.autoTileBlock(x-1, y-2);
-				Game.level.autoTileBlock(x-1, y-3);
-				
-				Game.level.autoTileBlock(x+1, y+1);
-				Game.level.autoTileBlock(x+1, y);
-				Game.level.autoTileBlock(x+1, y-1);
-				Game.level.autoTileBlock(x+1, y-2);
-				Game.level.autoTileBlock(x+1, y-3);
-				
+//				x = Game.level.getXFromAbs(x2);
+//				y = Game.level.getYFromAbs(y2);
+//				if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_UP_BOTTOM_TILE) {
+//					Game.level.activeBlocks[x-1][y-1].layers[OBJECT_LAYER].deleteThisTile(x-1, y-1, Game.level.activeBlocks);
+//					Game.level.activeBlocks[x][y-1].layers[OBJECT_LAYER].deleteThisTile(x, y-1, Game.level.activeBlocks);
+//					Game.level.activeBlocks[x+1][y-1].layers[OBJECT_LAYER].deleteThisTile(x+1, y-1, Game.level.activeBlocks);
+//					Game.level.activeBlocks[x-1][y].layers[OBJECT_LAYER].deleteThisTile(x-1, y, Game.level.activeBlocks);
+//					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].deleteThisTile(x, y, Game.level.activeBlocks);
+//					Game.level.activeBlocks[x+1][y].layers[OBJECT_LAYER].deleteThisTile(x+1, y, Game.level.activeBlocks);
+//					Game.level.activeBlocks[x-1][y+1].layers[OBJECT_LAYER].deleteThisTile(x-1, y+1, Game.level.activeBlocks);
+//					Game.level.activeBlocks[x][y+1].layers[OBJECT_LAYER].deleteThisTile(x, y+1, Game.level.activeBlocks);
+//					Game.level.activeBlocks[x+1][y+1].layers[OBJECT_LAYER].deleteThisTile(x+1, y+1, Game.level.activeBlocks);
+//					
+//					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new StairsUpBottomTile();
+//					Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new StairsUpTopTile();
+//					
+//					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.x = Game.level.activeBlocks[x][y].getAbsX()* TILE_SIZE;
+//					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.y = Game.level.activeBlocks[x][y].getAbsY()* TILE_SIZE;
+//					
+//				}
+//				Game.level.autoTileBlock(x, y+1);
+//				Game.level.autoTileBlock(x, y);
+//				Game.level.autoTileBlock(x, y-1);
+//				Game.level.autoTileBlock(x, y-2);
+//				Game.level.autoTileBlock(x, y-3);
+//				
+//				Game.level.autoTileBlock(x-1, y+1);
+//				Game.level.autoTileBlock(x-1, y);
+//				Game.level.autoTileBlock(x-1, y-1);
+//				Game.level.autoTileBlock(x-1, y-2);
+//				Game.level.autoTileBlock(x-1, y-3);
+//				
+//				Game.level.autoTileBlock(x+1, y+1);
+//				Game.level.autoTileBlock(x+1, y);
+//				Game.level.autoTileBlock(x+1, y-1);
+//				Game.level.autoTileBlock(x+1, y-2);
+//				Game.level.autoTileBlock(x+1, y-3);
+//				
 				//Time.setDeltaToZero();
 				
 //				Game.hero.moveSpeed = 0;
 //				Game.hero.currentSpeed = 0;
 				//Game.hero.stop();
-				Game.currentState = new MainState();
+				//Game.currentState = new MainState();
 				//FIXME delta time is very high causing the player to move way farther ahead than he should.  Possibly fixing delta issues?  Possibly setting character move speeds AFTER delta reset?
 				
 				//Gdx.graphics.
 				
-				System.out.println("CURRENT SPEED: "+Game.hero.currentSpeed+"     MOVE_SPEED:  "+Game.hero.moveSpeed);
+				//System.out.println("CURRENT SPEED: "+Game.hero.currentSpeed+"     MOVE_SPEED:  "+Game.hero.moveSpeed);
 				//Game.level.autoTileHighlightedBlock();
+				return false;
 			}
-			
+			return true;
 		} else {
 			hasReset = true;
+			return true;
 		}
 	}
 	

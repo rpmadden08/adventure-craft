@@ -2,6 +2,7 @@ package com.madbros.adventurecraft;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import static com.madbros.adventurecraft.Constants.*;
 
 public class MusicController {
 	public int musicSelection = 0;
@@ -18,7 +19,19 @@ public class MusicController {
 	}
 	public void update() {
 		if(Game.isMusicOn == true) {
-			if(Game.level.isDay == true) {
+			if(Game.currentLevel == UNDERGROUND_1_FOLDER) {
+				if (musicSelection != 3) {
+					musicSelection = 3;
+					if(music.isPlaying()) {
+						music.stop();
+						music.dispose();
+					}
+					music = Gdx.audio.newMusic(Gdx.files.internal("music/lookingForClues.wav"));
+					//music.setVolume(0);
+					music.play();
+					music.setLooping(true);
+				}
+			} else if(Game.level.isDay == true) {
 				if (musicSelection != 1) {
 					musicSelection = 1;
 					if(music.isPlaying()) {
@@ -42,6 +55,8 @@ public class MusicController {
 					music.play();
 					music.setLooping(true);
 				}
+			} else {
+				
 			}
 		}
 	}

@@ -52,6 +52,7 @@ public class LoadingState extends GameState{
 		Game.zAngle += dt * Game.zSpeed;
 		while(Game.zAngle > Game.PI2)
 			Game.zAngle -= Game.PI2;
+		Game.musicController.update();
 		
 	}
 	

@@ -71,13 +71,12 @@ public class MainState extends GameState {
 		Game.particleEffectController.update();
 		Game.level.update();
 		Game.inventory.update();
-
 		Game.debugger.update();
 	}
 		
 	@Override
 	protected void renderTextures() {
-		Game.renderSystem.setStartPosition(Game.level);
+		Game.renderSystem.setStartPosition(Game.level, Game.hero);
 		
 		
 		

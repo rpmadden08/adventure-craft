@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.NoItem;
 import com.madbros.adventurecraft.Slots.*;
@@ -27,6 +28,18 @@ public class Helpers {
 	
 	public static Rect getMouseRect() {
 		return new Rect(getX(), getY(), 1, 1);
+	}
+	
+	public static Point getOffsetPoint(Hero hero, Block firstBlockInActiveBlocks) {
+		return new Point(((hero.absRect.x - Game.currentScreenSizeX / 2) - firstBlockInActiveBlocks.absRect.x) % TILE_SIZE,
+						 ((hero.absRect.y - Game.currentScreenSizeY / 2) - firstBlockInActiveBlocks.absRect.y) % TILE_SIZE);
+	}
+	
+	public static Rect getRenderRect(Hero hero, Block firstBlockInActiveBlocks) {
+		return new Rect((int)Math.ceil(((hero.absRect.x - Game.currentScreenSizeX / 2) - firstBlockInActiveBlocks.absRect.x) / TILE_SIZE) + RENDER_MARGIN,
+						(int) Math.ceil(((hero.absRect.y - Game.currentScreenSizeY / 2) - firstBlockInActiveBlocks.absRect.y) / TILE_SIZE) + RENDER_MARGIN,
+						(int)Math.ceil(Game.currentScreenSizeX / TILE_SIZE) + RENDER_MARGIN,
+						(int)Math.ceil(Game.currentScreenSizeY / TILE_SIZE) + RENDER_MARGIN + 1);
 	}
 	
 	public static boolean containsXNumberOfItemsInSlots(int x, int itemId, Slot[] slots) {

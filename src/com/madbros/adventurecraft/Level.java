@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import com.madbros.adventurecraft.Constants.State;
 import com.badlogic.gdx.Gdx;
 import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.GameStates.LoadingState;
@@ -68,13 +69,13 @@ public class Level {
 	int startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 	int startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 	public Rect chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
-	public int offsetX = 0;	//offset gets set at the start of level if there is one
-	public int offsetY = 0;
-	public Rect renderRect = new Rect(
-			spawnX / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE),
-			spawnY / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
-			(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN,
-			(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN);
+//	public int offsetX = 0;	//offset gets set at the start of level if there is one
+//	public int offsetY = 0;
+//	public Rect renderRect = new Rect(
+//			spawnX / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE),
+//			spawnY / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
+//			(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN,
+//			(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
 //	
 	//public long rgenseed = System.currentTimeMillis();
@@ -128,8 +129,8 @@ public class Level {
 	public void initialize() {
 		Game.gameStartTime = Time.getTime();
 		if(Game.isNewGame) {
-			if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
-			if(Game.getCenterScreenY() % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.getCenterScreenY() % TILE_SIZE;
+//			if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
+//			if(Game.getCenterScreenY() % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.getCenterScreenY() % TILE_SIZE;
 		} else {
 			SaveGameData saveData = Game.saveGame.saveData();
 			//Game.currentLevel = saveData.currentLevel;
@@ -141,19 +142,19 @@ public class Level {
 			startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 			chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
 			
-			offsetX = saveData.offsetX;
-			offsetY = saveData.offsetY;
-			int renderRectX;
-			if(offsetX > 15) {
-				renderRectX = (spawnX+(offsetX)) / TILE_SIZE -(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
-			} else {
-				renderRectX = (spawnX+(offsetX)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
-			}
-			renderRect = new Rect(
-					renderRectX,
-					(spawnY+(TILE_SIZE -offsetY)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
-					(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN,
-					(int)Math.ceil(Game.currentScreenSizeY * 1.0 / TILE_SIZE) + RENDER_MARGIN);
+//			offsetX = saveData.offsetX;
+//			offsetY = saveData.offsetY;
+//			int renderRectX;
+//			if(offsetX > 15) {
+//				renderRectX = (spawnX+(offsetX)) / TILE_SIZE -(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
+//			} else {
+//				renderRectX = (spawnX+(offsetX)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
+//			}
+//			renderRect = new Rect(
+//					renderRectX,
+//					(spawnY+(TILE_SIZE -offsetY)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
+//					(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN,
+//					(int)Math.ceil(Game.currentScreenSizeY * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 			
 		}
 		
@@ -161,7 +162,6 @@ public class Level {
 		
 		activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
 		currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
-		
 		
 		Game.currentState = new LoadingState(Game.batch);
 		
@@ -206,17 +206,15 @@ public class Level {
 					@Override
 					public void run() {
 						
-						Game.currentState = new MainState();
+						finishLoading();
 					}
 				});
 			}
-		}).start();
-		
-		
-		
-		
-		
-		
+		}).start();	
+	}
+	
+	public void finishLoading() {
+		Game.currentState = new MainState();
 	}
 	
 	
@@ -338,7 +336,7 @@ public class Level {
 		Game.saveGame.saveChunk(chunk, chunkX, chunkY);
 	}
 	
-	private void highlight64() {
+	private void highlight64(Rect renderRect, Point offsetPoint) {
 		if(highlightedBlock != null) {
 			highlightedBlock.isHighlighted = false;
 //			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = false;
@@ -352,9 +350,9 @@ public class Level {
 		itemRange.y = Game.hero.sRect.y- (itemRange.h / 2) + (Game.hero.sRect.h/2);
 		if(mRect.detectCollision(itemRange)) {
 			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = true;
-			highlightedBlockX = renderRect.x + (mRect.x + offsetX) / TILE_SIZE;
+			highlightedBlockX = renderRect.x + (mRect.x + offsetPoint.x) / TILE_SIZE;
 			
-			highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
+			highlightedBlockY = renderRect.y + (mRect.y + offsetPoint.y) / TILE_SIZE;
 			
 			if(highlightedBlockX % 2 == 0 && highlightedBlockY % 2 == 0) {
 				
@@ -389,7 +387,7 @@ public class Level {
 		
 	}
 	
-	private void highlight32() {
+	private void highlight32(Rect renderRect, Point offsetPoint) {
 		if(highlightedBlock != null) {
 			highlightedBlock.isHighlighted = false;
 			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = false;
@@ -404,8 +402,8 @@ public class Level {
 		itemRange.y = Game.hero.sRect.y- (itemRange.h / 2) + (Game.hero.sRect.h/2);
 		if(mRect.detectCollision(itemRange)) {
 			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = true;
-			highlightedBlockX = renderRect.x + (mRect.x + offsetX) / TILE_SIZE;
-			highlightedBlockY = renderRect.y + (mRect.y + offsetY) / TILE_SIZE;
+			highlightedBlockX = renderRect.x + (mRect.x + offsetPoint.x) / TILE_SIZE;
+			highlightedBlockY = renderRect.y + (mRect.y + offsetPoint.y) / TILE_SIZE;
 			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
 			//This is so that chests know their coordinates...
 			tileBeingAttacked.absX = highlightedBlock.getAbsX();
@@ -429,11 +427,11 @@ public class Level {
 		}
 	}
 	
-	private void highlightBlock() {
+	private void highlightBlock(Rect renderRect, Point offsetPoint) {
 		if(Game.inventory.invBar[Game.inventory.itemSelected].item.is32 == true) {
-			highlight32();
+			highlight32(renderRect, offsetPoint);
 		} else {
-			highlight32();
+			highlight32(renderRect, offsetPoint);
 		}
 		
 	}
@@ -441,7 +439,9 @@ public class Level {
 	public void update() {		
 		
 		Time.checkTime();
-		if(Game.currentState.type == State.MAIN) highlightBlock();
+		Rect renderRect = Helpers.getRenderRect(Game.hero, activeBlocks[0][0]);
+		Point offsetPoint = Helpers.getOffsetPoint(Game.hero, activeBlocks[0][0]);
+		if(Game.currentState.type == State.MAIN) highlightBlock(renderRect, offsetPoint);
 		
 		if(renderRect.y <= CHUNK_SIZE/2) {
 			getNorthernChunks();
@@ -458,7 +458,12 @@ public class Level {
 			for(int y = renderRect.y; y < renderRect.y2(); y++) {
 				activeBlocks[x][y].layers[WATER_LAYER].update(x, y);
 				activeBlocks[x][y].layers[GRASS_LAYER].update(x, y);
-				activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
+				//activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
+				if(activeBlocks[x][y].layers[OBJECT_LAYER].updateStairs(x, y) == true) {
+					
+				} else {
+					return;
+				}
 				activeBlocks[x][y].layers[TREE_LEFT_0].update(x, y);
 				activeBlocks[x][y].layers[ABOVE_LAYER_2].update(x, y);
 				//activeBlocks[x][y].layers[TREE_RIGHT_1].update(x, y);
@@ -495,7 +500,7 @@ public class Level {
 			saveChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
 		}
 		
-		renderRect.y += CHUNK_SIZE;
+//		renderRect.y += CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(DOWN);
 		chunkRect.y--;
@@ -514,7 +519,7 @@ public class Level {
 			saveChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
 		}
 		
-		renderRect.y -= CHUNK_SIZE;
+//		renderRect.y -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(UP);
 		chunkRect.y++;
@@ -533,7 +538,7 @@ public class Level {
 			saveChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
 		}
 		
-		renderRect.x -= CHUNK_SIZE;
+//		renderRect.x -= CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(LEFT);
 		chunkRect.x++;
@@ -550,7 +555,7 @@ public class Level {
 			saveChunk(TILES_PER_ROW-CHUNK_SIZE, CHUNK_SIZE*i, chunkRect.x2(), chunkRect.y + i);
 		}
 		
-		renderRect.x += CHUNK_SIZE;
+//		renderRect.x += CHUNK_SIZE;
 		
 		shiftActiveBlocksArray(RIGHT);
 		chunkRect.x--;

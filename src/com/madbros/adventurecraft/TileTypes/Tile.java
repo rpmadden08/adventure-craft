@@ -133,4 +133,8 @@ public abstract class Tile {
 	public void setCollisionRect(Rect absRect) {
 		cRect = new Rect(absRect, margin);
 	}
+
+	public boolean updateStairs(int x, int y) {
+		return true;
+	}
 }

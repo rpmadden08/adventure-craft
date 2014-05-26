@@ -5,6 +5,7 @@ package com.madbros.adventurecraft.TileTypes;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.GameStates.LoadingState;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
@@ -39,28 +40,25 @@ public class StairsUpBottomTile extends CollisionTile {
 	}
 	
 	@Override
-	public void update(int x, int y) {
+	public boolean updateStairs(int x, int y) {
 		Game.level.activeBlocks[x][y].collisionTile = null;
 		Rect finalCRect = new Rect(cRect, margin);
 		if(finalCRect.detectCollision(new Rect(Game.hero.absRect, Game.hero.margin))) {
 			if(hasReset == true) {
-				int x2 = Game.level.activeBlocks[x][y].getAbsX();
-				int y2 = Game.level.activeBlocks[x][y].getAbsY();
+
+				Game.currentState = new LoadingState(Game.batch);
+				
+				Game.replaceableX = Game.level.activeBlocks[x][y].getAbsX();
+				Game.replaceableY = Game.level.activeBlocks[x][y].getAbsY();
+				Game.musicController.music.stop();
+				Game.hero.stop();
 				Game.switchLevel();
-				Game.level.teleportHero(x2, y2-1);
-				x = Game.level.getXFromAbs(x2);
-				y = Game.level.getYFromAbs(y2);
-				if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_DOWN_TILE) {
-					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].deleteThisTile(x, y, Game.level.activeBlocks);
-					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new StairsDownTile();
-					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.x = Game.level.activeBlocks[x][y].getAbsX()* TILE_SIZE;
-					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.y = Game.level.activeBlocks[x][y].getAbsY()* TILE_SIZE;
-					
-				}
+				return false;
 			}
-			
+			return true;
 		} else {
 			hasReset = true;
+			return true;
 		}
 	}
 	
