@@ -21,7 +21,7 @@ public class Bee extends Mob {
 	
 	public Bee(MobController mobController, int x, int y) {
 		super(mobController);
-		attack = 2;
+		attack = 25; //2
 		hP = 6;
 		maxHP = 6;
 		this.mobController = mobController;

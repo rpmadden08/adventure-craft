@@ -8,6 +8,8 @@ import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.Time;
+import com.madbros.adventurecraft.GameStates.LoadingState;
+import com.madbros.adventurecraft.GameStates.MainState;
 import com.madbros.adventurecraft.Items.Clothing;
 import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
@@ -204,9 +206,16 @@ public class Hero extends Actor {
 				Game.saveGame.saveGame();
 				Game.level.saveCurrentChunks();
 				//Game.level.loadGame();
-				Game.level = new Level();
+				//Game.level = new Level();
+				Game.currentState = new LoadingState(Game.batch);
+				//Game.level.loadGame();
+				//Game.level = new Level();
 				Game.hero = new Hero();
-				//Game.level.teleportHero(Game.level.spawnX, Game.level.spawnY);
+				//Game.level.loadGame();
+				//System.out.println(Game.level.masterSpawnX);
+				Game.level.teleportHero(Game.level.masterSpawnX/TILE_SIZE, Game.level.masterSpawnY/TILE_SIZE);
+				Game.level.teleportChunkRect();
+				Game.currentState = new MainState();
 			} else {
 				deathWait ++;
 			}

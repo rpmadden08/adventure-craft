@@ -435,10 +435,8 @@ public class Overworld extends Level{
 
 		if(chunkX > CHUNKS_LENGTH_TOTAL/2 && chunkY > CHUNKS_LENGTH_TOTAL/2 &&Game.spawnSet == false) {
 			if(block.layers[OBJECT_LAYER].id == AIR && block.layers[WATER_LAYER].id == AIR) {
-				System.out.println(spawnX);
 				spawnX = block.absRect.x;
 				spawnY = block.absRect.y;
-				System.out.println(spawnX);
 				
 				masterSpawnX = spawnX;
 				masterSpawnY = spawnY;
@@ -447,7 +445,6 @@ public class Overworld extends Level{
 				startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 				
 				chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
-				System.out.println("YES");
 				
 				Game.spawnSet = true;
 				Game.level.teleportHero(spawnX/ TILE_SIZE, spawnY/ TILE_SIZE);

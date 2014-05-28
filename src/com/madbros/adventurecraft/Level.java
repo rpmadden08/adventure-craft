@@ -78,8 +78,8 @@ public class Level {
 //			(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
 //	
-	public long rgenseed = System.currentTimeMillis();
-	//public long rgenseed = 1401276020223; //898463
+	//public long rgenseed = System.currentTimeMillis();
+	public long rgenseed = 898478; //898463 (grass)  898474 (maybe too much water)
 	//public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public Random rand = new Random(rgenseed);
 	public int randInt1 = rand.nextInt();
@@ -134,8 +134,8 @@ public class Level {
 			SaveGameData saveData = Game.saveGame.saveData();
 			spawnX = saveData.heroX;
 			spawnY = saveData.heroY;
-			masterSpawnX = spawnX;
-			masterSpawnY = spawnY;
+			masterSpawnX = saveData.spawnX;
+			masterSpawnY = saveData.spawnY;
 			startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 			startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 			chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
@@ -210,7 +210,7 @@ public class Level {
 	public void teleportHero(int x, int y) {
 		//THIS FUNCTION IS INCOMPLETE (in particular it doesn't address switching between levels)
 		Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
-		Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2);
+		Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1;
 //		
 //		offsetX = 0;
 //		offsetY = 0;
@@ -224,6 +224,19 @@ public class Level {
 		
 		
 		
+	}
+	
+	public void teleportChunkRect() {
+		startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+		startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+		
+		chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
+				loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);	
+			}	
+		}
+		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 	}
 	
 	

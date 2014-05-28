@@ -111,7 +111,7 @@ public class MobController {
 							if(num2 == 0) {
 								mobs.add(new Bee(this, x, y));
 							} else {
-								mobs.add(new Cow(this, x, y));  //Should be cow
+								mobs.add(new Bee(this, x, y));  //Should be cow
 							}
 					}
 				}

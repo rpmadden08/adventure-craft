@@ -21,8 +21,8 @@ public class SaveGame {
 		SaveGameData saveData = new SaveGameData();
 		saveData.heroX = Game.hero.absRect.x;
 		saveData.heroY = Game.hero.absRect.y;
-//		saveData.offsetX = Game.level.offsetX;
-//		saveData.offsetY = Game.level.offsetY;
+		saveData.spawnX = Game.level.masterSpawnX;
+		saveData.spawnY = Game.level.masterSpawnY;
 		saveData.currentLevel = Game.currentLevel;
 		//System.out.println("SavedOffset: "+Game.level.offsetX+"-"+Game.level.offsetY);
 		//System.out.println("SavedSpawn: "+Game.level.spawnX+"-"+Game.level.spawnY);
