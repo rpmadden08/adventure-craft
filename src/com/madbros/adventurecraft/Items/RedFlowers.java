@@ -36,9 +36,10 @@ public class RedFlowers extends BlockItem32 {
 	}
 	
 	public void highlightItem(Block block, int x, int y) {
-		if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id && block.layers[GRASS_LAYER].autoTile == 4) {
+		if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id) {
 
 			//sprite.setColor(HIGHLIGHT_COLOR);
+			sprite.setColor(Color.WHITE);
 			sprite.draw(x, y, Z_CHARACTER);
 			sprite.setColor(Color.WHITE);
 		}
