@@ -40,7 +40,7 @@ public class Game implements ApplicationListener {
 	
 	public static double oceanTally, mountainTally, desertTally, grasslandTally, forestTally, jungleTally, swampTally, taigaTally, tundraTally = 0;
 
-	
+	public static boolean spawnSet = false;
 	public static int replaceableX = 0;
 	public static int replaceableY = 0;
 	public static boolean isSoundOn = true;
@@ -319,8 +319,6 @@ public class Game implements ApplicationListener {
 
 		currentScreenSizeX = smallestX;
 		currentScreenSizeY = smallestY;
-		System.out.println(currentScreenSizeX);
-		System.out.println(currentScreenSizeY);
 //	
 		camera= new OrthographicCamera(currentScreenSizeX,currentScreenSizeY);
 		camera.setToOrtho(true, currentScreenSizeX, currentScreenSizeY);

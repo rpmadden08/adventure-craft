@@ -121,10 +121,10 @@ public class Inventory {
 		invBar[8].item.stackSize = 1;
 //		invBar[6].item = new WoodenSword();
 //		invBar[6].item.stackSize = 1;
-//		invBar[7].item = new CopperShovel();
-//		invBar[7].item.stackSize = 1;
-//		invBar[8].item = new CopperAxe();
-//		invBar[8].item.stackSize = 1;
+		invBar[7].item = new Chest();
+		invBar[7].item.stackSize = 99;
+		invBar[8].item = new CopperAxe();
+		invBar[8].item.stackSize = 1;
 //		invBar[9].item = new DirtMountain();
 //		invBar[9].item.stackSize = 99;
 		

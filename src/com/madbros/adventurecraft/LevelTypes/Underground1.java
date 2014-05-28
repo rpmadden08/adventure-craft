@@ -17,7 +17,7 @@ public class Underground1 extends Level{
 	public Underground1() {
 		//currentLevel = UNDERGROUND_1_FOLDER;
 		Game.currentLevel = UNDERGROUND_1_FOLDER;
-		noise1 = new CaveNoise(898456);
+		noise1 = new CaveNoise((int) rgenseed);
 //		noise1 = new CaveNoise(898456);
 //		noise1 = new CaveNoise(898456);
 		initialize();
@@ -26,46 +26,51 @@ public class Underground1 extends Level{
 	}
 	
 	public void finishLoading() {
-		System.out.println(Game.hero.absRect.x);
-		int x = getYFromAbs(Game.replaceableX);
-		int y = getYFromAbs(Game.replaceableY);
-		if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_UP_BOTTOM_TILE) {
-			Game.level.activeBlocks[x-1][y-1].layers[OBJECT_LAYER].deleteThisTile(x-1, y-1, Game.level.activeBlocks);
-			Game.level.activeBlocks[x][y-1].layers[OBJECT_LAYER].deleteThisTile(x, y-1, Game.level.activeBlocks);
-			Game.level.activeBlocks[x+1][y-1].layers[OBJECT_LAYER].deleteThisTile(x+1, y-1, Game.level.activeBlocks);
-			Game.level.activeBlocks[x-1][y].layers[OBJECT_LAYER].deleteThisTile(x-1, y, Game.level.activeBlocks);
-			Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].deleteThisTile(x, y, Game.level.activeBlocks);
-			Game.level.activeBlocks[x+1][y].layers[OBJECT_LAYER].deleteThisTile(x+1, y, Game.level.activeBlocks);
-			Game.level.activeBlocks[x-1][y+1].layers[OBJECT_LAYER].deleteThisTile(x-1, y+1, Game.level.activeBlocks);
-			Game.level.activeBlocks[x][y+1].layers[OBJECT_LAYER].deleteThisTile(x, y+1, Game.level.activeBlocks);
-			Game.level.activeBlocks[x+1][y+1].layers[OBJECT_LAYER].deleteThisTile(x+1, y+1, Game.level.activeBlocks);
-			
-			Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new StairsUpBottomTile();
-			Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new StairsUpTopTile();
-			
-			Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.x = Game.level.activeBlocks[x][y].getAbsX()* TILE_SIZE;
-			Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.y = Game.level.activeBlocks[x][y].getAbsY()* TILE_SIZE;
-			
-		}
-		Game.level.autoTileBlock(x, y+1);
-		Game.level.autoTileBlock(x, y);
-		Game.level.autoTileBlock(x, y-1);
-		Game.level.autoTileBlock(x, y-2);
-		Game.level.autoTileBlock(x, y-3);
-		
-		Game.level.autoTileBlock(x-1, y+1);
-		Game.level.autoTileBlock(x-1, y);
-		Game.level.autoTileBlock(x-1, y-1);
-		Game.level.autoTileBlock(x-1, y-2);
-		Game.level.autoTileBlock(x-1, y-3);
-		
-		Game.level.autoTileBlock(x+1, y+1);
-		Game.level.autoTileBlock(x+1, y);
-		Game.level.autoTileBlock(x+1, y-1);
-		Game.level.autoTileBlock(x+1, y-2);
-		Game.level.autoTileBlock(x+1, y-3);
-		
 		Game.currentState = new MainState();
+		//System.out.println("FINISHLOADING:  "+chunkRect.x);
+		if(Game.replaceableX > 0 && Game.replaceableY > 0) {
+			int x = getXFromAbs(Game.replaceableX);
+			int y = getYFromAbs(Game.replaceableY);
+			if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_UP_BOTTOM_TILE) {
+	//			Game.level.activeBlocks[x-1][y-1].layers[OBJECT_LAYER].deleteThisTile(x-1, y-1, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x][y-1].layers[OBJECT_LAYER].deleteThisTile(x, y-1, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x+1][y-1].layers[OBJECT_LAYER].deleteThisTile(x+1, y-1, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x-1][y].layers[OBJECT_LAYER].deleteThisTile(x-1, y, Game.level.activeBlocks);
+				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].deleteThisTile(x, y, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x+1][y].layers[OBJECT_LAYER].deleteThisTile(x+1, y, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x-1][y+1].layers[OBJECT_LAYER].deleteThisTile(x-1, y+1, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x][y+1].layers[OBJECT_LAYER].deleteThisTile(x, y+1, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x+1][y+1].layers[OBJECT_LAYER].deleteThisTile(x+1, y+1, Game.level.activeBlocks);
+				
+				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new StairsUpBottomTile();
+				Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new StairsUpTopTile();
+				
+				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.x = Game.level.activeBlocks[x][y].getAbsX()* TILE_SIZE;
+				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.y = Game.level.activeBlocks[x][y].getAbsY()* TILE_SIZE;
+				
+			}
+			Game.level.autoTileBlock(x, y+1);
+			Game.level.autoTileBlock(x, y);
+			Game.level.autoTileBlock(x, y-1);
+			Game.level.autoTileBlock(x, y-2);
+			Game.level.autoTileBlock(x, y-3);
+			
+			Game.level.autoTileBlock(x-1, y+1);
+			Game.level.autoTileBlock(x-1, y);
+			Game.level.autoTileBlock(x-1, y-1);
+			Game.level.autoTileBlock(x-1, y-2);
+			Game.level.autoTileBlock(x-1, y-3);
+			
+			Game.level.autoTileBlock(x+1, y+1);
+			Game.level.autoTileBlock(x+1, y);
+			Game.level.autoTileBlock(x+1, y-1);
+			Game.level.autoTileBlock(x+1, y-2);
+			Game.level.autoTileBlock(x+1, y-3);
+			
+			Game.replaceableX = 0;
+			Game.replaceableY = 0;
+		}
+		
 	}
 	
 	

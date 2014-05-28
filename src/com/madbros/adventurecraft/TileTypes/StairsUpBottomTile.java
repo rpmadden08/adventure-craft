@@ -53,6 +53,8 @@ public class StairsUpBottomTile extends CollisionTile {
 				Game.musicController.music.stop();
 				Game.hero.stop();
 				Game.switchLevel();
+
+				Game.level.teleportHero(Game.replaceableX, Game.replaceableY);
 				return false;
 			}
 			return true;

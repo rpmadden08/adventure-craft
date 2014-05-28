@@ -84,13 +84,14 @@ public class MainStateInput extends BasicInput {
 	public void additionalKeyDown(int key){
 		if(!Game.hero.isAttacking) {
 			switch(key) {
-				case Keys.E: Game.toggleInventoryState(); break;
-				case Keys.T: Game.level.checkPercentages(); break;
+				
+				case Keys.T: System.out.println(Game.level.rgenseed); break;
 				case Keys.W: Game.hero.moveUp(); break;
 				case Keys.A: Game.hero.moveLeft(); break;
 				case Keys.S: Game.hero.moveDown(); break;
 				case Keys.D: Game.hero.moveRight(); break;
 				case Keys.U: System.out.println(Game.debugger.getTimeDiff()); break;	//for debugging stuff
+				case Keys.E: Game.toggleInventoryState(); break;
 			}
 		}
 	}

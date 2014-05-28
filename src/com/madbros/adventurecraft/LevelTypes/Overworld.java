@@ -6,11 +6,13 @@ import java.io.File;
 import java.util.Random;
 
 import com.madbros.adventurecraft.*;
+import com.madbros.adventurecraft.GameStates.MainState;
 import com.madbros.adventurecraft.Items.IronSword;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
+import com.madbros.adventurecraft.Utils.Rect;
 
 public class Overworld extends Level{
 	public Overworld() {
@@ -18,6 +20,51 @@ public class Overworld extends Level{
 		Game.currentLevel = OVERWORLD_FOLDER;
 		initialize();
 		
+	}
+	
+	public void finishLoading() {
+		Game.currentState = new MainState();
+		if(Game.replaceableX > 0 && Game.replaceableY > 0) {
+			int x = getXFromAbs(Game.replaceableX);
+			int y = getYFromAbs(Game.replaceableY);
+			if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_DOWN_TILE) {
+	//			Game.level.activeBlocks[x-1][y-1].layers[OBJECT_LAYER].deleteThisTile(x-1, y-1, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x][y-1].layers[OBJECT_LAYER].deleteThisTile(x, y-1, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x+1][y-1].layers[OBJECT_LAYER].deleteThisTile(x+1, y-1, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x-1][y].layers[OBJECT_LAYER].deleteThisTile(x-1, y, Game.level.activeBlocks);
+				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].deleteThisTile(x, y, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x+1][y].layers[OBJECT_LAYER].deleteThisTile(x+1, y, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x-1][y+1].layers[OBJECT_LAYER].deleteThisTile(x-1, y+1, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x][y+1].layers[OBJECT_LAYER].deleteThisTile(x, y+1, Game.level.activeBlocks);
+	//			Game.level.activeBlocks[x+1][y+1].layers[OBJECT_LAYER].deleteThisTile(x+1, y+1, Game.level.activeBlocks);
+				
+				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new StairsDownTile();
+				
+				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.x = Game.level.activeBlocks[x][y].getAbsX()* TILE_SIZE;
+				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.y = Game.level.activeBlocks[x][y].getAbsY()* TILE_SIZE;
+				
+			}
+			Game.level.autoTileBlock(x, y+1);
+			Game.level.autoTileBlock(x, y);
+			Game.level.autoTileBlock(x, y-1);
+			Game.level.autoTileBlock(x, y-2);
+			Game.level.autoTileBlock(x, y-3);
+			
+			Game.level.autoTileBlock(x-1, y+1);
+			Game.level.autoTileBlock(x-1, y);
+			Game.level.autoTileBlock(x-1, y-1);
+			Game.level.autoTileBlock(x-1, y-2);
+			Game.level.autoTileBlock(x-1, y-3);
+			
+			Game.level.autoTileBlock(x+1, y+1);
+			Game.level.autoTileBlock(x+1, y);
+			Game.level.autoTileBlock(x+1, y-1);
+			Game.level.autoTileBlock(x+1, y-2);
+			Game.level.autoTileBlock(x+1, y-3);
+			
+			Game.replaceableX = 0;
+			Game.replaceableY = 0;
+		}
 	}
 	
 	public void createNewBlock(int i, int j, int chunkX, int chunkY, int x, int y, ChunkGenerator chunkGenerator) {
@@ -385,9 +432,27 @@ public class Overworld extends Level{
 
 		
 		currentChunk[i][j] = block;
-//		currentChunk[i+1][j] = block2;
-//		currentChunk[i][j+1] = block3;
-//		currentChunk[i+1][j+1] = block4;
+
+		if(chunkX > CHUNKS_LENGTH_TOTAL/2 && chunkY > CHUNKS_LENGTH_TOTAL/2 &&Game.spawnSet == false) {
+			if(block.layers[OBJECT_LAYER].id == AIR && block.layers[WATER_LAYER].id == AIR) {
+				System.out.println(spawnX);
+				spawnX = block.absRect.x;
+				spawnY = block.absRect.y;
+				System.out.println(spawnX);
+				
+				masterSpawnX = spawnX;
+				masterSpawnY = spawnY;
+				
+				startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+				startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+				
+				chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
+				System.out.println("YES");
+				
+				Game.spawnSet = true;
+				Game.level.teleportHero(spawnX/ TILE_SIZE, spawnY/ TILE_SIZE);
+			}
+		}
 	}
 	
 	public void createNewChunk(int startX, int startY, int chunkX, int chunkY) {

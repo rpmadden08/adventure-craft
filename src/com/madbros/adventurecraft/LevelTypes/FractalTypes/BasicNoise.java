@@ -28,7 +28,7 @@ public class BasicNoise {
 		    gen.setAllSourceBasisTypes(BasisType.SIMPLEX);
 		    gen.setAllSourceInterpolationTypes(InterpolationType.CUBIC);
 		    gen.setNumOctaves(10);
-		    gen.setFrequency(0.2);
+		    gen.setFrequency(0.7);
 		    gen.setType(FractalType.RIDGEMULTI);
 		    gen.setSeed(seed);
 

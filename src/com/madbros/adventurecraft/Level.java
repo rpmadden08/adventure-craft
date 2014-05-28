@@ -66,8 +66,8 @@ public class Level {
 //	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+900;
 	//public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+700;
 	
-	int startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
-	int startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+	public int startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+	public int startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 	public Rect chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
 //	public int offsetX = 0;	//offset gets set at the start of level if there is one
 //	public int offsetY = 0;
@@ -78,16 +78,17 @@ public class Level {
 //			(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
 //	
-	//public long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 2; // 6 is swamp, 2 is hole+swamp, 19 is Grass and Snow (plains)
-	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
+	public long rgenseed = System.currentTimeMillis();
+	//public long rgenseed = 1401276020223; //898463
+	//public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public Random rand = new Random(rgenseed);
 	public int randInt1 = rand.nextInt();
 	public int randInt2 = rand.nextInt();
-	public PerlinGenerator perlin2 = new PerlinGenerator(randInt1);
-	public PerlinGenerator perlin3 = new PerlinGenerator(randInt2);
+	//public PerlinGenerator perlin2 = new PerlinGenerator(randInt1);
+	//public PerlinGenerator perlin3 = new PerlinGenerator(randInt2);
 	
-	public BasicNoise noise1 = new BasicNoise(898456);
+	//public BasicNoise noise1 = new BasicNoise(898456);
+	public BasicNoise noise1 = new BasicNoise((int) rgenseed);
 	public BasicNoise noise2 = new BasicNoise(randInt1);
 	public BasicNoise noise3 = new BasicNoise(randInt2);
 	//public PerlinGenerator perlin2 = new PerlinGenerator((int) rgenseed);
@@ -129,11 +130,8 @@ public class Level {
 	public void initialize() {
 		Game.gameStartTime = Time.getTime();
 		if(Game.isNewGame) {
-//			if(Game.getCenterScreenX() % TILE_SIZE > 0) offsetX = TILE_SIZE - Game.getCenterScreenX() % TILE_SIZE;
-//			if(Game.getCenterScreenY() % TILE_SIZE > 0) offsetY = TILE_SIZE - Game.getCenterScreenY() % TILE_SIZE;
 		} else {
 			SaveGameData saveData = Game.saveGame.saveData();
-			//Game.currentLevel = saveData.currentLevel;
 			spawnX = saveData.heroX;
 			spawnY = saveData.heroY;
 			masterSpawnX = spawnX;
@@ -141,21 +139,6 @@ public class Level {
 			startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 			startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
 			chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
-			
-//			offsetX = saveData.offsetX;
-//			offsetY = saveData.offsetY;
-//			int renderRectX;
-//			if(offsetX > 15) {
-//				renderRectX = (spawnX+(offsetX)) / TILE_SIZE -(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
-//			} else {
-//				renderRectX = (spawnX+(offsetX)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.x) - (int)Math.ceil(Game.getCenterScreenX() * 1.0 / TILE_SIZE);
-//			}
-//			renderRect = new Rect(
-//					renderRectX,
-//					(spawnY+(TILE_SIZE -offsetY)) / TILE_SIZE +1-(CHUNK_SIZE*chunkRect.y) - (int)Math.ceil(Game.getCenterScreenY() * 1.0 / TILE_SIZE),
-//					(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN,
-//					(int)Math.ceil(Game.currentScreenSizeY * 1.0 / TILE_SIZE) + RENDER_MARGIN);
-			
 		}
 		
 		
@@ -221,24 +204,13 @@ public class Level {
 	
 	public void checkPercentages() {
 		double total = Game.tundraTally + Game.taigaTally + Game.forestTally + Game.jungleTally+ Game.grasslandTally + Game.mountainTally +Game.oceanTally + Game.desertTally +Game.swampTally;
-//		System.out.println(Game.tundraTally);
-//		System.out.println(Game.tundraTally /total *100);
-//		System.out.println("Tundra = " + Game.tundraTally /total *100+"%");
-//		System.out.println("Taiga = " + Game.taigaTally /total *100+"%");
-//		System.out.println("Forest = " + Game.forestTally /total *100+"%");
-//		System.out.println("Jungle = " + Game.jungleTally /total *100+"%");
-//		System.out.println("Grassland= " + Game.grasslandTally /total *100+"%");
-//		System.out.println("Mountain = " + Game.mountainTally /total *100+"%");
-//		System.out.println("Ocean = " + Game.oceanTally /total *100+"%");
-//		System.out.println("Desert = " + Game.desertTally /total *100+"%");
-//		System.out.println("Swamp = " + Game.swampTally /total *100+"%");
 	}
 	
 	
 	public void teleportHero(int x, int y) {
 		//THIS FUNCTION IS INCOMPLETE (in particular it doesn't address switching between levels)
-//		Game.hero.absRect.x = x *TILE_SIZE;
-//		Game.hero.absRect.y = y *TILE_SIZE;
+		Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
+		Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2);
 //		
 //		offsetX = 0;
 //		offsetY = 0;
@@ -261,6 +233,7 @@ public class Level {
 			Game.isNewGame = false;
 			//NO NEED to saveCurrentChunks();  It's already been done...
 		} else {
+			//System.out.println("Is Loading Game...");
 			SaveGameData saveData = Game.saveGame.saveData();
 			Game.hero.hP = saveData.hP;
 			Game.hero.maxHP = saveData.maxHP;
@@ -436,8 +409,7 @@ public class Level {
 		
 	}
 	
-	public void update() {		
-		
+	public void update() {
 		Time.checkTime();
 		Rect renderRect = Helpers.getRenderRect(Game.hero, activeBlocks[0][0]);
 		Point offsetPoint = Helpers.getOffsetPoint(Game.hero, activeBlocks[0][0]);
@@ -458,7 +430,8 @@ public class Level {
 			for(int y = renderRect.y; y < renderRect.y2(); y++) {
 				activeBlocks[x][y].layers[WATER_LAYER].update(x, y);
 				activeBlocks[x][y].layers[GRASS_LAYER].update(x, y);
-				//activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
+				activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
+				//This check will kill the loop if a staircase was hit.  (it also runs the function)
 				if(activeBlocks[x][y].layers[OBJECT_LAYER].updateStairs(x, y) == true) {
 					
 				} else {
@@ -662,15 +635,6 @@ public class Level {
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX-1][highlightedBlockY+1], highlightedBlockX-1, highlightedBlockY+1);
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY+1], highlightedBlockX, highlightedBlockY+1);
 		autoTile(activeBlocks, activeBlocks[highlightedBlockX+1][highlightedBlockY+1], highlightedBlockX+1, highlightedBlockY+1);
-		
-//		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY-2], highlightedBlockX-2, highlightedBlockY-2);
-//		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY-2], highlightedBlockX, highlightedBlockY-2);
-//		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY-2], highlightedBlockX+2, highlightedBlockY-2);
-//		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY], highlightedBlockX-2, highlightedBlockY);
-//		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY], highlightedBlockX+2, highlightedBlockY);
-//		autoTile(activeBlocks, activeBlocks[highlightedBlockX-2][highlightedBlockY+2], highlightedBlockX-2, highlightedBlockY+2);
-//		autoTile(activeBlocks, activeBlocks[highlightedBlockX][highlightedBlockY+2], highlightedBlockX, highlightedBlockY+2);
-//		autoTile(activeBlocks, activeBlocks[highlightedBlockX+2][highlightedBlockY+2], highlightedBlockX+2, highlightedBlockY+2);
 	}
 	
 	public void autoTileBlock(int x, int y) {
@@ -684,16 +648,6 @@ public class Level {
 		autoTile(activeBlocks, activeBlocks[x-1][y+1], x-1, y+1);
 		autoTile(activeBlocks, activeBlocks[x][y+1], x, y+1);
 		autoTile(activeBlocks, activeBlocks[x+1][y+1], x+1, y+1);
-		
-//		autoTile(activeBlocks, activeBlocks[x-2][y-2], x-2, y-2);
-//		autoTile(activeBlocks, activeBlocks[x][y-2], x, y-2);
-//		autoTile(activeBlocks, activeBlocks[x+2][y-2], x+2, y-2);
-//		autoTile(activeBlocks, activeBlocks[x-2][y], x-2, y);
-//		autoTile(activeBlocks, activeBlocks[x+2][y], x+2, y);
-//		autoTile(activeBlocks, activeBlocks[x-2][y+2], x-2, y+2);
-//		autoTile(activeBlocks, activeBlocks[x][y+2], x, y+2);
-//		autoTile(activeBlocks, activeBlocks[x+2][y+2], x+2, y+2);
-
 	}
 	
 	public void handleCollisions() {
