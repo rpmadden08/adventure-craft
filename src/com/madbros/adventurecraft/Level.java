@@ -78,8 +78,15 @@ public class Level {
 //			(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
 //	
-	//public long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 898478; //898463 (grass)  898474 (maybe too much water)
+	public long rgenseed = System.currentTimeMillis();
+	//public long rgenseed = 898478;
+	//898463 (grass)  
+	//898474 (maybe too much water) 
+	//898478 (in the middle of forest)
+	
+	
+	
+	
 	//public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public Random rand = new Random(rgenseed);
 	public int randInt1 = rand.nextInt();
@@ -210,7 +217,7 @@ public class Level {
 	public void teleportHero(int x, int y) {
 		//THIS FUNCTION IS INCOMPLETE (in particular it doesn't address switching between levels)
 		Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
-		Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1;
+		Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
 //		
 //		offsetX = 0;
 //		offsetY = 0;

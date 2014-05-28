@@ -166,21 +166,15 @@ public class Actor extends GameObject {
 	/************************** Collision Detection **************************/
 	public void getCollisionBlocks() {
 		//get position in activeBlocks array
-		int x = (absRect.x - Game.level.activeBlocks[0][0].absRect.x) / TILE_SIZE;
-		int y = (absRect.y - Game.level.activeBlocks[0][0].absRect.y) / TILE_SIZE;
-//		int x = Game.level.renderRect.x2() - (sRect.x2() - margin.right) / TILE_SIZE - 2;//(aRect.x + margin.left) / TILE_SIZE;
-//		int y = Game.level.renderRect.y2() - (sRect.y2() - margin.bottom) / TILE_SIZE - 2+1;//(aRect.y) / TILE_SIZE;
-		
+		int x = (absRect.x - Game.level.activeBlocks[0][0].absRect.x-(TILE_SIZE*2)+(absRect.w/2)) / TILE_SIZE;
+		int y = (absRect.y - Game.level.activeBlocks[0][0].absRect.y-(TILE_SIZE*2)+(absRect.h/2)) / TILE_SIZE;
 		int j = 0;
 		for(int i = 0; i < collisionDetectionBlocks.length; i++) {
-			if(x+i/3 >= 0 && x+i/3 < Game.level.activeBlocks.length && y+j >= 0 && y+j < Game.level.activeBlocks[0].length) {
-				collisionDetectionBlocks[i] = Game.level.activeBlocks[x+i/3][y+j]; //3x3 grid of blocks around the character
-//				if(collisionDetectionBlocks[i].isCollidable()) {
-//					collisionDetectionBlocks[i].collisionTile.setArrayPos(x+i/3, y+j);
-//				}
+			if(x+i/5 >= 0 && x+i/5 < Game.level.activeBlocks.length && y+j >= 0 && y+j < Game.level.activeBlocks[0].length) {
+				collisionDetectionBlocks[i] = Game.level.activeBlocks[x+i/5][y+j]; //3x3 grid of blocks around the character
 			}
 			j++;
-			if(j > 2) j = 0;
+			if(j > 4) j = 0;
 		}
 	}
 	
@@ -203,17 +197,11 @@ public class Actor extends GameObject {
 		}
 	}
 	
-	public boolean getCollision(boolean isVerticalMovement, int move, Rect r) {
-		
+	public boolean getCollision(boolean isVerticalMovement, int move) {
+		boolean returnTrue = false;
 		if(Game.debugMenu.collisionDetectionIsOn) {
-			
-//			Rect charCRect = new Rect(Game.level.renderRect.x * TILE_SIZE + sRect.x + margin.left, 
-//									  Game.level.renderRect.y * TILE_SIZE + sRect.y + margin.top, 
-//									  CHARACTER_SIZE - margin.left - margin.right,
-//									  CHARACTER_SIZE - margin.top - margin.bottom);
-			
-			Rect charCRect = new Rect(r, this.margin);
 			for(int i = 0; i < collisionDetectionBlocks.length; i++) {
+				Rect charCRect = new Rect(absRect, this.margin);
 				if(collisionDetectionBlocks[i] != null) {
 					if(collisionDetectionBlocks[i].isCollidable()) {		
 						int dir = 0;
@@ -260,10 +248,14 @@ public class Actor extends GameObject {
 						CollisionTile t = collisionDetectionBlocks[i].collisionTile;
 						t.heroDidCollide(this, dir, move, charCRect, collisionDetectionBlocks[i].collisionTile.cRect);
 						collisionDetectionBlocks[i].sRect = new Rect(collisionDetectionBlocks[i].collisionTile.cRect, this);	//yellow block in debug mode
-						if(didDetectCollision) return true;
+						if(didDetectCollision) returnTrue = true;
 					}
 				}
 			}
+			
+		}
+		if(returnTrue == true) {
+			return true;
 		}
 		return false;
 	}
@@ -280,13 +272,13 @@ public class Actor extends GameObject {
 	private void moveHorizontal(float f, float speed) {
 		int moveX = Math.round(speed * f);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
 		xMove(moveX);
-		getCollision(HORIZONTAL, moveX, absRect);
+		getCollision(HORIZONTAL, moveX);
 	}
 	
 	private void moveVertical(float f, float speed) {
 		int moveY = Math.round(speed * f);
 		yMove(moveY);
-		getCollision(VERTICAL, moveY, absRect);
+		getCollision(VERTICAL, moveY);
 	}
 	
 	public void move(float f) {

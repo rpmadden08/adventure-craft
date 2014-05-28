@@ -17,6 +17,7 @@ public abstract class CollisionTile extends Tile {
 	
 	public void heroDidCollide(Actor actor, int dir, int move, Rect charCRect, Rect tileRect) {
 		int extra;
+		
 		switch(dir) {
 		case DOWN:
 			extra = move - charCRect.getBottomCollisionDiff(tileRect);
@@ -35,6 +36,7 @@ public abstract class CollisionTile extends Tile {
 			actor.xMove(-move + extra);
 			break;
 		}
+		
 	}
 
 	public void setArrayPos(int x, int y) {

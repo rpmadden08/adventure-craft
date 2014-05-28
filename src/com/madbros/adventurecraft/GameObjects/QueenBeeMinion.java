@@ -33,7 +33,6 @@ public class QueenBeeMinion extends Bee {
 		margin = new Margin(0, 0, 0, 0);
 		moveSpeed = 0.06f;
 		currentSpeed = 0.06f;
-		collisionDetectionBlocks = new Block[9];
 		isChasing = true;
 		deathParticles = "beeDeath.p";
 	}

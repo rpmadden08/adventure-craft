@@ -33,7 +33,6 @@ public class Slime extends Mob {
 		margin = new Margin(0, 0, 0, 0);
 		currentSpeed = 0.03f;
 		moveSpeed = 0.03f;
-		collisionDetectionBlocks = new Block[9];
 		deathParticles = "slimeDeath.p";
 		sprite.changeFrameTimes(200);
 	}

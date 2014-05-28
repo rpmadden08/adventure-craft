@@ -34,7 +34,6 @@ public class QueenBee extends Mob {
 		currentSpeed = 0.0f; //0.2f
 		moveSpeed = 0.0f; //0.15
 		//maxSpeed = 0.15f;
-		collisionDetectionBlocks = new Block[9];
 		deathParticles = "beeDeath.p";
 	}
 

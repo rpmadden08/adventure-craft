@@ -33,7 +33,6 @@ public class Worm extends Mob {
 		margin = new Margin(0, 0, 0, 0);
 		moveSpeed = 0.03f;
 		currentSpeed = 0.03f;
-		collisionDetectionBlocks = new Block[9];
 		deathParticles = "wormDeath.p";
 	}
 

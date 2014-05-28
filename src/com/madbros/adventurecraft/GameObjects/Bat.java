@@ -33,7 +33,6 @@ public class Bat extends Mob {
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BAT));
 		margin = new Margin(0, 0, 0, 0);
 		currentSpeed = 0.1f;
-		collisionDetectionBlocks = new Block[9];
 	}
 
 //	public void startAttacking() {

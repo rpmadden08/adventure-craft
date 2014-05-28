@@ -43,7 +43,7 @@ public class Hero extends Actor {
 		currentSpeed = 0f; //0.19
 		knockBackSpeed = 0.3f;
 		hitSound = "sounds/pain.wav";
-		collisionDetectionBlocks = new Block[9];
+		collisionDetectionBlocks = new Block[25];
 		weaponX = 0;
 		weaponY= 0;
 		weaponR = 0;

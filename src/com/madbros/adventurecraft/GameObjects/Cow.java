@@ -30,7 +30,6 @@ public class Cow extends Mob {
 		margin = new Margin(20, 36, 40, 18);
 		currentSpeed = 0.03f; //0.03
 		moveSpeed = 0.03f;
-		collisionDetectionBlocks = new Block[9];
 		sprite.changeFrameTimes(150);
 		deathParticles = "cowDeath.p";
 	}

@@ -41,10 +41,12 @@ public class Mob extends Actor {
 		absRect = new Rect(TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2 - 64,
 				  TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2 - 64,
 				  CHARACTER_SIZE, CHARACTER_SIZE);
+//		sRect = new Rect(absRect.x, absRect.y, absRect.w, absRect.h);
+		
 		detectRect = new Rect(absRect.x - detectRange, absRect.y - detectRange, absRect.w +(detectRange*2), absRect.h +(detectRange*2));
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_BASE));
 		margin = new Margin(17, 17, 29, 1);
-		collisionDetectionBlocks = new Block[9];
+		collisionDetectionBlocks = new Block[25];
 		
 		hitSound = "sounds/bat.wav";
 		deathSound = "sounds/splat.wav";
