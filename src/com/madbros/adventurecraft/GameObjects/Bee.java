@@ -21,7 +21,7 @@ public class Bee extends Mob {
 	
 	public Bee(MobController mobController, int x, int y) {
 		super(mobController);
-		attack = 25; //2
+		attack = 2; //2
 		hP = 6;
 		maxHP = 6;
 		this.mobController = mobController;
@@ -31,7 +31,7 @@ public class Bee extends Mob {
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BEE_MINI));
 		margin = new Margin(0, 0, 0, 0);
-		moveSpeed = 0.03f;
+		moveSpeed = 0.03f; //0.03
 		currentSpeed = 0f;
 		deathParticles = "beeDeath.p";
 		isChasing = false;

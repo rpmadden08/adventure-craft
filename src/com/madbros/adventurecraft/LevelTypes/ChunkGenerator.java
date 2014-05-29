@@ -60,7 +60,7 @@ public class ChunkGenerator {
 	    		//Forest
     		}else if(chunkGroundLayer[m][n] == 5){
 					
-	    			if(getRandom(20.0, m, n)) {
+	    			if(getRandom(20.0, m, n)) { //20.0
 	    				return TREE;
 	    			} else {
 	    				return AIR;

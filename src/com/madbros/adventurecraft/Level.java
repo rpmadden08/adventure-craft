@@ -24,6 +24,11 @@ import com.madbros.adventurecraft.Utils.Point;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class Level {
+	//public long rgenseed = System.currentTimeMillis();
+	public long rgenseed = 898463;
+		//898463 (grass)  
+		//898474 (maybe too much water) 
+		//898478 (in the middle of forest)
 	public Cell[][] cells;
 	public Cell[] potentialCollisionCells;	//resets to empty every frame and includes only cells that something has moved in
 	
@@ -78,11 +83,7 @@ public class Level {
 //			(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
 //	
-	//public long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 898478;
-	//898463 (grass)  
-	//898474 (maybe too much water) 
-	//898478 (in the middle of forest)
+	
 	
 	
 	

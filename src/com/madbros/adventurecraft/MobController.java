@@ -7,6 +7,7 @@ import static com.madbros.adventurecraft.Constants.*;
 import java.util.Random;
 
 import com.madbros.adventurecraft.GameObjects.*;
+import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class MobController {
@@ -67,9 +68,14 @@ public class MobController {
 	
 	
 	public void update() {
+		
 		Random rand = new Random();
 		int x = rand.nextInt(CHUNK_SIZE * 3)+ CHUNK_SIZE;
 		int y = rand.nextInt(CHUNK_SIZE * 3)+ CHUNK_SIZE;
+		
+		
+		
+		
 		int absX = x* TILE_SIZE + Game.level.activeBlocks[0][0].absRect.x;
 		int absY = y* TILE_SIZE + Game.level.activeBlocks[0][0].absRect.y;
 		Rect possibleSpawnPoint = new Rect(absX, absY, 1,1);
@@ -78,8 +84,8 @@ public class MobController {
 		int topTile = Game.level.activeBlocks[x][y].getTopTile().id;
 		//System.out.println(topTile);
 		Block[] tileArea = getTileArea(x,y);
-		int num = rand.nextInt(10);//100
-		if(num == 0 && mobs.size() < 20) { //50
+		int num = rand.nextInt(10);//100  //10 is quick
+		if(num == 0 && mobs.size() < 20) { //20
 			if(possibleSpawnPoint.detectCollision(heroRect)) {
 			//    ***************IF THE WORLD IS DARK	
 			} else if(isDark(possibleSpawnPoint)){
@@ -109,8 +115,8 @@ public class MobController {
 					if(topTile == GRASS) {
 							int num2 = rand.nextInt(6);
 							if(num2 == 0) {
-								mobs.add(new Bee(this, x, y));
-							} else {
+								//mobs.add(new Bee(this, x, y));
+							} else if(canLargeMobSpawn(x,y)) {
 								mobs.add(new Cow(this, x, y));  //Should be cow
 							}
 					}
@@ -124,6 +130,23 @@ public class MobController {
 			mobs.get(i).update();
 			//DO NOT remove the mob before checkCollisions...  Causes a crash
 			mobs.get(i).checkCollisions();
+		}
+	}
+	
+	public boolean canLargeMobSpawn(int x, int y) {
+		Tile t1 = Game.level.activeBlocks[x][y].layers[OBJECT_LAYER];
+		Tile t2 = Game.level.activeBlocks[x+1][y].layers[OBJECT_LAYER];
+		Tile t3 = Game.level.activeBlocks[x][y+1].layers[OBJECT_LAYER];
+		Tile t4 = Game.level.activeBlocks[x+1][y+1].layers[OBJECT_LAYER];
+		Tile t5 = Game.level.activeBlocks[x+2][y].layers[OBJECT_LAYER];
+		Tile t6 = Game.level.activeBlocks[x+2][y+1].layers[OBJECT_LAYER];
+		Tile t7 = Game.level.activeBlocks[x+2][y+2].layers[OBJECT_LAYER];
+		Tile t8 = Game.level.activeBlocks[x+1][y+2].layers[OBJECT_LAYER];
+		Tile t9 = Game.level.activeBlocks[x][y+2].layers[OBJECT_LAYER];
+		if(t1.id == AIR && t2.id == AIR && t3.id == AIR && t4.id == AIR && t5.id == AIR && t6.id == AIR && t7.id == AIR && t8.id == AIR && t9.id == AIR) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 	
