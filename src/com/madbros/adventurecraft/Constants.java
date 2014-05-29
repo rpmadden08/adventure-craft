@@ -194,7 +194,7 @@ public class Constants {
 	public static final int TOMATO_TOP = 60;
 	public static final int CORN_TOP = 61;
 	public static final int PEPPER_TOP = 62;
-	public static final int STAIRS_UP_BOTTOM_TILE = 63;
+	public static final int STAIRS_UP_TILE = 63;
 	public static final int STAIRS_UP_TOP_TILE = 64;
 	public static final int STAIRS_DOWN_TILE = 65;
 	public static final int FIRE_PIT_TILE = 66;
@@ -738,9 +738,7 @@ public class Constants {
 		TILE_HASH.put(PEPPER_TILE, new PepperTile());
 		TILE_HASH.put(ARTICHOKE_TILE, new ArtichokeTile());
 		TILE_HASH.put(BEEHIVE_TILE, new BeehiveTile());
-		
-		TILE_HASH.put(STAIRS_UP_TOP_TILE, new StairsUpTopTile());
-		TILE_HASH.put(STAIRS_UP_BOTTOM_TILE, new StairsUpBottomTile());
+		TILE_HASH.put(STAIRS_UP_TILE, new StairsUpTile());
 		TILE_HASH.put(STAIRS_DOWN_TILE, new StairsDownTile());
 			
 //		if(blocks[x-1][y-1].layers[i].autoTileID == block.layers[i].autoTileID) topLeft = 1;

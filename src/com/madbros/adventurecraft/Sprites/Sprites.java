@@ -168,7 +168,7 @@ public class Sprites {
 	public static final String IRON_PICK= "ironPick";
 	public static final String IRON_SHOVEL= "ironShovel";
 	public static final String IRON_SWORD= "ironSword";
-	public static final String STAIRS_UP = "stairsUpBottom";
+	public static final String STAIRS_UP = "stairsUp";
 	public static final String STAIRS_DOWN = "stairsDown";
 	public static final String DIRT_MOUNTAIN_CLUMP = "dirtMountainClump";
 	public static final String STONE_MOUNTAIN_CLUMP = "stoneMountainClump";
@@ -248,8 +248,7 @@ public class Sprites {
 	public static final String ARTICHOKE_TILE = "artichoke";
 	public static final String PEPPER_TILE = "pepper";
 	
-	public static final String STAIRS_UP_TOP_TILE = "stairsUpTopTile";
-	public static final String STAIRS_UP_BOTTOM_TILE = "stairsUpBottomTile";
+	public static final String STAIRS_UP_TILE = "stairsUpTile";
 	public static final String STAIRS_DOWN_TILE = "stairsDownTile";
 	public static final String FIRE_PIT_TILE = "firePitTile";
 	
@@ -715,7 +714,7 @@ public class Sprites {
 					COPPER_HELMET_SLASH_UP, COPPER_HELMET_SLASH_DOWN, COPPER_HELMET_SLASH_LEFT, COPPER_HELMET_SLASH_RIGHT,
 					COPPER_HELMET_WALK_UP, COPPER_HELMET_WALK_DOWN, COPPER_HELMET_WALK_LEFT, COPPER_HELMET_WALK_RIGHT,
 					COPPER_HELMET_STAND_UP, COPPER_HELMET_STAND_DOWN, COPPER_HELMET_STAND_LEFT, COPPER_HELMET_STAND_RIGHT,
-					STAIRS_UP, STAIRS_DOWN, STAIRS_UP_BOTTOM_TILE, STAIRS_UP_TOP_TILE, STAIRS_DOWN_TILE, LEATHER,
+					STAIRS_UP, STAIRS_DOWN, STAIRS_DOWN_TILE, LEATHER, STAIRS_UP, STAIRS_UP_TILE,
 					FIRE_PIT_TILE,
 					
 					SLIME, SLIME_WALK_DOWN, SLIME_WALK_UP, SLIME_WALK_RIGHT, SLIME_WALK_LEFT,
@@ -735,7 +734,7 @@ public class Sprites {
 					DIRT_MOUNTAIN_COPPER_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_BOTTOM_NEW,
 					DIRT_MOUNTAIN_COAL_MIDDLE_NEW, DIRT_MOUNTAIN_COAL_BOTTOM_NEW, STONE, DIRT_MOUNTAIN_CLUMP,
 					STONE_MOUNTAIN_CLUMP,BREAD, SLOWNESS_APPLIED, SLOWNESS_STATUS, SPEED_STATUS, HARMING_APPLIED,
-					BEEHIVE, BEEHIVE_TILE,
+					BEEHIVE, BEEHIVE_TILE, 
 					
 			};
 			

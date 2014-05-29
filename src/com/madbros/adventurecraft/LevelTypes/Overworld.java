@@ -361,10 +361,10 @@ public class Overworld extends Level{
 						block.layers[TREE_CENTER_1] = new TreeLeafTile();
 						block.layers[TREE_CENTER_1].currentSpriteId = 4;
 					}
-	//				if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
-	//					block.layers[TREE_CENTER_0] = new TreeLeafTile();
-	//					block.layers[TREE_CENTER_0].currentSpriteId = 5;
-	//				}
+					if(chunkGenerator.chunkObjectLayer[s][t] == TREE) {
+						block.layers[TREE_CENTER_0] = new TreeLeafTile();
+						block.layers[TREE_CENTER_0].currentSpriteId = 5;
+					}
 					if(chunkGenerator.chunkObjectLayer[s-1][t+2] == TREE) {
 						block.layers[TREE_RIGHT_2] = new TreeLeafTile();
 						block.layers[TREE_RIGHT_2].currentSpriteId = 6;

@@ -78,8 +78,8 @@ public class Level {
 //			(int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN);
 	
 //	
-	public long rgenseed = System.currentTimeMillis();
-	//public long rgenseed = 898478;
+	//public long rgenseed = System.currentTimeMillis();
+	public long rgenseed = 898463;
 	//898463 (grass)  
 	//898474 (maybe too much water) 
 	//898478 (in the middle of forest)
@@ -461,6 +461,8 @@ public class Level {
 				activeBlocks[x][y].layers[ABOVE_LAYER_2].update(x, y);
 				//activeBlocks[x][y].layers[TREE_RIGHT_1].update(x, y);
 				activeBlocks[x][y].layers[TREE_RIGHT_0].update(x, y);
+				activeBlocks[x][y].layers[TREE_LEFT_2].update(x, y);
+				activeBlocks[x][y].layers[TREE_RIGHT_2].update(x, y);
 			}
 		}
 		

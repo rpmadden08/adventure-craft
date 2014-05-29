@@ -63,39 +63,43 @@ public class RenderSystem {
 	public void renderWorld(Level lv) {
 //		alreadyRenderedObjects = new ArrayList<GameObject>();
 		int i = 0; int j = 0;
-		for(int x = renderRect.x; x < renderRect.x2(); x++) {
-			for(int y = renderRect.y; y < renderRect.y2(); y++) {
-//				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {					
+		
+		for(int y = renderRect.y; y < renderRect.y2(); y++) {
+			for(int x = renderRect.x; x < renderRect.x2(); x++) {
+//				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {	
+
 					renderBlock(x, y, lv.activeBlocks[x][y], lv, i, j, true);
 //				}
-				j++;
+				i++;
 			}
-			i++; j = 0;
+			j++; i = 0;
 		}
 	}
 	public void renderWorldAbove(Level lv) {
 //		alreadyRenderedObjects = new ArrayList<GameObject>();
 		int i = 0; int j = 0;
-		for(int x = renderRect.x; x < renderRect.x2(); x++) {
-			for(int y = renderRect.y; y < renderRect.y2(); y++) {
-//				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {					
+		
+		for(int y = renderRect.y; y < renderRect.y2(); y++) {
+			for(int x = renderRect.x; x < renderRect.x2(); x++) {
+//				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {
+				
 					renderBlock(x, y, lv.activeBlocks[x][y], lv, i, j, false);
 					
 //				}
-				j++;
+				i++;
 			}
-			i++; j = 0;
+			j++; i = 0;
 		}
 		i = 0; j = 0;
-		for(int x = renderRect.x; x < renderRect.x2(); x++) {
-			for(int y = renderRect.y; y < renderRect.y2(); y++) {
+		for(int y = renderRect.y; y < renderRect.y2(); y++) {
+			for(int x = renderRect.x; x < renderRect.x2(); x++) {
 //				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {					
 					renderBlockHighlight(x, y, lv.activeBlocks[x][y], lv, i, j, false);
 					
 //				}
-				j++;
+				i++;
 			}
-			i++; j = 0;
+			j++; i = 0;
 		}
 		//Game.level.autoTileHighlightedBlock();
 	}
@@ -134,8 +138,12 @@ public class RenderSystem {
 		}
 		for(int i = 0; i < renderTiles.length;i++) {
 			if(renderTiles[i].isVisible) {
-				if(renderTiles[i].isTreeLeafTile == true) ((TreeLeafTile)renderTiles[i]).render(x, y, i);
-				else renderTiles[i].render(x, y);
+				//if this is 
+				if(renderTiles[i].isTreeLeafTile == true) {
+					((TreeLeafTile)renderTiles[i]).render(x, y, i);
+				} else {
+					renderTiles[i].render(x, y);
+				}
 				//if(renderTiles[i].isLightSource) lightTiles.add(block);
 			}
 		}

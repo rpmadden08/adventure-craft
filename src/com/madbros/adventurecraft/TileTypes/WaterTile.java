@@ -9,7 +9,7 @@ import com.madbros.adventurecraft.Utils.Margin;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-public class WaterTile extends CollisionTile {
+public class WaterTile extends Tile {
 	public WaterTile() {
 		super();
 		currentSpriteId = 0;

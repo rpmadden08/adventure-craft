@@ -31,7 +31,7 @@ public class Underground1 extends Level{
 		if(Game.replaceableX > 0 && Game.replaceableY > 0) {
 			int x = getXFromAbs(Game.replaceableX);
 			int y = getYFromAbs(Game.replaceableY);
-			if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_UP_BOTTOM_TILE) {
+			if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_UP_TILE) {
 	//			Game.level.activeBlocks[x-1][y-1].layers[OBJECT_LAYER].deleteThisTile(x-1, y-1, Game.level.activeBlocks);
 	//			Game.level.activeBlocks[x][y-1].layers[OBJECT_LAYER].deleteThisTile(x, y-1, Game.level.activeBlocks);
 	//			Game.level.activeBlocks[x+1][y-1].layers[OBJECT_LAYER].deleteThisTile(x+1, y-1, Game.level.activeBlocks);
@@ -42,8 +42,7 @@ public class Underground1 extends Level{
 	//			Game.level.activeBlocks[x][y+1].layers[OBJECT_LAYER].deleteThisTile(x, y+1, Game.level.activeBlocks);
 	//			Game.level.activeBlocks[x+1][y+1].layers[OBJECT_LAYER].deleteThisTile(x+1, y+1, Game.level.activeBlocks);
 				
-				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new StairsUpBottomTile();
-				Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new StairsUpTopTile();
+				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new StairsUpTile();
 				
 				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.x = Game.level.activeBlocks[x][y].getAbsX()* TILE_SIZE;
 				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.y = Game.level.activeBlocks[x][y].getAbsY()* TILE_SIZE;

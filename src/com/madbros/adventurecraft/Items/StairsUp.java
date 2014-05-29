@@ -7,7 +7,6 @@ import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
-import com.madbros.adventurecraft.TileTypes.StairsUpTopTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.Utils.Helpers;
 
@@ -15,7 +14,7 @@ public class StairsUp extends BlockItem32 {
 	public StairsUp() {
 		id = STAIRS_UP;
 		name = "Stairs Up";
-		tileId = STAIRS_UP_BOTTOM_TILE;
+		tileId = STAIRS_UP_TILE;
 		placeableTileIds = new int[]{DIRT};
 		craftCost = new int[]{STONE};
 		craftCostAmount = new int[]{10};
@@ -41,11 +40,9 @@ public class StairsUp extends BlockItem32 {
 			hB.layers[OBJECT_LAYER] = tile;
 			//hB.setCollisionTile((CollisionTile)tile);
 			Game.level.hasPlacedItemOnClick = true;
-			int x = hB.getX(Game.level.activeBlocks);
-			int y = hB.getY(Game.level.activeBlocks);
-			Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new StairsUpTopTile();
 			hB.layers[OBJECT_LAYER].cRect.x = hB.getAbsX()* TILE_SIZE;
 			hB.layers[OBJECT_LAYER].cRect.y = hB.getAbsY()* TILE_SIZE;
+
 	}
 
 	@Override

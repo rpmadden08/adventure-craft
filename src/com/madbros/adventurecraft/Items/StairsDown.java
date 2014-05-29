@@ -33,6 +33,9 @@ public class StairsDown extends BlockItem32 {
 	public void useRight() {
 		if(Game.currentLevel != UNDERGROUND_1_FOLDER) {
 			super.useRight();
+		} else {
+			Game.notificationController.addAlert("Cannot go down!");
+			Game.level.hasPlacedItemOnClick = true;
 		}
 	}
 	

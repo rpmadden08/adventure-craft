@@ -11,14 +11,14 @@ import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
-public class StairsUpBottomTile extends CollisionTile {
+public class StairsUpTile extends CollisionTile {
 	public Boolean hasReset = false;
-	public StairsUpBottomTile() {
+	public StairsUpTile() {
 		super();
 		currentSpriteId = 0;
-		sprites = Sprites.spriteCollections.get(Sprites.STAIRS_UP_BOTTOM_TILE);
+		sprites = Sprites.spriteCollections.get(Sprites.STAIRS_UP_TILE);
 		margin = new Margin(9, 9, 9, 9);
-		id = STAIRS_UP_BOTTOM_TILE;
+		id = STAIRS_UP_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
 		isDiggable = false;
@@ -36,7 +36,7 @@ public class StairsUpBottomTile extends CollisionTile {
 	}
 	
 	public Tile createNew() {
-		return new StairsUpBottomTile();
+		return new StairsUpTile();
 	}
 	
 	@Override

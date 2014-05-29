@@ -29,8 +29,14 @@ public class TreeLeafTile extends CollisionTile {
 	
 	@Override
 	public void update(int x, int y) {
-		if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id == 6) {
+		if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id == 6 && currentSpriteId == 4) {
 			isVisible = false;
+			
+		} else if(Game.level.activeBlocks[x][y+1].layers[ABOVE_LAYER_2].id == Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_2].id && Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_2].id != AIR) {
+			if(currentSpriteId == 0 || currentSpriteId == 6) {
+			//This make sure the tree leaf tiles don't overlap autotiled walls...
+			isVisible = false;
+			}
 		} else {
 			isVisible = true;
 		}
