@@ -79,7 +79,7 @@ public class Level {
 	
 //	
 	//public long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 898463;
+	public long rgenseed = 898478;
 	//898463 (grass)  
 	//898474 (maybe too much water) 
 	//898478 (in the middle of forest)
