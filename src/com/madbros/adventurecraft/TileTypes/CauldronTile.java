@@ -31,7 +31,7 @@ public class CauldronTile extends CollisionTile {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.cauldronStatic;
-		margin = new Margin(0, 0, 0, 0);
+		margin = new Margin(1, 0, 1, 0);
 		id = CAULDRON_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;

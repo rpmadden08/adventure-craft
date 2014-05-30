@@ -13,7 +13,7 @@ public class CactusSaplingTile extends CollisionTile {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.CACTUS_SAPLING);
-		margin = new Margin(9, 9, 12, 11);
+		margin = new Margin(0, 1, 1, 1);
 		id = CACTUS_SAPLING;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;

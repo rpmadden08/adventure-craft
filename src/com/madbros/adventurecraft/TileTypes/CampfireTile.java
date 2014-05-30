@@ -8,6 +8,7 @@ import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class CampfireTile extends LightTile {
@@ -22,6 +23,7 @@ public class CampfireTile extends LightTile {
 		isBreakable = true;
 		currentHp = 1;
 		maxHp = 1;
+		margin = new Margin(2, 0, 1, 1);
 	}
 	
 	@Override

@@ -18,7 +18,7 @@ public class ArtichokeTile extends CollisionTile {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.ARTICHOKE_TILE);
-		margin = new Margin(9, 9, 12, 11);
+		margin = new Margin(1, 0, 1, 4);
 		id = ARTICHOKE_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
@@ -40,7 +40,7 @@ public class ArtichokeTile extends CollisionTile {
 	
 	private int setGrowthTime() {
 		
-		//return MathUtils.random(180000, 300000); //Every 1000 is 1 second.  180000 is 3 minutes.
+		//return 3; //Every 1000 is 1 second.  180000 is 3 minutes.
 		return MathUtils.random(180000, 300000); //Every 1000 is 1 second.  180000 is 3 minutes.
 		
 	}

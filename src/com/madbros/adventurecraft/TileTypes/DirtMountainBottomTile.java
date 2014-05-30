@@ -15,7 +15,7 @@ public class DirtMountainBottomTile extends CollisionTile {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.DIRT_MOUNTAIN_BOTTOM_NEW);
-		margin = new Margin(3, 3, 0, 12);
+		margin = new Margin(4, 5, 0, 5);
 		id = DIRT_MOUNTAIN_BOTTOM;
 		autoTileID = id;
 		layer = OBJECT_LAYER;

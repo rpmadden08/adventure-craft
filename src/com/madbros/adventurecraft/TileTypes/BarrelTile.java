@@ -15,7 +15,7 @@ public class BarrelTile extends CollisionTile {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.BARREL);
-		margin = new Margin(9, 9, 12, 11);
+		margin = new Margin(2, 2, 0, 1);
 		id = BARREL;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;

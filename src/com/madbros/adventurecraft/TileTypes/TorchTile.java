@@ -6,6 +6,7 @@ import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.Sprites;
+import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class TorchTile extends LightTile {
@@ -20,6 +21,7 @@ public class TorchTile extends LightTile {
 		isBreakable = true;
 		currentHp = 1;
 		maxHp = 1;
+		margin = new Margin(11, 12, 1, 0);
 	}
 	@Override
 	public LightTile createNew() {

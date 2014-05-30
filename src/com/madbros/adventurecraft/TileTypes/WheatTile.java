@@ -18,7 +18,7 @@ public class WheatTile extends CollisionTile {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.WHEAT_TILE);
-		margin = new Margin(9, 9, 12, 11);
+		margin = new Margin(0, 0, 0, 1);
 		id = WHEAT_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;

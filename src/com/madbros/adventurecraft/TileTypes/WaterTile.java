@@ -17,7 +17,7 @@ public class WaterTile extends CollisionTile {
 		currentSpriteId = 0;
 		layer = WATER_LAYER;
 		z = Z_WATER;
-		margin = new Margin(2, 2, 2, 3);
+		margin = new Margin(1, 0, 0, 1);
 		id = WATER;
 		autoTileID = id;
 		isDiggable = false;

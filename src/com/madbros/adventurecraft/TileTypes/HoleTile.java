@@ -14,7 +14,7 @@ public class HoleTile extends CollisionTile {
 
 		sprites = Sprites.spriteCollections.get(Sprites.HOLE_NEW);
 
-		margin = new Margin(14, 14, 14, 14);
+		margin = new Margin(1, 0, 0, 1);
 		id = HOLE;
 		autoTileID = WATER;
 		isDiggable = false;

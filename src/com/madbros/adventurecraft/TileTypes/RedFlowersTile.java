@@ -14,7 +14,7 @@ public class RedFlowersTile extends CollisionTile {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.RED_FLOWERS_TILE);
-		margin = new Margin(9, 9, 12, 11);
+		margin = new Margin(3, 0, 0, 3);
 		id = RED_FLOWERS_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;

@@ -22,7 +22,7 @@ public class FirePitTile extends CollisionTile {
 		currentHp = 1;
 		maxHp = 1;
 		currentSpriteId = 0;
-		margin = new Margin(9, 9, 12, 11);
+		margin = new Margin(2, 0, 8, 0);
 		layer = OBJECT_LAYER;
 	}
 	

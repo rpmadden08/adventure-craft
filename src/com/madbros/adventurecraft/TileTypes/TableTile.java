@@ -15,7 +15,7 @@ public class TableTile extends CollisionTile {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.spriteCollections.get(Sprites.TABLE);
-		margin = new Margin(9, 9, 0, 11);
+		margin = new Margin(0, 0, 1, 1);
 		id = TABLE_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
