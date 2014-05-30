@@ -976,16 +976,16 @@ public class RenderSystem {
 	public void renderMobCollisionRects(Actor h, int x, int y) {
 		if(Game.debugMenu.collisionRectsAreOn)  {
 			
-			Sprites.pixel.setColor(Color.YELLOW);
-			if(h.collisionDetectionBlocks[0] != null) {
-				for(int i = 0; i < h.collisionDetectionBlocks.length; i++) {
-//					if(h.collisionDetectionBlocks[i].sRect != null && h.collisionDetectionBlocks[i].isCollidable()) {
-					//if(h.collisionDetectionBlocks[i].sRect != null) {
-						Sprites.pixel.draw(h.collisionDetectionBlocks[i].absRect.x-startX,h.collisionDetectionBlocks[i].absRect.y-startY, Z_COLLISION_RECTS + 0.01f,h.collisionDetectionBlocks[i].absRect.w,h.collisionDetectionBlocks[i].absRect.h);
-					//System.out.println(h.collisionDetectionBlocks.length);
-					//}
-				}
-			}
+//			Sprites.pixel.setColor(Color.YELLOW);
+//			if(h.collisionDetectionBlocks[0] != null) {
+//				for(int i = 0; i < h.collisionDetectionBlocks.length; i++) {
+////					if(h.collisionDetectionBlocks[i].sRect != null && h.collisionDetectionBlocks[i].isCollidable()) {
+//					//if(h.collisionDetectionBlocks[i].sRect != null) {
+//						Sprites.pixel.draw(h.collisionDetectionBlocks[i].absRect.x-startX,h.collisionDetectionBlocks[i].absRect.y-startY, Z_COLLISION_RECTS + 0.01f,h.collisionDetectionBlocks[i].absRect.w,h.collisionDetectionBlocks[i].absRect.h);
+//					//System.out.println(h.collisionDetectionBlocks.length);
+//					//}
+//				}
+//			}
 			
 			Sprites.pixel.setColor(1f, 0f,0f,0.7f);
 			//Sprites.pixel.draw(new Rect(new Rect(x, y, CHARACTER_SIZE, CHARACTER_SIZE), h.margin), Z_CHARACTER);

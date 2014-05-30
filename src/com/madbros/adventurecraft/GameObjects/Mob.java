@@ -331,6 +331,28 @@ public class Mob extends Actor {
 		}
 	}
 	
+	public void moveInRandomDirection4(int possibleLength) {
+		if(framesNum > length) {
+			framesNum = 0;
+			Random rand2 = new Random();
+			length = rand2.nextInt(possibleLength);
+			
+			Random rand = new Random();
+			int number = rand.nextInt(5);
+			stop();
+			if(number == 0) {
+				moveUp();
+			} else if(number == 1) {
+				moveLeft();
+			} else if(number == 2) {
+				moveRight();
+			} else if(number == 3) {
+				moveDown();
+			} else if(number == 4) {}
+		}
+		framesNum++;
+	}
+	
 	public void moveInRandomDirection(int possibleLength) {
 		if(framesNum > length) {
 			framesNum = 0;

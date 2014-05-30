@@ -84,8 +84,8 @@ public class MobController {
 		int topTile = Game.level.activeBlocks[x][y].getTopTile().id;
 		//System.out.println(topTile);
 		Block[] tileArea = getTileArea(x,y);
-		int num = rand.nextInt(10);//100  //10 is quick
-		if(num == 0 && mobs.size() < 20) { //20
+		int num = rand.nextInt(100);//100  //10 is quick
+		if(num == 0 && mobs.size() < 10) { //10
 			if(possibleSpawnPoint.detectCollision(heroRect)) {
 			//    ***************IF THE WORLD IS DARK	
 			} else if(isDark(possibleSpawnPoint)){
@@ -134,20 +134,44 @@ public class MobController {
 	}
 	
 	public boolean canLargeMobSpawn(int x, int y) {
-		Tile t1 = Game.level.activeBlocks[x][y].layers[OBJECT_LAYER];
-		Tile t2 = Game.level.activeBlocks[x+1][y].layers[OBJECT_LAYER];
-		Tile t3 = Game.level.activeBlocks[x][y+1].layers[OBJECT_LAYER];
-		Tile t4 = Game.level.activeBlocks[x+1][y+1].layers[OBJECT_LAYER];
-		Tile t5 = Game.level.activeBlocks[x+2][y].layers[OBJECT_LAYER];
-		Tile t6 = Game.level.activeBlocks[x+2][y+1].layers[OBJECT_LAYER];
-		Tile t7 = Game.level.activeBlocks[x+2][y+2].layers[OBJECT_LAYER];
-		Tile t8 = Game.level.activeBlocks[x+1][y+2].layers[OBJECT_LAYER];
-		Tile t9 = Game.level.activeBlocks[x][y+2].layers[OBJECT_LAYER];
-		if(t1.id == AIR && t2.id == AIR && t3.id == AIR && t4.id == AIR && t5.id == AIR && t6.id == AIR && t7.id == AIR && t8.id == AIR && t9.id == AIR) {
-			return true;
-		} else {
-			return false;
+		Tile[] t = new Tile[9];
+		t[0] = Game.level.activeBlocks[x][y].layers[OBJECT_LAYER];
+		t[1] = Game.level.activeBlocks[x+1][y].layers[OBJECT_LAYER];
+		t[2] = Game.level.activeBlocks[x][y+1].layers[OBJECT_LAYER];
+		t[3] = Game.level.activeBlocks[x+1][y+1].layers[OBJECT_LAYER];
+		t[4] = Game.level.activeBlocks[x+2][y].layers[OBJECT_LAYER];
+		t[5] = Game.level.activeBlocks[x+2][y+1].layers[OBJECT_LAYER];
+		t[6] = Game.level.activeBlocks[x+2][y+2].layers[OBJECT_LAYER];
+		t[7] = Game.level.activeBlocks[x+1][y+2].layers[OBJECT_LAYER];
+		t[8] = Game.level.activeBlocks[x][y+2].layers[OBJECT_LAYER];
+		
+		for(int i = 0; i< t.length; i++) {
+			if(t[i].id != AIR && t[i].id != TALL_GRASS_A && t[i].id != RED_FLOWERS) {
+				return false; 
+			}
 		}
+		
+		t[0] = Game.level.activeBlocks[x][y].layers[WATER_LAYER];
+		t[1] = Game.level.activeBlocks[x+1][y].layers[WATER_LAYER];
+		t[2] = Game.level.activeBlocks[x][y+1].layers[WATER_LAYER];
+		t[3] = Game.level.activeBlocks[x+1][y+1].layers[WATER_LAYER];
+		t[4] = Game.level.activeBlocks[x+2][y].layers[WATER_LAYER];
+		t[5] = Game.level.activeBlocks[x+2][y+1].layers[WATER_LAYER];
+		t[6] = Game.level.activeBlocks[x+2][y+2].layers[WATER_LAYER];
+		t[7] = Game.level.activeBlocks[x+1][y+2].layers[WATER_LAYER];
+		t[8] = Game.level.activeBlocks[x][y+2].layers[WATER_LAYER];
+		
+		for(int i = 0; i< t.length; i++) {
+			if(t[i].id != AIR) {
+				return false; 
+			}
+		}
+		
+		//if(t.id == AIR && t2.id == AIR && t3.id == AIR && t4.id == AIR && t5.id == AIR && t6.id == AIR && t7.id == AIR && t8.id == AIR && t9.id == AIR) {
+			return true;
+		//} else {
+		//	return false;
+		//}
 	}
 	
 	public void remove(Mob mob) {

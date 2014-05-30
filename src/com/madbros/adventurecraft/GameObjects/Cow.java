@@ -28,9 +28,9 @@ public class Cow extends Mob {
 				  128, 128);
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.COW));
-		margin = new Margin(20, 36, 40, 18);
-		currentSpeed = 0.03f; //0.03
-		moveSpeed = 0.03f;
+		margin = new Margin(36, 36, 40, 18);
+		currentSpeed = 0.03f; 
+		moveSpeed = 0.03f; //0.03
 		sprite.changeFrameTimes(150);
 		deathParticles = "cowDeath.p";
 	}
@@ -60,7 +60,7 @@ public class Cow extends Mob {
 
 	public void updateAI() {
 			super.updateAI();
-			moveInRandomDirection(300);
+			moveInRandomDirection4(300);
 		
 	}
 	

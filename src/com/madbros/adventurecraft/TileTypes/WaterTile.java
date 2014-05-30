@@ -4,12 +4,14 @@ import java.util.Random;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.GameObjects.Actor;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.Margin;
+import com.madbros.adventurecraft.Utils.Rect;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-public class WaterTile extends Tile {
+public class WaterTile extends CollisionTile {
 	public WaterTile() {
 		super();
 		currentSpriteId = 0;
@@ -23,6 +25,13 @@ public class WaterTile extends Tile {
 		sprites = Sprites.spriteCollections.get(Sprites.WATER_NEW);
 		is32 = false;
 	}
+	
+	public void heroDidCollide(Actor actor, int dir, int move, Rect charCRect, Rect tileRect) {
+		if(actor != Game.hero) {
+			super.heroDidCollide(actor, dir, move, charCRect, tileRect);
+		}
+	}
+	
 	
 	public void render(int x, int y) {
 		int size = TILE_SIZE/2;
