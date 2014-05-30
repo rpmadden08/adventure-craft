@@ -29,10 +29,13 @@ public class Bat extends Mob {
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
 		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
-		detectRange = 100;
+		detectRange = 25;
+		chaseRange = 50;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BAT));
-		margin = new Margin(0, 0, 0, 0);
+		margin = new Margin(0, 0, 4, 6);
 		currentSpeed = 0.1f;
+		moveSpeed = 0.05f; //0.05 f
+		
 	}
 
 //	public void startAttacking() {
@@ -60,10 +63,15 @@ public class Bat extends Mob {
 	}
 	
 	public void updateAI() {
-		//checkForChasing();
+		checkForChasing();
 		checkForFleeingCampfire();
 		if(isInRangeOfCampfire) {
 			fleeRect(campFireRect, this.absRect);
+		} else if(isChasing){
+			runningSpeed = 0.09f;
+			checkSpeed();
+			checkForChasing();
+			chaseHero(Game.hero.absRect, this.absRect);
 		} else {
 			moveInRandomDirection(100);
 		}

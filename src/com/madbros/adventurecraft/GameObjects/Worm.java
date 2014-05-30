@@ -30,9 +30,8 @@ public class Worm extends Mob {
 		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.WORM));
-		margin = new Margin(0, 0, 0, 0);
-		moveSpeed = 0.03f;
-		currentSpeed = 0.03f;
+		margin = new Margin(7, 6, 0, 0);
+		moveSpeed = 0f;
 		deathParticles = "wormDeath.p";
 	}
 
@@ -76,7 +75,7 @@ public class Worm extends Mob {
 			checkForChasing();
 			chaseHero(Game.hero.absRect, this.absRect);
 		}else{
-			moveInRandomDirection(30);
+			moveInRandomDirection(300);
 		}	
 	}
 	

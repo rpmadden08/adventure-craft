@@ -30,8 +30,7 @@ public class Slime extends Mob {
 		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.SLIME));
-		margin = new Margin(0, 0, 0, 0);
-		currentSpeed = 0.03f;
+		margin = new Margin(1, 1, 1, 0);
 		moveSpeed = 0.03f;
 		deathParticles = "slimeDeath.p";
 		sprite.changeFrameTimes(200);
@@ -61,13 +60,13 @@ public class Slime extends Mob {
 		if(isInRangeOfCampfire) {
 			fleeRect(campFireRect, this.absRect);
 		} else if(isChasing) {
-			moveSpeed = 0.06f;
-			currentSpeed = 0.06f;
+			runningSpeed = 0.06f;
+			checkSpeed();
 			checkForChasing();
 			chaseHero(Game.hero.absRect, this.absRect);
 		}else{
-			moveSpeed = 0.03f;
-			currentSpeed = 0.03f;
+			runningSpeed = 0f;
+			checkSpeed();
 			moveInRandomDirection(100);
 		}
 		//System.out.println(moveSpeed);

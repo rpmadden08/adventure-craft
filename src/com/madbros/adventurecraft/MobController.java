@@ -115,9 +115,9 @@ public class MobController {
 					if(topTile == GRASS) {
 							int num2 = rand.nextInt(6);
 							if(num2 == 0) {
-								mobs.add(new QueenBeeMinion(this, x, y));
+								mobs.add(new Worm(this, x, y));
 							} else if(canLargeMobSpawn(x,y)) {
-								mobs.add(new QueenBeeMinion(this, x, y));  //Should be cow
+								mobs.add(new Worm(this, x, y));  //Should be cow
 							}
 					}
 				}
