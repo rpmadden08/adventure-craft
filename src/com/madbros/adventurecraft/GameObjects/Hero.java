@@ -244,7 +244,7 @@ public class Hero extends Actor {
 			startWeaponAnimation = true;
 			int currentFrame = sprite.getCurrentAnimationFrame();
 			if(currentFrame == 0) {
-				if(Game.inventory.invBar[Game.inventory.itemSelected].item.id == 0) { //If the item is destroyed for some reason it should stop attacking... 
+				if(Game.inventory.invBar[Game.inventory.itemSelected].item.id != attackItem.id) { //If the item is destroyed for some reason it should stop attacking... 
 					attackItem = (WeaponItem) Game.inventory.invBar[Game.inventory.itemSelected].item;
 				}
 				if(attackButtonReleased == true || attackItem.isRepeatable == false) {
