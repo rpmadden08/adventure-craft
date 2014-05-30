@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
+import com.madbros.adventurecraft.GameObjects.Mob;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.TileTypes.Tile;
@@ -195,6 +196,17 @@ public abstract class Item {
 		} else {
 			return false;
 		}
+	}
+	
+	public boolean isPlacementCollidingWithMob(Block b, int layer) {
+		for(int i = 0; i < Game.mobController.mobs.size(); i++) {
+			Mob mob = Game.mobController.mobs.get(i);
+			Rect mobCRect = new Rect(mob.absRect, mob.margin);
+			if(mobCRect.detectCollision(b.layers[layer].cRect)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void useLeft() {

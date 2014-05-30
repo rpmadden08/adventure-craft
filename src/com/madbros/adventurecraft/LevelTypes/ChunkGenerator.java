@@ -47,7 +47,7 @@ public class ChunkGenerator {
     		} else if(chunkGroundLayer[m][n] == 4) {
     		    			if(getRandom(0.5, m, n)) {
     		    				return TREE;
-    		    			} else if(getRandom(0.7, m, n)){ 
+    		    			} else if(getRandom(0.55, m, n)){ 
         		    			return BARREL; 
     		    			} else if(getRandom(2, m, n)){ 
             		    			return RED_FLOWERS_TILE; 
@@ -62,7 +62,9 @@ public class ChunkGenerator {
 					
 	    			if(getRandom(20.0, m, n)) { //20.0
 	    				return TREE;
-	    			} else {
+	    			} else if(getRandom(20.05, m, n)){ 
+		    			return BARREL; 
+	    			}else {
 	    				return AIR;
 	    			}
     			

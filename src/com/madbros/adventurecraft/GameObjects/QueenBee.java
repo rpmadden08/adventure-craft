@@ -30,9 +30,8 @@ public class QueenBee extends Mob {
 		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BEE));
-		margin = new Margin(0, 0, 0, 0);
-		currentSpeed = 0.0f; //0.2f
-		moveSpeed = 0.0f; //0.15
+		margin = new Margin(4, 4, 1, 6);
+		moveSpeed = 0.15f; //0.15
 		//maxSpeed = 0.15f;
 		deathParticles = "beeDeath.p";
 	}
@@ -70,7 +69,7 @@ public class QueenBee extends Mob {
 	public void updateAI() {
 		super.updateAI();
 		checkForFleeing();
-		if(isFleeing && mobState != 3) {
+		if(isFleeing && mobState == 2) {
 			//moveSpeed = maxSpeed;
 			fleeRect(Game.hero.absRect, this.absRect);
 		} else if(mobState == 1) {
@@ -80,7 +79,8 @@ public class QueenBee extends Mob {
 			mobState = 2;
 			
 		} else if(mobState == 2) {
-			moveSpeed = 0;
+			//moveSpeed = 0;
+			stop();
 			if(framesNum > length) {
 				framesNum = 0;
 				Random rand2 = new Random();
@@ -107,10 +107,10 @@ public class QueenBee extends Mob {
 		
 		moveDown();
 		//currentSpeed = 0f;
-		moveSpeed = 0f;
+		//moveSpeed = 0f;
 		Random rand2 = new Random();
 		int randomAmount = rand2.nextInt(3+1);
-		for(int a = 0; a < 20; a++) {
+		for(int a = 0; a < randomAmount; a++) {
 			
 			mobController.mobs.add(new QueenBeeMinion(Game.mobController, (absRect.x - Game.level.activeBlocks[0][0].absRect.x)/TILE_SIZE, (absRect.y- Game.level.activeBlocks[0][0].absRect.y)/TILE_SIZE));
 			mobController.mobs.get(mobController.mobs.size()-1).isChasing = true;

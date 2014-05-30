@@ -31,7 +31,7 @@ public class Worm extends Mob {
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.WORM));
 		margin = new Margin(7, 6, 0, 0);
-		moveSpeed = 0f;
+		moveSpeed = 0.03f;
 		deathParticles = "wormDeath.p";
 	}
 
