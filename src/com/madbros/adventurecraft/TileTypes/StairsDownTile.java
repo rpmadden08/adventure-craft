@@ -2,14 +2,10 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.madbros.adventurecraft.*;
-import com.madbros.adventurecraft.GameObjects.Hero;
+import com.madbros.adventurecraft.Block;
+import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.GameStates.LoadingState;
-import com.madbros.adventurecraft.GameStates.MainState;
 import com.madbros.adventurecraft.Items.Item;
-import com.madbros.adventurecraft.Items.StairsUp;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;

@@ -9,7 +9,6 @@ import java.util.Random;
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.Items.Item;
-import com.madbros.adventurecraft.Items.NoItem;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.CauldronTile;

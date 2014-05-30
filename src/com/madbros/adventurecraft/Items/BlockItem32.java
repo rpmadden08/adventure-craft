@@ -6,7 +6,6 @@ import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.Utils.Helpers;
-import com.madbros.adventurecraft.Utils.Rect;
 
 public abstract class BlockItem32 extends StackableItem{
 	int tileId = DIRT;

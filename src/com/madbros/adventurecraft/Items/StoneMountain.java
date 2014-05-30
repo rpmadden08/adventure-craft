@@ -39,8 +39,8 @@ public class StoneMountain extends BlockItem {
 public void highlightItem(Block block, int x, int y) {
 		
 		if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id) { 
-			int i = block.getX(Game.level.activeBlocks); 
-			int j = block.getY(Game.level.activeBlocks);
+//			int i = block.getX(Game.level.activeBlocks); 
+//			int j = block.getY(Game.level.activeBlocks);
 	
 			
 			Tile tile = TILE_HASH.get(tileId);

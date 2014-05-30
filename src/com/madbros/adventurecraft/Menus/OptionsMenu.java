@@ -1,11 +1,8 @@
 package com.madbros.adventurecraft.Menus;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
+
 import java.util.ArrayList;
 
-import org.apache.commons.io.FileUtils;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -17,13 +14,10 @@ import com.madbros.adventurecraft.Game;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.madbros.adventurecraft.GameObjects.Mob;
 import com.madbros.adventurecraft.GameStates.MainMenuState;
-import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.UI.*;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Rect;
-import com.madbros.adventurecraft.Utils.Text;
 
 public class OptionsMenu extends Menu {
 	String fileName;

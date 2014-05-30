@@ -1,6 +1,5 @@
 package com.madbros.adventurecraft.StatusEffects;
 
-import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.GameObjects.Actor;
 

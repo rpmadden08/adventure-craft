@@ -6,10 +6,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.Sprites;
-import com.madbros.adventurecraft.TileTypes.CollisionTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.Utils.Helpers;
-import com.madbros.adventurecraft.Utils.Margin;
 
 public class StairsDown extends BlockItem32 {
 	public StairsDown() {

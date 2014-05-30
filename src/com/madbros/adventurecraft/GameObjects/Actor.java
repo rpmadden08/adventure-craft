@@ -6,12 +6,10 @@ import org.lwjgl.input.Keyboard;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
-import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.Items.Clothing;
 import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.StatusEffects.AppliedStatusEffect;
-import com.madbros.adventurecraft.StatusEffects.StatusEffect;
 import com.madbros.adventurecraft.StatusEffects.TimedStatusEffect;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
 import com.madbros.adventurecraft.Utils.Margin;

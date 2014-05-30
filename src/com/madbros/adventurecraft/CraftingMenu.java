@@ -1,19 +1,8 @@
 package com.madbros.adventurecraft;
 
 import static com.madbros.adventurecraft.Constants.*;
-
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.madbros.adventurecraft.Items.Item;
-import com.madbros.adventurecraft.Items.Stick;
 import com.madbros.adventurecraft.Slots.CraftingSlot;
-import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.UI.InGameMenuUIButton;
-import com.madbros.adventurecraft.UI.PlainUIButton;
-import com.madbros.adventurecraft.UI.SelectUIButton;
-import com.madbros.adventurecraft.UI.TextUIButton;
-import com.madbros.adventurecraft.UI.TexturedUIButton;
-import com.madbros.adventurecraft.UI.UIButton;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
 
 public class CraftingMenu {

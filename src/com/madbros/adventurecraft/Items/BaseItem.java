@@ -15,11 +15,9 @@ import static com.madbros.adventurecraft.Constants.TILE_SIZE;
 import static com.madbros.adventurecraft.Constants.YELLOW_FLOWERS_TILE;
 import static com.madbros.adventurecraft.Constants.Z_CHARACTER;
 
-import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.Sprites;
-import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 public abstract class BaseItem extends ToolItem {
 	

@@ -6,15 +6,9 @@ import java.io.File;
 import java.io.FilenameFilter;
 
 import org.lwjgl.opengl.Display;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Game;
-import com.madbros.adventurecraft.MyTextInputListener;
 import com.madbros.adventurecraft.GameStates.MainMenuState;
-import com.madbros.adventurecraft.Sprites.StaticSprite;
 import com.madbros.adventurecraft.UI.*;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Rect;

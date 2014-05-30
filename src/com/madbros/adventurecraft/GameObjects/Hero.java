@@ -6,7 +6,6 @@ import org.lwjgl.input.Keyboard;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
-import com.madbros.adventurecraft.Level;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.GameStates.LoadingState;
 import com.madbros.adventurecraft.GameStates.MainState;
@@ -14,8 +13,6 @@ import com.madbros.adventurecraft.Items.Clothing;
 import com.madbros.adventurecraft.Items.WeaponItem;
 import com.madbros.adventurecraft.Sprites.CompoundAnimatedSprite;
 import com.madbros.adventurecraft.Sprites.Sprites;
-import com.madbros.adventurecraft.StatusEffects.Slowness;
-import com.madbros.adventurecraft.StatusEffects.Speed;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
@@ -247,8 +244,8 @@ public class Hero extends Actor {
 			startWeaponAnimation = true;
 			int currentFrame = sprite.getCurrentAnimationFrame();
 			if(currentFrame == 0) {
-				if(Game.inventory.invBar[Game.inventory.itemSelected].item.id != 0) { //If the item is destroyed for some reason it should stop attacking... 
-					WeaponItem attackItem = (WeaponItem) Game.inventory.invBar[Game.inventory.itemSelected].item;
+				if(Game.inventory.invBar[Game.inventory.itemSelected].item.id == 0) { //If the item is destroyed for some reason it should stop attacking... 
+					attackItem = (WeaponItem) Game.inventory.invBar[Game.inventory.itemSelected].item;
 				}
 				if(attackButtonReleased == true || attackItem.isRepeatable == false) {
 					if(hasAttacked == true) {

@@ -1,9 +1,6 @@
 package com.madbros.adventurecraft.LevelTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Underground1ChunkGenerator extends ChunkGenerator{

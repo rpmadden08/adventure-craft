@@ -1,6 +1,5 @@
 package com.madbros.adventurecraft.GameStates;
-import com.badlogic.gdx.Input.Keys;
-import com.madbros.adventurecraft.Menus.Menu;
+
 
 public class LoadingStateInput extends BasicInput {
 	

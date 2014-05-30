@@ -2,11 +2,8 @@ package com.madbros.adventurecraft.Menus;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import org.lwjgl.opengl.Display;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.madbros.adventurecraft.GameStates.MainMenuStateInput;
 import com.madbros.adventurecraft.UI.PlainUIButton;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -77,9 +74,9 @@ public class GameHowToPlay extends GameMainMenu {
 		else menuIsActive = true;
 	}
 	
-	private void resumeGameFunction() {
-		toggleMenu();
-	}
+//	private void resumeGameFunction() {
+//		toggleMenu();
+//	}
 	
 	private void goBackFunction() {
 		Game.gameMainMenu = new GameMainMenu(Game.batch);
@@ -91,11 +88,11 @@ public class GameHowToPlay extends GameMainMenu {
 //		Game.level.saveGame.saveGame();
 //	}
 
-	private void quitGameFunction() {
-		Game.quit();
-		Display.destroy();
-		System.exit(0);
-	}
+//	private void quitGameFunction() {
+//		Game.quit();
+//		Display.destroy();
+//		System.exit(0);
+//	}
 	
 //	private void characterSpeedDown() {
 //		float s = Game.hero.getCurrentSpeed();

@@ -3,12 +3,10 @@ package com.madbros.adventurecraft.Menus;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.StaticSprite;
 import com.madbros.adventurecraft.UI.*;
 
-import static com.madbros.adventurecraft.Constants.*;
 
 public class Menu {
 	public UIButton[] menuButtons;

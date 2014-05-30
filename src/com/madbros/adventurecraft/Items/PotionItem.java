@@ -1,6 +1,5 @@
 package com.madbros.adventurecraft.Items;
 
-import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.Game;
 

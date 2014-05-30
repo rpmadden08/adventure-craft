@@ -2,16 +2,11 @@ package com.madbros.adventurecraft.LevelTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import java.io.File;
 import java.util.Random;
 
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.GameStates.MainState;
-import com.madbros.adventurecraft.Items.IronSword;
-import com.madbros.adventurecraft.Items.Item;
-import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.TileTypes.*;
-import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class Overworld extends Level{

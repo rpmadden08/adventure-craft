@@ -2,10 +2,7 @@ package com.madbros.adventurecraft.Menus;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import org.lwjgl.opengl.Display;
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.madbros.adventurecraft.GameStates.MainMenuState;
 import com.madbros.adventurecraft.UI.PlainUIButton;
 import com.madbros.adventurecraft.Utils.ButtonFunction;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -82,30 +79,30 @@ public class GameOptionsMenu extends GameMainMenu {
 		Game.gameMainMenu.menuIsActive = true;
 	}
 	
-	private void resumeGameFunction() {
-		Game.toggleMainMenu();
-	}
-	
-	private void howToPlayFunction() {
-		Game.gameMainMenu = new GameHowToPlay(Game.batch);
-		Game.gameMainMenu.menuIsActive = true;
-	}
-	
-	private void optionsFunction() {
-		Game.gameMainMenu = new GameHowToPlay(Game.batch);
-		Game.gameMainMenu.menuIsActive = true;
-	}
-
-//	private void saveGameFunction() {
-//		Game.level.saveCurrentChunks();
-//		Game.level.saveGame.saveGame();
+//	private void resumeGameFunction() {
+//		Game.toggleMainMenu();
 //	}
-
-	private void quitGameFunction() {
-		Game.quit();
-		Display.destroy();
-		System.exit(0);
-	}
+//	
+//	private void howToPlayFunction() {
+//		Game.gameMainMenu = new GameHowToPlay(Game.batch);
+//		Game.gameMainMenu.menuIsActive = true;
+//	}
+//	
+//	private void optionsFunction() {
+//		Game.gameMainMenu = new GameHowToPlay(Game.batch);
+//		Game.gameMainMenu.menuIsActive = true;
+//	}
+//
+////	private void saveGameFunction() {
+////		Game.level.saveCurrentChunks();
+////		Game.level.saveGame.saveGame();
+////	}
+//
+//	private void quitGameFunction() {
+//		Game.quit();
+//		Display.destroy();
+//		System.exit(0);
+//	}
 	
 //	private void characterSpeedDown() {
 //		float s = Game.hero.getCurrentSpeed();

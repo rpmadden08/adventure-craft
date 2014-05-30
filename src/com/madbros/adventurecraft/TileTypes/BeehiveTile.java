@@ -2,7 +2,6 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.GameObjects.QueenBee;
 import com.madbros.adventurecraft.Sprites.Sprites;

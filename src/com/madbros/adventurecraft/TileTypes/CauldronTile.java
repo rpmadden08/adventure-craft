@@ -8,7 +8,6 @@ import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Items.NoItem;
 import com.madbros.adventurecraft.Slots.CauldronSlot;
 import com.madbros.adventurecraft.Slots.CraftedSlot;
-import com.madbros.adventurecraft.Slots.CraftingSlot;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;

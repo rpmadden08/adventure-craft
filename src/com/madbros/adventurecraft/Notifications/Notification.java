@@ -1,10 +1,9 @@
 package com.madbros.adventurecraft.Notifications;
 
 
-import static com.madbros.adventurecraft.Constants.Z_CHARACTER;
+
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.NotificationController;

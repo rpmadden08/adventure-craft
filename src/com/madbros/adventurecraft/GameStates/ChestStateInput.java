@@ -1,10 +1,7 @@
 package com.madbros.adventurecraft.GameStates;
 
-import static com.madbros.adventurecraft.Constants.OBJECT_LAYER;
-
 import com.badlogic.gdx.Input.Keys;
 import com.madbros.adventurecraft.Game;
-import com.madbros.adventurecraft.TileTypes.CauldronTile;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
 import com.madbros.adventurecraft.Items.NoItem;

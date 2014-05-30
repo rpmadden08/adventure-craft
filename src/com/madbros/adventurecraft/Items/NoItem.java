@@ -1,6 +1,6 @@
 package com.madbros.adventurecraft.Items;
 
-import com.madbros.adventurecraft.Game;
+
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Rect;
 public class NoItem extends BaseItem {

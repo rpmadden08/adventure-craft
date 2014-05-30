@@ -2,14 +2,9 @@ package com.madbros.adventurecraft.Notifications;
 
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.NotificationController;
-import com.madbros.adventurecraft.GameObjects.GameObject;
 import com.madbros.adventurecraft.Sprites.Sprites;
-import com.madbros.adventurecraft.Utils.Margin;
-import com.madbros.adventurecraft.Utils.Rect;
 import com.madbros.adventurecraft.Notifications.Notification;
 
 public class AlertNotification extends Notification {

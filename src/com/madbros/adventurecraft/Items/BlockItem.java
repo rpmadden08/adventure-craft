@@ -4,10 +4,8 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
-import com.madbros.adventurecraft.TileTypes.DirtMountainTopTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.Utils.Helpers;
-import com.madbros.adventurecraft.Utils.Rect;
 
 public abstract class BlockItem extends StackableItem{
 	int tileId = DIRT;

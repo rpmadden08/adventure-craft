@@ -2,14 +2,11 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import java.util.Random;
-
 import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
-import com.madbros.adventurecraft.Utils.Rect;
 
 public class YellowFlowers extends BlockItem32 {
 	public YellowFlowers() {

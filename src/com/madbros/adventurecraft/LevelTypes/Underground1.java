@@ -6,7 +6,6 @@ import java.io.File;
 
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.GameStates.MainState;
-import com.madbros.adventurecraft.Items.IronSword;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.LevelTypes.FractalTypes.CaveNoise;
 import com.madbros.adventurecraft.Slots.Slot;

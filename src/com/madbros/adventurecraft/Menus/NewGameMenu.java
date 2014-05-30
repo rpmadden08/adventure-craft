@@ -5,7 +5,6 @@ import java.io.File;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.adventurecraft.*;
-import com.madbros.adventurecraft.Constants.State;
 
 import static com.madbros.adventurecraft.Constants.*;
 

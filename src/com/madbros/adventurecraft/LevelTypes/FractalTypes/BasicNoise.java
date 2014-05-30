@@ -1,10 +1,6 @@
 package com.madbros.adventurecraft.LevelTypes.FractalTypes;
 
-import java.awt.Dimension;
 
-import javax.swing.JFrame;
-
-import com.sudoplay.joise.module.Module;
 import com.sudoplay.joise.module.ModuleAutoCorrect;
 import com.sudoplay.joise.module.ModuleFractal;
 import com.sudoplay.joise.module.ModuleBasisFunction.BasisType;

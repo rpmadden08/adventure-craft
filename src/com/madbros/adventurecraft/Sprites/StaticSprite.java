@@ -4,7 +4,6 @@ package com.madbros.adventurecraft.Sprites;
 //import org.newdawn.slick.opengl.Texture;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.madbros.adventurecraft.Utils.*;
 
 public class StaticSprite extends Sprite {

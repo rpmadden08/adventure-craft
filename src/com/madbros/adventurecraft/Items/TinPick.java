@@ -3,8 +3,6 @@ package com.madbros.adventurecraft.Items;
 import static com.madbros.adventurecraft.Constants.*;
 
 //import com.badlogic.gdx.Gdx;
-//import com.badlogic.gdx.graphics.g2d.ParticleEffect;
-import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 
 public class TinPick extends Pick {

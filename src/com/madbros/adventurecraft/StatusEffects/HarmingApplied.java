@@ -1,7 +1,6 @@
 package com.madbros.adventurecraft.StatusEffects;
 
 import com.madbros.adventurecraft.Game;
-import com.madbros.adventurecraft.GameObjects.Actor;
 import com.madbros.adventurecraft.Sprites.Sprites;
 
 

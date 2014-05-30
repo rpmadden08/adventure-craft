@@ -2,8 +2,7 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-//import com.badlogic.gdx.backends.openal.Wav.Sound;
-import com.madbros.adventurecraft.Game;
+
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Rect;
 

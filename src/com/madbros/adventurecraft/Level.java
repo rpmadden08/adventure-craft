@@ -4,19 +4,15 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 
 import com.madbros.adventurecraft.Constants.State;
 import com.badlogic.gdx.Gdx;
-import com.madbros.adventurecraft.GameObjects.Hero;
 import com.madbros.adventurecraft.GameStates.LoadingState;
 import com.madbros.adventurecraft.GameStates.MainState;
 import com.madbros.adventurecraft.Items.Clothing;
 import com.madbros.adventurecraft.Items.IronArmor;
 import com.madbros.adventurecraft.LevelTypes.ChunkGenerator;
-import com.madbros.adventurecraft.LevelTypes.Overworld;
-import com.madbros.adventurecraft.LevelTypes.Underground1;
 import com.madbros.adventurecraft.LevelTypes.FractalTypes.BasicNoise;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
@@ -211,7 +207,7 @@ public class Level {
 	
 	
 	public void checkPercentages() {
-		double total = Game.tundraTally + Game.taigaTally + Game.forestTally + Game.jungleTally+ Game.grasslandTally + Game.mountainTally +Game.oceanTally + Game.desertTally +Game.swampTally;
+		//double total = Game.tundraTally + Game.taigaTally + Game.forestTally + Game.jungleTally+ Game.grasslandTally + Game.mountainTally +Game.oceanTally + Game.desertTally +Game.swampTally;
 	}
 	
 	
@@ -330,56 +326,56 @@ public class Level {
 		Game.saveGame.saveChunk(chunk, chunkX, chunkY);
 	}
 	
-	private void highlight64(Rect renderRect, Point offsetPoint) {
-		if(highlightedBlock != null) {
-			highlightedBlock.isHighlighted = false;
-//			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = false;
-//			activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = false;
-//			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = false;
-		}
-		
-		Rect mRect = Helpers.getMouseRect();
-		Rect itemRange = Game.inventory.invBar[Game.inventory.itemSelected].item.range;
-		itemRange.x = Game.hero.sRect.x - (itemRange.w / 2) + (Game.hero.sRect.w /2);
-		itemRange.y = Game.hero.sRect.y- (itemRange.h / 2) + (Game.hero.sRect.h/2);
-		if(mRect.detectCollision(itemRange)) {
-			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = true;
-			highlightedBlockX = renderRect.x + (mRect.x + offsetPoint.x) / TILE_SIZE;
-			
-			highlightedBlockY = renderRect.y + (mRect.y + offsetPoint.y) / TILE_SIZE;
-			
-			if(highlightedBlockX % 2 == 0 && highlightedBlockY % 2 == 0) {
-				
-			} else if (highlightedBlockX % 2 == 1 && highlightedBlockY % 2 == 0) {
-				highlightedBlockX--;
-			} else if (highlightedBlockX % 2 == 0 && highlightedBlockY % 2 == 1) {
-				highlightedBlockY--;
-			} else {
-				highlightedBlockX--;
-				highlightedBlockY--;
-			}
-			
-			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
-			highlightedBlock2 = activeBlocks[highlightedBlockX+1][highlightedBlockY];
-			highlightedBlock3 = activeBlocks[highlightedBlockX][highlightedBlockY+1];
-			highlightedBlock4 = activeBlocks[highlightedBlockX+1][highlightedBlockY+1];
-		
-			Game.inventory.invBar[Game.inventory.itemSelected].item.getTopTile();
-
-			
-			highlightedBlock.isHighlighted = true;
-			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = true;
-			activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = true;
-			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = true;
-		} else {
-			highlightedBlock = null;
-			highlightedBlock2 = null;
-			highlightedBlock3 = null;
-			highlightedBlock4 = null;
-			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = false;
-		}
-		
-	}
+//	private void highlight64(Rect renderRect, Point offsetPoint) {
+//		if(highlightedBlock != null) {
+//			highlightedBlock.isHighlighted = false;
+////			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = false;
+////			activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = false;
+////			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = false;
+//		}
+//		
+//		Rect mRect = Helpers.getMouseRect();
+//		Rect itemRange = Game.inventory.invBar[Game.inventory.itemSelected].item.range;
+//		itemRange.x = Game.hero.sRect.x - (itemRange.w / 2) + (Game.hero.sRect.w /2);
+//		itemRange.y = Game.hero.sRect.y- (itemRange.h / 2) + (Game.hero.sRect.h/2);
+//		if(mRect.detectCollision(itemRange)) {
+//			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = true;
+//			highlightedBlockX = renderRect.x + (mRect.x + offsetPoint.x) / TILE_SIZE;
+//			
+//			highlightedBlockY = renderRect.y + (mRect.y + offsetPoint.y) / TILE_SIZE;
+//			
+//			if(highlightedBlockX % 2 == 0 && highlightedBlockY % 2 == 0) {
+//				
+//			} else if (highlightedBlockX % 2 == 1 && highlightedBlockY % 2 == 0) {
+//				highlightedBlockX--;
+//			} else if (highlightedBlockX % 2 == 0 && highlightedBlockY % 2 == 1) {
+//				highlightedBlockY--;
+//			} else {
+//				highlightedBlockX--;
+//				highlightedBlockY--;
+//			}
+//			
+//			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
+//			highlightedBlock2 = activeBlocks[highlightedBlockX+1][highlightedBlockY];
+//			highlightedBlock3 = activeBlocks[highlightedBlockX][highlightedBlockY+1];
+//			highlightedBlock4 = activeBlocks[highlightedBlockX+1][highlightedBlockY+1];
+//		
+//			Game.inventory.invBar[Game.inventory.itemSelected].item.getTopTile();
+//
+//			
+//			highlightedBlock.isHighlighted = true;
+//			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = true;
+//			activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = true;
+//			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = true;
+//		} else {
+//			highlightedBlock = null;
+//			highlightedBlock2 = null;
+//			highlightedBlock3 = null;
+//			highlightedBlock4 = null;
+//			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = false;
+//		}
+//		
+//	}
 	
 	private void highlight32(Rect renderRect, Point offsetPoint) {
 		if(highlightedBlock != null) {

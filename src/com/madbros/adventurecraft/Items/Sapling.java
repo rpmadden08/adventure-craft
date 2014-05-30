@@ -4,7 +4,6 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.*;
-import com.madbros.adventurecraft.GameStates.GameState;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;

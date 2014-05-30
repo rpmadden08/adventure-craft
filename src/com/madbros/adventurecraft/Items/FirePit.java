@@ -4,7 +4,6 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.Block;
-import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.CollisionTile;
 import com.madbros.adventurecraft.TileTypes.Tile;

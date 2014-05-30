@@ -4,11 +4,9 @@ import static com.madbros.adventurecraft.Constants.OBJECT_LAYER;
 
 import com.badlogic.gdx.Input.Keys;
 import com.madbros.adventurecraft.Game;
-import com.madbros.adventurecraft.TileTypes.CauldronTile;
 import com.madbros.adventurecraft.TileTypes.FurnaceTile;
 import com.madbros.adventurecraft.Utils.Helpers;
 import com.madbros.adventurecraft.Utils.Rect;
-import com.madbros.adventurecraft.Constants.State;
 import com.madbros.adventurecraft.Items.NoItem;
 import com.madbros.adventurecraft.Slots.*;
 

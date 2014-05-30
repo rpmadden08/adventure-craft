@@ -32,7 +32,6 @@ import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.TileTypes.CauldronTile;
 import com.madbros.adventurecraft.TileTypes.FurnaceTile;
-import com.madbros.adventurecraft.TileTypes.FurnaceTopTile;
 import com.madbros.adventurecraft.TileTypes.LightTile;
 import com.madbros.adventurecraft.TileTypes.Tile;
 import com.madbros.adventurecraft.TileTypes.TreeLeafTile;
@@ -537,8 +536,6 @@ public class RenderSystem {
 				long minutes = totalSeconds / 60;
 				long secondsTens = totalSeconds % 60 /10;
 				long seconds = totalSeconds % 60 % 10;
-				String mString = String.valueOf(minutes)+" min";
-				String sString = String.valueOf(seconds)+" sec";
 				String totalString = String.valueOf(minutes)+"."+String.valueOf(secondsTens)+String.valueOf(seconds);
 				
 				Sprites.arial10.setColor(Color.RED);
@@ -666,7 +663,7 @@ public class RenderSystem {
 	
 	public void renderFurnace(Inventory inv) {
 		FurnaceTile furnace = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-		FurnaceTopTile furnaceTop = (FurnaceTopTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY-1].layers[ABOVE_LAYER_1];
+		//FurnaceTopTile furnaceTop = (FurnaceTopTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY-1].layers[ABOVE_LAYER_1];
 		Sprite sprite2 = Sprites.sprites.get(Sprites.FURNACE_SINGLE);
 		sprite2.draw(441,349,0f,(int)(sprite2.getWidth()*4.7), (int)(sprite2.getHeight()* 4.7));
 		Sprite[] sprite = Sprites.spriteCollections.get(Sprites.FURNACE_TOP);

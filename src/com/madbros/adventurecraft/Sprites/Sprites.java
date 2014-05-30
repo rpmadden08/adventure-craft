@@ -12,7 +12,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g2d.stbtt.TrueTypeFontFactory;
 import com.madbros.adventurecraft.Game;
 //import org.newdawn.slick.TrueTypeFont;
 //import org.newdawn.slick.opengl.Texture;

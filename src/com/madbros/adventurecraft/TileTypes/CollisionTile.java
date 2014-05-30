@@ -3,7 +3,6 @@ package com.madbros.adventurecraft.TileTypes;
 import static com.madbros.adventurecraft.Constants.*;
 
 import com.madbros.adventurecraft.GameObjects.Actor;
-import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public abstract class CollisionTile extends Tile {

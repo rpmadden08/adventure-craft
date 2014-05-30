@@ -9,7 +9,6 @@ import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.TileTypes.*;
 import com.madbros.adventurecraft.Utils.Helpers;
-import com.madbros.adventurecraft.Utils.Rect;
 
 public class TallGrassA extends BlockItem32 {
 	public TallGrassA() {

@@ -2,10 +2,8 @@ package com.madbros.adventurecraft.Items;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import com.madbros.adventurecraft.Game;
-import com.madbros.adventurecraft.Slots.Slot;
+
 import com.madbros.adventurecraft.Sprites.Sprites;
-import com.madbros.adventurecraft.Utils.Helpers;
 
 public class Stick extends CraftItem{
 	public Stick() {

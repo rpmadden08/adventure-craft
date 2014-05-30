@@ -1,6 +1,5 @@
 package com.madbros.adventurecraft.Items;
 
-import com.madbros.adventurecraft.Game;
 
 
 public abstract class WeaponItem extends Item {

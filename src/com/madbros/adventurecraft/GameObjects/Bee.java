@@ -2,9 +2,7 @@ package com.madbros.adventurecraft.GameObjects;
 
 import static com.madbros.adventurecraft.Constants.*;
 
-import java.util.Random;
 
-import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.MobController;
 import com.madbros.adventurecraft.Items.Item;

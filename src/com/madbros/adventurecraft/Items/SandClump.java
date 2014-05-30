@@ -37,8 +37,8 @@ public class SandClump extends BlockItem {
 	public void highlightItem(Block block, int x, int y) {
 		
 		if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id) { 
-			int i = block.getX(Game.level.activeBlocks); 
-			int j = block.getY(Game.level.activeBlocks);
+//			int i = block.getX(Game.level.activeBlocks); 
+//			int j = block.getY(Game.level.activeBlocks);
 	
 			
 			//Tile autoTileCheckTile = Game.level.activeBlocks[i][j].layers[ABOVE_LAYER_6];

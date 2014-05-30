@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Items.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
-import com.madbros.adventurecraft.TileTypes.FurnaceTile;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class CraftedSlot extends Slot{
@@ -37,7 +36,7 @@ public class CraftedSlot extends Slot{
 		if(inv.craftingTableOn == true) {
 			craftingSlots = inv.invTable;
 		} else if(inv.furnaceOn) {
-			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+			//FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			craftingSlots = inv.invCrafting;
 		} else {
 			craftingSlots = inv.invCrafting;

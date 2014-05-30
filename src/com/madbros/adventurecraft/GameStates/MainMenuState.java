@@ -1,12 +1,10 @@
 package com.madbros.adventurecraft.GameStates;
 
 import static com.madbros.adventurecraft.Constants.*;
-import quicktime.std.image.Matrix;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Matrix4;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Menus.*;
 

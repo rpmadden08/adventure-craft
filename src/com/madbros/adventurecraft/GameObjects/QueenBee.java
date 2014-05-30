@@ -4,7 +4,6 @@ import static com.madbros.adventurecraft.Constants.*;
 
 import java.util.Random;
 
-import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.MobController;
 import com.madbros.adventurecraft.Items.Item;
@@ -93,7 +92,7 @@ public class QueenBee extends Mob {
 			chaseHero(Game.hero.absRect, this.absRect);
 			if(framesNum > length) {
 				framesNum = 0;
-				Random rand2 = new Random();
+//				Random rand2 = new Random();
 				//length = rand2.nextInt(100);
 				mobState = 1;
 			}
