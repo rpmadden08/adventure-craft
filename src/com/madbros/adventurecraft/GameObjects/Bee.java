@@ -28,9 +28,10 @@ public class Bee extends Mob {
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
 		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
-		detectRange = 100;
+		detectRange = 50; //50
+		chaseRange = 100; //50
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BEE_MINI));
-		margin = new Margin(0, 0, 0, 0);
+		margin = new Margin(11, 11, 10, 12);
 		moveSpeed = 0.03f; //0.03
 		currentSpeed = 0f;
 		deathParticles = "beeDeath.p";
@@ -72,7 +73,6 @@ public class Bee extends Mob {
 				if(isInRangeOfCampfire) {
 					fleeRect(campFireRect, this.absRect);
 				} else if(isChasing) {
-					//moveSpeed = 0.09f;
 					runningSpeed = 0.06f;
 					checkSpeed();
 					checkForChasing();

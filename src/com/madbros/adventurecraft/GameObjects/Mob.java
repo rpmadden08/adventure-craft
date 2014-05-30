@@ -24,7 +24,8 @@ public class Mob extends Actor {
 	MobController mobController;
 	int attack;
 	Rect detectRect;
-	int detectRange = 100;
+	int detectRange = 50;
+	int chaseRange = 100; //Detect and Chase make a distinction between how close you need to be in order to start chasing and how far away you need to be in order to stop
 	boolean isChasing = true;
 	float damping = 1;
 	public boolean isInRangeOfCampfire = false;
@@ -300,7 +301,11 @@ public class Mob extends Actor {
 	}
 	
 	public void checkForChasing() {
-		detectRect = new Rect(absRect.x - detectRange, absRect.y - detectRange, absRect.w +(detectRange*2), absRect.h +(detectRange*2));
+		if(isChasing == false) {
+			detectRect = new Rect(absRect.x - detectRange, absRect.y - detectRange, absRect.w +(detectRange*2), absRect.h +(detectRange*2));
+		} else {
+			detectRect = new Rect(absRect.x - chaseRange, absRect.y - chaseRange, absRect.w +(chaseRange*2), absRect.h +(chaseRange*2));
+		}
 		if(detectRect.detectCollision(Game.hero.absRect) && !Game.hero.isDead) {
 			isChasing = true;
 			//stop();
