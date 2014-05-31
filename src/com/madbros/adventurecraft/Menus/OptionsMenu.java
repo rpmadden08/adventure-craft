@@ -48,23 +48,29 @@ public class OptionsMenu extends Menu {
 	}
 	
 	public void getResolutions() {
-		resolutions = new ArrayList<DisplayMode>();
-		try {
-			DisplayMode[] modes = Display.getAvailableDisplayModes();
-			
-			for (int i=0;i<modes.length;i++) {
-			    DisplayMode current = modes[i]; 
-			    if(current.getBitsPerPixel() == 32 && current.getWidth() <= 1440 && current.getHeight() <=900 ) {
-			    	
-			    	resolutions.add(current);
-			    	if(current.getWidth() == Game.currentScreenSizeX) {
-			    		currentlySelectedR = resolutions.size()-1;
-			    	}
-			    }
+		resolutions = Game.getResolutions();
+		for(int i = 0; i < resolutions.size(); i++) {
+			if(resolutions.get(i).getWidth() == Game.currentScreenSizeX
+					&& resolutions.get(i).getHeight() == Game.currentScreenSizeY) {
+				currentlySelectedR = i;
 			}
-		} catch(LWJGLException e) {
-			throw new RuntimeException("Could not initiate LWJGL.", e);
 		}
+//		try {
+//			DisplayMode[] modes = Display.getAvailableDisplayModes();
+//			
+//			for (int i=0;i<modes.length;i++) {
+//			    DisplayMode current = modes[i]; 
+//			    if(current.getBitsPerPixel() == 32 && current.getWidth() <= 1440 && current.getHeight() <=900 ) {
+//			    	
+//			    	resolutions.add(current);
+//			    	if(current.getWidth() == Game.currentScreenSizeX) {
+//			    		currentlySelectedR = resolutions.size()-1;
+//			    	}
+//			    }
+//			}
+//		} catch(LWJGLException e) {
+//			throw new RuntimeException("Could not initiate LWJGL.", e);
+//		}
 	}
 	
 	
@@ -138,11 +144,15 @@ public class OptionsMenu extends Menu {
 		    	} else {
 		    		isStretched = "(STRETCHED)";
 		    	}
+		
+		
 		Game.currentScreenSizeX = resolutions.get(currentlySelectedR).getWidth();
 		Game.currentScreenSizeY = resolutions.get(currentlySelectedR).getHeight();
 		Game.camera= new OrthographicCamera(Game.currentScreenSizeX,Game.currentScreenSizeY);
 		Game.camera.setToOrtho(true, Game.currentScreenSizeX, Game.currentScreenSizeY);
 
+		
+		
 		Game.camera.update();
 		MAIN_MENU_STARTX = Game.currentScreenSizeX/2 - MAIN_MENU_WIDTH / 2;
 		MAIN_MENU_STARTY = Game.currentScreenSizeY-230;

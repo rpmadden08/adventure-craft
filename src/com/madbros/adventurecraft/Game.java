@@ -275,16 +275,20 @@ public class Game implements ApplicationListener {
 		}		
 	}
 	
-	@Override
-	public void create() {
+	public static ArrayList<DisplayMode> getResolutions() {
 		ArrayList<DisplayMode> resolutions = new ArrayList<DisplayMode>();
 		try {
 			DisplayMode[] modes = Display.getAvailableDisplayModes();
 			
 			for (int i=0;i<modes.length;i++) {
 			    DisplayMode current = modes[i]; 
-			    if((float)current.getWidth()/(float)current.getHeight() == (float)Gdx.graphics.getDesktopDisplayMode().width/(float)Gdx.graphics.getDesktopDisplayMode().height
-			    		&& current.getBitsPerPixel() == 32 && current.getWidth() <= 1440 && current.getHeight() <=900 ) {
+//			    if((float)current.getWidth()/(float)current.getHeight() == (float)Gdx.graphics.getDesktopDisplayMode().width/(float)Gdx.graphics.getDesktopDisplayMode().height
+//			    	 && current.getWidth() <= 1440 && current.getHeight() <=900 ) {
+			    if(current.isFullscreenCapable() 
+			    		&& current.getWidth() >= 640 
+			    		&& current.getHeight() >= 480
+			    		&& current.getWidth() <= 1440 
+			    		&& current.getHeight() <=900)	{
 			    	resolutions.add(current);
 //			    	System.out.println(current.getWidth() + "x" + current.getHeight() + "x" +
 //			                        	current.getBitsPerPixel() + " " + current.getFrequency() + "Hz"+ current.isFullscreenCapable());
@@ -293,6 +297,13 @@ public class Game implements ApplicationListener {
 		} catch(LWJGLException e) {
 			throw new RuntimeException("Could not initiate LWJGL.", e);
 		}
+		return resolutions;
+	}
+	
+	@Override
+	public void create() {
+
+		ArrayList<DisplayMode> resolutions = getResolutions();
 
 		gameStartTime = Time.getTime();
 		timeSpentInPreviousSaves = 0;  //TODO set this on game load:)
@@ -318,9 +329,8 @@ public class Game implements ApplicationListener {
 
 		currentScreenSizeX = smallestX;
 		currentScreenSizeY = smallestY;
-//	
-		camera= new OrthographicCamera(currentScreenSizeX,currentScreenSizeY);
-		camera.setToOrtho(true, currentScreenSizeX, currentScreenSizeY);
+		camera= new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+		camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
 
 		camera.update();
@@ -382,16 +392,16 @@ public class Game implements ApplicationListener {
 		if(level != null) {
 			Game.saveGame.saveGame();
 			Game.level.saveCurrentChunks();
+			musicController.music.dispose();
 		}
 		batch.dispose();
-		if(fbo != null) {
+		if(fbo != null && level != null) {
 			finalShader.dispose();
 			lightShader.dispose();
 			ambientShader.dispose();
 			defaultShader.dispose();
 			light.dispose();
 			fbo.dispose();
-			musicController.music.dispose();
 			}
 	}
 

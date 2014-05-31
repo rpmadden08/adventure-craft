@@ -36,22 +36,6 @@ public class MainState extends GameState {
 		Gdx.input.setInputProcessor(input);
 	}
 	
-	@Override
-	public void resize(int width, int height) {
-//		Game.camera= new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//		Game.camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//		Game.camera.update();
-		
-		Game.fbo = new FrameBuffer(Format.RGBA8888, width, height, false);
-		 
-		Game.lightShader.begin();
-		Game.lightShader.setUniformf("resolution", width, height);
-		Game.lightShader.end();
-
-		Game.finalShader.begin();
-		Game.finalShader.setUniformf("resolution", width, height);
-		Game.finalShader.end();	
-	}
 	
 	@Override
 	protected void updateStates() {

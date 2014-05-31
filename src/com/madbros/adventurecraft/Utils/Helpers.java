@@ -8,6 +8,7 @@ import java.util.Random;
 
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.GameObjects.Hero;
+import com.madbros.adventurecraft.GameStates.GameState;
 import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Slots.*;
 import com.madbros.adventurecraft.Sprites.Sprites;
@@ -18,11 +19,11 @@ import com.madbros.adventurecraft.TileTypes.Tile;
 public class Helpers {		
 	//wrappers for mouse stuff since display thinks y starts at the bottom...
 	public static int getX() {
-		return Game.currentState.input.mouseX;
+		return GameState.input.mouseX;
 	}
 	
 	public static int getY() {
-		return Game.currentState.input.mouseY; //Game.currentScreenSizeY - Mouse.getY();
+		return GameState.input.mouseY; //Game.currentScreenSizeY - Mouse.getY();
 	}
 	
 	public static Rect getMouseRect() {
