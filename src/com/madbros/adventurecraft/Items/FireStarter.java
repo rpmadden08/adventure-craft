@@ -26,6 +26,7 @@ public class FireStarter extends BlockItem32 {
 	
 	public void useRight() {
 		//if(isInRange) {
+		checkUsability();
 			Tile tile = TILE_HASH.get(tileId).createNew();
 			Block hB = Game.level.highlightedBlock;
 			

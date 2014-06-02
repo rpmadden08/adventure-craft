@@ -23,20 +23,6 @@ public class EarthClump extends BlockItem {
 		return new EarthClump();
 	}
 	
-//	@Override
-//	public void useRight() {
-//		Tile tile = TILE_HASH.get(tileId).createNew();
-//		Block hB = Game.level.highlightedBlock;
-//		Game.level.highlightedBlock.collisionTile = null;
-//		
-//		if(Helpers.arrayDoesContainInt(placeableTileIds, hB.getTopTerrainTile().id)) {
-//			placeTile(hB, tile);
-//			stackSize -= 1;
-//			Game.inventory.deleteItemIfNecessary();
-//			Game.level.autoTileHighlightedBlock();
-//		}
-//	}
-	
 	@Override
 	public void placeTile(Block hB, Tile tile) {
 		Game.level.highlightedBlock.collisionTile = null;
@@ -46,15 +32,6 @@ public class EarthClump extends BlockItem {
 			placeLightDirt(Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY], tile);
 		}
 	}
-	
-//	public void placeDarkDirt(Block hB) {
-//		hB.canPlace = false;
-//		hB.timePlaced = Time.getTime();
-//		hB.layers[GRASS_LAYER] = new NoTile();
-//		hB.layers[WATER_LAYER] = new NoTile();
-//
-//		hB.collisionTile = null;
-//	}
 	
 	public void placeLightDirt(Block hB, Tile tile) {
 		hB.layers[GRASS_LAYER] = new NoTile();

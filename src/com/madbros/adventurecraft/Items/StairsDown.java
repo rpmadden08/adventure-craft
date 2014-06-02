@@ -29,6 +29,7 @@ public class StairsDown extends BlockItem32 {
 
 	@Override
 	public void useRight() {
+		checkUsability();
 		if(Game.currentLevel != UNDERGROUND_1_FOLDER) {
 			super.useRight();
 		} else {

@@ -26,6 +26,7 @@ public class StairsUp extends BlockItem32 {
 	}
 	
 	public void useRight() {
+		checkUsability();
 		if(Game.currentLevel != OVERWORLD_FOLDER) {
 			super.useRight();
 		} else {

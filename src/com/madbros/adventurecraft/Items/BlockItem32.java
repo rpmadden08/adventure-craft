@@ -16,6 +16,7 @@ public abstract class BlockItem32 extends StackableItem{
 	
 	@Override
 	public void useRight() {
+		super.useRight();
 		//if(isInRange) {
 			Tile tile = TILE_HASH.get(tileId).createNew();
 			Block hB = Game.level.highlightedBlock;

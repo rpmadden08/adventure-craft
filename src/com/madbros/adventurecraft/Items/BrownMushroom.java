@@ -20,6 +20,7 @@ public class BrownMushroom extends BlockItem32 {
 	}
 	@Override
 	public void useRight() {
+		checkUsability();
 		//if(isInRange) {
 			Block hB = Game.level.highlightedBlock;
 			if(hB.layers[GRASS_LAYER].autoTile == 4) {

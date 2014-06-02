@@ -11,9 +11,13 @@ public abstract class PotionItem extends StackableItem{
 	
 	@Override
 	public void useRight() {
-		if(Game.level.hasPlacedItemOnClick == false && canUsePotion()) {
-			Game.level.hasPlacedItemOnClick = true;
-			applyPotionEffect();
+		if(Game.level.tileBeingAttacked.isUseable) {
+			checkUsability();
+		} else {
+			if(Game.level.hasPlacedItemOnClick == false && canUsePotion()) {
+				Game.level.hasPlacedItemOnClick = true;
+				applyPotionEffect();
+			}
 		}
 	}
 	

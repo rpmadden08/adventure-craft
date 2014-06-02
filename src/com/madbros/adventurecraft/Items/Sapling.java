@@ -18,6 +18,7 @@ public class Sapling extends BlockItem32 {
 	}
 	
 	public void useRight() {
+		checkUsability();
 		if(Game.currentLevel == OVERWORLD_FOLDER) {
 			super.useRight();
 		}

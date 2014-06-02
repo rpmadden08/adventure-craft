@@ -13,16 +13,21 @@ public abstract class FoodItem extends StackableItem{
 	
 	@Override
 	public void useRight() {
-		if(Game.hero.eP != Game.hero.maxEP && Game.level.hasPlacedItemOnClick == false) {
-			Game.level.hasPlacedItemOnClick = true;
-			double amountToGain = energyPercentage * Game.hero.maxEP;
-			if(amountToGain + Game.hero.eP > Game.hero.maxEP) {
-				Game.hero.eP = Game.hero.maxEP;
-			} else {
-				Game.hero.eP = Game.hero.eP + amountToGain;
+		
+		if(Game.level.tileBeingAttacked.isUseable) {
+			checkUsability();
+		} else {
+			if(Game.hero.eP != Game.hero.maxEP && Game.level.hasPlacedItemOnClick == false) {
+				Game.level.hasPlacedItemOnClick = true;
+				double amountToGain = energyPercentage * Game.hero.maxEP;
+				if(amountToGain + Game.hero.eP > Game.hero.maxEP) {
+					Game.hero.eP = Game.hero.maxEP;
+				} else {
+					Game.hero.eP = Game.hero.eP + amountToGain;
+				}
+				stackSize -= 1;
+				Game.inventory.deleteItemIfNecessary();
 			}
-			stackSize -= 1;
-			Game.inventory.deleteItemIfNecessary();
 		}
 	}
 }
