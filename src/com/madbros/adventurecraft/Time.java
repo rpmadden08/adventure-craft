@@ -59,7 +59,7 @@ public class Time {
 	public static long getMinutes() {
 		long currentTime = getTotalSeconds();
 		
-		long timeNow = currentTime / 60+8;  //The + 8 makes the time start at 8:00
+		long timeNow = currentTime / 60+19;  //The + 8 makes the time start at 8:00
 		timeNow = timeNow % 24;
 		if (timeNow == 0)  {
 			timeNow = 24;
@@ -116,7 +116,7 @@ public class Time {
 				}
 			} else if (hours >= 19 &&  hours < 20) {
 				if(minutes >= 30) {
-					
+					Game.currentShader = Game.finalShader;
 					double currentTime = minutes;
 					currentTime = currentTime + (seconds * 0.01); //IE 16.45
 					double amountCompleted = currentTime - 30; //IE 15
