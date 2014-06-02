@@ -898,13 +898,15 @@ public class RenderSystem {
 			Sprites.arial24.draw(batch, "Chest", 226, 32);
 		}else if(Game.currentState.type == State.FURNACE) {
 			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			Slot[][]slots2 = {furnaceTile.craftedSlot, inv.invClothing, furnaceTile.furnaceSlots};
+			furnaceTile.craftedSlot[0].item.renderLargeFont(furnaceTile.craftedSlot[0].slotRect.x2()-INV_SLOT_SIZE/2, furnaceTile.craftedSlot[0].slotRect.y2()-INV_SLOT_SIZE/2, batch);
+			Slot[][]slots2 = {inv.invClothing, furnaceTile.furnaceSlots};
 			for(int i = 0; i < slots2.length; i++) {
 				for(int j = 0; j < slots2[i].length; j++) {
 					slots2[i][j].item.renderFont(slots2[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots2[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
 					
 				}
 			}
+			
 			Sprites.arial24.draw(batch, inv.menu2Title, 226, 32);
 			Sprites.arial10.draw(batch, "Fuel", 404, 440);
 			Sprites.arial10.draw(batch, "Input", 402, 356);

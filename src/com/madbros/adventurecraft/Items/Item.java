@@ -178,6 +178,17 @@ public abstract class Item {
 		Sprites.pixel.setColor(Color.WHITE);
 	}
 	
+	public void renderLargeFont(int x, int y, SpriteBatch batch) {
+		Color c = new Color(1.0f, 1.0f, 1.0f, 0.8f);
+		Sprites.pixel.setColor(c);
+		int adjX = x-1; int adjY = y+2;
+		if(stackSize < 10) adjX += 15;
+		
+		Sprites.arial24.setColor(Color.WHITE);
+		if(stackSize > 1) Sprites.arial24.draw(batch, String.valueOf(stackSize), adjX-18, adjY-10);
+		Sprites.pixel.setColor(Color.WHITE);
+	}
+	
 	public void useRight() {
 		//place 
 		if(Game.level.tileBeingAttacked.isUseable) {
