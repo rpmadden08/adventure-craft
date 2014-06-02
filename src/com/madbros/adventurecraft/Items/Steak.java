@@ -10,6 +10,7 @@ public class Steak extends FoodItem {
 		name = "Raw Steak";
 		sprite = Sprites.sprites.get(Sprites.STEAK);
 		itemsPossiblyBurnable = new int[]{COOKED_STEAK};
+		energyPercentage = 0.1;
 	}
 	
 	@Override

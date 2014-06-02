@@ -11,6 +11,7 @@ public class Bread extends FoodItem {
 		sprite = Sprites.sprites.get(Sprites.BREAD);
 		craftCost = new int[]{WHEAT};
 		craftCostAmount = new int[]{4};
+		energyPercentage = 0.25;
 		
 		itemsPossiblyCraftable = new int[]{};
 		
