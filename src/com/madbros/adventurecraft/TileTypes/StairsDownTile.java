@@ -2,6 +2,8 @@ package com.madbros.adventurecraft.TileTypes;
 
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.io.File;
+
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.GameStates.LoadingState;
@@ -45,10 +47,6 @@ public class StairsDownTile extends CollisionTile {
 		Rect finalCRect = new Rect(cRect, margin);
 		if(finalCRect.detectCollision(new Rect(Game.hero.absRect, Game.hero.margin))) {
 			if(hasReset == true) {
-				
-//				Game.hero.moveSpeed = 0;
-//				Game.hero.currentSpeed = 0;
-				
 				Game.currentState = new LoadingState(Game.batch);
 				
 				Game.replaceableX = Game.level.activeBlocks[x][y].getAbsX();
@@ -60,56 +58,6 @@ public class StairsDownTile extends CollisionTile {
 				//Game.hero = null;
 				
 				Game.level.teleportHero(Game.replaceableX, Game.replaceableY);
-//				x = Game.level.getXFromAbs(x2);
-//				y = Game.level.getYFromAbs(y2);
-//				if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_UP_BOTTOM_TILE) {
-//					Game.level.activeBlocks[x-1][y-1].layers[OBJECT_LAYER].deleteThisTile(x-1, y-1, Game.level.activeBlocks);
-//					Game.level.activeBlocks[x][y-1].layers[OBJECT_LAYER].deleteThisTile(x, y-1, Game.level.activeBlocks);
-//					Game.level.activeBlocks[x+1][y-1].layers[OBJECT_LAYER].deleteThisTile(x+1, y-1, Game.level.activeBlocks);
-//					Game.level.activeBlocks[x-1][y].layers[OBJECT_LAYER].deleteThisTile(x-1, y, Game.level.activeBlocks);
-//					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].deleteThisTile(x, y, Game.level.activeBlocks);
-//					Game.level.activeBlocks[x+1][y].layers[OBJECT_LAYER].deleteThisTile(x+1, y, Game.level.activeBlocks);
-//					Game.level.activeBlocks[x-1][y+1].layers[OBJECT_LAYER].deleteThisTile(x-1, y+1, Game.level.activeBlocks);
-//					Game.level.activeBlocks[x][y+1].layers[OBJECT_LAYER].deleteThisTile(x, y+1, Game.level.activeBlocks);
-//					Game.level.activeBlocks[x+1][y+1].layers[OBJECT_LAYER].deleteThisTile(x+1, y+1, Game.level.activeBlocks);
-//					
-//					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new StairsUpBottomTile();
-//					Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new StairsUpTopTile();
-//					
-//					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.x = Game.level.activeBlocks[x][y].getAbsX()* TILE_SIZE;
-//					Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.y = Game.level.activeBlocks[x][y].getAbsY()* TILE_SIZE;
-//					
-//				}
-//				Game.level.autoTileBlock(x, y+1);
-//				Game.level.autoTileBlock(x, y);
-//				Game.level.autoTileBlock(x, y-1);
-//				Game.level.autoTileBlock(x, y-2);
-//				Game.level.autoTileBlock(x, y-3);
-//				
-//				Game.level.autoTileBlock(x-1, y+1);
-//				Game.level.autoTileBlock(x-1, y);
-//				Game.level.autoTileBlock(x-1, y-1);
-//				Game.level.autoTileBlock(x-1, y-2);
-//				Game.level.autoTileBlock(x-1, y-3);
-//				
-//				Game.level.autoTileBlock(x+1, y+1);
-//				Game.level.autoTileBlock(x+1, y);
-//				Game.level.autoTileBlock(x+1, y-1);
-//				Game.level.autoTileBlock(x+1, y-2);
-//				Game.level.autoTileBlock(x+1, y-3);
-//				
-				//Time.setDeltaToZero();
-				
-//				Game.hero.moveSpeed = 0;
-//				Game.hero.currentSpeed = 0;
-				//Game.hero.stop();
-				//Game.currentState = new MainState();
-				//FIXME delta time is very high causing the player to move way farther ahead than he should.  Possibly fixing delta issues?  Possibly setting character move speeds AFTER delta reset?
-				
-				//Gdx.graphics.
-				
-				//System.out.println("CURRENT SPEED: "+Game.hero.currentSpeed+"     MOVE_SPEED:  "+Game.hero.moveSpeed);
-				//Game.level.autoTileHighlightedBlock();
 				return false;
 			}
 			return true;
@@ -124,11 +72,30 @@ public class StairsDownTile extends CollisionTile {
 		b.layers[OBJECT_LAYER] = new NoTile();
 		b.collisionTile = null;
 		
+		int chunkX = Game.level.getAbsChunkX(b.absRect.x);
+		int chunkY = Game.level.getAbsChunkY(b.absRect.y);
 		
-		//FIXME this needs to randomly drop basic goodies:)
+		//SOMEDAY WILL NEED TO FETCH THE LEVEL BELOW BUT FOR NOW IT WILL ALWAYS BE UNDERGROUND_1
+		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + UNDERGROUND_1_FOLDER);
+		if(f.exists()) {
+			Game.currentLevel = UNDERGROUND_1_FOLDER;
+			Block[][] chunk = Game.saveGame.loadChunk(chunkX, chunkY);
+			int tempX = x % CHUNK_SIZE;
+			int tempY = y % CHUNK_SIZE;
+			if(chunk[tempX][tempY].layers[OBJECT_LAYER].id == STAIRS_UP_TILE) {	
+			   chunk[tempX][tempY].layers[OBJECT_LAYER].deleteMeStairs(tempX, tempY, chunk);
+			   Game.saveGame.saveChunk(chunk, chunkX, chunkY);
+			}
+			Game.currentLevel = OVERWORLD_FOLDER;
+		}
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(STAIRS_DOWN).createNew();
 		Game.collectibleController.add(STAIRS_DOWN, Sprites.sprites.get(Sprites.STAIRS_DOWN), collectibleRect, 1, item.maxUses);
-		
+	} 
+	
+	public void deleteMeStairs(int x, int y, Block[][] activeBlocks) {
+		Block b = activeBlocks[x][y];
+		b.layers[OBJECT_LAYER] = new NoTile();
+		b.collisionTile = null;
 	}
 }

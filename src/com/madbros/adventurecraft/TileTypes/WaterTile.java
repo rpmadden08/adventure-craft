@@ -5,6 +5,7 @@ import java.util.Random;
 import com.madbros.adventurecraft.Block;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.GameObjects.Actor;
+import com.madbros.adventurecraft.Items.Item;
 import com.madbros.adventurecraft.Sprites.*;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -64,7 +65,9 @@ public class WaterTile extends CollisionTile {
 		
 		
 	}
-	
+	public void deleteMe(int x, int y, Block[][] activeBlocks) {
+		activeBlocks[x][y].layers[WATER_LAYER] = new NoTile();
+	}
 	
 	public Tile createNew() {
 		return new WaterTile();

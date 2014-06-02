@@ -20,8 +20,8 @@ import com.madbros.adventurecraft.Utils.Point;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class Level {
-	public long rgenseed = System.currentTimeMillis();
-	//public long rgenseed = 898463;
+	//public long rgenseed = System.currentTimeMillis();
+	public long rgenseed = 898463;
 		//898463 (grass)  
 		//898474 (maybe too much water) 
 		//898478 (in the middle of forest)
@@ -667,6 +667,15 @@ public class Level {
 		autoTile(activeBlocks, activeBlocks[x-1][y+1], x-1, y+1);
 		autoTile(activeBlocks, activeBlocks[x][y+1], x, y+1);
 		autoTile(activeBlocks, activeBlocks[x+1][y+1], x+1, y+1);
+	}
+	
+	public int getAbsChunkX(int x) {
+		return (x / TILE_SIZE) / CHUNK_SIZE;
+		
+	}
+	
+	public int getAbsChunkY(int y) {
+		return (y / TILE_SIZE) / CHUNK_SIZE;
 	}
 	
 	public void handleCollisions() {

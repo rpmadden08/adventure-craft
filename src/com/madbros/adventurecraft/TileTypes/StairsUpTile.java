@@ -4,6 +4,8 @@ package com.madbros.adventurecraft.TileTypes;
 //the cRect attribute to calculate collisions. It's kind of a hack, but it works as long as the update function sets the collision tile to null...
 import static com.madbros.adventurecraft.Constants.*;
 
+import java.io.File;
+
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.GameStates.LoadingState;
 import com.madbros.adventurecraft.Items.Item;
@@ -68,14 +70,30 @@ public class StairsUpTile extends CollisionTile {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
 		b.collisionTile = null;
-		b = activeBlocks[x][y-1];
-		b.layers[ABOVE_LAYER_1] = new NoTile();
 		
-		
-		//FIXME this needs to randomly drop basic goodies:)
+		int chunkX = Game.level.getAbsChunkX(b.absRect.x);
+		int chunkY = Game.level.getAbsChunkY(b.absRect.y);
+		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + OVERWORLD_FOLDER);
+		if(f.exists()) {
+			Game.currentLevel = OVERWORLD_FOLDER;
+			Block[][] chunk = Game.saveGame.loadChunk(chunkX, chunkY);
+			int tempX = x % CHUNK_SIZE;
+			int tempY = y % CHUNK_SIZE;
+			if(chunk[tempX][tempY].layers[OBJECT_LAYER].id == STAIRS_DOWN_TILE) {	
+			   chunk[tempX][tempY].layers[OBJECT_LAYER].deleteMeStairs(tempX, tempY, chunk);
+			   Game.saveGame.saveChunk(chunk, chunkX, chunkY);
+			}
+			Game.currentLevel = UNDERGROUND_1_FOLDER;
+		}
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(STAIRS_UP).createNew();
 		Game.collectibleController.add(STAIRS_UP, Sprites.sprites.get(Sprites.STAIRS_UP), collectibleRect, 1, item.maxUses);
 		
+	}
+	
+	public void deleteMeStairs(int x, int y, Block[][] activeBlocks) {
+		Block b = activeBlocks[x][y];
+		b.layers[OBJECT_LAYER] = new NoTile();
+		b.collisionTile = null;
 	}
 }

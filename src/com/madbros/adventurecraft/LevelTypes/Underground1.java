@@ -31,16 +31,18 @@ public class Underground1 extends Level{
 			int x = getXFromAbs(Game.replaceableX);
 			int y = getYFromAbs(Game.replaceableY);
 			if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_UP_TILE) {
-	//			Game.level.activeBlocks[x-1][y-1].layers[OBJECT_LAYER].deleteThisTile(x-1, y-1, Game.level.activeBlocks);
-	//			Game.level.activeBlocks[x][y-1].layers[OBJECT_LAYER].deleteThisTile(x, y-1, Game.level.activeBlocks);
-	//			Game.level.activeBlocks[x+1][y-1].layers[OBJECT_LAYER].deleteThisTile(x+1, y-1, Game.level.activeBlocks);
-	//			Game.level.activeBlocks[x-1][y].layers[OBJECT_LAYER].deleteThisTile(x-1, y, Game.level.activeBlocks);
 				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].deleteThisTile(x, y, Game.level.activeBlocks);
-	//			Game.level.activeBlocks[x+1][y].layers[OBJECT_LAYER].deleteThisTile(x+1, y, Game.level.activeBlocks);
-	//			Game.level.activeBlocks[x-1][y+1].layers[OBJECT_LAYER].deleteThisTile(x-1, y+1, Game.level.activeBlocks);
-	//			Game.level.activeBlocks[x][y+1].layers[OBJECT_LAYER].deleteThisTile(x, y+1, Game.level.activeBlocks);
-	//			Game.level.activeBlocks[x+1][y+1].layers[OBJECT_LAYER].deleteThisTile(x+1, y+1, Game.level.activeBlocks);
-				
+				if(Game.level.activeBlocks[x][y].layers[GRASS_LAYER].id != AIR) {
+					Game.level.activeBlocks[x][y].layers[GRASS_LAYER].deleteMe(x, y, Game.level.activeBlocks);
+				}
+			
+				if(Game.level.activeBlocks[x][y].layers[WATER_LAYER].id != AIR) {
+					Game.level.activeBlocks[x][y].layers[WATER_LAYER].deleteMe(x, y, Game.level.activeBlocks);
+				}
+			
+				if(Game.level.activeBlocks[x][y].layers[LIGHT_DIRT_LAYER].id == AIR) {
+					Game.level.activeBlocks[x][y].layers[LIGHT_DIRT_LAYER] = new DirtTile();
+				}
 				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER] = new StairsUpTile();
 				
 				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].cRect.x = Game.level.activeBlocks[x][y].getAbsX()* TILE_SIZE;

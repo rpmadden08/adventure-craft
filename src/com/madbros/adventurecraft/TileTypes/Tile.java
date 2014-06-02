@@ -85,6 +85,8 @@ public abstract class Tile {
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {}
 	
+	public void deleteMeStairs(int x, int y, Block[][] activeBlocks) {}
+	
 	public void deleteThisTile(int x, int y, Block[][] activeBlocks) {
 		if(is32 == true) {
 			deleteMe(x,y, activeBlocks);
