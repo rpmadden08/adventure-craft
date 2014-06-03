@@ -50,24 +50,37 @@ public abstract class BaseItem extends ToolItem {
 	
 	@Override
 	public void useLeft() {
-		if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
-			
-			Game.hero.attack(this);
-			Game.soundController.create(sound, 0.2f);
-		}
-		if(Game.level.tileBeingAttacked.isPickable || Game.level.tileBeingAttacked.isDiggable || Game.level.tileBeingAttacked.isChoppable) {
-			if(isInRange == true) {
-				swing();
-			}
-		}
-		if(Game.level.tileBeingAttacked.isBreakable && isInRange == true) {
-			Game.level.tileBeingAttacked.currentHp -= attackPower;
-			if(Game.level.tileBeingAttacked.currentHp < 1) {
-				Game.level.highlightedBlock.deleteObjectTile();
-				Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
+		if(checkCollision()) {
+			if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
 				
-				//Game.level.autoTileHighlightedBlock();
+				Game.hero.attack(this);
+				Game.soundController.create(sound, 0.2f);
 			}
+			if(Game.level.tileBeingAttacked.isPickable || Game.level.tileBeingAttacked.isDiggable || Game.level.tileBeingAttacked.isChoppable) {
+				if(isInRange == true) {
+					swing();
+				}
+			}
+			if(Game.level.tileBeingAttacked.isBreakable && isInRange == true) {
+				Game.level.tileBeingAttacked.currentHp -= attackPower;
+				if(Game.level.tileBeingAttacked.currentHp < 1) {
+					Game.level.highlightedBlock.deleteObjectTile();
+					Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
+					
+					//Game.level.autoTileHighlightedBlock();
+				}
+			}
+		}
+		
+	}
+	
+	public boolean checkCollision() {
+		if(isPlacementCollidingWithHero(Game.level.highlightedBlock, Game.level.tileBeingAttacked.layer)) {
+			return false;
+		} else if(isPlacementCollidingWithMob(Game.level.highlightedBlock, Game.level.tileBeingAttacked.layer)) {
+			return false;
+		} else {
+			return true;
 		}
 		
 	}

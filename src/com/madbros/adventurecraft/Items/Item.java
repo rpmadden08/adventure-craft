@@ -236,7 +236,7 @@ public abstract class Item {
 			}
 		}
 	}
-	
+
 	public boolean isValidRecipe(Slot[] craftingSlots) {
 		return false;
 	}
