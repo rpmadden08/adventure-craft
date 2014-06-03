@@ -22,7 +22,7 @@ public class Underground1ChunkGenerator extends ChunkGenerator{
     				return COAL_MARK; // Return Barrel (1001)
     			} else if(getRandom(4, m, n)) {
     				return TIN_MARK;
-    			} else if(getRandom(5.5, m, n)) {
+    			} else if(getRandom(5, m, n)) {
         			return COPPER_MARK;
         		} else {
     				return DIRT_MOUNTAIN_BOTTOM;
