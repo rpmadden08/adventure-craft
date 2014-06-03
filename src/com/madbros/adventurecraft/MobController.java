@@ -82,6 +82,7 @@ public class MobController {
 		Rect heroRect = new Rect(Game.hero.absRect.x-250, Game.hero.absRect.y-250, Game.hero.absRect.w +500, Game.hero.absRect.h+500);
 		//if(x > CHUNK_SIZE*2 && x< CHUNK_SIZE *3+1 && y > CHUNK_SIZE*2 && y< CHUNK_SIZE *3+1 ) {
 		int topTile = Game.level.activeBlocks[x][y].getTopTile().id;
+		int topTerrainTile = Game.level.activeBlocks[x][y].getTopTerrainTile().id;
 		//System.out.println(topTile);
 		Block[] tileArea = getTileArea(x,y);
 		int num = rand.nextInt(150);//150 
@@ -101,7 +102,7 @@ public class MobController {
 						}
 					}
 				} else if(Game.currentLevel == UNDERGROUND_1_FOLDER) {
-					if(topTile== DIRT) {
+					if(topTerrainTile== DIRT) {
 						if(checkTileArea(tileArea, OBJECT_LAYER, DIRT_MOUNTAIN_BOTTOM, 2)) {
 							mobs.add(new Bat(this, x, y));
 						} else {

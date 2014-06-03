@@ -63,6 +63,7 @@ public class Level {
 //total chunks * chunk_size * Tile_size /2 - character
 	public int spawnX = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE /2 - CHARACTER_SIZE/2;
 	public int spawnY = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE /2 - CHARACTER_SIZE/2;
+	public String spawnLevel = OVERWORLD_FOLDER;
 	public int masterSpawnX = spawnX;
 	public int masterSpawnY = spawnY;
 //	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2+900;
@@ -211,24 +212,24 @@ public class Level {
 		//double total = Game.tundraTally + Game.taigaTally + Game.forestTally + Game.jungleTally+ Game.grasslandTally + Game.mountainTally +Game.oceanTally + Game.desertTally +Game.swampTally;
 	}
 	
-	
 	public void teleportHero(int x, int y) {
-		//THIS FUNCTION IS INCOMPLETE (in particular it doesn't address switching between levels)
-		Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
-		Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
-//		
-//		offsetX = 0;
-//		offsetY = 0;
-//		Game.saveGame.saveGame();
-//		saveCurrentChunks();
-//		Game.level = new Level();
-//		Game.hero = new Hero();
-//		Game.hero.absRect.x = Game.hero.absRect.x - 16;
-//		Game.hero.absRect.y = Game.hero.absRect.y +2;
-		//offsetX = 15;
-		
-		
-		
+			Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
+			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
+	}
+	
+	public void teleportHero(int x, int y, String folder) {
+		System.out.println();
+		if(folder == Game.currentLevel) {
+			Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
+			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
+		} else {
+			Game.currentState = new LoadingState(Game.batch);
+			Game.musicController.music.stop();
+			Game.hero.stop();
+			Game.switchLevel();
+			Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
+			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
+		}		
 	}
 	
 	public void teleportChunkRect() {

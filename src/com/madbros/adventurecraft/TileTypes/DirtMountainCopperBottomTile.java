@@ -22,7 +22,7 @@ public class DirtMountainCopperBottomTile extends CollisionTile {
 		z = Z_OBJECT;
 		isDiggable = false;
 		isPickable = true;
-		is32 = false;
+		is32 = true;
 		maxHp = 20;
 		currentHp = 20;
 		particleEffect = "mountainChunks.p";
