@@ -20,8 +20,8 @@ import com.madbros.adventurecraft.Utils.Point;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class Level {
-	//public long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 898475;
+	public long rgenseed = System.currentTimeMillis();
+	//public long rgenseed = 898475;
 		//898463 (grass)  
 		//898474 (maybe too much water) 
 		//898475 (mountains) 
@@ -326,57 +326,6 @@ public class Level {
 		
 		Game.saveGame.saveChunk(chunk, chunkX, chunkY);
 	}
-	
-//	private void highlight64(Rect renderRect, Point offsetPoint) {
-//		if(highlightedBlock != null) {
-//			highlightedBlock.isHighlighted = false;
-////			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = false;
-////			activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = false;
-////			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = false;
-//		}
-//		
-//		Rect mRect = Helpers.getMouseRect();
-//		Rect itemRange = Game.inventory.invBar[Game.inventory.itemSelected].item.range;
-//		itemRange.x = Game.hero.sRect.x - (itemRange.w / 2) + (Game.hero.sRect.w /2);
-//		itemRange.y = Game.hero.sRect.y- (itemRange.h / 2) + (Game.hero.sRect.h/2);
-//		if(mRect.detectCollision(itemRange)) {
-//			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = true;
-//			highlightedBlockX = renderRect.x + (mRect.x + offsetPoint.x) / TILE_SIZE;
-//			
-//			highlightedBlockY = renderRect.y + (mRect.y + offsetPoint.y) / TILE_SIZE;
-//			
-//			if(highlightedBlockX % 2 == 0 && highlightedBlockY % 2 == 0) {
-//				
-//			} else if (highlightedBlockX % 2 == 1 && highlightedBlockY % 2 == 0) {
-//				highlightedBlockX--;
-//			} else if (highlightedBlockX % 2 == 0 && highlightedBlockY % 2 == 1) {
-//				highlightedBlockY--;
-//			} else {
-//				highlightedBlockX--;
-//				highlightedBlockY--;
-//			}
-//			
-//			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
-//			highlightedBlock2 = activeBlocks[highlightedBlockX+1][highlightedBlockY];
-//			highlightedBlock3 = activeBlocks[highlightedBlockX][highlightedBlockY+1];
-//			highlightedBlock4 = activeBlocks[highlightedBlockX+1][highlightedBlockY+1];
-//		
-//			Game.inventory.invBar[Game.inventory.itemSelected].item.getTopTile();
-//
-//			
-//			highlightedBlock.isHighlighted = true;
-//			activeBlocks[highlightedBlockX+1][highlightedBlockY].isHighlighted = true;
-//			activeBlocks[highlightedBlockX][highlightedBlockY+1].isHighlighted = true;
-//			activeBlocks[highlightedBlockX+1][highlightedBlockY+1].isHighlighted = true;
-//		} else {
-//			highlightedBlock = null;
-//			highlightedBlock2 = null;
-//			highlightedBlock3 = null;
-//			highlightedBlock4 = null;
-//			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = false;
-//		}
-//		
-//	}
 	
 	private void highlight32(Rect renderRect, Point offsetPoint) {
 		if(highlightedBlock != null) {

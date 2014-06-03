@@ -50,12 +50,13 @@ public abstract class BaseItem extends ToolItem {
 	
 	@Override
 	public void useLeft() {
-		if(Game.level.highlightedBlock != null && !isCollidingWithActor(Game.level.highlightedBlock)) {
-			if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
+		
+		if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
 				
-				Game.hero.attack(this);
-				Game.soundController.create(sound, 0.2f);
-			}
+			Game.hero.attack(this);
+			Game.soundController.create(sound, 0.2f);
+		}
+		if(Game.level.highlightedBlock != null && !isCollidingWithActor(Game.level.highlightedBlock)) {
 			if(Game.level.tileBeingAttacked.isPickable || Game.level.tileBeingAttacked.isDiggable || Game.level.tileBeingAttacked.isChoppable) {
 				if(isInRange == true) {
 					swing();
