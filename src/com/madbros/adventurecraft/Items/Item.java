@@ -224,6 +224,24 @@ public abstract class Item {
 		return false;
 	}
 	
+	public boolean isCollidingWithActor(Block b) {
+		Rect heroCRect = new Rect(Game.hero.absRect, Game.hero.margin);
+		if(heroCRect.detectCollision(b.layers[0].cRect)) {
+			return true;
+		} else {
+			for(int i = 0; i < Game.mobController.mobs.size(); i++) {
+				Mob mob = Game.mobController.mobs.get(i);
+				Rect mobCRect = new Rect(mob.absRect, mob.margin);
+				if(mobCRect.detectCollision(b.layers[0].cRect)) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		
+	}
+	
 	public void useLeft() {
 		//attack
 		if(Game.level.tileBeingAttacked.isBreakable && isInRange == true) {

@@ -20,8 +20,8 @@ import com.madbros.adventurecraft.Utils.Point;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class Level {
-	//public long rgenseed = System.currentTimeMillis();
-	public long rgenseed = 898463;
+	public long rgenseed = System.currentTimeMillis();
+	//public long rgenseed = 898463;
 		//898463 (grass)  
 		//898474 (maybe too much water) 
 		//898478 (in the middle of forest)

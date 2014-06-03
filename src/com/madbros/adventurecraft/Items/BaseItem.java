@@ -50,7 +50,7 @@ public abstract class BaseItem extends ToolItem {
 	
 	@Override
 	public void useLeft() {
-		if(checkCollision()) {
+		if(Game.level.highlightedBlock != null && !isCollidingWithActor(Game.level.highlightedBlock)) {
 			if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
 				
 				Game.hero.attack(this);
@@ -66,21 +66,8 @@ public abstract class BaseItem extends ToolItem {
 				if(Game.level.tileBeingAttacked.currentHp < 1) {
 					Game.level.highlightedBlock.deleteObjectTile();
 					Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
-					
-					//Game.level.autoTileHighlightedBlock();
 				}
 			}
-		}
-		
-	}
-	
-	public boolean checkCollision() {
-		if(isPlacementCollidingWithHero(Game.level.highlightedBlock, Game.level.tileBeingAttacked.layer)) {
-			return false;
-		} else if(isPlacementCollidingWithMob(Game.level.highlightedBlock, Game.level.tileBeingAttacked.layer)) {
-			return false;
-		} else {
-			return true;
 		}
 		
 	}
