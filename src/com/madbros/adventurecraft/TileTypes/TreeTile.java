@@ -34,8 +34,8 @@ public class TreeTile extends CollisionTile {
 	@Override
 	public void render(int x, int y) {
 		sprites[currentSpriteId].draw(x, y, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
-		sprites[0].draw(x-TILE_SIZE, y-(TILE_SIZE*2), z);
-		sprites[6].draw(x+TILE_SIZE, y-(TILE_SIZE*2), z);
+//		sprites[0].draw(x-TILE_SIZE, y-(TILE_SIZE*2), z);
+//		sprites[6].draw(x+TILE_SIZE, y-(TILE_SIZE*2), z);
 	}
 	
 	public Tile createNew() {

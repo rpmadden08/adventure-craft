@@ -79,7 +79,7 @@ public class MainState extends GameState {
 			Game.renderSystem.renderMobs(Game.mobController);
 			Game.renderSystem.renderParticle(Game.particleEffectController);
 			
-			Game.renderSystem.renderWorldAbove(Game.level);
+			//Game.renderSystem.renderWorldAbove(Game.level);
 			Game.renderSystem.renderCollectibles(Game.collectibleController);
 			
 			

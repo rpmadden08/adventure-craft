@@ -25,9 +25,9 @@ public class ChunkGenerator {
     	//MOUNTAIN
     	} else if(chunkGroundLayer[m][n] == 2) {
  				
-    			if(getRandom(0.8, m, n)) {
+    			if(getRandom(2.5, m, n)) {
     				return COAL_MARK; 
-    			} else if(getRandom(1.6, m, n)) {
+    			} else if(getRandom(4, m, n)) {
     				return TIN_MARK;
 //    			} else if(getRandom(0.6, m, n)) {//0.3
 //        			return COPPER_MARK;
@@ -319,7 +319,7 @@ public class ChunkGenerator {
 				float seed = chunkNoiseElevation[m][n] * 1000000000;
 			    long seed2 = (long) seed;
 				Random rand = new Random(seed2); 
-				int oreAmount = rand.nextInt(6) + 3;
+				int oreAmount = rand.nextInt(7) + 3;
 				oreGenerator(oreAmount,m,n, DIRT_MOUNTAIN_COAL_BOTTOM, 1, new int[] {2});
 			} else if(chunkObjectLayer[m][n] == 1000) {
 				//System.out.println("CHECK");
@@ -329,19 +329,19 @@ public class ChunkGenerator {
 				float seed = chunkNoiseElevation[m][n] * 1000000000;
 			    long seed2 = (long) seed;
 				Random rand = new Random(seed2); 
-				int oreAmount = rand.nextInt(6) + 3;
+				int oreAmount = rand.nextInt(7) + 3;
 				oreGenerator(oreAmount,m,n, DIRT_MOUNTAIN_TIN_BOTTOM, 1, new int[] {2});
 			} else if(chunkObjectLayer[m][n] == COPPER_MARK) {
 				float seed = chunkNoiseElevation[m][n] * 1000000000;
 			    long seed2 = (long) seed;
 				Random rand = new Random(seed2); 
-				int oreAmount = rand.nextInt(6) + 3;
+				int oreAmount = rand.nextInt(7) + 3;
 				oreGenerator(oreAmount,m,n, DIRT_MOUNTAIN_COPPER_BOTTOM, 1, new int[] {2});
 			} else if(chunkObjectLayer[m][n] == GRASS_MARK) {
 				float seed = chunkNoiseElevation[m][n] * 1000000000;
 			    long seed2 = (long) seed;
 				Random rand = new Random(seed2); 
-				int oreAmount = rand.nextInt(6) + 3;
+				int oreAmount = rand.nextInt(7) + 3;
 				oreGenerator(oreAmount,m,n, TALL_GRASS_A_TILE, 1, new int[] {4});
 			} 
 		}

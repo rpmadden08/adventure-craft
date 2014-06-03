@@ -20,10 +20,11 @@ import com.madbros.adventurecraft.Utils.Point;
 import com.madbros.adventurecraft.Utils.Rect;
 
 public class Level {
-	public long rgenseed = System.currentTimeMillis();
-	//public long rgenseed = 898463;
+	//public long rgenseed = System.currentTimeMillis();
+	public long rgenseed = 898475;
 		//898463 (grass)  
 		//898474 (maybe too much water) 
+		//898475 (mountains) 
 		//898478 (in the middle of forest)
 	public Cell[][] cells;
 	public Cell[] potentialCollisionCells;	//resets to empty every frame and includes only cells that something has moved in
