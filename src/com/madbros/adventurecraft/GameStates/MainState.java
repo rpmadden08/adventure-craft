@@ -45,10 +45,7 @@ public class MainState extends GameState {
 			Game.zAngle -= Game.PI2;
 		Game.animationSystem.updateMain(Game.hero, Game.mobController);	//a list of mobs will also be passed to this system
 		input.mouseMoved(Gdx.input.getX(), Gdx.input.getY());
-		Game.hero.update();
-		if(Game.hero.isDead == true && Game.hero.deathWait >59) {
-			return;
-		}
+		
 		Game.mobController.update();
 		Game.soundController.update();
 		Game.musicController.update();
@@ -56,8 +53,13 @@ public class MainState extends GameState {
 		Game.notificationController.update();
 		Game.particleEffectController.update();
 		Game.level.update();
+		
 		Game.inventory.update();
 		Game.debugger.update();
+		Game.hero.update();
+		if(Game.hero.isDead == true && Game.hero.deathWait >59) {
+			return;
+		}
 	}
 		
 	@Override

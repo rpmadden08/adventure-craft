@@ -50,7 +50,7 @@ public class MobController {
 	}
 	
 	public boolean isDark(Rect possibleSpawnPoint) {
-		if(Game.level.isDay == true) {
+		if(Game.level.isDay == true && Game.currentLevel == OVERWORLD_FOLDER) {
 			return false;
 		} else {
 			for(int a = 0; a < Game.renderSystem.lightTiles.size(); a++) {
