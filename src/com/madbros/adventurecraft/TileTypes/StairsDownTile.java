@@ -23,11 +23,12 @@ public class StairsDownTile extends CollisionTile {
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
 		isDiggable = false;
+		isPickable = true;
 		isAutoTileable = false;
 		autoTile = 0;
-		isBreakable = true;
-		currentHp = 1;
-		maxHp = 1;
+		isBreakable = false;
+		currentHp = 30;
+		maxHp = 30;
 		//isCollidable = false;
 		
 	}

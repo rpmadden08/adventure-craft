@@ -65,7 +65,7 @@ public class Pick extends ToolItem {
 	
 	public void highlightItem(Block block, int x, int y) {
 		
-		if(Game.level.tileBeingAttacked.isPickable) {
+		if(Game.level.tileBeingAttacked.isPickable && Game.level.tileBeingAttacked.isAutoTileable) {
 
 			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topLeftAutoTile].setColor(HIGHLIGHT_COLOR);
 			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topLeftAutoTile].draw(x, y, Z_CHARACTER);
