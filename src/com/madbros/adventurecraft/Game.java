@@ -132,6 +132,18 @@ public class Game implements ApplicationListener {
 		}
 	}
 	
+	public static void toggleMainMenu() {
+		if(gameMainMenu.menuIsActive) {
+			gameMainMenu.menuIsActive = false;
+			currentState = new MainState();
+		} else {
+			gameMainMenu = new GameMainMenu(batch);
+			gameMainMenu.menuIsActive = true;
+			currentState = new GameMainMenuState();
+		}		
+	}
+	
+	
 	public static void toggleFurnaceState() {
 		if(currentState.type == State.FURNACE) {
 			closeInventory();
@@ -267,13 +279,7 @@ public class Game implements ApplicationListener {
 		return (int)Math.floor(currentScreenSizeY/2);
 	}
 
-	public static void toggleMainMenu() {
-		if(gameMainMenu.menuIsActive) gameMainMenu.menuIsActive = false;
-		else {
-			gameMainMenu = new GameMainMenu(batch);
-			gameMainMenu.menuIsActive = true;
-		}		
-	}
+
 	
 	public static ArrayList<DisplayMode> getResolutions() {
 		ArrayList<DisplayMode> resolutions = new ArrayList<DisplayMode>();

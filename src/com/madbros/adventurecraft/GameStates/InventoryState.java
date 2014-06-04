@@ -19,10 +19,10 @@ public class InventoryState extends MainState {
 		while(Game.zAngle > Game.PI2)
 			Game.zAngle -= Game.PI2;
 		Game.animationSystem.updateInventory(Game.hero, Game.inventory, Game.mobController);
-		Game.hero.update();
-		Game.mobController.update();
-		Game.level.update();
-		Game.debugger.update();
+//		Game.hero.update();
+//		Game.mobController.update();
+//		Game.level.update();
+//		Game.debugger.update();
 		Game.inventory.craftingMenu.refreshCraftSlots(Game.inventory.craftingMenu.currentCraftableList);
 	}
 	

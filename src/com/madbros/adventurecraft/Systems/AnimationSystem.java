@@ -38,10 +38,10 @@ public class AnimationSystem {
 	}
 	
 	public void updateInventory(Hero hero, Inventory inventory, MobController mobController) {
-		updateTiles();
+		//updateTiles();
 		hero.sprite.updateCurrentAnimation();
-		for(Mob mob : mobController.mobs) {
-			if(mob.isMoving()) mob.sprite.updateCurrentAnimation();
-		}
+//		for(Mob mob : mobController.mobs) {
+//			if(mob.isMoving()) mob.sprite.updateCurrentAnimation();
+//		}
 	}
 }
