@@ -913,7 +913,9 @@ public class RenderSystem {
 			Sprites.arial10.draw(batch, "Output", 592, 401);
 		}else if(Game.currentState.type == State.CAULDRON) {
 			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			Slot[][]slots2 = {cauldronTile.craftedSlot, inv.invClothing, cauldronTile.cauldronSlots};
+			cauldronTile.craftedSlot[0].item.renderLargeFont(cauldronTile.craftedSlot[0].slotRect.x2()-INV_SLOT_SIZE/2, cauldronTile.craftedSlot[0].slotRect.y2()-INV_SLOT_SIZE/2, batch);
+			
+			Slot[][]slots2 = {inv.invClothing, cauldronTile.cauldronSlots};
 			for(int i = 0; i < slots2.length; i++) {
 				for(int j = 0; j < slots2[i].length; j++) {
 					slots2[i][j].item.renderFont(slots2[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots2[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
