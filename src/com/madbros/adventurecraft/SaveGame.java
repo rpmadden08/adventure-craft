@@ -128,6 +128,8 @@ public class SaveGame {
 								furnace.furnaceSlots[1].item.id,
 								furnace.furnaceSlots[0].item.stackSize,
 								furnace.furnaceSlots[1].item.stackSize,
+								furnace.craftedSlot[0].item.id,
+								furnace.craftedSlot[0].item.stackSize,
 								};
 						boolean[] a2={furnace.furnaceIsBurning,
 								furnace.isCraftableItem};
@@ -148,6 +150,8 @@ public class SaveGame {
 								cauldron.cauldronSlots[1].item.stackSize,
 								cauldron.cauldronSlots[2].item.stackSize,
 								cauldron.cauldronSlots[3].item.stackSize,
+								cauldron.craftedSlot[0].item.id,
+								cauldron.craftedSlot[0].item.stackSize,
 								};
 						boolean[] a2={cauldron.cauldronIsBurning,
 								cauldron.isCraftableItem};

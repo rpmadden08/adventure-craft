@@ -83,6 +83,7 @@ public class Helpers {
 					if(chunk.ids[x][y][i] == FURNACE_TILE) {
 						int id0 = chunk.furnaceInts[furnInt][4];
 						int id1 = chunk.furnaceInts[furnInt][5];
+						int id2 = chunk.furnaceInts[furnInt][8];
 						//t[i] = (Furnace) t[i];
 						FurnaceTile tempTile = (FurnaceTile) t[i];
 						
@@ -90,6 +91,8 @@ public class Helpers {
 						tempTile.furnaceSlots[1].item = ITEM_HASH.get(id1).createNew();
 						tempTile.furnaceSlots[0].item.stackSize = chunk.furnaceInts[furnInt][6];
 						tempTile.furnaceSlots[1].item.stackSize = chunk.furnaceInts[furnInt][7];
+						tempTile.craftedSlot[0].item = ITEM_HASH.get(id2).createNew();
+						tempTile.craftedSlot[0].item.stackSize = chunk.furnaceInts[furnInt][9];
 						
 						tempTile.furnaceFuel = chunk.furnaceInts[furnInt][0];
 						tempTile.furnaceMaxFuel = chunk.furnaceInts[furnInt][1];
@@ -105,6 +108,7 @@ public class Helpers {
 						int id1 = chunk.cauldronInts[furnInt][5];
 						int id2 = chunk.cauldronInts[furnInt][6];
 						int id3 = chunk.cauldronInts[furnInt][7];
+						int id4 = chunk.cauldronInts[furnInt][12];
 						//t[i] = (Furnace) t[i];
 						CauldronTile tempTile = (CauldronTile) t[i];
 						
@@ -116,6 +120,8 @@ public class Helpers {
 						tempTile.cauldronSlots[1].item.stackSize = chunk.cauldronInts[furnInt][9];
 						tempTile.cauldronSlots[2].item.stackSize = chunk.cauldronInts[furnInt][10];
 						tempTile.cauldronSlots[3].item.stackSize = chunk.cauldronInts[furnInt][11];
+						tempTile.craftedSlot[0].item = ITEM_HASH.get(id4).createNew();
+						tempTile.craftedSlot[0].item.stackSize = chunk.cauldronInts[furnInt][13];
 						
 						tempTile.cauldronFuel = chunk.cauldronInts[furnInt][0];
 						tempTile.cauldronMaxFuel = chunk.cauldronInts[furnInt][1];
