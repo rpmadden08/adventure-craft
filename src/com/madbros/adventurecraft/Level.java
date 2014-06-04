@@ -222,12 +222,12 @@ public class Level {
 	}
 	
 	public void teleportHero(int x, int y, String folder) {
-		System.out.println();
 		if(folder == Game.currentLevel) {
 			Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
 			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
 		} else {
 			Game.currentState = new LoadingState(Game.batch);
+			Game.collectibleController = new CollectibleController();
 			Game.musicController.music.stop();
 			Game.hero.stop();
 			Game.switchLevel();

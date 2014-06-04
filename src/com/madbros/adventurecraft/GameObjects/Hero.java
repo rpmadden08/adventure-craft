@@ -205,7 +205,6 @@ public class Hero extends Actor {
 				Game.level.saveCurrentChunks();
 				
 				Game.currentState = new LoadingState(Game.batch);
-				Game.collectibleController = new CollectibleController();
 				Game.hero = new Hero();
 				Game.level.teleportHero(Game.level.masterSpawnX/TILE_SIZE, Game.level.masterSpawnY/TILE_SIZE, Game.level.spawnLevel);
 				Game.level.teleportChunkRect();
