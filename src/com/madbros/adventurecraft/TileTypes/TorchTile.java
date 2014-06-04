@@ -36,7 +36,9 @@ public class TorchTile extends LightTile {
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		Block b = activeBlocks[x][y];
 		b.collisionTile = null;
+		b.layers[OBJECT_LAYER].isLightSource = false;
 		b.layers[OBJECT_LAYER] = new NoTile();
+		
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(TORCH).createNew();
 		Game.collectibleController.add(TORCH, Sprites.sprites.get(Sprites.TORCH), collectibleRect, 1, item.maxUses);

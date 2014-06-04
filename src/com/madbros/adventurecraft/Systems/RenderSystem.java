@@ -590,11 +590,13 @@ public class RenderSystem {
 		
 		StaticSprite campFireSprite = Sprites.sprites.get(Sprites.CAMPFIRE_LIGHT);
 		for(Block light : lightTiles) {
-			LightTile tile = (LightTile)light.layers[OBJECT_LAYER];
-			lightSize = tile.lightSize + lightSizeRandom;
-			float x = light.absRect.midX() - startX - lightSize/2;
-			float y = light.absRect.midY() - startY - lightSize/2;
-			campFireSprite.draw(x, y, 0.4f, lightSize, lightSize);
+			if(light.layers[OBJECT_LAYER].isLightSource) {
+				LightTile tile = (LightTile)light.layers[OBJECT_LAYER];
+				lightSize = tile.lightSize + lightSizeRandom;
+				float x = light.absRect.midX() - startX - lightSize/2;
+				float y = light.absRect.midY() - startY - lightSize/2;
+				campFireSprite.draw(x, y, 0.4f, lightSize, lightSize);
+			}
 		}
 		lightTiles = new ArrayList<Block>();
 		frameCutter ++;

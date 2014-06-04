@@ -1,11 +1,9 @@
 package com.madbros.adventurecraft.Menus;
 
 
-import java.util.ArrayList;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -44,7 +42,6 @@ public class OptionsMenu extends Menu {
 		
 
 		getCurrentResolution();
-		//refreshMenu();
 	}
 	
 	public void getCurrentResolution() {
@@ -54,7 +51,6 @@ public class OptionsMenu extends Menu {
 				currentlySelectedR = i;
 			}
 		}
-		//System.out.println(resolutions.size());
 	}
 	
 	
@@ -97,14 +93,11 @@ public class OptionsMenu extends Menu {
 	
 	public void leftResolution() {
 		//getResolutions();
-		System.out.println(Game.resolutions.size());
-		System.out.println(currentlySelectedR);
 		if(currentlySelectedR == 0) {
 			currentlySelectedR = Game.resolutions.size()-1;
 		} else {
 			currentlySelectedR = currentlySelectedR-1;
 		}
-		System.out.println(currentlySelectedR);
 		changeResolution();
 		
 	}
@@ -118,7 +111,6 @@ public class OptionsMenu extends Menu {
 		} else {
 			currentlySelectedR = currentlySelectedR+1;
 		}
-		System.out.println(currentlySelectedR);
 		changeResolution();
 	}
 	
