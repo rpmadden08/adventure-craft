@@ -195,7 +195,7 @@ public abstract class Item {
 	}
 	
 	public void checkUsability() {
-		if(Game.level.tileBeingAttacked.isUseable) {
+		if(Game.level.tileBeingAttacked.isUseable && isInRange) {
 			Game.level.tileBeingAttacked.rightClicked();
 		}
 	}

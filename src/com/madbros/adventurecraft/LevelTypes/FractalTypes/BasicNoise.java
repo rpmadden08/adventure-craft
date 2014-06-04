@@ -23,8 +23,8 @@ public class BasicNoise {
 		    ModuleFractal gen = new ModuleFractal();
 		    gen.setAllSourceBasisTypes(BasisType.SIMPLEX);
 		    gen.setAllSourceInterpolationTypes(InterpolationType.CUBIC);
-		    gen.setNumOctaves(10);
-		    gen.setFrequency(0.7);
+		    gen.setNumOctaves(10);//10
+		    gen.setFrequency(1.2); //0.7 (adjust how large biomes are
 		    gen.setType(FractalType.RIDGEMULTI);
 		    gen.setSeed(seed);
 
