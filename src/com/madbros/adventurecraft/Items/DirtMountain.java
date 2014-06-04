@@ -15,7 +15,7 @@ public class DirtMountain extends BlockItem {
 		tileId = DIRT_MOUNTAIN_BOTTOM;
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS};
 		craftCost = new int[]{DIRT_MOUNTAIN_CLUMP, STONE};
-		craftCostAmount = new int[]{2, 1};
+		craftCostAmount = new int[]{1, 1};
 		sprite = Sprites.sprites.get(Sprites.DIRT_MOUNTAIN_ITEM);
 	}
 	

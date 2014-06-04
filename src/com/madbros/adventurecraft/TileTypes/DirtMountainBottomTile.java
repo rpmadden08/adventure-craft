@@ -66,7 +66,7 @@ public class DirtMountainBottomTile extends CollisionTile {
 		activeBlocks[x][y].collisionTile = null;
 		
 		Random rnd = new Random();
-		int dropAmount1 = rnd.nextInt(1)+1;
+		int dropAmount1 = rnd.nextInt(2)-1;
 			for(int i = dropAmount1; i >-1 ; i--) {
 				Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 				Item item = ITEM_HASH.get(DIRT_MOUNTAIN_CLUMP).createNew();
