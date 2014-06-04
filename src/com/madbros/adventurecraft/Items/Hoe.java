@@ -42,7 +42,8 @@ public class Hoe extends ToolItem {
 		
 //		Tile topTile = Game.level.highlightedBlock.getTopTile();
 		
-		if(Game.level.tileBeingAttacked.isTillable && isInRange == true) {
+		if(Game.level.tileBeingAttacked.isTillable && isInRange == true
+				&& Game.level.tileBeingAttacked.isToolStrongEnough(this)) {
 			swing();
 
 		} else if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {

@@ -58,7 +58,7 @@ public abstract class BaseItem extends ToolItem {
 		}
 		if(Game.level.highlightedBlock != null && !isCollidingWithActor(Game.level.highlightedBlock)) {
 			if(Game.level.tileBeingAttacked.isPickable || Game.level.tileBeingAttacked.isDiggable || Game.level.tileBeingAttacked.isChoppable) {
-				if(isInRange == true) {
+				if(isInRange == true && Game.level.tileBeingAttacked.isToolStrongEnough(this)) {
 					swing();
 				}
 			}

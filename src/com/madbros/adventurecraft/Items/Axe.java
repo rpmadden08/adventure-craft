@@ -44,7 +44,8 @@ public class Axe extends ToolItem {
 		Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
 	}
 	public void useLeft() {
-		if(Game.level.tileBeingAttacked.isChoppable && isInRange == true) {
+		if(Game.level.tileBeingAttacked.isChoppable && isInRange == true
+				&& Game.level.tileBeingAttacked.isToolStrongEnough(this)) {
 			swing();
 		} else if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
 			Game.soundController.create("sounds/swordSwing1.wav", 0.5f);

@@ -32,7 +32,9 @@ public class Shovel extends ToolItem {
 	}
 	
 	public void useLeft() {
-		if(Game.level.tileBeingAttacked.isDiggable &&isInRange == true && !isPlacementCollidingWithHero(Game.level.highlightedBlock, Game.level.tileBeingAttacked.layer)) {
+		if(Game.level.tileBeingAttacked.isDiggable &&isInRange == true 
+				&& !isPlacementCollidingWithHero(Game.level.highlightedBlock, Game.level.tileBeingAttacked.layer)
+				&& Game.level.tileBeingAttacked.isToolStrongEnough(this)) {
 			
 			swing();
 
