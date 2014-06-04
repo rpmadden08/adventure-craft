@@ -155,6 +155,19 @@ public class Helpers {
 		}
 	}
 	
+	public static void collectibleDataToCollectibleController(CurrentLevelData c) {
+
+		for(int x = 0; x < c.collectibleItemIds.length; x++) {
+			Item i = ITEM_HASH.get(c.collectibleItemIds[x]).createNew();
+			Game.collectibleController.add(c.collectibleItemIds[x], i.sprite, new Rect(c.collectibleItemX[x], c.collectibleItemY[x], 32, 32), c.collectibleItemStackSizes[x], c.collectibleItemUses[x]);
+			
+			
+			//Make sure the collectibles bounce and bounced and bounced2 == true
+			Game.collectibleController.collectibles.get(Game.collectibleController.collectibles.size()-1).bounced = true;
+			Game.collectibleController.collectibles.get(Game.collectibleController.collectibles.size()-1).bounced2 = true;
+		}
+	}
+	
 	public static void println(String s) {
 		Game.debugger.displayedExtra = s;
 		//getRandomLoot(new int[]{SWORD}, new int[]{1},new int[]{0},new int[]{0}, 1, 5);

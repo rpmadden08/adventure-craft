@@ -19,6 +19,8 @@ public class SaveGameData {
 	public int[] invBagID= new int[INV_LENGTH * INV_HEIGHT];
 	public int[] invBarStackSize= new int[INV_LENGTH];
 	public int[] invBagStackSize= new int[INV_LENGTH * INV_HEIGHT];
+	public int[] invBarUsage= new int[INV_LENGTH];
+	public int[] invBagUsage= new int[INV_LENGTH * INV_HEIGHT];
 	
 	public int[] invCraftingID = new int[2 * 2];
 	public int[] invCraftingStackSize = new int[2 * 2];

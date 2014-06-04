@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.madbros.adventurecraft.GameObjects.Collectible;
 import com.madbros.adventurecraft.Slots.Slot;
 import com.madbros.adventurecraft.TileTypes.CauldronTile;
 import com.madbros.adventurecraft.TileTypes.FurnaceTile;
@@ -39,11 +40,13 @@ public class SaveGame {
 		for(int x = 0; x < saveData.invBarID.length; x++) {
 			saveData.invBarID[x] = Game.inventory.invBar[x].item.id;
 			saveData.invBarStackSize[x] = Game.inventory.invBar[x].item.stackSize;
+			saveData.invBarUsage[x] = Game.inventory.invBar[x].item.uses;
 		}
 		
 		for(int x = 0; x < saveData.invBagID.length; x++) {
 			saveData.invBagID[x] = Game.inventory.invBag[x].item.id;
 			saveData.invBagStackSize[x] = Game.inventory.invBag[x].item.stackSize;
+			saveData.invBagUsage[x] = Game.inventory.invBag[x].item.uses;
 		}
 		
 		saveData.invCraftedID = Game.inventory.invCrafted[0].item.id;
@@ -72,6 +75,7 @@ public class SaveGame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+		saveCurrentLevel();
 	}
 	
 	public SaveGameData saveData() {
@@ -211,6 +215,44 @@ public class SaveGame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
+	}
+	
+	public void saveCurrentLevel() {
+		CurrentLevelData currentLevelData = new CurrentLevelData();
+		
+		
+		for(int x = 0; x < Game.collectibleController.collectibles.size(); x++) {
+			Collectible c = Game.collectibleController.collectibles.get(x);
+			currentLevelData.collectibleItemIds[x] = c.item.id;
+			currentLevelData.collectibleItemStackSizes[x] = c.item.stackSize;
+			currentLevelData.collectibleItemUses[x] = c.item.uses;
+			currentLevelData.collectibleItemX[x] = c.absRect.x;
+			currentLevelData.collectibleItemY[x] = c.absRect.y;
+		}
+		Kryo kryo = new Kryo();
+		try {
+			Output output = new Output(new FileOutputStream(Game.locOfSavedGame +CHUNKS_FOLDER + Game.currentLevel +"Level.sv"));
+			
+			kryo.writeObject(output, currentLevelData);
+			output.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public void loadCurrentLevel() {
+		CurrentLevelData currentLevelData = new CurrentLevelData();
+		
+		Kryo kryo = new Kryo();
+		
+		try {
+			Input input = new Input(new FileInputStream(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel + "Level.sv"));
+			currentLevelData = kryo.readObject(input, CurrentLevelData.class);
+			input.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Helpers.collectibleDataToCollectibleController(currentLevelData);
 	}
 	
 	public Block[][] loadChunk(int chunkX, int chunkY) {

@@ -183,6 +183,10 @@ public class Level {
 						}
 						
 					}
+					f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel + "Level.sv");
+					if(f.exists()) {
+						Game.saveGame.loadCurrentLevel();
+					}
 					Game.currentLoadingPoints = Game.currentLoadingPoints+1;
 					gameStartTime = Time.getTime();		
 
@@ -264,6 +268,7 @@ public class Level {
 				int id = saveData.invBarID[x];
 				Game.inventory.invBar[x].item = ITEM_HASH.get(id).createNew();
 				Game.inventory.invBar[x].item.stackSize = saveData.invBarStackSize[x];
+				Game.inventory.invBar[x].item.uses = saveData.invBarUsage[x];
 			}
 			
 			for(int x = saveData.invClothingID.length-1; x >= 0; x--) {
@@ -290,8 +295,10 @@ public class Level {
 				id = saveData.invBagID[x];
 				Game.inventory.invBag[x].item = ITEM_HASH.get(id).createNew();
 				Game.inventory.invBag[x].item.stackSize = saveData.invBagStackSize[x];
+				Game.inventory.invBag[x].item.uses = saveData.invBagUsage[x];
 			}
 			Game.timeSpentInPreviousSaves = saveData.gameTime;
+			
 		}
 	}
 	

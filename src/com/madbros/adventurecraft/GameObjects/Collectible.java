@@ -13,9 +13,9 @@ import com.madbros.adventurecraft.Utils.Rect;
 
 public class Collectible extends GameObject{
 	CollectibleController collectibleController;
-	Item item;
-	Boolean bounced = false;
-	Boolean bounced2 = false;
+	public Item item;
+	public Boolean bounced = false;
+	public Boolean bounced2 = false;
 	int framesNum = 0;
 	int length = 18;
 	int length2 = 8;

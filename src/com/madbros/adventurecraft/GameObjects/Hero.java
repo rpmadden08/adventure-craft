@@ -5,6 +5,7 @@ import static com.madbros.adventurecraft.Constants.*;
 import org.lwjgl.input.Keyboard;
 
 import com.madbros.adventurecraft.Block;
+import com.madbros.adventurecraft.CollectibleController;
 import com.madbros.adventurecraft.Game;
 import com.madbros.adventurecraft.Time;
 import com.madbros.adventurecraft.GameStates.LoadingState;
@@ -202,7 +203,9 @@ public class Hero extends Actor {
 			if(deathWait > 60) {
 				Game.saveGame.saveGame();
 				Game.level.saveCurrentChunks();
+				
 				Game.currentState = new LoadingState(Game.batch);
+				Game.collectibleController = new CollectibleController();
 				Game.hero = new Hero();
 				Game.level.teleportHero(Game.level.masterSpawnX/TILE_SIZE, Game.level.masterSpawnY/TILE_SIZE, Game.level.spawnLevel);
 				Game.level.teleportChunkRect();

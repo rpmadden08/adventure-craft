@@ -202,10 +202,12 @@ public class Game implements ApplicationListener {
 		if(Game.currentLevel == OVERWORLD_FOLDER) {
 			saveGame.saveGame();
 			level.saveCurrentChunks();
+			collectibleController = new CollectibleController();
 			level = new Underground1();
 		} else if (Game.currentLevel == UNDERGROUND_1_FOLDER) {
 			saveGame.saveGame();
 			level.saveCurrentChunks();
+			collectibleController = new CollectibleController();
 			level = new Overworld();
 			
 		}
