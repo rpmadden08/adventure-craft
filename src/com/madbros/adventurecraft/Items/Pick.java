@@ -32,7 +32,8 @@ public class Pick extends ToolItem {
 	
 	public void useLeft() {
 		
-		if(Game.level.tileBeingAttacked.isPickable &&isInRange == true) {
+		if(Game.level.tileBeingAttacked.isPickable &&isInRange == true 
+				&& Game.level.tileBeingAttacked.isToolStrongEnough(this)) {
 			swing();
 
 		} else if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {

@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.madbros.adventurecraft.*;
 import com.madbros.adventurecraft.Items.Item;
+import com.madbros.adventurecraft.Items.StonePick;
 import com.madbros.adventurecraft.Sprites.Sprites;
 import com.madbros.adventurecraft.Utils.Margin;
 import com.madbros.adventurecraft.Utils.Rect;
@@ -58,7 +59,14 @@ public class DirtMountainTinBottomTile extends CollisionTile {
 		
 		
 	}
-	
+	public boolean isToolStrongEnough(Item tool) {
+		Item tempItem = new StonePick();
+		if(tool.itemPower >= tempItem.itemPower) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();

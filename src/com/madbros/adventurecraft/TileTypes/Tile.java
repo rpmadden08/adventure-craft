@@ -82,7 +82,9 @@ public abstract class Tile {
 	public void update(int x, int y) {
 		
 	}
-	
+	public boolean isToolStrongEnough(Item tool) {
+		return true;
+	}
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {}
 	
 	public void deleteMeStairs(int x, int y, Block[][] activeBlocks) {}
