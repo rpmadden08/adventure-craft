@@ -4,10 +4,6 @@ package com.madbros.adventurecraft.GameStates;
 
 import com.badlogic.gdx.Input.Keys;
 import com.madbros.adventurecraft.Game;
-import com.madbros.adventurecraft.Utils.Helpers;
-import com.madbros.adventurecraft.Utils.Rect;
-import com.madbros.adventurecraft.Items.NoItem;
-import com.madbros.adventurecraft.Slots.*;
 
 public class GameMainMenuStateInput extends MainStateInput {
 	public boolean altKeyDown = false;

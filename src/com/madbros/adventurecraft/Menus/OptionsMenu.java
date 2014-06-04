@@ -26,7 +26,7 @@ public class OptionsMenu extends Menu {
 	SelectUIButton  currentlySelectedButton;
 	//public File[] listOfFiles;
 	public SpriteBatch batch;
-	public ArrayList<DisplayMode> resolutions = new ArrayList<DisplayMode>();
+	//public ArrayList<DisplayMode> resolutions = new ArrayList<DisplayMode>();
 	public int currentlySelectedR = 0;
 	public String resolution;
 	public String isStretched = " ";
@@ -43,34 +43,18 @@ public class OptionsMenu extends Menu {
 		refreshMenu();
 		
 
-		getResolutions();
+		getCurrentResolution();
 		//refreshMenu();
 	}
 	
-	public void getResolutions() {
-		resolutions = Game.getResolutions();
-		for(int i = 0; i < resolutions.size(); i++) {
-			if(resolutions.get(i).getWidth() == Game.currentScreenSizeX
-					&& resolutions.get(i).getHeight() == Game.currentScreenSizeY) {
+	public void getCurrentResolution() {
+		for(int i = 0; i < Game.resolutions.size(); i++) {
+			if(Game.resolutions.get(i).getWidth() == Game.currentScreenSizeX
+					&& Game.resolutions.get(i).getHeight() == Game.currentScreenSizeY) {
 				currentlySelectedR = i;
 			}
 		}
-//		try {
-//			DisplayMode[] modes = Display.getAvailableDisplayModes();
-//			
-//			for (int i=0;i<modes.length;i++) {
-//			    DisplayMode current = modes[i]; 
-//			    if(current.getBitsPerPixel() == 32 && current.getWidth() <= 1440 && current.getHeight() <=900 ) {
-//			    	
-//			    	resolutions.add(current);
-//			    	if(current.getWidth() == Game.currentScreenSizeX) {
-//			    		currentlySelectedR = resolutions.size()-1;
-//			    	}
-//			    }
-//			}
-//		} catch(LWJGLException e) {
-//			throw new RuntimeException("Could not initiate LWJGL.", e);
-//		}
+		//System.out.println(resolutions.size());
 	}
 	
 	
@@ -108,37 +92,44 @@ public class OptionsMenu extends Menu {
 		for(int i = 0; i < functions.length; i++) {
 			menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i], Game.batch);
 		}
+		//getResolutions();
 	}
 	
 	public void leftResolution() {
-		getResolutions();
+		//getResolutions();
+		System.out.println(Game.resolutions.size());
+		System.out.println(currentlySelectedR);
 		if(currentlySelectedR == 0) {
-			currentlySelectedR = resolutions.size()-1;
+			currentlySelectedR = Game.resolutions.size()-1;
 		} else {
 			currentlySelectedR = currentlySelectedR-1;
 		}
+		System.out.println(currentlySelectedR);
 		changeResolution();
 		
 	}
 	
 	public void rightResolution() {
-		getResolutions();
-		if(currentlySelectedR == resolutions.size()-1) {
+		
+		//getResolutions();
+
+		if(currentlySelectedR == Game.resolutions.size()-1) {
 			currentlySelectedR = 0;
 		} else {
 			currentlySelectedR = currentlySelectedR+1;
 		}
+		System.out.println(currentlySelectedR);
 		changeResolution();
 	}
 	
 	public void changeResolution() {
 		try {
-			Display.setDisplayMode(resolutions.get(currentlySelectedR));
+			Display.setDisplayMode(Game.resolutions.get(currentlySelectedR));
 		} catch (LWJGLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if((float)resolutions.get(currentlySelectedR).getWidth()/(float)resolutions.get(currentlySelectedR).getHeight() == (float)Gdx.graphics.getDesktopDisplayMode().width/(float)Gdx.graphics.getDesktopDisplayMode().height
+		if((float)Game.resolutions.get(currentlySelectedR).getWidth()/(float)Game.resolutions.get(currentlySelectedR).getHeight() == (float)Gdx.graphics.getDesktopDisplayMode().width/(float)Gdx.graphics.getDesktopDisplayMode().height
 		    	) {
 		    		isStretched = " ";
 		    	} else {
@@ -146,8 +137,8 @@ public class OptionsMenu extends Menu {
 		    	}
 		
 		
-		Game.currentScreenSizeX = resolutions.get(currentlySelectedR).getWidth();
-		Game.currentScreenSizeY = resolutions.get(currentlySelectedR).getHeight();
+		Game.currentScreenSizeX = Game.resolutions.get(currentlySelectedR).getWidth();
+		Game.currentScreenSizeY = Game.resolutions.get(currentlySelectedR).getHeight();
 		Game.camera= new OrthographicCamera(Game.currentScreenSizeX,Game.currentScreenSizeY);
 		Game.camera.setToOrtho(true, Game.currentScreenSizeX, Game.currentScreenSizeY);
 

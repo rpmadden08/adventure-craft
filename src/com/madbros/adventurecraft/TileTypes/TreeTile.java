@@ -56,24 +56,18 @@ public class TreeTile extends CollisionTile {
 			//b.layers[tileLayer[i]].z = Z_ABOVE_LAYER;
 		}
 		activeBlocks[x][y].collisionTile = null;
-		//b.collisionTile = null;
-		//new Rect(Game.level.activeBlocks[x][y].absRect.x,Game.level.activeBlocks[x][y].absRect.y,CHARACTER_SIZE, CHARACTER_SIZE);
-		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Rect collectibleRect3 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Rect collectibleRect4 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Rect collectibleRect5 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Item item = ITEM_HASH.get(LOG).createNew();
-		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect, 1, item.maxUses );
-		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect2, 1, item.maxUses );
-		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect3, 1, item.maxUses );
-		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect4, 1, item.maxUses );
-		Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect5, 1, item.maxUses );
+		
 		Random rnd = new Random();
-		int dropAmount1 = rnd.nextInt(2)+1;
+		int dropAmount1 = rnd.nextInt(2)+3;
 		for(int i = dropAmount1; i >-1 ; i--) {
-			collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-			item = ITEM_HASH.get(SAPLING_ITEM).createNew();
+			Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+			Item item = ITEM_HASH.get(LOG).createNew();
+			Game.collectibleController.add(LOG, Sprites.sprites.get(Sprites.LOG_ITEM), collectibleRect, 1, item.maxUses);
+		}
+		dropAmount1 = rnd.nextInt(2)-1;
+		for(int i = dropAmount1; i >-1 ; i--) {
+			Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+			Item item = ITEM_HASH.get(SAPLING_ITEM).createNew();
 			Game.collectibleController.add(SAPLING_ITEM, Sprites.sprites.get(Sprites.SAPLING), collectibleRect, 1, item.maxUses);
 		}
 	}

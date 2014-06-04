@@ -59,7 +59,7 @@ public class Time {
 	public static long getMinutes() {
 		long currentTime = getTotalSeconds();
 		
-		long timeNow = currentTime / 60+8;  //The + 8 makes the time start at 8:00
+		long timeNow = currentTime / 60+19;  //The + 8 makes the time start at 8:00
 		timeNow = timeNow % 24;
 		if (timeNow == 0)  {
 			timeNow = 24;
@@ -97,7 +97,8 @@ public class Time {
 					for(int a = 0;a < 4; a++) {
 						float x = shaderInfo[a];
 						float shaderTotal = 1f - x;
-						float amountToAdd = (float) (shaderTotal * percentage);
+						float amountToAdd = (float) (shaderTotal * percentage);// /2 was added to hopefully decrease the extreme brightness...
+						
 						switch (a) {
 							case 0: Game.ambientIntensity2 = x + amountToAdd;
 							break;
@@ -128,7 +129,7 @@ public class Time {
 						float amountToAdd = (float) (shaderTotal * percentage);
 						//float amountToSubtract = shaderTotal-amountToAdd;
 						switch (a) {
-							case 0: Game.ambientIntensity2 = 1f - amountToAdd;
+							case 0: Game.ambientIntensity2 = 1f- amountToAdd;
 							break;
 							case 1: Game.ambientColor2.x = 1f - amountToAdd;
 							break;

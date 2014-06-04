@@ -22,7 +22,7 @@ public class Overworld extends Level{
 		if(Game.replaceableX > 0 && Game.replaceableY > 0) {
 			int x = getXFromAbs(Game.replaceableX);
 			int y = getYFromAbs(Game.replaceableY);
-			//FIXME This caused a crash somewhere...  But I can't replicate it (5/31/14)  
+
 			if(Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].id != STAIRS_DOWN_TILE) {
 				Game.level.activeBlocks[x][y].layers[OBJECT_LAYER].deleteThisTile(x, y, Game.level.activeBlocks);
 				if(Game.level.activeBlocks[x][y].layers[GRASS_LAYER].id != AIR) {

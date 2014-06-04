@@ -147,7 +147,7 @@ public abstract class BaseItem extends ToolItem {
 	}
 	
 	public void highlightItem(Block block, int x, int y) {
-		if(Game.level.tileBeingAttacked.isPickable) {
+		if(Game.level.tileBeingAttacked.isPickable && Game.level.tileBeingAttacked.isAutoTileable) {
 
 			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topLeftAutoTile].setColor(HIGHLIGHT_COLOR);
 			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topLeftAutoTile].draw(x, y, Z_CHARACTER);
@@ -165,6 +165,11 @@ public abstract class BaseItem extends ToolItem {
 			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomRightAutoTile].draw(x+16, y+16, Z_CHARACTER);
 			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomRightAutoTile].setColor(1f,1f,1f,1f);
 			//Someday maybe add the above layer 1 and 2 highlighting...
+		} else if(Game.level.tileBeingAttacked.isPickable) {
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.currentSpriteId].setColor(HIGHLIGHT_COLOR);
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.currentSpriteId].draw(x, y, Z_CHARACTER);
+			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.currentSpriteId].setColor(1f,1f,1f,1f);
+			
 		} else if(Game.level.tileBeingAttacked.isDiggable ) {
 			int objectTileID = Game.level.activeBlocks[block.getX(Game.level.activeBlocks)][block.getY(Game.level.activeBlocks)].layers[OBJECT_LAYER].id;
 			if (checkID(objectTileID)) {

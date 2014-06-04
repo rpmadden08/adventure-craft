@@ -64,6 +64,8 @@ public class DirtMountainTinBottomTile extends CollisionTile {
 		if(tool.itemPower >= tempItem.itemPower) {
 			return true;
 		} else {
+
+			Game.notificationController.addAlert("Tool not strong enough!");
 			return false;
 		}
 	}

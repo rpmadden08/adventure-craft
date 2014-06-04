@@ -282,9 +282,10 @@ public class Game implements ApplicationListener {
 	}
 
 
+	public static ArrayList<DisplayMode> resolutions = new ArrayList<DisplayMode>();
 	
 	public static ArrayList<DisplayMode> getResolutions() {
-		ArrayList<DisplayMode> resolutions = new ArrayList<DisplayMode>();
+		ArrayList<DisplayMode> tempResolutions = new ArrayList<DisplayMode>();
 		try {
 			DisplayMode[] modes = Display.getAvailableDisplayModes();
 			
@@ -297,7 +298,7 @@ public class Game implements ApplicationListener {
 			    		&& current.getHeight() >= 480
 			    		&& current.getWidth() <= 1440 
 			    		&& current.getHeight() <=900)	{
-			    	resolutions.add(current);
+			    	tempResolutions.add(current);
 //			    	System.out.println(current.getWidth() + "x" + current.getHeight() + "x" +
 //			                        	current.getBitsPerPixel() + " " + current.getFrequency() + "Hz"+ current.isFullscreenCapable());
 			    }
@@ -305,7 +306,8 @@ public class Game implements ApplicationListener {
 		} catch(LWJGLException e) {
 			throw new RuntimeException("Could not initiate LWJGL.", e);
 		}
-		return resolutions;
+		Game.resolutions = tempResolutions;
+		return tempResolutions;
 	}
 	
 	@Override

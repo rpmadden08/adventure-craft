@@ -89,6 +89,7 @@ public class MainMenu extends Menu{
 	
 	private void options() {
 		MainMenuState.options(Game.batch);
+		
 	}
 	
 	public void quitGame() {
