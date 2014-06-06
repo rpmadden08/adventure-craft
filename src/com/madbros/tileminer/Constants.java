@@ -21,7 +21,7 @@ public class Constants {
 	public static final int INITIAL_WINDOW_HEIGHT = 480;// 480    800    900
 	public static final int RENDER_MARGIN = 1;
 	public static final int FRAME_RATE = 60;
-	public static final String GAME_TITLE = "Adventure Craft";
+	public static final String GAME_TITLE = "Tile Miner";
 	
 	public static final int PIXEL_MIN = 0;
 	public static final int PIXEL_MAX = 32;
