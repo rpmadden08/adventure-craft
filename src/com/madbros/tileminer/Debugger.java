@@ -2,7 +2,9 @@ package com.madbros.tileminer;
 
 import java.text.*;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.tileminer.Sprites.Sprites;
@@ -68,20 +70,7 @@ public class Debugger {
 	}
 	
 	private void updateFPS() {
-		long timeNow = Time.getTime();
-		timeSpentInGame = (long) ((timeNow - Game.gameStartTime + Game.timeSpentInPreviousSaves)/1000);  // ms --> secs
-//		hours = (int) Time.getMinutes();
-//		minutes = (int) Time.getSeconds();
-		hours = Time.getMinutesString();
-		minutes = Time.getSecondsString();
-		displayedGameTime = String.valueOf(timeSpentInGame);
-		
-		if(timeNow - lastFPS > 1000) {
-			displayedFPS = String.valueOf(fps);
-			fps = 0;
-			lastFPS += 1000;
-		}
-		fps++;
+		displayedFPS = String.valueOf(Gdx.graphics.getFramesPerSecond());
 	}
 	
 	private void updateMemoryUsage() {

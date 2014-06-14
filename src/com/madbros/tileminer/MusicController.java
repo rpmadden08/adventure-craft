@@ -7,7 +7,7 @@ import static com.madbros.tileminer.Constants.*;
 
 public class MusicController {
 	public int musicSelection = 0;
-	public Music music = Gdx.audio.newMusic(Gdx.files.internal("music/swimming.wav"));
+	public Music music = Gdx.audio.newMusic(Gdx.files.internal("music/swimming.mp3"));
 	
 	public MusicController() {
 		
@@ -27,7 +27,7 @@ public class MusicController {
 						music.stop();
 						music.dispose();
 					}
-					music = Gdx.audio.newMusic(Gdx.files.internal("music/lookingForClues.wav"));
+					music = Gdx.audio.newMusic(Gdx.files.internal("music/lookingForClues.mp3"));
 					//music.setVolume(0);
 					music.play();
 					music.setLooping(true);
@@ -39,7 +39,7 @@ public class MusicController {
 						music.stop();
 						music.dispose();
 					}
-					music = Gdx.audio.newMusic(Gdx.files.internal("music/swimming.wav"));
+					music = Gdx.audio.newMusic(Gdx.files.internal("music/swimming.mp3"));
 					//music.setVolume(0);
 					music.play();
 					music.setLooping(true);
@@ -51,7 +51,7 @@ public class MusicController {
 						music.stop();
 						music.dispose();
 					}
-					music = Gdx.audio.newMusic(Gdx.files.internal("music/conductingExperiments.wav"));
+					music = Gdx.audio.newMusic(Gdx.files.internal("music/conductingExperiments.mp3"));
 					
 					music.play();
 					music.setLooping(true);

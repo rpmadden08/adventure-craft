@@ -21,7 +21,7 @@ import com.madbros.tileminer.Utils.Rect;
 
 public class Level {
 	public long rgenseed = System.currentTimeMillis();
-	//public long rgenseed = 898475;
+	//public long rgenseed = 898490;
 		//898463 ()  
 		//898474 ()
 		//898475 (forest) 
