@@ -329,13 +329,13 @@ public class ChunkGenerator {
 				float seed = chunkNoiseElevation[m][n] * 1000000000;
 			    long seed2 = (long) seed;
 				Random rand = new Random(seed2); 
-				int oreAmount = rand.nextInt(7) + 3;
+				int oreAmount = rand.nextInt(5) + 2;
 				oreGenerator(oreAmount,m,n, DIRT_MOUNTAIN_TIN_BOTTOM, 1, new int[] {2});
 			} else if(chunkObjectLayer[m][n] == COPPER_MARK) {
 				float seed = chunkNoiseElevation[m][n] * 1000000000;
 			    long seed2 = (long) seed;
 				Random rand = new Random(seed2); 
-				int oreAmount = rand.nextInt(7) + 3;
+				int oreAmount = rand.nextInt(5) + 2;
 				oreGenerator(oreAmount,m,n, DIRT_MOUNTAIN_COPPER_BOTTOM, 1, new int[] {2});
 			} else if(chunkObjectLayer[m][n] == GRASS_MARK) {
 				float seed = chunkNoiseElevation[m][n] * 1000000000;
