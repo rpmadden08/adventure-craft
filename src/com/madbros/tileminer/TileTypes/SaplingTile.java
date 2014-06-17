@@ -1,8 +1,6 @@
 package com.madbros.tileminer.TileTypes;
 
 import static com.madbros.tileminer.Constants.*;
-
-import com.badlogic.gdx.math.MathUtils;
 import com.madbros.tileminer.*;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;

@@ -4,7 +4,6 @@ import java.text.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.tileminer.Sprites.Sprites;
@@ -20,8 +19,8 @@ public class Debugger {
 	
 	private DecimalFormat df = new DecimalFormat("0.###");
 	
-	private long lastFPS;
-	private long fps;
+//	private long lastFPS;
+//	private long fps;
 	
 	public String tempVar = "Temp";	//for random temporary debugging
 	
@@ -54,8 +53,8 @@ public class Debugger {
 		font = Sprites.font;
 		fontColor = Color.WHITE;
 		
-		lastFPS = Time.getTime();
-		fps = 0;
+//		lastFPS = Time.getTime();
+//		fps = 0;
 			
 		numberOfFramesAddedToTheRenderStoreArray = 0;
 		numberOfFramesAddedToTheUpdateStoreArray = 0;
@@ -71,6 +70,14 @@ public class Debugger {
 	
 	private void updateFPS() {
 		displayedFPS = String.valueOf(Gdx.graphics.getFramesPerSecond());
+		
+	}
+	private void updateTime() {
+		long timeNow = Time.getTime();
+		timeSpentInGame = (long) ((timeNow - Game.gameStartTime + Game.timeSpentInPreviousSaves)/1000);  // ms --> secs
+		hours = Time.getMinutesString();
+		minutes = Time.getSecondsString();
+		displayedGameTime = String.valueOf(timeSpentInGame);
 	}
 	
 	private void updateMemoryUsage() {
@@ -85,6 +92,7 @@ public class Debugger {
 		if(isDebugging) {
 			updateMemoryUsage();
 			updateFPS();
+			updateTime();
 		}
 	}
 	
