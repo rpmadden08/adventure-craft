@@ -117,6 +117,9 @@ public class CraftingSlot extends Slot{
 	
 	}
 	
+	public void handleRightClick(Inventory inv) {
+	}
+	
 	public void handleLeftClick(Inventory inv) {
 		if(this.item.id == EMPTY || this.isInactive == true) {
 		} else {
