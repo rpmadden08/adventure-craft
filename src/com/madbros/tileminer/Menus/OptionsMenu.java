@@ -31,7 +31,7 @@ public class OptionsMenu extends Menu {
 	
 	public OptionsMenu(SpriteBatch batch) {
 		super(batch);
-		
+		changeResolution();
 		
 	}
 
