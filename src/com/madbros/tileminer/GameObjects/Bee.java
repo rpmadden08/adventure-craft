@@ -26,7 +26,7 @@ public class Bee extends Mob {
 				  32, 32);
 		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
 		detectRange = 50; //50
-		chaseRange = 100; //50
+		chaseRange = 200; //50
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BEE_MINI));
 		margin = new Margin(11, 11, 10, 12);
 		moveSpeed = 0.03f; //0.03

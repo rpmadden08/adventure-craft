@@ -89,6 +89,7 @@ public class QueenBee extends Mob {
 			framesNum++;
 		} else if(mobState == 3) {
 			//moveSpeed = maxSpeed;
+			runningSpeed = 0.1f;
 			chaseHero(Game.hero.absRect, this.absRect);
 			if(framesNum > length) {
 				framesNum = 0;

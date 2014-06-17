@@ -26,6 +26,7 @@ public class Worm extends Mob {
 				  32, 32);
 		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
 		detectRange = 100;
+		chaseRange = 200;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.WORM));
 		margin = new Margin(7, 6, 0, 0);
 		moveSpeed = 0.03f;
