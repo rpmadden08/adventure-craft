@@ -216,6 +216,20 @@ public class Level {
 		//double total = Game.tundraTally + Game.taigaTally + Game.forestTally + Game.jungleTally+ Game.grasslandTally + Game.mountainTally +Game.oceanTally + Game.desertTally +Game.swampTally;
 	}
 	
+	public void respawn(int x, int y, String folder) {
+		teleportHero(Game.level.masterSpawnX/TILE_SIZE, Game.level.masterSpawnY/TILE_SIZE, Game.level.spawnLevel);
+		teleportChunkRect();
+		int bX = x - (chunkRect.x * CHUNK_SIZE);
+		int bY = y - (chunkRect.y * CHUNK_SIZE);
+		if(Game.level.activeBlocks[bX][bY].absRect.detectCollision(Game.hero.absRect)) {
+			Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, activeBlocks);
+		}
+//		System.out.println(Game.level.activeBlocks[bX][bY].absRect.x);
+//		System.out.println(Game.hero.absRect.x);
+		//activeBlocks[40][40].isHighlighted = true;
+		
+	}
+	
 	public void teleportHero(int x, int y) {
 			Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
 			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
