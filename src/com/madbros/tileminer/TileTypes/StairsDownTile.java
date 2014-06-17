@@ -54,7 +54,10 @@ public class StairsDownTile extends CollisionTile {
 				Game.replaceableY = Game.level.activeBlocks[x][y].getAbsY();
 				//System.out.println(Game.level.activeBlocks[x][y].getAbsY());
 				Game.musicController.music.stop();
+				Game.hero.knockBackTime = 0; //Makes your knockback stop preventing a game crash...
 				Game.hero.stop();
+				Game.saveGame.saveGame();
+				Game.level.saveCurrentChunks();
 				Game.switchLevel();
 				//Game.hero = null;
 				

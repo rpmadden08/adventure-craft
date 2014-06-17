@@ -59,6 +59,8 @@ public class MainState extends GameState {
 		Game.inventory.update();
 		Game.debugger.update();
 		Game.hero.update();
+		
+		
 		if(Game.hero.isDead == true && Game.hero.deathWait >59) {
 			return;
 		}

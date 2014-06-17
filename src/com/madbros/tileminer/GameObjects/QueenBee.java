@@ -20,7 +20,7 @@ public class QueenBee extends Mob {
 	
 	public QueenBee(MobController mobController, int x, int y) {
 		super(mobController);
-		attack = 20;
+		attack = 20; //20
 		hP = 500;
 		maxHP = 500;
 		this.mobController = mobController;

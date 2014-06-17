@@ -200,16 +200,15 @@ public class Game implements ApplicationListener {
 	
 	public static void switchLevel() {
 		if(Game.currentLevel == OVERWORLD_FOLDER) {
-			saveGame.saveGame();
-			level.saveCurrentChunks();
+//			saveGame.saveGame();
+//			level.saveCurrentChunks();
 			collectibleController = new CollectibleController();
 			level = new Underground1();
 		} else if (Game.currentLevel == UNDERGROUND_1_FOLDER) {
-			saveGame.saveGame();
-			level.saveCurrentChunks();
+//			saveGame.saveGame();
+//			level.saveCurrentChunks();
 			collectibleController = new CollectibleController();
-			level = new Overworld();
-			
+			level = new Overworld();	
 		}
 		mobController = new MobController();
 		//hero = new Hero();

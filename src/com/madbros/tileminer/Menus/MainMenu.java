@@ -80,7 +80,6 @@ public class MainMenu extends Menu{
 			}
 			Game.createNewGameAtLoc(SAVE_LOC + Game.gameFileName + "/");
 		} else {
-			System.out.println("test2");
 		}
 	}
 	

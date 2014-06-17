@@ -217,7 +217,7 @@ public class Level {
 	}
 	
 	public void respawn(int x, int y, String folder) {
-		teleportHero(Game.level.masterSpawnX/TILE_SIZE, Game.level.masterSpawnY/TILE_SIZE, Game.level.spawnLevel);
+		teleportHero(x,y,folder);
 		teleportChunkRect();
 		int bX = x - (chunkRect.x * CHUNK_SIZE);
 		int bY = y - (chunkRect.y * CHUNK_SIZE);
