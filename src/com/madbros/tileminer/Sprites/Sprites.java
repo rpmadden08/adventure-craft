@@ -38,6 +38,10 @@ public class Sprites {
 	public static final String COLLISION_DETECTION = "collisionDetection";
 	public static final String INVENTORY_MENU_SELECTOR = "inventoryMenuSelector";
 	public static final String INVENTORY_MENU_SLOT = "inventoryMenuSlot";
+	public static final String BUTTON = "button";
+	public static final String BUTTON_EDGE = "buttonCorner";
+	public static final String BUTTON_SELECT = "buttonSelect";
+	public static final String BUTTON_SELECT_EDGE = "buttonSelectCorner";
 	public static final String HEALTH_BAR_EDGE = "healthBarEdge";
 	public static final String MON_HEALTH_EDGE = "monHealthEdge";
 	public static final String TILLED_SOIL = "tilledSoil";
@@ -734,7 +738,7 @@ public class Sprites {
 					DIRT_MOUNTAIN_COPPER_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_BOTTOM_NEW,
 					DIRT_MOUNTAIN_COAL_MIDDLE_NEW, DIRT_MOUNTAIN_COAL_BOTTOM_NEW, STONE, DIRT_MOUNTAIN_CLUMP,
 					STONE_MOUNTAIN_CLUMP,BREAD, SLOWNESS_APPLIED, SLOWNESS_STATUS, SPEED_STATUS, HARMING_APPLIED,
-					BEEHIVE, BEEHIVE_TILE, 
+					BEEHIVE, BEEHIVE_TILE, BUTTON, BUTTON_SELECT, BUTTON_EDGE, BUTTON_SELECT_EDGE
 					
 			};
 			

@@ -28,24 +28,27 @@ public class GameOptionsMenu extends GameMainMenu {
 		menuIsActive = false;
 
 		Rect r = new Rect(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY, DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY);
+		
 		ButtonFunction toggleSound = new ButtonFunction() { public void invoke() { toggleSound(); } };
 		ButtonFunction toggleMusic = new ButtonFunction() { public void invoke() { toggleMusic(); } };
 		ButtonFunction cancel = new ButtonFunction() { public void invoke() { cancel(); } };
+		ButtonFunction fullscreenToggle = new ButtonFunction() { public void invoke() { Game.fullscreenToggle(); } };
 
 
 		String sound;
 		String music;
 		if(Game.isSoundOn) {sound = "On";} else {sound = "Off";}
 		if(Game.isMusicOn) {music = "On";} else {music = "Off";}
-		String s1, s2, s3;
+		String s1, s2, s3, s4;
 		s1 = "Sound is "+sound;
 		s2 = "Music is "+music;
 		s3 = "Back";
+		s4 = "Fullscreen Toggle";
 		
 		//Rect r = new Rect(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY, DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY);
 
-		String[] strings = {s1, s2, s3};
-		ButtonFunction[] functions = {toggleSound, toggleMusic, cancel};
+		String[] strings = {s4, s1, s2, s3};
+		ButtonFunction[] functions = {fullscreenToggle,toggleSound, toggleMusic, cancel};
 	
 		menuButtons = new PlainUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {

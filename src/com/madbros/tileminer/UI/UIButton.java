@@ -28,7 +28,8 @@ public abstract class UIButton {
 	public void render() {}
 
 	public void renderText() {
-		text.drawCenter(rect, fontColor);
+		Rect textRect = new Rect(rect.x, rect.y-2, rect.w, rect.h);
+		text.drawCenter(textRect, fontColor);
 	}
 	
 	public void handleMouseInput(boolean leftMousePressed, boolean leftMouseUp) {

@@ -184,6 +184,13 @@ public class Game implements ApplicationListener {
 		}
 	}
 	
+	public static void fullscreenToggle() {
+		if(!Gdx.graphics.isFullscreen()) {
+			Gdx.graphics.setDisplayMode(Game.currentScreenSizeX, Game.currentScreenSizeY, true);
+		} else {
+			Gdx.graphics.setDisplayMode(Game.currentScreenSizeX, Game.currentScreenSizeY, false);
+		}
+	}
 //	public static void toggleLoadingState() {
 //		if(currentState.type == State.LOADING) {
 //			currentState = new MainState();

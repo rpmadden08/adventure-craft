@@ -61,6 +61,7 @@ public class OptionsMenu extends Menu {
 		ButtonFunction toggleSound = new ButtonFunction() { public void invoke() { toggleSound(); } };
 
 		ButtonFunction toggleMusic = new ButtonFunction() { public void invoke() { toggleMusic(); } };
+		ButtonFunction fullscreenToggle = new ButtonFunction() { public void invoke() { Game.fullscreenToggle(); } };
 		
 		resolution = Game.currentScreenSizeX+"x"+Game.currentScreenSizeY+isStretched;
 		
@@ -73,16 +74,18 @@ public class OptionsMenu extends Menu {
 		Rect r2 = new Rect(MAIN_MENU_STARTX+200, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		Rect r3 = new Rect(Game.currentScreenSizeX /2-50, Game.currentScreenSizeY - 60, 100, 50);
 		Rect r4 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
-		Rect r5 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+40, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
-		Rect r6 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+80, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+		Rect r7 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+40, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+		Rect r5 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+80, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+		Rect r6 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+120, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+		
 		
 		String sound;
 		String music;
 		if(Game.isSoundOn) {sound = "On";} else {sound = "Off";}
 		if(Game.isMusicOn) {music = "On";} else {music = "Off";}
-		String[] strings = {"<",">", "Back", resolution, "Sound is "+sound,  "Music is "+music};
-		ButtonFunction[] functions = {leftResolution, rightResolution, cancel, rightResolution, toggleSound, toggleMusic};
-		Rect[] r = {r1, r2, r3, r4, r5, r6};
+		String[] strings = {"<",">", "Back", resolution, "Sound is "+sound,  "Music is "+music, "Toggle Fullscreen"};
+		ButtonFunction[] functions = {leftResolution, rightResolution, cancel, rightResolution, toggleSound, toggleMusic, fullscreenToggle};
+		Rect[] r = {r1, r2, r3, r4, r5, r6, r7};
 
 		menuButtons = new UIButton[functions.length];
 		for(int i = 0; i < functions.length; i++) {

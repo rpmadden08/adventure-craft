@@ -1,8 +1,6 @@
 package com.madbros.tileminer.Menus;
 
 import static com.madbros.tileminer.Constants.*;
-
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 //Chris' test imports
@@ -40,17 +38,17 @@ public class DebugMenu extends Menu {
 		ButtonFunction chunkBoundaries = new ButtonFunction() { public void invoke() { toggleChunkBoundaries(); } };
 		ButtonFunction characterSpeedDown = new ButtonFunction() { public void invoke() { characterSpeedDown(); } };
 		ButtonFunction characterSpeedUp = new ButtonFunction() { public void invoke() { characterSpeedUp(); } };
-		ButtonFunction tester = new ButtonFunction() { public void invoke() { tester(); } };
+		ButtonFunction fullscreenToggle = new ButtonFunction() { public void invoke() { Game.fullscreenToggle(); } };
 		
 		String s1, s2, s3, s4, s5;
 		if(collisionDetectionIsOn) s1 = "Collision Detection Is On"; else s1 = "Collision Detection Is Off";
 		if(collisionRectsAreOn) s2 = "Collision Rectangles Are On"; else s2 = "Collision Rectangles Are Off";
 		if(collisionTilesAreOn) s3 = "Collision Tiles Are On"; else s3 = "Collision Tiles Are Off";
 		if(chunkBoundariesAreOn) s4 = "Chunk Boundaries Are On"; else s4 = "Chunk Boundaries Are Off";
-		if(fullscreenIsOn) s5 = "Fullscreen Is On"; else s5 = "Fullscreen Is Off";
+		if(fullscreenIsOn) s5 = "Fullscreen Toggle"; else s5 = "Fullscreen Toggle";
 
 		String[] strings = {s1, s2, s3, s4, "Speed-", "Speed+", s5};
-		ButtonFunction[] functions = {collisionDetection, collisionRectangles, collisionTiles, chunkBoundaries, characterSpeedDown, characterSpeedUp, tester};
+		ButtonFunction[] functions = {collisionDetection, collisionRectangles, collisionTiles, chunkBoundaries, characterSpeedDown, characterSpeedUp, fullscreenToggle};
 		
 		menuButtons = new PlainUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {
@@ -58,17 +56,8 @@ public class DebugMenu extends Menu {
 		}
 	}
 	
-	public void tester() {
-		if(fullscreenIsOn == false) {
-			Gdx.graphics.setDisplayMode(Game.currentScreenSizeX, Game.currentScreenSizeY, true);
-			fullscreenIsOn = true;
-			menuButtons[6].setString("Fullscreen Is On");
-		} else {
-			Gdx.graphics.setDisplayMode(Game.currentScreenSizeX, Game.currentScreenSizeY, false);
-			fullscreenIsOn = false;
-			menuButtons[6].setString("Fullscreen Is Off");
-		}
-		
+	public void fullscreenToggle() {
+		Game.fullscreenToggle();
 	}
 	
 	public void toggleMenu() {
