@@ -205,22 +205,7 @@ public class Game implements ApplicationListener {
 //		currentState = new MainState();
 //	}
 	
-	public static void switchLevel() {
-		if(Game.currentLevel == OVERWORLD_FOLDER) {
-//			saveGame.saveGame();
-//			level.saveCurrentChunks();
-			collectibleController = new CollectibleController();
-			level = new Underground1();
-		} else if (Game.currentLevel == UNDERGROUND_1_FOLDER) {
-//			saveGame.saveGame();
-//			level.saveCurrentChunks();
-			collectibleController = new CollectibleController();
-			level = new Overworld();	
-		}
-		mobController = new MobController();
-		//hero = new Hero();
-		
-	}
+	
 	
 	public static void createSavesFolderIfNecessary() {
 		File f = new File(SAVE_LOC);
@@ -245,21 +230,8 @@ public class Game implements ApplicationListener {
 		f = new File(Game.locOfSavedGame + FURNACES_FOLDER);
 		if(!f.exists()) f.mkdir();
 		//make other folders...
-		
-		
-		//level = new Level();
-		if(isNewGame == false) {
-			SaveGame saveGame = new SaveGame();
-			SaveGameData saveData = saveGame.saveData();
-			if(saveData.currentLevel.equals(UNDERGROUND_1_FOLDER)) {
-				level = new Underground1();
-			} else {
-				level = new Overworld();
-			}
-		} else {
-			level = new Overworld();
-		}
-		
+		level = new Level();
+		createNewLevel();
 		hero = new Hero();
 		mobController = new MobController();
 		soundController = new SoundController();
@@ -273,10 +245,161 @@ public class Game implements ApplicationListener {
 		animationSystem = new AnimationSystem();
 		
 		collisionDetectionSystem = new CollisionDetectionSystem();
-		level.loadGame();
-		isNewGame = false;
+//		level.loadGame();
+//		isNewGame = false;
 		
 		//Game.currentState = new MainState();
+	}
+	
+	public static void switchLevel() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Game.saveGame.saveGame();
+					Game.level.saveCurrentChunks();
+					Game.gameStartTime = Time.getTime();
+					collectibleController = new CollectibleController();
+					if(Game.currentLevel == OVERWORLD_FOLDER) {
+						level = new Underground1();
+					} else if (Game.currentLevel == UNDERGROUND_1_FOLDER) {
+						level = new Overworld();	
+					}
+					SaveGameData saveData = saveGame.saveData();
+					level.spawnX = saveData.heroX;
+					level.spawnY = saveData.heroY;
+					level.masterSpawnX = saveData.spawnX;
+					level.masterSpawnY = saveData.spawnY;
+					level.startChunkX = level.spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+					level.startChunkY = level.spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+					level.chunkRect = new Rect(level.startChunkX, level.startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
+					
+					level.activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
+					level.currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
+					
+					File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
+					if(!f.exists()) {
+						Game.totalLoadingPoints = CHUNKS_LENGTH_TOTAL *CHUNKS_LENGTH_TOTAL +1;
+						Game.currentLoadingPoints = 0;
+						f.mkdir();
+						for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
+							for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
+								level.createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
+								Game.currentLoadingPoints = Game.currentLoadingPoints+1;
+							}
+						}	
+					} else {
+						Game.totalLoadingPoints = 1;
+						Game.currentLoadingPoints = 0;
+					}
+					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
+							level.loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, level.chunkRect.x + i, level.chunkRect.y + j);
+							
+						}
+						
+					}
+					f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel + "Level.sv");
+					if(f.exists()) {
+						Game.saveGame.loadCurrentLevel();
+					}
+					Game.currentLoadingPoints = Game.currentLoadingPoints+1;
+					gameStartTime = Time.getTime();		
+
+					level.autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+					
+					mobController = new MobController();		
+				} catch (Exception e) {
+				}
+
+				// time to post on the main thread!
+				Gdx.app.postRunnable(new Runnable() {
+					@Override
+					public void run() {
+						
+						level.finishLoading();
+					}
+				});
+			}
+		}).start();	
+	}
+	
+	public static void createNewLevel() {
+		Game.currentState = new LoadingState(Game.batch);
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				try {
+					if(isNewGame == false) {
+						Game.gameStartTime = Time.getTime();
+						SaveGame saveGame = new SaveGame();
+						SaveGameData saveData = saveGame.saveData();
+						if(saveData.currentLevel.equals(UNDERGROUND_1_FOLDER)) {
+							level = new Underground1();
+						} else {
+							level = new Overworld();
+						}
+						//SaveGameData saveData = Game.saveGame.saveData();
+						level.spawnX = saveData.heroX;
+						level.spawnY = saveData.heroY;
+						level.masterSpawnX = saveData.spawnX;
+						level.masterSpawnY = saveData.spawnY;
+						level.startChunkX = level.spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+						level.startChunkY = level.spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+						level.chunkRect = new Rect(level.startChunkX, level.startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
+					} else {
+						level = new Overworld();
+					}
+					level.activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
+					level.currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
+		
+		
+				
+					File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
+					if(!f.exists()) {
+						Game.totalLoadingPoints = CHUNKS_LENGTH_TOTAL *CHUNKS_LENGTH_TOTAL +1;
+						Game.currentLoadingPoints = 0;
+						f.mkdir();
+						for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
+							for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
+								level.createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
+								Game.currentLoadingPoints = Game.currentLoadingPoints+1;
+							}
+						}	
+					} else {
+						Game.totalLoadingPoints = 1;
+						Game.currentLoadingPoints = 0;
+					}
+					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
+							level.loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, level.chunkRect.x + i, level.chunkRect.y + j);
+							
+						}
+						
+					}
+					f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel + "Level.sv");
+					if(f.exists()) {
+						Game.saveGame.loadCurrentLevel();
+					}
+					Game.currentLoadingPoints = Game.currentLoadingPoints+1;
+					gameStartTime = Time.getTime();		
+
+					level.autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+				} catch (Exception e) {
+				}
+
+				// time to post on the main thread!
+				Gdx.app.postRunnable(new Runnable() {
+					@Override
+					public void run() {
+						
+						level.finishLoading();
+					}
+				});
+			}
+		}).start();	
+		
 	}
 	
 	public static int getCenterScreenX() {

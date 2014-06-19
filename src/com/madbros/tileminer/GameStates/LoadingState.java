@@ -14,7 +14,7 @@ public class LoadingState extends GameState{
 	
 	public LoadingState(SpriteBatch batch) {
 		type = State.LOADING;
-		
+		Game.currentLoadingPoints = 0;
 		input = new LoadingStateInput();
 		Gdx.input.setInputProcessor(input);
 	}
