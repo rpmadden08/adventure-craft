@@ -101,7 +101,6 @@ public class Level {
 	//public PerlinGenerator perlin3 = new PerlinGenerator((int) rgenseed);
 	public int size = 1000;
 	public long time;
-	public long gameStartTime;
 	public int hours = 8;
 	public int minutes = 0;
 	public boolean isDay = true;
@@ -134,76 +133,6 @@ public class Level {
 	}
 	
 	public void initialize() {
-//		Game.gameStartTime = Time.getTime();
-//		if(Game.isNewGame) {
-//		} else {
-//			SaveGameData saveData = Game.saveGame.saveData();
-//			spawnX = saveData.heroX;
-//			spawnY = saveData.heroY;
-//			masterSpawnX = saveData.spawnX;
-//			masterSpawnY = saveData.spawnY;
-//			startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
-//			startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
-//			chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
-//		}
-//		
-//		
-//		
-//		activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
-//		currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
-//		
-//		Game.currentState = new LoadingState(Game.batch);
-		
-		//This runs the game loading in a separate thread for loading purposes...
-//		new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				// we are in the custom thread here, let's wait a little
-//				// (and enjoy checked exceptions)
-//				try {
-//					File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
-//					if(!f.exists()) {
-//						Game.totalLoadingPoints = CHUNKS_LENGTH_TOTAL *CHUNKS_LENGTH_TOTAL +1;
-//						Game.currentLoadingPoints = 0;
-//						f.mkdir();
-//						for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
-//							for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
-//								createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
-//								Game.currentLoadingPoints = Game.currentLoadingPoints+1;
-//							}
-//						}	
-//					} else {
-//						Game.totalLoadingPoints = 1;
-//						Game.currentLoadingPoints = 0;
-//					}
-//					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-//						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
-//							loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
-//							
-//						}
-//						
-//					}
-//					f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel + "Level.sv");
-//					if(f.exists()) {
-//						Game.saveGame.loadCurrentLevel();
-//					}
-//					Game.currentLoadingPoints = Game.currentLoadingPoints+1;
-//					gameStartTime = Time.getTime();		
-//
-//					autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
-//				} catch (Exception e) {
-//				}
-//
-//				// time to post on the main thread!
-//				Gdx.app.postRunnable(new Runnable() {
-//					@Override
-//					public void run() {
-//						
-//						finishLoading();
-//					}
-//				});
-//			}
-//		}).start();	
 	}
 	
 	public void finishLoading() {
@@ -218,12 +147,13 @@ public class Level {
 	
 	public void respawn(int x, int y, String folder) {
 		teleportHero(x,y,folder);
-		teleportChunkRect();
-		int bX = x - (chunkRect.x * CHUNK_SIZE);
-		int bY = y - (chunkRect.y * CHUNK_SIZE);
-		if(Game.level.activeBlocks[bX][bY].absRect.detectCollision(Game.hero.absRect)) {
-			Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, activeBlocks);
-		}
+		
+		//teleportChunkRect();
+//		int bX = x - (chunkRect.x * CHUNK_SIZE);
+//		int bY = y - (chunkRect.y * CHUNK_SIZE);
+//		if(Game.level.activeBlocks[bX][bY].absRect.detectCollision(Game.hero.absRect)) {
+//			Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, activeBlocks);
+//		}
 //		System.out.println(Game.level.activeBlocks[bX][bY].absRect.x);
 //		System.out.println(Game.hero.absRect.x);
 		//activeBlocks[40][40].isHighlighted = true;
@@ -250,18 +180,18 @@ public class Level {
 		}		
 	}
 	
-	public void teleportChunkRect() {
-		startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
-		startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
-		
-		chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
-				loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);	
-			}	
-		}
-		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
-	}
+//	public void teleportChunkRect() {
+//		startChunkX = spawnX /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+//		startChunkY = spawnY /(CHUNK_SIZE*TILE_SIZE) - (CHUNKS_IN_A_ROW /2);
+//		
+//		chunkRect = new Rect(startChunkX, startChunkY, CHUNKS_IN_A_ROW-1, CHUNKS_IN_A_ROW-1);
+//		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+//			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
+//				loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);	
+//			}	
+//		}
+//		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+//	}
 	
 	
 	public void loadGame() {

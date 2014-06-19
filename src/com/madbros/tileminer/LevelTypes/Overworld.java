@@ -13,7 +13,7 @@ public class Overworld extends Level{
 	public Overworld() {
 		//currentLevel = OVERWORLD_FOLDER;
 		Game.currentLevel = OVERWORLD_FOLDER;
-		initialize();
+		//sinitialize();
 		
 	}
 	
