@@ -294,11 +294,16 @@ public class Game implements ApplicationListener {
 					}
 					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
-							level.loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, level.chunkRect.x + i, level.chunkRect.y + j);
+							level.loadInitialChunks(CHUNK_SIZE*i, CHUNK_SIZE*j, level.chunkRect.x + i, level.chunkRect.y + j);
 							
 						}
 						
 					}
+					level.easternChunks = new Block[CHUNKS_IN_A_ROW][];
+					level.northernChunks = new Block[CHUNKS_IN_A_ROW][];
+					level.southernChunks = new Block[CHUNKS_IN_A_ROW][];
+					level.westernChunks = new Block[CHUNKS_IN_A_ROW][];
+					
 					f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel + "Level.sv");
 					if(f.exists()) {
 						Game.saveGame.loadCurrentLevel();
@@ -384,11 +389,23 @@ public class Game implements ApplicationListener {
 					}
 					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
-							level.loadChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, level.chunkRect.x + i, level.chunkRect.y + j);
+							level.loadInitialChunks(CHUNK_SIZE*i, CHUNK_SIZE*j, level.chunkRect.x + i, level.chunkRect.y + j);
 							
 						}
 						
 					}
+					//Get eastern Chunk
+					level.easternChunks = new Block[CHUNK_SIZE][TILES_PER_ROW];
+					level.westernChunks = new Block[CHUNK_SIZE][TILES_PER_ROW];
+					
+					level.northernChunks = new Block[TILES_PER_ROW][CHUNK_SIZE];
+					level.southernChunks = new Block[TILES_PER_ROW][CHUNK_SIZE];
+					
+						
+					level.loadEasternChunks();
+					level.loadWesternChunks();
+					level.loadNorthernChunks();
+					level.loadSouthernChunks();
 					f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel + "Level.sv");
 					if(f.exists()) {
 						Game.saveGame.loadCurrentLevel();

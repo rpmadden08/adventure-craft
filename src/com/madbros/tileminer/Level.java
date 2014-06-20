@@ -31,6 +31,17 @@ public class Level {
 	
 	public Block[][] activeBlocks;
 	public Block[][] currentChunk;
+	
+	public Block[][] easternChunks;
+	public Block[][] easternChunks1;
+	public Block[][] easternChunks2;
+	public Block[][] easternChunks3;
+	public Block[][] easternChunks4;
+	
+	public Block[][] westernChunks;
+	public Block[][] northernChunks;
+	public Block[][] southernChunks;
+	
 	public ArrayList<Block> collisionBlocks;
 	public Block highlightedBlock;
 	public Block highlightedBlock2;
@@ -389,79 +400,236 @@ public class Level {
 //			}
 //	}
 	
-	public void getNorthernChunks() {
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			saveChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
-		}
-		
-//		renderRect.y += CHUNK_SIZE;
-		
-		shiftActiveBlocksArray(DOWN);
-		chunkRect.y--;
-		
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			loadChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
-		}
-		
-		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
-		
-		
-	}
+
 	
-	public void getSouthernChunks() {
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			saveChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
-		}
-		
-//		renderRect.y -= CHUNK_SIZE;
-		
-		shiftActiveBlocksArray(UP);
-		chunkRect.y++;
-		
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			loadChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
-		}
-		
-		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
-		
-		
-	}
+
+	
+	
+	
+	
+
+	
+	
 	
 	public void getEasternChunks() {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
 		}
-		
-//		renderRect.x -= CHUNK_SIZE;
-		
+		//Convert activeBlocks to westernChunks
+		System.out.println("ShiftingEasternChunks");
+		for(int x = 0; x < CHUNK_SIZE; x++) {
+			for(int y = 0; y < activeBlocks.length; y++) {
+				westernChunks[x][y] = activeBlocks[x][y];
+			}
+		}
 		shiftActiveBlocksArray(LEFT);
+		
+		for(int x = activeBlocks.length-CHUNK_SIZE; x <= activeBlocks.length-1; x++) {
+			activeBlocks[x] = easternChunks[x-(CHUNK_SIZE*4)].clone();
+		}
 		chunkRect.x++;
 		
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			loadChunk(TILES_PER_ROW-CHUNK_SIZE, CHUNK_SIZE*i, chunkRect.x2(), chunkRect.y + i);
-		}
-		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
-	
+		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
+		
+		shiftLoadChunksEast();
+		
 	}
-
+	
+	public void shiftLoadChunksEast() {
+		//shift northernChunks Left
+		for(int x = CHUNK_SIZE; x < activeBlocks.length; x++) {
+			northernChunks[x-CHUNK_SIZE] = northernChunks[x].clone();
+		}
+		//shift sourthernChunks Left
+		for(int x = CHUNK_SIZE; x < activeBlocks.length; x++) {
+			southernChunks[x-CHUNK_SIZE] = southernChunks[x].clone();
+		}
+		//load northern Chunk
+		loadChunk(CHUNK_SIZE*4,0, chunkRect.x+4, chunkRect.y-1, northernChunks);
+		//load southern Chunk
+		loadChunk(CHUNK_SIZE*4,0, chunkRect.x+4, chunkRect.y2()+1, southernChunks);
+		loadEasternChunks();
+	}
+	
 	public void getWesternChunks() {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(TILES_PER_ROW-CHUNK_SIZE, CHUNK_SIZE*i, chunkRect.x2(), chunkRect.y + i);
 		}
-		
-//		renderRect.x += CHUNK_SIZE;
-		
-		shiftActiveBlocksArray(RIGHT);
-		chunkRect.x--;
-		
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			loadChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
+		System.out.println("ShiftingWesternChunks");
+		for(int x = activeBlocks.length-CHUNK_SIZE; x <= activeBlocks.length-1; x++) {
+			for(int y = 0; y < activeBlocks.length; y++) {
+				easternChunks[x-(CHUNK_SIZE*4)][y] = activeBlocks[x][y];
+			}
 		}
+		shiftActiveBlocksArray(RIGHT);
+			
+		for(int x = 0; x < CHUNK_SIZE; x++) {
+			for(int y = 0; y < activeBlocks.length; y++) {
+				activeBlocks[x][y] = westernChunks[x][y];
+			}
+		}
+		chunkRect.x--;
+		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
+			
+		shiftLoadChunksWest();
 		
-		autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+			
+		//NEW CODE END			
+	}
+	public void shiftLoadChunksWest() {
+		//shift northernChunks Left
+		for(int x = activeBlocks.length-1-CHUNK_SIZE; x >= 0; x--) {
+			northernChunks[x+CHUNK_SIZE] = northernChunks[x].clone();
+		}
+		//shift sourthernChunks Left
+		for(int x = activeBlocks.length-1-CHUNK_SIZE; x >= 0; x--) {
+			southernChunks[x+CHUNK_SIZE] = southernChunks[x].clone();
+		}
+		//load northern Chunk
+		loadChunk(CHUNK_SIZE*0,0, chunkRect.x+0, chunkRect.y-1, northernChunks);
+		//load southern Chunk
+		loadChunk(CHUNK_SIZE*0,0, chunkRect.x+0, chunkRect.y2()+1, southernChunks);
+		loadWesternChunks();
+	}
+	
+	public void getNorthernChunks() {
+		System.out.println("ShiftingNorthernChunks");
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			saveChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
+		}
+		for(int x = 0; x < activeBlocks.length; x++) {
+			for(int y = activeBlocks.length-CHUNK_SIZE; y < activeBlocks.length; y++) {
+				southernChunks[x][y-(CHUNK_SIZE*4)] = activeBlocks[x][y];
+			}
+		}
+		shiftActiveBlocksArray(DOWN);
 		
+		for(int x = 0; x < activeBlocks.length; x++) {
+			for(int y = 0; y < CHUNK_SIZE; y++) {
+				activeBlocks[x][y] = northernChunks[x][y];
+			}
+		}
+		chunkRect.y--;
+		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
+		
+		shiftLoadChunksNorth();
 		
 	}
+	
+	public void shiftLoadChunksNorth() {
+		//shift easternChunks Left
+		for(int y = 0; y < CHUNK_SIZE; y++) {
+			//System.out.println(y);
+			System.arraycopy(easternChunks[y], 0, easternChunks[y], CHUNK_SIZE, activeBlocks.length-CHUNK_SIZE);
+		}
+		//shift southernChunks Left
+		for(int y = 0; y < CHUNK_SIZE; y++) {
+			System.arraycopy(westernChunks[y], 0, westernChunks[y], CHUNK_SIZE, activeBlocks.length-CHUNK_SIZE);
+		}
+		//load eastern Chunk
+		loadChunk(0, CHUNK_SIZE*0, chunkRect.x2()+1, chunkRect.y + 0, easternChunks);
+		//load western Chunk
+		loadChunk(0, CHUNK_SIZE*0, chunkRect.x-1, chunkRect.y + 0, westernChunks);
+		loadNorthernChunks();
+	}
+	
+	public void getSouthernChunks() {	
+		//Save northernChunks here...
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			saveChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
+		}
+		//Convert activeBlocks to northernChunks
+		for(int x = 0; x < activeBlocks.length; x++) {
+			for(int y = 0; y < CHUNK_SIZE; y++) {
+				northernChunks[x][y] = activeBlocks[x][y] ;
+			}
+		}
+		System.out.println("ShiftingSouthernChunks");
+		shiftActiveBlocksArray(UP);
+		for(int x = 0; x < activeBlocks.length; x++) {
+			for(int y = activeBlocks.length-CHUNK_SIZE; y < activeBlocks.length; y++) {
+				activeBlocks[x][y] = southernChunks[x][y-(CHUNK_SIZE*4)];
+			}
+		}
+		chunkRect.y++;
+		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
+		shiftLoadChunksSouth();
+	}
+	
+	public void shiftLoadChunksSouth() {
+		//shift easternChunks Left
+		for(int y = 0; y < CHUNK_SIZE; y++) {
+			//System.out.println(y);
+			System.arraycopy(easternChunks[y], CHUNK_SIZE, easternChunks[y], 0, activeBlocks.length-CHUNK_SIZE);
+		}
+		//shift southernChunks Left
+		for(int y = 0; y < CHUNK_SIZE; y++) {
+			System.arraycopy(westernChunks[y], CHUNK_SIZE, westernChunks[y], 0, activeBlocks.length-CHUNK_SIZE);
+		}
+		//load eastern Chunk
+		loadChunk(0, CHUNK_SIZE*4, chunkRect.x2()+1, chunkRect.y + 4, easternChunks);
+		//load western Chunk
+		loadChunk(0, CHUNK_SIZE*4, chunkRect.x-1, chunkRect.y + 4, westernChunks);
+		loadSouthernChunks();
+	}
+	
+	public void loadSouthernChunks() {
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			loadChunk(CHUNK_SIZE*i,0, chunkRect.x+i, chunkRect.y2()+1, southernChunks);
+		}
+	}
+	
+	public void loadNorthernChunks() {
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			loadChunk(CHUNK_SIZE*i,0, chunkRect.x+i, chunkRect.y-1, northernChunks);
+		}
+	}
+	
+	public void loadWesternChunks() {
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			loadChunk(0, CHUNK_SIZE*i, chunkRect.x-1, chunkRect.y + i, westernChunks);
+		}
+	}
+	
+	public void loadEasternChunks() {		
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			loadChunk(0, CHUNK_SIZE*i, chunkRect.x2()+1, chunkRect.y + i, easternChunks);
+		}
+	}
+	
+	public void loadChunk(int startX, int startY, int chunkX, int chunkY, Block[][] nsewChunks) {
+		//64,0,
+		isLoading = true;
+		Block[][] chunk = Game.saveGame.loadChunk(chunkX, chunkY);
+		int i = 0; int j = 0;
+		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
+			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
+				nsewChunks[x][y] = chunk[i][j];
+				
+				j++;
+			}
+			i++; j =0;
+		}
+		
+		isLoading = false;
+	}
+	
+	public void loadInitialChunks(int startX, int startY, int chunkX, int chunkY) {
+		isLoading = true;
+		
+		Block[][] chunk = Game.saveGame.loadChunk(chunkX, chunkY);
+		int i = 0; int j = 0;
+		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
+			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
+				activeBlocks[x][y] = chunk[i][j];
+				j++;
+			}
+			i++; j =0;
+		}
+		
+		isLoading = false;
+	}
+	
 	
 	public void shiftActiveBlocksArray(int dir) {
 		if(dir == DOWN) { 
@@ -516,21 +684,7 @@ public class Level {
 		return block;
 	}
 	
-	public void loadChunk(int startX, int startY, int chunkX, int chunkY) {
-		isLoading = true;
-		
-		Block[][] chunk = Game.saveGame.loadChunk(chunkX, chunkY);
-		int i = 0; int j = 0;
-		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
-			for(int y = startY; y < startY+CHUNK_SIZE; y++) {
-				activeBlocks[x][y] = chunk[i][j];
-				j++;
-			}
-			i++; j =0;
-		}
-		
-		isLoading = false;
-	}
+	
 	
 	public void createNewChunk(int startX, int startY, int chunkX, int chunkY) {}
 
@@ -538,9 +692,7 @@ public class Level {
 	public void autoTileNewArea(int startX, int startY, int endX, int endY) {
 		for(int x = startX; x < endX; x++) {
 			for(int y = startY; y < endY; y++) {
-				//if(x % 2 == 0 && y % 2 == 0) {
-					activeBlocks[x][y] = autoTile(activeBlocks, activeBlocks[x][y], x, y);
-				//}
+				activeBlocks[x][y] = autoTile(activeBlocks, activeBlocks[x][y], x, y);
 			}
 		}
 	}
