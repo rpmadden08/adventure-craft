@@ -33,15 +33,11 @@ public class Level {
 	public Block[][] currentChunk;
 	
 	public Block[][] easternChunks;
-	public Block[][] easternChunks1;
-	public Block[][] easternChunks2;
-	public Block[][] easternChunks3;
-	public Block[][] easternChunks4;
-	
 	public Block[][] westernChunks;
 	public Block[][] northernChunks;
 	public Block[][] southernChunks;
 	
+	public Thread loadingThread = new Thread();
 	public ArrayList<Block> collisionBlocks;
 	public Block highlightedBlock;
 	public Block highlightedBlock2;
@@ -385,38 +381,12 @@ public class Level {
 		}
 		
 	}
-	
-//	public void removeUnfinished(int startX, int startY) {
-//		Iterator<Block> iterator = blooming.iterator();
-//		while (iterator.hasNext()) {
-//			
-//				Block b = iterator.next();
-//				int x = b.getX(activeBlocks);
-//				int y = b.getY(activeBlocks);
-//				if(x >= startX && y >= startY && x <= startX + CHUNK_SIZE+1 && y <= startY + CHUNK_SIZE+1) {
-//					iterator.remove();
-//				}
-//				
-//			}
-//	}
-	
-
-	
-
-	
-	
-	
-	
-
-	
-	
-	
+		
 	public void getEasternChunks() {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
 		}
 		//Convert activeBlocks to westernChunks
-		System.out.println("ShiftingEasternChunks");
 		for(int x = 0; x < CHUNK_SIZE; x++) {
 			for(int y = 0; y < activeBlocks.length; y++) {
 				westernChunks[x][y] = activeBlocks[x][y];
@@ -430,32 +400,26 @@ public class Level {
 		chunkRect.x++;
 		
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
-		
-		shiftLoadChunksEast();
-		
-	}
-	
-	public void shiftLoadChunksEast() {
-		//shift northernChunks Left
-		for(int x = CHUNK_SIZE; x < activeBlocks.length; x++) {
-			northernChunks[x-CHUNK_SIZE] = northernChunks[x].clone();
+		try {
+			loadingThread.join();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		//shift sourthernChunks Left
-		for(int x = CHUNK_SIZE; x < activeBlocks.length; x++) {
-			southernChunks[x-CHUNK_SIZE] = southernChunks[x].clone();
-		}
-		//load northern Chunk
-		loadChunk(CHUNK_SIZE*4,0, chunkRect.x+4, chunkRect.y-1, northernChunks);
-		//load southern Chunk
-		loadChunk(CHUNK_SIZE*4,0, chunkRect.x+4, chunkRect.y2()+1, southernChunks);
-		loadEasternChunks();
+		loadingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				shiftLoadChunksEast();
+			}
+		});	
+		loadingThread.start();
+		
 	}
 	
 	public void getWesternChunks() {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(TILES_PER_ROW-CHUNK_SIZE, CHUNK_SIZE*i, chunkRect.x2(), chunkRect.y + i);
 		}
-		System.out.println("ShiftingWesternChunks");
 		for(int x = activeBlocks.length-CHUNK_SIZE; x <= activeBlocks.length-1; x++) {
 			for(int y = 0; y < activeBlocks.length; y++) {
 				easternChunks[x-(CHUNK_SIZE*4)][y] = activeBlocks[x][y];
@@ -471,29 +435,26 @@ public class Level {
 		chunkRect.x--;
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 			
-		shiftLoadChunksWest();
+		try {
+			loadingThread.join();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		loadingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				shiftLoadChunksWest();
+			}
+		});	
+		loadingThread.start();
 		
 			
 		//NEW CODE END			
 	}
-	public void shiftLoadChunksWest() {
-		//shift northernChunks Left
-		for(int x = activeBlocks.length-1-CHUNK_SIZE; x >= 0; x--) {
-			northernChunks[x+CHUNK_SIZE] = northernChunks[x].clone();
-		}
-		//shift sourthernChunks Left
-		for(int x = activeBlocks.length-1-CHUNK_SIZE; x >= 0; x--) {
-			southernChunks[x+CHUNK_SIZE] = southernChunks[x].clone();
-		}
-		//load northern Chunk
-		loadChunk(CHUNK_SIZE*0,0, chunkRect.x+0, chunkRect.y-1, northernChunks);
-		//load southern Chunk
-		loadChunk(CHUNK_SIZE*0,0, chunkRect.x+0, chunkRect.y2()+1, southernChunks);
-		loadWesternChunks();
-	}
+	
 	
 	public void getNorthernChunks() {
-		System.out.println("ShiftingNorthernChunks");
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			saveChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
 		}
@@ -512,8 +473,89 @@ public class Level {
 		chunkRect.y--;
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 		
-		shiftLoadChunksNorth();
+		try {
+			loadingThread.join();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		loadingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				shiftLoadChunksNorth();
+			}
+		});	
+		loadingThread.start();
 		
+	}
+	
+	
+	
+	public void getSouthernChunks() {	
+		//Save northernChunks here...
+		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+			saveChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
+		}
+		//Convert activeBlocks to northernChunks
+		for(int x = 0; x < activeBlocks.length; x++) {
+			for(int y = 0; y < CHUNK_SIZE; y++) {
+				northernChunks[x][y] = activeBlocks[x][y] ;
+			}
+		}
+		shiftActiveBlocksArray(UP);
+		for(int x = 0; x < activeBlocks.length; x++) {
+			for(int y = activeBlocks.length-CHUNK_SIZE; y < activeBlocks.length; y++) {
+				activeBlocks[x][y] = southernChunks[x][y-(CHUNK_SIZE*4)];
+			}
+		}
+		chunkRect.y++;
+		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
+		
+		try {
+			loadingThread.join();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		loadingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				shiftLoadChunksSouth();
+			}
+		});	
+		loadingThread.start();
+	}
+	
+	public void shiftLoadChunksEast() {
+		//shift northernChunks Left
+		for(int x = CHUNK_SIZE; x < activeBlocks.length; x++) {
+			northernChunks[x-CHUNK_SIZE] = northernChunks[x].clone();
+		}
+		//shift sourthernChunks Left
+		for(int x = CHUNK_SIZE; x < activeBlocks.length; x++) {
+			southernChunks[x-CHUNK_SIZE] = southernChunks[x].clone();
+		}
+		//load northern Chunk
+		loadChunk(CHUNK_SIZE*4,0, chunkRect.x+4, chunkRect.y-1, northernChunks);
+		//load southern Chunk
+		loadChunk(CHUNK_SIZE*4,0, chunkRect.x+4, chunkRect.y2()+1, southernChunks);
+		loadEasternChunks();
+	}
+	
+	public void shiftLoadChunksWest() {
+		//shift northernChunks Left
+		for(int x = activeBlocks.length-1-CHUNK_SIZE; x >= 0; x--) {
+			northernChunks[x+CHUNK_SIZE] = northernChunks[x].clone();
+		}
+		//shift sourthernChunks Left
+		for(int x = activeBlocks.length-1-CHUNK_SIZE; x >= 0; x--) {
+			southernChunks[x+CHUNK_SIZE] = southernChunks[x].clone();
+		}
+		//load northern Chunk
+		loadChunk(CHUNK_SIZE*0,0, chunkRect.x+0, chunkRect.y-1, northernChunks);
+		//load southern Chunk
+		loadChunk(CHUNK_SIZE*0,0, chunkRect.x+0, chunkRect.y2()+1, southernChunks);
+		loadWesternChunks();
 	}
 	
 	public void shiftLoadChunksNorth() {
@@ -531,29 +573,6 @@ public class Level {
 		//load western Chunk
 		loadChunk(0, CHUNK_SIZE*0, chunkRect.x-1, chunkRect.y + 0, westernChunks);
 		loadNorthernChunks();
-	}
-	
-	public void getSouthernChunks() {	
-		//Save northernChunks here...
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			saveChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
-		}
-		//Convert activeBlocks to northernChunks
-		for(int x = 0; x < activeBlocks.length; x++) {
-			for(int y = 0; y < CHUNK_SIZE; y++) {
-				northernChunks[x][y] = activeBlocks[x][y] ;
-			}
-		}
-		System.out.println("ShiftingSouthernChunks");
-		shiftActiveBlocksArray(UP);
-		for(int x = 0; x < activeBlocks.length; x++) {
-			for(int y = activeBlocks.length-CHUNK_SIZE; y < activeBlocks.length; y++) {
-				activeBlocks[x][y] = southernChunks[x][y-(CHUNK_SIZE*4)];
-			}
-		}
-		chunkRect.y++;
-		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
-		shiftLoadChunksSouth();
 	}
 	
 	public void shiftLoadChunksSouth() {
