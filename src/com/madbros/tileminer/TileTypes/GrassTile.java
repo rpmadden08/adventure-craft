@@ -52,6 +52,9 @@ public class GrassTile extends Tile {
 		//System.out.println("YESSS");
 		if(Game.currentLevel == OVERWORLD_FOLDER) {
 			Random rand = new Random();
+//			System.out.println("X"+x);
+//			System.out.println("Y"+y);
+			
 			Block[] b = new Block[] {Game.level.activeBlocks[x+1][y],Game.level.activeBlocks[x-1][y],Game.level.activeBlocks[x][y+1],Game.level.activeBlocks[x][y-1]};
 			for(int a = 0; a<b.length;a++) {
 				if(b[a].layers[GRASS_LAYER].id == AIR && b[a].layers[WATER_LAYER].id == AIR && b[a].layers[OBJECT_LAYER].id == AIR && b[a].layers[LIGHT_DIRT_LAYER].id != AIR) {

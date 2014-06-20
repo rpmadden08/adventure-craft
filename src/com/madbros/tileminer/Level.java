@@ -618,7 +618,13 @@ public class Level {
 	
 	public void loadChunk(int startX, int startY, int chunkX, int chunkY, Block[][] nsewChunks) {
 		//64,0,
+		
 		isLoading = true;
+		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv");
+		if(!f.exists()) { 
+			createNewChunk(startX,startY,chunkX,chunkY);
+		}
+			
 		Block[][] chunk = Game.saveGame.loadChunk(chunkX, chunkY);
 		int i = 0; int j = 0;
 		for(int x = startX; x < startX+CHUNK_SIZE; x++) {
@@ -631,10 +637,15 @@ public class Level {
 		}
 		
 		isLoading = false;
+		
 	}
 	
 	public void loadInitialChunks(int startX, int startY, int chunkX, int chunkY) {
 		isLoading = true;
+		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv");
+		if(!f.exists()) { 
+			createNewChunk(startX,startY,chunkX,chunkY);
+		}
 		
 		Block[][] chunk = Game.saveGame.loadChunk(chunkX, chunkY);
 		int i = 0; int j = 0;
@@ -645,6 +656,7 @@ public class Level {
 			}
 			i++; j =0;
 		}
+
 		
 		isLoading = false;
 	}

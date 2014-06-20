@@ -103,8 +103,7 @@ public class ChunkGenerator {
 
 	public int getGroundLayerGeneration(int m, int n, Random rand, int x, int y) {
 		//BELOW SEA LEVEL
-		if(x > CHUNK_SIZE * 3 - 1 && x < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2 - 1 && y > CHUNK_SIZE * 3 - 1 &&
-				   y < CHUNKS_LENGTH_TOTAL * CHUNK_SIZE - CHUNK_SIZE * 2) {
+		
 			if(chunkNoiseElevation[m][n] < 0.5) {
 				Game.oceanTally = Game.oceanTally +1;
 				return 1;
@@ -153,10 +152,6 @@ public class ChunkGenerator {
 	    			
 	    		}
 	    	}
-	
-		} else {
-			return 10;
-		}
 	}
 	
 	

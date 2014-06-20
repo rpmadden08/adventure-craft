@@ -54,7 +54,6 @@ public class RenderSystem {
 		Block firstBlock = lv.activeBlocks[0][0];
 		offsetPoint = Helpers.getOffsetPoint(hero, firstBlock);
 		renderRect = Helpers.getRenderRect(hero, firstBlock);
-		
 		startX = lv.activeBlocks[renderRect.x][renderRect.y].absRect.x + offsetPoint.x;
 		startY = lv.activeBlocks[renderRect.x][renderRect.y].absRect.y + offsetPoint.y;
 	}

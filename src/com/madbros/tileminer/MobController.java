@@ -75,7 +75,7 @@ public class MobController {
 		
 		
 		
-		
+		//System.out.println(Game.level.activeBlocks[0][0].absRect.x);
 		int absX = x* TILE_SIZE + Game.level.activeBlocks[0][0].absRect.x;
 		int absY = y* TILE_SIZE + Game.level.activeBlocks[0][0].absRect.y;
 		Rect possibleSpawnPoint = new Rect(absX, absY, 1,1);
