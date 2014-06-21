@@ -400,19 +400,21 @@ public class Level {
 		chunkRect.x++;
 		
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
-		try {
-			loadingThread.join();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		loadingThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				shiftLoadChunksEast();
-			}
-		});	
-		loadingThread.start();
+//		try {
+//			loadingThread.join();
+//		} catch (InterruptedException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		loadingThread = new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				shiftLoadChunksEast();
+//			}
+//		});	
+//		loadingThread.start();
+		
+		shiftLoadChunksEast();
 		
 	}
 	
@@ -435,20 +437,20 @@ public class Level {
 		chunkRect.x--;
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 			
-		try {
-			loadingThread.join();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		loadingThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				shiftLoadChunksWest();
-			}
-		});	
-		loadingThread.start();
-		
+//		try {
+//			loadingThread.join();
+//		} catch (InterruptedException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		loadingThread = new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				shiftLoadChunksWest();
+//			}
+//		});	
+//		loadingThread.start();
+		shiftLoadChunksWest();
 			
 		//NEW CODE END			
 	}
@@ -473,19 +475,20 @@ public class Level {
 		chunkRect.y--;
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 		
-		try {
-			loadingThread.join();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		loadingThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				shiftLoadChunksNorth();
-			}
-		});	
-		loadingThread.start();
+//		try {
+//			loadingThread.join();
+//		} catch (InterruptedException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		loadingThread = new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				shiftLoadChunksNorth();
+//			}
+//		});	
+//		loadingThread.start();
+		shiftLoadChunksNorth();
 		
 	}
 	
@@ -511,19 +514,20 @@ public class Level {
 		chunkRect.y++;
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 		
-		try {
-			loadingThread.join();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		loadingThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				shiftLoadChunksSouth();
-			}
-		});	
-		loadingThread.start();
+//		try {
+//			loadingThread.join();
+//		} catch (InterruptedException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		loadingThread = new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				shiftLoadChunksSouth();
+//			}
+//		});	
+//		loadingThread.start();
+		shiftLoadChunksSouth();
 	}
 	
 	public void shiftLoadChunksEast() {

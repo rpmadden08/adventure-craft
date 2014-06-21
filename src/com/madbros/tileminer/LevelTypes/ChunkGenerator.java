@@ -103,7 +103,6 @@ public class ChunkGenerator {
 
 	public int getGroundLayerGeneration(int m, int n, Random rand, int x, int y) {
 		//BELOW SEA LEVEL
-		
 			if(chunkNoiseElevation[m][n] < 0.5) {
 				Game.oceanTally = Game.oceanTally +1;
 				return 1;
