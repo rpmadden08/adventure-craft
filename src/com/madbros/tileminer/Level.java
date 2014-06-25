@@ -38,6 +38,7 @@ public class Level {
 	public Block[][] southernChunks;
 	
 	public Thread loadingThread = new Thread();
+	public Thread savingThread = new Thread();
 	public ArrayList<Block> collisionBlocks;
 	public Block highlightedBlock;
 	public Block highlightedBlock2;
@@ -286,6 +287,22 @@ public class Level {
 		Game.saveGame.saveChunk(chunk, chunkX, chunkY);
 	}
 	
+	public void saveEdgeChunk(int startX, int startY, int chunkX, int chunkY, Block[][] nsewChunks) {
+		Block[][] chunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
+		int x2 = 0;
+		int y2 = 0;
+		for(int x = startX; x < startX + CHUNK_SIZE; x++) {
+			for(int y = startY; y < startY + CHUNK_SIZE; y++) {
+				chunk[x2][y2] = nsewChunks[x][y];
+            	y2++;
+			}
+			x2++; y2 = 0;
+		}
+		
+		Game.saveGame.saveChunk(chunk, chunkX, chunkY);
+	}
+	
+	
 	private void highlight32(Rect renderRect, Point offsetPoint) {
 		if(highlightedBlock != null) {
 			highlightedBlock.isHighlighted = false;
@@ -383,8 +400,12 @@ public class Level {
 	}
 		
 	public void getEasternChunks() {
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			saveChunk(0, CHUNK_SIZE*i, chunkRect.x, chunkRect.y + i);
+		//Game.currentState = new LoadingState(Game.batch);
+		try {
+			loadingThread.join();
+			savingThread.join();
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
 		}
 		//Convert activeBlocks to westernChunks
 		for(int x = 0; x < CHUNK_SIZE; x++) {
@@ -400,28 +421,44 @@ public class Level {
 		chunkRect.x++;
 		
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
-//		try {
-//			loadingThread.join();
-//		} catch (InterruptedException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		loadingThread = new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				shiftLoadChunksEast();
-//			}
-//		});	
-//		loadingThread.start();
+
+		System.out.println("StartedLoading");
 		
-		shiftLoadChunksEast();
+		savingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+					saveEdgeChunk(0, CHUNK_SIZE*i, chunkRect.x-1, chunkRect.y + i, westernChunks);
+				}
+				System.out.println("FinishedSaving");
+			}
+		});	
+		savingThread.start();
+		loadingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+
+				shiftLoadChunksEast();
+				System.out.println("FinishedLoading");
+			}
+		});	
+		loadingThread.start();
+		
+		//shiftLoadChunksEast();
 		
 	}
 	
 	public void getWesternChunks() {
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			saveChunk(TILES_PER_ROW-CHUNK_SIZE, CHUNK_SIZE*i, chunkRect.x2(), chunkRect.y + i);
+		try {
+			loadingThread.join();
+			savingThread.join();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		
+		
+		
 		for(int x = activeBlocks.length-CHUNK_SIZE; x <= activeBlocks.length-1; x++) {
 			for(int y = 0; y < activeBlocks.length; y++) {
 				easternChunks[x-(CHUNK_SIZE*4)][y] = activeBlocks[x][y];
@@ -436,30 +473,41 @@ public class Level {
 		}
 		chunkRect.x--;
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
-			
-//		try {
-//			loadingThread.join();
-//		} catch (InterruptedException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		loadingThread = new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				shiftLoadChunksWest();
-//			}
-//		});	
-//		loadingThread.start();
-		shiftLoadChunksWest();
+
+		savingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+					saveEdgeChunk(0, CHUNK_SIZE*i, chunkRect.x2()+1, chunkRect.y + i, easternChunks);
+				}
+				System.out.println("FinishedSaving West");
+			}
+		});	
+		savingThread.start();
+		loadingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				shiftLoadChunksWest();
+			}
+		});	
+		loadingThread.start();
 			
 		//NEW CODE END			
 	}
 	
 	
 	public void getNorthernChunks() {
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			saveChunk(CHUNK_SIZE*i, TILES_PER_ROW-CHUNK_SIZE, chunkRect.x + i, chunkRect.y2());
+		
+		try {
+			savingThread.join();
+			loadingThread.join();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		System.out.println("Started Saving NORTH");
+		
+		
 		for(int x = 0; x < activeBlocks.length; x++) {
 			for(int y = activeBlocks.length-CHUNK_SIZE; y < activeBlocks.length; y++) {
 				southernChunks[x][y-(CHUNK_SIZE*4)] = activeBlocks[x][y];
@@ -475,29 +523,36 @@ public class Level {
 		chunkRect.y--;
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 		
-//		try {
-//			loadingThread.join();
-//		} catch (InterruptedException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		loadingThread = new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				shiftLoadChunksNorth();
-//			}
-//		});	
-//		loadingThread.start();
-		shiftLoadChunksNorth();
+		savingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+					saveEdgeChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y2()+1, southernChunks);
+				}
+				System.out.println("Finished Saving NORTH");
+			}
+		});	
+		savingThread.start();
+		System.out.println("Started Loading NORTH");
+		loadingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				shiftLoadChunksNorth();
+				System.out.println("Finished Loading NORTH");
+			}
+		});	
+		loadingThread.start();
 		
 	}
 	
 	
 	
 	public void getSouthernChunks() {	
-		//Save northernChunks here...
-		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			saveChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y);
+		try {
+			savingThread.join();
+			loadingThread.join();
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
 		}
 		//Convert activeBlocks to northernChunks
 		for(int x = 0; x < activeBlocks.length; x++) {
@@ -514,20 +569,23 @@ public class Level {
 		chunkRect.y++;
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 		
-//		try {
-//			loadingThread.join();
-//		} catch (InterruptedException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		loadingThread = new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				shiftLoadChunksSouth();
-//			}
-//		});	
-//		loadingThread.start();
-		shiftLoadChunksSouth();
+		savingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
+					saveEdgeChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y-1, northernChunks);
+				}
+				System.out.println("Finished Saving NORTH");
+			}
+		});	
+		savingThread.start();
+		loadingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				shiftLoadChunksSouth();
+			}
+		});	
+		loadingThread.start();
 	}
 	
 	public void shiftLoadChunksEast() {
@@ -624,7 +682,7 @@ public class Level {
 		//64,0,
 		
 		isLoading = true;
-		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv");
+		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel + chunkX + "-" + chunkY + ".sv");
 		if(!f.exists()) { 
 			createNewChunk(startX,startY,chunkX,chunkY);
 		}
