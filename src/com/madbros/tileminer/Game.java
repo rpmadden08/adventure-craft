@@ -39,6 +39,14 @@ public class Game implements ApplicationListener {
 	
 	public static double oceanTally, mountainTally, desertTally, grasslandTally, forestTally, jungleTally, swampTally, taigaTally, tundraTally = 0;
 
+	
+	public static long rgenseed = System.currentTimeMillis();
+	//public long rgenseed = 898490;
+		//898463 ()  
+		//898474 ()
+		//898475 (forest) 
+		//898478 ()
+	
 	public static boolean spawnSet = false;
 	public static int replaceableX = 0;
 	public static int replaceableY = 0;
@@ -260,12 +268,15 @@ public class Game implements ApplicationListener {
 					Game.level.saveCurrentChunks();
 					Game.gameStartTime = Time.getTime();
 					collectibleController = new CollectibleController();
+					SaveGameData saveData = saveGame.saveData();
+					rgenseed = saveData.seed;
 					if(Game.currentLevel == OVERWORLD_FOLDER) {
 						level = new Underground1();
 					} else if (Game.currentLevel == UNDERGROUND_1_FOLDER) {
 						level = new Overworld();	
 					}
-					SaveGameData saveData = saveGame.saveData();
+					
+					
 					level.spawnX = saveData.heroX;
 					level.spawnY = saveData.heroY;
 					level.masterSpawnX = saveData.spawnX;
@@ -277,21 +288,25 @@ public class Game implements ApplicationListener {
 					level.activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
 					level.currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
 					
+//					File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
+//					if(!f.exists()) {
+//						Game.totalLoadingPoints = CHUNKS_LENGTH_TOTAL *CHUNKS_LENGTH_TOTAL +1;
+//						Game.currentLoadingPoints = 0;
+//						f.mkdir();
+//						for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
+//							for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
+//								level.createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
+//								Game.currentLoadingPoints = Game.currentLoadingPoints+1;
+//							}
+//						}	
+//					} else {
+//						Game.totalLoadingPoints = 1;
+//						Game.currentLoadingPoints = 0;
+//					}
 					File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
-					if(!f.exists()) {
-						Game.totalLoadingPoints = CHUNKS_LENGTH_TOTAL *CHUNKS_LENGTH_TOTAL +1;
-						Game.currentLoadingPoints = 0;
-						f.mkdir();
-						for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
-							for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
-								level.createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
-								Game.currentLoadingPoints = Game.currentLoadingPoints+1;
-							}
-						}	
-					} else {
-						Game.totalLoadingPoints = 1;
-						Game.currentLoadingPoints = 0;
-					}
+					Game.totalLoadingPoints = CHUNKS_LENGTH_TOTAL *CHUNKS_LENGTH_TOTAL +1;
+					Game.currentLoadingPoints = 0;
+					f.mkdir();
 					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
 							level.loadInitialChunks(CHUNK_SIZE*i, CHUNK_SIZE*j, level.chunkRect.x + i, level.chunkRect.y + j);
@@ -299,10 +314,15 @@ public class Game implements ApplicationListener {
 						}
 						
 					}
-					level.easternChunks = new Block[CHUNKS_IN_A_ROW][];
-					level.northernChunks = new Block[CHUNKS_IN_A_ROW][];
-					level.southernChunks = new Block[CHUNKS_IN_A_ROW][];
-					level.westernChunks = new Block[CHUNKS_IN_A_ROW][];
+					level.easternChunks = new Block[CHUNK_SIZE][TILES_PER_ROW];
+					level.westernChunks = new Block[CHUNK_SIZE][TILES_PER_ROW];
+					level.northernChunks = new Block[TILES_PER_ROW][CHUNK_SIZE];
+					level.southernChunks = new Block[TILES_PER_ROW][CHUNK_SIZE];
+					
+//					level.loadEasternChunks();
+//					level.loadWesternChunks();
+//					level.loadNorthernChunks();
+//					level.loadSouthernChunks();
 					
 					f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel + "Level.sv");
 					if(f.exists()) {
@@ -342,15 +362,17 @@ public class Game implements ApplicationListener {
 		Game.currentState = new LoadingState(Game.batch);
 		Game.gameStartTime = Time.getTime();
 		if(isNewGame == false) {
-			
+			System.out.println("IS loading an old game");
 			SaveGame saveGame = new SaveGame();
 			SaveGameData saveData = saveGame.saveData();
+			rgenseed = saveData.seed;
 			if(saveData.currentLevel.equals(UNDERGROUND_1_FOLDER)) {
 				level = new Underground1();
 			} else {
 				level = new Overworld();
 			}
 			//SaveGameData saveData = Game.saveGame.saveData();
+			
 			level.spawnX = saveData.heroX;
 			level.spawnY = saveData.heroY;
 			level.masterSpawnX = saveData.spawnX;
@@ -406,10 +428,10 @@ public class Game implements ApplicationListener {
 					level.southernChunks = new Block[TILES_PER_ROW][CHUNK_SIZE];
 					
 						
-					level.loadEasternChunks();
-					level.loadWesternChunks();
-					level.loadNorthernChunks();
-					level.loadSouthernChunks();
+//					level.loadEasternChunks();
+//					level.loadWesternChunks();
+//					level.loadNorthernChunks();
+//					level.loadSouthernChunks();
 					f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel + "Level.sv");
 					if(f.exists()) {
 						Game.saveGame.loadCurrentLevel();

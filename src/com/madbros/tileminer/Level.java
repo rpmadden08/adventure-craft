@@ -20,12 +20,12 @@ import com.madbros.tileminer.Utils.Point;
 import com.madbros.tileminer.Utils.Rect;
 
 public class Level {
-	public long rgenseed = System.currentTimeMillis();
-	//public long rgenseed = 898490;
-		//898463 ()  
-		//898474 ()
-		//898475 (forest) 
-		//898478 ()
+//	public long rgenseed = System.currentTimeMillis();
+//	//public long rgenseed = 898490;
+//		//898463 ()  
+//		//898474 ()
+//		//898475 (forest) 
+//		//898478 ()
 	public Cell[][] cells;
 	public Cell[] potentialCollisionCells;	//resets to empty every frame and includes only cells that something has moved in
 	
@@ -69,8 +69,8 @@ public class Level {
 	//Keeps track of what part of the activeBlocks array we're rendering. Starts off in the very center.
 	//renderRect, spawnX, spawnY should all be the same
 //total chunks * chunk_size * Tile_size /2 - character
-	public int spawnX = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE /2 - CHARACTER_SIZE/2;
-	public int spawnY = CHUNKS_LENGTH_TOTAL * CHUNK_SIZE * TILE_SIZE /2 - CHARACTER_SIZE/2;
+	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
+	public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
 	public String spawnLevel = OVERWORLD_FOLDER;
 	public int masterSpawnX = spawnX;
 	public int masterSpawnY = spawnY;
@@ -95,14 +95,14 @@ public class Level {
 	
 	
 	//public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
-	public Random rand = new Random(rgenseed);
+	public Random rand = new Random(Game.rgenseed);
 	public int randInt1 = rand.nextInt();
 	public int randInt2 = rand.nextInt();
 	//public PerlinGenerator perlin2 = new PerlinGenerator(randInt1);
 	//public PerlinGenerator perlin3 = new PerlinGenerator(randInt2);
 	
 	//public BasicNoise noise1 = new BasicNoise(898456);
-	public BasicNoise noise1 = new BasicNoise((int) rgenseed);
+	public BasicNoise noise1 = new BasicNoise((int) Game.rgenseed);
 	public BasicNoise noise2 = new BasicNoise(randInt1);
 	public BasicNoise noise3 = new BasicNoise(randInt2);
 	//public PerlinGenerator perlin2 = new PerlinGenerator((int) rgenseed);
@@ -252,6 +252,10 @@ public class Level {
 			Game.timeSpentInPreviousSaves = saveData.gameTime;
 			
 		}
+		loadEasternChunks();
+		loadWesternChunks();
+		loadNorthernChunks();
+		loadSouthernChunks();
 	}
 	
 	public int getXFromAbs(int abs) {
@@ -421,8 +425,6 @@ public class Level {
 		chunkRect.x++;
 		
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
-
-		System.out.println("StartedLoading");
 		
 		savingThread = new Thread(new Runnable() {
 			@Override
@@ -430,7 +432,6 @@ public class Level {
 				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 					saveEdgeChunk(0, CHUNK_SIZE*i, chunkRect.x-1, chunkRect.y + i, westernChunks);
 				}
-				System.out.println("FinishedSaving");
 			}
 		});	
 		savingThread.start();
@@ -439,12 +440,9 @@ public class Level {
 			public void run() {
 
 				shiftLoadChunksEast();
-				System.out.println("FinishedLoading");
 			}
 		});	
 		loadingThread.start();
-		
-		//shiftLoadChunksEast();
 		
 	}
 	
@@ -480,7 +478,6 @@ public class Level {
 				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 					saveEdgeChunk(0, CHUNK_SIZE*i, chunkRect.x2()+1, chunkRect.y + i, easternChunks);
 				}
-				System.out.println("FinishedSaving West");
 			}
 		});	
 		savingThread.start();
@@ -505,7 +502,6 @@ public class Level {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println("Started Saving NORTH");
 		
 		
 		for(int x = 0; x < activeBlocks.length; x++) {
@@ -529,16 +525,13 @@ public class Level {
 				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 					saveEdgeChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y2()+1, southernChunks);
 				}
-				System.out.println("Finished Saving NORTH");
 			}
 		});	
 		savingThread.start();
-		System.out.println("Started Loading NORTH");
 		loadingThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				shiftLoadChunksNorth();
-				System.out.println("Finished Loading NORTH");
 			}
 		});	
 		loadingThread.start();
@@ -575,7 +568,6 @@ public class Level {
 				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 					saveEdgeChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y-1, northernChunks);
 				}
-				System.out.println("Finished Saving NORTH");
 			}
 		});	
 		savingThread.start();
@@ -704,7 +696,7 @@ public class Level {
 	
 	public void loadInitialChunks(int startX, int startY, int chunkX, int chunkY) {
 		isLoading = true;
-		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + chunkX + "-" + chunkY + ".sv");
+		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel +  chunkX + "-" + chunkY + ".sv");
 		if(!f.exists()) { 
 			createNewChunk(startX,startY,chunkX,chunkY);
 		}

@@ -28,6 +28,7 @@ public class SaveGameData {
 	public int invCraftedStackSize;
 	public int[] invClothingID = new int[4];
 	
+	public long seed;
 	public long gameTime;
 	
 	

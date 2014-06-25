@@ -85,7 +85,7 @@ public class MainStateInput extends BasicInput {
 		if(!Game.hero.isAttacking) {
 			switch(key) {
 				
-				case Keys.T: System.out.println(Game.level.rgenseed); break;
+				case Keys.T: System.out.println(Game.rgenseed); break;
 				case Keys.W: Game.hero.moveUp(); break;
 				case Keys.A: Game.hero.moveLeft(); break;
 				case Keys.S: Game.hero.moveDown(); break;

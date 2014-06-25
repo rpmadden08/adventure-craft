@@ -34,6 +34,7 @@ public class SaveGame {
 		saveData.maxMP = Game.hero.maxMP;
 		saveData.eP = Game.hero.eP;
 		saveData.maxEP = Game.hero.maxEP;
+		saveData.seed = Game.rgenseed;
 
 //		public int[] invClothingID = new int[4];
 		

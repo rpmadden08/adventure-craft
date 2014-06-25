@@ -16,7 +16,7 @@ public class Underground1 extends Level{
 	public Underground1() {
 		//currentLevel = UNDERGROUND_1_FOLDER;
 		Game.currentLevel = UNDERGROUND_1_FOLDER;
-		noise1 = new CaveNoise((int) rgenseed);
+		noise1 = new CaveNoise((int) Game.rgenseed);
 //		noise1 = new CaveNoise(898456);
 //		noise1 = new CaveNoise(898456);
 		initialize();
@@ -420,7 +420,7 @@ public class Underground1 extends Level{
 				
 				chunkGenerator.chunkNoiseElevation[i][j] = (float) noise1.noise.get(4*((chunkX*CHUNK_SIZE)+i-CHUNK_BLOOM_MARGIN) / (float)size, 4 * ((chunkY*CHUNK_SIZE)+j-CHUNK_BLOOM_MARGIN) / (float)size, 0);
 				chunkGenerator.chunkGroundLayer[i][j] = chunkGenerator.getGroundLayerGeneration(i, j, rand, x, y);
-				chunkGenerator.chunkObjectLayer[i][j] = chunkGenerator.getObjectLayerGeneration(i, j, rgenseed, rand, x, y);
+				chunkGenerator.chunkObjectLayer[i][j] = chunkGenerator.getObjectLayerGeneration(i, j, Game.rgenseed, rand, x, y);
 				j++;
 			}
 			i++; j = 0;
