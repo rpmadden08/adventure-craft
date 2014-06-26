@@ -348,13 +348,15 @@ public class Game implements ApplicationListener {
 						level.loadGame();
 						level.finishLoading();
 						
-						int x = level.masterSpawnX/TILE_SIZE;
-						int y = level.masterSpawnY/TILE_SIZE;
-						int bX = x - (level.chunkRect.x * CHUNK_SIZE)+2;
-						int bY = y - (level.chunkRect.y * CHUNK_SIZE)+2;
+						int x = Game.hero.absRect.x/TILE_SIZE;
+						int y = Game.hero.absRect.y/TILE_SIZE;
+						int bX = x - (level.chunkRect.x * CHUNK_SIZE)+1;
+						int bY = y - (level.chunkRect.y * CHUNK_SIZE)+1;
 						if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
-							Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);
-							Game.level.activeBlocks[bX][bY].deleteObjectTile();
+							if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].id != STAIRS_UP_TILE && Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].id != STAIRS_DOWN_TILE) {
+								Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);
+								Game.level.activeBlocks[bX][bY].deleteObjectTile();
+							}
 						} else if(Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].id == WATER) {
 							//System.out.println("This is water...");
 							Game.level.activeBlocks[bX][bY].layers[WATER_LAYER] = new NoTile();
