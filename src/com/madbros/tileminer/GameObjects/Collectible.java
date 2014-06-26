@@ -25,10 +25,10 @@ public class Collectible extends GameObject{
 	//int currentSpeed = 3;
 	int direction = 0;
 	int direction2 = 0;
-	int stackSize = 1;
+	public int stackSize = 1;
 	float damping = 1;
 	int range = 100;
-	int uses;
+	public int uses;
 	String plopSound = "sounds/plop.wav";
 
 	public Collectible(CollectibleController collectibleController, int iD, Sprite spriteID, Rect collectible, int stackSize, int uses) {

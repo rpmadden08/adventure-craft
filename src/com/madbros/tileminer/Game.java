@@ -271,6 +271,7 @@ public class Game implements ApplicationListener {
 					Game.level.saveCurrentChunks();
 					Game.gameStartTime = Time.getTime();
 					collectibleController = new CollectibleController();
+					//Game.saveGame.loadCurrentLevel();
 					SaveGameData saveData = saveGame.saveData();
 					rgenseed = saveData.seed;
 					if(Game.currentLevel == OVERWORLD_FOLDER) {
@@ -349,8 +350,8 @@ public class Game implements ApplicationListener {
 						
 						int x = level.masterSpawnX/TILE_SIZE;
 						int y = level.masterSpawnY/TILE_SIZE;
-						int bX = x - (level.chunkRect.x * CHUNK_SIZE)+1;
-						int bY = y - (level.chunkRect.y * CHUNK_SIZE)+1;
+						int bX = x - (level.chunkRect.x * CHUNK_SIZE)+2;
+						int bY = y - (level.chunkRect.y * CHUNK_SIZE)+2;
 						if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
 							Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);
 							Game.level.activeBlocks[bX][bY].deleteObjectTile();
@@ -371,7 +372,6 @@ public class Game implements ApplicationListener {
 		Game.currentState = new LoadingState(Game.batch);
 		Game.gameStartTime = Time.getTime();
 		if(isNewGame == false) {
-			System.out.println("IS loading an old game");
 			SaveGame saveGame = new SaveGame();
 			SaveGameData saveData = saveGame.saveData();
 			rgenseed = saveData.seed;

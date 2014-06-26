@@ -179,9 +179,10 @@ public class Level {
 			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
 		} else {
 			Game.currentState = new LoadingState(Game.batch);
-			Game.collectibleController = new CollectibleController();
 			Game.musicController.music.stop();
 			Game.hero.stop();
+			Game.saveGame.saveCurrentLevel();
+			Game.collectibleController = new CollectibleController();
 			Game.switchLevel();
 			Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
 			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
@@ -249,6 +250,8 @@ public class Level {
 				Game.inventory.invBag[x].item.stackSize = saveData.invBagStackSize[x];
 				Game.inventory.invBag[x].item.uses = saveData.invBagUsage[x];
 			}
+			
+			
 			Game.timeSpentInPreviousSaves = saveData.gameTime;
 			
 		}

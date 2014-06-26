@@ -76,7 +76,7 @@ public class SaveGame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
-		saveCurrentLevel();
+		//saveCurrentLevel();
 	}
 	
 	public SaveGameData saveData() {
@@ -224,8 +224,8 @@ public class SaveGame {
 		for(int x = 0; x < Game.collectibleController.collectibles.size(); x++) {
 			Collectible c = Game.collectibleController.collectibles.get(x);
 			currentLevelData.collectibleItemIds[x] = c.item.id;
-			currentLevelData.collectibleItemStackSizes[x] = c.item.stackSize;
-			currentLevelData.collectibleItemUses[x] = c.item.uses;
+			currentLevelData.collectibleItemStackSize[x] = c.stackSize;
+			currentLevelData.collectibleItemUses[x] = c.uses;
 			currentLevelData.collectibleItemX[x] = c.absRect.x;
 			currentLevelData.collectibleItemY[x] = c.absRect.y;
 		}

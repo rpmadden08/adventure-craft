@@ -157,9 +157,11 @@ public class Helpers {
 	}
 	
 	public static void collectibleDataToCollectibleController(CurrentLevelData c) {
+		//System.out.println(c.collectibleItemIds.length);
+		
 		for(int x = 0; x < c.collectibleItemIds.length; x++) {
 			Item i = ITEM_HASH.get(c.collectibleItemIds[x]).createNew();
-			Game.collectibleController.add(c.collectibleItemIds[x], i.sprite, new Rect(c.collectibleItemX[x], c.collectibleItemY[x], 32, 32), c.collectibleItemStackSizes[x], c.collectibleItemUses[x]);
+			Game.collectibleController.add(c.collectibleItemIds[x], i.sprite, new Rect(c.collectibleItemX[x], c.collectibleItemY[x], 32, 32), c.collectibleItemStackSize[x], c.collectibleItemUses[x]);
 			
 			
 			//Make sure the collectibles bounce and bounced and bounced2 == true
