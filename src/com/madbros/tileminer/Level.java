@@ -69,7 +69,7 @@ public class Level {
 	//Keeps track of what part of the activeBlocks array we're rendering. Starts off in the very center.
 	//renderRect, spawnX, spawnY should all be the same
 //total chunks * chunk_size * Tile_size /2 - character
-	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
+	public int spawnX = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/4;
 	public int spawnY = TILES_PER_ROW*TILE_SIZE/2 - CHARACTER_SIZE/2;
 	public String spawnLevel = OVERWORLD_FOLDER;
 	public int masterSpawnX = spawnX;

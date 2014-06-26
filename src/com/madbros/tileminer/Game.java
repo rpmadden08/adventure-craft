@@ -26,6 +26,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Systems.AnimationSystem;
 import com.madbros.tileminer.Systems.CollisionDetectionSystem;
 import com.madbros.tileminer.Systems.RenderSystem;
+import com.madbros.tileminer.TileTypes.NoTile;
 import com.madbros.tileminer.Utils.Rect;
 
 import static com.madbros.tileminer.Constants.*;
@@ -40,12 +41,14 @@ public class Game implements ApplicationListener {
 	public static double oceanTally, mountainTally, desertTally, grasslandTally, forestTally, jungleTally, swampTally, taigaTally, tundraTally = 0;
 
 	
-	public static long rgenseed = System.currentTimeMillis();
-	//public long rgenseed = 898490;
-		//898463 ()  
-		//898474 ()
-		//898475 (forest) 
-		//898478 ()
+	//public static long rgenseed = System.currentTimeMillis();
+	public static long rgenseed = 40;
+		//1  (Water + Islands)  
+		//4  (All Water)
+		//7  (Grassland) 
+		//20 (Desert)
+		//15 (Mountain)
+		//40 (Forest)
 	
 	public static boolean spawnSet = false;
 	public static int replaceableX = 0;
@@ -304,13 +307,13 @@ public class Game implements ApplicationListener {
 //						Game.currentLoadingPoints = 0;
 //					}
 					File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
-					Game.totalLoadingPoints = CHUNKS_LENGTH_TOTAL *CHUNKS_LENGTH_TOTAL +1;
+					Game.totalLoadingPoints = CHUNKS_IN_A_ROW *CHUNKS_IN_A_ROW+1;
 					Game.currentLoadingPoints = 0;
 					f.mkdir();
 					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
 							level.loadInitialChunks(CHUNK_SIZE*i, CHUNK_SIZE*j, level.chunkRect.x + i, level.chunkRect.y + j);
-							
+							Game.currentLoadingPoints = Game.currentLoadingPoints +1;
 						}
 						
 					}
@@ -346,11 +349,17 @@ public class Game implements ApplicationListener {
 						
 						int x = level.masterSpawnX/TILE_SIZE;
 						int y = level.masterSpawnY/TILE_SIZE;
-						int bX = x - (level.chunkRect.x * CHUNK_SIZE);
-						int bY = y - (level.chunkRect.y * CHUNK_SIZE);
-						if(Game.level.activeBlocks[bX][bY].absRect.detectCollision(Game.hero.absRect)) {
+						int bX = x - (level.chunkRect.x * CHUNK_SIZE)+1;
+						int bY = y - (level.chunkRect.y * CHUNK_SIZE)+1;
+						if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
 							Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);
+							Game.level.activeBlocks[bX][bY].deleteObjectTile();
+						} else if(Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].id == WATER) {
+							//System.out.println("This is water...");
+							Game.level.activeBlocks[bX][bY].layers[WATER_LAYER] = new NoTile();
+							Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].deleteMe(bX, bY, level.activeBlocks);
 						}
+						level.autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 						
 					}
 				});
@@ -410,13 +419,13 @@ public class Game implements ApplicationListener {
 //						Game.currentLoadingPoints = 0;
 //					}
 					File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
-					Game.totalLoadingPoints = CHUNKS_LENGTH_TOTAL *CHUNKS_LENGTH_TOTAL +1;
+					Game.totalLoadingPoints = CHUNKS_IN_A_ROW *CHUNKS_IN_A_ROW+1;
 					Game.currentLoadingPoints = 0;
 					f.mkdir();
 					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
 							level.loadInitialChunks(CHUNK_SIZE*i, CHUNK_SIZE*j, level.chunkRect.x + i, level.chunkRect.y + j);
-							
+							Game.currentLoadingPoints = Game.currentLoadingPoints +1;
 						}
 						
 					}
@@ -449,8 +458,22 @@ public class Game implements ApplicationListener {
 					public void run() {
 						level.loadGame();
 						level.finishLoading();
-
+						
+						int x = level.masterSpawnX/TILE_SIZE;
+						int y = level.masterSpawnY/TILE_SIZE;
+						int bX = x - (level.chunkRect.x * CHUNK_SIZE)+1;
+						int bY = y - (level.chunkRect.y * CHUNK_SIZE)+1;
+						if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
+							Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);
+							Game.level.activeBlocks[bX][bY].deleteObjectTile();
+						} else if(Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].id == WATER) {
+							//System.out.println("This is water...");
+							Game.level.activeBlocks[bX][bY].layers[WATER_LAYER] = new NoTile();
+							Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].deleteMe(bX, bY, level.activeBlocks);
+						}
+						level.autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 					}
+					
 				});
 			}
 		}).start();	
