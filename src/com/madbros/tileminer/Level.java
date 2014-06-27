@@ -5,8 +5,6 @@ import static com.madbros.tileminer.Constants.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
-
-import com.badlogic.gdx.Gdx;
 import com.madbros.tileminer.Constants.State;
 import com.madbros.tileminer.GameStates.LoadingState;
 import com.madbros.tileminer.GameStates.MainState;
@@ -230,7 +228,8 @@ public class Level {
 				Clothing clothingItem = new IronArmor();
 				if(Game.inventory.invClothing[x].item.id != 0) {
 					clothingItem = (Clothing)Game.inventory.invClothing[x].item;
-					Game.hero.sprite.addSprite(clothingItem.animatedSprite);
+					Game.hero.addClothingItem(clothingItem);
+					//Game.hero.sprite.addSprite(clothingItem.animatedSprite);
 				}
 			}
 			Game.hero.calcArmor();

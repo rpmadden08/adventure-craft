@@ -7,7 +7,6 @@ import java.util.Random;
 import com.madbros.tileminer.*;
 import com.madbros.tileminer.GameStates.MainState;
 import com.madbros.tileminer.TileTypes.*;
-import com.madbros.tileminer.Utils.Rect;
 
 public class Overworld extends Level{
 	public Overworld() {

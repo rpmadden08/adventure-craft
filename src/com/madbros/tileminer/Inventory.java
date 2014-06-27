@@ -100,13 +100,13 @@ public class Inventory {
 		invClothing[1] = new ClothingSlot(INV_CHAR_RECT.x +147,INV_CHAR_RECT.y +80,ARMOR_SLOT);
 		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x +147,INV_CHAR_RECT.y +120,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x +147,INV_CHAR_RECT.y +160,BOOTS_SLOT);
-		
-		invBar[0].item = new TableItem();
-		invBar[0].item.stackSize = 99;
-		invBar[1].item = new CopperHelmet();
-		invBar[1].item.stackSize = 1;
-		invBar[2].item = new CopperBoots();
-		invBar[2].item.stackSize = 1;
+//		
+//		invBar[0].item = new TableItem();
+//		invBar[0].item.stackSize = 99;
+//		invBar[1].item = new CopperHelmet();
+//		invBar[1].item.stackSize = 1;
+//		invBar[2].item = new CopperBoots();
+//		invBar[2].item.stackSize = 1;
 //		invBar[3].item = new StairsDown();
 //		invBar[3].item.stackSize = 16;
 //		invBar[4].item = new CopperShovel();
