@@ -60,6 +60,7 @@ public class Sprites {
 	public static final String LOG_ITEM = "logItem";
 	public static final String PLANK_ITEM = "plankItem";
 	public static final String PLATE_HELMET_ITEM = "plateHelmetItem";
+	public static final String HUMAN_SWIMMING = "2";
 	public static final String PLATE_TORSO_ITEM = "plateTorsoItem";
 	public static final String PLATE_LEGS_ITEM = "plateLegsItem";
 	public static final String PLATE_FEET_ITEM = "plateFeetItem";
@@ -278,7 +279,19 @@ public class Sprites {
 	public static final String TORCH_ANIMATION = "torch";
 	public static final String FURNACE_ANIMATION = "furnaceA";
 	public static final String CAULDRON_ANIMATION = "boilingCauldronA";
+	public static final String WATER_SWIMMING_ANIMATION = "waterSwimmingAnimation";
 //	public static final String FURNACE_STATIC = "furnaceStatic";
+	
+	public static final String MALE_SWIM_DOWN = "maleSwimDown";
+	public static final String MALE_SWIM_LEFT = "maleSwimLeft";
+	public static final String MALE_SWIM_RIGHT = "maleSwimRight";
+	public static final String MALE_SWIM_UP = "maleSwimUp";
+	
+	public static final String MALE_TREAD_DOWN = "maleTreadDown";
+	public static final String MALE_TREAD_LEFT = "maleTreadLeft";
+	public static final String MALE_TREAD_RIGHT = "maleTreadRight";
+	public static final String MALE_TREAD_UP = "maleTreadUp";
+	
 	public static final String MALE_WALK_DOWN = "maleWalkDown";
 	public static final String MALE_WALK_LEFT = "maleWalkLeft";
 	public static final String MALE_WALK_RIGHT = "maleWalkRight";
@@ -292,6 +305,8 @@ public class Sprites {
 	public static final String MALE_SLASH_DOWN = "maleSlashDown";
 	public static final String MALE_SLASH_LEFT = "maleSlashLeft";
 	public static final String MALE_SLASH_RIGHT = "maleSlashRight";
+	
+	public static final String MALE_SWIMMING = "maleSwim"; 
 	
 	
 	public static final String PLATE_FEET_WALK_DOWN = "plateFeetWalkDown";
@@ -585,6 +600,7 @@ public class Sprites {
 	public static StaticSprite[] treeSprites;
 	public static StaticSprite[] treeLeafSprites;
 	public static AnimatedSprite[] campfireAnimation;
+	public static AnimatedSprite[] waterSwimmingAnimation;
 	public static AnimatedSprite[] torchAnimation;
 	public static AnimatedSprite[] furnaceAnimation;
 	public static StaticSprite[] furnaceStatic;
@@ -738,7 +754,10 @@ public class Sprites {
 					DIRT_MOUNTAIN_COPPER_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_MIDDLE_NEW, DIRT_MOUNTAIN_TIN_BOTTOM_NEW,
 					DIRT_MOUNTAIN_COAL_MIDDLE_NEW, DIRT_MOUNTAIN_COAL_BOTTOM_NEW, STONE, DIRT_MOUNTAIN_CLUMP,
 					STONE_MOUNTAIN_CLUMP,BREAD, SLOWNESS_APPLIED, SLOWNESS_STATUS, SPEED_STATUS, HARMING_APPLIED,
-					BEEHIVE, BEEHIVE_TILE, BUTTON, BUTTON_SELECT, BUTTON_EDGE, BUTTON_SELECT_EDGE
+					BEEHIVE, BEEHIVE_TILE, BUTTON, BUTTON_SELECT, BUTTON_EDGE, BUTTON_SELECT_EDGE,
+					MALE_SWIM_UP, MALE_SWIM_DOWN, MALE_SWIM_LEFT, MALE_SWIM_RIGHT,
+					MALE_TREAD_UP, MALE_TREAD_DOWN, MALE_TREAD_LEFT, MALE_TREAD_RIGHT,
+					WATER_SWIMMING_ANIMATION,
 					
 			};
 			
@@ -830,6 +849,10 @@ public class Sprites {
 			animation.id = 0;
 			cauldronAnimation = new AnimatedSprite[]{new AnimatedSprite(animation)};
 			
+			animation = animations.get(WATER_SWIMMING_ANIMATION);
+			animation.id = 0;
+			waterSwimmingAnimation = new AnimatedSprite[]{new AnimatedSprite(animation)};
+			
 //			animation = animations.get(FURNACE_STATIC);
 //			animation.id = 0;
 			furnaceStatic = new StaticSprite[]{Sprites.sprites.get(FURNACE_SINGLE)};
@@ -862,6 +885,7 @@ public class Sprites {
 			int[] animationIds = {STAND_DOWN, STAND_RIGHT, STAND_UP, STAND_LEFT, WALK_DOWN, WALK_RIGHT, WALK_UP, WALK_LEFT, SLASH_DOWN, SLASH_RIGHT, SLASH_UP, SLASH_LEFT};
 			int[] animationIdsMob = {STAND_DOWN, STAND_RIGHT, STAND_UP, STAND_LEFT, WALK_DOWN, WALK_RIGHT, WALK_UP, WALK_LEFT};
 			Animation[] animations = new Animation[animationIds.length];
+			Animation[] swimming = new Animation[animationIds.length];
 			Animation[] helmet = new Animation[animationIds.length];
 			Animation[] chest = new Animation[animationIds.length];
 			Animation[] pants = new Animation[animationIds.length];
@@ -900,6 +924,22 @@ public class Sprites {
 					Sprites.animations.get(MALE_WALK_DOWN),
 					Sprites.animations.get(MALE_WALK_RIGHT),
 					Sprites.animations.get(MALE_WALK_LEFT),
+					
+					Sprites.animations.get(MALE_SLASH_UP),
+					Sprites.animations.get(MALE_SLASH_DOWN),
+					Sprites.animations.get(MALE_SLASH_RIGHT),
+					Sprites.animations.get(MALE_SLASH_LEFT)
+			};
+			
+			swimming = new Animation[]{
+					Sprites.animations.get(MALE_TREAD_UP),
+					Sprites.animations.get(MALE_TREAD_DOWN),
+					Sprites.animations.get(MALE_TREAD_RIGHT),
+					Sprites.animations.get(MALE_TREAD_LEFT),
+					Sprites.animations.get(MALE_SWIM_UP),
+					Sprites.animations.get(MALE_SWIM_DOWN),
+					Sprites.animations.get(MALE_SWIM_RIGHT),
+					Sprites.animations.get(MALE_SWIM_LEFT),
 					
 					Sprites.animations.get(MALE_SLASH_UP),
 					Sprites.animations.get(MALE_SLASH_DOWN),
@@ -1242,6 +1282,7 @@ public class Sprites {
 			
 			for(int i = 0; i < animations.length; i++) {
 				animations[i].id = i;
+				swimming[i].id = i;
 				helmet[i].id = i;
 				leatherHelmet[i].id = i;
 				tinHelmet[i].id = i;
@@ -1271,6 +1312,7 @@ public class Sprites {
 			}
 			
 			AnimatedSprite animatedSprite = new AnimatedSprite(animations);
+			AnimatedSprite animatedSwim = new AnimatedSprite(swimming);
 			AnimatedSprite animatedHelmet = new AnimatedSprite(helmet);
 			animatedHelmet.stackPosition = 5;
 			AnimatedSprite animatedLeatherHelmet = new AnimatedSprite(leatherHelmet);
@@ -1316,6 +1358,7 @@ public class Sprites {
 			AnimatedSprite animatedBeeMini = new AnimatedSprite(beeMini);
 			
 			animatedSprites.put(HUMAN_BASE, animatedSprite);
+			animatedSprites.put(HUMAN_SWIMMING, animatedSwim);
 			animatedSprites.put(PLATE_HELMET_ITEM, animatedHelmet);
 			animatedSprites.put(LEATHER_HELMET_ITEM, animatedLeatherHelmet);
 			animatedSprites.put(TIN_HELMET_ITEM, animatedTinHelmet);
@@ -1349,6 +1392,8 @@ public class Sprites {
 			fireAnimationSprites[1] = new StaticSprite(atlas, 64, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);
 			fireAnimationSprites[2] = new StaticSprite(atlas, 128, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);
 			fireAnimationSprites[3] = new StaticSprite(atlas, 192, 416, TEXTURE_SIZE*4, TEXTURE_SIZE*4, Game.batch);
+			
+
 		
 			
 			//font = TrueTypeFontFactory.createBitmapFont(Gdx.files.internal("res/arial.ttf"), FONT_CHARACTERS, 12.5f, 7.5f, 1.0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

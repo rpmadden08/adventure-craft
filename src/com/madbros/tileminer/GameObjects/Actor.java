@@ -17,6 +17,7 @@ import com.madbros.tileminer.Utils.Rect;
 
 public class Actor extends GameObject {
 	public CompoundAnimatedSprite sprite;
+	public CompoundAnimatedSprite swimmingSprite;
 	public Rect absRect;
 	public Rect borderAbsRect;
 	
@@ -30,6 +31,7 @@ public class Actor extends GameObject {
 	public float slownessSpeed;
 	public float speedSpeed;
 	public float hungerSpeed = 0;
+	public float swimSpeed = 0;
 	public Block[] collisionDetectionBlocks;
 	
 	boolean isMovingLeft = false, isMovingRight = false, isMovingUp = false, isMovingDown = false;
@@ -82,7 +84,7 @@ public class Actor extends GameObject {
 	public void checkSpeed() {
 		float baseSpeed;
 		if(knockBackTime <=0) {
-			baseSpeed = moveSpeed + runningSpeed;
+			baseSpeed = moveSpeed + runningSpeed - swimSpeed;
 			currentSpeed = baseSpeed - (baseSpeed * slownessSpeed) + (baseSpeed * speedSpeed)-(baseSpeed*hungerSpeed);
 		} else {
 			currentSpeed = knockBackSpeed;
@@ -313,6 +315,7 @@ public class Actor extends GameObject {
 		if(appliedStatusEffects[1].id == 1) {
 			//System.out.println(appliedStatusEffects[1].usesLeft);
 		}
+		
 //		if(isMoving() && !isAttacking) {
 //			move(Time.getDelta());
 //		} else if(isAttacking) {
@@ -348,12 +351,23 @@ public class Actor extends GameObject {
 		sprite.addSprite(clothingItem.animatedSprite);
 		sprite.sort();
 		sprite.changeAnimationTo(STAND_DOWN);
+		if(clothingItem.slotType == HELMET_SLOT) {
+			swimmingSprite.addSprite(clothingItem.animatedSprite);
+			swimmingSprite.sort();
+		}
+		//swimmingSprite.changeAnimationTo(STAND_DOWN);
 		//sprite.changeAnimationTo(WALK_DOWN);
 		//increase armor rating and add special effects
 	}
 	
+	
 	public void removeClothingItem(Clothing clothingItem) {
 		sprite.removeSprite(clothingItem.animatedSprite);
 		sprite.changeAnimationTo(STAND_DOWN);
+		if(clothingItem.slotType == HELMET_SLOT) {
+			swimmingSprite.removeSprite(clothingItem.animatedSprite);
+		}
 	}
+	
+	
 }

@@ -10,6 +10,7 @@ import com.madbros.tileminer.Time;
 import com.madbros.tileminer.GameStates.LoadingState;
 import com.madbros.tileminer.GameStates.MainState;
 import com.madbros.tileminer.Items.Clothing;
+import com.madbros.tileminer.Items.Item;
 import com.madbros.tileminer.Items.WeaponItem;
 import com.madbros.tileminer.Sprites.CompoundAnimatedSprite;
 import com.madbros.tileminer.Sprites.Sprites;
@@ -20,6 +21,7 @@ public class Hero extends Actor {
 	public boolean attackButtonReleased = true;
 	public boolean isDead = false;
 	public int deathWait = 0;
+	public boolean isSwimming = false;
 
 	public Hero() {
 		super();
@@ -35,8 +37,10 @@ public class Hero extends Actor {
 		absRect = new Rect(Game.level.spawnX, Game.level.spawnY,
 				  CHARACTER_SIZE, CHARACTER_SIZE);
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_BASE));
+		swimmingSprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_SWIMMING));
+		
 		margin = new Margin(17, 17, 33, 1);
-		moveSpeed = 0.5f; //0.95
+		moveSpeed = 0.095f; //0.095
 		currentSpeed = 0f; 
 		knockBackSpeed = 0.3f;
 		hitSound = "sounds/pain.wav";
@@ -186,10 +190,50 @@ public class Hero extends Actor {
 		}
 	}
 	
-	
+	public boolean checkSwimming() {
+		Rect charCRect = new Rect(absRect, this.margin);
+		for(int a = 0; a < collisionDetectionBlocks.length; a++) {
+			if(collisionDetectionBlocks[a] != null) {
+				if(collisionDetectionBlocks[a].isCollidable()) {
+					if(charCRect.detectCollision(collisionDetectionBlocks[a].collisionTile.cRect)) {
+						
+						if(collisionDetectionBlocks[a].layers[WATER_LAYER].id == WATER) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		//System.out.println("ReturningFalse");
+		return false;
+	}
+//	public void addClothingItemWhileSwimming(Item clothingItem) {
+//		swimmingSprite.addSprite(clothingItem.animatedSprite);
+//		swimmingSprite.sort();
+//		//sprite.changeAnimationTo(WALK_DOWN);
+//		//increase armor rating and add special effects
+//	}
+//	
+//	public void removeClothingItemWhileSwimming(Item clothingItem) {
+//		swimmingSprite.removeSprite(clothingItem.animatedSprite);
+//	}
 	@Override
 	public void update() {
 		super.update();
+		//getCollisionBlocks();
+		isSwimming = checkSwimming();
+		if(isSwimming) {
+			if(eP > 0) {
+				eP = eP - 0.0010;
+			}
+			swimSpeed = moveSpeed /2;
+			int currentAnimation = sprite.getCurrentAnimation();
+			swimmingSprite.changeAnimationTo(currentAnimation);
+
+		} else {
+			swimSpeed = 0;
+		}
+
 		checkEnergy();
 		//System.out.println(Time.getDelta());
 		//System.out.println("Hero Coordinates: "+ this.absRect.x+","+this.absRect.y);
@@ -299,7 +343,7 @@ public class Hero extends Actor {
 	}
 	
 	public void attack(WeaponItem item) {
-		if(attackButtonReleased == true) {
+		if(attackButtonReleased == true && !isSwimming) {
 			attackButtonReleased = false;
 		
 			hasAttacked = false;

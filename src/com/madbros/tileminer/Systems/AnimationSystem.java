@@ -12,6 +12,9 @@ public class AnimationSystem {
 		for(int i = 0; i < Sprites.waterSprites.length; i++) {
 			Sprites.waterSprites[i].updateCurrentAnimation();
 		}
+		for(int i = 0; i < Sprites.waterSwimmingAnimation.length; i++) {
+			Sprites.waterSwimmingAnimation[i].updateCurrentAnimation();
+		}
 		for(int i = 0; i < Sprites.campfireAnimation.length; i++) {
 			Sprites.campfireAnimation[i].updateCurrentAnimation();
 		}
@@ -31,9 +34,11 @@ public class AnimationSystem {
 		updateTiles();
 		
 		hero.sprite.updateCurrentAnimation();
+		hero.swimmingSprite.updateCurrentAnimation();
 		for(Mob mob : mobController.mobs) {
 			//if(mob.isMoving()) mob.sprite.updateCurrentAnimation();
 			mob.sprite.updateCurrentAnimation();
+			
 		}
 	}
 	

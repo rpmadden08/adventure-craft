@@ -17,7 +17,7 @@ public class WaterTile extends CollisionTile {
 		currentSpriteId = 0;
 		layer = WATER_LAYER;
 		z = Z_WATER;
-		margin = new Margin(1, 0, 0, 1);
+		margin = new Margin(14, 14, 14, 14);
 		id = WATER;
 		autoTileID = id;
 		isDiggable = false;
@@ -29,7 +29,7 @@ public class WaterTile extends CollisionTile {
 	public void heroDidCollide(Actor actor, int dir, int move, Rect charCRect, Rect tileRect) {
 		if(actor != Game.hero) {
 			super.heroDidCollide(actor, dir, move, charCRect, tileRect);
-		}
+		} 
 	}
 	
 	

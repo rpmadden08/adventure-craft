@@ -178,7 +178,6 @@ public class RenderSystem {
 		int width = hero.absRect.w / 2;
 		int height = hero.absRect.h / 2+6;
 		
-		
 		if(hero.isDead == false) {
 			if(hero.knockBackTime > 0) {
 				Color highlightColor = new Color(0.7f, 0.7f, 0.7f, 1.0f);
@@ -190,9 +189,13 @@ public class RenderSystem {
 				Sprites.pixel.draw(x+width,y+height,Z_CHARACTER);
 				
 				hero.sprite.setColor(Color.WHITE);
+			} else if(hero.isSwimming) {
+				Sprites.waterSwimmingAnimation[0].draw(x, y+13, Z_CHARACTER);
+				hero.swimmingSprite.draw(x, y+12, Z_CHARACTER);
+				//System.out.println("RenderingSwimmer");
 			} else {
 				
-			
+				
 				hero.sprite.draw(x, y, Z_CHARACTER);
 				
 				renderCollisionRects(hero, x, y);
