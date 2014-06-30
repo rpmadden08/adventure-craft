@@ -192,8 +192,7 @@ public class RenderSystem {
 			} else if(hero.isSwimming) {
 				Sprites.waterSwimmingAnimation[0].draw(x, y+13, Z_CHARACTER);
 				hero.swimmingSprite.draw(x, y+12, Z_CHARACTER);
-				//System.out.println("RenderingSwimmer");
-			} else {
+			}else {
 				
 				
 				hero.sprite.draw(x, y, Z_CHARACTER);

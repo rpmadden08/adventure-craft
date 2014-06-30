@@ -461,8 +461,8 @@ public class Game implements ApplicationListener {
 						level.loadGame();
 						level.finishLoading();
 						
-						int x = level.masterSpawnX/TILE_SIZE;
-						int y = level.masterSpawnY/TILE_SIZE;
+						int x = Game.hero.absRect.x/TILE_SIZE;
+						int y = Game.hero.absRect.y/TILE_SIZE;
 						int bX = x - (level.chunkRect.x * CHUNK_SIZE)+1;
 						int bY = y - (level.chunkRect.y * CHUNK_SIZE)+1;
 						if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
