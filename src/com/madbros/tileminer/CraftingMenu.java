@@ -3,6 +3,7 @@ package com.madbros.tileminer;
 import static com.madbros.tileminer.Constants.*;
 
 import com.madbros.tileminer.Slots.CraftingSlot;
+import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.UI.InGameMenuUIButton;
 import com.madbros.tileminer.Utils.ButtonFunction;
 
@@ -28,10 +29,10 @@ public class CraftingMenu {
 	
 	public CraftingMenu() {
 		ButtonFunction nextPageFunction = new ButtonFunction() { public void invoke() { nextPage2(); } };
-		nextPage =  new InGameMenuUIButton(366,35,20,20, ">",nextPageFunction, Game.batch );
+		nextPage =  new InGameMenuUIButton(453,168,25,25, Sprites.LEFT_ARROW ,nextPageFunction, Game.batch, 456, 171);
 		//nextPage.buttonColor = Color.GREEN;
 		ButtonFunction lastPageFunction = new ButtonFunction() { public void invoke() { lastPage2(); } };
-		lastPage =  new InGameMenuUIButton(344,35,20,20, "<",lastPageFunction, Game.batch );
+		lastPage =  new InGameMenuUIButton(453,192,25,25, Sprites.RIGHT_ARROW,lastPageFunction, Game.batch, 457, 195);
 		//lastPage.buttonColor = Color.GREEN;
 		//public TextUIButton(int x, int y, int w, int h, String s, ButtonFunction func, SpriteBatch batch)
 		int k = 0;
@@ -72,9 +73,9 @@ public class CraftingMenu {
 	
 	public void render() {
 		nextPage.render();
-		nextPage.renderText();
+		//nextPage.renderText();
 		lastPage.render();
-		lastPage.renderText();
+		//lastPage.renderText();
 	}
 	
 	public void update() {
