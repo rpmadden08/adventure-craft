@@ -17,8 +17,8 @@ public class Constants {
 	public static HashMap<Integer, Integer> BOTTOM_RIGHT_AUTO_TILE_HASH = new HashMap<Integer, Integer>();
 	
 	//game constants                                       Small  Big    Retina
-	public static final int INITIAL_WINDOW_WIDTH = 640;// 640    1280   1440
-	public static final int INITIAL_WINDOW_HEIGHT = 480;// 480    800    900
+	public static final int INITIAL_WINDOW_WIDTH = 800;// 800    1280   1440
+	public static final int INITIAL_WINDOW_HEIGHT = 600;// 600    800    900
 	public static final int RENDER_MARGIN = 1;
 	public static final int FRAME_RATE = 60;
 	public static final String GAME_TITLE = "Tile Miner";
@@ -525,13 +525,6 @@ public class Constants {
 	public static final int MAIN_MENU_HEIGHT = 30;
 	public static int MAIN_MENU_STARTX = Game.currentScreenSizeX/2 - MAIN_MENU_WIDTH / 2;
 	public static int MAIN_MENU_STARTY = Game.currentScreenSizeY-230;
-	
-//	public static final int HOW_TO_PLAY_WIDTH = 640;
-//	public static final int HOW_TO_PLAY_HEIGHT = 480;
-//	public static int HOW_TO_PLAY_STARTX = Game.currentScreenSizeX /2 - 640 / 2-4;
-//	public static int HOW_TO_PLAY_STARTY = Game.currentScreenSizeY /2 - 480 / 2-4;
-//	public static Rect HOW_TO_PLAY_RECT = new Rect(HOW_TO_PLAY_STARTX, HOW_TO_PLAY_STARTY,HOW_TO_PLAY_WIDTH,HOW_TO_PLAY_HEIGHT);
-//	
 	
 	public Constants() {
 		ITEM_HASH.put(NONE, new NoItem());

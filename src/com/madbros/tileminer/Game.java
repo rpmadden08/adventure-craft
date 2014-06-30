@@ -503,8 +503,8 @@ public class Game implements ApplicationListener {
 //			    if((float)current.getWidth()/(float)current.getHeight() == (float)Gdx.graphics.getDesktopDisplayMode().width/(float)Gdx.graphics.getDesktopDisplayMode().height
 //			    	 && current.getWidth() <= 1440 && current.getHeight() <=900 ) {
 			    if(current.isFullscreenCapable() 
-			    		&& current.getWidth() >= 640 
-			    		&& current.getHeight() >= 480
+			    		&& current.getWidth() >= 800 //640 
+			    		&& current.getHeight() >= 600 //480
 			    		&& current.getWidth() <= 1440 
 			    		&& current.getHeight() <=900)	{
 			    	tempResolutions.add(current);
