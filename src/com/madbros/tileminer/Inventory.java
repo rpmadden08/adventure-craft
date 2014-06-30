@@ -11,7 +11,7 @@ import com.madbros.tileminer.Sprites.*;
 import com.madbros.tileminer.Utils.Rect;
 
 public class Inventory {
-	public StaticSprite selectSprite = Sprites.sprites.get(Sprites.INVENTORY_MENU_SELECTOR);
+	public StaticSprite selectSprite = Sprites.sprites.get(Sprites.SELECTOR);
 	public StaticSprite[] menuSprites = Sprites.spriteCollections.get(Sprites.INVENTORY_MENU); // {Sprites.menuSprites1, Sprites.menuSprites2, Sprites.menuSprites3};
 	public int formerHeroAnimation;
 	public String menu1Title = "Inventory";
@@ -57,8 +57,8 @@ public class Inventory {
 		int k = 0;
 		for(int x = 0; x < INV_LENGTH; x++) {
 			for(int y = 0; y < INV_HEIGHT; y++) {
-				invBag[k] = new Slot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.right) * y,
-									 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.bottom) * x);
+				invBag[k] = new Slot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y,
+									 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x);
 				k++;
 			}
 		}
@@ -66,8 +66,8 @@ public class Inventory {
 		k = 0;
 		for(int x = 0; x < INV_LENGTH; x++) {
 			for(int y = 0; y < INV_HEIGHT; y++) {
-				invChest[k] = new Slot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.right) * y+173,
-									 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.bottom) * x);
+				invChest[k] = new Slot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y,
+						INV_CRAFTING_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x);
 				k++;
 			}
 		}
@@ -75,8 +75,8 @@ public class Inventory {
 		k = 0;
 		for(int x = 0; x < 2; x++) {	
 			for(int y = 0; y < 2; y++) {
-				invCrafting[k] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE) * x,
-										  INV_CRAFTING_RECT.y + (INV_SLOT_SIZE) * y);
+				invCrafting[k] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE+ INV_SLOT_MARGIN.right) * y,
+										  INV_CRAFTING_RECT.y + (INV_SLOT_SIZE+ INV_SLOT_MARGIN.right) * x);
 				k++;
 			}
 		}
@@ -96,10 +96,10 @@ public class Inventory {
 		
 		invCrafted[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 75, INV_CRAFTING_RECT.y);
 
-		invClothing[0] = new ClothingSlot(INV_CHAR_RECT.x +147,INV_CHAR_RECT.y+40, HELMET_SLOT);
-		invClothing[1] = new ClothingSlot(INV_CHAR_RECT.x +147,INV_CHAR_RECT.y +80,ARMOR_SLOT);
-		invClothing[2] = new ClothingSlot(INV_CHAR_RECT.x +147,INV_CHAR_RECT.y +120,LEGGINGS_SLOT);
-		invClothing[3] = new ClothingSlot(INV_CHAR_RECT.x +147,INV_CHAR_RECT.y +160,BOOTS_SLOT);
+		invClothing[0] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y, HELMET_SLOT);
+		invClothing[1] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +40,ARMOR_SLOT);
+		invClothing[2] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +80,LEGGINGS_SLOT);
+		invClothing[3] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +120,BOOTS_SLOT);
 //		
 //		invBar[0].item = new TableItem();
 //		invBar[0].item.stackSize = 99;

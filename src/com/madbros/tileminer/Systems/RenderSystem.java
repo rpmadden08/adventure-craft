@@ -291,71 +291,98 @@ public class RenderSystem {
 }
 	
 	public void renderHealth(Hero hero) {
+
+		StaticSprite healthBarMiddle = Sprites.sprites.get(Sprites.HEALTH_BAR_MIDDLE);
+		StaticSprite healthBarLeft = Sprites.sprites.get(Sprites.HEALTH_BAR_LEFT);
+		StaticSprite healthBarRight = Sprites.sprites.get(Sprites.HEALTH_BAR_RIGHT);
+		StaticSprite energyBarMiddle = Sprites.sprites.get(Sprites.ENERGY_BAR_MIDDLE);
+		StaticSprite magicBarMiddle = Sprites.sprites.get(Sprites.MAGIC_BAR_MIDDLE);
+		StaticSprite emptyBarMiddle = Sprites.sprites.get(Sprites.EMPTY_BAR_MIDDLE);
 		
-		//The Red/Blue/Green Part
-		Sprites.pixel.setColor(Color.toFloatBits(239, 29, 29, 255));
-		Sprites.pixel.draw(4,4,Z_CHARACTER,hero.hP,10);
+		healthBarLeft.draw(1,1,0);
+		emptyBarMiddle.draw(healthBarLeft.getX()+healthBarLeft.getWidth(),healthBarLeft.getY() +2,Z_CHARACTER,hero.maxHP,healthBarMiddle.getHeight());
+		healthBarMiddle.draw(healthBarLeft.getX()+healthBarLeft.getWidth(),healthBarLeft.getY() +2,Z_CHARACTER,hero.hP,healthBarMiddle.getHeight());
+		healthBarRight.draw(healthBarLeft.getX()+healthBarLeft.getWidth()+ hero.maxHP, healthBarLeft.getY(), Z_CHARACTER);
 		
-		Sprites.pixel.setColor(Color.toFloatBits(28, 57, 234, 255));
-		Sprites.pixel.draw(4,20,Z_CHARACTER,hero.mP,10);
 		
-		Sprites.pixel.setColor(Color.toFloatBits(39, 194, 32, 255));
-		Sprites.pixel.draw(4,36,Z_CHARACTER,(int)hero.eP,10);
+		healthBarLeft.draw(1,29,0);
+		emptyBarMiddle.draw(healthBarLeft.getX()+healthBarLeft.getWidth(),healthBarLeft.getY() +2,Z_CHARACTER,hero.maxHP,healthBarMiddle.getHeight());
+		magicBarMiddle.draw(healthBarLeft.getX()+healthBarLeft.getWidth(),healthBarLeft.getY() +2,Z_CHARACTER,hero.mP,healthBarMiddle.getHeight());
 		
-		//Red Highlight top
-		Sprites.pixel.setColor(Color.toFloatBits(239, 99, 99, 255));
-		Sprites.pixel.draw(4,4,Z_CHARACTER,hero.hP,2);
-		Sprites.pixel.setColor(Color.toFloatBits(68, 97, 234, 255));
-		Sprites.pixel.draw(4,20,Z_CHARACTER,hero.mP,2);
-		Sprites.pixel.setColor(1f, 1f, 1f,0.25f);
-		Sprites.pixel.draw(4,36,Z_CHARACTER,(int)hero.eP,2);
+		healthBarRight.draw(healthBarLeft.getX()+healthBarLeft.getWidth()+ hero.maxHP, healthBarLeft.getY(), Z_CHARACTER);
 		
-		//Red Highlight bottom
-		Sprites.pixel.setColor(0f, 0f, 0f,0.3f);
-		Sprites.pixel.draw(4,12,Z_CHARACTER,hero.hP,2);
-		Sprites.pixel.draw(4,28,Z_CHARACTER,hero.mP,2);
-		Sprites.pixel.draw(4,44,Z_CHARACTER,(int)hero.eP,2);
-	
-		//Black Edge
-		Sprites.pixel.setColor(Color.BLACK);
-		Sprites.pixel.draw(4+hero.hP,4,Z_CHARACTER,hero.maxHP-hero.hP,10);
-		Sprites.pixel.draw(4+hero.mP,20,Z_CHARACTER,hero.maxMP-hero.mP,10);
-		Sprites.pixel.draw(4+(int)hero.eP,36,Z_CHARACTER,(int)hero.maxEP-(int)hero.eP,10);
+		healthBarLeft.draw(1,57,0);
+		emptyBarMiddle.draw(healthBarLeft.getX()+healthBarLeft.getWidth(),healthBarLeft.getY() +2,Z_CHARACTER,hero.maxHP,healthBarMiddle.getHeight());
+		energyBarMiddle.draw(healthBarLeft.getX()+healthBarLeft.getWidth(),healthBarLeft.getY() +2,Z_CHARACTER,(int)hero.eP,healthBarMiddle.getHeight());
 		
-		//Border left
-		Sprites.healthBar.draw(2,2,Z_CHARACTER,4,14);
-		Sprites.healthBar.draw(2,18,Z_CHARACTER,4,14);
-		Sprites.healthBar.draw(2,34,Z_CHARACTER,4,14);
+		healthBarRight.draw(healthBarLeft.getX()+healthBarLeft.getWidth()+ hero.maxHP, healthBarLeft.getY(), Z_CHARACTER);
 		
-		//Border Top
-		Sprites.pixel.setColor(0.886f, 0.914f, 0.98f,1f);
-		Sprites.pixel.draw(6, 2, Z_CHARACTER, hero.maxHP-4, 2);
-		Sprites.pixel.draw(6, 18, Z_CHARACTER, hero.maxMP-4, 2);
-		Sprites.pixel.draw(6, 34, Z_CHARACTER, (int)hero.maxEP-4, 2);
 		
-		//Border Bottom
-		Sprites.pixel.draw(6, 14, Z_CHARACTER, hero.maxHP-4, 2);
-		Sprites.pixel.draw(6, 30, Z_CHARACTER, hero.maxMP-4, 2);
-		Sprites.pixel.draw(6, 46, Z_CHARACTER, (int)hero.maxEP-4, 2);
 		
-		//Border Right
-		Sprites.healthBar.rotate(180);
-		Sprites.healthBar.draw(2+hero.maxHP,2,Z_CHARACTER,4,14);
-		Sprites.healthBar.draw(2+hero.maxMP,18,Z_CHARACTER,4,14);
-		Sprites.healthBar.draw(2+(int)hero.maxEP,34,Z_CHARACTER,4,14);
-		Sprites.healthBar.rotate(-180);
-		
-		//Reset
-		Sprites.pixel.setColor(Color.WHITE);
-		
-//		Sprites.pixel.draw(4, 3, Z_CHARACTER, hero.maxHP+1, 1);
-//		Sprites.pixel.draw(3, 4, Z_CHARACTER, hero.maxHP+2, 1);
-//		Sprites.pixel.draw(2, 5, Z_CHARACTER, hero.maxHP+3, 8);
-//		Sprites.pixel.draw(3, 13, Z_CHARACTER, hero.maxHP+2, 1);
-//		Sprites.pixel.draw(4, 14, Z_CHARACTER, hero.maxHP+1, 1);
-//		Sprites.pixel.draw(5, 15, Z_CHARACTER, hero.maxHP, 1);
-		
-		Sprites.pixel.setColor(Color.WHITE);
+//		//The Red/Blue/Green Part
+//		Sprites.pixel.setColor(Color.toFloatBits(239, 29, 29, 255));
+//		Sprites.pixel.draw(4,4,Z_CHARACTER,hero.hP,10);
+//		
+//		Sprites.pixel.setColor(Color.toFloatBits(28, 57, 234, 255));
+//		Sprites.pixel.draw(4,20,Z_CHARACTER,hero.mP,10);
+//		
+//		Sprites.pixel.setColor(Color.toFloatBits(39, 194, 32, 255));
+//		Sprites.pixel.draw(4,36,Z_CHARACTER,(int)hero.eP,10);
+//		
+//		//Red Highlight top
+//		Sprites.pixel.setColor(Color.toFloatBits(239, 99, 99, 255));
+//		Sprites.pixel.draw(4,4,Z_CHARACTER,hero.hP,2);
+//		Sprites.pixel.setColor(Color.toFloatBits(68, 97, 234, 255));
+//		Sprites.pixel.draw(4,20,Z_CHARACTER,hero.mP,2);
+//		Sprites.pixel.setColor(1f, 1f, 1f,0.25f);
+//		Sprites.pixel.draw(4,36,Z_CHARACTER,(int)hero.eP,2);
+//		
+//		//Red Highlight bottom
+//		Sprites.pixel.setColor(0f, 0f, 0f,0.3f);
+//		Sprites.pixel.draw(4,12,Z_CHARACTER,hero.hP,2);
+//		Sprites.pixel.draw(4,28,Z_CHARACTER,hero.mP,2);
+//		Sprites.pixel.draw(4,44,Z_CHARACTER,(int)hero.eP,2);
+//	
+//		//Black Edge
+//		Sprites.pixel.setColor(Color.BLACK);
+//		Sprites.pixel.draw(4+hero.hP,4,Z_CHARACTER,hero.maxHP-hero.hP,10);
+//		Sprites.pixel.draw(4+hero.mP,20,Z_CHARACTER,hero.maxMP-hero.mP,10);
+//		Sprites.pixel.draw(4+(int)hero.eP,36,Z_CHARACTER,(int)hero.maxEP-(int)hero.eP,10);
+//		
+//		//Border left
+//		Sprites.healthBar.draw(2,2,Z_CHARACTER,4,14);
+//		Sprites.healthBar.draw(2,18,Z_CHARACTER,4,14);
+//		Sprites.healthBar.draw(2,34,Z_CHARACTER,4,14);
+//		
+//		//Border Top
+//		Sprites.pixel.setColor(0.886f, 0.914f, 0.98f,1f);
+//		Sprites.pixel.draw(6, 2, Z_CHARACTER, hero.maxHP-4, 2);
+//		Sprites.pixel.draw(6, 18, Z_CHARACTER, hero.maxMP-4, 2);
+//		Sprites.pixel.draw(6, 34, Z_CHARACTER, (int)hero.maxEP-4, 2);
+//		
+//		//Border Bottom
+//		Sprites.pixel.draw(6, 14, Z_CHARACTER, hero.maxHP-4, 2);
+//		Sprites.pixel.draw(6, 30, Z_CHARACTER, hero.maxMP-4, 2);
+//		Sprites.pixel.draw(6, 46, Z_CHARACTER, (int)hero.maxEP-4, 2);
+//		
+//		//Border Right
+//		Sprites.healthBar.rotate(180);
+//		Sprites.healthBar.draw(2+hero.maxHP,2,Z_CHARACTER,4,14);
+//		Sprites.healthBar.draw(2+hero.maxMP,18,Z_CHARACTER,4,14);
+//		Sprites.healthBar.draw(2+(int)hero.maxEP,34,Z_CHARACTER,4,14);
+//		Sprites.healthBar.rotate(-180);
+//		
+//		//Reset
+//		Sprites.pixel.setColor(Color.WHITE);
+//		
+////		Sprites.pixel.draw(4, 3, Z_CHARACTER, hero.maxHP+1, 1);
+////		Sprites.pixel.draw(3, 4, Z_CHARACTER, hero.maxHP+2, 1);
+////		Sprites.pixel.draw(2, 5, Z_CHARACTER, hero.maxHP+3, 8);
+////		Sprites.pixel.draw(3, 13, Z_CHARACTER, hero.maxHP+2, 1);
+////		Sprites.pixel.draw(4, 14, Z_CHARACTER, hero.maxHP+1, 1);
+////		Sprites.pixel.draw(5, 15, Z_CHARACTER, hero.maxHP, 1);
+//		
+//		Sprites.pixel.setColor(Color.WHITE);
 	}
 	
 	public void renderMobHealth(Mob mob) {
@@ -497,10 +524,11 @@ public class RenderSystem {
 	}
 	
 	public void renderHud(Inventory inv) {
+		Sprites.invBar.draw(0,0,0, Sprites.invBar.getWidth(), Sprites.invBar.getHeight());
 		for(int i=0;i < inv.invBar.length; i++) {			
 			inv.invBar[i].render();
 			if(i == inv.itemSelected) 
-				inv.selectSprite.draw(inv.invBar[i].slotRect.x - 2, inv.invBar[i].slotRect.y - 2,
+				inv.selectSprite.draw(inv.invBar[i].slotRect.x - 1, inv.invBar[i].slotRect.y - 2,
 				Z_INV_SELECT, inv.invBar[i].slotRect.w + 3, inv.invBar[i].slotRect.h + 3);
 			
 		}
@@ -605,19 +633,20 @@ public class RenderSystem {
 	
 	/******************************************* Inventory State Rendering *******************************************/
 	public void renderInventory(Hero hero, Inventory inv) {
-		inv.menuSprites[0].draw(INV_BACKDROP_RECT.x, INV_BACKDROP_RECT.y, Z_INV_BACKDROP);	//top left
-		inv.menuSprites[6].draw(INV_BACKDROP_RECT.x2()-INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y, Z_INV_BACKDROP); //top right
-		inv.menuSprites[2].draw(INV_BACKDROP_RECT.x, INV_BACKDROP_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP);	//bottom left
-		inv.menuSprites[8].draw(INV_BACKDROP_RECT.x2()-INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP);	//bottom right
-		
-		inv.menuSprites[3].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_MENU_TILE_SIZE);	//top
-		inv.menuSprites[5].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_MENU_TILE_SIZE);	//bottom
-		inv.menuSprites[1].draw(INV_BACKDROP_RECT.x, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2);	//left
-		inv.menuSprites[7].draw(INV_BACKDROP_RECT.x2()-INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2);	//right
-		
-		inv.menuSprites[4].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2); //middle
-		
-		
+		Sprites.gameMenu.draw(0,0,0, Sprites.gameMenu.getWidth(), Sprites.gameMenu.getHeight());
+//		inv.menuSprites[0].draw(INV_BACKDROP_RECT.x, INV_BACKDROP_RECT.y, Z_INV_BACKDROP);	//top left
+//		inv.menuSprites[6].draw(INV_BACKDROP_RECT.x2()-INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y, Z_INV_BACKDROP); //top right
+//		inv.menuSprites[2].draw(INV_BACKDROP_RECT.x, INV_BACKDROP_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP);	//bottom left
+//		inv.menuSprites[8].draw(INV_BACKDROP_RECT.x2()-INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP);	//bottom right
+//		
+//		inv.menuSprites[3].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_MENU_TILE_SIZE);	//top
+//		inv.menuSprites[5].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_MENU_TILE_SIZE);	//bottom
+//		inv.menuSprites[1].draw(INV_BACKDROP_RECT.x, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2);	//left
+//		inv.menuSprites[7].draw(INV_BACKDROP_RECT.x2()-INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2);	//right
+//		
+//		inv.menuSprites[4].draw(INV_BACKDROP_RECT.x+INV_MENU_TILE_SIZE, INV_BACKDROP_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_BACKDROP_RECT.w-INV_MENU_TILE_SIZE*2, INV_BACKDROP_RECT.h-INV_MENU_TILE_SIZE*2); //middle
+//		
+//		
 		for(int i = 0; i < inv.invBag.length; i++) {
 			inv.invBag[i].render();
 		}
@@ -898,7 +927,7 @@ public class RenderSystem {
 					
 				}
 			}
-			Sprites.arial24.draw(batch, "Chest", 226, 32);
+			Sprites.arial24.draw(batch, "Chest", 304, 108);
 		}else if(Game.currentState.type == State.FURNACE) {
 			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			furnaceTile.craftedSlot[0].item.renderLargeFont(furnaceTile.craftedSlot[0].slotRect.x2()-INV_SLOT_SIZE/2, furnaceTile.craftedSlot[0].slotRect.y2()-INV_SLOT_SIZE/2, batch);
@@ -910,7 +939,7 @@ public class RenderSystem {
 				}
 			}
 			
-			Sprites.arial24.draw(batch, inv.menu2Title, 226, 32);
+			Sprites.arial24.draw(batch, inv.menu2Title, 304, 108);
 			Sprites.arial10.draw(batch, "Fuel", 404, 440);
 			Sprites.arial10.draw(batch, "Input", 402, 356);
 			Sprites.arial10.draw(batch, "Output", 592, 401);
@@ -930,12 +959,12 @@ public class RenderSystem {
 			Sprites.arial10.draw(batch, "Input", 400, 318);
 			Sprites.arial10.draw(batch, "Output", 592, 401);
 		}else {
-			Sprites.arial24.draw(batch, inv.menu2Title, 226, 32);
+			Sprites.arial24.draw(batch, inv.menu2Title, 304, 108);
 		}
-		Sprites.arial24.draw(batch, inv.menu1Title, 53, 32);
-		Sprites.arial24.draw(batch, "Character", 400, 32);
-		Sprites.arial24.draw(batch, "Workspace", 400, 236);
-		Sprites.arial10.draw(batch, "Armor", 502, 60);
+		Sprites.arial24.draw(batch, inv.menu1Title, 104, 108); //53, 32
+		Sprites.arial24.draw(batch, "Character", 526, 108);
+		Sprites.arial24.draw(batch, "Workspace", 521, 388);
+		Sprites.arial10.draw(batch, "Armor", 603, 168);
 		//Sprites.arial24.draw(batch, inv.menu2Title, 288, 32);
 		
 		//inv.menu1Title = "Crafting";

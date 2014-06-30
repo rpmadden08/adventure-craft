@@ -88,7 +88,7 @@ public class Constants {
 	
 	//inventory constants
 	public static final int INV_MENU_TILE_SIZE = 32;
-	public static final int INV_SLOT_SIZE = 41;
+	public static final int INV_SLOT_SIZE = 40;
 	public static final int ITEM_SIZE =32;
 	
 	public static final int INV_LENGTH = 10;
@@ -99,15 +99,17 @@ public class Constants {
 	public static final Margin INV_MENU_SLOT_MARGIN =new Margin(0, 0, 0, 0);
 	
 	public static final Rect INV_BACKDROP_RECT = new Rect(INV_MENU_MARGIN.left, INV_MENU_MARGIN.top,INV_SLOT_SIZE*INV_LENGTH+181, INV_SLOT_SIZE*INV_LENGTH+18);
-	public static final Rect INV_BAR_RECT = new Rect(2,50, 64, 64);
-	public static final Rect INV_BAG_RECT = new Rect(56, 60, INV_SLOT_SIZE*4, INV_SLOT_SIZE*INV_LENGTH);
-	public static final Rect INV_CHAR_RECT = new Rect(351, 35,100,100);
+	public static final Rect INV_BAR_RECT = new Rect(13,169, 64, 64);
+	public static final Rect INV_BAG_RECT = new Rect(79, 169, INV_SLOT_SIZE*4, INV_SLOT_SIZE*INV_LENGTH);
+	//public static final Rect INV_CRAFTING_RECT = new Rect(79, 169, INV_SLOT_SIZE*4, INV_SLOT_SIZE*INV_LENGTH);
+	public static final Rect INV_CHAR_RECT = new Rect(455, 156,100,100);
+	public static final Rect INV_CLOTHING_RECT = new Rect(601, 188,100,100);
 	
-	public static final Rect INV_CRAFTING_RECT = new Rect(230, 347, 2*(INV_SLOT_SIZE+2), 2*(INV_SLOT_SIZE+2));
+	public static final Rect INV_CRAFTING_RECT = new Rect(271, 169, INV_SLOT_SIZE*4, INV_SLOT_SIZE*INV_LENGTH);
 	public static final int INV_ANIMATION_CHANGE = 100;
 	
 	//item/slot constants
-	public static final int ITEM_OFFSET = 5;
+	public static final int ITEM_OFFSET = 4;
 	public static final int STANDARD_SLOT = 0;
 	public static final int CRAFTING_SLOT = 1;
 	public static final int CRAFTED_SLOT = 2;

@@ -12,7 +12,7 @@ import com.madbros.tileminer.TileTypes.FurnaceTile;
 import com.madbros.tileminer.Utils.*;
 
 public class Slot {
-	public StaticSprite slotSprite = Sprites.sprites.get(Sprites.INVENTORY_MENU_SLOT);
+	public StaticSprite slotSprite = Sprites.sprites.get(Sprites.SLOT_BORDER);
 	public StaticSprite highlighter = Sprites.sprites.get(Sprites.PIXEL);
 	
 	public Color highlightColor = new Color(1.0f, 1.0f, 1.0f, 0.2f);

@@ -30,8 +30,43 @@ import org.json.simple.parser.*;
 public class Sprites {
 	public static Texture atlas;
 	public static Texture lightAtlas;
+	public static Texture menu = new Texture(Gdx.files.internal("data/gameMenu.png"));
+	public static StaticSprite gameMenu = new StaticSprite(menu, 0,0,1440,900,Game.batch);
+	public static Texture invBarTexture = new Texture(Gdx.files.internal("data/invBar.png"));
+	public static StaticSprite invBar = new StaticSprite(invBarTexture, 0,0,1440,900,Game.batch);
 	
 	public static final String HUMAN_BASE = "1";
+	
+	
+	public static final String CURSOR = "cursor";
+	public static final String EMPTY_BAR_MIDDLE = "emptyBarMiddle";
+	public static final String ENERGY_BAR_MIDDLE = "energyBarMiddle";
+	public static final String GRAY_ARMOR = "grayArmor";
+	public static final String GRAY_BOOTS = "grayBoots";
+	public static final String GRAY_BUTTON = "grayButton";
+	public static final String GRAY_LEGGINGS = "grayLeggings";
+	public static final String GREEN_BUTTON = "greenButton";
+	public static final String GRAY_HELMET = "grayHelmet";
+	public static final String GREEN_BUTTON_HOVER = "greenButtonHover";
+	public static final String GREEN_BUTTON_PUSHED = "greenButtonPushed";
+	public static final String HEALTH_BAR_LEFT = "healthBarLeft";
+	public static final String HEALTH_BAR_MIDDLE = "healthBarMiddle";
+	public static final String HEALTH_BAR_RIGHT = "healthBarRight";
+	public static final String HP_ITEM = "hPItem";
+	public static final String LEFT_ARROW = "leftArrow";
+	public static final String MAGIC_BAR_MIDDLE = "magicBarMiddle";
+	public static final String RED_BUTTON = "redButton";
+	public static final String RED_BUTTON_HOVER = "redButtonHover";
+	public static final String RED_BUTTON_PUSHED = "redButtonPushed";
+	public static final String RIGHT_ARROW = "rightArrow";
+	public static final String SELECTOR = "selector";
+	public static final String SLOT_BORDER = "slotBorder";
+	public static final String TAB_SELECTED = "tabSelected";
+	public static final String TAB_UNSELECTED = "tabUnselected";
+	public static final String HEART_CONTAINER = "heartContainer";
+	
+	
+	
 	
 	//singles
 	public static final String DARK_DIRT = "darkDirtSingle";
@@ -759,6 +794,28 @@ public class Sprites {
 					MALE_TREAD_UP, MALE_TREAD_DOWN, MALE_TREAD_LEFT, MALE_TREAD_RIGHT,
 					WATER_SWIMMING_ANIMATION,
 					
+					CURSOR, EMPTY_BAR_MIDDLE, ENERGY_BAR_MIDDLE, GRAY_ARMOR, GRAY_BOOTS, GRAY_BUTTON,
+			GRAY_LEGGINGS,
+			GREEN_BUTTON,
+			GRAY_HELMET,
+			GREEN_BUTTON_HOVER,
+			GREEN_BUTTON_PUSHED,
+			HEALTH_BAR_LEFT,
+			HEALTH_BAR_MIDDLE,
+			HEALTH_BAR_RIGHT,
+			HP_ITEM,
+			LEFT_ARROW,
+			MAGIC_BAR_MIDDLE,
+			RED_BUTTON,
+			RED_BUTTON_HOVER,
+			RED_BUTTON_PUSHED,
+			RIGHT_ARROW,
+			SELECTOR,
+			SLOT_BORDER,
+			TAB_SELECTED,
+			TAB_UNSELECTED,
+			HEART_CONTAINER,
+					
 			};
 			
 			String[] lightNames = {LIGHT, CAMPFIRE_LIGHT};
@@ -1399,6 +1456,8 @@ public class Sprites {
 			//font = TrueTypeFontFactory.createBitmapFont(Gdx.files.internal("res/arial.ttf"), FONT_CHARACTERS, 12.5f, 7.5f, 1.0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 			Texture texture = new Texture(Gdx.files.internal("res/Arial.png"));
 			font = new BitmapFont(Gdx.files.internal("res/Arial.fnt"),new TextureRegion(texture), false);
+			
+			
 			
 			texture = new Texture(Gdx.files.internal("res/Arial24.png"));
 			arial24 = new BitmapFont(Gdx.files.internal("res/Arial24.fnt"),new TextureRegion(texture), false);
