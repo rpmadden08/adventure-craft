@@ -29,10 +29,10 @@ public class CraftingMenu {
 	
 	public CraftingMenu() {
 		ButtonFunction nextPageFunction = new ButtonFunction() { public void invoke() { nextPage2(); } };
-		nextPage =  new InGameMenuUIButton(453,168,25,25, Sprites.LEFT_ARROW ,nextPageFunction, Game.batch, 456, 171);
+		nextPage =  new InGameMenuUIButton(453,168,25,25, Sprites.RIGHT_ARROW, nextPageFunction, Game.batch, 458, 171);
 		//nextPage.buttonColor = Color.GREEN;
 		ButtonFunction lastPageFunction = new ButtonFunction() { public void invoke() { lastPage2(); } };
-		lastPage =  new InGameMenuUIButton(453,192,25,25, Sprites.RIGHT_ARROW,lastPageFunction, Game.batch, 457, 195);
+		lastPage =  new InGameMenuUIButton(453,192,25,25, Sprites.LEFT_ARROW, lastPageFunction, Game.batch, 456, 195);
 		//lastPage.buttonColor = Color.GREEN;
 		//public TextUIButton(int x, int y, int w, int h, String s, ButtonFunction func, SpriteBatch batch)
 		int k = 0;
