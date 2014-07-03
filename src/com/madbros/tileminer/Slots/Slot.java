@@ -77,14 +77,14 @@ public class Slot {
 		handleLeftClickShiftChest(inv);
 	}
 	
-	public void handleLeftClickCrafting(Inventory inv) {
+	public void handleLeftClickCrafting(Inventory inv, int[] craftableList, int[] possiblyCraftableList) {
 		//System.out.println("Need to code what happens when clicked!");
 		if(this.item.id == EMPTY) {
 			inv.craftingMenu.currentPage = 0;
-			inv.craftingMenu.currentCraftableList = inv.craftingMenu.craftableList;
+			inv.craftingMenu.currentCraftableList = craftableList;
 		} else {
 			inv.craftingMenu.currentPage = 0;
-			inv.craftingMenu.currentCraftableList = this.item.itemsPossiblyCraftable;
+			inv.craftingMenu.currentCraftableList = possiblyCraftableList;
 			
 		}
 	}

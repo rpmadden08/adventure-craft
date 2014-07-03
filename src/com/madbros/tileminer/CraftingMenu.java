@@ -2,6 +2,7 @@ package com.madbros.tileminer;
 
 import static com.madbros.tileminer.Constants.*;
 
+import com.madbros.tileminer.Items.Item;
 import com.madbros.tileminer.Slots.BrewingSlot;
 import com.madbros.tileminer.Slots.BurningSlot;
 import com.madbros.tileminer.Slots.CraftingSlot;
@@ -127,9 +128,26 @@ public class CraftingMenu {
 	
 	public void refreshCraftSlots(int[] itemsPossiblyCraftable) {
 		int itemStartPoint = currentPage * 40;
+		int[] itemsPossiblyCraftableSorted = new int[itemsPossiblyCraftable.length];
+		int currentSortInt = 0;
+		for(int a = 0;a < itemsPossiblyCraftable.length; a++) {
+			Item item = ITEM_HASH.get(itemsPossiblyCraftable[a]).createNew();
+			if(item.areIngredientsInInventory()) {
+				itemsPossiblyCraftableSorted[currentSortInt] = itemsPossiblyCraftable[a];
+				currentSortInt ++;
+			} 
+		}
+		for(int a = 0;a < itemsPossiblyCraftable.length; a++) {
+			Item item = ITEM_HASH.get(itemsPossiblyCraftable[a]).createNew();
+			if(!item.areIngredientsInInventory()) {
+				itemsPossiblyCraftableSorted[currentSortInt] = itemsPossiblyCraftable[a];
+				currentSortInt ++;
+			} 
+		}
+		
 		for(int x = 0; x <craftSlots.length; x++) {
-			if(x+ itemStartPoint < itemsPossiblyCraftable.length) {
-				craftSlots[x].item = ITEM_HASH.get(itemsPossiblyCraftable[x+ itemStartPoint]).createNew();
+			if(x+ itemStartPoint < itemsPossiblyCraftableSorted.length) {
+				craftSlots[x].item = ITEM_HASH.get(itemsPossiblyCraftableSorted[x+ itemStartPoint]).createNew();
 				craftSlots[x].item.stackSize = craftSlots[x].item.numberProducedByCrafting;
 				//If the item is craftable then do nothing.  If it is then mark the slot as uncraftable.  
 				if(craftSlots[x].item.areIngredientsInInventory()) {

@@ -44,8 +44,9 @@ public class ChestStateInput extends InventoryStateInput {
 				if(mouseRect.detectCollision(slots2[i][j].slotRect)) {
 					slots2[i][j].isHighlighted = true;
 					
-					if(mouseLeftDown && altKeyDown) slots2[i][j].handleLeftClickCrafting(Game.inventory);
-					else if(mouseLeftDown && shiftKeyDown) slots2[i][j].handleLeftClickShiftChest(Game.inventory);
+//					if(mouseLeftDown && altKeyDown) slots2[i][j].handleLeftClickCrafting(Game.inventory, Game.inventory.craftingMenu.craftableList, slots[i][j].item.itemsPossiblyCraftable);
+//					else 
+					if(mouseLeftDown && shiftKeyDown) slots2[i][j].handleLeftClickShiftChest(Game.inventory);
 					else if(mouseRightDown && shiftKeyDown) slots2[i][j].handleRightClickShiftChest(Game.inventory);
 					else if(mouseLeftDown) slots2[i][j].handleLeftClick(Game.inventory);
 					else if(mouseRightDown) slots2[i][j].handleRightClick(Game.inventory);

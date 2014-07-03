@@ -48,7 +48,7 @@ public class InventoryStateInput extends MainStateInput {
 				if(mouseRect.detectCollision(slots[i][j].slotRect)) {
 					slots[i][j].isHighlighted = true;
 					
-					if(mouseLeftDown && altKeyDown) slots[i][j].handleLeftClickCrafting(Game.inventory);
+					if(mouseLeftDown && altKeyDown) slots[i][j].handleLeftClickCrafting(Game.inventory, Game.inventory.craftingMenu.craftableList, slots[i][j].item.itemsPossiblyCraftable);
 					else if(mouseLeftDown && shiftKeyDown) slots[i][j].handleLeftClickShift(Game.inventory);
 					else if(mouseRightDown && shiftKeyDown) slots[i][j].handleRightClickShift(Game.inventory);
 					else if(mouseLeftDown) slots[i][j].handleLeftClick(Game.inventory);

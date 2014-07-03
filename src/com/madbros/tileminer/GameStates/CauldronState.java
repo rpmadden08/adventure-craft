@@ -19,8 +19,8 @@ public class CauldronState extends MainState {
 		Game.mobController.update();
 		Game.level.update();
 		Game.debugger.update();
-		//Game.inventory.craftingMenu.refreshCraftSlots(Game.inventory.craftingMenu.currentCraftableList);
-		Game.inventory.craftingMenu.refreshCauldronCraftSlots(Game.inventory.craftingMenu.currentCraftableList);
+		Game.inventory.craftingMenu.refreshCraftSlots(Game.inventory.craftingMenu.currentCraftableList);
+		//Game.inventory.craftingMenu.refreshCauldronCraftSlots(Game.inventory.craftingMenu.currentCraftableList);
 	}
 	
 	@Override

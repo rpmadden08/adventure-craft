@@ -11,7 +11,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Rect;
 public class CraftingSlot extends Slot{
 	public boolean hasIngedients = false;
-	private int maxToolTipDelay = 30;
+	private int maxToolTipDelay = 60;
 	private int toolTipDelay = maxToolTipDelay;
 	
 	public CraftingSlot(int x, int y) {
