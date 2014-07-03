@@ -119,7 +119,7 @@ public class Inventory {
 		invBar[7].item.stackSize = 1;
 		invBar[8].item = new LeatherHat();
 		invBar[8].item.stackSize = 1;
-		invBar[9].item = new CopperHelmet();
+		invBar[9].item = new Chest();
 		invBar[9].item.stackSize = 1;
 		
 //		invBag[0].item = new FireStarter();

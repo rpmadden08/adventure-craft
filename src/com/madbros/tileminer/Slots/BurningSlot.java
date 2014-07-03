@@ -24,7 +24,7 @@ public class BurningSlot extends CraftingSlot{
 			
 			FurnaceTile furnace = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			if(furnace.furnaceSlots[0].item.id == 0) {
-				furnace.furnaceSlots[0].item = this.item;
+				furnace.furnaceSlots[0].item = ITEM_HASH.get(this.item.id).createNew();
 			}else if(furnace.furnaceSlots[0].item.id == this.item.id) {
 				furnace.furnaceSlots[0].item.stackSize = furnace.furnaceSlots[0].item.stackSize +1;
 			} else { 
@@ -36,6 +36,19 @@ public class BurningSlot extends CraftingSlot{
 				Game.inventory.remove(removedItem, this.item.craftCostAmount[x]);
 			}
 			
+		}
+	}
+	public void handleLeftClickShift(Inventory inv) {
+		FurnaceTile furnace = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+		if(furnace.furnaceSlots[0].item.id == 0 || furnace.furnaceSlots[0].item.id == this.item.id) {
+			while(furnace.furnaceSlots[0].item.stackSize + this.item.stackSize <= furnace.furnaceSlots[0].item.maxStackSize) {
+				System.out.println(furnace.furnaceSlots[0].item.stackSize);
+				if(isInactive) {
+					return;
+				} else {
+					handleLeftClick(inv);
+				}
+			}
 		}
 	}
 }

@@ -142,9 +142,8 @@ public class CraftingSlot extends Slot{
 	}
 	public void handleLeftClickShift(Inventory inv) {
 		if(inv.heldItem.id == 0 || inv.heldItem.id == this.item.id) {
-			while(inv.heldItem.stackSize + this.item.stackSize < inv.heldItem.maxStackSize) {
+			while(inv.heldItem.stackSize + this.item.stackSize <= inv.heldItem.maxStackSize) {
 				System.out.println(inv.heldItem.stackSize);
-				//Check is inactive..
 				if(isInactive) {
 					return;
 				} else {
@@ -156,8 +155,6 @@ public class CraftingSlot extends Slot{
 	public void handleLeftClick(Inventory inv) {
 		if(this.item.id == EMPTY || this.isInactive == true) {
 		} else {
-			//System.out.println(Game.inventory.heldItem.stackSize);
-			//Add items to inventory. 
 			Boolean needToRemoveItem = false;
 			if(inv.heldItem.id == 0) {
 				inv.heldItem = ITEM_HASH.get(this.item.id).createNew();

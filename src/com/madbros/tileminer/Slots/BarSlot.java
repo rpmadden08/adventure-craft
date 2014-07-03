@@ -24,4 +24,13 @@ public class BarSlot extends Slot{
 			inv.removeSlot(this);
 		}
 	}
+	public void handleLeftClickShiftChest(Inventory inv) {
+		if(inv.isSlotAvailable(this.item, inv.invChest)) {
+			inv.addItemToSlotArray(this.item, inv.invChest);
+			inv.removeSlot(this);
+		} else if(inv.isSlotAvailable(this.item, inv.invBag)) {
+			inv.addItemToSlotArray(this.item, inv.invBag);
+			inv.removeSlot(this);
+		}
+	}
 }

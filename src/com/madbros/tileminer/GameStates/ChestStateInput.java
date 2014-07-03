@@ -14,12 +14,16 @@ public class ChestStateInput extends InventoryStateInput {
 			case Keys.A: Game.inventory.craftingMenu.lastPage2(); break;
 			case Keys.D: Game.inventory.craftingMenu.nextPage2(); break;
 			case Keys.ALT_LEFT: altKeyDown = true; break; //TODO: Game.inventory.dropItemsInCraftingGrid();
+			case Keys.SHIFT_LEFT: shiftKeyDown = true; break; 
+			case Keys.SHIFT_RIGHT: shiftKeyDown = true; break; 
 		}
 	}
 	
 	public void additionalKeyUp(int key) {
 		switch(key) {
 			case Keys.ALT_LEFT: altKeyDown = false; break; //TODO: Game.inventory.dropItemsInCraftingGrid();
+			case Keys.SHIFT_LEFT: shiftKeyDown = false; break; 
+			case Keys.SHIFT_RIGHT: shiftKeyDown = false; break; 
 		}
 	}
 	
@@ -41,6 +45,8 @@ public class ChestStateInput extends InventoryStateInput {
 					slots2[i][j].isHighlighted = true;
 					
 					if(mouseLeftDown && altKeyDown) slots2[i][j].handleLeftClickCrafting(Game.inventory);
+					else if(mouseLeftDown && shiftKeyDown) slots2[i][j].handleLeftClickShiftChest(Game.inventory);
+					else if(mouseRightDown && shiftKeyDown) slots2[i][j].handleRightClickShiftChest(Game.inventory);
 					else if(mouseLeftDown) slots2[i][j].handleLeftClick(Game.inventory);
 					else if(mouseRightDown) slots2[i][j].handleRightClick(Game.inventory);
 					droppedItemInSlot = true;

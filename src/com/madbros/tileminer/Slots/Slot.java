@@ -67,12 +67,14 @@ public class Slot {
 		}
 	}
 	
-	public void handleLeftClickShift(Inventory inv) {
-		
-	}
+	public void handleLeftClickShift(Inventory inv) {}
+	public void handleLeftClickShiftChest(Inventory inv) {}
 	
 	public void handleRightClickShift(Inventory inv) {
 		handleLeftClickShift(inv);
+	}
+	public void handleRightClickShiftChest(Inventory inv) {
+		handleLeftClickShiftChest(inv);
 	}
 	
 	public void handleLeftClickCrafting(Inventory inv) {

@@ -79,4 +79,8 @@ public class ClothingSlot extends Slot{
 			inv.removeSlot(this);
 			Game.hero.calcArmor();
 	}
+	
+	public void handleLeftClickShiftChest(Inventory inv) {
+		handleLeftClickShift(inv);
+	}
 }
