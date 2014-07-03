@@ -67,6 +67,14 @@ public class Slot {
 		}
 	}
 	
+	public void handleLeftClickShift(Inventory inv) {
+		
+	}
+	
+	public void handleRightClickShift(Inventory inv) {
+		handleLeftClickShift(inv);
+	}
+	
 	public void handleLeftClickCrafting(Inventory inv) {
 		//System.out.println("Need to code what happens when clicked!");
 		if(this.item.id == EMPTY) {
@@ -128,6 +136,20 @@ public class Slot {
 		Item temp = inv.heldItem;
 		inv.heldItem = this.item;
 		this.item = temp;
+	}
+	
+	public void swapArmorSlots(int armorType) {
+		if(item instanceof Clothing) Game.hero.addClothingItem((Clothing)this.item);
+		if(Game.inventory.invClothing[armorType].item instanceof Clothing) Game.hero.removeClothingItem((Clothing)Game.inventory.invClothing[armorType].item);
+		swapSlots(this, Game.inventory.invClothing[armorType]);
+		Game.hero.calcArmor();
+	}
+	public void swapSlots(Slot slot1, Slot slot2) {
+		//Slot tempSlot1 = slot1;
+		Item tempItem1 = slot1.item;
+		Item tempItem2 = slot2.item;
+		slot1.item = tempItem2;
+		slot2.item = tempItem1;
 	}
 	
 	public void removeRecipeItemsFromCraftingSlots(int[] recipeCost, Slot[] invCrafting) {

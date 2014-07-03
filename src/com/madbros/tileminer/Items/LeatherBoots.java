@@ -15,6 +15,7 @@ public class LeatherBoots extends Clothing {
 		maxStackSize =1;
 		craftCost = new int[]{LEATHER};
 		craftCostAmount = new int[]{1};
+		type = BOOTS_TYPE;
 	}
 	
 	@Override

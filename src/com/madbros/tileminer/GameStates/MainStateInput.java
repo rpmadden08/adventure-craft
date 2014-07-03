@@ -3,7 +3,11 @@ package com.madbros.tileminer.GameStates;
 import com.badlogic.gdx.Input.Keys;
 import com.madbros.tileminer.Game;
 
+
+
 public class MainStateInput extends BasicInput {
+	public boolean altKeyDown = false;
+	public boolean shiftKeyDown = false;
 	@Override
 	public boolean scrolled(int amount) {
 		super.scrolled(amount);

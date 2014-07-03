@@ -15,6 +15,7 @@ public class TinBoots extends Clothing {
 		maxStackSize =1;
 		craftCost = new int[]{TIN_BAR};
 		craftCostAmount = new int[]{4};
+		type = BOOTS_TYPE;
 	}
 	
 	@Override

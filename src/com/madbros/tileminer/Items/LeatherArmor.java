@@ -15,6 +15,7 @@ public class LeatherArmor extends Clothing {
 		maxStackSize =1;
 		craftCost = new int[]{LEATHER};
 		craftCostAmount = new int[]{3};
+		type = ARMOR_TYPE;
 	}
 	
 	@Override

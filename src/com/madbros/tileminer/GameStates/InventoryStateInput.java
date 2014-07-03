@@ -10,20 +10,24 @@ import com.madbros.tileminer.Utils.Helpers;
 import com.madbros.tileminer.Utils.Rect;
 
 public class InventoryStateInput extends MainStateInput {
-	public boolean altKeyDown = false;
+	
 	public boolean droppedItemInSlot = false;
 	public void additionalKeyDown(int key){
 		switch(key) {
-			case Keys.E: Game.toggleInventoryState(); break; //TODO: Game.inventory.dropItemsInCraftingGrid();
+			case Keys.E: Game.toggleInventoryState(); break;
 			case Keys.A: Game.inventory.craftingMenu.lastPage2(); break;
 			case Keys.D: Game.inventory.craftingMenu.nextPage2(); break;
-			case Keys.ALT_LEFT: altKeyDown = true; break; //TODO: Game.inventory.dropItemsInCraftingGrid();
+			case Keys.ALT_LEFT: altKeyDown = true; break; 
+			case Keys.SHIFT_LEFT: shiftKeyDown = true; break; 
+			case Keys.SHIFT_RIGHT: shiftKeyDown = true; break; 
 		}
 	}
 	
 	public void additionalKeyUp(int key) {
 		switch(key) {
-			case Keys.ALT_LEFT: altKeyDown = false; break; //TODO: Game.inventory.dropItemsInCraftingGrid();
+			case Keys.ALT_LEFT: altKeyDown = false; break; 
+			case Keys.SHIFT_LEFT: shiftKeyDown = false; break; 
+			case Keys.SHIFT_RIGHT: shiftKeyDown = false; break; 
 		}
 		
 	}
@@ -45,8 +49,9 @@ public class InventoryStateInput extends MainStateInput {
 					slots[i][j].isHighlighted = true;
 					
 					if(mouseLeftDown && altKeyDown) slots[i][j].handleLeftClickCrafting(Game.inventory);
+					else if(mouseLeftDown && shiftKeyDown) slots[i][j].handleLeftClickShift(Game.inventory);
+					else if(mouseRightDown && shiftKeyDown) slots[i][j].handleRightClickShift(Game.inventory);
 					else if(mouseLeftDown) slots[i][j].handleLeftClick(Game.inventory);
-					//else if(mouseRightDown && altKeyDown) slots[i][j].handleRightClickCrafting(Game.inventory);
 					else if(mouseRightDown) slots[i][j].handleRightClick(Game.inventory);
 					droppedItemInSlot = true;
 				} else {

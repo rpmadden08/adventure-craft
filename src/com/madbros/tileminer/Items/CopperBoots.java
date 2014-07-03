@@ -15,6 +15,7 @@ public class CopperBoots extends Clothing {
 		maxStackSize =1;
 		craftCost = new int[]{COPPER_BAR};
 		craftCostAmount = new int[]{4};
+		type = BOOTS_TYPE;
 	}
 	
 	@Override

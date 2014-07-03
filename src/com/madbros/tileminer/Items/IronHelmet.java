@@ -15,6 +15,7 @@ public class IronHelmet extends Clothing {
 		maxStackSize =1;
 		craftCost = new int[]{IRON_BAR};
 		craftCostAmount = new int[]{5};
+		type = HELMET_TYPE;
 	}
 	
 	@Override

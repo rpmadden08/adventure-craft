@@ -51,13 +51,13 @@ public class Inventory {
 	
 	public Inventory() {
 		for(int i = 0; i < INV_LENGTH; i++) {
-			invBar[i] = new Slot(INV_BAR_RECT.x, INV_BAR_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * i);
+			invBar[i] = new BarSlot(INV_BAR_RECT.x, INV_BAR_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * i);
 		}
 		
 		int k = 0;
 		for(int x = 0; x < INV_LENGTH; x++) {
 			for(int y = 0; y < INV_HEIGHT; y++) {
-				invBag[k] = new Slot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y,
+				invBag[k] = new BagSlot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y,
 									 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x);
 				k++;
 			}
@@ -66,7 +66,7 @@ public class Inventory {
 		k = 0;
 		for(int x = 0; x < INV_LENGTH; x++) {
 			for(int y = 0; y < INV_HEIGHT; y++) {
-				invChest[k] = new Slot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y,
+				invChest[k] = new ChestSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y,
 						INV_CRAFTING_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x);
 				k++;
 			}
@@ -115,12 +115,12 @@ public class Inventory {
 		invBar[5].item.stackSize = 1;
 		invBar[6].item = new Steak();
 		invBar[6].item.stackSize = 99;
-		invBar[7].item = new Tin();
-		invBar[7].item.stackSize = 99;
-//		invBar[8].item = new CopperBoots();
-//		invBar[8].item.stackSize = 1;
-//		invBar[9].item = new CopperHelmet();
-//		invBar[9].item.stackSize = 1;
+		invBar[7].item = new CopperAxe();
+		invBar[7].item.stackSize = 1;
+		invBar[8].item = new LeatherHat();
+		invBar[8].item.stackSize = 1;
+		invBar[9].item = new CopperHelmet();
+		invBar[9].item.stackSize = 1;
 		
 //		invBag[0].item = new FireStarter();
 //		invBag[0].item.stackSize = 1;
@@ -281,6 +281,56 @@ public class Inventory {
 			}
 		}
 	}
+	public void addItemToSlotArray(Item item, Slot[] slots) {
+		int stackSize = item.stackSize;
+		for(int i = 0; i < slots.length; i++) {
+			if(slots[i].item.id == item.id ) {
+				if(slots[i].item.stackSize != item.maxStackSize ) {
+					if(slots[i].item.stackSize + stackSize > item.maxStackSize) {
+						int diff = item.maxStackSize - slots[i].item.stackSize;
+						stackSize = stackSize - diff;
+						slots[i].item.stackSize = slots[i].item.stackSize + diff;
+					} else {
+						slots[i].item.stackSize = slots[i].item.stackSize + stackSize;
+						return;
+					}
+					
+					
+				}
+				
+			}
+		}
+		for(int i = 0; i < slots.length; i++) {
+			if(slots[i].item.id == 0 ) {
+				slots[i].item = item;
+				slots[i].item.stackSize = stackSize;
+				return;
+			}
+		}
+		
+	}
+	
+	public void removeSlot(Slot slot) {
+		slot.item = new NoItem();
+	}
+	
+	public boolean isSlotAvailable(Item item, Slot[] slot) {
+		int totalStack = item.stackSize;
+		for(int x = 0; x < slot.length; x++) {
+			
+			if(slot[x].item.id == 0) {
+				return true;
+			} else if (slot[x].item.id == item.id) {
+				if(slot[x].item.maxStackSize > totalStack + slot[x].item.stackSize) {
+					return true;
+				} else {
+					totalStack = totalStack - (slot[x].item.maxStackSize-slot[x].item.stackSize);
+				}
+			}
+		}
+		return false;
+	}
+	
 	public void update() {
 		if(isUsingLeftItem) invBar[itemSelected].item.useLeft();
 		if(isUsingRightItem) invBar[itemSelected].item.checkIsInRange();

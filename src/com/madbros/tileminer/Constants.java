@@ -119,6 +119,14 @@ public class Constants {
 	public static final int LEGGINGS_SLOT = 7;
 	public static final int BOOTS_SLOT = 8;
 	
+	//item type constants
+	public static final int TILE_TYPE = 0;
+	public static final int HELMET_TYPE = 1;
+	public static final int ARMOR_TYPE = 2;
+	public static final int LEGGINGS_TYPE = 3;
+	public static final int BOOTS_TYPE = 4;
+	
+	
 	
 	//level constants
 	public static final int CHUNK_SIZE = 16;

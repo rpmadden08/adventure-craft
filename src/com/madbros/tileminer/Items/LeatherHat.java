@@ -15,6 +15,7 @@ public class LeatherHat extends Clothing {
 		maxStackSize =1;
 		craftCost = new int[]{LEATHER};
 		craftCostAmount = new int[]{1};
+		type = HELMET_TYPE;
 	}
 	
 	@Override

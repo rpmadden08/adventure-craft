@@ -15,6 +15,7 @@ public class LeatherLeggings extends Clothing {
 		maxStackSize =1;
 		craftCost = new int[]{LEATHER};
 		craftCostAmount = new int[]{2};
+		type = LEGGINGS_TYPE;
 	}
 	
 	@Override

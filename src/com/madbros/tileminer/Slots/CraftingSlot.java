@@ -140,27 +140,44 @@ public class CraftingSlot extends Slot{
 	
 	public void handleRightClick(Inventory inv) {
 	}
-	
+	public void handleLeftClickShift(Inventory inv) {
+		if(inv.heldItem.id == 0 || inv.heldItem.id == this.item.id) {
+			while(inv.heldItem.stackSize + this.item.stackSize < inv.heldItem.maxStackSize) {
+				System.out.println(inv.heldItem.stackSize);
+				//Check is inactive..
+				if(isInactive) {
+					return;
+				} else {
+					handleLeftClick(inv);
+				}
+			}
+		}
+	}
 	public void handleLeftClick(Inventory inv) {
 		if(this.item.id == EMPTY || this.isInactive == true) {
 		} else {
-			
+			//System.out.println(Game.inventory.heldItem.stackSize);
 			//Add items to inventory. 
 			Boolean needToRemoveItem = false;
-			if(Game.inventory.heldItem.id == 0) {
-				Game.inventory.heldItem = this.item;
-				Game.inventory.heldItem.stackSize = this.item.stackSize;
-				Game.inventory.heldItem.maxUses = this.item.maxUses;
+			if(inv.heldItem.id == 0) {
+				inv.heldItem = ITEM_HASH.get(this.item.id).createNew();
+				inv.heldItem.stackSize = this.item.stackSize;
+				inv.heldItem.maxUses = this.item.maxUses;
 				needToRemoveItem = true;
-			} else if (Game.inventory.heldItem.id == this.item.id) {
-				Game.inventory.heldItem.stackSize = Game.inventory.heldItem.stackSize + this.item.stackSize;
+			} else if (inv.heldItem.id == this.item.id) {
+				inv.heldItem.stackSize = inv.heldItem.stackSize + this.item.stackSize;
 				needToRemoveItem = true;
 			}
 			if(needToRemoveItem) {
 				for(int x = 0; x < this.item.craftCost.length; x++) {
 					Item removedItem = ITEM_HASH.get(this.item.craftCost[x]).createNew();
-					Game.inventory.remove(removedItem, this.item.craftCostAmount[x]);
+					inv.remove(removedItem, this.item.craftCostAmount[x]);
 				}
+			}
+			if(this.item.areIngredientsInInventory()) {
+				this.isInactive = false;
+			} else {
+				this.isInactive = true;
 			}
 			
 			//Game.inventory.add(this.item, this.item.stackSize, this.item.maxUses);
