@@ -7,7 +7,7 @@ import com.madbros.tileminer.Utils.*;
 
 public class AnimatedSprite extends Sprite {
 	private HashMap<Integer, Animation> animations = new HashMap<Integer, Animation>();
-	private Animation currentAnimation;
+	public Animation currentAnimation;
 	public int stackPosition = 0;
 	
 	/*********************************** Constructors ***********************************/

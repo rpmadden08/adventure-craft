@@ -699,10 +699,22 @@ public class RenderSystem {
 	public void renderFurnace(Inventory inv) {
 		FurnaceTile furnace = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 		//FurnaceTopTile furnaceTop = (FurnaceTopTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY-1].layers[ABOVE_LAYER_1];
-		Sprite sprite2 = Sprites.sprites.get(Sprites.FURNACE_SINGLE);
-		sprite2.setColor(1.0f,1.0f,1.0f,0.3f);
-		sprite2.draw(567,505,0f,(int)(sprite2.getWidth()*3.125), (int)(sprite2.getHeight()* 3.125));
-		sprite2.setColor(1.0f,1.0f,1.0f,1f);
+		if(furnace.furnaceIsBurning) {
+			//AnimatedSprite[] sprite2 = Sprites.furnaceAnimation;
+			Animation sprite2 = Sprites.furnaceAnimation[0].currentAnimation;
+			sprite2.updateFrame();
+			//int cA = sprite2[0].getCurrentAnimation();
+			sprite2.sprites[sprite2.currentFrame].setColor(1.0f,1.0f,1.0f,0.3f);
+			sprite2.sprites[sprite2.currentFrame].draw(567,505,0f,(int)(sprite2.sprites[sprite2.currentFrame].getWidth()*3.125), (int)(sprite2.sprites[sprite2.currentFrame].getHeight()* 3.125));
+			sprite2.sprites[sprite2.currentFrame].setColor(1.0f,1.0f,1.0f,1f);
+		} else {
+			Sprite sprite2 = Sprites.sprites.get(Sprites.FURNACE_SINGLE);
+			sprite2.setColor(1.0f,1.0f,1.0f,0.3f);
+			sprite2.draw(567,505,0f,(int)(sprite2.getWidth()*3.125), (int)(sprite2.getHeight()* 3.125));
+			sprite2.setColor(1.0f,1.0f,1.0f,1f);
+		}
+		
+		
 		Sprite[] sprite = Sprites.spriteCollections.get(Sprites.FURNACE_TOP);
 		sprite[0].setColor(1.0f,1.0f,1.0f,0.3f);
 		sprite[0].draw(567,433,0f,(int)(sprite[0].getWidth()*3.125), (int)(sprite[0].getHeight()* 3.125));
@@ -723,11 +735,24 @@ public class RenderSystem {
 	}
 	
 	public void renderCauldron(Inventory inv) {
-		Sprite sprite2 = Sprites.sprites.get(Sprites.CAULDRON_SINGLE);
-		sprite2.setColor(1.0f,1.0f,1.0f,0.3f);
-		sprite2.draw(542,446,0f,(int)(sprite2.getWidth()*4.47), (int)(sprite2.getHeight()* 4.47));
 		CauldronTile cauldron = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-		sprite2.setColor(1.0f,1.0f,1.0f,1f);
+		
+		if(cauldron.cauldronIsBurning) {
+			Animation sprite2 = Sprites.cauldronAnimation[0].currentAnimation;
+			sprite2.updateFrame();
+			//int cA = sprite2[0].getCurrentAnimation();
+			sprite2.sprites[sprite2.currentFrame].setColor(1.0f,1.0f,1.0f,0.3f);
+			sprite2.sprites[sprite2.currentFrame].draw(542,446,0f,(int)(sprite2.sprites[sprite2.currentFrame].getWidth()*4.47), (int)(sprite2.sprites[sprite2.currentFrame].getHeight()* 4.47));
+			sprite2.sprites[sprite2.currentFrame].setColor(1.0f,1.0f,1.0f,1f);
+		} else {
+			Sprite sprite2 = Sprites.sprites.get(Sprites.CAULDRON_SINGLE);
+			sprite2.setColor(1.0f,1.0f,1.0f,0.3f);
+			sprite2.draw(542,446,0f,(int)(sprite2.getWidth()*4.47), (int)(sprite2.getHeight()* 4.47));
+			sprite2.setColor(1.0f,1.0f,1.0f,1f);
+		}
+		
+		//CauldronTile cauldron = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+		
 		CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 		Slot[][] slots = {cauldronTile.craftedSlot, cauldronTile.cauldronSlots, cauldronTile.fuelSlot};
 		for(int i = 0; i < slots.length; i++) {
