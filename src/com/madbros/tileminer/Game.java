@@ -11,6 +11,7 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 //import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -27,6 +28,7 @@ import com.madbros.tileminer.Systems.AnimationSystem;
 import com.madbros.tileminer.Systems.CollisionDetectionSystem;
 import com.madbros.tileminer.Systems.RenderSystem;
 import com.madbros.tileminer.TileTypes.NoTile;
+import com.madbros.tileminer.Utils.Helpers;
 import com.madbros.tileminer.Utils.Rect;
 
 import static com.madbros.tileminer.Constants.*;
@@ -139,6 +141,7 @@ public class Game implements ApplicationListener {
 			currentState = new InventoryState();
 			hero.stop();
 			inventory.open(hero);
+			Game.inventory.craftingMenu.changeToCraftingSlots();
 			Game.inventory.craftingMenu.currentCraftableList = Game.inventory.craftingMenu.craftableList; 
 		}
 	}
@@ -563,6 +566,15 @@ public class Game implements ApplicationListener {
 		debugMenu = new DebugMenu(batch);
 		gameMainMenu = new GameMainMenu(batch);
 		
+		//Set mouse cursor 
+		Pixmap pm = new Pixmap(Gdx.files.internal("data/cursor.png"));
+        int xHotSpot = 0;
+        int yHotSpot = 0;
+        
+
+		Gdx.input.setCursorImage(pm, xHotSpot, yHotSpot);
+        pm.dispose();
+		
 
 		
 		final String vertexShader = new FileHandle("data/vertexShader.glsl").readString();
@@ -636,6 +648,7 @@ public class Game implements ApplicationListener {
 
 //	@Override
 	public void render() {
+		
 		currentState.update();
 		
 		currentState.render();

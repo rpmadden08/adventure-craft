@@ -224,6 +224,8 @@ public class Constants {
 	//Types of WorkSpaces
 	public static final int BARE_HANDS_WORKSPACE = 0;
 	public static final int TABLE_WORKSPACE = 1;
+	public static final int CAULDRON_WORKSPACE = 2;
+	public static final int FURNACE_WORKSPACE = 3;
 	
 	
 	//Layers

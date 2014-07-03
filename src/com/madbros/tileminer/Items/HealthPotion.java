@@ -13,6 +13,8 @@ public class HealthPotion extends PotionItem {
 		name = "Health Potion";
 		sprite = Sprites.sprites.get(Sprites.HEALTH_POTION);
 		craftCost = new int[]{RED_FLOWERS, HONEY, GLASS_BOTTLE};
+		craftCostAmount = new int[]{1,1,1}; 
+		workSpaceNeeded = new int[]{CAULDRON_WORKSPACE};
 		
 	}
 	@Override

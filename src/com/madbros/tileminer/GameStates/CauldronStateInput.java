@@ -37,7 +37,7 @@ public class CauldronStateInput extends InventoryStateInput {
 		Game.inventory.craftingMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		Boolean droppedItemInSlot = false;
 		CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
-		Slot[][] slots2 = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots, Game.inventory.invClothing, cauldronTile.craftedSlot, cauldronTile.cauldronSlots};
+		Slot[][] slots2 = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots, Game.inventory.invClothing, cauldronTile.craftedSlot, cauldronTile.cauldronSlots, cauldronTile.fuelSlot};
 		for(int i = 0; i < slots2.length; i++) {
 			for(int j = 0; j < slots2[i].length; j++) {
 				if(mouseRect.detectCollision(slots2[i][j].slotRect)) {
@@ -69,7 +69,7 @@ public class CauldronStateInput extends InventoryStateInput {
 		Game.inventory.craftingMenu.handleMouseMove(mouseRect.x, mouseRect.y);
 		
 		CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
-		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots, Game.inventory.invCrafted, Game.inventory.invClothing,cauldronTile.cauldronSlots};
+		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots, Game.inventory.invCrafted, Game.inventory.invClothing,cauldronTile.cauldronSlots, cauldronTile.fuelSlot, cauldronTile.craftedSlot};
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
 				if(mouseRect.detectCollision(slots[i][j].slotRect)) {

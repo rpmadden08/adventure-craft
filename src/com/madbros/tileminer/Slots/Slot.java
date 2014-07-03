@@ -31,13 +31,14 @@ public class Slot {
 	}
 	
 	public void render() {
-		slotSprite.draw(slotRect, Z_INV_SLOTS);
-		
 		if(isHighlighted) {
 			Sprites.pixel.setColor(highlightColor);
-			highlighter.draw(slotRect, Z_INV_HIGHLIGHT);
+			highlighter.draw(slotRect.x+2,slotRect.y+2, Z_INV_HIGHLIGHT, slotRect.w - 4, slotRect.h-4);
 			Sprites.pixel.setColor(Color.WHITE);
 		}
+		slotSprite.draw(slotRect, Z_INV_SLOTS);
+		
+		
 		item.render(slotRect);
 	}
 	
@@ -163,17 +164,17 @@ public class Slot {
 			craftAnItemFromThisListIfPossible2(furnace, invCrafting, invCrafted, invCrafting[0].item.itemsPossiblyBurnable);
 			return;
 		} else {
-			furnace.isCraftableItem = false;
+			furnace.isCraftableItem();
 		}
 	}
 	
 	public void boilAnotherItemIfPossible(CauldronTile cauldron, Slot[] invCrafting, Slot[] invCrafted) {
-		for(int i = 0; i < invCrafting.length-1; i++) {
+		for(int i = 0; i < invCrafting.length; i++) {
 			if(invCrafting[i].item.id != EMPTY) {
 				craftAnItemFromThisListIfPossibleCauldron(cauldron, invCrafting, invCrafted, invCrafting[i].item.itemsPossiblyBrewable);
 				return;
 			} else {
-				cauldron.isCraftableItem = false;
+				cauldron.isCraftableItem();
 			}
 		} 
 	}
@@ -196,7 +197,7 @@ public class Slot {
 			//Furnace furnace = (Furnace) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
 			Item possiblyCraftableItem = ITEM_HASH.get(itemsPossiblyCraftable[i]);
 			if(possiblyCraftableItem.isValidFurnaceRecipe(furnace.furnaceSlots)) {
-				furnace.isCraftableItem = true;
+				furnace.isCraftableItem();
 				furnace.possiblyCraftableItem = possiblyCraftableItem.createNew();
 				
 				if(furnace.furnaceIsBurning == false) {
@@ -206,7 +207,7 @@ public class Slot {
 				//furnace.furnaceBuildTime = 10;
 				return;
 			} else {
-				furnace.isCraftableItem = false;
+				furnace.isCraftableItem();
 				//furnace.furnaceBuildTime = 10;
 			}
 		}
@@ -215,7 +216,7 @@ public class Slot {
 		for(int i = 0; i < itemsPossiblyCraftable.length; i++) {
 			Item possiblyCraftableItem = ITEM_HASH.get(itemsPossiblyCraftable[i]);
 			if(possiblyCraftableItem.isValidCauldronRecipe(cauldron.cauldronSlots)) {
-				cauldron.isCraftableItem = true;
+				cauldron.isCraftableItem();
 				cauldron.possiblyCraftableItem = possiblyCraftableItem.createNew();
 				
 				if(cauldron.cauldronIsBurning == false) {
@@ -223,39 +224,40 @@ public class Slot {
 				}
 				return;
 			} else {
-				cauldron.isCraftableItem = false;
+				cauldron.isCraftableItem();
 				//cauldron.cauldronBuildTime = 10;
 			}
 		}
 	}
 	public void checkFuel(FurnaceTile furnace, Slot[] invCrafting, Slot[] invCrafted) { 
-		if(invCrafting[1].item.isFuelSource) {
+		if(furnace.fuelSlot[0].item.isFuelSource) {
 			furnace.furnaceIsBurning = true;
-			furnace.furnaceFuel = furnace.furnaceSlots[1].item.fuelAmount;
-			furnace.furnaceMaxFuel = furnace.furnaceSlots[1].item.fuelAmount;
+			furnace.furnaceFuel = furnace.fuelSlot[0].item.fuelAmount;
+			furnace.furnaceMaxFuel = furnace.fuelSlot[0].item.fuelAmount;
 			
 			
-			furnace.furnaceSlots[1].item.stackSize = furnace.furnaceSlots[1].item.stackSize - 1;
-			if(furnace.furnaceSlots[1].item.stackSize <= 0) {
-				furnace.furnaceSlots[1].item = new NoItem();
+			furnace.fuelSlot[0].item.stackSize = furnace.fuelSlot[0].item.stackSize - 1;
+			if(furnace.fuelSlot[0].item.stackSize <= 0) {
+				furnace.fuelSlot[0].item = new NoItem();
 			}
 		} else {
 			furnace.furnaceIsBurning = false;
 		}
 	}
 	public void checkCauldronFuel(CauldronTile cauldron, Slot[] invCrafting, Slot[] invCrafted) { 
-		if(invCrafting[3].item.isFuelSource) {
+		if(cauldron.fuelSlot[0].item.isFuelSource) {
 			cauldron.cauldronIsBurning = true;
-			cauldron.cauldronFuel = cauldron.cauldronSlots[3].item.fuelAmount;
-			cauldron.cauldronMaxFuel = cauldron.cauldronSlots[3].item.fuelAmount;
+			cauldron.cauldronFuel = cauldron.fuelSlot[0].item.fuelAmount;
+			cauldron.cauldronMaxFuel = cauldron.fuelSlot[0].item.fuelAmount;
 			
 			
-			cauldron.cauldronSlots[3].item.stackSize = cauldron.cauldronSlots[3].item.stackSize - 1;
-			if(cauldron.cauldronSlots[3].item.stackSize <= 0) {
-				cauldron.cauldronSlots[3].item = new NoItem();
+			cauldron.fuelSlot[0].item.stackSize = cauldron.fuelSlot[0].item.stackSize - 1;
+			if(cauldron.fuelSlot[0].item.stackSize <= 0) {
+				cauldron.fuelSlot[0].item = new NoItem();
 			}
 		} else {
 			cauldron.cauldronIsBurning = false;
+			cauldron.cauldronBuildTime = 10;
 		}
 	}
 	

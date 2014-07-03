@@ -2,6 +2,8 @@ package com.madbros.tileminer;
 
 import static com.madbros.tileminer.Constants.*;
 
+import com.madbros.tileminer.Slots.BrewingSlot;
+import com.madbros.tileminer.Slots.BurningSlot;
 import com.madbros.tileminer.Slots.CraftingSlot;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.UI.InGameMenuUIButton;
@@ -20,6 +22,14 @@ public class CraftingMenu {
 		TIN_SHOVEL, TIN_SWORD, TORCH, WOODEN_AXE, WOODEN_HOE, WOODEN_PICK, 
 		WOODEN_SHOVEL, WOODEN_SWORD
 	};
+	public int[] brewableList = {
+			HARMING_POTION, HEALTH_POTION, SLOWNESS_POTION, SPEED_POTION 
+	};
+	
+	public int[] burnableList = {
+			COPPER_BAR, COOKED_STEAK, TIN_BAR
+	};
+	
 	public int[] currentCraftableList = craftableList;
 	public int currentPage = 0;
 	public InGameMenuUIButton nextPage;
@@ -44,6 +54,39 @@ public class CraftingMenu {
 			}
 		}
 		
+	}
+	
+	public void changeToCraftingSlots() {
+		int k = 0;
+		for(int x = 0; x < INV_LENGTH; x++) {
+			for(int y = 0; y < INV_HEIGHT; y++) {
+				craftSlots[k] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y,
+						INV_CRAFTING_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x);
+				k++;
+			}
+		}
+	}
+	
+	public void changeToBrewingSlots() {
+		int k = 0;
+		for(int x = 0; x < INV_LENGTH; x++) {
+			for(int y = 0; y < INV_HEIGHT; y++) {
+				craftSlots[k] = new BrewingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y,
+						INV_CRAFTING_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x);
+				k++;
+			}
+		}
+	}
+	
+	public void changeToBurningSlots() {
+		int k = 0;
+		for(int x = 0; x < INV_LENGTH; x++) {
+			for(int y = 0; y < INV_HEIGHT; y++) {
+				craftSlots[k] = new BurningSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y,
+						INV_CRAFTING_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x);
+				k++;
+			}
+		}
 	}
 	
 	public void nextPage2() {
@@ -101,16 +144,37 @@ public class CraftingMenu {
 		}
 	}
 	
-	
-	public void resetCraftSlots(int[] itemsPossiblyCraftable) {
+
+	public void refreshCauldronCraftSlots(int[] itemsPossiblyCraftable) {
+		int itemStartPoint = currentPage * 40;
 		for(int x = 0; x <craftSlots.length; x++) {
-			if(x < itemsPossiblyCraftable.length) {
-				craftSlots[x].item = ITEM_HASH.get(craftableList[x]).createNew();
+			if(x+ itemStartPoint < itemsPossiblyCraftable.length) {
+				//craftSlots[x] = (BrewingSlot) craftSlots[x];
+				craftSlots[x].item = ITEM_HASH.get(itemsPossiblyCraftable[x+ itemStartPoint]).createNew();
 				craftSlots[x].item.stackSize = craftSlots[x].item.numberProducedByCrafting;
+				//If the item is craftable then do nothing.  If it is then mark the slot as uncraftable.  
+				if(craftSlots[x].item.areIngredientsInInventory()) {
+					craftSlots[x].isInactive = false;
+				} else {
+					craftSlots[x].isInactive = true;
+				}
 			} else {
 				craftSlots[x].item = ITEM_HASH.get(EMPTY).createNew();
 				craftSlots[x].item.stackSize = craftSlots[x].item.numberProducedByCrafting;
 			}
 		}
 	}
+	
+	
+//	public void resetCraftSlots(int[] itemsPossiblyCraftable) {
+//		for(int x = 0; x <craftSlots.length; x++) {
+//			if(x < itemsPossiblyCraftable.length) {
+//				craftSlots[x].item = ITEM_HASH.get(craftableList[x]).createNew();
+//				craftSlots[x].item.stackSize = craftSlots[x].item.numberProducedByCrafting;
+//			} else {
+//				craftSlots[x].item = ITEM_HASH.get(EMPTY).createNew();
+//				craftSlots[x].item.stackSize = craftSlots[x].item.numberProducedByCrafting;
+//			}
+//		}
+//	}
 }

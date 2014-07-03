@@ -8,6 +8,7 @@ import com.madbros.tileminer.Items.Item;
 import com.madbros.tileminer.Items.NoItem;
 import com.madbros.tileminer.Slots.CauldronSlot;
 import com.madbros.tileminer.Slots.CraftedSlot;
+import com.madbros.tileminer.Slots.FuelSlot;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
 import com.madbros.tileminer.Utils.Rect;
@@ -21,10 +22,19 @@ public class CauldronTile extends CollisionTile {
 	public boolean cauldronIsBurning = false;
 	public int timeCheck = 0;
 	
-	public CauldronSlot[] cauldronSlots = new CauldronSlot[4];
+	public CauldronSlot[] cauldronSlots = new CauldronSlot[1];
+	public FuelSlot[] fuelSlot = new FuelSlot[1];
 	public CraftedSlot[] craftedSlot = new CraftedSlot[1];
 	
-	public boolean isCraftableItem = false;
+	public boolean isCraftableItem() {
+		if(cauldronSlots[0].item.id == 0) {
+			return false;
+		} else if(craftedSlot[0].item.id == 0 || craftedSlot[0].item.id == cauldronSlots[0].item.id){
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	public CauldronTile() {
 		super();
@@ -43,21 +53,22 @@ public class CauldronTile extends CollisionTile {
 		maxHp = 1;
 		
 
-		cauldronSlots[0] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)- (INV_SLOT_SIZE/2)+170, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
-		cauldronSlots[1] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+170, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE- (INV_SLOT_SIZE));
-		cauldronSlots[2] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+ (INV_SLOT_SIZE/2)+170, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
+		cauldronSlots[0] = new CauldronSlot(540, 448);
 		
-		cauldronSlots[3] = new CauldronSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+170, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)+INV_SLOT_SIZE);
+		fuelSlot[0] = new FuelSlot(540, 546);
 		
 		
-		craftedSlot[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 192, INV_CRAFTING_RECT.y+INV_SLOT_SIZE-20);
+		craftedSlot[0] = new CraftedSlot(645, 493);
 		
 	}
 	
 	@Override
 	public void update(int x, int y) {
-//		System.out.println("FUEL:  "+furnaceFuel);
-//		System.out.println("MAX FUEL:  "+furnaceMaxFuel);
+//		TODO need to account for when crafted slot does not = the new item being created...
+		//cauldronSlots[0].boilAnotherItemIfPossible(this, this.cauldronSlots, this.craftedSlot);
+		if(this.cauldronIsBurning == false && isCraftableItem()) {
+			fuelSlot[0].checkCauldronFuel(this, cauldronSlots, craftedSlot);
+		}
 		if(cauldronIsBurning == true) {
 			sprites = Sprites.cauldronAnimation;
 			if(timeCheck <= 0) {
@@ -65,29 +76,32 @@ public class CauldronTile extends CollisionTile {
 //				System.out.println("furnaceFuel Left: "+furnaceFuel);
 //				System.out.println("furnaceBuildTime Left: "+furnaceBuildTime);
 				cauldronFuel = cauldronFuel - 1;
-				if(isCraftableItem) {
+				if(isCraftableItem()) {
 					cauldronBuildTime = cauldronBuildTime - 1;
 				}
 				if(cauldronFuel <= 0) {
 					cauldronIsBurning = false;
-					if(isCraftableItem) {
-						cauldronSlots[3].checkCauldronFuel(this, cauldronSlots, craftedSlot);
+					if(isCraftableItem()) {
+						fuelSlot[0].checkCauldronFuel(this, cauldronSlots, craftedSlot);
 					}
 					
-				} else if(cauldronBuildTime <= 0 && isCraftableItem == true) { 
+				} else if(cauldronBuildTime <= 0 && isCraftableItem()) { 
 					cauldronBuildTime = 10;
 					if(craftedSlot[0].item.id == 0) {
-						craftedSlot[0].item = possiblyCraftableItem.createNew();						
+						craftedSlot[0].item = ITEM_HASH.get(cauldronSlots[0].item.id);
+						//craftedSlot[0].item.stackSize = 1;
 					} else {
-						craftedSlot[0].item.stackSize = craftedSlot[0].item.stackSize + craftedSlot[0].item.numberProducedByCrafting;
+						craftedSlot[0].item.stackSize ++;
+								//craftedSlot[0].item.stackSize + 1;
 					}
 					//Remove the items from the ingredients area
-					craftedSlot[0].removeRecipeItemsFromCraftingSlots(craftedSlot[0].item.craftCost, cauldronSlots);
-					cauldronSlots[0].boilAnotherItemIfPossible(this, cauldronSlots, craftedSlot);
-					cauldronSlots[1].boilAnotherItemIfPossible(this, cauldronSlots, craftedSlot);
-					cauldronSlots[2].boilAnotherItemIfPossible(this, cauldronSlots, craftedSlot);
+					cauldronSlots[0].item.stackSize = cauldronSlots[0].item.stackSize - 1;
+					if(cauldronSlots[0].item.stackSize < 1) {
+						cauldronSlots[0].item = new NoItem();
+					}
+				//cauldronSlots[0].boilAnotherItemIfPossible(this, cauldronSlots, craftedSlot);
 					
-				} else if(isCraftableItem == false) {
+				} else if(!isCraftableItem()) {
 					cauldronBuildTime = 10;
 				}
 				
@@ -112,6 +126,9 @@ public class CauldronTile extends CollisionTile {
 			int x = activeBlocksX;
 			int y = activeBlocksY;
 			Game.inventory.cauldronOn = true;
+			Game.inventory.currentWorkSpace = CAULDRON_WORKSPACE;
+			Game.inventory.craftingMenu.changeToBrewingSlots();
+			Game.inventory.craftingMenu.currentCraftableList = Game.inventory.craftingMenu.brewableList;
 			//Game.inventory.furnace = this;
 			//Game.inventory.invFurnace = furnaceSlots;
 			Game.inventory.currentInvActiveBlockX = x;

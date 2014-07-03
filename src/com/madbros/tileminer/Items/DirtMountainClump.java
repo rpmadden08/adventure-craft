@@ -9,7 +9,7 @@ import com.madbros.tileminer.Utils.Helpers;
 public class DirtMountainClump extends CraftItem {
 	public DirtMountainClump() {
 		id = DIRT_MOUNTAIN_CLUMP;
-		name = "Dirt Mountain Chunk";
+		name = "Dirt Rock";
 		sprite = Sprites.sprites.get(Sprites.DIRT_MOUNTAIN_CLUMP);
 		numberProducedByCrafting = 1;
 		craftCost = new int[]{};

@@ -12,6 +12,9 @@ public class CookedSteak extends FoodItem {
 		sprite = Sprites.sprites.get(Sprites.COOKED_STEAK);
 		itemsPossiblyCraftable = new int[]{};
 		energyPercentage = 0.4;
+		craftCost = new int[]{STEAK};
+		craftCostAmount = new int[]{1}; 
+		workSpaceNeeded = new int[]{FURNACE_WORKSPACE};
 	}
 	
 	@Override

@@ -11,6 +11,9 @@ public class CopperBar extends CraftItem {
 		name = "Copper Bar";
 		sprite = Sprites.sprites.get(Sprites.COPPER_BAR);
 		itemsPossiblyCraftable = new int[]{COPPER_ARMOR, COPPER_AXE, COPPER_BOOTS, COPPER_HELMET, COPPER_HOE, COPPER_LEGGINGS, COPPER_PICK, COPPER_SHOVEL, COPPER_SWORD};
+		craftCost = new int[]{COPPER_ITEM};
+		craftCostAmount = new int[]{1}; 
+		workSpaceNeeded = new int[]{FURNACE_WORKSPACE};
 	}
 	
 	@Override

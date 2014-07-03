@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Inventory;
 import com.madbros.tileminer.Items.Item;
+import com.madbros.tileminer.Sprites.Sprite;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Rect;
 public class CraftingSlot extends Slot{
@@ -26,12 +27,29 @@ public class CraftingSlot extends Slot{
 	}
 	
 	public void render() {
-		super.render();
-		if(isInactive) {
-			if(this.item.sprite != null) {
-				item.sprite.setColor(0.2f,0.2f,0.2f,0.7f);
+		if(isHighlighted) {
+			Sprites.pixel.setColor(highlightColor);
+			highlighter.draw(slotRect.x+2,slotRect.y+2, Z_INV_HIGHLIGHT, slotRect.w - 4, slotRect.h-4);
+			Sprites.pixel.setColor(Color.WHITE);
+		}
+		slotSprite.draw(slotRect, Z_INV_SLOTS);
+		if(this.item.sprite != null) {
+			if(isInactive) {
+				
+					item.sprite.setColor(0.2f,0.2f,0.2f,0.7f);
+					item.render(slotRect);
+					item.sprite.setColor(1f,1f,1f,1f);
+	//				Sprite sprite = Sprites.sprites.get(Sprites.GRAY_BUTTON);
+	//				sprite.draw(slotRect.x, slotRect.y, 0);
+			} else { 
 				item.render(slotRect);
-				item.sprite.setColor(1f,1f,1f,1f);
+					if(isHighlighted) {
+						Sprite sprite = Sprites.sprites.get(Sprites.GREEN_BUTTON_HOVER);
+						sprite.draw(slotRect.x, slotRect.y, 0);
+					} else {
+						Sprite sprite = Sprites.sprites.get(Sprites.GREEN_BUTTON);
+						sprite.draw(slotRect.x, slotRect.y, 0);
+					}
 			}
 		}
 		if(isHighlighted) {
@@ -74,13 +92,16 @@ public class CraftingSlot extends Slot{
 				Rect recipeSlotRect = new Rect(504,slotYCoord, slotRect.w, slotRect.h);
 				if(recipeItem.isInInventory()) {
 				} else {
-					//slotSprite.setColor(Color.RED);
+					recipeItem.sprite.setColor(0.2f,0.2f,0.2f,0.7f);
+					Sprites.arial10.setColor(0.675f, 0.196f, 0.196f, 1f);
 				}
 				slotSprite.draw(504,slotYCoord, Z_INV_SLOTS);
 				slotSprite.setColor(Color.WHITE);
 				recipeItem.render(recipeSlotRect);
 				recipeItem.renderFont(recipeSlotRect.x2()-INV_SLOT_SIZE/2,recipeSlotRect.y2()-INV_SLOT_SIZE/2, Game.batch);
 				Sprites.arial10.draw(Game.batch, recipeItem.name, recipeSlotRect.x+ 44, recipeSlotRect.y+ 12);
+				recipeItem.sprite.setColor(Color.WHITE);
+				Sprites.arial10.setColor(Color.WHITE);
 				
 				slotYCoord = slotYCoord + 42;
 				
@@ -91,11 +112,15 @@ public class CraftingSlot extends Slot{
 				CraftedSlot craftedSlot = new CraftedSlot(645, 507); //625, 484
 				
 				if(item.workSpaceNeeded[0] == 1) {
-					
 					craftedSlot.item = ITEM_HASH.get(TABLE).createNew();
-					
+				} else if(item.workSpaceNeeded[0] == 2) {
+					craftedSlot.item = ITEM_HASH.get(CAULDRON).createNew();
+				} else if(item.workSpaceNeeded[0] == 3) {
+					craftedSlot.item = ITEM_HASH.get(FURNACE).createNew();
 				}
-				if(Game.inventory.currentWorkSpace != 1) {
+				if(Game.inventory.currentWorkSpace != item.workSpaceNeeded[0]) {
+					craftedSlot.item.sprite.setColor(0.2f,0.2f,0.2f,0.7f);
+					Sprites.font.setColor(0.675f, 0.196f, 0.196f, 1f);
 					//craftedSlot.slotSprite.setColor(Color.RED);
 				} 
 				
@@ -104,6 +129,8 @@ public class CraftingSlot extends Slot{
 				
 				Sprites.font.draw(Game.batch, "Workspace", 642, 473);
 				Sprites.font.draw(Game.batch, "Needed", 658, 488);
+				Sprites.font.setColor(Color.WHITE);
+				craftedSlot.item.sprite.setColor(Color.WHITE);
 			}
 			Sprites.font.draw(Game.batch, "Recipe for "+item.name, 504, 445);
 			
@@ -117,12 +144,26 @@ public class CraftingSlot extends Slot{
 	public void handleLeftClick(Inventory inv) {
 		if(this.item.id == EMPTY || this.isInactive == true) {
 		} else {
-			//Add items to inventory.  
-			for(int x = 0; x < this.item.craftCost.length; x++) {
-				Item removedItem = ITEM_HASH.get(this.item.craftCost[x]).createNew();
-				Game.inventory.remove(removedItem, this.item.craftCostAmount[x]);
+			
+			//Add items to inventory. 
+			Boolean needToRemoveItem = false;
+			if(Game.inventory.heldItem.id == 0) {
+				Game.inventory.heldItem = this.item;
+				Game.inventory.heldItem.stackSize = this.item.stackSize;
+				Game.inventory.heldItem.maxUses = this.item.maxUses;
+				needToRemoveItem = true;
+			} else if (Game.inventory.heldItem.id == this.item.id) {
+				Game.inventory.heldItem.stackSize = Game.inventory.heldItem.stackSize + this.item.stackSize;
+				needToRemoveItem = true;
 			}
-			Game.inventory.add(this.item, this.item.stackSize, this.item.maxUses);
+			if(needToRemoveItem) {
+				for(int x = 0; x < this.item.craftCost.length; x++) {
+					Item removedItem = ITEM_HASH.get(this.item.craftCost[x]).createNew();
+					Game.inventory.remove(removedItem, this.item.craftCostAmount[x]);
+				}
+			}
+			
+			//Game.inventory.add(this.item, this.item.stackSize, this.item.maxUses);
 		}
 	}
 }

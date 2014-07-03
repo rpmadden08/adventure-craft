@@ -14,6 +14,7 @@ public class SlownessPotion extends PotionItem {
 		name = "Slowness Potion";
 		sprite = Sprites.sprites.get(Sprites.SLOWNESS_POTION);
 		craftCost = new int[]{SLIME_BALL, ARTICHOKE, GLASS_BOTTLE};
+		craftCostAmount = new int[]{1,1,1}; 
 		
 	}
 	@Override

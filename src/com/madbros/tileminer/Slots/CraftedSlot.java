@@ -16,17 +16,18 @@ public class CraftedSlot extends Slot{
 	}
 	
 	public void render() {
-		//slotSprite.draw(slotRect, Z_INV_SLOTS);
-		Rect r = new Rect(slotRect.x, slotRect.y, INV_SLOT_SIZE*2, INV_SLOT_SIZE*2);
-		//highlighter.draw(slotRect.x,slotRect.y, Z_INV_HIGHLIGHT, INV_SLOT_SIZE+10, INV_SLOT_SIZE+10);
-		slotSprite.draw(slotRect, Z_INV_HIGHLIGHT);
 		if(isHighlighted) {
 			Sprites.pixel.setColor(highlightColor);
 			//Rect r = new Rect(slotRect.x, slotRect.y, INV_SLOT_SIZE+100, INV_SLOT_SIZE+100);
 			//highlighter.draw(slotRect.x,slotRect.y, Z_INV_HIGHLIGHT, INV_SLOT_SIZE+10, INV_SLOT_SIZE+10);
-			highlighter.draw(r, Z_INV_HIGHLIGHT);
+			highlighter.draw(slotRect.x+2,slotRect.y+2, Z_INV_HIGHLIGHT, slotRect.w - 6, slotRect.h-6);
 			Sprites.pixel.setColor(Color.WHITE);
 		}
+		//slotSprite.draw(slotRect, Z_INV_SLOTS);
+		Rect r = new Rect(slotRect.x, slotRect.y, INV_SLOT_SIZE*2, INV_SLOT_SIZE*2);
+		//highlighter.draw(slotRect.x,slotRect.y, Z_INV_HIGHLIGHT, INV_SLOT_SIZE+10, INV_SLOT_SIZE+10);
+		slotSprite.draw(slotRect, Z_INV_HIGHLIGHT);
+		
 		item.renderLarge(slotRect);
 	}
 	

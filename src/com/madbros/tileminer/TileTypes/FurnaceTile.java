@@ -7,6 +7,7 @@ import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Items.Item;
 import com.madbros.tileminer.Items.NoItem;
 import com.madbros.tileminer.Slots.CraftedSlot;
+import com.madbros.tileminer.Slots.FuelSlot;
 import com.madbros.tileminer.Slots.FurnaceSlot;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
@@ -21,10 +22,21 @@ public class FurnaceTile extends CollisionTile {
 	public boolean furnaceIsBurning = false;
 	public int timeCheck = 0;	
 	
-	public FurnaceSlot[] furnaceSlots = new FurnaceSlot[2];
+	public FurnaceSlot[] furnaceSlots = new FurnaceSlot[1];
+	public FuelSlot[] fuelSlot = new FuelSlot[1];
 	public CraftedSlot[] craftedSlot = new CraftedSlot[1];
 	
-	public boolean isCraftableItem = false;
+	//public boolean isCraftableItem = false;
+	
+	public boolean isCraftableItem() {
+		if(furnaceSlots[0].item.id == 0) {
+			return false;
+		} else if(craftedSlot[0].item.id == 0 || craftedSlot[0].item.id == furnaceSlots[0].item.id){
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	public FurnaceTile() {
 		super();
@@ -41,10 +53,10 @@ public class FurnaceTile extends CollisionTile {
 		isUseable = true;
 		currentHp = 1;
 		maxHp = 1;
-		furnaceSlots[0] = new FurnaceSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+170, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)-INV_SLOT_SIZE);
-		furnaceSlots[1] = new FurnaceSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE)+170, INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)+INV_SLOT_SIZE);
+		furnaceSlots[0] = new FurnaceSlot(540, 448);
+		fuelSlot[0] = new FuelSlot(540, 546);
 		
-		craftedSlot[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 192, INV_CRAFTING_RECT.y+INV_SLOT_SIZE-20);
+		craftedSlot[0] = new CraftedSlot(645, 493);
 		
 	}
 	
@@ -53,6 +65,9 @@ public class FurnaceTile extends CollisionTile {
 	
 //		System.out.println("FUEL:  "+furnaceFuel);
 //		System.out.println("MAX FUEL:  "+furnaceMaxFuel);
+		if(this.furnaceIsBurning == false && isCraftableItem()) {
+			fuelSlot[0].checkFuel(this, furnaceSlots, craftedSlot);
+		}
 		if(furnaceIsBurning == true) {
 			sprites = Sprites.furnaceAnimation;
 			if(timeCheck <= 0) {
@@ -60,35 +75,31 @@ public class FurnaceTile extends CollisionTile {
 //				System.out.println("furnaceFuel Left: "+furnaceFuel);
 //				System.out.println("furnaceBuildTime Left: "+furnaceBuildTime);
 				furnaceFuel = furnaceFuel - 1;
-				if(isCraftableItem) {
+				if(isCraftableItem()) {
 					furnaceBuildTime = furnaceBuildTime - 1;
 				}
 				if(furnaceFuel <= 0) {
 					furnaceIsBurning = false;
-					if(isCraftableItem) {
-						furnaceSlots[1].checkFuel(this, furnaceSlots, craftedSlot);
+					if(isCraftableItem()) {
+						fuelSlot[0].checkFuel(this, furnaceSlots, craftedSlot);
 					}
 					
-				} else if(furnaceBuildTime <= 0 && isCraftableItem == true) {
+				} else if(furnaceBuildTime <= 0 && isCraftableItem()) {
 					furnaceBuildTime = 10;
 					if(craftedSlot[0].item.id == 0) {
-						craftedSlot[0].item = possiblyCraftableItem.createNew();
+						craftedSlot[0].item = ITEM_HASH.get(furnaceSlots[0].item.id);
+						
 						//craftedSlot[0].item.stackSize = 0;						
 					} else {
 						//System.out.println(furnaceIsBurning);
-						craftedSlot[0].item.stackSize = craftedSlot[0].item.stackSize + craftedSlot[0].item.numberProducedByCrafting;
+						craftedSlot[0].item.stackSize ++;
 					}
-					//
-					if(furnaceSlots[0].item.stackSize >1) {
-						furnaceSlots[0].item.stackSize = furnaceSlots[0].item.stackSize -1;
-//						if(furnaceSlots[0].item.stackSize < 1) furnaceSlots[0].item = new NoItem();
-					} else {
-						furnaceSlots[0].item = new NoItem();
-						isCraftableItem = false;
-					}
-					furnaceSlots[0].handleAdditional2(this, furnaceSlots, craftedSlot);
 					
-				} else if(isCraftableItem == false) {
+					furnaceSlots[0].item.stackSize = furnaceSlots[0].item.stackSize - 1;
+					if(furnaceSlots[0].item.stackSize < 1) {
+						furnaceSlots[0].item = new NoItem();
+					}
+				} else if(!isCraftableItem()) {
 					furnaceBuildTime = 10;
 				}
 				
@@ -113,6 +124,9 @@ public class FurnaceTile extends CollisionTile {
 			int x = activeBlocksX;
 			int y = activeBlocksY;
 			Game.inventory.furnaceOn = true;
+			Game.inventory.currentWorkSpace = FURNACE_WORKSPACE;
+			Game.inventory.craftingMenu.changeToBurningSlots();
+			Game.inventory.craftingMenu.currentCraftableList = Game.inventory.craftingMenu.burnableList;
 			//Game.inventory.furnace = this;
 			//Game.inventory.invFurnace = furnaceSlots;
 			Game.inventory.currentInvActiveBlockX = x;

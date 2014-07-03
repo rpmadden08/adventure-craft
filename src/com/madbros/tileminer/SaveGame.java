@@ -130,14 +130,14 @@ public class SaveGame {
 								furnace.furnaceBuildTime,
 								furnace.possiblyCraftableItem.id,
 								furnace.furnaceSlots[0].item.id,
-								furnace.furnaceSlots[1].item.id,
+								furnace.fuelSlot[0].item.id,
 								furnace.furnaceSlots[0].item.stackSize,
-								furnace.furnaceSlots[1].item.stackSize,
+								furnace.fuelSlot[0].item.stackSize,
 								furnace.craftedSlot[0].item.id,
 								furnace.craftedSlot[0].item.stackSize,
 								};
 						boolean[] a2={furnace.furnaceIsBurning,
-								furnace.isCraftableItem};
+								furnace.isCraftableItem()};
 						furnaceListInt.add(a1);
 						furnaceListBoolean.add(a2);						
 					}
@@ -148,18 +148,18 @@ public class SaveGame {
 								cauldron.cauldronBuildTime,
 								cauldron.possiblyCraftableItem.id,
 								cauldron.cauldronSlots[0].item.id,
-								cauldron.cauldronSlots[1].item.id,
-								cauldron.cauldronSlots[2].item.id,
-								cauldron.cauldronSlots[3].item.id,
+//								cauldron.cauldronSlots[1].item.id,
+//								cauldron.cauldronSlots[2].item.id,
+								cauldron.fuelSlot[0].item.id,
 								cauldron.cauldronSlots[0].item.stackSize,
-								cauldron.cauldronSlots[1].item.stackSize,
-								cauldron.cauldronSlots[2].item.stackSize,
-								cauldron.cauldronSlots[3].item.stackSize,
+//								cauldron.cauldronSlots[1].item.stackSize,
+//								cauldron.cauldronSlots[2].item.stackSize,
+								cauldron.fuelSlot[0].item.stackSize,
 								cauldron.craftedSlot[0].item.id,
 								cauldron.craftedSlot[0].item.stackSize,
 								};
 						boolean[] a2={cauldron.cauldronIsBurning,
-								cauldron.isCraftableItem};
+								cauldron.isCraftableItem()};
 						cauldronListInt.add(a1);
 						cauldronListBoolean.add(a2);						
 					}

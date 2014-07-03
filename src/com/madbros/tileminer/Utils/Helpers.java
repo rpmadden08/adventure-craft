@@ -89,9 +89,9 @@ public class Helpers {
 						FurnaceTile tempTile = (FurnaceTile) t[i];
 						
 						tempTile.furnaceSlots[0].item = ITEM_HASH.get(id0).createNew();						
-						tempTile.furnaceSlots[1].item = ITEM_HASH.get(id1).createNew();
+						tempTile.fuelSlot[0].item = ITEM_HASH.get(id1).createNew();
 						tempTile.furnaceSlots[0].item.stackSize = chunk.furnaceInts[furnInt][6];
-						tempTile.furnaceSlots[1].item.stackSize = chunk.furnaceInts[furnInt][7];
+						tempTile.fuelSlot[0].item.stackSize = chunk.furnaceInts[furnInt][7];
 						tempTile.craftedSlot[0].item = ITEM_HASH.get(id2).createNew();
 						tempTile.craftedSlot[0].item.stackSize = chunk.furnaceInts[furnInt][9];
 						
@@ -99,36 +99,36 @@ public class Helpers {
 						tempTile.furnaceMaxFuel = chunk.furnaceInts[furnInt][1];
 						tempTile.furnaceBuildTime = chunk.furnaceInts[furnInt][2];
 						tempTile.furnaceIsBurning = chunk.furnaceBooleans[furnInt][0];
-						tempTile.isCraftableItem = chunk.furnaceBooleans[furnInt][1];
+						//tempTile.isCraftableItem = chunk.furnaceBooleans[furnInt][1];
 						int possiblyCraftableId = chunk.furnaceInts[furnInt][3];
 						tempTile.possiblyCraftableItem = ITEM_HASH.get(possiblyCraftableId).createNew();
 						t[i] = tempTile;
 						furnInt = furnInt +1;
 					} else if(chunk.ids[x][y][i] == CAULDRON_TILE) {
 						int id0 = chunk.cauldronInts[cauldInt][4];
-						int id1 = chunk.cauldronInts[cauldInt][5];
-						int id2 = chunk.cauldronInts[cauldInt][6];
-						int id3 = chunk.cauldronInts[cauldInt][7];
-						int id4 = chunk.cauldronInts[cauldInt][12];
+//						int id1 = chunk.cauldronInts[cauldInt][5];
+//						int id2 = chunk.cauldronInts[cauldInt][6];
+						int id3 = chunk.cauldronInts[cauldInt][5];
+						int id4 = chunk.cauldronInts[cauldInt][8];
 						//t[i] = (Furnace) t[i];
 						CauldronTile tempTile = (CauldronTile) t[i];
 						
 						tempTile.cauldronSlots[0].item = ITEM_HASH.get(id0).createNew();						
-						tempTile.cauldronSlots[1].item = ITEM_HASH.get(id1).createNew();
-						tempTile.cauldronSlots[2].item = ITEM_HASH.get(id2).createNew();						
-						tempTile.cauldronSlots[3].item = ITEM_HASH.get(id3).createNew();
-						tempTile.cauldronSlots[0].item.stackSize = chunk.cauldronInts[cauldInt][8];
-						tempTile.cauldronSlots[1].item.stackSize = chunk.cauldronInts[cauldInt][9];
-						tempTile.cauldronSlots[2].item.stackSize = chunk.cauldronInts[cauldInt][10];
-						tempTile.cauldronSlots[3].item.stackSize = chunk.cauldronInts[cauldInt][11];
+//						tempTile.cauldronSlots[1].item = ITEM_HASH.get(id1).createNew();
+//						tempTile.cauldronSlots[2].item = ITEM_HASH.get(id2).createNew();						
+						tempTile.fuelSlot[0].item = ITEM_HASH.get(id3).createNew();
+						tempTile.cauldronSlots[0].item.stackSize = chunk.cauldronInts[cauldInt][6];
+//						tempTile.cauldronSlots[1].item.stackSize = chunk.cauldronInts[cauldInt][9];
+//						tempTile.cauldronSlots[2].item.stackSize = chunk.cauldronInts[cauldInt][10];
+						tempTile.fuelSlot[0].item.stackSize = chunk.cauldronInts[cauldInt][7];
 						tempTile.craftedSlot[0].item = ITEM_HASH.get(id4).createNew();
-						tempTile.craftedSlot[0].item.stackSize = chunk.cauldronInts[cauldInt][13];
+						tempTile.craftedSlot[0].item.stackSize = chunk.cauldronInts[cauldInt][9];
 						
 						tempTile.cauldronFuel = chunk.cauldronInts[cauldInt][0];
 						tempTile.cauldronMaxFuel = chunk.cauldronInts[cauldInt][1];
 						tempTile.cauldronBuildTime = chunk.cauldronInts[cauldInt][2];
 						tempTile.cauldronIsBurning = chunk.cauldronBooleans[cauldInt][0];
-						tempTile.isCraftableItem = chunk.cauldronBooleans[cauldInt][1];
+						//tempTile.isCraftableItem = chunk.cauldronBooleans[cauldInt][1];
 						int possiblyCraftableId = chunk.cauldronInts[cauldInt][3];
 						tempTile.possiblyCraftableItem = ITEM_HASH.get(possiblyCraftableId).createNew();
 						t[i] = tempTile;

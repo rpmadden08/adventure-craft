@@ -2,9 +2,9 @@ package com.madbros.tileminer.Slots;
 
 import static com.madbros.tileminer.Constants.*;
 
-public class CauldronSlot extends Slot{
+public class FuelSlot extends Slot{
 	public boolean hasIngedients = false;
-	public CauldronSlot(int x, int y) {
+	public FuelSlot(int x, int y) {
 		super(x, y);
 		type = CRAFTING_SLOT;
 	}
