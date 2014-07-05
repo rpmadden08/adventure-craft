@@ -51,7 +51,7 @@ public class Inventory {
 	
 	public Inventory() {
 		for(int i = 0; i < INV_LENGTH; i++) {
-			invBar[i] = new BarSlot(INV_BAR_RECT.x, INV_BAR_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * i);
+			invBar[i] = new BarSlot(INV_BAR_RECT.x, INV_BAR_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * i, i);
 		}
 		
 		int k = 0;
@@ -101,23 +101,23 @@ public class Inventory {
 		invClothing[2] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +80,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +120,BOOTS_SLOT);
 //		
-		invBar[0].item = new Cauldron();
-		invBar[0].item.stackSize = 3;
-		invBar[1].item = new RedFlowers();
-		invBar[1].item.stackSize = 99;
-		invBar[2].item = new Honey();
-		invBar[2].item.stackSize = 99;
-		invBar[3].item = new GlassBottle();
-		invBar[3].item.stackSize = 99;
+		invBar[0].item = new LeatherArmor();
+		invBar[0].item.stackSize = 1;
+		invBar[1].item = new LeatherHat();
+		invBar[1].item.stackSize = 1;
+		invBar[2].item = new LeatherLeggings();
+		invBar[2].item.stackSize = 1;
+		invBar[3].item = new LeatherBoots();
+		invBar[3].item.stackSize = 1;
 		invBar[4].item = new Coal();
 		invBar[4].item.stackSize = 99;
-		invBar[5].item = new Furnace();
-		invBar[5].item.stackSize = 1;
-		invBar[6].item = new Steak();
+		invBar[5].item = new Stick();
+		invBar[5].item.stackSize = 99;
+		invBar[6].item = new Log();
 		invBar[6].item.stackSize = 99;
-		invBar[7].item = new CopperAxe();
-		invBar[7].item.stackSize = 1;
-		invBar[8].item = new LeatherHat();
+		invBar[7].item = new Plank();
+		invBar[7].item.stackSize = 99;
+		invBar[8].item = new TableItem();
 		invBar[8].item.stackSize = 1;
 		invBar[9].item = new Chest();
 		invBar[9].item.stackSize = 1;

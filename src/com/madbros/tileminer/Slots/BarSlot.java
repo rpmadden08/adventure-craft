@@ -5,9 +5,11 @@ import static com.madbros.tileminer.Constants.*;
 import com.madbros.tileminer.Inventory;
 
 public class BarSlot extends Slot{
-	public BarSlot(int x, int y) {
+	public int currentlySelectedBarSlot = 0;
+	public BarSlot(int x, int y, int currentlySelectedSlot) {
 		super(x, y);
 		type = CRAFTING_SLOT;
+		currentlySelectedBarSlot = currentlySelectedSlot;
 	}
 	
 	public void handleLeftClickShift(Inventory inv) {
@@ -33,4 +35,9 @@ public class BarSlot extends Slot{
 			inv.removeSlot(this);
 		}
 	}
+	
+	public void handleLeftClickMainState(Inventory inv) {
+		inv.itemSelected = this.currentlySelectedBarSlot;
+	}
+	
 }

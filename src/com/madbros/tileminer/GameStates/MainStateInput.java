@@ -2,12 +2,16 @@ package com.madbros.tileminer.GameStates;
 
 import com.badlogic.gdx.Input.Keys;
 import com.madbros.tileminer.Game;
+import com.madbros.tileminer.Slots.Slot;
+import com.madbros.tileminer.Utils.Helpers;
+import com.madbros.tileminer.Utils.Rect;
 
 
 
 public class MainStateInput extends BasicInput {
 	public boolean altKeyDown = false;
 	public boolean shiftKeyDown = false;
+	public boolean clickedAButton = false;
 	@Override
 	public boolean scrolled(int amount) {
 		super.scrolled(amount);
@@ -24,17 +28,22 @@ public class MainStateInput extends BasicInput {
 		if(Game.gameMainMenu.menuIsActive) Game.gameMainMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		Game.hero.attackButtonReleased = true;
 		Game.level.hasPlacedItemOnClick = false;
+		
 		return false;
 	}
 	
 	@Override
 	public boolean touchDown(int x, int y, int pointer, int button) {
 		super.touchDown(x, y, pointer, button);
-		
-		Game.inventory.useItem(button);
 		if(Game.debugMenu.menuIsActive) Game.debugMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		if(Game.gameMainMenu.menuIsActive) Game.gameMainMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		additionalMouseDown();
+		if(clickedAButton == false) {
+			
+			Game.inventory.useItem(button);
+		}
+			
+		clickedAButton = false;
 		return false;
 	}
 	
@@ -112,11 +121,39 @@ public class MainStateInput extends BasicInput {
 	}
 	
 	public void additionalMouseDown() {
-		
+		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
+		Slot[][] slots = {Game.inventory.invBar};
+		//droppedItemInSlot = false;
+		for(int i = 0; i < slots.length; i++) {
+			for(int j = 0; j < slots[i].length; j++) {
+				if(mouseRect.detectCollision(slots[i][j].slotRect)) {
+					
+//					if(mouseLeftDown && altKeyDown) slots[i][j].handleLeftClickCrafting(Game.inventory, Game.inventory.craftingMenu.craftableList, slots[i][j].item.itemsPossiblyCraftable);
+//					else if(mouseLeftDown && shiftKeyDown) slots[i][j].handleLeftClickShift(Game.inventory);
+//					else if(mouseRightDown && shiftKeyDown) slots[i][j].handleRightClickShift(Game.inventory);
+					if(mouseLeftDown) {
+						slots[i][j].handleLeftClickMainState(Game.inventory);
+						clickedAButton = true;
+					}
+//					else if(mouseRightDown) slots[i][j].handleRightClick(Game.inventory);
+				} 
+			}
+		}
 	}
 	
 	public void additionalMouseMove() {
-		
+		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
+//		Game.inventory.craftingMenu.handleMouseMove(mouseRect.x, mouseRect.y);
+		Slot[][] slots = {Game.inventory.invBar};
+		for(int i = 0; i < slots.length; i++) {
+			for(int j = 0; j < slots[i].length; j++) {
+				if(mouseRect.detectCollision(slots[i][j].slotRect)) {
+					slots[i][j].isHighlighted = true;
+				} else {
+					slots[i][j].isHighlighted = false;
+				}
+			}
+		}
 	}
 	
 	public void additionalMouseUp() {

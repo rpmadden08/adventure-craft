@@ -67,6 +67,7 @@ public class Slot {
 		}
 	}
 	
+	public void handleLeftClickMainState(Inventory inv) {}
 	public void handleLeftClickShift(Inventory inv) {}
 	public void handleLeftClickShiftChest(Inventory inv) {}
 	
