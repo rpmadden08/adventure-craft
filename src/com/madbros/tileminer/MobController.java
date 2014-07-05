@@ -85,7 +85,7 @@ public class MobController {
 		int topTerrainTile = Game.level.activeBlocks[x][y].getTopTerrainTile().id;
 		//System.out.println(topTile);
 		Block[] tileArea = getTileArea(x,y);
-		int num = rand.nextInt(150);//150 
+		int num = rand.nextInt(1);//150 
 		if(num <10  && mobs.size() < 10) { //10
 			if(possibleSpawnPoint.detectCollision(heroRect)) {
 			//    ***************IF THE WORLD IS DARK	

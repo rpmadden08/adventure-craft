@@ -58,7 +58,7 @@ public class StairsUpTile extends CollisionTile {
 				Game.hero.stop();
 				Game.saveGame.saveGame();
 				Game.level.saveCurrentChunks();
-				Game.switchLevel();
+				Game.switchLevel(true);
 
 				Game.level.teleportHero(Game.replaceableX, Game.replaceableY);
 				return false;

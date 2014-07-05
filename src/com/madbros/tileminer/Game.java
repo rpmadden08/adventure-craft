@@ -265,7 +265,7 @@ public class Game implements ApplicationListener {
 		//Game.currentState = new MainState();
 	}
 	
-	public static void switchLevel() {
+	public static void switchLevel(final Boolean isSwitching) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -277,10 +277,18 @@ public class Game implements ApplicationListener {
 					//Game.saveGame.loadCurrentLevel();
 					SaveGameData saveData = saveGame.saveData();
 					rgenseed = saveData.seed;
-					if(Game.currentLevel == OVERWORLD_FOLDER) {
-						level = new Underground1();
-					} else if (Game.currentLevel == UNDERGROUND_1_FOLDER) {
-						level = new Overworld();	
+					if(isSwitching) {
+						if(Game.currentLevel == OVERWORLD_FOLDER) {
+							level = new Underground1();
+						} else if (Game.currentLevel == UNDERGROUND_1_FOLDER) {
+							level = new Overworld();	
+						}
+					} else {
+						if(Game.currentLevel == OVERWORLD_FOLDER) {
+							level = new Overworld();	
+						} else if (Game.currentLevel == UNDERGROUND_1_FOLDER) {
+							level = new Underground1();	
+						}
 					}
 					
 					

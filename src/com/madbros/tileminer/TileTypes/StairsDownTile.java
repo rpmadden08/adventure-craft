@@ -57,7 +57,7 @@ public class StairsDownTile extends CollisionTile {
 				Game.hero.knockBackTime = 0; //Makes your knockback stop preventing a game crash...
 				Game.hero.stop();
 				
-				Game.switchLevel();
+				Game.switchLevel(true);
 				//Game.hero = null;
 				
 				Game.level.teleportHero(Game.replaceableX, Game.replaceableY);

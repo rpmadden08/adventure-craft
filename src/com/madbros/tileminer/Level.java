@@ -5,12 +5,15 @@ import static com.madbros.tileminer.Constants.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
+
 import com.madbros.tileminer.Constants.State;
 import com.madbros.tileminer.GameStates.LoadingState;
 import com.madbros.tileminer.GameStates.MainState;
 import com.madbros.tileminer.Items.Clothing;
 import com.madbros.tileminer.Items.IronArmor;
 import com.madbros.tileminer.LevelTypes.ChunkGenerator;
+import com.madbros.tileminer.LevelTypes.Overworld;
+import com.madbros.tileminer.LevelTypes.Underground1;
 import com.madbros.tileminer.LevelTypes.FractalTypes.BasicNoise;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
@@ -175,13 +178,15 @@ public class Level {
 		if(folder == Game.currentLevel) {
 			Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
 			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
+			Game.switchLevel(false);
+			//Game.currentState = new MainState();
 		} else {
 			Game.currentState = new LoadingState(Game.batch);
 			Game.musicController.music.stop();
 			Game.hero.stop();
 			Game.saveGame.saveCurrentLevel();
 			Game.collectibleController = new CollectibleController();
-			Game.switchLevel();
+			Game.switchLevel(true);
 			Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
 			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
 		}		
