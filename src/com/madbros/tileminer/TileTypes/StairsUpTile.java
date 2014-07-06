@@ -53,11 +53,12 @@ public class StairsUpTile extends CollisionTile {
 				
 				Game.replaceableX = Game.level.activeBlocks[x][y].getAbsX();
 				Game.replaceableY = Game.level.activeBlocks[x][y].getAbsY();
-				Game.musicController.music.stop();
+				//Game.musicController.music.stop();
 				Game.hero.knockBackTime = 0; //Makes your knockback stop preventing a game crash...
 				Game.hero.stop();
-				Game.saveGame.saveGame();
-				Game.level.saveCurrentChunks();
+				//Game.saveGame.saveGame();
+//				Game.level.saveCurrentChunks();
+				Game.saveGame.saveCurrentLevel();
 				Game.switchLevel(true);
 
 				Game.level.teleportHero(Game.replaceableX, Game.replaceableY);

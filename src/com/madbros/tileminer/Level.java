@@ -178,6 +178,8 @@ public class Level {
 		if(folder == Game.currentLevel) {
 			Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
 			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
+			Game.saveGame.saveCurrentLevel();
+			Game.collectibleController = new CollectibleController();
 			Game.switchLevel(false);
 			//Game.currentState = new MainState();
 		} else {
@@ -458,7 +460,6 @@ public class Level {
 			loadingThread.join();
 			savingThread.join();
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -506,7 +507,6 @@ public class Level {
 			savingThread.join();
 			loadingThread.join();
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		

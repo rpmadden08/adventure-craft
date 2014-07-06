@@ -220,7 +220,7 @@ public class SaveGame {
 	
 	public void saveCurrentLevel() {
 		CurrentLevelData currentLevelData = new CurrentLevelData();
-		
+		System.out.println("Saving:  "+Game.collectibleController.collectibles.size());
 		for(int x = 0; x < Game.collectibleController.collectibles.size(); x++) {
 			Collectible c = Game.collectibleController.collectibles.get(x);
 			currentLevelData.collectibleItemIds[x] = c.item.id;

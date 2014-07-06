@@ -122,20 +122,20 @@ public class Inventory {
 		invBar[9].item = new Chest();
 		invBar[9].item.stackSize = 1;
 		
-//		invBag[0].item = new FireStarter();
-//		invBag[0].item.stackSize = 1;
-//		invBag[1].item = new FirePit();
-//		invBag[1].item.stackSize = 1;
+		invBag[0].item = new Furnace();
+		invBag[0].item.stackSize = 1;
+		invBag[1].item = new Cauldron();
+		invBag[1].item.stackSize = 1;
 //		invBag[2].item = new TallGrassA();
 //		invBag[2].item.stackSize = 99;
 //		invBag[3].item = new ArtichokeSprout();
 //		invBag[3].item.stackSize = 99;
-//		invBag[4].item = new IronBoots();
-//		invBag[4].item.stackSize = 1;
-//		invBag[5].item = new IronLeggings();
-//		invBag[5].item.stackSize = 1;
-//		invBag[6].item = new IronArmor();
-//		invBag[6].item.stackSize = 1;
+		invBag[4].item = new RedFlowers();
+		invBag[4].item.stackSize = 99;
+		invBag[5].item = new GlassBottle();
+		invBag[5].item.stackSize = 99;
+		invBag[6].item = new Honey();
+		invBag[6].item.stackSize = 99;
 //		invBag[7].item = new IronHelmet();
 //		invBag[7].item.stackSize = 1;
 //		
@@ -148,14 +148,14 @@ public class Inventory {
 //		invBag[11].item = new TinHelmet();
 //		invBag[11].item.stackSize = 1;
 //		
-//		invBag[12].item = new CopperBoots();
-//		invBag[12].item.stackSize = 1;
-//		invBag[13].item = new CopperLeggings();
-//		invBag[13].item.stackSize = 1;
-//		invBag[14].item = new CopperArmor();
-//		invBag[14].item.stackSize = 1;
-//		invBag[15].item = new CopperHelmet();
-//		invBag[15].item.stackSize = 1;
+		invBag[12].item = new CopperBoots();
+		invBag[12].item.stackSize = 1;
+		invBag[13].item = new CopperLeggings();
+		invBag[13].item.stackSize = 1;
+		invBag[14].item = new CopperArmor();
+		invBag[14].item.stackSize = 1;
+		invBag[15].item = new CopperHelmet();
+		invBag[15].item.stackSize = 1;
 		
 
 //		invClothing[0].item = new IronHelmet();

@@ -157,7 +157,7 @@ public class Helpers {
 	}
 	
 	public static void collectibleDataToCollectibleController(CurrentLevelData c) {
-		//System.out.println(c.collectibleItemIds.length);
+		System.out.println("Loading:  "+c.collectibleItemIds.length);
 		
 		for(int x = 0; x < c.collectibleItemIds.length; x++) {
 			Item i = ITEM_HASH.get(c.collectibleItemIds[x]).createNew();
