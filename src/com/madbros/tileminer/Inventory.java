@@ -103,7 +103,7 @@ public class Inventory {
 //		
 		invBar[0].item = new StairsDown();
 		invBar[0].item.stackSize = 1;
-		invBar[1].item = new Furnace();
+		invBar[1].item = new CopperShovel();
 		invBar[1].item.stackSize = 1;
 		invBar[2].item = new LeatherLeggings();
 		invBar[2].item.stackSize = 1;

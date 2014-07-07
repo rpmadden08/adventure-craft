@@ -308,13 +308,11 @@ public class RenderSystem {
 		healthBarLeft.draw(1,29,0);
 		emptyBarMiddle.draw(healthBarLeft.getX()+healthBarLeft.getWidth(),healthBarLeft.getY() +2,Z_CHARACTER,hero.maxHP,healthBarMiddle.getHeight());
 		magicBarMiddle.draw(healthBarLeft.getX()+healthBarLeft.getWidth(),healthBarLeft.getY() +2,Z_CHARACTER,hero.mP,healthBarMiddle.getHeight());
-		
 		healthBarRight.draw(healthBarLeft.getX()+healthBarLeft.getWidth()+ hero.maxHP, healthBarLeft.getY(), Z_CHARACTER);
 		
 		healthBarLeft.draw(1,57,0);
 		emptyBarMiddle.draw(healthBarLeft.getX()+healthBarLeft.getWidth(),healthBarLeft.getY() +2,Z_CHARACTER,hero.maxHP,healthBarMiddle.getHeight());
 		energyBarMiddle.draw(healthBarLeft.getX()+healthBarLeft.getWidth(),healthBarLeft.getY() +2,Z_CHARACTER,(int)hero.eP,healthBarMiddle.getHeight());
-		
 		healthBarRight.draw(healthBarLeft.getX()+healthBarLeft.getWidth()+ hero.maxHP, healthBarLeft.getY(), Z_CHARACTER);
 		
 		

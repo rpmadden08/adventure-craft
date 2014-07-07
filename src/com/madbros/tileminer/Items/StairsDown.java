@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.madbros.tileminer.Block;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Sprites.Sprites;
+import com.madbros.tileminer.TileTypes.DirtTile;
+import com.madbros.tileminer.TileTypes.NoTile;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Helpers;
 
@@ -14,7 +16,7 @@ public class StairsDown extends BlockItem32 {
 		id = STAIRS_DOWN;
 		name = "Stairs Down";
 		tileId = STAIRS_DOWN_TILE;
-		placeableTileIds = new int[]{DIRT};
+		placeableTileIds = new int[]{HOLE};
 		craftCost = new int[]{STONE};
 		craftCostAmount = new int[]{10};
 		sprite = Sprites.sprites.get(Sprites.STAIRS_DOWN);
@@ -40,6 +42,8 @@ public class StairsDown extends BlockItem32 {
 	
 	@Override
 	public void placeTile(Block hB, Tile tile) {
+		hB.layers[WATER_LAYER] = new NoTile();
+		hB.layers[LIGHT_DIRT_LAYER] = new DirtTile();
 		hB.layers[OBJECT_LAYER] = tile;
 		hB.layers[OBJECT_LAYER].cRect.x = hB.getAbsX()* TILE_SIZE;
 		hB.layers[OBJECT_LAYER].cRect.y = hB.getAbsY()* TILE_SIZE;
