@@ -15,11 +15,12 @@ public class CauldronState extends MainState {
 	@Override
 	protected void updateStates() {
 		Game.animationSystem.updateInventory(Game.hero, Game.inventory, Game.mobController);
-		Game.hero.update();
-		Game.mobController.update();
-		Game.level.update();
-		Game.debugger.update();
+//		Game.hero.update();
+//		Game.mobController.update();
+//		Game.level.update();
+//		Game.debugger.update();
 		Game.inventory.craftingMenu.refreshCraftSlots(Game.inventory.craftingMenu.currentCraftableList);
+		Time.checkTime();
 		//Game.inventory.craftingMenu.refreshCauldronCraftSlots(Game.inventory.craftingMenu.currentCraftableList);
 	}
 	

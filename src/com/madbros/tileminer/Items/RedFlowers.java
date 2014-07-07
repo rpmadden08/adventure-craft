@@ -39,7 +39,10 @@ public class RedFlowers extends BlockItem32 {
 			sprite.setColor(Color.WHITE);
 			sprite.draw(x, y, Z_CHARACTER);
 			sprite.setColor(Color.WHITE);
+		} else {
+			super.highlightItem(block, x, y);
 		}
+		
 	}
 	
 

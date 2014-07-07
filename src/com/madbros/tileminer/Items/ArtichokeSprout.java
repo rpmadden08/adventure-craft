@@ -32,10 +32,11 @@ public class ArtichokeSprout extends BlockItem32 {
 	public void highlightItem(Block block, int x, int y) {
 		
 		if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id) {
-
 			sprite.setColor(HIGHLIGHT_COLOR);
 			sprite.draw(x, y, Z_CHARACTER);
 			sprite.setColor(Color.WHITE);
+		} else {
+			super.highlightItem(block, x, y);
 		}
 	}
 }

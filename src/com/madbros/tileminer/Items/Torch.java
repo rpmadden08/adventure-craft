@@ -40,6 +40,8 @@ public class Torch extends BlockItem32 {
 				sprite.setColor(HIGHLIGHT_COLOR);
 				sprite.draw(x, y, Z_CHARACTER);
 				sprite.setColor(Color.WHITE);
+			}else {
+				super.highlightItem(block, x, y);
 			}
 	}
 }

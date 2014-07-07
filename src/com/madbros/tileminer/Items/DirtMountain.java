@@ -108,6 +108,8 @@ public void highlightItem(Block block, int x, int y) {
 			tile.sprites[35].setColor(HIGHLIGHT_COLOR);
 			tile.sprites[35].draw(x+16, y-48, Z_CHARACTER);
 			tile.sprites[35].setColor(Color.WHITE);
+		} else {
+			super.highlightItem(block, x, y);
 		}
 	}
 }

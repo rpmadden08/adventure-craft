@@ -64,6 +64,8 @@ public class Furnace extends BlockItem32 {
 			tile2.sprites[0].setColor(Color.WHITE);
 			
 			
+		}else {
+			super.highlightItem(block, x, y);
 		}
 	}
 

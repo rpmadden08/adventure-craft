@@ -28,8 +28,7 @@ public class GrassSeed extends BlockItem {
 		hB.layers[GRASS_LAYER] = tile;
 	}
 	
-public void highlightItem(Block block, int x, int y) {
-		
+	public void highlightItem(Block block, int x, int y) {
 		if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id) { 
 //			int i = block.getX(Game.level.activeBlocks); 
 //			int j = block.getY(Game.level.activeBlocks);
@@ -56,6 +55,8 @@ public void highlightItem(Block block, int x, int y) {
 			tile.sprites[35].draw(x+16, y+16, Z_CHARACTER);
 			tile.sprites[35].setColor(Color.WHITE);
 			
+		} else {
+			super.highlightItem(block, x, y);
 		}
 	}
 }

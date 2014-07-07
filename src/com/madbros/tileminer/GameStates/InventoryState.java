@@ -19,6 +19,7 @@ public class InventoryState extends MainState {
 		while(Game.zAngle > Game.PI2)
 			Game.zAngle -= Game.PI2;
 		Game.animationSystem.updateInventory(Game.hero, Game.inventory, Game.mobController);
+		Time.checkTime();
 //		Game.hero.update();
 //		Game.mobController.update();
 //		Game.level.update();

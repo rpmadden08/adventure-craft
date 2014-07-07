@@ -62,6 +62,8 @@ public class SandClump extends BlockItem {
 			tile.sprites[35].draw(x+16, y+16, Z_CHARACTER);
 			tile.sprites[35].setColor(Color.WHITE);
 			
+		}else {
+			super.highlightItem(block, x, y);
 		}
 	}
 }
