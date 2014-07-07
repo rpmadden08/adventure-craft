@@ -9,8 +9,8 @@ import com.madbros.tileminer.Utils.Rect;
 import com.madbros.tileminer.Utils.Text;
 
 public abstract class UIButton {
-	Rect rect;
-	Text text;
+	public Rect rect;
+	public Text text;
 	
 	ButtonFunction buttonFunction;
 	

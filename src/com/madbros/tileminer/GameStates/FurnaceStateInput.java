@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Items.NoItem;
 import com.madbros.tileminer.Slots.*;
+import com.madbros.tileminer.TileTypes.CauldronTile;
 import com.madbros.tileminer.TileTypes.FurnaceTile;
 import com.madbros.tileminer.Utils.Helpers;
 import com.madbros.tileminer.Utils.Rect;
@@ -32,7 +33,12 @@ public class FurnaceStateInput extends InventoryStateInput {
 	
 	public boolean touchUp(int x, int y, int pointer, int button) {
 		super.touchUp(x, y, pointer, button);
+		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
 		Game.inventory.craftingMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
+		FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
+		if(furnaceTile.furnaceSlots[0].item.id != 0) {
+			furnaceTile.furnaceSlots[0].handleMouseInput(mouseLeftDown, mouseLeftUp, mouseRect);
+		}
 		return false;
 	}
 	
@@ -41,6 +47,9 @@ public class FurnaceStateInput extends InventoryStateInput {
 		Game.inventory.craftingMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		Boolean droppedItemInSlot = false;
 		FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
+		if(furnaceTile.furnaceSlots[0].item.id != 0) {
+			furnaceTile.furnaceSlots[0].handleMouseInput(mouseLeftDown, mouseLeftUp, mouseRect);
+		}
 		Slot[][] slots2 = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots, Game.inventory.invClothing, furnaceTile.craftedSlot, furnaceTile.fuelSlot, furnaceTile.furnaceSlots};
 		for(int i = 0; i < slots2.length; i++) {
 			for(int j = 0; j < slots2[i].length; j++) {
@@ -75,6 +84,9 @@ public class FurnaceStateInput extends InventoryStateInput {
 		Game.inventory.craftingMenu.handleMouseMove(mouseRect.x, mouseRect.y);
 		
 		FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
+		if(furnaceTile.furnaceSlots[0].item.id != 0) {
+			furnaceTile.furnaceSlots[0].handleMouseMove(mouseRect.x, mouseRect.y);
+		}
 		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots, Game.inventory.invCrafted, Game.inventory.invClothing, furnaceTile.furnaceSlots, furnaceTile.fuelSlot, furnaceTile.craftedSlot};
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {

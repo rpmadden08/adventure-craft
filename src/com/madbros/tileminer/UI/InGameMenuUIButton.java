@@ -14,40 +14,54 @@ public class InGameMenuUIButton extends UIButton {
 	public String spriteString;
 	public int iconX;
 	public int iconY;
+	private StaticSprite button;
+	private StaticSprite buttonHover;
+	private StaticSprite buttonPushed;
+	private StaticSprite buttonIcon;
 	
-	public InGameMenuUIButton(int x, int y, int w, int h, String s, ButtonFunction func, SpriteBatch batch, int iconX, int iconY) {
+	public InGameMenuUIButton(int x, int y, int w, int h, String s, ButtonFunction func, SpriteBatch batch, int iconX, int iconY, int color) {
 		super(x, y, w, h, s, func, batch);
 		spriteString = s;
 		this.iconX = iconX;
 		this.iconY = iconY;
+		if(color == 0) {
+			button = Sprites.sprites.get(Sprites.GREEN_BUTTON);
+			buttonHover = Sprites.sprites.get(Sprites.GREEN_BUTTON_HOVER);
+			buttonPushed = Sprites.sprites.get(Sprites.GREEN_BUTTON_PUSHED);
+			buttonIcon = Sprites.sprites.get(spriteString);
+		} else {
+			button = Sprites.sprites.get(Sprites.RED_BUTTON);
+			buttonHover = Sprites.sprites.get(Sprites.RED_BUTTON_HOVER);
+			buttonPushed = Sprites.sprites.get(Sprites.RED_BUTTON_PUSHED);
+			buttonIcon = Sprites.sprites.get(spriteString);
+		}
+		
 
 		//rect = new Rect(text.getX(rect), text.getY(rect), text.getW()+4, text.getH());
 	}
 	
-	public InGameMenuUIButton(Rect r, String s, Color fontColor, Color buttonColor, Color highlight, Color pressedColor, ButtonFunction func, SpriteBatch batch, String buttonSprite) {
-		super(r.x, r.y, r.w, r.h, s, func, batch);
-		this.fontColor = fontColor;
-		this.buttonColor = buttonColor;
-		this.highlight = highlight;
-		this.pressedColor = pressedColor;
-		
-	}
+//	public InGameMenuUIButton(Rect r, String s, Color fontColor, Color buttonColor, Color highlight, Color pressedColor, ButtonFunction func, SpriteBatch batch, String buttonSprite) {
+//		super(r.x, r.y, r.w, r.h, s, func, batch);
+//		this.fontColor = fontColor;
+//		this.buttonColor = buttonColor;
+//		this.highlight = highlight;
+//		this.pressedColor = pressedColor;
+//
+//		
+//	}
 
 	@Override
 	public void render() {
-		StaticSprite greenButton = Sprites.sprites.get(Sprites.GREEN_BUTTON);
-		StaticSprite greenButtonHover = Sprites.sprites.get(Sprites.GREEN_BUTTON_HOVER);
-		StaticSprite greenButtonPushed = Sprites.sprites.get(Sprites.GREEN_BUTTON_PUSHED);
-		StaticSprite greenButtonIcon = Sprites.sprites.get(spriteString);
+		
 	if(mouseIsHovering && buttonIsPressedDown) {
-		greenButtonPushed.draw(rect.x,rect.y, 0);
-		greenButtonIcon.draw(iconX,iconY, 0);
+		buttonPushed.draw(rect.x,rect.y, 0);
+		buttonIcon.draw(iconX,iconY, 0);
 	} else if(mouseIsHovering) {
-		greenButtonHover.draw(rect.x,rect.y, 0);
-		greenButtonIcon.draw(iconX,iconY, 0);
+		buttonHover.draw(rect.x,rect.y, 0);
+		buttonIcon.draw(iconX,iconY, 0);
 	} else {
-		greenButton.draw(rect.x,rect.y, 0);
-		greenButtonIcon.draw(iconX,iconY, 0);
+		button.draw(rect.x,rect.y, 0);
+		buttonIcon.draw(iconX,iconY, 0);
 	}
 		
 //		if(mouseIsHovering && buttonIsPressedDown) {
