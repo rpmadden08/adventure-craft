@@ -169,6 +169,9 @@ public class Sprites {
 	public static final String IMP_HORN= "impHorn";
 	public static final String LEATHER= "leather";
 	public static final String BEEHIVE= "beehive";
+	public static final String EMPTY_BUCKET= "emptyBucket";
+
+	public static final String WATER_BUCKET= "waterBucket";
 	public static final String BEEHIVE_TILE= "beehiveTile";
 	
 	public static final String STEAK= "rawSteak";
@@ -799,7 +802,7 @@ public class Sprites {
 					GRAY_LEGGINGS, GREEN_BUTTON, GRAY_HELMET, GREEN_BUTTON_HOVER, GREEN_BUTTON_PUSHED, HEALTH_BAR_LEFT, 
 					HEALTH_BAR_MIDDLE, HEALTH_BAR_RIGHT, HP_ITEM, LEFT_ARROW, MAGIC_BAR_MIDDLE, RED_BUTTON, RED_BUTTON_HOVER,
 					RED_BUTTON_PUSHED, RIGHT_ARROW, SELECTOR, SLOT_BORDER, TAB_SELECTED, TAB_UNSELECTED, HEART_CONTAINER,
-					X_ICON,
+					X_ICON, EMPTY_BUCKET, WATER_BUCKET,
 					
 			};
 			

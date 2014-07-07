@@ -18,11 +18,6 @@ public class NoItem extends BaseItem {
 		cRectFinal = new Rect (0,0,0,0);
 		sound = "sounds/swordSwing1.wav";
 		attackPower = 1;
-		
-//		cRectU = new Rect (15,14,41,16);
-//		cRectD = new Rect (15,54,41,16);
-//		cRectL = new Rect (-4,20,16,41);
-//		cRectR = new Rect (52,20,16,41);
 	}
 	
 

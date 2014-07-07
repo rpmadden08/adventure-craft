@@ -446,6 +446,8 @@ public class Constants {
 	public static final int STONE = 131;
 	public static final int BREAD = 132;
 	public static final int BEEHIVE = 133;
+	public static final int WATER_BUCKET = 134;
+	public static final int EMPTY_BUCKET = 135;
 	
 	
 	
@@ -674,6 +676,8 @@ public class Constants {
 		ITEM_HASH.put(STONE, new Stone());
 		ITEM_HASH.put(BREAD, new Bread());
 		ITEM_HASH.put(BEEHIVE, new Beehive());
+		ITEM_HASH.put(WATER_BUCKET, new WaterBucket());
+		ITEM_HASH.put(EMPTY_BUCKET, new EmptyBucket());
 		
 		
 		

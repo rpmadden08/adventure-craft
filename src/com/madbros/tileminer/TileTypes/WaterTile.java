@@ -57,6 +57,9 @@ public class WaterTile extends CollisionTile {
 			if(b[a].layers[WATER_LAYER].id == HOLE) {
 				if(rand.nextInt(100)== 0) {
 					b[a].layers[WATER_LAYER] = new WaterTile();
+					b[a].collisionTile = null;
+					b[a].setCollisionTile(this);
+					//
 					Game.level.autoTileBlock(b[a].getX(Game.level.activeBlocks), b[a].getY(Game.level.activeBlocks));
 				}
 			}
