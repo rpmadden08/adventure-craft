@@ -170,14 +170,14 @@ public class Level {
 	}
 	
 	public void teleportHero(int x, int y) {
-			Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
-			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
+			Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4)+TILE_SIZE ;
+			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1+TILE_SIZE; //+1
 	}
 	
 	public void teleportHero(int x, int y, String folder) {
 		if(folder == Game.currentLevel) {
-			Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4) ;
-			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1; //+1
+			Game.hero.absRect.x = x *TILE_SIZE-(Game.hero.absRect.w/4)+TILE_SIZE ;
+			Game.hero.absRect.y = y *TILE_SIZE- (Game.hero.absRect.h/2)+1+TILE_SIZE; //+1
 			Game.saveGame.saveCurrentLevel();
 			Game.collectibleController = new CollectibleController();
 			Game.switchLevel(false);
