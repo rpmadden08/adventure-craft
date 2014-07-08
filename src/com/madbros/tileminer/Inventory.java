@@ -103,7 +103,7 @@ public class Inventory {
 //		
 		invBar[0].item = new DirtMountainClump();
 		invBar[0].item.stackSize = 99;
-		invBar[1].item = new CopperHoe();
+		invBar[1].item = new StairsDown();
 		invBar[1].item.stackSize = 1;
 		invBar[2].item = new EmptyBucket();
 		invBar[2].item.stackSize = 1;

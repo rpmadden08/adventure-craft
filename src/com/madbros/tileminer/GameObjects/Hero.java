@@ -267,7 +267,7 @@ public class Hero extends Actor {
 				//Game.saveGame.saveCurrentLevel();
 				Game.currentState = new LoadingState(Game.batch);
 				Game.hero = new Hero();
-				Game.level.respawn(Game.level.masterSpawnX/TILE_SIZE, Game.level.masterSpawnY/TILE_SIZE, Game.level.spawnLevel);
+				Game.level.respawn(Game.level.masterSpawnX/TILE_SIZE+1, Game.level.masterSpawnY/TILE_SIZE+1, Game.level.spawnLevel);
 				//Game.currentState = new MainState();
 			} else {
 				deathWait ++;
