@@ -30,7 +30,11 @@ public class CauldronSlot extends Slot{
 		for(int a = 0; a < item.stackSize; a++) {
 			for(int x = 0; x < item.craftCost.length; x++) {
 				Item tempCraftCostItem = ITEM_HASH.get(item.craftCost[x]).createNew();
-				Game.inventory.add(tempCraftCostItem, item.craftCostAmount[x], item.maxUses);
+				if(!Game.inventory.add(tempCraftCostItem, item.craftCostAmount[x], item.maxUses)) {
+					Rect collectibleRect = new Rect(Game.hero.absRect.x, Game.hero.absRect.y, 16, 16);
+					Game.collectibleController.add(item.craftCost[x], tempCraftCostItem.sprite, collectibleRect, item.craftCostAmount[x], item.maxUses);
+					
+				}
 			}
 		}
 		item = new NoItem();
@@ -40,7 +44,11 @@ public class CauldronSlot extends Slot{
 	public void deleteOneQueue2() {
 		for(int x = 0; x < item.craftCost.length; x++) {
 			Item tempCraftCostItem = ITEM_HASH.get(item.craftCost[x]).createNew();
-			Game.inventory.add(tempCraftCostItem, item.craftCostAmount[x], item.maxUses);
+			//Game.inventory.add(tempCraftCostItem, item.craftCostAmount[x], item.maxUses);
+			if(!Game.inventory.add(tempCraftCostItem, item.craftCostAmount[x], item.maxUses)) {
+				Rect collectibleRect = new Rect(Game.hero.absRect.x, Game.hero.absRect.y, 16, 16);
+				Game.collectibleController.add(item.craftCost[x], tempCraftCostItem.sprite, collectibleRect, item.craftCostAmount[x], item.maxUses);
+			}
 		}
 		item.stackSize = item.stackSize -1;
 		if(item.stackSize < 1) {

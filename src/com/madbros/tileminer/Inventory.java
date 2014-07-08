@@ -101,61 +101,61 @@ public class Inventory {
 		invClothing[2] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +80,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +120,BOOTS_SLOT);
 //		
-//		invBar[0].item = new DirtMountainClump();
-//		invBar[0].item.stackSize = 99;
-//		invBar[1].item = new CopperHoe();
-//		invBar[1].item.stackSize = 1;
-//		invBar[2].item = new EmptyBucket();
-//		invBar[2].item.stackSize = 1;
-//		invBar[3].item = new LeatherBoots();
-//		invBar[3].item.stackSize = 1;
-//		invBar[4].item = new Coal();
-//		invBar[4].item.stackSize = 99;
-//		invBar[5].item = new Steak();
-//		invBar[5].item.stackSize = 99;
-//		invBar[6].item = new Log();
-//		invBar[6].item.stackSize = 99;
-//		invBar[7].item = new Plank();
-//		invBar[7].item.stackSize = 99;
-//		invBar[8].item = new TableItem();
-//		invBar[8].item.stackSize = 1;
-//		invBar[9].item = new Chest();
-//		invBar[9].item.stackSize = 1;
-//		
-//		invBag[0].item = new Furnace();
-//		invBag[0].item.stackSize = 1;
-//		invBag[1].item = new Cauldron();
-//		invBag[1].item.stackSize = 1;
-//		invBag[2].item = new TallGrassA();
-//		invBag[2].item.stackSize = 99;
-//		invBag[3].item = new ArtichokeSprout();
-//		invBag[3].item.stackSize = 99;
-//		invBag[4].item = new RedFlowers();
-//		invBag[4].item.stackSize = 99;
-//		invBag[5].item = new GlassBottle();
-//		invBag[5].item.stackSize = 99;
-//		invBag[6].item = new Honey();
-//		invBag[6].item.stackSize = 99;
-//		invBag[7].item = new IronHelmet();
-//		invBag[7].item.stackSize = 1;
-//		
-//		invBag[8].item = new TinBoots();
-//		invBag[8].item.stackSize = 1;
-//		invBag[9].item = new TinLeggings();
-//		invBag[9].item.stackSize = 1;
-//		invBag[10].item = new TinArmor();
-//		invBag[10].item.stackSize = 1;
-//		invBag[11].item = new TinHelmet();
-//		invBag[11].item.stackSize = 1;
-//		
-//		invBag[12].item = new CopperBoots();
-//		invBag[12].item.stackSize = 1;
-//		invBag[13].item = new CopperLeggings();
-//		invBag[13].item.stackSize = 1;
-//		invBag[14].item = new CopperArmor();
-//		invBag[14].item.stackSize = 1;
-//		invBag[15].item = new CopperHelmet();
-//		invBag[15].item.stackSize = 1;
+		invBar[0].item = new DirtMountainClump();
+		invBar[0].item.stackSize = 99;
+		invBar[1].item = new CopperHoe();
+		invBar[1].item.stackSize = 1;
+		invBar[2].item = new EmptyBucket();
+		invBar[2].item.stackSize = 1;
+		invBar[3].item = new LeatherBoots();
+		invBar[3].item.stackSize = 1;
+		invBar[4].item = new Coal();
+		invBar[4].item.stackSize = 99;
+		invBar[5].item = new Steak();
+		invBar[5].item.stackSize = 99;
+		invBar[6].item = new Log();
+		invBar[6].item.stackSize = 99;
+		invBar[7].item = new Plank();
+		invBar[7].item.stackSize = 99;
+		invBar[8].item = new TableItem();
+		invBar[8].item.stackSize = 1;
+		invBar[9].item = new Chest();
+		invBar[9].item.stackSize = 1;
+		
+		invBag[0].item = new Furnace();
+		invBag[0].item.stackSize = 1;
+		invBag[1].item = new Cauldron();
+		invBag[1].item.stackSize = 1;
+		invBag[2].item = new TallGrassA();
+		invBag[2].item.stackSize = 99;
+		invBag[3].item = new ArtichokeSprout();
+		invBag[3].item.stackSize = 99;
+		invBag[4].item = new RedFlowers();
+		invBag[4].item.stackSize = 99;
+		invBag[5].item = new GlassBottle();
+		invBag[5].item.stackSize = 99;
+		invBag[6].item = new Honey();
+		invBag[6].item.stackSize = 99;
+		invBag[7].item = new IronHelmet();
+		invBag[7].item.stackSize = 1;
+		
+		invBag[8].item = new TinBoots();
+		invBag[8].item.stackSize = 1;
+		invBag[9].item = new TinLeggings();
+		invBag[9].item.stackSize = 1;
+		invBag[10].item = new TinArmor();
+		invBag[10].item.stackSize = 1;
+		invBag[11].item = new TinHelmet();
+		invBag[11].item.stackSize = 1;
+		
+		invBag[12].item = new CopperBoots();
+		invBag[12].item.stackSize = 1;
+		invBag[13].item = new CopperLeggings();
+		invBag[13].item.stackSize = 1;
+		invBag[14].item = new CopperArmor();
+		invBag[14].item.stackSize = 1;
+		invBag[15].item = new CopperHelmet();
+		invBag[15].item.stackSize = 1;
 		
 
 //		invClothing[0].item = new IronHelmet();
@@ -239,7 +239,7 @@ public class Inventory {
 		}
 	}
 	
-	public void add(Item addedItem, int stackSize, int uses) {
+	public boolean add(Item addedItem, int stackSize, int uses) {
 		for(int i = 0; i < invBar.length; i++) {
 			if(invBar[i].item.id == addedItem.id ) {
 				if(invBar[i].item.stackSize != addedItem.maxStackSize ) {
@@ -249,7 +249,7 @@ public class Inventory {
 						invBar[i].item.stackSize = invBar[i].item.stackSize + diff;
 					} else {
 						invBar[i].item.stackSize = invBar[i].item.stackSize + stackSize;
-						return;
+						return true;
 					}
 					
 					
@@ -266,7 +266,7 @@ public class Inventory {
 						invBag[i].item.stackSize = invBag[i].item.stackSize + diff;
 					} else {
 						invBag[i].item.stackSize = invBag[i].item.stackSize + stackSize;
-						return;
+						return true;
 					}
 				}
 						
@@ -277,7 +277,7 @@ public class Inventory {
 				invBar[i].item = addedItem;
 				invBar[i].item.stackSize = stackSize;
 				invBar[i].item.uses = uses;
-				return;
+				return true;
 			}
 		}
 		for(int i = 0; i < invBag.length; i++) {
@@ -285,9 +285,11 @@ public class Inventory {
 				invBag[i].item = addedItem;
 				invBag[i].item.stackSize = stackSize;
 				invBag[i].item.uses = uses;
-				return;
+				return true;
 			}
 		}
+		return false;
+		
 	}
 	public void addItemToSlotArray(Item item, Slot[] slots) {
 		int stackSize = item.stackSize;

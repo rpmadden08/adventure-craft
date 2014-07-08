@@ -16,6 +16,8 @@ public class Collectible extends GameObject{
 	public Item item;
 	public Boolean bounced = false;
 	public Boolean bounced2 = false;
+	private Boolean isChasing = true;
+	private int stopCountdown = 0;
 	int framesNum = 0;
 	int length = 18;
 	int length2 = 8;
@@ -55,6 +57,11 @@ public class Collectible extends GameObject{
 	}
 	
 	public void update() {
+		if(stopCountdown < 1) {
+			isChasing = true;
+		} else {
+			stopCountdown = stopCountdown -1;
+		}
 		if(bounced == false) {
 			if(framesNum > length) {
 				bounced = true;
@@ -88,7 +95,9 @@ public class Collectible extends GameObject{
 			if(speed2 < 5) {
 				speed2 = speed2 + 0.2f;
 			}
-			chase();
+			if(isChasing) {
+				chase();
+			}
 		} else {
 			speed2 = 0;
 		}
@@ -138,10 +147,16 @@ public class Collectible extends GameObject{
 	}
 	
 	public void didCollide() {
-		Game.soundController.create(plopSound, 0.3f);
-		collectibleController.remove(this);
-		Game.inventory.add(item, stackSize, uses);
-		Game.notificationController.addCollectible(sprite, absRect, item.name, stackSize, item.id);
+		
+		if(Game.inventory.add(item, stackSize, uses)) {
+			Game.soundController.create(plopSound, 0.3f);
+			collectibleController.remove(this);
+			Game.notificationController.addCollectible(sprite, absRect, item.name, stackSize, item.id);
+		} else {
+			isChasing = false;
+			stopCountdown = 1000;
+		}
+	
 		
 	}
 }

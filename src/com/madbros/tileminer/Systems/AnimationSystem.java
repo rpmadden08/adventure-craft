@@ -40,7 +40,7 @@ public class AnimationSystem {
 		
 		//System.out.println("Hero Frame: "+hero.sprite.getCurrentAnimationFrame());
 		//System.out.println("Swimming Frame: "+hero.swimmingSprite.getCurrentAnimationFrame());
-		System.out.println("Swimming Animation: "+hero.swimmingSprite.getCurrentAnimation());
+//		System.out.println("Swimming Animation: "+hero.swimmingSprite.getCurrentAnimation());
 		for(Mob mob : mobController.mobs) {
 			//if(mob.isMoving()) mob.sprite.updateCurrentAnimation();
 			mob.sprite.updateCurrentAnimation();

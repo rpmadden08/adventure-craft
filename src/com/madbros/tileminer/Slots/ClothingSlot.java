@@ -8,6 +8,7 @@ import com.madbros.tileminer.Items.Clothing;
 import com.madbros.tileminer.Items.NoItem;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Sprites.StaticSprite;
+import com.madbros.tileminer.Utils.Rect;
 
 public class ClothingSlot extends Slot{
 	public ClothingSlot(int x, int y, int type) {
@@ -73,11 +74,14 @@ public class ClothingSlot extends Slot{
 	}
 	
 	public void handleLeftClickShift(Inventory inv) {
-			inv.add(this.item,this.item.stackSize, this.item.uses);
+			//inv.add(this.item,this.item.stackSize, this.item.uses);
+			if(Game.inventory.add(this.item,this.item.stackSize, this.item.uses)) {
+				if(this.item instanceof Clothing) Game.hero.removeClothingItem((Clothing)this.item);
+				inv.removeSlot(this);
+				Game.hero.calcArmor();
+			}
 			
-			if(this.item instanceof Clothing) Game.hero.removeClothingItem((Clothing)this.item);
-			inv.removeSlot(this);
-			Game.hero.calcArmor();
+			
 	}
 	
 	public void handleLeftClickShiftChest(Inventory inv) {
