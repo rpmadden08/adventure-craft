@@ -75,6 +75,12 @@ public class CompoundAnimatedSprite extends CompoundSprite {
 			sprite.changeAnimationTo(animationId);
 		}
 	}
+	
+	public void setCurrentFrame(int frame) {
+		for(AnimatedSprite sprite : sprites) {
+			sprite.setCurrentFrame(frame);
+		}
+	}
 
 	public void updateCurrentAnimation() {
 		for(AnimatedSprite sprite : sprites) {
@@ -91,6 +97,12 @@ public class CompoundAnimatedSprite extends CompoundSprite {
 	public void changeFrameTimes(int n) {
 		for(AnimatedSprite sprite : sprites) {
 			sprite.changeFrameTimes(n);
+		}
+	}
+	
+	public void resetFrames() {
+		for(AnimatedSprite sprite : sprites) {
+			sprite.resetFrame();
 		}
 	}
 	

@@ -101,41 +101,41 @@ public class Inventory {
 		invClothing[2] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +80,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +120,BOOTS_SLOT);
 //		
-		invBar[0].item = new DirtMountainClump();
-		invBar[0].item.stackSize = 99;
-		invBar[1].item = new CopperHoe();
-		invBar[1].item.stackSize = 1;
-		invBar[2].item = new EmptyBucket();
-		invBar[2].item.stackSize = 1;
-		invBar[3].item = new LeatherBoots();
-		invBar[3].item.stackSize = 1;
-		invBar[4].item = new Coal();
-		invBar[4].item.stackSize = 99;
-		invBar[5].item = new Steak();
-		invBar[5].item.stackSize = 99;
-		invBar[6].item = new Log();
-		invBar[6].item.stackSize = 99;
-		invBar[7].item = new Plank();
-		invBar[7].item.stackSize = 99;
-		invBar[8].item = new TableItem();
-		invBar[8].item.stackSize = 1;
-		invBar[9].item = new Chest();
-		invBar[9].item.stackSize = 1;
-		
-		invBag[0].item = new Furnace();
-		invBag[0].item.stackSize = 1;
-		invBag[1].item = new Cauldron();
-		invBag[1].item.stackSize = 1;
+//		invBar[0].item = new DirtMountainClump();
+//		invBar[0].item.stackSize = 99;
+//		invBar[1].item = new CopperHoe();
+//		invBar[1].item.stackSize = 1;
+//		invBar[2].item = new EmptyBucket();
+//		invBar[2].item.stackSize = 1;
+//		invBar[3].item = new LeatherBoots();
+//		invBar[3].item.stackSize = 1;
+//		invBar[4].item = new Coal();
+//		invBar[4].item.stackSize = 99;
+//		invBar[5].item = new Steak();
+//		invBar[5].item.stackSize = 99;
+//		invBar[6].item = new Log();
+//		invBar[6].item.stackSize = 99;
+//		invBar[7].item = new Plank();
+//		invBar[7].item.stackSize = 99;
+//		invBar[8].item = new TableItem();
+//		invBar[8].item.stackSize = 1;
+//		invBar[9].item = new Chest();
+//		invBar[9].item.stackSize = 1;
+//		
+//		invBag[0].item = new Furnace();
+//		invBag[0].item.stackSize = 1;
+//		invBag[1].item = new Cauldron();
+//		invBag[1].item.stackSize = 1;
 //		invBag[2].item = new TallGrassA();
 //		invBag[2].item.stackSize = 99;
 //		invBag[3].item = new ArtichokeSprout();
 //		invBag[3].item.stackSize = 99;
-		invBag[4].item = new RedFlowers();
-		invBag[4].item.stackSize = 99;
-		invBag[5].item = new GlassBottle();
-		invBag[5].item.stackSize = 99;
-		invBag[6].item = new Honey();
-		invBag[6].item.stackSize = 99;
+//		invBag[4].item = new RedFlowers();
+//		invBag[4].item.stackSize = 99;
+//		invBag[5].item = new GlassBottle();
+//		invBag[5].item.stackSize = 99;
+//		invBag[6].item = new Honey();
+//		invBag[6].item.stackSize = 99;
 //		invBag[7].item = new IronHelmet();
 //		invBag[7].item.stackSize = 1;
 //		
@@ -148,14 +148,14 @@ public class Inventory {
 //		invBag[11].item = new TinHelmet();
 //		invBag[11].item.stackSize = 1;
 //		
-		invBag[12].item = new CopperBoots();
-		invBag[12].item.stackSize = 1;
-		invBag[13].item = new CopperLeggings();
-		invBag[13].item.stackSize = 1;
-		invBag[14].item = new CopperArmor();
-		invBag[14].item.stackSize = 1;
-		invBag[15].item = new CopperHelmet();
-		invBag[15].item.stackSize = 1;
+//		invBag[12].item = new CopperBoots();
+//		invBag[12].item.stackSize = 1;
+//		invBag[13].item = new CopperLeggings();
+//		invBag[13].item.stackSize = 1;
+//		invBag[14].item = new CopperArmor();
+//		invBag[14].item.stackSize = 1;
+//		invBag[15].item = new CopperHelmet();
+//		invBag[15].item.stackSize = 1;
 		
 
 //		invClothing[0].item = new IronHelmet();
@@ -186,10 +186,18 @@ public class Inventory {
 		
 		for(int i = 0; i < invClothing.length; i++) {
 			if(invClothing[i].item.id != 0) {
+				Clothing clothingItem= (Clothing) invClothing[i].item;
+				Game.hero.sprite.removeSprite(clothingItem.animatedSprite);
+				Game.hero.sprite.changeAnimationTo(STAND_DOWN);
+				if(clothingItem.slotType == HELMET_SLOT) {
+					Game.hero.swimmingSprite.removeSprite(clothingItem.animatedSprite);
+				}
 				Rect collectibleRect = new Rect(Game.hero.absRect.x, Game.hero.absRect.y, 16, 16);
 				Game.collectibleController.add(invClothing[i].item.id, invClothing[i].item.sprite, collectibleRect, invClothing[i].item.stackSize, invClothing[i].item.uses);
 				invClothing[i].item.stackSize = 0;
 				invClothing[i].item = new NoItem();
+				
+				
 			}
 		}
 	}

@@ -355,6 +355,10 @@ public class Actor extends GameObject {
 			swimmingSprite.addSprite(clothingItem.animatedSprite);
 			swimmingSprite.sort();
 		}
+//		sprite.resetFrames();
+//		swimmingSprite.resetFrames();
+//		sprite.changeFrameTimes(80);
+//		swimmingSprite.changeFrameTimes(80);
 		//swimmingSprite.changeAnimationTo(STAND_DOWN);
 		//sprite.changeAnimationTo(WALK_DOWN);
 		//increase armor rating and add special effects
@@ -366,7 +370,12 @@ public class Actor extends GameObject {
 		sprite.changeAnimationTo(STAND_DOWN);
 		if(clothingItem.slotType == HELMET_SLOT) {
 			swimmingSprite.removeSprite(clothingItem.animatedSprite);
+			
 		}
+//		sprite.resetFrames();
+//		swimmingSprite.resetFrames();
+//		sprite.changeFrameTimes(80);
+//		swimmingSprite.changeFrameTimes(80);
 	}
 	
 	

@@ -72,6 +72,10 @@ public class Animation {
 		time = 0;
 	}
 	
+	public void setCurrentFrame(int frame) {
+		currentFrame = frame;
+	}
+	
 	public void changeFrameTimesBy(int n) {
 		for(int i = 0; i < sprites.length; i++) {
 			frameTimesInMilliseconds[i] += n;

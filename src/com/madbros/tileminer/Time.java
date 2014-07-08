@@ -156,13 +156,13 @@ public class Time {
 			}
 		} else {
 			Game.currentShader = Game.defaultShader;
-//			Game.ambientColor2.x = 0f;
-//			Game.ambientColor2.y = 0f;
-//			Game.ambientColor2.z = 0f;
-//			Game.ambientIntensity2 = 0f;
-//			Game.reShade(Game.ambientColor2, Game.ambientIntensity2);
-//			Game.currentShader = Game.finalShader;
-//			Game.lightTransparency2 = 1f;
+			Game.ambientColor2.x = 0f;
+			Game.ambientColor2.y = 0f;
+			Game.ambientColor2.z = 0f;
+			Game.ambientIntensity2 = 0f;
+			Game.reShade(Game.ambientColor2, Game.ambientIntensity2);
+			Game.currentShader = Game.finalShader;
+			Game.lightTransparency2 = 1f;
 		}
 		
 	}

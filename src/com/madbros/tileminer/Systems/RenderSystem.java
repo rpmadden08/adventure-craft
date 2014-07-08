@@ -190,6 +190,7 @@ public class RenderSystem {
 				
 				hero.sprite.setColor(Color.WHITE);
 			} else if(hero.isSwimming) {
+				//TODO make head bob up and down here...  
 				Sprites.waterSwimmingAnimation[0].draw(x, y+13, Z_CHARACTER);
 				hero.swimmingSprite.draw(x, y+12, Z_CHARACTER);
 			}else {

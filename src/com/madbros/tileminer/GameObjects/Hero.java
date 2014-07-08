@@ -196,12 +196,30 @@ public class Hero extends Actor {
 					if(charCRect.detectCollision(collisionDetectionBlocks[a].collisionTile.cRect)) {
 						
 						if(collisionDetectionBlocks[a].layers[WATER_LAYER].id == WATER) {
+//							if(!isSwimming) {
+//								swimmingSprite.resetFrames();
+//								sprite.resetFrames();
+//							}
+//								//sprite.resetFrames();
+//								//swimmingSprite.resetFrames();
+//								int currentAnimation = sprite.getCurrentAnimation();
+//								//int currentAnimationFrame =sprite.getCurrentAnimationFrame();
+//								if(currentAnimation != swimmingSprite.getCurrentAnimation()) {
+//									swimmingSprite.changeAnimationTo(currentAnimation);
+//								}
+//								//swimmingSprite.setCurrentFrame(currentAnimationFrame);
+//								
+//							//}
 							return true;
 						}
 					}
 				}
 			}
 		}
+//		if(isSwimming) {
+//			swimmingSprite.resetFrames();
+//			sprite.resetFrames();
+//		}
 		//System.out.println("ReturningFalse");
 		return false;
 	}
@@ -226,7 +244,9 @@ public class Hero extends Actor {
 			}
 			swimSpeed = moveSpeed /2;
 			int currentAnimation = sprite.getCurrentAnimation();
+//			int currentAnimationFrame =sprite.getCurrentAnimationFrame();
 			swimmingSprite.changeAnimationTo(currentAnimation);
+//			swimmingSprite.setCurrentFrame(currentAnimationFrame);
 
 		} else {
 			swimSpeed = 0;

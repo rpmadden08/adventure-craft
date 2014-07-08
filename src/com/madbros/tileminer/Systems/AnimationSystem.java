@@ -32,9 +32,15 @@ public class AnimationSystem {
 	
 	public void updateMain(Hero hero, MobController mobController) {
 		updateTiles();
+		if(hero.isSwimming) {
+			hero.swimmingSprite.updateCurrentAnimation();
+		} else {
+			hero.sprite.updateCurrentAnimation();
+		}
 		
-		hero.sprite.updateCurrentAnimation();
-		hero.swimmingSprite.updateCurrentAnimation();
+		//System.out.println("Hero Frame: "+hero.sprite.getCurrentAnimationFrame());
+		//System.out.println("Swimming Frame: "+hero.swimmingSprite.getCurrentAnimationFrame());
+		System.out.println("Swimming Animation: "+hero.swimmingSprite.getCurrentAnimation());
 		for(Mob mob : mobController.mobs) {
 			//if(mob.isMoving()) mob.sprite.updateCurrentAnimation();
 			mob.sprite.updateCurrentAnimation();

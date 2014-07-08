@@ -66,6 +66,10 @@ public class AnimatedSprite extends Sprite {
 		currentAnimation.updateFrame();
 	}
 	
+	public void setCurrentFrame(int frame) {
+		currentAnimation.setCurrentFrame(frame);
+	}
+	
 	public void changeFrameTimesBy(int n) {
 		for (int key : animations.keySet()) {
 		    animations.get(key).changeFrameTimesBy(n);
