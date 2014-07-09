@@ -2,11 +2,9 @@ package com.madbros.tileminer.Items;
 
 import static com.madbros.tileminer.Constants.*;
 
-import com.badlogic.gdx.graphics.Color;
 import com.madbros.tileminer.*;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
-import com.madbros.tileminer.Utils.*;
 
 public class EmptyBucket extends BlockItem {
 	public EmptyBucket() {

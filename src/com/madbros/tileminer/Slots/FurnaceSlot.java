@@ -1,9 +1,5 @@
 package com.madbros.tileminer.Slots;
 
-import static com.madbros.tileminer.Constants.*;
-
-import com.madbros.tileminer.Inventory;
-
 
 public class FurnaceSlot extends CauldronSlot{
 	public boolean hasIngedients = false;

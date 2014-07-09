@@ -2,15 +2,10 @@ package com.madbros.tileminer.Slots;
 
 import static com.madbros.tileminer.Constants.*;
 
-import com.badlogic.gdx.graphics.Color;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Inventory;
 import com.madbros.tileminer.Items.Item;
-import com.madbros.tileminer.Sprites.Sprite;
-import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.CauldronTile;
-import com.madbros.tileminer.TileTypes.FurnaceTile;
-import com.madbros.tileminer.Utils.Rect;
 public class BrewingSlot extends CraftingSlot{
 	
 	public BrewingSlot(int x, int y) {

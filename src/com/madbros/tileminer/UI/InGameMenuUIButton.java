@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.tileminer.Sprites.*;
 import com.madbros.tileminer.Utils.ButtonFunction;
-import com.madbros.tileminer.Utils.Rect;
 
 public class InGameMenuUIButton extends UIButton {
 	StaticSprite sprite = Sprites.pixel;

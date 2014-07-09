@@ -12,8 +12,6 @@ import com.madbros.tileminer.GameStates.MainState;
 import com.madbros.tileminer.Items.Clothing;
 import com.madbros.tileminer.Items.IronArmor;
 import com.madbros.tileminer.LevelTypes.ChunkGenerator;
-import com.madbros.tileminer.LevelTypes.Overworld;
-import com.madbros.tileminer.LevelTypes.Underground1;
 import com.madbros.tileminer.LevelTypes.FractalTypes.BasicNoise;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;

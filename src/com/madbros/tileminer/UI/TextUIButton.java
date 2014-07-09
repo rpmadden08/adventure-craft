@@ -8,7 +8,6 @@ import com.madbros.tileminer.Utils.ButtonFunction;
 import com.madbros.tileminer.Utils.Rect;
 
 public class TextUIButton extends UIButton {
-	private Color highlight = new Color(1.0f, 1.0f, 1.0f, 1f);
 //	private StaticSprite button = Sprites.sprites.get(Sprites.BUTTON);
 //	private StaticSprite buttonCorner = Sprites.sprites.get(Sprites.BUTTON_EDGE);
 //
@@ -37,7 +36,6 @@ public class TextUIButton extends UIButton {
 	public TextUIButton(Rect r, String s, Color fontColor, Color highlight, Color pressedColor, ButtonFunction func, SpriteBatch batch) {
 		super(r.x, r.y, r.w, r.h, s, func, batch);
 		this.fontColor = fontColor;
-		this.highlight = highlight;
 	}
 	
 	@Override
@@ -68,7 +66,6 @@ public class TextUIButton extends UIButton {
 	public void disableButton() {
 		//Currently only disables the colors...
 		this.fontColor = Color.GRAY;
-		this.highlight = Color.GRAY;
 				
 	}
 	

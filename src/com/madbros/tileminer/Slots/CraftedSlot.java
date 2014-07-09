@@ -24,7 +24,7 @@ public class CraftedSlot extends Slot{
 			Sprites.pixel.setColor(Color.WHITE);
 		}
 		//slotSprite.draw(slotRect, Z_INV_SLOTS);
-		Rect r = new Rect(slotRect.x, slotRect.y, INV_SLOT_SIZE*2, INV_SLOT_SIZE*2);
+//		Rect r = new Rect(slotRect.x, slotRect.y, INV_SLOT_SIZE*2, INV_SLOT_SIZE*2);
 		//highlighter.draw(slotRect.x,slotRect.y, Z_INV_HIGHLIGHT, INV_SLOT_SIZE+10, INV_SLOT_SIZE+10);
 		slotSprite.draw(slotRect, Z_INV_HIGHLIGHT);
 		

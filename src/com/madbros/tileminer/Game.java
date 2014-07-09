@@ -28,7 +28,6 @@ import com.madbros.tileminer.Systems.AnimationSystem;
 import com.madbros.tileminer.Systems.CollisionDetectionSystem;
 import com.madbros.tileminer.Systems.RenderSystem;
 import com.madbros.tileminer.TileTypes.NoTile;
-import com.madbros.tileminer.Utils.Helpers;
 import com.madbros.tileminer.Utils.Rect;
 
 import static com.madbros.tileminer.Constants.*;

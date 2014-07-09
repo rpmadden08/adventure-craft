@@ -6,7 +6,6 @@ import com.badlogic.gdx.Input.Keys;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Items.NoItem;
 import com.madbros.tileminer.Slots.*;
-import com.madbros.tileminer.TileTypes.CauldronTile;
 import com.madbros.tileminer.TileTypes.FurnaceTile;
 import com.madbros.tileminer.Utils.Helpers;
 import com.madbros.tileminer.Utils.Rect;

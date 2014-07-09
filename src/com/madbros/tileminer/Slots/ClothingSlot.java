@@ -8,7 +8,6 @@ import com.madbros.tileminer.Items.Clothing;
 import com.madbros.tileminer.Items.NoItem;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Sprites.StaticSprite;
-import com.madbros.tileminer.Utils.Rect;
 
 public class ClothingSlot extends Slot{
 	public ClothingSlot(int x, int y, int type) {
