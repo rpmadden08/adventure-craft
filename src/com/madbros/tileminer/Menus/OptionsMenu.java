@@ -13,6 +13,7 @@ import static com.madbros.tileminer.Constants.*;
 
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.GameStates.MainMenuState;
+import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.UI.*;
 import com.madbros.tileminer.Utils.ButtonFunction;
 import com.madbros.tileminer.Utils.Rect;
@@ -70,13 +71,14 @@ public class OptionsMenu extends Menu {
 		
 		//create an array of all the saved games...
 		
-		Rect r1 = new Rect(MAIN_MENU_STARTX-200, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
-		Rect r2 = new Rect(MAIN_MENU_STARTX+200, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+		
 		Rect r3 = new Rect(Game.currentScreenSizeX /2-50, Game.currentScreenSizeY - 60, 100, 50);
 		Rect r4 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		Rect r7 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+40, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		Rect r5 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+80, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		Rect r6 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+120, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+		Rect r1 = new Rect(r3.x-40, MAIN_MENU_STARTY+12, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+		Rect r2 = new Rect(r3.x2()+40, MAIN_MENU_STARTY+12, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		
 		
 		String sound;
@@ -89,8 +91,17 @@ public class OptionsMenu extends Menu {
 
 		menuButtons = new UIButton[functions.length];
 		for(int i = 0; i < functions.length; i++) {
-			menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i], Game.batch);
+			if(i == 0) {
+				menuButtons[i] = new InGameMenuUIButton(r[i].x,r[i].y, r[i].w, r[i].h,Sprites.LEFT_ARROW, functions[i], Game.batch, r[i].x+3, r[i].y+3, 0);
+			} else if(i == 1) {
+				menuButtons[i] = new InGameMenuUIButton(r[i].x,r[i].y, r[i].w, r[i].h,Sprites.RIGHT_ARROW, functions[i], Game.batch, r[i].x+4, r[i].y+3, 0);
+				
+			} else {
+				menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i], Game.batch);
+			}
 		}
+		
+		
 		//getResolutions();
 	}
 	
@@ -188,7 +199,7 @@ public class OptionsMenu extends Menu {
 	
 	@Override
 	public void renderText() {
-		super.renderText();
+		//super.renderText();
 //		for(int i = 0; i < selectUIButtons.length; i++) {
 //			selectUIButtons[i].renderText();
 //		}

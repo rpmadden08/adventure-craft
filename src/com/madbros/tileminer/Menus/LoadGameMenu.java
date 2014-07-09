@@ -83,10 +83,10 @@ public class LoadGameMenu extends Menu {
 		} else {
 			for(int i = 0; i < selectUIButtons.length; i++) {
 				if(i< 5) {
-					selectUIButtons[i] = new SelectUIButton(r1.x-r1.w/2-9, r1.y + i * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
+					selectUIButtons[i] = new SelectUIButton(r1.x-r1.w/2-12, r1.y + i * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
 					selectUIButtons[i].iD = i;
 				} else {
-					selectUIButtons[i] = new SelectUIButton(r1.x+r1.w/2+9, r1.y + (i-5) * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
+					selectUIButtons[i] = new SelectUIButton(r1.x+r1.w/2+13, r1.y + (i-5) * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
 					selectUIButtons[i].iD = i;
 				}
 			}

@@ -66,6 +66,15 @@ public class Sprites {
 	public static final String HEART_CONTAINER = "heartContainer";
 	public static final String X_ICON = "x";
 	
+	public static final String MM_BUTTON_LEFT = "mMButtonLeft";
+	public static final String MM_BUTTON_LEFT_HOVER = "mMButtonLeftHover";
+	public static final String MM_BUTTON_LEFT_PUSHED = "mMButtonLeftPushed";
+	public static final String MM_BUTTON_MIDDLE = "mMButtonMiddle";
+	public static final String MM_BUTTON_MIDDLE_HOVER = "mMButtonMiddleHover";
+	public static final String MM_BUTTON_MIDDLE_PUSHED = "mMButtonMiddlePushed";
+	public static final String MM_BUTTON_RIGHT = "mMButtonRight";
+	public static final String MM_BUTTON_RIGHT_HOVER = "mMButtonRightHover";
+	public static final String MM_BUTTON_RIGHT_PUSHED = "mMButtonRightPushed";
 	
 	
 	
@@ -802,7 +811,9 @@ public class Sprites {
 					GRAY_LEGGINGS, GREEN_BUTTON, GRAY_HELMET, GREEN_BUTTON_HOVER, GREEN_BUTTON_PUSHED, HEALTH_BAR_LEFT, 
 					HEALTH_BAR_MIDDLE, HEALTH_BAR_RIGHT, HP_ITEM, LEFT_ARROW, MAGIC_BAR_MIDDLE, RED_BUTTON, RED_BUTTON_HOVER,
 					RED_BUTTON_PUSHED, RIGHT_ARROW, SELECTOR, SLOT_BORDER, TAB_SELECTED, TAB_UNSELECTED, HEART_CONTAINER,
-					X_ICON, EMPTY_BUCKET, WATER_BUCKET,
+					X_ICON, EMPTY_BUCKET, WATER_BUCKET, MM_BUTTON_LEFT, MM_BUTTON_LEFT_HOVER,MM_BUTTON_LEFT_PUSHED,
+					MM_BUTTON_MIDDLE, MM_BUTTON_MIDDLE_HOVER, MM_BUTTON_MIDDLE_PUSHED, MM_BUTTON_RIGHT,MM_BUTTON_RIGHT_HOVER,
+					MM_BUTTON_RIGHT_PUSHED,
 					
 			};
 			
