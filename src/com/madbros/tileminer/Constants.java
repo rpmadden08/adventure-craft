@@ -214,6 +214,7 @@ public class Constants {
 	public static final int DIRT_MOUNTAIN_TIN_BOTTOM = 70;
 	public static final int DIRT_MOUNTAIN_TIN_MIDDLE = 71;
 	public static final int BEEHIVE_TILE = 72;
+	public static final int HEART_CONTAINER_TILE = 73;
 	
 	
 	
@@ -448,6 +449,9 @@ public class Constants {
 	public static final int BEEHIVE = 133;
 	public static final int WATER_BUCKET = 134;
 	public static final int EMPTY_BUCKET = 135;
+	public static final int LIFE_VIAL = 136;
+	public static final int ENERGY_VIAL = 137;
+	public static final int HEART_CONTAINER= 138;
 	
 	
 	
@@ -679,6 +683,10 @@ public class Constants {
 		ITEM_HASH.put(WATER_BUCKET, new WaterBucket());
 		ITEM_HASH.put(EMPTY_BUCKET, new EmptyBucket());
 		
+		ITEM_HASH.put(LIFE_VIAL, new LifeVial());
+		ITEM_HASH.put(ENERGY_VIAL, new EnergyVial());
+		ITEM_HASH.put(HEART_CONTAINER, new HeartContainer());
+		
 		
 		
 		TILE_HASH.put(GRASS, new GrassTile());
@@ -749,6 +757,8 @@ public class Constants {
 		TILE_HASH.put(BEEHIVE_TILE, new BeehiveTile());
 		TILE_HASH.put(STAIRS_UP_TILE, new StairsUpTile());
 		TILE_HASH.put(STAIRS_DOWN_TILE, new StairsDownTile());
+		
+		TILE_HASH.put(HEART_CONTAINER_TILE, new HeartContainerTile());
 			
 //		if(blocks[x-1][y-1].layers[i].autoTileID == block.layers[i].autoTileID) topLeft = 1;
 //		if(blocks[x][y-1].layers[i].autoTileID == block.layers[i].autoTileID) top = 2;

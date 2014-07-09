@@ -101,14 +101,14 @@ public class Inventory {
 		invClothing[2] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +80,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +120,BOOTS_SLOT);
 //		
-		invBar[0].item = new DirtMountainClump();
+		invBar[0].item = new HeartContainer();
 		invBar[0].item.stackSize = 99;
-		invBar[1].item = new StairsDown();
-		invBar[1].item.stackSize = 1;
-		invBar[2].item = new EmptyBucket();
+		invBar[1].item = new EnergyVial();
+		invBar[1].item.stackSize = 99;
+		invBar[2].item = new CopperShovel();
 		invBar[2].item.stackSize = 1;
-		invBar[3].item = new LeatherBoots();
-		invBar[3].item.stackSize = 1;
+		invBar[3].item = new Torch();
+		invBar[3].item.stackSize = 99;
 		invBar[4].item = new Coal();
 		invBar[4].item.stackSize = 99;
 		invBar[5].item = new Steak();

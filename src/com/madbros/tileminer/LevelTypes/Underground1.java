@@ -257,6 +257,9 @@ public class Underground1 extends Level{
 				if(chunkGenerator.chunkObjectLayer[s][t] == BARREL) {
 					block.layers[OBJECT_LAYER] = new BarrelTile();
 				}
+				if(chunkGenerator.chunkObjectLayer[s][t] == HEART_CONTAINER) {
+					block.layers[OBJECT_LAYER] = new HeartContainerTile();
+				}
 				if(chunkGenerator.chunkObjectLayer[s][t+1] == BARREL) {
 					block.layers[ABOVE_LAYER_1] = new BarrelTopTile();
 				}

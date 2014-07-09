@@ -42,8 +42,8 @@ public class Game implements ApplicationListener {
 	public static double oceanTally, mountainTally, desertTally, grasslandTally, forestTally, jungleTally, swampTally, taigaTally, tundraTally = 0;
 
 	
-	public static long rgenseed = System.currentTimeMillis();
-	//public static long rgenseed = 4;
+	//public static long rgenseed = System.currentTimeMillis();
+	public static long rgenseed = 15;
 		//1  (Water + Islands)  
 		//4  (All Water)
 		//7  (Grassland) 
@@ -302,21 +302,7 @@ public class Game implements ApplicationListener {
 					level.activeBlocks = new Block[TILES_PER_ROW][TILES_PER_ROW];
 					level.currentChunk = new Block[CHUNK_SIZE][CHUNK_SIZE];
 					
-//					File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
-//					if(!f.exists()) {
-//						Game.totalLoadingPoints = CHUNKS_LENGTH_TOTAL *CHUNKS_LENGTH_TOTAL +1;
-//						Game.currentLoadingPoints = 0;
-//						f.mkdir();
-//						for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
-//							for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
-//								level.createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
-//								Game.currentLoadingPoints = Game.currentLoadingPoints+1;
-//							}
-//						}	
-//					} else {
-//						Game.totalLoadingPoints = 1;
-//						Game.currentLoadingPoints = 0;
-//					}
+
 					File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
 					Game.totalLoadingPoints = CHUNKS_IN_A_ROW *CHUNKS_IN_A_ROW+1;
 					Game.currentLoadingPoints = 0;
@@ -362,6 +348,8 @@ public class Game implements ApplicationListener {
 						int y = Game.hero.absRect.y/TILE_SIZE;
 						int bX = x - (level.chunkRect.x * CHUNK_SIZE)+1;
 						int bY = y - (level.chunkRect.y * CHUNK_SIZE)+1;
+						
+						
 						if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
 							if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].id != STAIRS_UP_TILE && Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].id != STAIRS_DOWN_TILE) {
 								Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);
@@ -413,23 +401,6 @@ public class Game implements ApplicationListener {
 			@Override
 			public void run() {
 				try {
-					
-				
-//					File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
-//					if(!f.exists()) {
-//						Game.totalLoadingPoints = CHUNKS_LENGTH_TOTAL *CHUNKS_LENGTH_TOTAL +1;
-//						Game.currentLoadingPoints = 0;
-//						f.mkdir();
-//						for(int i = 0; i < CHUNKS_LENGTH_TOTAL; i++) {
-//							for(int j = 0; j < CHUNKS_LENGTH_TOTAL; j++) {
-//								level.createNewChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, i, j);
-//								Game.currentLoadingPoints = Game.currentLoadingPoints+1;
-//							}
-//						}	
-//					} else {
-//						Game.totalLoadingPoints = 1;
-//						Game.currentLoadingPoints = 0;
-//					}
 					File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel);
 					Game.totalLoadingPoints = CHUNKS_IN_A_ROW *CHUNKS_IN_A_ROW+1;
 					Game.currentLoadingPoints = 0;
@@ -444,15 +415,9 @@ public class Game implements ApplicationListener {
 					//Get eastern Chunk
 					level.easternChunks = new Block[CHUNK_SIZE][TILES_PER_ROW];
 					level.westernChunks = new Block[CHUNK_SIZE][TILES_PER_ROW];
-					
 					level.northernChunks = new Block[TILES_PER_ROW][CHUNK_SIZE];
 					level.southernChunks = new Block[TILES_PER_ROW][CHUNK_SIZE];
 					
-						
-//					level.loadEasternChunks();
-//					level.loadWesternChunks();
-//					level.loadNorthernChunks();
-//					level.loadSouthernChunks();
 					f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + Game.currentLevel + "Level.sv");
 					if(f.exists()) {
 						Game.saveGame.loadCurrentLevel();
@@ -475,15 +440,16 @@ public class Game implements ApplicationListener {
 						int y = Game.hero.absRect.y/TILE_SIZE;
 						int bX = x - (level.chunkRect.x * CHUNK_SIZE)+1;
 						int bY = y - (level.chunkRect.y * CHUNK_SIZE)+1;
-						if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
-							Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);
-							Game.level.activeBlocks[bX][bY].deleteObjectTile();
-						} else if(Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].id == WATER) {
-							//System.out.println("This is water...");
-							Game.level.activeBlocks[bX][bY].layers[WATER_LAYER] = new NoTile();
-							Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].deleteMe(bX, bY, level.activeBlocks);
-						}
-						level.autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
+						//TODO check for coal copper and tin as well...
+							if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
+								Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);
+								Game.level.activeBlocks[bX][bY].deleteObjectTile();
+							} else if(Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].id == WATER) {
+								//System.out.println("This is water...");
+								Game.level.activeBlocks[bX][bY].layers[WATER_LAYER] = new NoTile();
+								Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].deleteMe(bX, bY, level.activeBlocks);
+							}
+							level.autoTileNewArea(2, 2, TILES_PER_ROW-2, TILES_PER_ROW-2);
 					}
 					
 				});

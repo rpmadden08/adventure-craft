@@ -205,11 +205,11 @@ public class OptionsMenu extends Menu {
 //		}
 	}
 	
-	public void load() {
-		Game.isNewGame = false;
-		if(currentlySelectedButton != null) Game.createNewGameAtLoc(SAVE_LOC + currentlySelectedButton.text.getString() + "/");
-		
-	}
+//	public void load() {
+//		Game.isNewGame = false;
+//		if(currentlySelectedButton != null) Game.createNewGameAtLoc(SAVE_LOC + currentlySelectedButton.text.getString() + "/");
+//		
+//	}
 	
 //	public void delete() {
 //		if(currentlySelectedButton != null) {

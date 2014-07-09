@@ -26,7 +26,7 @@ public class Hero extends Actor {
 		//STATS
 		maxHP = 25;
 		hP = maxHP;
-		maxMP = 25;
+		maxMP = 0;
 		mP = maxMP;
 		maxEP = 25;
 		eP = maxEP;

@@ -53,6 +53,7 @@ public class Sprites {
 	public static final String HEALTH_BAR_MIDDLE = "healthBarMiddle";
 	public static final String HEALTH_BAR_RIGHT = "healthBarRight";
 	public static final String HP_ITEM = "hPItem";
+	public static final String EP_ITEM = "ePItem";
 	public static final String LEFT_ARROW = "leftArrow";
 	public static final String MAGIC_BAR_MIDDLE = "magicBarMiddle";
 	public static final String RED_BUTTON = "redButton";
@@ -64,6 +65,7 @@ public class Sprites {
 	public static final String TAB_SELECTED = "tabSelected";
 	public static final String TAB_UNSELECTED = "tabUnselected";
 	public static final String HEART_CONTAINER = "heartContainer";
+	public static final String HEART_CONTAINER_TILE = "heartContainerTile";
 	public static final String X_ICON = "x";
 	
 	public static final String MM_BUTTON_LEFT = "mMButtonLeft";
@@ -813,7 +815,7 @@ public class Sprites {
 					RED_BUTTON_PUSHED, RIGHT_ARROW, SELECTOR, SLOT_BORDER, TAB_SELECTED, TAB_UNSELECTED, HEART_CONTAINER,
 					X_ICON, EMPTY_BUCKET, WATER_BUCKET, MM_BUTTON_LEFT, MM_BUTTON_LEFT_HOVER,MM_BUTTON_LEFT_PUSHED,
 					MM_BUTTON_MIDDLE, MM_BUTTON_MIDDLE_HOVER, MM_BUTTON_MIDDLE_PUSHED, MM_BUTTON_RIGHT,MM_BUTTON_RIGHT_HOVER,
-					MM_BUTTON_RIGHT_PUSHED,
+					MM_BUTTON_RIGHT_PUSHED, EP_ITEM, HEART_CONTAINER_TILE,
 					
 			};
 			
