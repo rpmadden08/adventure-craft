@@ -234,8 +234,10 @@ public class Level {
 				if(Game.inventory.invClothing[x].item.id != 0) {
 					clothingItem = (Clothing)Game.inventory.invClothing[x].item;
 					Game.hero.addClothingItem(clothingItem);
+					
 					//Game.hero.sprite.addSprite(clothingItem.animatedSprite);
-				}
+				} 
+				Game.inventory.invClothing[x].item.uses = saveData.invClothingUsage[x];
 			}
 			Game.hero.calcArmor();
 			

@@ -46,6 +46,7 @@ public class CraftedSlot extends Slot{
 			swapItems(inv);
 			removeRecipeItemsFromCraftingSlots(inv.heldItem.craftCost, craftingSlots);
 			craftAnotherItemIfPossible(craftingSlots, inv.invCrafted);
+			Game.soundController.create("sounds/clickSelect.wav", 1f);
 		} else if (inv.heldItem.id == this.item.id) {
 			int total = inv.heldItem.stackSize + this.item.stackSize;
 			if(total <= inv.heldItem.maxStackSize) {
@@ -53,7 +54,9 @@ public class CraftedSlot extends Slot{
 				this.item = new NoItem();
 				removeRecipeItemsFromCraftingSlots(inv.heldItem.craftCost, craftingSlots);
 				craftAnotherItemIfPossible(craftingSlots, inv.invCrafted);
+				
 			}
+			Game.soundController.create("sounds/clickSelect.wav", 1f);
 		}
 	}
 	

@@ -13,6 +13,7 @@ public class CraftingSlot extends Slot{
 	public boolean hasIngedients = false;
 	private int maxToolTipDelay = 60;
 	private int toolTipDelay = maxToolTipDelay;
+	public boolean isSoundLooping = false;
 	
 	public CraftingSlot(int x, int y) {
 		super(x, y);
@@ -143,7 +144,6 @@ public class CraftingSlot extends Slot{
 	public void handleLeftClickShift(Inventory inv) {
 		if(inv.heldItem.id == 0 || inv.heldItem.id == this.item.id) {
 			while(inv.heldItem.stackSize + this.item.stackSize <= inv.heldItem.maxStackSize) {
-				System.out.println(inv.heldItem.stackSize);
 				if(isInactive) {
 					return;
 				} else {
@@ -176,7 +176,7 @@ public class CraftingSlot extends Slot{
 			} else {
 				this.isInactive = true;
 			}
-			
+			Game.soundController.create("sounds/clickSelect.wav", 1f);
 			//Game.inventory.add(this.item, this.item.stackSize, this.item.maxUses);
 		}
 	}

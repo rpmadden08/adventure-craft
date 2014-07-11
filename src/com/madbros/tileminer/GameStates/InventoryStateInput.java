@@ -77,6 +77,9 @@ public class InventoryStateInput extends MainStateInput {
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
 				if(mouseRect.detectCollision(slots[i][j].slotRect)) {
+					if(slots[i][j].isHighlighted == false) {
+						Game.soundController.create("sounds/mouseOver.wav", 0.15f);
+					}
 					slots[i][j].isHighlighted = true;
 				} else {
 					slots[i][j].isHighlighted = false;

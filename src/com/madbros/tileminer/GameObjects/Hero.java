@@ -9,6 +9,7 @@ import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Time;
 import com.madbros.tileminer.GameStates.LoadingState;
 import com.madbros.tileminer.Items.Clothing;
+import com.madbros.tileminer.Items.NoItem;
 import com.madbros.tileminer.Items.WeaponItem;
 import com.madbros.tileminer.Sprites.CompoundAnimatedSprite;
 import com.madbros.tileminer.Sprites.Sprites;
@@ -85,16 +86,32 @@ public class Hero extends Actor {
 	
 	public void takeDamage(int damage) {
 		damage = damage - armor;
-		eP = eP - 0.1;
+		
 		if(damage<1) {damage = 1;}
 		if(knockBackTime <= 0 && isKnockingBack()) {
 			if(hP - damage < 0) {
 				hP = 0;
+				Game.soundController.create(hitSound, 1);
+				armorUsage();
 			} else {
+				eP = eP - 0.1;
 				hP = hP - damage;
+				armorUsage();
+				knockBackTime = 10;
 			}
-			Game.soundController.create(hitSound, 1);
-			knockBackTime = 10;
+			
+		}
+	}
+	
+	public void armorUsage() {
+		for(int x = 0; x< Game.inventory.invClothing.length; x++) {
+			if(Game.inventory.invClothing[x].item.id != 0) {
+				Game.inventory.invClothing[x].item.uses = Game.inventory.invClothing[x].item.uses - 1;
+				if(Game.inventory.invClothing[x].item.uses< 1) {
+					Game.hero.removeClothingItem((Clothing) Game.inventory.invClothing[x].item);
+					Game.inventory.invClothing[x].item = new NoItem();
+				}
+			}
 		}
 	}
 	

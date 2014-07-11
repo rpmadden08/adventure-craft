@@ -16,6 +16,8 @@ public class CopperHelmet extends Clothing {
 		craftCost = new int[]{COPPER_BAR};
 		craftCostAmount = new int[]{5};
 		type = HELMET_TYPE;
+		uses = 90;
+		maxUses = 90;
 	}
 	
 	@Override

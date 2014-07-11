@@ -84,7 +84,7 @@ public class Underground1ChunkGenerator extends ChunkGenerator{
      		    			return BARREL; 	
  		    			} else if(getRandom(0.25, m, n)){ //0.3
      		    			return CHEST; 		
- 		    			}else if(getRandom(0.9, m, n)){ //0.3
+ 		    			}else if(getRandom(0.28, m, n)){ //0.3
      		    			return HEART_CONTAINER; 		
  		    			}else {
  		    				return AIR;

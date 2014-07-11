@@ -2,6 +2,7 @@ package com.madbros.tileminer.Slots;
 
 import static com.madbros.tileminer.Constants.*;
 
+import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Inventory;
 
 public class BarSlot extends Slot{
@@ -25,6 +26,7 @@ public class BarSlot extends Slot{
 			inv.addItemToSlotArray(this.item, inv.invBag);
 			inv.removeSlot(this);
 		}
+		Game.soundController.create("sounds/clickSelect.wav", 1f);
 	}
 	public void handleLeftClickShiftChest(Inventory inv) {
 		if(inv.isSlotAvailable(this.item, inv.invChest)) {
@@ -34,6 +36,7 @@ public class BarSlot extends Slot{
 			inv.addItemToSlotArray(this.item, inv.invBag);
 			inv.removeSlot(this);
 		}
+		Game.soundController.create("sounds/clickSelect.wav", 1f);
 	}
 	
 	public void handleLeftClickMainState(Inventory inv) {

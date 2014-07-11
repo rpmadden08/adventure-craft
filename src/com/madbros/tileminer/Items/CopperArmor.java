@@ -16,6 +16,8 @@ public class CopperArmor extends Clothing {
 		craftCost = new int[]{COPPER_BAR};
 		craftCostAmount = new int[]{8};
 		type = ARMOR_TYPE;
+		uses = 120;
+		maxUses = 120;
 	}
 	
 	@Override

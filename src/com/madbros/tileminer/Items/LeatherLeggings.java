@@ -16,6 +16,8 @@ public class LeatherLeggings extends Clothing {
 		craftCost = new int[]{LEATHER};
 		craftCostAmount = new int[]{2};
 		type = LEGGINGS_TYPE;
+		uses = 70;
+		maxUses = 70;
 	}
 	
 	@Override

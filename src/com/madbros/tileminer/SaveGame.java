@@ -60,7 +60,11 @@ public class SaveGame {
 		
 		for(int x = 0; x < saveData.invClothingID.length; x++) {
 			saveData.invClothingID[x] = Game.inventory.invClothing[x].item.id;
-
+			//saveData.invCraftingStackSize[x] = Game.inventory.invCrafting[x].item.stackSize;
+		}
+		
+		for(int x = 0; x < saveData.invClothingUsage.length; x++) {
+			saveData.invClothingUsage[x] = Game.inventory.invClothing[x].item.uses;
 			//saveData.invCraftingStackSize[x] = Game.inventory.invCrafting[x].item.stackSize;
 		}
 		

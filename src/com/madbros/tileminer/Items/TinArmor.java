@@ -16,6 +16,8 @@ public class TinArmor extends Clothing {
 		craftCost = new int[]{TIN_BAR};
 		craftCostAmount = new int[]{8};
 		type = ARMOR_TYPE;
+		uses = 100;
+		maxUses = 100;
 	}
 	
 	@Override

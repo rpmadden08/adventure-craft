@@ -143,6 +143,7 @@ public class Game implements ApplicationListener {
 			Game.inventory.craftingMenu.changeToCraftingSlots();
 			Game.inventory.craftingMenu.currentCraftableList = Game.inventory.craftingMenu.craftableList; 
 		}
+		Game.soundController.create("sounds/openMenu.wav", 1f);
 	}
 	
 	public static void toggleMainMenu() {
@@ -153,7 +154,8 @@ public class Game implements ApplicationListener {
 			gameMainMenu = new GameMainMenu(batch);
 			gameMainMenu.menuIsActive = true;
 			currentState = new GameMainMenuState();
-		}		
+		}	
+		Game.soundController.create("sounds/openMenu.wav", 1f);
 	}
 	
 	
@@ -165,6 +167,7 @@ public class Game implements ApplicationListener {
 			hero.stop();
 			inventory.open(hero);
 		}
+		Game.soundController.create("sounds/openMenu.wav", 1f);
 	}
 	
 	public static void toggleCauldronState() {
@@ -176,6 +179,7 @@ public class Game implements ApplicationListener {
 			hero.stop();
 			inventory.open(hero);
 		}
+		Game.soundController.create("sounds/openMenu.wav", 1f);
 	}
 	
 	public static void toggleChestState() {
@@ -195,6 +199,7 @@ public class Game implements ApplicationListener {
 			hero.stop();
 			inventory.open(hero);
 		}
+		Game.soundController.create("sounds/openMenu.wav", 1f);
 	}
 	
 	public static void fullscreenToggle() {
@@ -203,6 +208,7 @@ public class Game implements ApplicationListener {
 		} else {
 			Gdx.graphics.setDisplayMode(Game.currentScreenSizeX, Game.currentScreenSizeY, false);
 		}
+		Game.soundController.create("sounds/openMenu.wav", 1f);
 	}
 //	public static void toggleLoadingState() {
 //		if(currentState.type == State.LOADING) {
@@ -595,7 +601,9 @@ public class Game implements ApplicationListener {
 	public static void quit() {
 		if(level != null) {
 			Game.saveGame.saveGame();
+			Game.saveGame.saveCurrentLevel();
 			Game.level.saveCurrentChunks();
+			
 			musicController.music.dispose();
 		}
 		batch.dispose();

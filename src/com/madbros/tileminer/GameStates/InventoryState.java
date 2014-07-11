@@ -20,6 +20,7 @@ public class InventoryState extends MainState {
 			Game.zAngle -= Game.PI2;
 		Game.animationSystem.updateInventory(Game.hero, Game.inventory, Game.mobController);
 		Time.checkTime();
+		Game.soundController.update();
 //		Game.hero.update();
 //		Game.mobController.update();
 //		Game.level.update();

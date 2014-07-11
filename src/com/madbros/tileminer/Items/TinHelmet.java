@@ -16,6 +16,8 @@ public class TinHelmet extends Clothing {
 		craftCost = new int[]{TIN_BAR};
 		craftCostAmount = new int[]{5};
 		type = HELMET_TYPE;
+		uses = 70;
+		maxUses = 70;
 	}
 	
 	@Override

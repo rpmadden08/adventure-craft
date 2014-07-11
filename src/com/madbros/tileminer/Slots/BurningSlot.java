@@ -31,14 +31,17 @@ public class BurningSlot extends CraftingSlot{
 				Item removedItem = ITEM_HASH.get(this.item.craftCost[x]).createNew();
 				Game.inventory.remove(removedItem, this.item.craftCostAmount[x]);
 			}
+			if(isSoundLooping = false) {
+				Game.soundController.create("sounds/clickSelect.wav", 1f);
+			}
 			
 		}
 	}
 	public void handleLeftClickShift(Inventory inv) {
+		isSoundLooping = true;
 		FurnaceTile furnace = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 		if(furnace.furnaceSlots[0].item.id == 0 || furnace.furnaceSlots[0].item.id == this.item.id) {
 			while(furnace.furnaceSlots[0].item.stackSize + this.item.stackSize <= furnace.furnaceSlots[0].item.maxStackSize) {
-				System.out.println(furnace.furnaceSlots[0].item.stackSize);
 				if(isInactive) {
 					return;
 				} else {
@@ -46,5 +49,7 @@ public class BurningSlot extends CraftingSlot{
 				}
 			}
 		}
+		Game.soundController.create("sounds/clickSelect.wav", 1f);
+		isSoundLooping = false;
 	}
 }

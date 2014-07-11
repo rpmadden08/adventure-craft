@@ -30,14 +30,17 @@ public class BrewingSlot extends CraftingSlot{
 				Item removedItem = ITEM_HASH.get(this.item.craftCost[x]).createNew();
 				Game.inventory.remove(removedItem, this.item.craftCostAmount[x]);
 			}
+			if(isSoundLooping == false) {
+			Game.soundController.create("sounds/clickSelect.wav", 1f);
+			}
 			
 		}
 	}
 	public void handleLeftClickShift(Inventory inv) {
+		isSoundLooping = true;
 		CauldronTile cauldron = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 		if(cauldron.cauldronSlots[0].item.id == 0 || cauldron.cauldronSlots[0].item.id == this.item.id) {
 			while(cauldron.cauldronSlots[0].item.stackSize + this.item.stackSize <= cauldron.cauldronSlots[0].item.maxStackSize) {
-				System.out.println(cauldron.cauldronSlots[0].item.stackSize);
 				if(isInactive) {
 					return;
 				} else {
@@ -45,5 +48,7 @@ public class BrewingSlot extends CraftingSlot{
 				}
 			}
 		}
+		Game.soundController.create("sounds/clickSelect.wav", 1f);
+		isSoundLooping = false;
 	}
 }

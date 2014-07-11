@@ -12,6 +12,11 @@ public abstract class Clothing extends Item {
 	@Override
 	public abstract Clothing createNew();
 	
+	public void useLeft() {
+		NoItem tempItem = new NoItem();
+		tempItem.useLeft();
+	}
+	
 	public void highlightItem(Block block, int x, int y) {
 		NoItem tempItem = new NoItem();
 		tempItem.highlightItem(block, x, y);

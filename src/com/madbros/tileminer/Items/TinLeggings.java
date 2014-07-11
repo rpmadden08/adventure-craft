@@ -16,6 +16,8 @@ public class TinLeggings extends Clothing {
 		craftCost = new int[]{TIN_BAR};
 		craftCostAmount = new int[]{7};
 		type = LEGGINGS_TYPE;
+		uses = 90;
+		maxUses = 90;
 	}
 	
 	@Override
