@@ -26,6 +26,7 @@ public abstract class FoodItem extends StackableItem{
 					Game.hero.eP = Game.hero.eP + amountToGain;
 				}
 				stackSize -= 1;
+				Game.soundController.create("sounds/eating.wav", 0.5f);
 				Game.inventory.deleteItemIfNecessary();
 			}
 		}

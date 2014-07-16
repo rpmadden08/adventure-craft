@@ -91,11 +91,12 @@ public class Hero extends Actor {
 		if(knockBackTime <= 0 && isKnockingBack()) {
 			if(hP - damage < 0) {
 				hP = 0;
-				Game.soundController.create(hitSound, 1);
+				
 				armorUsage();
 			} else {
 				eP = eP - 0.1;
 				hP = hP - damage;
+				Game.soundController.create(hitSound, 1);
 				armorUsage();
 				knockBackTime = 10;
 			}
@@ -108,6 +109,7 @@ public class Hero extends Actor {
 			if(Game.inventory.invClothing[x].item.id != 0) {
 				Game.inventory.invClothing[x].item.uses = Game.inventory.invClothing[x].item.uses - 1;
 				if(Game.inventory.invClothing[x].item.uses< 1) {
+					Game.soundController.create("sounds/shatterItem.wav", 0.5f);
 					Game.hero.removeClothingItem((Clothing) Game.inventory.invClothing[x].item);
 					Game.inventory.invClothing[x].item = new NoItem();
 				}
@@ -213,6 +215,9 @@ public class Hero extends Actor {
 					if(charCRect.detectCollision(collisionDetectionBlocks[a].collisionTile.cRect)) {
 						
 						if(collisionDetectionBlocks[a].layers[WATER_LAYER].id == WATER) {
+							if(!isSwimming) {
+								Game.soundController.create("sounds/splash.wav", 0.5f);
+							}
 //							if(!isSwimming) {
 //								swimmingSprite.resetFrames();
 //								sprite.resetFrames();

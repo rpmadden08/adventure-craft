@@ -17,6 +17,7 @@ public abstract class PotionItem extends StackableItem{
 			if(Game.level.hasPlacedItemOnClick == false && canUsePotion()) {
 				Game.level.hasPlacedItemOnClick = true;
 				applyPotionEffect();
+				Game.soundController.create("sounds/drinkingPotion.wav", 0.5f);
 			}
 		}
 	}
