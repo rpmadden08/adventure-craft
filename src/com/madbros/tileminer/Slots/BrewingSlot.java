@@ -31,7 +31,7 @@ public class BrewingSlot extends CraftingSlot{
 				Game.inventory.remove(removedItem, this.item.craftCostAmount[x]);
 			}
 			if(isSoundLooping == false) {
-			Game.soundController.create("sounds/clickSelect.wav", 1f);
+			Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 			}
 			
 		}
@@ -48,7 +48,7 @@ public class BrewingSlot extends CraftingSlot{
 				}
 			}
 		}
-		Game.soundController.create("sounds/clickSelect.wav", 1f);
+		Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 		isSoundLooping = false;
 	}
 }

@@ -148,60 +148,10 @@ public abstract class BaseItem extends ToolItem {
 	}
 	
 	public void highlightItem(Block block, int x, int y) {
-		if(Game.level.tileBeingAttacked.isPickable && Game.level.tileBeingAttacked.isAutoTileable) {
-			
+		if(Game.level.tileBeingAttacked.isPickable && Game.level.tileBeingAttacked.isAutoTileable && 
+				Game.level.activeBlocks[block.getX(Game.level.activeBlocks)][block.getY(Game.level.activeBlocks)].layers[OBJECT_LAYER].id != AIR) {
+			Game.level.tileBeingAttacked.highlightEntireObject(block.getX(Game.level.activeBlocks),block.getY(Game.level.activeBlocks), x, y);
 
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topLeftAutoTile].setColor(HIGHLIGHT_COLOR);
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topLeftAutoTile].draw(x, y, Z_CHARACTER);
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topLeftAutoTile].setColor(1f,1f,1f,1f);
-			
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topRightAutoTile].setColor(HIGHLIGHT_COLOR);
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topRightAutoTile].draw(x+16, y, Z_CHARACTER);
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.topRightAutoTile].setColor(1f,1f,1f,1f);
-			
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomLeftAutoTile].setColor(HIGHLIGHT_COLOR);
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomLeftAutoTile].draw(x, y+16, Z_CHARACTER);
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomLeftAutoTile].setColor(1f,1f,1f,1f);
-			
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomRightAutoTile].setColor(HIGHLIGHT_COLOR);
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomRightAutoTile].draw(x+16, y+16, Z_CHARACTER);
-			Game.level.tileBeingAttacked.sprites[Game.level.tileBeingAttacked.bottomRightAutoTile].setColor(1f,1f,1f,1f);
-			int x2 = Game.level.highlightedBlockX;
-			int y2 = Game.level.highlightedBlockY;
-			Tile tile2 = Game.level.activeBlocks[x2][y2-1].layers[ABOVE_LAYER_1];
-			tile2.sprites[tile2.topLeftAutoTile].setColor(HIGHLIGHT_COLOR);
-			tile2.sprites[tile2.topLeftAutoTile].draw(x, y-TILE_SIZE, Z_CHARACTER);
-			tile2.sprites[tile2.topLeftAutoTile].setColor(1f,1f,1f,1f);
-			
-			tile2.sprites[tile2.topRightAutoTile].setColor(HIGHLIGHT_COLOR);
-			tile2.sprites[tile2.topRightAutoTile].draw(x+16, y-TILE_SIZE, Z_CHARACTER);
-			tile2.sprites[tile2.topRightAutoTile].setColor(1f,1f,1f,1f);
-			
-			tile2.sprites[tile2.bottomLeftAutoTile].setColor(HIGHLIGHT_COLOR);
-			tile2.sprites[tile2.bottomLeftAutoTile].draw(x, y+16-TILE_SIZE, Z_CHARACTER);
-			tile2.sprites[tile2.bottomLeftAutoTile].setColor(1f,1f,1f,1f);
-			
-			tile2.sprites[tile2.bottomRightAutoTile].setColor(HIGHLIGHT_COLOR);
-			tile2.sprites[tile2.bottomRightAutoTile].draw(x+16, y+16-TILE_SIZE, Z_CHARACTER);
-			tile2.sprites[tile2.bottomRightAutoTile].setColor(1f,1f,1f,1f);
-			
-			Tile tile3 = Game.level.activeBlocks[x2][y2-2].layers[ABOVE_LAYER_2];
-			tile3.sprites[tile3.topLeftAutoTile].setColor(HIGHLIGHT_COLOR);
-			tile3.sprites[tile3.topLeftAutoTile].draw(x, y-(TILE_SIZE*2), Z_CHARACTER);
-			tile3.sprites[tile3.topLeftAutoTile].setColor(1f,1f,1f,1f);
-			
-			tile3.sprites[tile3.topRightAutoTile].setColor(HIGHLIGHT_COLOR);
-			tile3.sprites[tile3.topRightAutoTile].draw(x+16, y-(TILE_SIZE*2), Z_CHARACTER);
-			tile3.sprites[tile3.topRightAutoTile].setColor(1f,1f,1f,1f);
-			
-			tile3.sprites[tile3.bottomLeftAutoTile].setColor(HIGHLIGHT_COLOR);
-			tile3.sprites[tile3.bottomLeftAutoTile].draw(x, y+16-(TILE_SIZE*2), Z_CHARACTER);
-			tile3.sprites[tile3.bottomLeftAutoTile].setColor(1f,1f,1f,1f);
-			
-			tile3.sprites[tile3.bottomRightAutoTile].setColor(HIGHLIGHT_COLOR);
-			tile3.sprites[tile3.bottomRightAutoTile].draw(x+16, y+16-(TILE_SIZE*2), Z_CHARACTER);
-			tile3.sprites[tile3.bottomRightAutoTile].setColor(1f,1f,1f,1f);
-			
 			
 			
 			//Someday maybe add the above layer 1 and 2 highlighting...

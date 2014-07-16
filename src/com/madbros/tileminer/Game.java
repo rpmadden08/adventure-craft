@@ -135,6 +135,7 @@ public class Game implements ApplicationListener {
 		//TODO if current state == Furnace/Cauldron/Chest
 		if(currentState.type == State.INVENTORY) {
 			closeInventory();
+			Game.soundController.create("sounds/closeMenu.wav", 1f);
 			
 		} else {
 			currentState = new InventoryState();
@@ -142,44 +143,51 @@ public class Game implements ApplicationListener {
 			inventory.open(hero);
 			Game.inventory.craftingMenu.changeToCraftingSlots();
 			Game.inventory.craftingMenu.currentCraftableList = Game.inventory.craftingMenu.craftableList; 
+			Game.soundController.create("sounds/openMenu.wav", 1f);
 		}
-		Game.soundController.create("sounds/openMenu.wav", 1f);
+		
 	}
 	
 	public static void toggleMainMenu() {
 		if(gameMainMenu.menuIsActive) {
 			gameMainMenu.menuIsActive = false;
 			currentState = new MainState();
+			Game.soundController.create("sounds/closeMenu.wav", 1f);
 		} else {
 			gameMainMenu = new GameMainMenu(batch);
 			gameMainMenu.menuIsActive = true;
 			currentState = new GameMainMenuState();
+			Game.soundController.create("sounds/openMenu.wav", 1f);
 		}	
-		Game.soundController.create("sounds/openMenu.wav", 1f);
+		
 	}
 	
 	
 	public static void toggleFurnaceState() {
 		if(currentState.type == State.FURNACE) {
 			closeInventory();
+			Game.soundController.create("sounds/closeMenu.wav", 1f);
 		} else {
 			currentState = new FurnaceState();
 			hero.stop();
 			inventory.open(hero);
+			Game.soundController.create("sounds/openMenu.wav", 1f);
 		}
-		Game.soundController.create("sounds/openMenu.wav", 1f);
+		
 	}
 	
 	public static void toggleCauldronState() {
 		if(currentState.type == State.CAULDRON) {
 			
 			closeInventory();
+			Game.soundController.create("sounds/closeMenu.wav", 1f);
 		} else {
 			currentState = new CauldronState();
 			hero.stop();
 			inventory.open(hero);
+			Game.soundController.create("sounds/openMenu.wav", 1f);
 		}
-		Game.soundController.create("sounds/openMenu.wav", 1f);
+		
 	}
 	
 	public static void toggleChestState() {
@@ -194,21 +202,25 @@ public class Game implements ApplicationListener {
 			level.saveCurrentChunks();
 			
 			closeInventory();
+			Game.soundController.create("sounds/closeMenu.wav", 1f);
 		} else {
 			currentState = new ChestState();
 			hero.stop();
 			inventory.open(hero);
+			Game.soundController.create("sounds/openMenu.wav", 1f);
 		}
-		Game.soundController.create("sounds/openMenu.wav", 1f);
+		
 	}
 	
 	public static void fullscreenToggle() {
 		if(!Gdx.graphics.isFullscreen()) {
 			Gdx.graphics.setDisplayMode(Game.currentScreenSizeX, Game.currentScreenSizeY, true);
+			Game.soundController.create("sounds/openMenu.wav", 1f);
 		} else {
 			Gdx.graphics.setDisplayMode(Game.currentScreenSizeX, Game.currentScreenSizeY, false);
+			Game.soundController.create("sounds/closeMenu.wav", 1f);
 		}
-		Game.soundController.create("sounds/openMenu.wav", 1f);
+		
 	}
 //	public static void toggleLoadingState() {
 //		if(currentState.type == State.LOADING) {

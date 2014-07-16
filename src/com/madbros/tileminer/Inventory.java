@@ -101,10 +101,10 @@ public class Inventory {
 		invClothing[2] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +80,LEGGINGS_SLOT);
 		invClothing[3] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +120,BOOTS_SLOT);
 //		
-		invBar[0].item = new HeartContainer();
-		invBar[0].item.stackSize = 99;
-		invBar[1].item = new EnergyVial();
-		invBar[1].item.stackSize = 99;
+		invBar[0].item = new WoodenPick();
+		invBar[0].item.stackSize = 1;
+		invBar[1].item = new WoodenAxe();
+		invBar[1].item.stackSize = 1;
 		invBar[2].item = new CopperPick();
 		invBar[2].item.stackSize = 1;
 		invBar[3].item = new Torch();

@@ -53,7 +53,7 @@ public class BarrelTile extends CollisionTile {
 		b.collisionTile = null;
 		b = activeBlocks[x][y-1];
 		b.layers[ABOVE_LAYER_1] = new NoTile();
-		
+		Game.soundController.create("sounds/barrelBreak.wav", 1f);
 		
 		//FIXME this needs to randomly drop basic goodies:)
 		Item items[] = Helpers.getRandomLoot(

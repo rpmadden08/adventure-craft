@@ -89,4 +89,69 @@ public class DirtMountainCopperBottomTile extends CollisionTile {
 			Game.collectibleController.add(COPPER_ITEM, Sprites.sprites.get(Sprites.COPPER_ITEM), collectibleRect, 1, item.maxUses);
 	
 	}
+	
+	public void highlightEntireObject(int x, int y, int drawX, int drawY) {
+		Block b = Game.level.activeBlocks[x][y];
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].topLeftAutoTile].setColor(HIGHLIGHT_COLOR);
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].topLeftAutoTile].draw(drawX, drawY, z, TILE_SIZE/2, TILE_SIZE/2);
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].topLeftAutoTile].setColor(1f,1f,1f,1f);
+		
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].topRightAutoTile].setColor(HIGHLIGHT_COLOR);
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].topRightAutoTile].draw(drawX+(TILE_SIZE/2), drawY, z, TILE_SIZE/2, TILE_SIZE/2);
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].topRightAutoTile].setColor(1f,1f,1f,1f);
+		
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].bottomLeftAutoTile].setColor(HIGHLIGHT_COLOR);
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].bottomLeftAutoTile].draw(drawX, drawY+(TILE_SIZE/2), z, TILE_SIZE/2, TILE_SIZE/2);
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].bottomLeftAutoTile].setColor(1f,1f,1f,1f);
+		
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].bottomRightAutoTile].setColor(HIGHLIGHT_COLOR);
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].bottomRightAutoTile].draw(drawX+(TILE_SIZE/2), drawY+(TILE_SIZE/2), z, TILE_SIZE/2, TILE_SIZE/2);
+		b.layers[OBJECT_LAYER].sprites[b.layers[OBJECT_LAYER].bottomRightAutoTile].setColor(1f,1f,1f,1f);
+		
+		b = Game.level.activeBlocks[x][y-1];
+		drawY = drawY -TILE_SIZE;
+		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].topLeftAutoTile].setColor(HIGHLIGHT_COLOR);
+		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].topLeftAutoTile].draw(drawX, drawY, z, TILE_SIZE/2, TILE_SIZE/2);
+		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].topLeftAutoTile].setColor(1f,1f,1f,1f);
+		
+		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].topRightAutoTile].setColor(HIGHLIGHT_COLOR);
+		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].topRightAutoTile].draw(drawX+(TILE_SIZE/2), drawY, z, TILE_SIZE/2, TILE_SIZE/2);
+		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].topRightAutoTile].setColor(1f,1f,1f,1f);
+		
+		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].bottomLeftAutoTile].setColor(HIGHLIGHT_COLOR);
+		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].bottomLeftAutoTile].draw(drawX, drawY+(TILE_SIZE/2), z, TILE_SIZE/2, TILE_SIZE/2);
+		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].bottomLeftAutoTile].setColor(1f,1f,1f,1f);
+		
+		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].bottomRightAutoTile].setColor(HIGHLIGHT_COLOR);
+		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].bottomRightAutoTile].draw(drawX+(TILE_SIZE/2), drawY+(TILE_SIZE/2), z, TILE_SIZE/2, TILE_SIZE/2);
+		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].bottomRightAutoTile].setColor(1f,1f,1f,1f);
+		
+		b = Game.level.activeBlocks[x][y-2];
+		drawY = drawY -TILE_SIZE;
+		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].topLeftAutoTile].setColor(HIGHLIGHT_COLOR);
+		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].topLeftAutoTile].draw(drawX, drawY, z, TILE_SIZE/2, TILE_SIZE/2);
+		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].topLeftAutoTile].setColor(1f,1f,1f,1f);
+		
+		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].topRightAutoTile].setColor(HIGHLIGHT_COLOR);
+		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].topRightAutoTile].draw(drawX+(TILE_SIZE/2), drawY, z, TILE_SIZE/2, TILE_SIZE/2);
+		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].topRightAutoTile].setColor(1f,1f,1f,1f);
+		
+		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].bottomLeftAutoTile].setColor(HIGHLIGHT_COLOR);
+		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].bottomLeftAutoTile].draw(drawX, drawY+(TILE_SIZE/2), z, TILE_SIZE/2, TILE_SIZE/2);
+		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].bottomLeftAutoTile].setColor(1f,1f,1f,1f);
+		
+		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].bottomRightAutoTile].setColor(HIGHLIGHT_COLOR);
+		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].bottomRightAutoTile].draw(drawX+(TILE_SIZE/2), drawY+(TILE_SIZE/2), z, TILE_SIZE/2, TILE_SIZE/2);
+		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].bottomRightAutoTile].setColor(1f,1f,1f,1f);
+//		b = Game.level.activeBlocks[x][y-1];
+//		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].currentSpriteId].setColor(HIGHLIGHT_COLOR);
+//		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].currentSpriteId].draw(drawX, drawY, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+//		b.layers[ABOVE_LAYER_1].sprites[b.layers[ABOVE_LAYER_1].currentSpriteId].setColor(1f,1f,1f,1f);
+//		
+//		b = Game.level.activeBlocks[x][y-2];
+//		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].currentSpriteId].setColor(HIGHLIGHT_COLOR);
+//		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].currentSpriteId].draw(drawX, drawY, z, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+//		b.layers[ABOVE_LAYER_2].sprites[b.layers[ABOVE_LAYER_2].currentSpriteId].setColor(1f,1f,1f,1f);
+//	
+	}
 }

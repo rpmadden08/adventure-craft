@@ -54,6 +54,7 @@ public abstract class Item {
 		uses = uses -1;
 		if(uses <= 0) {
 			stackSize = stackSize - 1;
+			Game.soundController.create("sounds/shatterItem.wav", 1f);
 			Game.inventory.deleteItemIfNecessary();
 		}
 	}

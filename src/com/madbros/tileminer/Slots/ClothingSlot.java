@@ -63,13 +63,13 @@ public class ClothingSlot extends Slot{
 					Game.hero.calcArmor();
 				}
 			}
-			Game.soundController.create("sounds/clickSelect.wav", 1f);
+			Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 		} else if(inv.heldItem.id == EMPTY && item.id != EMPTY) {
 			Clothing item = (Clothing) this.item;
 			Game.hero.removeClothingItem(item);
 			swapItems(inv);
 			Game.hero.calcArmor();
-			Game.soundController.create("sounds/clickSelect.wav", 1f);
+			Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 		}
 		
 		handleAdditional(inv.invCrafting, inv.invCrafted);
@@ -81,7 +81,7 @@ public class ClothingSlot extends Slot{
 				if(this.item instanceof Clothing) Game.hero.removeClothingItem((Clothing)this.item);
 				inv.removeSlot(this);
 				Game.hero.calcArmor();
-				Game.soundController.create("sounds/clickSelect.wav", 1f);
+				Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 			}
 			
 			

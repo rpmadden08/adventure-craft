@@ -176,7 +176,7 @@ public class CraftingSlot extends Slot{
 			} else {
 				this.isInactive = true;
 			}
-			Game.soundController.create("sounds/clickSelect.wav", 1f);
+			Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 			//Game.inventory.add(this.item, this.item.stackSize, this.item.maxUses);
 		}
 	}

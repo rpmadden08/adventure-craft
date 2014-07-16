@@ -24,7 +24,7 @@ public class BagSlot extends Slot{
 			inv.addItemToSlotArray(this.item, inv.invBar);
 			inv.removeSlot(this);
 		}
-		Game.soundController.create("sounds/clickSelect.wav", 1f);
+		Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 	}
 	
 	public void handleLeftClickShiftChest(Inventory inv) {
@@ -35,6 +35,6 @@ public class BagSlot extends Slot{
 			inv.addItemToSlotArray(this.item, inv.invBar);
 			inv.removeSlot(this);
 		}
-		Game.soundController.create("sounds/clickSelect.wav", 1f);
+		Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 	}
 }

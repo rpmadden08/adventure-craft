@@ -37,7 +37,7 @@ public class CauldronSlot extends Slot{
 			}
 			
 		}
-		Game.soundController.create("sounds/clickSelect.wav", 1f);
+		Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 		item = new NoItem();
 		
 	}
@@ -51,7 +51,7 @@ public class CauldronSlot extends Slot{
 				Game.collectibleController.add(item.craftCost[x], tempCraftCostItem.sprite, collectibleRect, item.craftCostAmount[x], item.maxUses);
 			}
 		}
-		Game.soundController.create("sounds/clickSelect.wav", 1f);
+		Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 		item.stackSize = item.stackSize -1;
 		if(item.stackSize < 1) {
 			item = new NoItem();

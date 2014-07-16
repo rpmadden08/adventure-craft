@@ -53,10 +53,10 @@ public class Slot {
 				this.item.stackSize = total;
 				inv.heldItem = new NoItem();
 			}
-			Game.soundController.create("sounds/clickSelect.wav", 1f);
+			Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 		} else {
 			swapItems(inv);
-			Game.soundController.create("sounds/clickSelect.wav", 1f);
+			Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 		}
 		if(Game.currentState.type == State.FURNACE) {
 			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
