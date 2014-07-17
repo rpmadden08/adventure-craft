@@ -268,17 +268,17 @@ public class Level {
 	}
 	
 	public int getXFromAbs(int abs) {
-		return abs - (chunkRect.x * CHUNK_SIZE);
+		return abs - ((int)chunkRect.x * CHUNK_SIZE);
 	}
 	
 	public int getYFromAbs(int abs) {
-		return abs - (chunkRect.y * CHUNK_SIZE);
+		return abs - ((int)chunkRect.y * CHUNK_SIZE);
 	}
 	
 	public void saveCurrentChunks() {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
-				saveChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
+				saveChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, (int)chunkRect.x + i, (int)chunkRect.y + j);
 			}
 		}
 	}
@@ -331,8 +331,8 @@ public class Level {
 		itemRange.y = Game.hero.sRect.y- (itemRange.h / 2) + (Game.hero.sRect.h/2);
 		if(mRect.detectCollision(itemRange)) {
 			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = true;
-			highlightedBlockX = renderRect.x + (mRect.x + offsetPoint.x) / TILE_SIZE;
-			highlightedBlockY = renderRect.y + (mRect.y + offsetPoint.y) / TILE_SIZE;
+			highlightedBlockX = (int)renderRect.x + ((int)mRect.x + offsetPoint.x) / TILE_SIZE;
+			highlightedBlockY = (int)renderRect.y + ((int)mRect.y + offsetPoint.y) / TILE_SIZE;
 			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
 			//This is so that chests know their coordinates...
 			tileBeingAttacked.absX = highlightedBlock.getAbsX();
@@ -382,8 +382,8 @@ public class Level {
 		} else if(renderRect.x2() >= TILES_PER_ROW-CHUNK_SIZE/2 - 1) {
 			getEasternChunks();
 		}
-		for(int x = renderRect.x; x < renderRect.x2(); x++) {
-			for(int y = renderRect.y; y < renderRect.y2(); y++) {
+		for(int x = (int)renderRect.x; x < (int)renderRect.x2(); x++) {
+			for(int y = (int)renderRect.y; y < (int)renderRect.y2(); y++) {
 				activeBlocks[x][y].layers[WATER_LAYER].update(x, y);
 				activeBlocks[x][y].layers[GRASS_LAYER].update(x, y);
 				activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
@@ -439,7 +439,7 @@ public class Level {
 			@Override
 			public void run() {
 				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-					saveEdgeChunk(0, CHUNK_SIZE*i, chunkRect.x-1, chunkRect.y + i, westernChunks);
+					saveEdgeChunk(0, CHUNK_SIZE*i, (int)chunkRect.x-1, (int)chunkRect.y + i, westernChunks);
 				}
 			}
 		});	
@@ -484,7 +484,7 @@ public class Level {
 			@Override
 			public void run() {
 				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-					saveEdgeChunk(0, CHUNK_SIZE*i, chunkRect.x2()+1, chunkRect.y + i, easternChunks);
+					saveEdgeChunk(0, CHUNK_SIZE*i, (int)chunkRect.x2()+1, (int)chunkRect.y + i, easternChunks);
 				}
 			}
 		});	
@@ -530,7 +530,7 @@ public class Level {
 			@Override
 			public void run() {
 				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-					saveEdgeChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y2()+1, southernChunks);
+					saveEdgeChunk(CHUNK_SIZE*i, 0, (int)chunkRect.x + i, (int)chunkRect.y2()+1, southernChunks);
 				}
 			}
 		});	
@@ -573,7 +573,7 @@ public class Level {
 			@Override
 			public void run() {
 				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-					saveEdgeChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y-1, northernChunks);
+					saveEdgeChunk(CHUNK_SIZE*i, 0, (int)chunkRect.x + i, (int)chunkRect.y-1, northernChunks);
 				}
 			}
 		});	
@@ -597,9 +597,9 @@ public class Level {
 			southernChunks[x-CHUNK_SIZE] = southernChunks[x].clone();
 		}
 		//load northern Chunk
-		loadChunk(CHUNK_SIZE*4,0, chunkRect.x+4, chunkRect.y-1, northernChunks);
+		loadChunk(CHUNK_SIZE*4,0, (int)chunkRect.x+4, (int)chunkRect.y-1, northernChunks);
 		//load southern Chunk
-		loadChunk(CHUNK_SIZE*4,0, chunkRect.x+4, chunkRect.y2()+1, southernChunks);
+		loadChunk(CHUNK_SIZE*4,0, (int)chunkRect.x+4, (int)chunkRect.y2()+1, southernChunks);
 		loadEasternChunks();
 	}
 	
@@ -613,9 +613,9 @@ public class Level {
 			southernChunks[x+CHUNK_SIZE] = southernChunks[x].clone();
 		}
 		//load northern Chunk
-		loadChunk(CHUNK_SIZE*0,0, chunkRect.x+0, chunkRect.y-1, northernChunks);
+		loadChunk(CHUNK_SIZE*0,0, (int)chunkRect.x+0, (int)chunkRect.y-1, northernChunks);
 		//load southern Chunk
-		loadChunk(CHUNK_SIZE*0,0, chunkRect.x+0, chunkRect.y2()+1, southernChunks);
+		loadChunk(CHUNK_SIZE*0,0, (int)chunkRect.x+0, (int)chunkRect.y2()+1, southernChunks);
 		loadWesternChunks();
 	}
 	
@@ -630,9 +630,9 @@ public class Level {
 			System.arraycopy(westernChunks[y], 0, westernChunks[y], CHUNK_SIZE, activeBlocks.length-CHUNK_SIZE);
 		}
 		//load eastern Chunk
-		loadChunk(0, CHUNK_SIZE*0, chunkRect.x2()+1, chunkRect.y + 0, easternChunks);
+		loadChunk(0, CHUNK_SIZE*0, (int)chunkRect.x2()+1, (int)chunkRect.y + 0, easternChunks);
 		//load western Chunk
-		loadChunk(0, CHUNK_SIZE*0, chunkRect.x-1, chunkRect.y + 0, westernChunks);
+		loadChunk(0, CHUNK_SIZE*0, (int)chunkRect.x-1, (int)chunkRect.y + 0, westernChunks);
 		loadNorthernChunks();
 	}
 	
@@ -647,33 +647,33 @@ public class Level {
 			System.arraycopy(westernChunks[y], CHUNK_SIZE, westernChunks[y], 0, activeBlocks.length-CHUNK_SIZE);
 		}
 		//load eastern Chunk
-		loadChunk(0, CHUNK_SIZE*4, chunkRect.x2()+1, chunkRect.y + 4, easternChunks);
+		loadChunk(0, CHUNK_SIZE*4, (int)chunkRect.x2()+1, (int)chunkRect.y + 4, easternChunks);
 		//load western Chunk
-		loadChunk(0, CHUNK_SIZE*4, chunkRect.x-1, chunkRect.y + 4, westernChunks);
+		loadChunk(0, CHUNK_SIZE*4, (int)chunkRect.x-1, (int)chunkRect.y + 4, westernChunks);
 		loadSouthernChunks();
 	}
 	
 	public void loadSouthernChunks() {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			loadChunk(CHUNK_SIZE*i,0, chunkRect.x+i, chunkRect.y2()+1, southernChunks);
+			loadChunk(CHUNK_SIZE*i,0, (int)chunkRect.x+i, (int)chunkRect.y2()+1, southernChunks);
 		}
 	}
 	
 	public void loadNorthernChunks() {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			loadChunk(CHUNK_SIZE*i,0, chunkRect.x+i, chunkRect.y-1, northernChunks);
+			loadChunk(CHUNK_SIZE*i,0, (int)chunkRect.x+i, (int)chunkRect.y-1, northernChunks);
 		}
 	}
 	
 	public void loadWesternChunks() {
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			loadChunk(0, CHUNK_SIZE*i, chunkRect.x-1, chunkRect.y + i, westernChunks);
+			loadChunk(0, CHUNK_SIZE*i, (int)chunkRect.x-1, (int)chunkRect.y + i, westernChunks);
 		}
 	}
 	
 	public void loadEasternChunks() {		
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			loadChunk(0, CHUNK_SIZE*i, chunkRect.x2()+1, chunkRect.y + i, easternChunks);
+			loadChunk(0, CHUNK_SIZE*i, (int)chunkRect.x2()+1, (int)chunkRect.y + i, easternChunks);
 		}
 	}
 	

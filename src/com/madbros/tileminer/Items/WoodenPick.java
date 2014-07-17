@@ -18,7 +18,7 @@ public class WoodenPick extends Pick {
 		craftCost = new int[]{PLANK, STICK};
 		craftCostAmount = new int[]{3, 2};
 		maxUses = 15;// 15
-		uses = 1;
+		uses = 15;
 		
 	}
 	

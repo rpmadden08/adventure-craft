@@ -76,8 +76,8 @@ public class MobController {
 		
 		
 		//System.out.println(Game.level.activeBlocks[0][0].absRect.x);
-		int absX = x* TILE_SIZE + Game.level.activeBlocks[0][0].absRect.x;
-		int absY = y* TILE_SIZE + Game.level.activeBlocks[0][0].absRect.y;
+		int absX = x* TILE_SIZE + (int)Game.level.activeBlocks[0][0].absRect.x;
+		int absY = y* TILE_SIZE + (int)Game.level.activeBlocks[0][0].absRect.y;
 		Rect possibleSpawnPoint = new Rect(absX, absY, 1,1);
 		Rect heroRect = new Rect(Game.hero.absRect.x-250, Game.hero.absRect.y-250, Game.hero.absRect.w +500, Game.hero.absRect.h+500);
 		//if(x > CHUNK_SIZE*2 && x< CHUNK_SIZE *3+1 && y > CHUNK_SIZE*2 && y< CHUNK_SIZE *3+1 ) {
@@ -86,7 +86,7 @@ public class MobController {
 		//System.out.println(topTile);
 		Block[] tileArea = getTileArea(x,y);
 		int num = rand.nextInt(1);//150 
-		if(num <10  && mobs.size() < 20) { //10
+		if(num <10  && mobs.size() < 1) { //10
 			if(possibleSpawnPoint.detectCollision(heroRect)) {
 			//    ***************IF THE WORLD IS DARK	
 			} else if(isDark(possibleSpawnPoint)){
@@ -119,7 +119,7 @@ public class MobController {
 							if(num2 == 0) {
 								mobs.add(new Bee(this, x, y));
 							} else if(canLargeMobSpawn(x,y)) {
-								mobs.add(new Cow(this, x, y));  //Should be cow
+								mobs.add(new Bee(this, x, y));  //Should be cow
 							}
 						}
 					}

@@ -232,8 +232,8 @@ public class Underground1 extends Level{
 				int c = 0;
 				for(int g = 0; g < INV_LENGTH; g++) {
 					for(int h = 0; h < INV_HEIGHT; h++) {
-						slot[c] = new Slot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.right) * h+200,
-											 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.bottom) * g);
+						slot[c] = new Slot((int)INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.right) * h+200,
+								(int)INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_MENU_SLOT_MARGIN.bottom) * g);
 						c++;
 					}
 				}

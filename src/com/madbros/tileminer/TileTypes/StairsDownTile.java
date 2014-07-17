@@ -75,8 +75,8 @@ public class StairsDownTile extends CollisionTile {
 		b.layers[OBJECT_LAYER] = new NoTile();
 		b.collisionTile = null;
 		
-		int chunkX = Game.level.getAbsChunkX(b.absRect.x);
-		int chunkY = Game.level.getAbsChunkY(b.absRect.y);
+		int chunkX = Game.level.getAbsChunkX((int)b.absRect.x);
+		int chunkY = Game.level.getAbsChunkY((int)b.absRect.y);
 		
 		//SOMEDAY WILL NEED TO FETCH THE LEVEL BELOW BUT FOR NOW IT WILL ALWAYS BE UNDERGROUND_1
 		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + UNDERGROUND_1_FOLDER);

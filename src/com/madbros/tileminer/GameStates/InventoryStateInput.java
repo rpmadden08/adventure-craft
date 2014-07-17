@@ -72,7 +72,7 @@ public class InventoryStateInput extends MainStateInput {
 	
 	public void additionalMouseMove() {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
-		Game.inventory.craftingMenu.handleMouseMove(mouseRect.x, mouseRect.y);
+		Game.inventory.craftingMenu.handleMouseMove((int)mouseRect.x, (int)mouseRect.y);
 		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots, Game.inventory.invCrafted, Game.inventory.invClothing};
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {

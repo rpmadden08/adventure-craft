@@ -18,7 +18,7 @@ public class CollectibleNotification extends Notification {
 	}
 
 	public void render() {
-		sprite.draw(absRect.x-(int)size-38, absRect.y, Z_CHARACTER);
+		sprite.draw((int)absRect.x-(int)size-38, (int)absRect.y, Z_CHARACTER);
 	}
 
 	

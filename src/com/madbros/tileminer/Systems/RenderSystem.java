@@ -54,16 +54,16 @@ public class RenderSystem {
 		Block firstBlock = lv.activeBlocks[0][0];
 		offsetPoint = Helpers.getOffsetPoint(hero, firstBlock);
 		renderRect = Helpers.getRenderRect(hero, firstBlock);
-		startX = lv.activeBlocks[renderRect.x][renderRect.y].absRect.x + offsetPoint.x;
-		startY = lv.activeBlocks[renderRect.x][renderRect.y].absRect.y + offsetPoint.y;
+		startX = (int)lv.activeBlocks[(int)renderRect.x][(int)renderRect.y].absRect.x + offsetPoint.x;
+		startY = (int)lv.activeBlocks[(int)renderRect.x][(int)renderRect.y].absRect.y + offsetPoint.y;
 	}
 	/******************************************* Main State Rendering *******************************************/
 	public void renderWorld(Level lv) {
 //		alreadyRenderedObjects = new ArrayList<GameObject>();
 		int i = 0; int j = 0;
 		
-		for(int y = renderRect.y; y < renderRect.y2(); y++) {
-			for(int x = renderRect.x; x < renderRect.x2(); x++) {
+		for(int y = (int)renderRect.y; y < renderRect.y2(); y++) {
+			for(int x = (int)renderRect.x; x < renderRect.x2(); x++) {
 //				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {	
 
 					renderBlock(x, y, lv.activeBlocks[x][y], lv, i, j, true);
@@ -77,8 +77,8 @@ public class RenderSystem {
 //		alreadyRenderedObjects = new ArrayList<GameObject>();
 		int i = 0; int j = 0;
 		
-		for(int y = renderRect.y; y < renderRect.y2(); y++) {
-			for(int x = renderRect.x; x < renderRect.x2(); x++) {
+		for(int y = (int)renderRect.y; y < renderRect.y2(); y++) {
+			for(int x = (int)renderRect.x; x < renderRect.x2(); x++) {
 //				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {
 				
 					renderBlock(x, y, lv.activeBlocks[x][y], lv, i, j, false);
@@ -89,8 +89,8 @@ public class RenderSystem {
 			j++; i = 0;
 		}
 		i = 0; j = 0;
-		for(int y = renderRect.y; y < renderRect.y2(); y++) {
-			for(int x = renderRect.x; x < renderRect.x2(); x++) {
+		for(int y = (int)renderRect.y; y < renderRect.y2(); y++) {
+			for(int x = (int)renderRect.x; x < renderRect.x2(); x++) {
 //				if(x < lv.activeBlocks.length && y < lv.activeBlocks[0].length && x >= 0 && y >= 0) {					
 					renderBlockHighlight(x, y, lv.activeBlocks[x][y], lv, i, j, false);
 					
@@ -149,7 +149,7 @@ public class RenderSystem {
 		
 		
 		for(GameObject gameObject : block.objects) {
-			gameObject.sprite.draw(gameObject.absRect.x - startX, gameObject.absRect.y - startY, gameObject.z);
+			gameObject.sprite.draw((int)gameObject.absRect.x - startX, (int)gameObject.absRect.y - startY, gameObject.z);
 		}
 		
 		renderCollisionTiles(x, y, block);
@@ -175,8 +175,8 @@ public class RenderSystem {
 	}
 	
 	public void renderHero(Hero hero, int x, int y) {
-		int width = hero.absRect.w / 2;
-		int height = hero.absRect.h / 2+6;
+		int width = (int)hero.absRect.w / 2;
+		int height = (int)hero.absRect.h / 2+6;
 		
 		if(hero.isDead == false) {
 			if(hero.knockBackTime > 0) {
@@ -385,8 +385,8 @@ public class RenderSystem {
 	}
 	
 	public void renderMobHealth(Mob mob) {
-				int x = mob.absRect.x+(mob.absRect.w /2 -15) - startX;
-				int y = mob.absRect.y+(mob.margin.top-10) - startY - 6;
+				int x = (int)mob.absRect.x+((int)mob.absRect.w /2 -15) - startX;
+				int y = (int)mob.absRect.y+((int)mob.margin.top-10) - startY - 6;
 				double difference = (mob.maxHP - mob.hP);
 				double percentage = (mob.maxHP-difference) / mob.maxHP;
 				double hPCalc = percentage * 29;
@@ -485,8 +485,8 @@ public class RenderSystem {
 }
 	public void renderMobs(MobController mobController) {
 		for(Mob mob : mobController.mobs) {
-			int x = mob.absRect.x - startX;
-			int y = mob.absRect.y - startY;
+			int x = (int)mob.absRect.x - startX;
+			int y = (int)mob.absRect.y - startY;
 			//int width = mob.absRect.w / 2;
 			//int height = mob.absRect.h / 2;
 			mob.sprite.draw(x, y, Z_CHARACTER);
@@ -501,8 +501,8 @@ public class RenderSystem {
 	
 	public void renderCollectibles(CollectibleController collectibleController) {
 		for(Collectible collectible : collectibleController.collectibles) {
-			int x = collectible.absRect.x - startX;
-			int y = collectible.absRect.y - startY;
+			int x = (int)collectible.absRect.x - startX;
+			int y = (int)collectible.absRect.y - startY;
 			collectible.sprite.draw(x, y, Z_CHARACTER);
 			//System.out.println(collectible.absRect.x-startX);
 			//renderCollisionRects(collectible, x, y);
@@ -514,7 +514,7 @@ public class RenderSystem {
 			
 //			int x = notification.absRect.x - startX;
 //			int y = notification.absRect.y - startY;
-			notification.renderFont(notification.absRect.x, notification.absRect.y, batch);
+			notification.renderFont((int)notification.absRect.x, (int)notification.absRect.y, batch);
 			notification.render();
 			//notification.sprite.draw(notification.absRect.x-(int)notification.size-38, notification.absRect.y, Z_CHARACTER);
 			
@@ -527,8 +527,8 @@ public class RenderSystem {
 		for(int i=0;i < inv.invBar.length; i++) {			
 			inv.invBar[i].render();
 			if(i == inv.itemSelected) 
-				inv.selectSprite.draw(inv.invBar[i].slotRect.x - 1, inv.invBar[i].slotRect.y - 2,
-				Z_INV_SELECT, inv.invBar[i].slotRect.w + 3, inv.invBar[i].slotRect.h + 3);
+				inv.selectSprite.draw((int)inv.invBar[i].slotRect.x - 1, (int)inv.invBar[i].slotRect.y - 2,
+				Z_INV_SELECT, (int)inv.invBar[i].slotRect.w + 3, (int)inv.invBar[i].slotRect.h + 3);
 			
 		}
 		renderHealth(Game.hero);
@@ -588,7 +588,7 @@ public class RenderSystem {
 		
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
-				slots[i][j].item.renderFont(slots[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
+				slots[i][j].item.renderFont((int)slots[i][j].slotRect.x2()-INV_SLOT_SIZE/2, (int)slots[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
 			}
 		}
 	}
@@ -603,14 +603,14 @@ public class RenderSystem {
 		
 		if(Game.inventory.invBar[Game.inventory.itemSelected].item.id == TORCH) {
 			lightSize = 500 + lightSizeRandom;
-			float x = hero.absRect.midX() - startX - lightSize/2;
-			float y = hero.absRect.midY() - startY - lightSize/2;
+			float x = (int)hero.absRect.midX() - startX - lightSize/2;
+			float y = (int)hero.absRect.midY() - startY - lightSize/2;
 			StaticSprite lightSprite = Sprites.sprites.get(Sprites.CAMPFIRE_LIGHT);
 			lightSprite.draw(x, y, 0.4f, lightSize, lightSize);
 			lightSprite.setColor(1,1,1,Game.lightTransparency2);
 		} else {
-			float x = hero.absRect.midX() - startX - lightSize/2;
-			float y = hero.absRect.midY() - startY - lightSize/2;
+			float x = (int)hero.absRect.midX() - startX - lightSize/2;
+			float y = (int)hero.absRect.midY() - startY - lightSize/2;
 			StaticSprite lightSprite = Sprites.sprites.get(Sprites.LIGHT);
 			lightSprite.draw(x, y, 0.4f, lightSize, lightSize);
 			lightSprite.setColor(1,1,1,Game.lightTransparency2);
@@ -621,8 +621,8 @@ public class RenderSystem {
 			if(light.layers[OBJECT_LAYER].isLightSource) {
 				LightTile tile = (LightTile)light.layers[OBJECT_LAYER];
 				lightSize = tile.lightSize + lightSizeRandom;
-				float x = light.absRect.midX() - startX - lightSize/2;
-				float y = light.absRect.midY() - startY - lightSize/2;
+				float x = (int)light.absRect.midX() - startX - lightSize/2;
+				float y = (int)light.absRect.midY() - startY - lightSize/2;
 				campFireSprite.draw(x, y, 0.4f, lightSize, lightSize);
 			}
 		}
@@ -671,7 +671,7 @@ public class RenderSystem {
 				slots[i][j].render();
 			}
 		}
-		hero.sprite.draw(INV_CHAR_RECT.x, INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
+		hero.sprite.draw((int)INV_CHAR_RECT.x, (int)INV_CHAR_RECT.y, Z_INV_CHARACTER, 3);
 	}
 	
 	public void renderHeldItem(Inventory inv) {
@@ -947,7 +947,7 @@ public class RenderSystem {
 		
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
-				slots[i][j].item.renderFont(slots[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
+				slots[i][j].item.renderFont((int)slots[i][j].slotRect.x2()-INV_SLOT_SIZE/2, (int)slots[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
 				
 					}
 		}
@@ -955,18 +955,18 @@ public class RenderSystem {
 			Slot[][]slots2 = {inv.invChest};
 			for(int i = 0; i < slots2.length; i++) {
 				for(int j = 0; j < slots2[i].length; j++) {
-					slots2[i][j].item.renderFont(slots2[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots2[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
+					slots2[i][j].item.renderFont((int)slots2[i][j].slotRect.x2()-INV_SLOT_SIZE/2, (int)slots2[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
 					
 				}
 			}
 			Sprites.arial24.draw(batch, "Chest", 304, 108);
 		}else if(Game.currentState.type == State.FURNACE) {
 			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			furnaceTile.craftedSlot[0].item.renderLargeFont(furnaceTile.craftedSlot[0].slotRect.x2()-INV_SLOT_SIZE/2, furnaceTile.craftedSlot[0].slotRect.y2()-INV_SLOT_SIZE/2, batch);
+			furnaceTile.craftedSlot[0].item.renderLargeFont((int)furnaceTile.craftedSlot[0].slotRect.x2()-INV_SLOT_SIZE/2, (int)furnaceTile.craftedSlot[0].slotRect.y2()-INV_SLOT_SIZE/2, batch);
 			Slot[][]slots2 = {inv.invClothing, furnaceTile.furnaceSlots, furnaceTile.fuelSlot};
 			for(int i = 0; i < slots2.length; i++) {
 				for(int j = 0; j < slots2[i].length; j++) {
-					slots2[i][j].item.renderFont(slots2[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots2[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
+					slots2[i][j].item.renderFont((int)slots2[i][j].slotRect.x2()-INV_SLOT_SIZE/2, (int)slots2[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
 					
 				}
 			}
@@ -977,12 +977,12 @@ public class RenderSystem {
 			Sprites.arial10.draw(batch, "Output", 662, 474);
 		}else if(Game.currentState.type == State.CAULDRON) {
 			CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
-			cauldronTile.craftedSlot[0].item.renderLargeFont(cauldronTile.craftedSlot[0].slotRect.x2()-INV_SLOT_SIZE/2, cauldronTile.craftedSlot[0].slotRect.y2()-INV_SLOT_SIZE/2, batch);
+			cauldronTile.craftedSlot[0].item.renderLargeFont((int)cauldronTile.craftedSlot[0].slotRect.x2()-INV_SLOT_SIZE/2, (int)cauldronTile.craftedSlot[0].slotRect.y2()-INV_SLOT_SIZE/2, batch);
 			
 			Slot[][]slots2 = {inv.invClothing, cauldronTile.cauldronSlots, cauldronTile.fuelSlot};
 			for(int i = 0; i < slots2.length; i++) {
 				for(int j = 0; j < slots2[i].length; j++) {
-					slots2[i][j].item.renderFont(slots2[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots2[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
+					slots2[i][j].item.renderFont((int)slots2[i][j].slotRect.x2()-INV_SLOT_SIZE/2, (int)slots2[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
 					
 				}
 			}
@@ -1009,7 +1009,7 @@ public class RenderSystem {
 		//
 		for(int i = 0; i < slots.length; i++) {
 			for(int j = 0; j < slots[i].length; j++) {
-				slots[i][j].item.renderFont(slots[i][j].slotRect.x2()-INV_SLOT_SIZE/2, slots[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
+				slots[i][j].item.renderFont((int)slots[i][j].slotRect.x2()-INV_SLOT_SIZE/2, (int)slots[i][j].slotRect.y2()-INV_SLOT_SIZE/2, batch);
 			}
 		}
 	}

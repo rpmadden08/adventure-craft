@@ -51,14 +51,14 @@ public class Inventory {
 	
 	public Inventory() {
 		for(int i = 0; i < INV_LENGTH; i++) {
-			invBar[i] = new BarSlot(INV_BAR_RECT.x, INV_BAR_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * i, i);
+			invBar[i] = new BarSlot((int)INV_BAR_RECT.x, (int)INV_BAR_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * i, i);
 		}
 		
 		int k = 0;
 		for(int x = 0; x < INV_LENGTH; x++) {
 			for(int y = 0; y < INV_HEIGHT; y++) {
-				invBag[k] = new BagSlot(INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y,
-									 INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x);
+				invBag[k] = new BagSlot((int)INV_BAG_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y,
+						(int)INV_BAG_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x);
 				k++;
 			}
 		}
@@ -66,8 +66,8 @@ public class Inventory {
 		k = 0;
 		for(int x = 0; x < INV_LENGTH; x++) {
 			for(int y = 0; y < INV_HEIGHT; y++) {
-				invChest[k] = new ChestSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y,
-						INV_CRAFTING_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x);
+				invChest[k] = new ChestSlot((int)INV_CRAFTING_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y,
+						(int)INV_CRAFTING_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x);
 				k++;
 			}
 		}
@@ -75,16 +75,16 @@ public class Inventory {
 		k = 0;
 		for(int x = 0; x < 2; x++) {	
 			for(int y = 0; y < 2; y++) {
-				invCrafting[k] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE+ INV_SLOT_MARGIN.right) * y,
-										  INV_CRAFTING_RECT.y + (INV_SLOT_SIZE+ INV_SLOT_MARGIN.right) * x);
+				invCrafting[k] = new CraftingSlot((int)INV_CRAFTING_RECT.x + (INV_SLOT_SIZE+ INV_SLOT_MARGIN.right) * y,
+						(int)INV_CRAFTING_RECT.y + (INV_SLOT_SIZE+ INV_SLOT_MARGIN.right) * x);
 				k++;
 			}
 		}
 		k=0;
 		for(int x = 0; x < 3; x++) {	
 			for(int y = 0; y < 3; y++) {
-				invTable[k] = new CraftingSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE) * x,
-										  INV_CRAFTING_RECT.y + (INV_SLOT_SIZE) * y);
+				invTable[k] = new CraftingSlot((int)INV_CRAFTING_RECT.x + (INV_SLOT_SIZE) * x,
+						(int) INV_CRAFTING_RECT.y + (INV_SLOT_SIZE) * y);
 				k++;
 			}
 		}
@@ -94,12 +94,12 @@ public class Inventory {
 //					  INV_CRAFTING_RECT.y + (INV_SLOT_SIZE)*i);
 //		}
 		
-		invCrafted[0] = new CraftedSlot(INV_CRAFTING_RECT.x2() + 75, INV_CRAFTING_RECT.y);
+		invCrafted[0] = new CraftedSlot((int)INV_CRAFTING_RECT.x2() + 75, (int)INV_CRAFTING_RECT.y);
 
-		invClothing[0] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y, HELMET_SLOT);
-		invClothing[1] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +40,ARMOR_SLOT);
-		invClothing[2] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +80,LEGGINGS_SLOT);
-		invClothing[3] = new ClothingSlot(INV_CLOTHING_RECT.x ,INV_CLOTHING_RECT.y +120,BOOTS_SLOT);
+		invClothing[0] = new ClothingSlot((int)INV_CLOTHING_RECT.x ,(int)INV_CLOTHING_RECT.y, HELMET_SLOT);
+		invClothing[1] = new ClothingSlot((int)INV_CLOTHING_RECT.x ,(int)INV_CLOTHING_RECT.y +40,ARMOR_SLOT);
+		invClothing[2] = new ClothingSlot((int)INV_CLOTHING_RECT.x ,(int)INV_CLOTHING_RECT.y +80,LEGGINGS_SLOT);
+		invClothing[3] = new ClothingSlot((int)INV_CLOTHING_RECT.x ,(int)INV_CLOTHING_RECT.y +120,BOOTS_SLOT);
 //		
 		invBar[0].item = new WoodenPick();
 		invBar[0].item.stackSize = 1;

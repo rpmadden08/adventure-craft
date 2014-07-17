@@ -76,8 +76,8 @@ public class StairsUpTile extends CollisionTile {
 		b.layers[OBJECT_LAYER] = new NoTile();
 		b.collisionTile = null;
 		
-		int chunkX = Game.level.getAbsChunkX(b.absRect.x);
-		int chunkY = Game.level.getAbsChunkY(b.absRect.y);
+		int chunkX = Game.level.getAbsChunkX((int)b.absRect.x);
+		int chunkY = Game.level.getAbsChunkY((int)b.absRect.y);
 		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + OVERWORLD_FOLDER);
 		if(f.exists()) {
 			Game.currentLevel = OVERWORLD_FOLDER;

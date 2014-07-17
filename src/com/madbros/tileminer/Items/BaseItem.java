@@ -18,7 +18,6 @@ import static com.madbros.tileminer.Constants.Z_CHARACTER;
 import com.madbros.tileminer.Block;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Sprites.Sprites;
-import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Rect;
 public abstract class BaseItem extends ToolItem {
 	
@@ -101,7 +100,7 @@ public abstract class BaseItem extends ToolItem {
 			}
 			Game.soundController.create(sound, 0.2f);
 			Game.particleEffectController.add("Chunks.p", 
-			Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
+					(int)Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), (int)Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
 
 		} else if(Game.level.tileBeingAttacked.isDiggable) {
 			Game.level.tileBeingAttacked.currentHp -= attackPower;
