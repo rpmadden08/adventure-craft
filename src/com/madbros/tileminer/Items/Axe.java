@@ -41,7 +41,7 @@ public class Axe extends ToolItem {
 		}
 		Game.soundController.create(sound, 0.3f);
 		Game.particleEffectController.add(tileParticle, 
-				(int)Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), (int)Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
+		Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
 	}
 	public void useLeft() {
 		if(Game.level.tileBeingAttacked.isChoppable && isInRange == true

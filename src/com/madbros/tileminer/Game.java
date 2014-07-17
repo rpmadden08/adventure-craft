@@ -327,7 +327,7 @@ public class Game implements ApplicationListener {
 					f.mkdir();
 					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
-							level.loadInitialChunks(CHUNK_SIZE*i, CHUNK_SIZE*j, (int)level.chunkRect.x + i, (int)level.chunkRect.y + j);
+							level.loadInitialChunks(CHUNK_SIZE*i, CHUNK_SIZE*j, level.chunkRect.x + i, level.chunkRect.y + j);
 							Game.currentLoadingPoints = Game.currentLoadingPoints +1;
 						}
 						
@@ -362,10 +362,10 @@ public class Game implements ApplicationListener {
 						level.loadGame();
 						level.finishLoading();
 						
-						int x = (int)Game.hero.absRect.x/TILE_SIZE;
-						int y = (int)Game.hero.absRect.y/TILE_SIZE;
-						int bX = x - ((int)level.chunkRect.x * CHUNK_SIZE)+1;
-						int bY = y - ((int)level.chunkRect.y * CHUNK_SIZE)+1;
+						int x = Game.hero.absRect.x/TILE_SIZE;
+						int y = Game.hero.absRect.y/TILE_SIZE;
+						int bX = x - (level.chunkRect.x * CHUNK_SIZE)+1;
+						int bY = y - (level.chunkRect.y * CHUNK_SIZE)+1;
 						
 						
 						if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
@@ -425,7 +425,7 @@ public class Game implements ApplicationListener {
 					f.mkdir();
 					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
-							level.loadInitialChunks(CHUNK_SIZE*i, CHUNK_SIZE*j, (int)level.chunkRect.x + i, (int)level.chunkRect.y + j);
+							level.loadInitialChunks(CHUNK_SIZE*i, CHUNK_SIZE*j, level.chunkRect.x + i, level.chunkRect.y + j);
 							Game.currentLoadingPoints = Game.currentLoadingPoints +1;
 						}
 						
@@ -454,10 +454,10 @@ public class Game implements ApplicationListener {
 						level.loadGame();
 						level.finishLoading();
 						
-						int x = (int)Game.hero.absRect.x/TILE_SIZE;
-						int y = (int)Game.hero.absRect.y/TILE_SIZE;
-						int bX = x - ((int)level.chunkRect.x * CHUNK_SIZE)+1;
-						int bY = y - ((int)level.chunkRect.y * CHUNK_SIZE)+1;
+						int x = Game.hero.absRect.x/TILE_SIZE;
+						int y = Game.hero.absRect.y/TILE_SIZE;
+						int bX = x - (level.chunkRect.x * CHUNK_SIZE)+1;
+						int bY = y - (level.chunkRect.y * CHUNK_SIZE)+1;
 						//TODO check for coal copper and tin as well...
 							if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
 								Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);

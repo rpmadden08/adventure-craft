@@ -112,7 +112,7 @@ public class QueenBee extends Mob {
 		int randomAmount = rand2.nextInt(3+1);
 		for(int a = 0; a < randomAmount; a++) {
 			
-			mobController.mobs.add(new QueenBeeMinion(Game.mobController, ((int)absRect.x - (int)Game.level.activeBlocks[0][0].absRect.x)/TILE_SIZE, ((int)absRect.y- (int)Game.level.activeBlocks[0][0].absRect.y)/TILE_SIZE));
+			mobController.mobs.add(new QueenBeeMinion(Game.mobController, (absRect.x - Game.level.activeBlocks[0][0].absRect.x)/TILE_SIZE, (absRect.y- Game.level.activeBlocks[0][0].absRect.y)/TILE_SIZE));
 			mobController.mobs.get(mobController.mobs.size()-1).isChasing = true;
 		}
 	}

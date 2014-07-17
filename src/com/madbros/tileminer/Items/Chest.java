@@ -52,7 +52,7 @@ public class Chest extends BlockItem32 {
 		if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id) {
 
 			sprite.setColor(HIGHLIGHT_COLOR);
-			sprite.draw(x, y, Z_CHARACTER, (int)block.absRect.w, (int)block.absRect.h);
+			sprite.draw(x, y, Z_CHARACTER, block.absRect.w, block.absRect.h);
 			sprite.setColor(Color.WHITE);
 		} else {
 			super.highlightItem(block, x, y);
