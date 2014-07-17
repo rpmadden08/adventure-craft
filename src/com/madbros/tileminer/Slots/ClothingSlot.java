@@ -22,17 +22,17 @@ public class ClothingSlot extends Slot{
 		if(this.item.id == 0) {
 			if(type == 5) {
 				sprite = Sprites.sprites.get(Sprites.GRAY_HELMET);
-				sprite.draw(slotRect.x+4, slotRect.y+4, 0);
+				sprite.draw((int)slotRect.x+4, (int)slotRect.y+4, 0);
 			} else if(type == 6) {
 				sprite = Sprites.sprites.get(Sprites.GRAY_ARMOR);
-				sprite.draw(slotRect.x+4, slotRect.y+4, 0);
+				sprite.draw((int)slotRect.x+4, (int)slotRect.y+4, 0);
 			} else if(type == 7) {
 				sprite = Sprites.sprites.get(Sprites.GRAY_LEGGINGS);
-				sprite.draw(slotRect.x+4, slotRect.y+4, 0);
+				sprite.draw((int)slotRect.x+4, (int)slotRect.y+4, 0);
 			} else {
 				sprite = Sprites.sprites.get(Sprites.GRAY_BOOTS);
 				//sprite.draw(slotRect.x+(slotRect.w/2)-(sprite.getWidth()/2),slotRect.y+(slotRect.h/2)-(sprite.getHeight()/2),0);
-				sprite.draw(slotRect.x+4, slotRect.y+4, 0);
+				sprite.draw((int)slotRect.x+4, (int)slotRect.y+4, 0);
 			}
 		
 		

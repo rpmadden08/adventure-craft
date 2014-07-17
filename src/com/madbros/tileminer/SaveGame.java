@@ -20,8 +20,8 @@ import com.madbros.tileminer.Utils.Helpers;
 public class SaveGame {
 	public void saveGame() {
 		SaveGameData saveData = new SaveGameData();
-		saveData.heroX = Game.hero.absRect.x;
-		saveData.heroY = Game.hero.absRect.y;
+		saveData.heroX = (int)Game.hero.absRect.x;
+		saveData.heroY = (int)Game.hero.absRect.y;
 		saveData.spawnX = Game.level.masterSpawnX;
 		saveData.spawnY = Game.level.masterSpawnY;
 		saveData.currentLevel = Game.currentLevel;
@@ -169,8 +169,8 @@ public class SaveGame {
 					}
 					
 				}
-				absX[x][y] = chunk[x][y].absRect.x;
-				absY[x][y] = chunk[x][y].absRect.y;
+				absX[x][y] = (int)chunk[x][y].absRect.x;
+				absY[x][y] = (int)chunk[x][y].absRect.y;
 				isUnfinished[x][y] = chunk[x][y].isUnfinished;
 			}
 		}
@@ -230,8 +230,8 @@ public class SaveGame {
 			currentLevelData.collectibleItemIds[x] = c.item.id;
 			currentLevelData.collectibleItemStackSize[x] = c.stackSize;
 			currentLevelData.collectibleItemUses[x] = c.uses;
-			currentLevelData.collectibleItemX[x] = c.absRect.x;
-			currentLevelData.collectibleItemY[x] = c.absRect.y;
+			currentLevelData.collectibleItemX[x] = (int)c.absRect.x;
+			currentLevelData.collectibleItemY[x] = (int)c.absRect.y;
 		}
 		Kryo kryo = new Kryo();
 		try {

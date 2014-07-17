@@ -71,7 +71,7 @@ public class Shovel extends ToolItem {
 			Game.soundController.create(sound, 0.2f);
 		}
 		Game.particleEffectController.add(tileParticle, 
-				Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
+				(int)Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), (int)Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
 	}
 	public boolean checkID(int id) {
 		if(id == AIR  || id == TALL_GRASS_A_TILE || id == TALL_GRASS_B_TILE || id == TALL_GRASS_C_TILE || 

@@ -23,7 +23,7 @@ public class PlainUIButton extends UIButton {
 	private StaticSprite buttonMiddlePushed = Sprites.sprites.get(Sprites.MM_BUTTON_MIDDLE_PUSHED);
 	private StaticSprite buttonRightPushed = Sprites.sprites.get(Sprites.MM_BUTTON_RIGHT_PUSHED);
 	
-	public PlainUIButton(int x, int y, int w, int h, String s, ButtonFunction func, SpriteBatch batch) {
+	public PlainUIButton(double x, double y, double w, double h, String s, ButtonFunction func, SpriteBatch batch) {
 		super(x, y, w, h, s, func, batch);
 
 		rect = new Rect(text.getX(rect), text.getY(rect), text.getW()+10, text.getH()+10);
@@ -41,20 +41,20 @@ public class PlainUIButton extends UIButton {
 	public void render() {
 		Rect textRect = new Rect(rect.x, rect.y-2, rect.w, rect.h);
 		if(mouseIsHovering && buttonIsPressedDown){
-			buttonLeftPushed.draw(rect.x-6, rect.y-1,0);
-			buttonMiddlePushed.draw(rect.x-6+buttonLeft.getWidth(), rect.y, 0, rect.w-37, buttonMiddle.getHeight());
-			buttonRightPushed.draw(rect.x-6+buttonLeft.getWidth()+rect.w-37, rect.y-1, 0);
+			buttonLeftPushed.draw((int)rect.x-6, (int)rect.y-1,0);
+			buttonMiddlePushed.draw((int)rect.x-6+buttonLeft.getWidth(), (int)rect.y, 0, (int)rect.w-37, buttonMiddle.getHeight());
+			buttonRightPushed.draw((int)rect.x-6+buttonLeft.getWidth()+(int)rect.w-37, (int)rect.y-1, 0);
 			text.drawCenter(textRect, fontColor);
 		}
 		else if(mouseIsHovering) {
-			buttonLeftHover.draw(rect.x-8, rect.y-3,0);
-			buttonMiddleHover.draw(rect.x-8+buttonLeftHover.getWidth(), rect.y-2, 0, rect.w-37, buttonMiddleHover.getHeight());
-			buttonRightHover.draw(rect.x-6+buttonLeft.getWidth()+rect.w-37, rect.y-3, 0);
+			buttonLeftHover.draw((int)rect.x-8, (int)rect.y-3,0);
+			buttonMiddleHover.draw((int)rect.x-8+buttonLeftHover.getWidth(), (int)rect.y-2, 0, (int)rect.w-37, buttonMiddleHover.getHeight());
+			buttonRightHover.draw((int)rect.x-6+buttonLeft.getWidth()+(int)rect.w-37,(int) rect.y-3, 0);
 			text.drawCenter(textRect,  fontColor);
 		} else {
-			buttonLeft.draw(rect.x-6, rect.y-1,0);
-			buttonMiddle.draw(rect.x-6+buttonLeft.getWidth(), rect.y, 0, rect.w-37, buttonMiddle.getHeight());
-			buttonRight.draw(rect.x-6+buttonLeft.getWidth()+rect.w-37, rect.y-1, 0);
+			buttonLeft.draw((int)rect.x-6, (int)rect.y-1,0);
+			buttonMiddle.draw((int)rect.x-6+buttonLeft.getWidth(), (int)rect.y, 0, (int)rect.w-37, buttonMiddle.getHeight());
+			buttonRight.draw((int)rect.x-6+buttonLeft.getWidth()+(int)rect.w-37, (int)rect.y-1, 0);
 			text.drawCenter(textRect, fontColor);
 			
 			

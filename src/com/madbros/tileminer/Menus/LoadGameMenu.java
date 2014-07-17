@@ -77,16 +77,16 @@ public class LoadGameMenu extends Menu {
 		selectUIButtons = new SelectUIButton[saveFolders.length];
 		if(selectUIButtons.length < 6) {
 			for(int i = 0; i < selectUIButtons.length; i++) {
-				selectUIButtons[i] = new SelectUIButton(r1.x, r1.y + i * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
+				selectUIButtons[i] = new SelectUIButton((int)r1.x, (int)r1.y + i * ((int)r1.h + marginY), (int)r1.w, (int)r1.h, saveFolders[i], batch);
 				selectUIButtons[i].iD = i;
 			}
 		} else {
 			for(int i = 0; i < selectUIButtons.length; i++) {
 				if(i< 5) {
-					selectUIButtons[i] = new SelectUIButton(r1.x-r1.w/2-12, r1.y + i * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
+					selectUIButtons[i] = new SelectUIButton((int)r1.x-(int)r1.w/2-12, (int)r1.y + i * ((int)r1.h + marginY), (int)r1.w, (int)r1.h, saveFolders[i], batch);
 					selectUIButtons[i].iD = i;
 				} else {
-					selectUIButtons[i] = new SelectUIButton(r1.x+r1.w/2+13, r1.y + (i-5) * (r1.h + marginY), r1.w, r1.h, saveFolders[i], batch);
+					selectUIButtons[i] = new SelectUIButton((int)r1.x+(int)r1.w/2+13,(int) r1.y + (i-5) * ((int)r1.h + marginY), (int)r1.w, (int)r1.h, saveFolders[i], batch);
 					selectUIButtons[i].iD = i;
 				}
 			}

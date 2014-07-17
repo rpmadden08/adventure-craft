@@ -95,7 +95,7 @@ public class Mob extends Actor {
 	}
 	
 	public void deathParticle() {
-		Game.particleEffectController.add(deathParticles, absRect.x+ (absRect.w/2), absRect.y+ (absRect.h/2));
+		Game.particleEffectController.add(deathParticles, (int)absRect.x+ ((int)absRect.w/2), (int)absRect.y+ ((int)absRect.h/2));
 
 	}
 	
@@ -206,8 +206,8 @@ public class Mob extends Actor {
 	}
 	
 	public void chaseHero(Rect hero, Rect mob) {
-		float speedX = (hero.x+(hero.w/2)) - (mob.x+(mob.w/2));
-		float speedY = (hero.y+(hero.h/2)) - (mob.y +(mob.h/2));
+		float speedX = ((int)hero.x+((int)hero.w/2)) - ((int)mob.x+((int)mob.w/2));
+		float speedY = ((int)hero.y+((int)hero.h/2)) - ((int)mob.y +((int)mob.h/2));
 		
 		//float maxSpeed = moveSpeed;
 		float maxSpeed = currentSpeed;
@@ -252,8 +252,8 @@ public class Mob extends Actor {
 	}
 	
 	public void fleeRect(Rect rect, Rect mob) {
-		float speedX = (rect.x+(rect.w/2)) - (mob.x+(mob.w/2));
-		float speedY = (rect.y+(rect.h/2)) - (mob.y +(mob.h/2));
+		float speedX = ((int)rect.x+((int)rect.w/2)) - ((int)mob.x+((int)mob.w/2));
+		float speedY = ((int)rect.y+((int)rect.h/2)) - ((int)mob.y +((int)mob.h/2));
 		
 		float maxSpeed = moveSpeed;
 		
@@ -384,6 +384,73 @@ public class Mob extends Actor {
 				moveDown();
 				moveRight();
 			} else if(number == 8) {}
+		}
+		framesNum++;
+	}
+	
+//	public void move(float f) {
+//		getCollisionBlocks();
+//		//Get the current speed based on current speed and current dir... this will break hero for now...
+//		
+//		//############ NEW CODE BEGIN ##########
+//		double moveX = 0;
+//		double moveY = 0;
+//
+//		double newX = ((int) absRect.x) + 100 * Math.cos(Math.toRadians(dir360));
+//		double newY = ((int) absRect.y) + 100 * Math.sin(Math.toRadians(dir360));
+//
+//		double vX = newX - absRect.x;
+//		double vY = newY - absRect.y;
+//
+//		double length = Math.sqrt((vX*vX)+(vY*vY));
+//
+//		vX = vX/length;
+//		vY = vY/length;
+//
+//		moveX = (vX*currentSpeed);
+//		moveY = (vY*currentSpeed);
+//
+//		//moveX = getCollisionX();
+//		//moveY = getCollisionY();
+//
+//		//System.out.println(moveX);
+//		//############ NEW CODE END ##########
+//		if(isMovingLeft) {
+//			moveHorizontal(f, (float)-moveY);
+//		} else if(isMovingRight) {
+//			moveHorizontal(f, (float) moveY);
+//		}
+//		
+//		if(isMovingUp) {
+//			moveVertical(f, (float)-moveX);
+//		} else if(isMovingDown) {
+//			moveVertical(f, (float) moveX);
+//		}
+//	}
+	
+	public void moveInRandomDirection360(int possibleLength) {
+		if(framesNum > length) {
+			framesNum = 0;
+			Random rand2 = new Random();
+			length = rand2.nextInt(possibleLength);
+			
+			Random rand = new Random();
+			dir360 = rand.nextInt(360);
+			stop();
+			if(dir360 > 180 && dir < 360) {
+				moveUp();
+			}
+			if(dir360 > 0 && dir < 180) {
+				moveDown();
+			}
+			if(dir360 > 90 && dir < 270) {
+				moveLeft();
+			}
+			if(dir360 > 270 || dir < 90) {
+				moveRight();
+			}
+			
+			
 		}
 		framesNum++;
 	}

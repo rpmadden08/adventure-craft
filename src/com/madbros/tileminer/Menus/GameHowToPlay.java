@@ -52,17 +52,17 @@ public class GameHowToPlay extends GameMainMenu {
 	}
 	public void renderBefore() {
 		//x and y need to be a few to the right and down...
-		Game.inventory.menuSprites[0].draw(HOW_TO_PLAY_RECT.x, HOW_TO_PLAY_RECT.y, Z_INV_BACKDROP);	//top left
-		Game.inventory.menuSprites[6].draw(HOW_TO_PLAY_RECT.x2()-INV_MENU_TILE_SIZE, HOW_TO_PLAY_RECT.y, Z_INV_BACKDROP); //top right
-		Game.inventory.menuSprites[2].draw(HOW_TO_PLAY_RECT.x, HOW_TO_PLAY_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP);	//bottom left
-		Game.inventory.menuSprites[8].draw(HOW_TO_PLAY_RECT.x2()-INV_MENU_TILE_SIZE, HOW_TO_PLAY_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP);	//bottom right
+		Game.inventory.menuSprites[0].draw((int)HOW_TO_PLAY_RECT.x, (int)HOW_TO_PLAY_RECT.y, Z_INV_BACKDROP);	//top left
+		Game.inventory.menuSprites[6].draw((int)HOW_TO_PLAY_RECT.x2()-INV_MENU_TILE_SIZE, (int)HOW_TO_PLAY_RECT.y, Z_INV_BACKDROP); //top right
+		Game.inventory.menuSprites[2].draw((int)HOW_TO_PLAY_RECT.x, (int)HOW_TO_PLAY_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP);	//bottom left
+		Game.inventory.menuSprites[8].draw((int)HOW_TO_PLAY_RECT.x2()-INV_MENU_TILE_SIZE, (int)HOW_TO_PLAY_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP);	//bottom right
 		
-		Game.inventory.menuSprites[3].draw(HOW_TO_PLAY_RECT.x+INV_MENU_TILE_SIZE, HOW_TO_PLAY_RECT.y, Z_INV_BACKDROP, HOW_TO_PLAY_RECT.w-INV_MENU_TILE_SIZE*2, INV_MENU_TILE_SIZE);	//top
-		Game.inventory.menuSprites[5].draw(HOW_TO_PLAY_RECT.x+INV_MENU_TILE_SIZE, HOW_TO_PLAY_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP, HOW_TO_PLAY_RECT.w-INV_MENU_TILE_SIZE*2, INV_MENU_TILE_SIZE);	//bottom
-		Game.inventory.menuSprites[1].draw(HOW_TO_PLAY_RECT.x, HOW_TO_PLAY_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_MENU_TILE_SIZE, HOW_TO_PLAY_RECT.h-INV_MENU_TILE_SIZE*2);	//left
-		Game.inventory.menuSprites[7].draw(HOW_TO_PLAY_RECT.x2()-INV_MENU_TILE_SIZE, HOW_TO_PLAY_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_MENU_TILE_SIZE, HOW_TO_PLAY_RECT.h-INV_MENU_TILE_SIZE*2);	//right
+		Game.inventory.menuSprites[3].draw((int)HOW_TO_PLAY_RECT.x+INV_MENU_TILE_SIZE,(int) HOW_TO_PLAY_RECT.y, Z_INV_BACKDROP, (int)HOW_TO_PLAY_RECT.w-INV_MENU_TILE_SIZE*2, INV_MENU_TILE_SIZE);	//top
+		Game.inventory.menuSprites[5].draw((int)HOW_TO_PLAY_RECT.x+INV_MENU_TILE_SIZE, (int)HOW_TO_PLAY_RECT.y2()-INV_MENU_TILE_SIZE, Z_INV_BACKDROP, (int)HOW_TO_PLAY_RECT.w-INV_MENU_TILE_SIZE*2, INV_MENU_TILE_SIZE);	//bottom
+		Game.inventory.menuSprites[1].draw((int)HOW_TO_PLAY_RECT.x, (int)HOW_TO_PLAY_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_MENU_TILE_SIZE, (int)HOW_TO_PLAY_RECT.h-INV_MENU_TILE_SIZE*2);	//left
+		Game.inventory.menuSprites[7].draw((int)HOW_TO_PLAY_RECT.x2()-INV_MENU_TILE_SIZE, (int)HOW_TO_PLAY_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, INV_MENU_TILE_SIZE, (int)HOW_TO_PLAY_RECT.h-INV_MENU_TILE_SIZE*2);	//right
 		
-		Game.inventory.menuSprites[4].draw(HOW_TO_PLAY_RECT.x+INV_MENU_TILE_SIZE, HOW_TO_PLAY_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, HOW_TO_PLAY_RECT.w-INV_MENU_TILE_SIZE*2, HOW_TO_PLAY_RECT.h-INV_MENU_TILE_SIZE*2); //middle
+		Game.inventory.menuSprites[4].draw((int)HOW_TO_PLAY_RECT.x+INV_MENU_TILE_SIZE, (int)HOW_TO_PLAY_RECT.y+INV_MENU_TILE_SIZE, Z_INV_BACKDROP, (int)HOW_TO_PLAY_RECT.w-INV_MENU_TILE_SIZE*2, (int)HOW_TO_PLAY_RECT.h-INV_MENU_TILE_SIZE*2); //middle
 		
 		howToPlaySprite.draw(Game.currentScreenSizeX /2 - howToPlaySprite.getWidth() / 2,
 				Game.currentScreenSizeY /2 - howToPlaySprite.getHeight() / 2,

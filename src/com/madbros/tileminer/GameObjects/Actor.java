@@ -62,6 +62,7 @@ public class Actor extends GameObject {
 	public int weaponY = 0;
 	public float weaponR = 0;
 	public int dir = 0;
+	public int dir360 = 0;
 	public boolean startWeaponAnimation = false;
 	public String hitSound;
 	public String deathSound;
@@ -166,8 +167,8 @@ public class Actor extends GameObject {
 	/************************** Collision Detection **************************/
 	public void getCollisionBlocks() {
 		//get position in activeBlocks array
-		int x = (absRect.x - Game.level.activeBlocks[0][0].absRect.x-(TILE_SIZE*2)+(absRect.w/2)) / TILE_SIZE;
-		int y = (absRect.y - Game.level.activeBlocks[0][0].absRect.y-(TILE_SIZE*2)+(absRect.h/2)) / TILE_SIZE;
+		int x = ((int)absRect.x - (int)Game.level.activeBlocks[0][0].absRect.x-(TILE_SIZE*2)+((int)absRect.w/2)) / TILE_SIZE;
+		int y = ((int)absRect.y - (int)Game.level.activeBlocks[0][0].absRect.y-(TILE_SIZE*2)+((int)absRect.h/2)) / TILE_SIZE;
 		int j = 0;
 		for(int i = 0; i < collisionDetectionBlocks.length; i++) {
 			if(x+i/5 >= 0 && x+i/5 < Game.level.activeBlocks.length && y+j >= 0 && y+j < Game.level.activeBlocks[0].length) {
@@ -269,13 +270,14 @@ public class Actor extends GameObject {
 		absRect.y += moveY;
 	}
 	
-	private void moveHorizontal(float f, float speed) {
+	public void moveHorizontal(float f, float speed) {
 		int moveX = Math.round(speed * f);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
+		//System.out.println(moveX);
 		xMove(moveX);
 		getCollision(HORIZONTAL, moveX);
 	}
 	
-	private void moveVertical(float f, float speed) {
+	public void moveVertical(float f, float speed) {
 		int moveY = Math.round(speed * f);
 		yMove(moveY);
 		getCollision(VERTICAL, moveY);
@@ -283,6 +285,8 @@ public class Actor extends GameObject {
 	
 	public void move(float f) {
 		getCollisionBlocks();
+		//Get the current speed based on current speed and current dir... this will break hero for now...
+		
 		if(isMovingLeft) {
 			moveHorizontal(f, -currentSpeed);
 		} else if(isMovingRight) {

@@ -18,7 +18,7 @@ public class InGameMenuUIButton extends UIButton {
 	private StaticSprite buttonPushed;
 	private StaticSprite buttonIcon;
 	
-	public InGameMenuUIButton(int x, int y, int w, int h, String s, ButtonFunction func, SpriteBatch batch, int iconX, int iconY, int color) {
+	public InGameMenuUIButton(double x, double y, double w, double h, String s, ButtonFunction func, SpriteBatch batch, int iconX, int iconY, int color) {
 		super(x, y, w, h, s, func, batch);
 		spriteString = s;
 		this.iconX = iconX;
@@ -53,13 +53,13 @@ public class InGameMenuUIButton extends UIButton {
 	public void render() {
 		
 	if(mouseIsHovering && buttonIsPressedDown) {
-		buttonPushed.draw(rect.x,rect.y, 0);
+		buttonPushed.draw((int)rect.x,(int)rect.y, 0);
 		buttonIcon.draw(iconX,iconY, 0);
 	} else if(mouseIsHovering) {
-		buttonHover.draw(rect.x,rect.y, 0);
+		buttonHover.draw((int)rect.x,(int)rect.y, 0);
 		buttonIcon.draw(iconX,iconY, 0);
 	} else {
-		button.draw(rect.x,rect.y, 0);
+		button.draw((int)rect.x,(int)rect.y, 0);
 		buttonIcon.draw(iconX,iconY, 0);
 	}
 		

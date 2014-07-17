@@ -18,7 +18,7 @@ public class WoodenAxe extends Axe {
 		craftCost = new int[]{PLANK, STICK};
 		craftCostAmount = new int[]{3, 2};
 		maxUses = 15;
-		uses = 1;
+		uses = 15;
 		isRepeatable = true;
 		
 		craftCost = new int[]{STICK,PLANK};

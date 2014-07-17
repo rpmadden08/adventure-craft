@@ -30,7 +30,7 @@ public class CraftingSlot extends Slot{
 	public void render() {
 		if(isHighlighted) {
 			Sprites.pixel.setColor(highlightColor);
-			highlighter.draw(slotRect.x+2,slotRect.y+2, Z_INV_HIGHLIGHT, slotRect.w - 4, slotRect.h-4);
+			highlighter.draw((int)slotRect.x+2,(int)slotRect.y+2, Z_INV_HIGHLIGHT, (int)slotRect.w - 4, (int)slotRect.h-4);
 			Sprites.pixel.setColor(Color.WHITE);
 		}
 		slotSprite.draw(slotRect, Z_INV_SLOTS);
@@ -46,10 +46,10 @@ public class CraftingSlot extends Slot{
 				item.render(slotRect);
 					if(isHighlighted) {
 						Sprite sprite = Sprites.sprites.get(Sprites.GREEN_BUTTON_HOVER);
-						sprite.draw(slotRect.x, slotRect.y, 0);
+						sprite.draw((int)slotRect.x, (int)slotRect.y, 0);
 					} else {
 						Sprite sprite = Sprites.sprites.get(Sprites.GREEN_BUTTON);
-						sprite.draw(slotRect.x, slotRect.y, 0);
+						sprite.draw((int)slotRect.x, (int)slotRect.y, 0);
 					}
 			}
 		}
@@ -70,7 +70,7 @@ public class CraftingSlot extends Slot{
 		if(item.id != 0) {
 			Rect craftingInfoRect = new Rect(501, 446, 226, 143);
 			Sprites.pixel.setColor(0.349f, 0.337f, 0.322f, 1.0f);
-			Sprites.pixel.draw(craftingInfoRect.x, craftingInfoRect.y, 0, craftingInfoRect.w, craftingInfoRect.h);
+			Sprites.pixel.draw((int)craftingInfoRect.x, (int)craftingInfoRect.y, 0, (int)craftingInfoRect.w, (int)craftingInfoRect.h);
 //			Game.inventory.menuSprites[0].draw(craftingInfoRect.x, craftingInfoRect.y, Z_INV_BACKDROP);	//top left
 //			Game.inventory.menuSprites[6].draw(craftingInfoRect.x2(), craftingInfoRect.y, Z_INV_BACKDROP); //top right
 //			Game.inventory.menuSprites[2].draw(craftingInfoRect.x, craftingInfoRect.y2(), Z_INV_BACKDROP);	//bottom left
@@ -99,8 +99,8 @@ public class CraftingSlot extends Slot{
 				slotSprite.draw(504,slotYCoord, Z_INV_SLOTS);
 				slotSprite.setColor(Color.WHITE);
 				recipeItem.render(recipeSlotRect);
-				recipeItem.renderFont(recipeSlotRect.x2()-INV_SLOT_SIZE/2,recipeSlotRect.y2()-INV_SLOT_SIZE/2, Game.batch);
-				Sprites.arial10.draw(Game.batch, recipeItem.name, recipeSlotRect.x+ 44, recipeSlotRect.y+ 12);
+				recipeItem.renderFont((int)recipeSlotRect.x2()-INV_SLOT_SIZE/2,(int)recipeSlotRect.y2()-INV_SLOT_SIZE/2, Game.batch);
+				Sprites.arial10.draw(Game.batch, recipeItem.name, (int)recipeSlotRect.x+ 44, (int)recipeSlotRect.y+ 12);
 				recipeItem.sprite.setColor(Color.WHITE);
 				Sprites.arial10.setColor(Color.WHITE);
 				
