@@ -66,18 +66,20 @@ public abstract class Item {
 	public boolean isInRange;
 	
 	public void render(Rect slotRect) {
-		sprite.draw(slotRect.x + ITEM_OFFSET, slotRect.y + ITEM_OFFSET, Z_INV_ITEMS);
+		RectInt slotRect2 = slotRect.getRectInt();
+		sprite.draw(slotRect2.x + ITEM_OFFSET, slotRect2.y + ITEM_OFFSET, Z_INV_ITEMS);
 		if(uses != maxUses) {
-			Game.renderSystem.renderItemHealth(this, slotRect.x, slotRect.y);
+			Game.renderSystem.renderItemHealth(this, slotRect2.x, slotRect2.y);
 		}
 	}
 	
 	public void renderLarge(Rect slotRect) {
+		RectInt slotRect2 = slotRect.getRectInt();
 		if(sprite != null) {
-			sprite.draw(slotRect.x + (ITEM_OFFSET*2), slotRect.y + (ITEM_OFFSET*2), Z_INV_ITEMS, (int)(sprite.getWidth()*2), (int)(sprite.getHeight()* 2));
+			sprite.draw(slotRect2.x + (ITEM_OFFSET*2), slotRect2.y + (ITEM_OFFSET*2), Z_INV_ITEMS, (int)(sprite.getWidth()*2), (int)(sprite.getHeight()* 2));
 		}
 		if(uses != maxUses) {
-			Game.renderSystem.renderItemHealth(this, slotRect.x, slotRect.y);
+			Game.renderSystem.renderItemHealth(this, slotRect2.x, slotRect2.y);
 		}
 	}
 	

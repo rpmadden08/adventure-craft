@@ -4,6 +4,7 @@ import static com.madbros.tileminer.Constants.*;
 
 import com.madbros.tileminer.GameObjects.Actor;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public abstract class CollisionTile extends Tile {
 	
@@ -16,22 +17,24 @@ public abstract class CollisionTile extends Tile {
 	
 	public void heroDidCollide(Actor actor, int dir, int move, Rect charCRect, Rect tileRect) {
 		int extra;
+		RectInt charCRect2 = charCRect.getRectInt();
+		RectInt tileRect2 = tileRect.getRectInt();
 		
 		switch(dir) {
 		case DOWN:
-			extra = move - charCRect.getBottomCollisionDiff(tileRect);
+			extra = move - charCRect2.getBottomCollisionDiff(tileRect2);
 			actor.yMove(-move + extra);
 			break;
 		case UP:
-			extra = move - charCRect.getTopCollisionDiff(tileRect);
+			extra = move - charCRect2.getTopCollisionDiff(tileRect2);
 			actor.yMove(-move + extra);
 			break;
 		case LEFT:
-			extra = move - charCRect.getLeftCollisionDiff(tileRect);
+			extra = move - charCRect2.getLeftCollisionDiff(tileRect2);
 			actor.xMove(-move + extra);
 			break;
 		case RIGHT:
-			extra = move - charCRect.getRightCollisionDiff(tileRect);
+			extra = move - charCRect2.getRightCollisionDiff(tileRect2);
 			actor.xMove(-move + extra);
 			break;
 		}

@@ -31,15 +31,18 @@ public class Helpers {
 	}
 	
 	public static Point getOffsetPoint(Hero hero, Block firstBlockInActiveBlocks) {
-		return new Point(((hero.absRect.x - Game.currentScreenSizeX / 2) - firstBlockInActiveBlocks.absRect.x) % TILE_SIZE,
-						 ((hero.absRect.y - Game.currentScreenSizeY / 2) - firstBlockInActiveBlocks.absRect.y) % TILE_SIZE);
+		RectInt heroAbsRect = hero.absRect.getRectInt();
+		RectInt firstBlockAbsRect = firstBlockInActiveBlocks.absRect.getRectInt();
+		//System.out.println(((heroAbsRect.x - Game.currentScreenSizeX / 2) - firstBlockAbsRect.x) % TILE_SIZE);
+		return new Point(((heroAbsRect.x - Game.currentScreenSizeX / 2) - firstBlockAbsRect.x) % TILE_SIZE,
+						 ((heroAbsRect.y - Game.currentScreenSizeY / 2) - firstBlockAbsRect.y) % TILE_SIZE);
 	}
 	
 	public static Rect getRenderRect(Hero hero, Block firstBlockInActiveBlocks) {
-		return new Rect((int)Math.ceil(((hero.absRect.x - Game.currentScreenSizeX / 2) - firstBlockInActiveBlocks.absRect.x) / TILE_SIZE) + RENDER_MARGIN,
-						(int) Math.ceil(((hero.absRect.y - Game.currentScreenSizeY / 2) - firstBlockInActiveBlocks.absRect.y) / TILE_SIZE) + RENDER_MARGIN,
-						(int)Math.ceil(Game.currentScreenSizeX / TILE_SIZE) + RENDER_MARGIN,
-						(int)Math.ceil(Game.currentScreenSizeY / TILE_SIZE) + RENDER_MARGIN + 1);
+		return new Rect((int)Math.floor(((hero.absRect.x - Game.currentScreenSizeX / 2) - firstBlockInActiveBlocks.absRect.x) / TILE_SIZE) + RENDER_MARGIN,
+						(int)Math.floor(((hero.absRect.y - Game.currentScreenSizeY / 2) - firstBlockInActiveBlocks.absRect.y) / TILE_SIZE) + RENDER_MARGIN,
+						(int)Math.floor(Game.currentScreenSizeX / TILE_SIZE) + RENDER_MARGIN,
+						(int)Math.floor(Game.currentScreenSizeY / TILE_SIZE) + RENDER_MARGIN + 1);
 	}
 	
 	public static boolean containsXNumberOfItemsInSlots(int x, int itemId, Slot[] slots) {
@@ -63,10 +66,11 @@ public class Helpers {
 	}
 
 	public static void drawRect(Rect r, float zLayer) {
-		Sprites.pixel.draw(r.x, r.y, zLayer, r.w, 1);
-		Sprites.pixel.draw(r.x, r.y, zLayer, 1, r.h);
-		Sprites.pixel.draw(r.x2()-1, r.y, zLayer, 1, r.h);
-		Sprites.pixel.draw(r.x, r.y2()-1, zLayer, r.w, 1);
+		RectInt r2 = r.getRectInt();
+		Sprites.pixel.draw(r2.x, r2.y, zLayer, r2.w, 1);
+		Sprites.pixel.draw(r2.x, r2.y, zLayer, 1, r2.h);
+		Sprites.pixel.draw(r2.x2()-1, r2.y, zLayer, 1, r2.h);
+		Sprites.pixel.draw(r2.x, r2.y2()-1, zLayer, r2.w, 1);
 	}
 	
 	public static Block[][] chunkToBlockArray(Chunk chunk) {

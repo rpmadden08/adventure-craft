@@ -31,21 +31,27 @@ public class Block {
 	}
 	
 	public int getX(Block[][] activeBlocks) {
-		int x = (absRect.x - activeBlocks[0][0].absRect.x) / TILE_SIZE;
+		RectInt absRectBlock = absRect.getRectInt();
+		RectInt absRectActive = activeBlocks[0][0].absRect.getRectInt();
+		int x = (absRectBlock.x - absRectActive.x) / TILE_SIZE;
 		//int y = (absRect.y - Game.level.activeBlocks[0][0].absRect.y) / TILE_SIZE;
 		return x;
 	}
 	public int getY(Block[][] activeBlocks) {
-		int y = (absRect.y - activeBlocks[0][0].absRect.y) / TILE_SIZE;
+		RectInt absRectBlock = absRect.getRectInt();
+		RectInt absRectActive = activeBlocks[0][0].absRect.getRectInt();
+		int y = (absRectBlock.y - absRectActive.y) / TILE_SIZE;
 		return y;
 	}
 	
 	public int getAbsX() {
-		return absRect.x / TILE_SIZE;
+		RectInt absRectBlock = absRect.getRectInt();
+		return absRectBlock.x / TILE_SIZE;
 	}
 	
 	public int getAbsY() {
-		return absRect.y / TILE_SIZE;
+		RectInt absRectBlock = absRect.getRectInt();
+		return absRectBlock.y / TILE_SIZE;
 	}
 	
 	public Block(Tile[] t, int absX, int absY, boolean isUnfinished) {

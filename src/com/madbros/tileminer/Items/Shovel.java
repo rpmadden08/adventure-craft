@@ -9,6 +9,7 @@ import com.madbros.tileminer.*;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class Shovel extends ToolItem {
 	public Shovel() {
@@ -70,8 +71,9 @@ public class Shovel extends ToolItem {
 		} else {
 			Game.soundController.create(sound, 0.2f);
 		}
+		RectInt hBAbsRect = Game.level.highlightedBlock.absRect.getRectInt();
 		Game.particleEffectController.add(tileParticle, 
-				Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
+				hBAbsRect.x +(TILE_SIZE/2), hBAbsRect.y + (TILE_SIZE/2));
 	}
 	public boolean checkID(int id) {
 		if(id == AIR  || id == TALL_GRASS_A_TILE || id == TALL_GRASS_B_TILE || id == TALL_GRASS_C_TILE || 

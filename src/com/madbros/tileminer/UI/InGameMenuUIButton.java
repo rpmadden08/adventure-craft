@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.tileminer.Sprites.*;
 import com.madbros.tileminer.Utils.ButtonFunction;
+import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class InGameMenuUIButton extends UIButton {
 	StaticSprite sprite = Sprites.pixel;
@@ -51,15 +53,15 @@ public class InGameMenuUIButton extends UIButton {
 
 	@Override
 	public void render() {
-		
+		RectInt rect2 = rect.getRectInt();
 	if(mouseIsHovering && buttonIsPressedDown) {
-		buttonPushed.draw(rect.x,rect.y, 0);
+		buttonPushed.draw(rect2.x,rect2.y, 0);
 		buttonIcon.draw(iconX,iconY, 0);
 	} else if(mouseIsHovering) {
-		buttonHover.draw(rect.x,rect.y, 0);
+		buttonHover.draw(rect2.x,rect2.y, 0);
 		buttonIcon.draw(iconX,iconY, 0);
 	} else {
-		button.draw(rect.x,rect.y, 0);
+		button.draw(rect2.x,rect2.y, 0);
 		buttonIcon.draw(iconX,iconY, 0);
 	}
 		

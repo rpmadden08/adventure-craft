@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class LoadingState extends GameState{
 	
@@ -23,10 +24,10 @@ public class LoadingState extends GameState{
 	protected void renderTextures() {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		Game.batch.setProjectionMatrix(Game.camera.combined);
-		Rect totalLoadingBar = new Rect(0,0,300, 40);
+		RectInt totalLoadingBar = new RectInt(0,0,300, 40);
 		float percentage = Game.currentLoadingPoints/Game.totalLoadingPoints; //Giving me 0.3 if 3/10
 		float loadingBarWidth = totalLoadingBar.w*percentage;
-		Rect loadingBar = new Rect(Game.currentScreenSizeX/2-(totalLoadingBar.w/2),Game.currentScreenSizeY/2-(totalLoadingBar.h/2),(int) loadingBarWidth, totalLoadingBar.h);
+		RectInt loadingBar = new RectInt(Game.currentScreenSizeX/2-(totalLoadingBar.w/2),Game.currentScreenSizeY/2-(totalLoadingBar.h/2),(int) loadingBarWidth, totalLoadingBar.h);
 		Game.batch.begin();
 			
 			//Rect test = new Rect(Game.currentScreenSizeX/2-150,Game.currentScreenSizeY/2-20, 300, 40);

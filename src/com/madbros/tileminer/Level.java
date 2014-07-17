@@ -17,6 +17,7 @@ import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 import com.madbros.tileminer.Utils.Point;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class Level {
 //	public long rgenseed = System.currentTimeMillis();
@@ -268,17 +269,20 @@ public class Level {
 	}
 	
 	public int getXFromAbs(int abs) {
-		return abs - (chunkRect.x * CHUNK_SIZE);
+		RectInt chunkRect2 = chunkRect.getRectInt();
+		return abs - (chunkRect2.x * CHUNK_SIZE);
 	}
 	
 	public int getYFromAbs(int abs) {
-		return abs - (chunkRect.y * CHUNK_SIZE);
+		RectInt chunkRect2 = chunkRect.getRectInt();
+		return abs - (chunkRect2.y * CHUNK_SIZE);
 	}
 	
 	public void saveCurrentChunks() {
+		RectInt chunkRect2 = chunkRect.getRectInt();
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 			for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
-				saveChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect.x + i, chunkRect.y + j);
+				saveChunk(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect2.x + i, chunkRect2.y + j);
 			}
 		}
 	}
@@ -326,13 +330,15 @@ public class Level {
 		
 		
 		Rect mRect = Helpers.getMouseRect();
+		RectInt mRect2 = mRect.getRectInt();
 		Rect itemRange = Game.inventory.invBar[Game.inventory.itemSelected].item.range;
 		itemRange.x = Game.hero.sRect.x - (itemRange.w / 2) + (Game.hero.sRect.w /2);
 		itemRange.y = Game.hero.sRect.y- (itemRange.h / 2) + (Game.hero.sRect.h/2);
 		if(mRect.detectCollision(itemRange)) {
 			Game.inventory.invBar[Game.inventory.itemSelected].item.isInRange = true;
-			highlightedBlockX = renderRect.x + (mRect.x + offsetPoint.x) / TILE_SIZE;
-			highlightedBlockY = renderRect.y + (mRect.y + offsetPoint.y) / TILE_SIZE;
+			RectInt renderRect2 = renderRect.getRectInt();
+			highlightedBlockX = renderRect2.x + (mRect2.x + offsetPoint.x) / TILE_SIZE;
+			highlightedBlockY = renderRect2.y + (mRect2.y + offsetPoint.y) / TILE_SIZE;
 			highlightedBlock = activeBlocks[highlightedBlockX][highlightedBlockY];
 			//This is so that chests know their coordinates...
 			tileBeingAttacked.absX = highlightedBlock.getAbsX();
@@ -382,8 +388,9 @@ public class Level {
 		} else if(renderRect.x2() >= TILES_PER_ROW-CHUNK_SIZE/2 - 1) {
 			getEasternChunks();
 		}
-		for(int x = renderRect.x; x < renderRect.x2(); x++) {
-			for(int y = renderRect.y; y < renderRect.y2(); y++) {
+		RectInt renderRect2 = renderRect.getRectInt();
+		for(int x = renderRect2.x; x < renderRect2.x2(); x++) {
+			for(int y = renderRect2.y; y < renderRect2.y2(); y++) {
 				activeBlocks[x][y].layers[WATER_LAYER].update(x, y);
 				activeBlocks[x][y].layers[GRASS_LAYER].update(x, y);
 				activeBlocks[x][y].layers[OBJECT_LAYER].update(x, y);
@@ -436,10 +443,11 @@ public class Level {
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 		
 		savingThread = new Thread(new Runnable() {
+			RectInt chunkRect2 = chunkRect.getRectInt();
 			@Override
 			public void run() {
 				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-					saveEdgeChunk(0, CHUNK_SIZE*i, chunkRect.x-1, chunkRect.y + i, westernChunks);
+					saveEdgeChunk(0, CHUNK_SIZE*i, chunkRect2.x-1, chunkRect2.y + i, westernChunks);
 				}
 			}
 		});	
@@ -481,10 +489,12 @@ public class Level {
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 
 		savingThread = new Thread(new Runnable() {
+
+			RectInt chunkRect2 = chunkRect.getRectInt();
 			@Override
 			public void run() {
 				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-					saveEdgeChunk(0, CHUNK_SIZE*i, chunkRect.x2()+1, chunkRect.y + i, easternChunks);
+					saveEdgeChunk(0, CHUNK_SIZE*i, chunkRect2.x2()+1, chunkRect2.y + i, easternChunks);
 				}
 			}
 		});	
@@ -527,10 +537,11 @@ public class Level {
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 		
 		savingThread = new Thread(new Runnable() {
+			RectInt chunkRect2 = chunkRect.getRectInt();
 			@Override
 			public void run() {
 				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-					saveEdgeChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y2()+1, southernChunks);
+					saveEdgeChunk(CHUNK_SIZE*i, 0, chunkRect2.x + i, chunkRect2.y2()+1, southernChunks);
 				}
 			}
 		});	
@@ -570,10 +581,11 @@ public class Level {
 		autoTileNewArea(1, 1, TILES_PER_ROW-1, TILES_PER_ROW-1);
 		
 		savingThread = new Thread(new Runnable() {
+			RectInt chunkRect2 = chunkRect.getRectInt();
 			@Override
 			public void run() {
 				for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-					saveEdgeChunk(CHUNK_SIZE*i, 0, chunkRect.x + i, chunkRect.y-1, northernChunks);
+					saveEdgeChunk(CHUNK_SIZE*i, 0, chunkRect2.x + i, chunkRect2.y-1, northernChunks);
 				}
 			}
 		});	
@@ -597,9 +609,10 @@ public class Level {
 			southernChunks[x-CHUNK_SIZE] = southernChunks[x].clone();
 		}
 		//load northern Chunk
-		loadChunk(CHUNK_SIZE*4,0, chunkRect.x+4, chunkRect.y-1, northernChunks);
+		RectInt chunkRect2 = chunkRect.getRectInt();
+		loadChunk(CHUNK_SIZE*4,0, chunkRect2.x+4, chunkRect2.y-1, northernChunks);
 		//load southern Chunk
-		loadChunk(CHUNK_SIZE*4,0, chunkRect.x+4, chunkRect.y2()+1, southernChunks);
+		loadChunk(CHUNK_SIZE*4,0, chunkRect2.x+4, chunkRect2.y2()+1, southernChunks);
 		loadEasternChunks();
 	}
 	
@@ -612,10 +625,11 @@ public class Level {
 		for(int x = activeBlocks.length-1-CHUNK_SIZE; x >= 0; x--) {
 			southernChunks[x+CHUNK_SIZE] = southernChunks[x].clone();
 		}
+		RectInt chunkRect2 = chunkRect.getRectInt();
 		//load northern Chunk
-		loadChunk(CHUNK_SIZE*0,0, chunkRect.x+0, chunkRect.y-1, northernChunks);
+		loadChunk(CHUNK_SIZE*0,0, chunkRect2.x+0, chunkRect2.y-1, northernChunks);
 		//load southern Chunk
-		loadChunk(CHUNK_SIZE*0,0, chunkRect.x+0, chunkRect.y2()+1, southernChunks);
+		loadChunk(CHUNK_SIZE*0,0, chunkRect2.x+0, chunkRect2.y2()+1, southernChunks);
 		loadWesternChunks();
 	}
 	
@@ -629,10 +643,11 @@ public class Level {
 		for(int y = 0; y < CHUNK_SIZE; y++) {
 			System.arraycopy(westernChunks[y], 0, westernChunks[y], CHUNK_SIZE, activeBlocks.length-CHUNK_SIZE);
 		}
+		RectInt chunkRect2 = chunkRect.getRectInt();
 		//load eastern Chunk
-		loadChunk(0, CHUNK_SIZE*0, chunkRect.x2()+1, chunkRect.y + 0, easternChunks);
+		loadChunk(0, CHUNK_SIZE*0, chunkRect2.x2()+1, chunkRect2.y + 0, easternChunks);
 		//load western Chunk
-		loadChunk(0, CHUNK_SIZE*0, chunkRect.x-1, chunkRect.y + 0, westernChunks);
+		loadChunk(0, CHUNK_SIZE*0, chunkRect2.x-1, chunkRect2.y + 0, westernChunks);
 		loadNorthernChunks();
 	}
 	
@@ -646,34 +661,39 @@ public class Level {
 		for(int y = 0; y < CHUNK_SIZE; y++) {
 			System.arraycopy(westernChunks[y], CHUNK_SIZE, westernChunks[y], 0, activeBlocks.length-CHUNK_SIZE);
 		}
+		RectInt chunkRect2 = chunkRect.getRectInt();
 		//load eastern Chunk
-		loadChunk(0, CHUNK_SIZE*4, chunkRect.x2()+1, chunkRect.y + 4, easternChunks);
+		loadChunk(0, CHUNK_SIZE*4, chunkRect2.x2()+1, chunkRect2.y + 4, easternChunks);
 		//load western Chunk
-		loadChunk(0, CHUNK_SIZE*4, chunkRect.x-1, chunkRect.y + 4, westernChunks);
+		loadChunk(0, CHUNK_SIZE*4, chunkRect2.x-1, chunkRect2.y + 4, westernChunks);
 		loadSouthernChunks();
 	}
 	
 	public void loadSouthernChunks() {
+		RectInt chunkRect2 = chunkRect.getRectInt();
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			loadChunk(CHUNK_SIZE*i,0, chunkRect.x+i, chunkRect.y2()+1, southernChunks);
+			loadChunk(CHUNK_SIZE*i,0, chunkRect2.x+i, chunkRect2.y2()+1, southernChunks);
 		}
 	}
 	
 	public void loadNorthernChunks() {
+		RectInt chunkRect2 = chunkRect.getRectInt();
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			loadChunk(CHUNK_SIZE*i,0, chunkRect.x+i, chunkRect.y-1, northernChunks);
+			loadChunk(CHUNK_SIZE*i,0, chunkRect2.x+i, chunkRect2.y-1, northernChunks);
 		}
 	}
 	
 	public void loadWesternChunks() {
+		RectInt chunkRect2 = chunkRect.getRectInt();
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			loadChunk(0, CHUNK_SIZE*i, chunkRect.x-1, chunkRect.y + i, westernChunks);
+			loadChunk(0, CHUNK_SIZE*i, chunkRect2.x-1, chunkRect2.y + i, westernChunks);
 		}
 	}
 	
-	public void loadEasternChunks() {		
+	public void loadEasternChunks() {	
+		RectInt chunkRect2 = chunkRect.getRectInt();
 		for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
-			loadChunk(0, CHUNK_SIZE*i, chunkRect.x2()+1, chunkRect.y + i, easternChunks);
+			loadChunk(0, CHUNK_SIZE*i, chunkRect2.x2()+1, chunkRect2.y + i, easternChunks);
 		}
 	}
 	

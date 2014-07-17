@@ -9,6 +9,7 @@ import com.madbros.tileminer.*;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class Pick extends ToolItem {
 	public Pick() {
@@ -71,8 +72,9 @@ public class Pick extends ToolItem {
 		} else {
 			Game.soundController.create(sound, 0.5f);
 		}
+		RectInt hBAbsRect = Game.level.highlightedBlock.absRect.getRectInt();
 		Game.particleEffectController.add(tileParticle, 
-		Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
+				hBAbsRect.x +(TILE_SIZE/2),hBAbsRect.y + (TILE_SIZE/2));
 	}
 	
 	public void highlightItem(Block block, int x, int y) {

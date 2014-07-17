@@ -1,6 +1,7 @@
 package com.madbros.tileminer.Menus;
 
 import static com.madbros.tileminer.Constants.*;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 //Chris' test imports
@@ -8,6 +9,7 @@ import com.madbros.tileminer.Game;
 import com.madbros.tileminer.UI.PlainUIButton;
 import com.madbros.tileminer.Utils.ButtonFunction;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class DebugMenu extends Menu {
 	public boolean collisionTilesAreOn;
@@ -52,7 +54,8 @@ public class DebugMenu extends Menu {
 		
 		menuButtons = new PlainUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {
-			menuButtons[i] = new PlainUIButton(r.x, r.y*i, r.w, r.h, strings[i], functions[i], batch);
+			RectInt r2 = r.getRectInt();
+			menuButtons[i] = new PlainUIButton(r2.x, r2.y*i, r2.w, r2.h, strings[i], functions[i], batch);
 		}
 	}
 	

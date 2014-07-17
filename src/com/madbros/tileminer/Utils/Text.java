@@ -35,12 +35,14 @@ public class Text {
 	
 	public void drawString(Rect r, Color fontColor) {
 		f.setColor(fontColor);
-		f.draw(batch, s, r.x, r.y);
+		RectInt r2 = r.getRectInt();
+		f.draw(batch, s, r2.x, r2.y);
 	}
 	
 	public void drawCenter(Rect r, Color fontColor) {
 		f.setColor(fontColor);
-		f.draw(batch, s, r.x + r.w / 2 - w / 2, r.y + r.h / 2 - h / 2 - 1);
+		RectInt r2 = r.getRectInt();
+		f.draw(batch, s, r2.x + r2.w / 2 - w / 2, r2.y + r2.h / 2 - h / 2 - 1);
 	}
 	
 	public int getX(Rect r) {

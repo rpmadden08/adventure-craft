@@ -15,13 +15,15 @@ import com.madbros.tileminer.Slots.Slot;
 import com.madbros.tileminer.TileTypes.CauldronTile;
 import com.madbros.tileminer.TileTypes.FurnaceTile;
 import com.madbros.tileminer.Utils.Helpers;
+import com.madbros.tileminer.Utils.RectInt;
 
 //@SuppressWarnings("unchecked")
 public class SaveGame {
 	public void saveGame() {
 		SaveGameData saveData = new SaveGameData();
-		saveData.heroX = Game.hero.absRect.x;
-		saveData.heroY = Game.hero.absRect.y;
+		RectInt absRect = Game.hero.absRect.getRectInt();
+		saveData.heroX = absRect.x;
+		saveData.heroY = absRect.y;
 		saveData.spawnX = Game.level.masterSpawnX;
 		saveData.spawnY = Game.level.masterSpawnY;
 		saveData.currentLevel = Game.currentLevel;
@@ -169,8 +171,9 @@ public class SaveGame {
 					}
 					
 				}
-				absX[x][y] = chunk[x][y].absRect.x;
-				absY[x][y] = chunk[x][y].absRect.y;
+				RectInt absRect2 = chunk[x][y].absRect.getRectInt();
+				absX[x][y] = absRect2.x;
+				absY[x][y] = absRect2.y;
 				isUnfinished[x][y] = chunk[x][y].isUnfinished;
 			}
 		}
@@ -230,8 +233,9 @@ public class SaveGame {
 			currentLevelData.collectibleItemIds[x] = c.item.id;
 			currentLevelData.collectibleItemStackSize[x] = c.stackSize;
 			currentLevelData.collectibleItemUses[x] = c.uses;
-			currentLevelData.collectibleItemX[x] = c.absRect.x;
-			currentLevelData.collectibleItemY[x] = c.absRect.y;
+			RectInt cAbsRect = c.absRect.getRectInt();
+			currentLevelData.collectibleItemX[x] = cAbsRect.x;
+			currentLevelData.collectibleItemY[x] = cAbsRect.y;
 		}
 		Kryo kryo = new Kryo();
 		try {

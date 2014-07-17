@@ -5,6 +5,7 @@ import static com.madbros.tileminer.Constants.*;
 import com.madbros.tileminer.*;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class Axe extends ToolItem {
 	public Axe() {
@@ -40,8 +41,9 @@ public class Axe extends ToolItem {
 			calculateUsage();
 		}
 		Game.soundController.create(sound, 0.3f);
+		RectInt hBAbsRect = Game.level.highlightedBlock.absRect.getRectInt();
 		Game.particleEffectController.add(tileParticle, 
-		Game.level.highlightedBlock.absRect.x +(TILE_SIZE/2), Game.level.highlightedBlock.absRect.y + (TILE_SIZE/2));
+				hBAbsRect.x +(TILE_SIZE/2), hBAbsRect.y + (TILE_SIZE/2));
 	}
 	public void useLeft() {
 		if(Game.level.tileBeingAttacked.isChoppable && isInRange == true

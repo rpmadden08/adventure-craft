@@ -17,6 +17,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.UI.*;
 import com.madbros.tileminer.Utils.ButtonFunction;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class OptionsMenu extends Menu {
 	String fileName;
@@ -91,13 +92,14 @@ public class OptionsMenu extends Menu {
 
 		menuButtons = new UIButton[functions.length];
 		for(int i = 0; i < functions.length; i++) {
+			RectInt rect = r[i].getRectInt();
 			if(i == 0) {
-				menuButtons[i] = new InGameMenuUIButton(r[i].x,r[i].y, r[i].w, r[i].h,Sprites.LEFT_ARROW, functions[i], Game.batch, r[i].x+3, r[i].y+3, 0);
+				menuButtons[i] = new InGameMenuUIButton(rect.x,rect.y, rect.w, rect.h,Sprites.LEFT_ARROW, functions[i], Game.batch, rect.x+3, rect.y+3, 0);
 			} else if(i == 1) {
-				menuButtons[i] = new InGameMenuUIButton(r[i].x,r[i].y, r[i].w, r[i].h,Sprites.RIGHT_ARROW, functions[i], Game.batch, r[i].x+4, r[i].y+3, 0);
+				menuButtons[i] = new InGameMenuUIButton(rect.x,rect.y, rect.w, rect.h,Sprites.RIGHT_ARROW, functions[i], Game.batch, rect.x+4, rect.y+3, 0);
 				
 			} else {
-				menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i], Game.batch);
+				menuButtons[i] = new PlainUIButton(rect.x, rect.y, rect.w, rect.h, strings[i], functions[i], Game.batch);
 			}
 		}
 		

@@ -11,6 +11,7 @@ import com.madbros.tileminer.Sprites.CompoundAnimatedSprite;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class QueenBee extends Mob {
 	int length = 0;
@@ -111,8 +112,9 @@ public class QueenBee extends Mob {
 		Random rand2 = new Random();
 		int randomAmount = rand2.nextInt(3+1);
 		for(int a = 0; a < randomAmount; a++) {
-			
-			mobController.mobs.add(new QueenBeeMinion(Game.mobController, (absRect.x - Game.level.activeBlocks[0][0].absRect.x)/TILE_SIZE, (absRect.y- Game.level.activeBlocks[0][0].absRect.y)/TILE_SIZE));
+			RectInt absRect2 = absRect.getRectInt();
+			RectInt bAbsRect = Game.level.activeBlocks[0][0].absRect.getRectInt();
+			mobController.mobs.add(new QueenBeeMinion(Game.mobController, (absRect2.x - bAbsRect.x)/TILE_SIZE, (absRect2.y- bAbsRect.y)/TILE_SIZE));
 			mobController.mobs.get(mobController.mobs.size()-1).isChasing = true;
 		}
 	}

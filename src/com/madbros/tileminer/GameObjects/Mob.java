@@ -13,6 +13,7 @@ import com.madbros.tileminer.Sprites.CompoundAnimatedSprite;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class Mob extends Actor {
 	int length = 0;
@@ -95,7 +96,8 @@ public class Mob extends Actor {
 	}
 	
 	public void deathParticle() {
-		Game.particleEffectController.add(deathParticles, absRect.x+ (absRect.w/2), absRect.y+ (absRect.h/2));
+		RectInt absRect2 = absRect.getRectInt();
+		Game.particleEffectController.add(deathParticles, absRect2.x+ (absRect2.w/2), absRect2.y+ (absRect2.h/2));
 
 	}
 	
@@ -206,8 +208,10 @@ public class Mob extends Actor {
 	}
 	
 	public void chaseHero(Rect hero, Rect mob) {
-		float speedX = (hero.x+(hero.w/2)) - (mob.x+(mob.w/2));
-		float speedY = (hero.y+(hero.h/2)) - (mob.y +(mob.h/2));
+		RectInt hero2 = hero.getRectInt();
+		RectInt mob2 = mob.getRectInt();
+		float speedX = (hero2.x+(hero2.w/2)) - (mob2.x+(mob2.w/2));
+		float speedY = (hero2.y+(hero2.h/2)) - (mob2.y +(mob2.h/2));
 		
 		//float maxSpeed = moveSpeed;
 		float maxSpeed = currentSpeed;
@@ -252,8 +256,10 @@ public class Mob extends Actor {
 	}
 	
 	public void fleeRect(Rect rect, Rect mob) {
-		float speedX = (rect.x+(rect.w/2)) - (mob.x+(mob.w/2));
-		float speedY = (rect.y+(rect.h/2)) - (mob.y +(mob.h/2));
+		RectInt rect2 = rect.getRectInt();
+		RectInt mob2 = mob.getRectInt();
+		float speedX = (rect2.x+(rect2.w/2)) - (mob2.x+(mob2.w/2));
+		float speedY = (rect2.y+(rect2.h/2)) - (mob2.y +(mob2.h/2));
 		
 		float maxSpeed = moveSpeed;
 		

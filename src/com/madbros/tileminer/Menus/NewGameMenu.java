@@ -57,7 +57,8 @@ public class NewGameMenu extends Menu {
 
 		menuButtons = new PlainUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {
-			menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i], batch);
+			RectInt rect = r[i].getRectInt();
+			menuButtons[i] = new PlainUIButton(rect.x, rect.y, rect.w, rect.h, strings[i], functions[i], batch);
 		}
 	}
 	

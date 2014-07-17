@@ -38,17 +38,17 @@ public class SelectUIButton {
 	
 	public void render() {
 		
-		
+		RectInt rect2 = rect.getRectInt();
 		if(buttonIsPressedDown) {
-			buttonLeftPushed.draw(rect.x-6, rect.y-1,0);
-			buttonMiddlePushed.draw(rect.x-6+buttonLeft.getWidth(), rect.y, 0, rect.w-37, buttonMiddle.getHeight());
-			buttonRightPushed.draw(rect.x-6+buttonLeft.getWidth()+rect.w-37, rect.y-1, 0);
+			buttonLeftPushed.draw(rect2.x-6, rect2.y-1,0);
+			buttonMiddlePushed.draw(rect2.x-6+buttonLeft.getWidth(), rect2.y, 0, rect2.w-37, buttonMiddle.getHeight());
+			buttonRightPushed.draw(rect2.x-6+buttonLeft.getWidth()+rect2.w-37, rect2.y-1, 0);
 			//text.drawCenter(textRect, highlight);
 		} else {
 			
-			buttonLeft.draw(rect.x-6, rect.y-1,0);
-			buttonMiddle.draw(rect.x-6+buttonLeft.getWidth(), rect.y, 0, rect.w-37, buttonMiddle.getHeight());
-			buttonRight.draw(rect.x-6+buttonLeft.getWidth()+rect.w-37, rect.y-1, 0);
+			buttonLeft.draw(rect2.x-6, rect2.y-1,0);
+			buttonMiddle.draw(rect2.x-6+buttonLeft.getWidth(), rect2.y, 0, rect2.w-37, buttonMiddle.getHeight());
+			buttonRight.draw(rect2.x-6+buttonLeft.getWidth()+rect2.w-37, rect2.y-1, 0);
 			//text.drawCenter(textRect, fontColor);
 			
 

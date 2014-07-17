@@ -9,6 +9,7 @@ import com.madbros.tileminer.Game;
 import com.madbros.tileminer.UI.PlainUIButton;
 import com.madbros.tileminer.Utils.ButtonFunction;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class GameOptionsMenu extends GameMainMenu {
 
@@ -52,7 +53,8 @@ public class GameOptionsMenu extends GameMainMenu {
 	
 		menuButtons = new PlainUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {
-			menuButtons[i] = new PlainUIButton(r.x/2, r.y*i+Game.currentScreenSizeY/2-DEBUG_MENU_SIZEY*menuButtons.length/2, r.w, r.h, strings[i], functions[i], Game.batch);
+			RectInt rect = r.getRectInt();
+			menuButtons[i] = new PlainUIButton(rect.x/2, rect.y*i+Game.currentScreenSizeY/2-DEBUG_MENU_SIZEY*menuButtons.length/2, rect.w, rect.h, strings[i], functions[i], Game.batch);
 			
 		}
 	}

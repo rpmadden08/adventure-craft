@@ -19,7 +19,7 @@ public abstract class UIButton {
 	public boolean mouseIsHovering = false;
 	public boolean buttonIsPressedDown = false;
 	
-	public UIButton(int x, int y, int w, int h, String s, ButtonFunction func, SpriteBatch batch) {
+	public UIButton(double x, double y, double w, double h, String s, ButtonFunction func, SpriteBatch batch) {
 		rect = new Rect(x, y, w, h);
 		text = new Text(Sprites.arial24, s, batch);
 		

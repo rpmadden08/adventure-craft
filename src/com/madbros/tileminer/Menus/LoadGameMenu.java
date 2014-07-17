@@ -16,6 +16,7 @@ import com.madbros.tileminer.GameStates.MainMenuState;
 import com.madbros.tileminer.UI.*;
 import com.madbros.tileminer.Utils.ButtonFunction;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class LoadGameMenu extends Menu {
 	String fileName;
@@ -61,7 +62,8 @@ public class LoadGameMenu extends Menu {
 
 		menuButtons = new UIButton[functions.length];
 			for(int i = 0; i < functions.length; i++) {
-				menuButtons[i] = new PlainUIButton(r[i].x, r[i].y, r[i].w, r[i].h, strings[i], functions[i], batch);
+				RectInt rect = r[i].getRectInt();
+				menuButtons[i] = new PlainUIButton(rect.x, rect.y, rect.w, rect.h, strings[i], functions[i], batch);
 			}
 		
 		
@@ -73,7 +75,7 @@ public class LoadGameMenu extends Menu {
 	
 	public void refreshMenu() {
 		int marginY = 3;
-		Rect r1 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+		RectInt r1 = new RectInt(MAIN_MENU_STARTX, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		selectUIButtons = new SelectUIButton[saveFolders.length];
 		if(selectUIButtons.length < 6) {
 			for(int i = 0; i < selectUIButtons.length; i++) {

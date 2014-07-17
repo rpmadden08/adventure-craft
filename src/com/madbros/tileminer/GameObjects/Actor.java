@@ -14,6 +14,7 @@ import com.madbros.tileminer.StatusEffects.TimedStatusEffect;
 import com.madbros.tileminer.TileTypes.CollisionTile;
 import com.madbros.tileminer.Utils.Margin;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class Actor extends GameObject {
 	public CompoundAnimatedSprite sprite;
@@ -166,8 +167,10 @@ public class Actor extends GameObject {
 	/************************** Collision Detection **************************/
 	public void getCollisionBlocks() {
 		//get position in activeBlocks array
-		int x = (absRect.x - Game.level.activeBlocks[0][0].absRect.x-(TILE_SIZE*2)+(absRect.w/2)) / TILE_SIZE;
-		int y = (absRect.y - Game.level.activeBlocks[0][0].absRect.y-(TILE_SIZE*2)+(absRect.h/2)) / TILE_SIZE;
+		RectInt absRect2 = absRect.getRectInt();
+		RectInt lvBlAbsRect = Game.level.activeBlocks[0][0].absRect.getRectInt();
+		int x = (absRect2.x - lvBlAbsRect.x-(TILE_SIZE*2)+(absRect2.w/2)) / TILE_SIZE;
+		int y = (absRect2.y - lvBlAbsRect.y-(TILE_SIZE*2)+(absRect2.h/2)) / TILE_SIZE;
 		int j = 0;
 		for(int i = 0; i < collisionDetectionBlocks.length; i++) {
 			if(x+i/5 >= 0 && x+i/5 < Game.level.activeBlocks.length && y+j >= 0 && y+j < Game.level.activeBlocks[0].length) {

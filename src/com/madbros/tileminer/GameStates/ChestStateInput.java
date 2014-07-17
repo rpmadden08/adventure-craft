@@ -6,6 +6,7 @@ import com.madbros.tileminer.Items.NoItem;
 import com.madbros.tileminer.Slots.*;
 import com.madbros.tileminer.Utils.Helpers;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class ChestStateInput extends InventoryStateInput {
 	public void additionalKeyDown(int key){
@@ -70,7 +71,8 @@ public class ChestStateInput extends InventoryStateInput {
 	
 	public void additionalMouseMove() {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
-		Game.inventory.craftingMenu.handleMouseMove(mouseRect.x, mouseRect.y);
+		RectInt mouseRect2 = mouseRect.getRectInt();
+		Game.inventory.craftingMenu.handleMouseMove(mouseRect2.x, mouseRect2.y);
 		
 		//CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
 		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots, Game.inventory.invCrafted, Game.inventory.invClothing, Game.inventory.invChest};

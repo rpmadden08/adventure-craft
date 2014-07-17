@@ -9,6 +9,7 @@ import com.madbros.tileminer.Game;
 import com.madbros.tileminer.UI.PlainUIButton;
 import com.madbros.tileminer.Utils.ButtonFunction;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class GameHowToPlay extends GameMainMenu {
 
@@ -18,7 +19,7 @@ public class GameHowToPlay extends GameMainMenu {
 	public int HOW_TO_PLAY_HEIGHT = 480;
 	public int HOW_TO_PLAY_STARTX = Game.currentScreenSizeX /2 - 640 / 2;
 	public int HOW_TO_PLAY_STARTY = Game.currentScreenSizeY /2 - 480 / 2;
-	public Rect HOW_TO_PLAY_RECT = new Rect(HOW_TO_PLAY_STARTX, HOW_TO_PLAY_STARTY,HOW_TO_PLAY_WIDTH,HOW_TO_PLAY_HEIGHT);
+	public RectInt HOW_TO_PLAY_RECT = new RectInt(HOW_TO_PLAY_STARTX, HOW_TO_PLAY_STARTY,HOW_TO_PLAY_WIDTH,HOW_TO_PLAY_HEIGHT);
 	
 	
 	public GameHowToPlay(SpriteBatch batch) {
@@ -46,7 +47,8 @@ public class GameHowToPlay extends GameMainMenu {
 	
 		menuButtons = new PlainUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {
-			menuButtons[i] = new PlainUIButton(r.x/2, r.y, r.w, r.h, strings[i], functions[i], batch);
+			RectInt r2 = r.getRectInt();
+			menuButtons[i] = new PlainUIButton(r2.x/2, r2.y, r2.w, r2.h, strings[i], functions[i], batch);
 			
 		}
 	}

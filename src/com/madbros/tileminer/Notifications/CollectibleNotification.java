@@ -6,6 +6,7 @@ import static com.madbros.tileminer.Constants.Z_CHARACTER;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.madbros.tileminer.NotificationController;
 import com.madbros.tileminer.Notifications.Notification;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class CollectibleNotification extends Notification {
 	
@@ -18,7 +19,8 @@ public class CollectibleNotification extends Notification {
 	}
 
 	public void render() {
-		sprite.draw(absRect.x-(int)size-38, absRect.y, Z_CHARACTER);
+		RectInt absRect2 = absRect.getRectInt();
+		sprite.draw(absRect2.x-(int)size-38, absRect2.y, Z_CHARACTER);
 	}
 
 	

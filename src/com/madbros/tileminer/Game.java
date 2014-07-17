@@ -29,6 +29,7 @@ import com.madbros.tileminer.Systems.CollisionDetectionSystem;
 import com.madbros.tileminer.Systems.RenderSystem;
 import com.madbros.tileminer.TileTypes.NoTile;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 import static com.madbros.tileminer.Constants.*;
 
@@ -325,9 +326,11 @@ public class Game implements ApplicationListener {
 					Game.totalLoadingPoints = CHUNKS_IN_A_ROW *CHUNKS_IN_A_ROW+1;
 					Game.currentLoadingPoints = 0;
 					f.mkdir();
+					RectInt chunkRect2 = level.chunkRect.getRectInt();
 					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
-							level.loadInitialChunks(CHUNK_SIZE*i, CHUNK_SIZE*j, level.chunkRect.x + i, level.chunkRect.y + j);
+							
+							level.loadInitialChunks(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect2.x + i, chunkRect2.y + j);
 							Game.currentLoadingPoints = Game.currentLoadingPoints +1;
 						}
 						
@@ -362,10 +365,12 @@ public class Game implements ApplicationListener {
 						level.loadGame();
 						level.finishLoading();
 						
-						int x = Game.hero.absRect.x/TILE_SIZE;
-						int y = Game.hero.absRect.y/TILE_SIZE;
-						int bX = x - (level.chunkRect.x * CHUNK_SIZE)+1;
-						int bY = y - (level.chunkRect.y * CHUNK_SIZE)+1;
+						RectInt absRectHero = Game.hero.absRect.getRectInt();
+						RectInt chunkRect2 = level.chunkRect.getRectInt();
+						int x = absRectHero.x/TILE_SIZE;
+						int y = absRectHero.y/TILE_SIZE;
+						int bX = x - (chunkRect2.x * CHUNK_SIZE)+1;
+						int bY = y - (chunkRect2.y * CHUNK_SIZE)+1;
 						
 						
 						if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
@@ -423,9 +428,10 @@ public class Game implements ApplicationListener {
 					Game.totalLoadingPoints = CHUNKS_IN_A_ROW *CHUNKS_IN_A_ROW+1;
 					Game.currentLoadingPoints = 0;
 					f.mkdir();
+					RectInt chunkRect2 = level.chunkRect.getRectInt();
 					for(int i = 0; i < CHUNKS_IN_A_ROW; i++) {
 						for(int j = 0; j < CHUNKS_IN_A_ROW; j++) {
-							level.loadInitialChunks(CHUNK_SIZE*i, CHUNK_SIZE*j, level.chunkRect.x + i, level.chunkRect.y + j);
+							level.loadInitialChunks(CHUNK_SIZE*i, CHUNK_SIZE*j, chunkRect2.x + i, chunkRect2.y + j);
 							Game.currentLoadingPoints = Game.currentLoadingPoints +1;
 						}
 						
@@ -453,11 +459,12 @@ public class Game implements ApplicationListener {
 					public void run() {
 						level.loadGame();
 						level.finishLoading();
-						
-						int x = Game.hero.absRect.x/TILE_SIZE;
-						int y = Game.hero.absRect.y/TILE_SIZE;
-						int bX = x - (level.chunkRect.x * CHUNK_SIZE)+1;
-						int bY = y - (level.chunkRect.y * CHUNK_SIZE)+1;
+						RectInt absRectHero = Game.hero.absRect.getRectInt();
+						RectInt chunkRect2 = level.chunkRect.getRectInt();
+						int x = absRectHero.x/TILE_SIZE;
+						int y = absRectHero.y/TILE_SIZE;
+						int bX = x - (chunkRect2.x * CHUNK_SIZE)+1;
+						int bY = y - (chunkRect2.y * CHUNK_SIZE)+1;
 						//TODO check for coal copper and tin as well...
 							if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
 								Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);

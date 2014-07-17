@@ -9,6 +9,7 @@ import com.madbros.tileminer.Items.Item;
 import com.madbros.tileminer.Sprites.Sprite;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 public class CraftingSlot extends Slot{
 	public boolean hasIngedients = false;
 	private int maxToolTipDelay = 60;
@@ -28,9 +29,12 @@ public class CraftingSlot extends Slot{
 	}
 	
 	public void render() {
+		RectInt slotRect2 = slotRect.getRectInt();
 		if(isHighlighted) {
 			Sprites.pixel.setColor(highlightColor);
-			highlighter.draw(slotRect.x+2,slotRect.y+2, Z_INV_HIGHLIGHT, slotRect.w - 4, slotRect.h-4);
+
+			
+			highlighter.draw(slotRect2.x+2,slotRect2.y+2, Z_INV_HIGHLIGHT, slotRect2.w - 4, slotRect2.h-4);
 			Sprites.pixel.setColor(Color.WHITE);
 		}
 		slotSprite.draw(slotRect, Z_INV_SLOTS);
@@ -46,10 +50,10 @@ public class CraftingSlot extends Slot{
 				item.render(slotRect);
 					if(isHighlighted) {
 						Sprite sprite = Sprites.sprites.get(Sprites.GREEN_BUTTON_HOVER);
-						sprite.draw(slotRect.x, slotRect.y, 0);
+						sprite.draw(slotRect2.x, slotRect2.y, 0);
 					} else {
 						Sprite sprite = Sprites.sprites.get(Sprites.GREEN_BUTTON);
-						sprite.draw(slotRect.x, slotRect.y, 0);
+						sprite.draw(slotRect2.x, slotRect2.y, 0);
 					}
 			}
 		}
@@ -68,7 +72,7 @@ public class CraftingSlot extends Slot{
 	
 	public void renderCraftingInfo() {
 		if(item.id != 0) {
-			Rect craftingInfoRect = new Rect(501, 446, 226, 143);
+			RectInt craftingInfoRect = new RectInt(501, 446, 226, 143);
 			Sprites.pixel.setColor(0.349f, 0.337f, 0.322f, 1.0f);
 			Sprites.pixel.draw(craftingInfoRect.x, craftingInfoRect.y, 0, craftingInfoRect.w, craftingInfoRect.h);
 //			Game.inventory.menuSprites[0].draw(craftingInfoRect.x, craftingInfoRect.y, Z_INV_BACKDROP);	//top left
@@ -90,7 +94,10 @@ public class CraftingSlot extends Slot{
 				
 				Item recipeItem = ITEM_HASH.get(item.craftCost[a]).createNew();
 				recipeItem.stackSize = item.craftCostAmount[a];
-				Rect recipeSlotRect = new Rect(504,slotYCoord, slotRect.w, slotRect.h);
+				RectInt slotRect2 = slotRect.getRectInt();
+				
+				Rect recipeSlotRect = new Rect(504,slotYCoord, slotRect2.w, slotRect2.h);
+				RectInt recipeSlotRect2 = recipeSlotRect.getRectInt();
 				if(recipeItem.isInInventory()) {
 				} else {
 					recipeItem.sprite.setColor(0.2f,0.2f,0.2f,0.7f);
@@ -99,8 +106,8 @@ public class CraftingSlot extends Slot{
 				slotSprite.draw(504,slotYCoord, Z_INV_SLOTS);
 				slotSprite.setColor(Color.WHITE);
 				recipeItem.render(recipeSlotRect);
-				recipeItem.renderFont(recipeSlotRect.x2()-INV_SLOT_SIZE/2,recipeSlotRect.y2()-INV_SLOT_SIZE/2, Game.batch);
-				Sprites.arial10.draw(Game.batch, recipeItem.name, recipeSlotRect.x+ 44, recipeSlotRect.y+ 12);
+				recipeItem.renderFont(recipeSlotRect2.x2()-INV_SLOT_SIZE/2,recipeSlotRect2.y2()-INV_SLOT_SIZE/2, Game.batch);
+				Sprites.arial10.draw(Game.batch, recipeItem.name, recipeSlotRect2.x+ 44, recipeSlotRect2.y+ 12);
 				recipeItem.sprite.setColor(Color.WHITE);
 				Sprites.arial10.setColor(Color.WHITE);
 				

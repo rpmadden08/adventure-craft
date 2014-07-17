@@ -13,6 +13,7 @@ import com.madbros.tileminer.GameStates.MainMenuState;
 import com.madbros.tileminer.UI.*;
 import com.madbros.tileminer.Utils.ButtonFunction;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class MainMenu extends Menu{
 	public boolean isNewGameAvailable;
@@ -37,7 +38,8 @@ public class MainMenu extends Menu{
 		
 		menuButtons = new TextUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {
-			menuButtons[i] = new TextUIButton(r.x, r.y + i * (r.h + marginY), r.w, r.h, strings[i], functions[i], batch);
+			RectInt r2 = r.getRectInt();
+			menuButtons[i] = new TextUIButton(r2.x, r2.y + i * (r2.h + marginY), r2.w, r2.h, strings[i], functions[i], batch);
 		}
 
 

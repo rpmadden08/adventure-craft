@@ -9,6 +9,7 @@ import com.madbros.tileminer.Slots.*;
 import com.madbros.tileminer.TileTypes.CauldronTile;
 import com.madbros.tileminer.Utils.Helpers;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class CauldronStateInput extends InventoryStateInput {
 	public void additionalKeyDown(int key){
@@ -80,11 +81,12 @@ public class CauldronStateInput extends InventoryStateInput {
 	
 	public void additionalMouseMove() {
 		Rect mouseRect = new Rect(Helpers.getX(), Helpers.getY(), 1, 1);
-		Game.inventory.craftingMenu.handleMouseMove(mouseRect.x, mouseRect.y);
+		RectInt mouseRect2 = mouseRect.getRectInt();
+		Game.inventory.craftingMenu.handleMouseMove(mouseRect2.x, mouseRect2.y);
 		
 		CauldronTile cauldronTile = (CauldronTile) Game.level.activeBlocks[Game.inventory.currentInvActiveBlockX][Game.inventory.currentInvActiveBlockY].layers[OBJECT_LAYER];
 		if(cauldronTile.cauldronSlots[0].item.id != 0) {
-			cauldronTile.cauldronSlots[0].handleMouseMove(mouseRect.x, mouseRect.y);
+			cauldronTile.cauldronSlots[0].handleMouseMove(mouseRect2.x, mouseRect2.y);
 		}
 		Slot[][] slots = {Game.inventory.invBar, Game.inventory.invBag, Game.inventory.craftingMenu.craftSlots, Game.inventory.invCrafted, Game.inventory.invClothing,cauldronTile.cauldronSlots, cauldronTile.fuelSlot, cauldronTile.craftedSlot};
 		for(int i = 0; i < slots.length; i++) {

@@ -11,6 +11,7 @@ import com.madbros.tileminer.Items.Item;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class StairsDownTile extends CollisionTile {
 	public boolean hasReset = false;
@@ -74,9 +75,9 @@ public class StairsDownTile extends CollisionTile {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
 		b.collisionTile = null;
-		
-		int chunkX = Game.level.getAbsChunkX(b.absRect.x);
-		int chunkY = Game.level.getAbsChunkY(b.absRect.y);
+		RectInt b2AbsRect = b.absRect.getRectInt();
+		int chunkX = Game.level.getAbsChunkX(b2AbsRect.x);
+		int chunkY = Game.level.getAbsChunkY(b2AbsRect.y);
 		
 		//SOMEDAY WILL NEED TO FETCH THE LEVEL BELOW BUT FOR NOW IT WILL ALWAYS BE UNDERGROUND_1
 		File f = new File(Game.locOfSavedGame + CHUNKS_FOLDER + UNDERGROUND_1_FOLDER);
