@@ -42,7 +42,7 @@ public class Animation {
 	}
 	
 	public void draw(Rect r, float z) {
-		this.draw((int)r.x,(int) r.y, (int)r.w, (int)r.h, z);
+		this.draw(r.x, r.y, r.w, r.h, z);
 	}
 	
 	public void draw(float x, float y, float z, float w, float h) {

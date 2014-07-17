@@ -34,7 +34,7 @@ public class StaticSprite extends Sprite {
 	
 	@Override
 	public void draw(Rect r, float z) {
-		this.draw((int)r.x,(int) r.y, z, (int)r.w, (int)r.h);
+		this.draw(r.x, r.y, z, r.w, r.h);
 	}
 	
 	@Override

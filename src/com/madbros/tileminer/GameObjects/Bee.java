@@ -29,7 +29,7 @@ public class Bee extends Mob {
 		chaseRange = 200; //50
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.BEE_MINI));
 		margin = new Margin(11, 11, 10, 12);
-		moveSpeed = 0.05f; //0.03
+		moveSpeed = 0.03f; //0.03
 		currentSpeed = 0f;
 		deathParticles = "beeDeath.p";
 		isChasing = false;
@@ -77,8 +77,7 @@ public class Bee extends Mob {
 				}else{
 					runningSpeed = 0f;
 					checkSpeed();
-					//moveInRandomDirection(30);
-					moveInRandomDirection360(100);
+					moveInRandomDirection(30);
 				}	
 		
 	}

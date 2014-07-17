@@ -33,7 +33,7 @@ public class Slot {
 	public void render() {
 		if(isHighlighted) {
 			Sprites.pixel.setColor(highlightColor);
-			highlighter.draw((int)slotRect.x+2,(int)slotRect.y+2, Z_INV_HIGHLIGHT, (int)slotRect.w - 4, (int)slotRect.h-4);
+			highlighter.draw(slotRect.x+2,slotRect.y+2, Z_INV_HIGHLIGHT, slotRect.w - 4, slotRect.h-4);
 			Sprites.pixel.setColor(Color.WHITE);
 		}
 		slotSprite.draw(slotRect, Z_INV_SLOTS);

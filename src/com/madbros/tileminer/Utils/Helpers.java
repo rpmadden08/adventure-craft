@@ -31,9 +31,8 @@ public class Helpers {
 	}
 	
 	public static Point getOffsetPoint(Hero hero, Block firstBlockInActiveBlocks) {
-		System.out.println((((int)hero.absRect.x - Game.currentScreenSizeX / 2) - (int)firstBlockInActiveBlocks.absRect.x) % TILE_SIZE);
-		return new Point((((int)hero.absRect.x - Game.currentScreenSizeX / 2) - (int)firstBlockInActiveBlocks.absRect.x) % TILE_SIZE,
-						 (((int)hero.absRect.y - Game.currentScreenSizeY / 2) - (int)firstBlockInActiveBlocks.absRect.y) % TILE_SIZE);
+		return new Point(((hero.absRect.x - Game.currentScreenSizeX / 2) - firstBlockInActiveBlocks.absRect.x) % TILE_SIZE,
+						 ((hero.absRect.y - Game.currentScreenSizeY / 2) - firstBlockInActiveBlocks.absRect.y) % TILE_SIZE);
 	}
 	
 	public static Rect getRenderRect(Hero hero, Block firstBlockInActiveBlocks) {
@@ -64,10 +63,10 @@ public class Helpers {
 	}
 
 	public static void drawRect(Rect r, float zLayer) {
-		Sprites.pixel.draw((int)r.x, (int)r.y, zLayer,(int) r.w, 1);
-		Sprites.pixel.draw((int)r.x, (int)r.y, zLayer, 1, (int)r.h);
-		Sprites.pixel.draw((int)r.x2()-1, (int)r.y, zLayer, 1, (int)r.h);
-		Sprites.pixel.draw((int)r.x, (int)r.y2()-1, zLayer, (int)r.w, 1);
+		Sprites.pixel.draw(r.x, r.y, zLayer, r.w, 1);
+		Sprites.pixel.draw(r.x, r.y, zLayer, 1, r.h);
+		Sprites.pixel.draw(r.x2()-1, r.y, zLayer, 1, r.h);
+		Sprites.pixel.draw(r.x, r.y2()-1, zLayer, r.w, 1);
 	}
 	
 	public static Block[][] chunkToBlockArray(Chunk chunk) {
