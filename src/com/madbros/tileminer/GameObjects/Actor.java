@@ -27,6 +27,8 @@ public class Actor extends GameObject {
 	
 	public float currentSpeed;
 	public float knockBackSpeed;
+	public float knockBackResistance=0;
+	//public float coolDownTime=0;
 	public float moveSpeed;
 	public float runningSpeed;
 	public float slownessSpeed;
@@ -89,7 +91,7 @@ public class Actor extends GameObject {
 			baseSpeed = moveSpeed + runningSpeed - swimSpeed;
 			currentSpeed = baseSpeed - (baseSpeed * slownessSpeed) + (baseSpeed * speedSpeed)-(baseSpeed*hungerSpeed);
 		} else {
-			currentSpeed = knockBackSpeed;
+			currentSpeed = knockBackSpeed - knockBackResistance;
 		}
 	}
 	

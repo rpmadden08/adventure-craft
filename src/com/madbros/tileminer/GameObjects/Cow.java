@@ -32,6 +32,8 @@ public class Cow extends Mob {
 		moveSpeed = 0.03f; //0.03
 		sprite.changeFrameTimes(150);
 		deathParticles = "cowDeath.p";
+		hP = 500;
+		maxHP = 500; //10
 	}
 
 	@Override

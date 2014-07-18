@@ -19,8 +19,8 @@ public class Bee extends Mob {
 	public Bee(MobController mobController, int x, int y) {
 		super(mobController);
 		attack = 2; //2
-		hP = 6;
-		maxHP = 6;
+		hP = 500;
+		maxHP = 500; //6
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);

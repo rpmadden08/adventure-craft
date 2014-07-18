@@ -3,6 +3,7 @@ package com.madbros.tileminer.Sprites;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.badlogic.gdx.graphics.Color;
 import com.madbros.tileminer.AtlasComparator;
 import com.madbros.tileminer.Utils.*;
 
@@ -125,5 +126,12 @@ public class CompoundAnimatedSprite extends CompoundSprite {
 		}
 
 		return new CompoundAnimatedSprite(temp);
+	}
+	
+	public void setAnimColor(Color c) {
+		for(AnimatedSprite s : sprites) {
+			//this.sprites.add(s.getCopy());
+			s.setColor(c);
+		}
 	}
 }

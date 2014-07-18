@@ -500,7 +500,13 @@ public class RenderSystem {
 			int y = mobAbsRect.y - startY;
 			//int width = mob.absRect.w / 2;
 			//int height = mob.absRect.h / 2;
-			mob.sprite.draw(x, y, Z_CHARACTER);
+			if(mob.knockBackTime < 1) {
+				mob.sprite.draw(x, y, Z_CHARACTER);
+			} else {
+				mob.sprite.setAnimColor(new Color(1f,1f,1f,0.5f));
+				mob.sprite.draw(x, y, Z_CHARACTER);
+				mob.sprite.setAnimColor(Color.WHITE);
+			}
 //			Rect test = new Rect(mob.absRect, mob.margin);
 //			//Sprites.pixel.draw(x, y);
 //			Sprites.pixel.draw(x+64,y+64, Z_CHARACTER, 1, 1);

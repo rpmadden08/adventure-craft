@@ -75,11 +75,13 @@ public class Mob extends Actor {
 //		Game.hero.eP = Game.hero.eP - 0.1;
 		Item equippedWeapon = Game.inventory.invBar[Game.inventory.itemSelected].item;
 		equippedWeapon.calculateUsage();
-		if(knockBackTime <= 0) {
+		if(knockBackTime <=0) {
 			hP = hP - damage;
 			Item item = ITEM_HASH.get(Game.inventory.invBar[Game.inventory.itemSelected].item.id).createNew();
 			
-			knockBackTime = 10; //30
+			//knockBackTime = item.knockBack; //30
+			knockBackTime = 10;
+
 			if(hP <= 0) {
 				deathDrop();
 				Game.soundController.create(deathSound, 0.2f);
@@ -114,6 +116,7 @@ public class Mob extends Actor {
 		if(degrees < 0) {
 			degrees += 360;
 		}
+		dir360 = (int)degrees;
 		
 		isKnockingUp = false;
 		isKnockingDown = false;
@@ -155,10 +158,11 @@ public class Mob extends Actor {
 		//Check if the mob has stepped out of bounds
 		
 		if(knockBackTime > 0) {
+//			coolDownTime = coolDownTime -1;
 			knockBackTime = knockBackTime - 1;
 			checkSpeed();
 			moveKnockBack(Time.getDelta());
-			if(knockBackTime == 1) {
+			if(knockBackTime < 1) {
 				isKnockingLeft = false;
 				isKnockingDown = false;
 				isKnockingRight = false;
@@ -482,6 +486,44 @@ public class Mob extends Actor {
 		if(isMovingUp) {
 			moveVertical(f, (float)moveY);
 		} else if(isMovingDown) {
+			moveVertical(f, (float)moveY);
+		}
+	}
+	
+	public void moveKnockBack(float f) {
+		getCollisionBlocks();
+		
+		double moveX = 0;
+		double moveY = 0;
+
+
+		double newX = ((int) absRect.x) - 100 * Math.cos(Math.toRadians(dir360));
+		double newY = ((int) absRect.y) - 100 * Math.sin(Math.toRadians(dir360));
+
+		double vX = newX - absRect.x;
+		double vY = newY - absRect.y;
+
+		double length = Math.sqrt((vX*vX)+(vY*vY));
+
+		vX = vX/length;
+		vY = vY/length;
+
+		moveX = (vX*currentSpeed);
+		moveY = (vY*currentSpeed);
+
+
+
+//		moveX = getCollisionX();
+//		moveY = getCollisionY();
+		if(isKnockingLeft) {
+			moveHorizontal(f, (float)moveX);
+		} else if(isKnockingRight) {
+			moveHorizontal(f, (float)moveX);
+		}
+		
+		if(isKnockingUp) {
+			moveVertical(f, (float)moveY);
+		} else if(isKnockingDown) {
 			moveVertical(f, (float)moveY);
 		}
 	}
