@@ -64,8 +64,26 @@ public class Cow extends Mob {
 	}
 
 	public void updateAI() {
-			super.updateAI();
-			moveInRandomDirection4(300);
+//			super.updateAI();
+//			moveInRandomDirection4(300);
+		super.updateAI();
+		checkForFleeingCampfire();
+		if(isInRangeOfCampfire) {
+			fleeRect(campFireRect, this.absRect);
+		} else if(isChasing) {
+			runningSpeed = 0.06f;
+			checkSpeed();
+			checkForChasing();
+			chaseHero(Game.hero.absRect, this.absRect);
+		}else{
+			runningSpeed = 0f;
+			checkSpeed();
+			//moveInRandomDirection(30);
+			//moveInRandomDirection360(100);
+			isChasing = true;
+			chaseHero(Game.hero.absRect, this.absRect);
+		}	
+			
 		
 	}
 	

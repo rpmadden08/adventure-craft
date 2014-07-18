@@ -39,10 +39,12 @@ public class Helpers {
 	}
 	
 	public static Rect getRenderRect(Hero hero, Block firstBlockInActiveBlocks) {
-		return new Rect((int)Math.floor(((hero.absRect.x - Game.currentScreenSizeX / 2) - firstBlockInActiveBlocks.absRect.x) / TILE_SIZE) + RENDER_MARGIN,
-						(int)Math.floor(((hero.absRect.y - Game.currentScreenSizeY / 2) - firstBlockInActiveBlocks.absRect.y) / TILE_SIZE) + RENDER_MARGIN,
-						(int)Math.floor(Game.currentScreenSizeX / TILE_SIZE) + RENDER_MARGIN,
-						(int)Math.floor(Game.currentScreenSizeY / TILE_SIZE) + RENDER_MARGIN + 1);
+		RectInt heroAbsRect = hero.absRect.getRectInt();
+		RectInt firstBlockAbsRect = firstBlockInActiveBlocks.absRect.getRectInt();
+		return new Rect((int)Math.ceil(((heroAbsRect.x - Game.currentScreenSizeX / 2) - firstBlockAbsRect.x) / TILE_SIZE) + RENDER_MARGIN,
+						(int)Math.ceil(((heroAbsRect.y - Game.currentScreenSizeY / 2) - firstBlockAbsRect.y) / TILE_SIZE) + RENDER_MARGIN,
+						(int)Math.ceil(Game.currentScreenSizeX / TILE_SIZE) + RENDER_MARGIN,
+						(int)Math.ceil(Game.currentScreenSizeY / TILE_SIZE) + RENDER_MARGIN + 1);
 	}
 	
 	public static boolean containsXNumberOfItemsInSlots(int x, int itemId, Slot[] slots) {

@@ -63,6 +63,7 @@ public class Actor extends GameObject {
 	public int weaponY = 0;
 	public float weaponR = 0;
 	public int dir = 0;
+	public int dir360 = 0;
 	public boolean startWeaponAnimation = false;
 	public String hitSound;
 	public String deathSound;
@@ -200,7 +201,7 @@ public class Actor extends GameObject {
 		}
 	}
 	
-	public boolean getCollision(boolean isVerticalMovement, int move) {
+	public boolean getCollision(boolean isVerticalMovement, float move) {
 		boolean returnTrue = false;
 		if(Game.debugMenu.collisionDetectionIsOn) {
 			for(int i = 0; i < collisionDetectionBlocks.length; i++) {
@@ -263,23 +264,44 @@ public class Actor extends GameObject {
 		return false;
 	}
 	
-	public void xMove(int moveX) {
+//	public void xMove(int moveX) {
+//		absRect.x += moveX;
+//
+//	}
+//	
+//	public void yMove(int moveY) {
+//		absRect.y += moveY;
+//	}
+	public void xMove(float moveX) {
+		//super.xMove(moveX);
 		absRect.x += moveX;
-
 	}
 	
-	public void yMove(int moveY) {
+	public void yMove(float moveY) {
+		//super.yMove(moveY);
 		absRect.y += moveY;
 	}
 	
-	private void moveHorizontal(float f, float speed) {
-		int moveX = Math.round(speed * f);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
+//	public void moveHorizontal(float f, float speed) {
+//		int moveX = Math.round(speed * f);	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
+//		xMove(moveX);
+//		getCollision(HORIZONTAL, moveX);
+//	}
+//	
+//	public void moveVertical(float f, float speed) {
+//		int moveY = Math.round(speed * f);
+//		yMove(moveY);
+//		getCollision(VERTICAL, moveY);
+//	}
+	
+	public void moveHorizontal(float f, float speed) {
+		float moveX = speed * f;	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
 		xMove(moveX);
 		getCollision(HORIZONTAL, moveX);
 	}
 	
-	private void moveVertical(float f, float speed) {
-		int moveY = Math.round(speed * f);
+	public void moveVertical(float f, float speed) {
+		float moveY = speed * f;
 		yMove(moveY);
 		getCollision(VERTICAL, moveY);
 	}

@@ -77,7 +77,10 @@ public class Bee extends Mob {
 				}else{
 					runningSpeed = 0f;
 					checkSpeed();
-					moveInRandomDirection(30);
+					//moveInRandomDirection(30);
+					//moveInRandomDirection360(100);
+					isChasing = true;
+					chaseHero(Game.hero.absRect, this.absRect);
 				}	
 		
 	}

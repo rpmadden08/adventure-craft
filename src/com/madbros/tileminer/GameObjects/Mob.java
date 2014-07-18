@@ -213,46 +213,67 @@ public class Mob extends Actor {
 		float speedX = (hero2.x+(hero2.w/2)) - (mob2.x+(mob2.w/2));
 		float speedY = (hero2.y+(hero2.h/2)) - (mob2.y +(mob2.h/2));
 		
-		//float maxSpeed = moveSpeed;
-		float maxSpeed = currentSpeed;
-		//System.out.println(currentSpeed);
-		if(speedX > maxSpeed && speedY > maxSpeed) {
-			moveRight();
-			moveDown();
-		} else if(speedX > maxSpeed && speedY < -maxSpeed) {
-			moveRight();
-			moveUp();
-		} else if(speedX < -maxSpeed && speedY < -maxSpeed) {
-			moveLeft();
-			moveUp();
-		} else if(speedX < -maxSpeed && speedY > maxSpeed) {
-			moveLeft();
-			moveDown();
-		} else if(speedX > maxSpeed) {
-			moveRight();
-			if(isMovingUp || isMovingDown) {
-				stopUp();
-				stopDown();
-			}
-		} else if(speedX < -maxSpeed) {
-			moveLeft();
-			if(isMovingUp || isMovingDown) {
-				stopUp();
-				stopDown();
-			}
-		} else if(speedY > maxSpeed) {
-			moveDown();
-			if(isMovingLeft || isMovingRight) {
-				stopLeft();
-				stopRight();
-			}
-		} else if(speedY < -maxSpeed) {
-			moveUp();
-			if(isMovingLeft || isMovingRight) {
-				stopLeft();
-				stopRight();
-			}
+		dir360 = (int) (Math.atan2(speedY, speedX) * 180 / Math.PI);
+		
+		if(dir360< 0) {
+			dir360+=360;
 		}
+		
+		//float maxSpeed = moveSpeed;
+		//float maxSpeed = currentSpeed;
+		//System.out.println(currentSpeed);
+		stop();
+		
+		if(dir360 > 180 && dir360 < 360) {
+			moveUp();
+		}
+		if(dir360 > 0 && dir360 < 180) {
+			moveDown();
+		}
+		if(dir360 > 90 && dir360 < 270) {
+			moveLeft();
+		}
+		if(dir360 > 270 || dir360 < 90) {
+			moveRight();
+		}
+		
+//		if(speedX > maxSpeed && speedY > maxSpeed) {
+//			moveRight();
+//			moveDown();
+//		} else if(speedX > maxSpeed && speedY < -maxSpeed) {
+//			moveRight();
+//			moveUp();
+//		} else if(speedX < -maxSpeed && speedY < -maxSpeed) {
+//			moveLeft();
+//			moveUp();
+//		} else if(speedX < -maxSpeed && speedY > maxSpeed) {
+//			moveLeft();
+//			moveDown();
+//		} else if(speedX > maxSpeed) {
+//			moveRight();
+//			if(isMovingUp || isMovingDown) {
+//				stopUp();
+//				stopDown();
+//			}
+//		} else if(speedX < -maxSpeed) {
+//			moveLeft();
+//			if(isMovingUp || isMovingDown) {
+//				stopUp();
+//				stopDown();
+//			}
+//		} else if(speedY > maxSpeed) {
+//			moveDown();
+//			if(isMovingLeft || isMovingRight) {
+//				stopLeft();
+//				stopRight();
+//			}
+//		} else if(speedY < -maxSpeed) {
+//			moveUp();
+//			if(isMovingLeft || isMovingRight) {
+//				stopLeft();
+//				stopRight();
+//			}
+//		}
 	}
 	
 	public void fleeRect(Rect rect, Rect mob) {
@@ -394,17 +415,102 @@ public class Mob extends Actor {
 		framesNum++;
 	}
 	
+	public void moveInRandomDirection360(int possibleLength) {
+		if(framesNum > length) {
+			framesNum = 0;
+			Random rand2 = new Random();
+			length = rand2.nextInt(possibleLength);
+			
+			Random rand = new Random();
+			dir360 = rand.nextInt(360);
+			//dir360 = 35;
+			//System.out.println(dir360);
+			stop();
+			
+			if(dir360 > 180 && dir360 < 360) {
+				moveUp();
+				System.out.println("up");
+			}
+			if(dir360 > 0 && dir360 < 180) {
+				moveDown();
+				System.out.println("down");
+			}
+			if(dir360 > 90 && dir360 < 270) {
+				moveLeft();
+				System.out.println("left");
+			}
+			if(dir360 > 270 || dir360 < 90) {
+				moveRight();
+				System.out.println("right");
+			}
+			
+		}
+		framesNum++;
+	}
+	
+	public void move(float f) {
+		getCollisionBlocks();
+		
+		double moveX = 0;
+		double moveY = 0;
+
+
+		double newX = ((int) absRect.x) + 100 * Math.cos(Math.toRadians(dir360));
+		double newY = ((int) absRect.y) + 100 * Math.sin(Math.toRadians(dir360));
+
+		double vX = newX - absRect.x;
+		double vY = newY - absRect.y;
+
+		double length = Math.sqrt((vX*vX)+(vY*vY));
+
+		vX = vX/length;
+		vY = vY/length;
+
+		moveX = (vX*currentSpeed);
+		moveY = (vY*currentSpeed);
+
+
+
+//		moveX = getCollisionX();
+//		moveY = getCollisionY();
+		if(isMovingLeft) {
+			moveHorizontal(f, (float)moveX);
+		} else if(isMovingRight) {
+			moveHorizontal(f, (float)moveX);
+		}
+		
+		if(isMovingUp) {
+			moveVertical(f, (float)moveY);
+		} else if(isMovingDown) {
+			moveVertical(f, (float)moveY);
+		}
+	}
+	
+	public void moveHorizontal(float f, float speed) {
+		float moveX = speed * f;	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
+		xMove(moveX);
+		getCollision(HORIZONTAL, (int)moveX);
+	}
+	
+	public void moveVertical(float f, float speed) {
+		float moveY = speed * f;
+		yMove(moveY);
+		getCollision(VERTICAL, (int)moveY);
+	}
+	
 	public void updateAI() {				
 		runningSpeed = 0;
 		currentSpeed = 0;
 		checkSpeed();
 	}
 	
-	public void xMove(int moveX) {
-		super.xMove(moveX);
+	public void xMove(float moveX) {
+		//super.xMove(moveX);
+		absRect.x += moveX;
 	}
 	
-	public void yMove(int moveY) {
-		super.yMove(moveY);
+	public void yMove(float moveY) {
+		//super.yMove(moveY);
+		absRect.y += moveY;
 	}
 }

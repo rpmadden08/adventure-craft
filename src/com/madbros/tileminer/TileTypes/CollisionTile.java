@@ -15,26 +15,27 @@ public abstract class CollisionTile extends Tile {
 		isCollidable = true;
 	}
 	
-	public void heroDidCollide(Actor actor, int dir, int move, Rect charCRect, Rect tileRect) {
-		int extra;
-		RectInt charCRect2 = charCRect.getRectInt();
-		RectInt tileRect2 = tileRect.getRectInt();
+	public void heroDidCollide(Actor actor, int dir, float move, Rect charCRect, Rect tileRect) {
+		float extra;
+//		RectInt charCRect2 = charCRect.getRectInt();
+//		RectInt tileRect2 = tileRect.getRectInt();
+		//float move2 = Math.round(move);
 		
 		switch(dir) {
 		case DOWN:
-			extra = move - charCRect2.getBottomCollisionDiff(tileRect2);
+			extra = (float) (move - charCRect.getBottomCollisionDiff(tileRect));
 			actor.yMove(-move + extra);
 			break;
 		case UP:
-			extra = move - charCRect2.getTopCollisionDiff(tileRect2);
+			extra = (float) (move - charCRect.getTopCollisionDiff(tileRect));
 			actor.yMove(-move + extra);
 			break;
 		case LEFT:
-			extra = move - charCRect2.getLeftCollisionDiff(tileRect2);
+			extra = (float) (move - charCRect.getLeftCollisionDiff(tileRect));
 			actor.xMove(-move + extra);
 			break;
 		case RIGHT:
-			extra = move - charCRect2.getRightCollisionDiff(tileRect2);
+			extra = (float) (move - charCRect.getRightCollisionDiff(tileRect));
 			actor.xMove(-move + extra);
 			break;
 		}
