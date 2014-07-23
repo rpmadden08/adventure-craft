@@ -51,7 +51,7 @@ public class Mob extends Actor {
 		
 		moveSpeed = 0f;//0.05
 		currentSpeed = 0f; //0.05
-		knockBackSpeed = 0.3f; //0.3
+		knockBackSpeed = 0.19f; //0.3
 		speedSpeed = 0f;
 		slownessSpeed = 0f;
 	}
@@ -80,7 +80,7 @@ public class Mob extends Actor {
 			Item item = ITEM_HASH.get(Game.inventory.invBar[Game.inventory.itemSelected].item.id).createNew();
 			
 			//knockBackTime = item.knockBack; //30
-			knockBackTime = 10;
+			knockBackTime = 60;
 
 			if(hP <= 0) {
 				deathDrop();
@@ -105,10 +105,10 @@ public class Mob extends Actor {
 	
 	
 	public void knockBack(Hero hero) {
-		double p1x = (double) absRect.x + (absRect.w/2);
-		double p1y = (double) absRect.y + (absRect.h/2);
-		double p2x = (double) hero.absRect.x + (hero.absRect.w /2);
-		double p2y = (double) hero.absRect.y + (hero.absRect.h /2);
+		double p1x = absRect.x + (absRect.w/2);
+		double p1y = absRect.y + (absRect.h/2);
+		double p2x = hero.absRect.x + (hero.absRect.w /2);
+		double p2y = hero.absRect.y + (hero.absRect.h /2);
 		double xDiff = p2x - p1x;
 		double yDiff = p2y - p1y;
 		double degrees = Math.atan2(yDiff,  xDiff);
@@ -117,33 +117,58 @@ public class Mob extends Actor {
 			degrees += 360;
 		}
 		dir360 = (int)degrees;
+		if(dir360 >= 180) {
+			dir360 = dir360-180;
+		} else {
+			dir360 = dir360+180;
+		}
+		//System.out.println(dir360);
 		
 		isKnockingUp = false;
 		isKnockingDown = false;
 		isKnockingLeft = false;
 		isKnockingRight = false;
-		
-		if(degrees < 112.5 && degrees >= 67.5) {
+//		if(degrees < 112.5 && degrees >= 67.5) {
+//			isKnockingUp = true;
+//		} else if(degrees < 22.5 || degrees >= 337.5) {
+//			isKnockingLeft = true;
+//		} else if(degrees < 202.5 && degrees >= 157.5) {
+//			isKnockingRight = true;
+//		} else if(degrees < 292.5 && degrees >= 247.5) {
+//			isKnockingDown = true;
+//		} else if(degrees < 67.5 && degrees >= 22.5) {
+//			isKnockingUp = true;
+//			isKnockingLeft = true;
+//		} else if(degrees < 157.5 && degrees >= 112.5) {
+//			isKnockingUp = true;
+//			isKnockingRight = true;
+//		} else if(degrees < 247.5 && degrees >= 202.5) {
+//			isKnockingDown = true;
+//			isKnockingRight = true;
+//		} else if(degrees < 337.5 && degrees >= 292.5) {
+//			isKnockingDown = true;
+//			isKnockingLeft = true;
+//		} 
+		if(dir360 > 180 && dir360 < 360) {
 			isKnockingUp = true;
-		} else if(degrees < 22.5 || degrees >= 337.5) {
-			isKnockingLeft = true;
-		} else if(degrees < 202.5 && degrees >= 157.5) {
-			isKnockingRight = true;
-		} else if(degrees < 292.5 && degrees >= 247.5) {
+			isKnockingDown = false;
+			//System.out.println("up");
+		}
+		if(dir360 > 0 && dir360 < 180) {
 			isKnockingDown = true;
-		} else if(degrees < 67.5 && degrees >= 22.5) {
-			isKnockingUp = true;
+			isKnockingUp = false;
+			//System.out.println("down");
+		}
+		if(dir360 > 90 && dir360 < 270) {
 			isKnockingLeft = true;
-		} else if(degrees < 157.5 && degrees >= 112.5) {
-			isKnockingUp = true;
+			isKnockingRight = false;
+			//System.out.println("left");
+		}
+		if(dir360 > 270 || dir360 < 90) {
 			isKnockingRight = true;
-		} else if(degrees < 247.5 && degrees >= 202.5) {
-			isKnockingDown = true;
-			isKnockingRight = true;
-		} else if(degrees < 337.5 && degrees >= 292.5) {
-			isKnockingDown = true;
-			isKnockingLeft = true;
-		} 
+			isKnockingLeft = false;
+			//System.out.println("right");
+		}
 		//0 = left, 90 = up etc....	
 	}
 	
@@ -151,17 +176,20 @@ public class Mob extends Actor {
 	public void didCollide() {
 		//mobController.remove(this);
 	}
+	
 	public void update() {
 		for(int i =0; i < timedStatusEffects.length; i++) {
 			timedStatusEffects[i].update(this);
 		}
 		//Check if the mob has stepped out of bounds
-		
 		if(knockBackTime > 0) {
+			//System.out.println("IS KNOCKING BACK");
 //			coolDownTime = coolDownTime -1;
-			knockBackTime = knockBackTime - 1;
 			checkSpeed();
 			moveKnockBack(Time.getDelta());
+			knockBackTime = knockBackTime - 1;
+			
+			
 			if(knockBackTime < 1) {
 				isKnockingLeft = false;
 				isKnockingDown = false;
@@ -472,11 +500,7 @@ public class Mob extends Actor {
 
 		moveX = (vX*currentSpeed);
 		moveY = (vY*currentSpeed);
-
-
-
-//		moveX = getCollisionX();
-//		moveY = getCollisionY();
+		
 		if(isMovingLeft) {
 			moveHorizontal(f, (float)moveX);
 		} else if(isMovingRight) {
@@ -497,8 +521,8 @@ public class Mob extends Actor {
 		double moveY = 0;
 
 
-		double newX = ((int) absRect.x) - 100 * Math.cos(Math.toRadians(dir360));
-		double newY = ((int) absRect.y) - 100 * Math.sin(Math.toRadians(dir360));
+		double newX = (absRect.x) + 100 * Math.cos(Math.toRadians(dir360));
+		double newY = (absRect.y) + 100 * Math.sin(Math.toRadians(dir360));
 
 		double vX = newX - absRect.x;
 		double vY = newY - absRect.y;
@@ -528,16 +552,16 @@ public class Mob extends Actor {
 		}
 	}
 	
-	public void moveHorizontal(float f, float speed) {
-		float moveX = speed * f;	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
+	public void moveHorizontal(float f, double speed) {
+		double moveX = speed * f;	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
 		xMove(moveX);
-		getCollision(HORIZONTAL, (int)moveX);
+		getCollision(HORIZONTAL, moveX);
 	}
 	
-	public void moveVertical(float f, float speed) {
-		float moveY = speed * f;
+	public void moveVertical(float f, double speed) {
+		double moveY = speed * f;
 		yMove(moveY);
-		getCollision(VERTICAL, (int)moveY);
+		getCollision(VERTICAL, moveY);
 	}
 	
 	public void updateAI() {				
@@ -546,13 +570,13 @@ public class Mob extends Actor {
 		checkSpeed();
 	}
 	
-	public void xMove(float moveX) {
-		//super.xMove(moveX);
-		absRect.x += moveX;
-	}
-	
-	public void yMove(float moveY) {
-		//super.yMove(moveY);
-		absRect.y += moveY;
-	}
+//	public void xMove(float moveX) {
+//		//super.xMove(moveX);
+//		absRect.x += moveX;
+//	}
+//	
+//	public void yMove(float moveY) {
+//		//super.yMove(moveY);
+//		absRect.y += moveY;
+//	}
 }

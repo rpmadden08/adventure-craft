@@ -203,7 +203,7 @@ public class Actor extends GameObject {
 		}
 	}
 	
-	public boolean getCollision(boolean isVerticalMovement, float move) {
+	public boolean getCollision(boolean isVerticalMovement, double move) {
 		boolean returnTrue = false;
 		if(Game.debugMenu.collisionDetectionIsOn) {
 			for(int i = 0; i < collisionDetectionBlocks.length; i++) {
@@ -274,12 +274,12 @@ public class Actor extends GameObject {
 //	public void yMove(int moveY) {
 //		absRect.y += moveY;
 //	}
-	public void xMove(float moveX) {
+	public void xMove(double moveX) {
 		//super.xMove(moveX);
 		absRect.x += moveX;
 	}
 	
-	public void yMove(float moveY) {
+	public void yMove(double moveY) {
 		//super.yMove(moveY);
 		absRect.y += moveY;
 	}
@@ -296,14 +296,14 @@ public class Actor extends GameObject {
 //		getCollision(VERTICAL, moveY);
 //	}
 	
-	public void moveHorizontal(float f, float speed) {
-		float moveX = speed * f;	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
+	public void moveHorizontal(float f, double speed) {
+		double moveX = speed * f;	// if there is severe lag, the delta value may cause the character to jump significantly ahead...
 		xMove(moveX);
 		getCollision(HORIZONTAL, moveX);
 	}
 	
-	public void moveVertical(float f, float speed) {
-		float moveY = speed * f;
+	public void moveVertical(float f, double speed) {
+		double moveY = speed * f;
 		yMove(moveY);
 		getCollision(VERTICAL, moveY);
 	}

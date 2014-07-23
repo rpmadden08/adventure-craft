@@ -68,9 +68,12 @@ public class Cow extends Mob {
 	public void updateAI() {
 //			super.updateAI();
 //			moveInRandomDirection4(300);
+		
 		super.updateAI();
 		checkForFleeingCampfire();
-		if(isInRangeOfCampfire) {
+		if(knockBackTime > 0) { 
+			stop();
+		} else if(isInRangeOfCampfire) {
 			fleeRect(campFireRect, this.absRect);
 		} else if(isChasing) {
 			runningSpeed = 0.06f;

@@ -1060,13 +1060,13 @@ public class RenderSystem {
 			Sprites.pixel.draw(new Rect(new Rect(x, y, CHARACTER_SIZE, CHARACTER_SIZE), h.margin), Z_CHARACTER);
 			//Sprites.pixel.draw(new Rect(x + h.margin.left, y+ h.margin.top, CHARACTER_SIZE-h.margin.right, CHARACTER_SIZE- h.margin.bottom), Z_CHARACTER);
 			
-			Sprites.pixel.setColor(Color.YELLOW);
-			if(h.collisionDetectionBlocks[0] != null) {
-				for(int i = 0; i < h.collisionDetectionBlocks.length; i++) {
-					if(h.collisionDetectionBlocks[i].sRect != null && h.collisionDetectionBlocks[i].isCollidable())
-						Sprites.pixel.draw(h.collisionDetectionBlocks[i].sRect, Z_COLLISION_RECTS + 0.01f);
-				}
-			}
+//			Sprites.pixel.setColor(Color.YELLOW);
+//			if(h.collisionDetectionBlocks[0] != null) {
+//				for(int i = 0; i < h.collisionDetectionBlocks.length; i++) {
+//					if(h.collisionDetectionBlocks[i].sRect != null && h.collisionDetectionBlocks[i].isCollidable())
+//						Sprites.pixel.draw(h.collisionDetectionBlocks[i].sRect, Z_COLLISION_RECTS + 0.01f);
+//				}
+//			}
 			Sprites.pixel.setColor(Color.WHITE);
 		}
 	}
@@ -1074,12 +1074,13 @@ public class RenderSystem {
 	public void renderMobCollisionRects(Actor h, int x, int y) {
 		if(Game.debugMenu.collisionRectsAreOn)  {
 			
-//			Sprites.pixel.setColor(Color.YELLOW);
+			Sprites.pixel.setColor(Color.YELLOW);
 //			if(h.collisionDetectionBlocks[0] != null) {
 //				for(int i = 0; i < h.collisionDetectionBlocks.length; i++) {
 ////					if(h.collisionDetectionBlocks[i].sRect != null && h.collisionDetectionBlocks[i].isCollidable()) {
 //					//if(h.collisionDetectionBlocks[i].sRect != null) {
-//						Sprites.pixel.draw(h.collisionDetectionBlocks[i].absRect.x-startX,h.collisionDetectionBlocks[i].absRect.y-startY, Z_COLLISION_RECTS + 0.01f,h.collisionDetectionBlocks[i].absRect.w,h.collisionDetectionBlocks[i].absRect.h);
+//					RectInt colRect = h.collisionDetectionBlocks[i].absRect.getRectInt();
+//						Sprites.pixel.draw(colRect.x-startX,colRect.y-startY, Z_COLLISION_RECTS + 0.01f,colRect.w,colRect.h);
 //					//System.out.println(h.collisionDetectionBlocks.length);
 //					//}
 //				}
@@ -1109,7 +1110,7 @@ public class RenderSystem {
 		if(Game.debugMenu.collisionTilesAreOn && Arrays.asList(Game.hero.collisionDetectionBlocks).contains(block)) {
 			Color highlightColor = new Color(1, 1, 1, 0.2f);
 			Sprites.pixel.setColor(highlightColor);
-			Sprites.collisionDebugger.draw(x, y, Z_COLLISION_TILES, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
+			Sprites.pixel.draw(x, y, Z_COLLISION_TILES, TILE_SIZE * Game.pixelModifier, TILE_SIZE * Game.pixelModifier);
 			Sprites.pixel.setColor(Color.WHITE);
 		}
 	}

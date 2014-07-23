@@ -3,6 +3,8 @@ package com.madbros.tileminer.TileTypes;
 import static com.madbros.tileminer.Constants.*;
 
 import com.madbros.tileminer.GameObjects.Actor;
+import com.madbros.tileminer.GameObjects.Hero;
+import com.madbros.tileminer.GameObjects.Mob;
 import com.madbros.tileminer.Utils.Rect;
 import com.madbros.tileminer.Utils.RectInt;
 
@@ -15,27 +17,52 @@ public abstract class CollisionTile extends Tile {
 		isCollidable = true;
 	}
 	
-	public void heroDidCollide(Actor actor, int dir, float move, Rect charCRect, Rect tileRect) {
-		float extra;
+	public void heroDidCollide(Actor actor, int dir, double move, Rect charCRect, Rect tileRect) {
+		double extra;
 //		RectInt charCRect2 = charCRect.getRectInt();
 //		RectInt tileRect2 = tileRect.getRectInt();
 		//float move2 = Math.round(move);
-		
 		switch(dir) {
 		case DOWN:
-			extra = (float) (move - charCRect.getBottomCollisionDiff(tileRect));
+			extra = move - charCRect.getBottomCollisionDiff(tileRect);
+//			if(actor instanceof Mob) {
+//				System.out.println("EXTRA Y = " +extra);
+//				if(actor.knockBackTime > 0) {
+//					System.out.println("IS KNOCKING BACK!");
+//				}
+//			}
 			actor.yMove(-move + extra);
 			break;
 		case UP:
-			extra = (float) (move - charCRect.getTopCollisionDiff(tileRect));
+			extra = move - charCRect.getTopCollisionDiff(tileRect);
+//			if(actor instanceof Mob) {
+//				System.out.println("EXTRA Y = " +extra);
+//				if(actor.knockBackTime > 0) {
+//					System.out.println("IS KNOCKING BACK!");
+//				}
+//			}
 			actor.yMove(-move + extra);
 			break;
 		case LEFT:
-			extra = (float) (move - charCRect.getLeftCollisionDiff(tileRect));
+			extra = move - charCRect.getLeftCollisionDiff(tileRect);
+			
+//			if(actor instanceof Mob) {
+//				System.out.println("EXTRA X = " +extra);
+//				if(actor.knockBackTime > 0) {
+//					System.out.println("IS KNOCKING BACK!");
+//				}
+//			}
 			actor.xMove(-move + extra);
 			break;
 		case RIGHT:
-			extra = (float) (move - charCRect.getRightCollisionDiff(tileRect));
+			
+			extra = move - charCRect.getRightCollisionDiff(tileRect);
+//			if(actor instanceof Mob) {
+//				System.out.println("EXTRA X = " +extra);
+//				if(actor.knockBackTime > 0) {
+//					System.out.println("IS KNOCKING BACK!");
+//				}
+//			}
 			actor.xMove(-move + extra);
 			break;
 		}

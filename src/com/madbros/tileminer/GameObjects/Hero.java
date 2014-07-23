@@ -39,7 +39,7 @@ public class Hero extends Actor {
 		swimmingSprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_SWIMMING));
 		
 		margin = new Margin(17, 17, 33, 1);
-		moveSpeed = 0.095f; //0.095
+		moveSpeed = 0.19f; //0.095
 		currentSpeed = 0f; 
 		knockBackSpeed = 0.3f;
 		hitSound = "sounds/pain.wav";
