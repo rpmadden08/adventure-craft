@@ -43,8 +43,6 @@ public class ChestTile extends CollisionTile {
 			Game.inventory.chestOn = true;
 			Game.inventory.currentInvBlockX = x;
 			Game.inventory.currentInvBlockY = y;
-//			System.out.println(x);
-//			System.out.println(y);
 			File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + x + "-" + y + ".sv");
 			if(f.exists()) {
 				Game.saveGame.loadChest(x, y);

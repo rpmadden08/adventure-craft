@@ -129,10 +129,49 @@ public class Hero extends Actor {
 	}
 	
 	public void knockBack(Mob mob) {
-		double p1x = (double) absRect.x+ (absRect.w /2);
-		double p1y = (double) absRect.y+ (absRect.h/2);
-		double p2x = (double) mob.absRect.x +(mob.absRect.w /2);
-		double p2y = (double) mob.absRect.y +(mob.absRect.h /2);
+//		double p1x = (double) absRect.x+ (absRect.w /2);
+//		double p1y = (double) absRect.y+ (absRect.h/2);
+//		double p2x = (double) mob.absRect.x +(mob.absRect.w /2);
+//		double p2y = (double) mob.absRect.y +(mob.absRect.h /2);
+//		double xDiff = p2x - p1x;
+//		double yDiff = p2y - p1y;
+//		double degrees = Math.atan2(yDiff,  xDiff);
+//		degrees = degrees * 180 /(int) Math.PI;
+//		if(degrees < 0) {
+//			degrees += 360;
+//		}
+//		
+//		isKnockingUp = false;
+//		isKnockingDown = false;
+//		isKnockingLeft = false;
+//		isKnockingRight = false;
+//		
+//		if(degrees < 112.5 && degrees >= 67.5) {
+//			isKnockingUp = true;
+//		} else if(degrees < 22.5 || degrees >= 337.5) {
+//			isKnockingLeft = true;
+//		} else if(degrees < 202.5 && degrees >= 157.5) {
+//			isKnockingRight = true;
+//		} else if(degrees < 292.5 && degrees >= 247.5) {
+//			isKnockingDown = true;
+//		} else if(degrees < 67.5 && degrees >= 22.5) {
+//			isKnockingUp = true;
+//			isKnockingLeft = true;
+//		} else if(degrees < 157.5 && degrees >= 112.5) {
+//			isKnockingUp = true;
+//			isKnockingRight = true;
+//		} else if(degrees < 247.5 && degrees >= 202.5) {
+//			isKnockingDown = true;
+//			isKnockingRight = true;
+//		} else if(degrees < 337.5 && degrees >= 292.5) {
+//			isKnockingDown = true;
+//			isKnockingLeft = true;
+//		} 
+		//0 = left, 90 = up etc....
+		double p1x = absRect.x + (absRect.w/2);
+		double p1y = absRect.y + (absRect.h/2);
+		double p2x = mob.absRect.x + (mob.absRect.w /2);
+		double p2y = mob.absRect.y + (mob.absRect.h /2);
 		double xDiff = p2x - p1x;
 		double yDiff = p2y - p1y;
 		double degrees = Math.atan2(yDiff,  xDiff);
@@ -140,34 +179,55 @@ public class Hero extends Actor {
 		if(degrees < 0) {
 			degrees += 360;
 		}
+		dir360 = (int)degrees;
+		if(dir360 >= 180) {
+			dir360 = dir360-180;
+		} else {
+			dir360 = dir360+180;
+		}
 		
 		isKnockingUp = false;
 		isKnockingDown = false;
 		isKnockingLeft = false;
 		isKnockingRight = false;
-		
-		if(degrees < 112.5 && degrees >= 67.5) {
+//		if(degrees < 112.5 && degrees >= 67.5) {
+//			isKnockingUp = true;
+//		} else if(degrees < 22.5 || degrees >= 337.5) {
+//			isKnockingLeft = true;
+//		} else if(degrees < 202.5 && degrees >= 157.5) {
+//			isKnockingRight = true;
+//		} else if(degrees < 292.5 && degrees >= 247.5) {
+//			isKnockingDown = true;
+//		} else if(degrees < 67.5 && degrees >= 22.5) {
+//			isKnockingUp = true;
+//			isKnockingLeft = true;
+//		} else if(degrees < 157.5 && degrees >= 112.5) {
+//			isKnockingUp = true;
+//			isKnockingRight = true;
+//		} else if(degrees < 247.5 && degrees >= 202.5) {
+//			isKnockingDown = true;
+//			isKnockingRight = true;
+//		} else if(degrees < 337.5 && degrees >= 292.5) {
+//			isKnockingDown = true;
+//			isKnockingLeft = true;
+//		} 
+		if(dir360 > 180 && dir360 < 360) {
 			isKnockingUp = true;
-		} else if(degrees < 22.5 || degrees >= 337.5) {
-			isKnockingLeft = true;
-		} else if(degrees < 202.5 && degrees >= 157.5) {
-			isKnockingRight = true;
-		} else if(degrees < 292.5 && degrees >= 247.5) {
+			isKnockingDown = false;
+		}
+		if(dir360 > 0 && dir360 < 180) {
 			isKnockingDown = true;
-		} else if(degrees < 67.5 && degrees >= 22.5) {
-			isKnockingUp = true;
+			isKnockingUp = false;
+		}
+		if(dir360 > 90 && dir360 < 270) {
 			isKnockingLeft = true;
-		} else if(degrees < 157.5 && degrees >= 112.5) {
-			isKnockingUp = true;
+			isKnockingRight = false;
+		}
+		if(dir360 > 270 || dir360 < 90) {
 			isKnockingRight = true;
-		} else if(degrees < 247.5 && degrees >= 202.5) {
-			isKnockingDown = true;
-			isKnockingRight = true;
-		} else if(degrees < 337.5 && degrees >= 292.5) {
-			isKnockingDown = true;
-			isKnockingLeft = true;
-		} 
-		//0 = left, 90 = up etc....
+			isKnockingLeft = false;
+		}
+		//0 = left, 90 = up etc....	
 		
 		
 	}
@@ -212,49 +272,22 @@ public class Hero extends Actor {
 		for(int a = 0; a < collisionDetectionBlocks.length; a++) {
 			if(collisionDetectionBlocks[a] != null) {
 				if(collisionDetectionBlocks[a].isCollidable()) {
+					
 					if(charCRect.detectCollision(collisionDetectionBlocks[a].collisionTile.cRect)) {
-						
 						if(collisionDetectionBlocks[a].layers[WATER_LAYER].id == WATER) {
 							if(!isSwimming) {
 								Game.soundController.create("sounds/splash.wav", 0.5f);
 							}
-//							if(!isSwimming) {
-//								swimmingSprite.resetFrames();
-//								sprite.resetFrames();
-//							}
-//								//sprite.resetFrames();
-//								//swimmingSprite.resetFrames();
-//								int currentAnimation = sprite.getCurrentAnimation();
-//								//int currentAnimationFrame =sprite.getCurrentAnimationFrame();
-//								if(currentAnimation != swimmingSprite.getCurrentAnimation()) {
-//									swimmingSprite.changeAnimationTo(currentAnimation);
-//								}
-//								//swimmingSprite.setCurrentFrame(currentAnimationFrame);
-//								
-//							//}
 							return true;
 						}
 					}
 				}
 			}
 		}
-//		if(isSwimming) {
-//			swimmingSprite.resetFrames();
-//			sprite.resetFrames();
-//		}
-		//System.out.println("ReturningFalse");
+
 		return false;
 	}
-//	public void addClothingItemWhileSwimming(Item clothingItem) {
-//		swimmingSprite.addSprite(clothingItem.animatedSprite);
-//		swimmingSprite.sort();
-//		//sprite.changeAnimationTo(WALK_DOWN);
-//		//increase armor rating and add special effects
-//	}
-//	
-//	public void removeClothingItemWhileSwimming(Item clothingItem) {
-//		swimmingSprite.removeSprite(clothingItem.animatedSprite);
-//	}
+
 	@Override
 	public void update() {
 		super.update();
@@ -275,8 +308,6 @@ public class Hero extends Actor {
 		}
 
 		checkEnergy();
-		//System.out.println(Time.getDelta());
-		//System.out.println("Hero Coordinates: "+ this.absRect.x+","+this.absRect.y);
 		for(int i =0; i < timedStatusEffects.length; i++) {
 			timedStatusEffects[i].update(this);
 		}
@@ -442,6 +473,5 @@ public class Hero extends Actor {
 //			Game.level.offsetY += TILE_SIZE;
 //			Game.level.renderRect.y--;
 //		}
-//		//System.out.println("y="+absRect.y);
 //	}
 }

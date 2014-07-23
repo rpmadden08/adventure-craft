@@ -325,22 +325,44 @@ public class Actor extends GameObject {
 	
 	public void moveKnockBack(float f) {
 		getCollisionBlocks();
+		
+		double moveX = 0;
+		double moveY = 0;
+
+
+		double newX = (absRect.x) + 100 * Math.cos(Math.toRadians(dir360));
+		double newY = (absRect.y) + 100 * Math.sin(Math.toRadians(dir360));
+
+		double vX = newX - absRect.x;
+		double vY = newY - absRect.y;
+
+		double length = Math.sqrt((vX*vX)+(vY*vY));
+
+		vX = vX/length;
+		vY = vY/length;
+
+		moveX = (vX*currentSpeed);
+		moveY = (vY*currentSpeed);
+
+
+
+//		moveX = getCollisionX();
+//		moveY = getCollisionY();
 		if(isKnockingLeft) {
-			moveHorizontal(f, -currentSpeed);
+			moveHorizontal(f, (float)moveX);
 		} else if(isKnockingRight) {
-			moveHorizontal(f, currentSpeed);
+			moveHorizontal(f, (float)moveX);
 		}
 		
 		if(isKnockingUp) {
-			moveVertical(f, -currentSpeed);
+			moveVertical(f, (float)moveY);
 		} else if(isKnockingDown) {
-			moveVertical(f, currentSpeed);
+			moveVertical(f, (float)moveY);
 		}
 	}
 	
 	public void update() {
 		if(appliedStatusEffects[1].id == 1) {
-			//System.out.println(appliedStatusEffects[1].usesLeft);
 		}
 		
 //		if(isMoving() && !isAttacking) {

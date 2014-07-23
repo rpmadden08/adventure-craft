@@ -36,7 +36,6 @@ public class Notification extends GameObject {
 	
 	public void update() {
 		life --;
-		//System.out.println(life);
 		if(life < 1) {
 			notificationController.remove(this);
 		}

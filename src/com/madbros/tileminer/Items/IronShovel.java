@@ -81,14 +81,11 @@ public class IronShovel extends ToolItem {
 				Game.level.tileBeingAttacked2.isDiggable && 
 				Game.level.tileBeingAttacked3.isDiggable && 
 				Game.level.tileBeingAttacked4.isDiggable) {
-//			int objectTileID = Game.level.activeBlocks[block.getX(Game.level.activeBlocks)][block.getY(Game.level.activeBlocks)].layers[OBJECT_LAYER].id;
-//			System.out.println(objectTileID);
-//			if (objectTileID == AIR || objectTileID == TALL_GRASS_A_TILE) {
 			int objectTileID = Game.level.activeBlocks[block.getX(Game.level.activeBlocks)][block.getY(Game.level.activeBlocks)].layers[OBJECT_LAYER].id;
 			int objectTileID2 = Game.level.activeBlocks[block.getX(Game.level.activeBlocks)+1][block.getY(Game.level.activeBlocks)].layers[OBJECT_LAYER].id;
 			int objectTileID3 = Game.level.activeBlocks[block.getX(Game.level.activeBlocks)][block.getY(Game.level.activeBlocks)+1].layers[OBJECT_LAYER].id;
 			int objectTileID4 = Game.level.activeBlocks[block.getX(Game.level.activeBlocks)+1][block.getY(Game.level.activeBlocks)+1].layers[OBJECT_LAYER].id;
-			//System.out.println(objectTileID+","+objectTileID2+","+objectTileID3+","+objectTileID4);
+
 			if (checkID(objectTileID) && 
 					checkID(objectTileID2) && 
 					checkID(objectTileID3) && 

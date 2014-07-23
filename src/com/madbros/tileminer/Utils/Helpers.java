@@ -33,7 +33,6 @@ public class Helpers {
 	public static Point getOffsetPoint(Hero hero, Block firstBlockInActiveBlocks) {
 		RectInt heroAbsRect = hero.absRect.getRectInt();
 		RectInt firstBlockAbsRect = firstBlockInActiveBlocks.absRect.getRectInt();
-		//System.out.println(((heroAbsRect.x - Game.currentScreenSizeX / 2) - firstBlockAbsRect.x) % TILE_SIZE);
 		return new Point(((heroAbsRect.x - Game.currentScreenSizeX / 2) - firstBlockAbsRect.x) % TILE_SIZE,
 						 ((heroAbsRect.y - Game.currentScreenSizeY / 2) - firstBlockAbsRect.y) % TILE_SIZE);
 	}
@@ -51,9 +50,7 @@ public class Helpers {
 		int count = 0;
 		for(int i = 0; i < slots.length; i++) {
 			if(slots[i].item.id == itemId) count++;
-			//System.out.println("ITEM ID: "+itemId+" = "+slots[i].item.id);
 		}
-		//System.out.println("ITEM ID: "+itemId+" = "+slots[i].item.id);
 		if(count == x) {
 			return true;
 		}
@@ -153,8 +150,6 @@ public class Helpers {
 	}
 	
 	public static void chestDataToSlotArray(ChestData chestData) {
-		//Slot[] slots = new Slot[Game.inventory.invChest.length];
-		//System.out.println("Helpers Item Slot 1 has an ID of:  "+chestData.itemIds[0]);
 		for(int x = 0; x < Game.inventory.invChest.length; x++) {
 			Game.inventory.invChest[x].item = ITEM_HASH.get(chestData.itemIds[x]).createNew();
 			Game.inventory.invChest[x].item.stackSize = chestData.itemStackSizes[x];
@@ -163,7 +158,6 @@ public class Helpers {
 	}
 	
 	public static void collectibleDataToCollectibleController(CurrentLevelData c) {
-		System.out.println("Loading:  "+c.collectibleItemIds.length);
 		
 		for(int x = 0; x < c.collectibleItemIds.length; x++) {
 			Item i = ITEM_HASH.get(c.collectibleItemIds[x]).createNew();
@@ -191,7 +185,6 @@ public class Helpers {
 			Random rand = new Random();
 			int totalItems2 = rand.nextInt(totalItems);
 			totalItems = min +totalItems2;
-			//System.out.println(totalItems);
 			return totalItems;
 		}
 	}
@@ -202,7 +195,6 @@ public class Helpers {
 		Random rand = new Random();
 		int totalItems2 = rand.nextInt(totalItems);
 		totalItems = min +totalItems2;
-		//System.out.println("TOTAL ITEMS:  "+totalItems);
 		
 	     Item[] items = new Item[totalItems];
 	     
@@ -221,7 +213,6 @@ public class Helpers {
 		for(int x = 0; x < totalItems; x++) {
 			double randomPercent = rand.nextDouble();
 			//double randomPercent = 0.323;
-			//System.out.println(randomPercent);
 			
 			if(randomPercent < 0.001 && prob4 == true) {
 				List<Item> itemList = new ArrayList<Item>();
@@ -290,7 +281,6 @@ public class Helpers {
 				items[x] = itemList.get(itemNumber);
 				items[x].stackSize = itemList.get(itemNumber).stackSize;
 			} else if(prob3 == true) {
-				//System.out.println("Just as I thought...");
 				List<Item> itemList = new ArrayList<Item>();
 				for(int i = 0; i<probabilities.length; i++) {
 					if(probabilities[i] == 3) {
@@ -298,7 +288,6 @@ public class Helpers {
 						itemList.get(itemList.size() - 1).stackSize = getRandomMaxMin(stackSizeMin[i], stackSizeMax[i]);
 					}
 				}
-				//System.out.println(itemList.size());
 				int itemNumber = rand.nextInt(itemList.size());
 				items[x] = itemList.get(itemNumber);
 				items[x].stackSize = itemList.get(itemNumber).stackSize;
@@ -315,9 +304,6 @@ public class Helpers {
 				items[x].stackSize = itemList.get(itemNumber).stackSize;
 			}
 		}
-//		for(int i = 0; i<items.length; i++) {
-//			//System.out.println(items[i].stackSize);
-//		}
 		return items;
 	}
 }

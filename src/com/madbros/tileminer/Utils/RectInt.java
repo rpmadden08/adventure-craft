@@ -2,7 +2,6 @@ package com.madbros.tileminer.Utils;
 
 import static com.madbros.tileminer.Constants.*;
 
-import com.madbros.tileminer.GameObjects.Actor;
 
 public class RectInt {
 	public int x;

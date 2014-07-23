@@ -379,7 +379,6 @@ public class Game implements ApplicationListener {
 								Game.level.activeBlocks[bX][bY].deleteObjectTile();
 							}
 						} else if(Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].id == WATER) {
-							//System.out.println("This is water...");
 							Game.level.activeBlocks[bX][bY].layers[WATER_LAYER] = new NoTile();
 							Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].deleteMe(bX, bY, level.activeBlocks);
 						}
@@ -470,7 +469,6 @@ public class Game implements ApplicationListener {
 								Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);
 								Game.level.activeBlocks[bX][bY].deleteObjectTile();
 							} else if(Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].id == WATER) {
-								//System.out.println("This is water...");
 								Game.level.activeBlocks[bX][bY].layers[WATER_LAYER] = new NoTile();
 								Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].deleteMe(bX, bY, level.activeBlocks);
 							}
@@ -509,8 +507,6 @@ public class Game implements ApplicationListener {
 			    		&& current.getWidth() <= 1440 
 			    		&& current.getHeight() <=900)	{
 			    	tempResolutions.add(current);
-//			    	System.out.println(current.getWidth() + "x" + current.getHeight() + "x" +
-//			                        	current.getBitsPerPixel() + " " + current.getFrequency() + "Hz"+ current.isFullscreenCapable());
 			    }
 			}
 		} catch(LWJGLException e) {

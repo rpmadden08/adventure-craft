@@ -26,7 +26,6 @@ public class Underground1 extends Level{
 	
 	public void finishLoading() {
 		Game.currentState = new MainState();
-		//System.out.println("FINISHLOADING:  "+chunkRect.x);
 		if(Game.replaceableX > 0 && Game.replaceableY > 0) {
 			int x = getXFromAbs(Game.replaceableX);
 			int y = getYFromAbs(Game.replaceableY);
@@ -215,7 +214,6 @@ public class Underground1 extends Level{
 				//Barrels
 			if(chunkGenerator.chunkObjectLayer[s][t] == CHEST) { //BARREL
 				//block.layers[OBJECT_LAYER] = new ChestTile();
-				//System.out.println(Game.locOfSavedGame);
 				int absXNew = absX / TILE_SIZE;
 				int absYNew = absY / TILE_SIZE;
 				File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + absXNew + "-" + absYNew + ".sv");

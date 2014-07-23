@@ -522,7 +522,6 @@ public class RenderSystem {
 			int x = colAbsRect.x - startX;
 			int y = colAbsRect.y - startY;
 			collectible.sprite.draw(x, y, Z_CHARACTER);
-			//System.out.println(collectible.absRect.x-startX);
 			//renderCollisionRects(collectible, x, y);
 		}
 	}
@@ -710,7 +709,6 @@ public class RenderSystem {
 		for(int i = 0; i < inv.invChest.length; i++) {
 			inv.invChest[i].render();
 		}
-		//System.out.println(inv.invChest[0].item.id);
 			Sprite sprite = Sprites.sprites.get(Sprites.CHEST_ITEM);
 			sprite.setColor(1.0f,1.0f,1.0f,0.3f);
 			sprite.draw(542,446,0f,(int)(sprite.getWidth()*4.47), (int)(sprite.getHeight()* 4.47));
@@ -1060,13 +1058,16 @@ public class RenderSystem {
 			Sprites.pixel.draw(new Rect(new Rect(x, y, CHARACTER_SIZE, CHARACTER_SIZE), h.margin), Z_CHARACTER);
 			//Sprites.pixel.draw(new Rect(x + h.margin.left, y+ h.margin.top, CHARACTER_SIZE-h.margin.right, CHARACTER_SIZE- h.margin.bottom), Z_CHARACTER);
 			
-//			Sprites.pixel.setColor(Color.YELLOW);
-//			if(h.collisionDetectionBlocks[0] != null) {
-//				for(int i = 0; i < h.collisionDetectionBlocks.length; i++) {
-//					if(h.collisionDetectionBlocks[i].sRect != null && h.collisionDetectionBlocks[i].isCollidable())
-//						Sprites.pixel.draw(h.collisionDetectionBlocks[i].sRect, Z_COLLISION_RECTS + 0.01f);
-//				}
-//			}
+			Sprites.pixel.setColor(Color.YELLOW);
+			if(h.collisionDetectionBlocks[0] != null) {
+				for(int i = 0; i < h.collisionDetectionBlocks.length; i++) {
+					if(h.collisionDetectionBlocks[i].sRect != null && h.collisionDetectionBlocks[i].isCollidable()) {
+						Sprites.pixel.draw(h.collisionDetectionBlocks[i].sRect, Z_COLLISION_RECTS + 0.01f);
+						//RectInt colRect = h.collisionDetectionBlocks[i].sRect.getRectInt();
+						//Sprites.pixel.draw(colRect.x,colRect.y, Z_COLLISION_RECTS + 0.01f,colRect.w,colRect.h);
+					}
+				}
+			}
 			Sprites.pixel.setColor(Color.WHITE);
 		}
 	}
@@ -1081,15 +1082,14 @@ public class RenderSystem {
 //					//if(h.collisionDetectionBlocks[i].sRect != null) {
 //					RectInt colRect = h.collisionDetectionBlocks[i].absRect.getRectInt();
 //						Sprites.pixel.draw(colRect.x-startX,colRect.y-startY, Z_COLLISION_RECTS + 0.01f,colRect.w,colRect.h);
-//					//System.out.println(h.collisionDetectionBlocks.length);
 //					//}
 //				}
 //			}
 			
-			Sprites.pixel.setColor(1f, 0f,0f,0.7f);
-			//Sprites.pixel.draw(new Rect(new Rect(x, y, CHARACTER_SIZE, CHARACTER_SIZE), h.margin), Z_CHARACTER);
-			Sprites.pixel.draw(new Rect(x + h.margin.left, y+ h.margin.top, h.absRect.w-h.margin.right-h.margin.left, h.absRect.h- h.margin.bottom- h.margin.top), Z_CHARACTER);
-			Sprites.pixel.setColor(Color.WHITE);
+//			Sprites.pixel.setColor(1f, 0f,0f,0.7f);
+//			//Sprites.pixel.draw(new Rect(new Rect(x, y, CHARACTER_SIZE, CHARACTER_SIZE), h.margin), Z_CHARACTER);
+//			Sprites.pixel.draw(new Rect(x + h.margin.left, y+ h.margin.top, h.absRect.w-h.margin.right-h.margin.left, h.absRect.h- h.margin.bottom- h.margin.top), Z_CHARACTER);
+//			Sprites.pixel.setColor(Color.WHITE);
 		}
 	}
 	

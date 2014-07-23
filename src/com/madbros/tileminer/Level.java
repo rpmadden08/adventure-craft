@@ -162,8 +162,6 @@ public class Level {
 //		if(Game.level.activeBlocks[bX][bY].absRect.detectCollision(Game.hero.absRect)) {
 //			Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, activeBlocks);
 //		}
-//		System.out.println(Game.level.activeBlocks[bX][bY].absRect.x);
-//		System.out.println(Game.hero.absRect.x);
 		//activeBlocks[40][40].isHighlighted = true;
 		
 	}
@@ -213,7 +211,6 @@ public class Level {
 			Game.isNewGame = false;
 			//NO NEED to saveCurrentChunks();  It's already been done...
 		} else {
-			//System.out.println("Is Loading Game...");
 			SaveGameData saveData = Game.saveGame.saveData();
 			Game.hero.hP = saveData.hP;
 			Game.hero.maxHP = saveData.maxHP;
@@ -636,7 +633,6 @@ public class Level {
 	public void shiftLoadChunksNorth() {
 		//shift easternChunks Left
 		for(int y = 0; y < CHUNK_SIZE; y++) {
-			//System.out.println(y);
 			System.arraycopy(easternChunks[y], 0, easternChunks[y], CHUNK_SIZE, activeBlocks.length-CHUNK_SIZE);
 		}
 		//shift southernChunks Left
@@ -654,7 +650,6 @@ public class Level {
 	public void shiftLoadChunksSouth() {
 		//shift easternChunks Left
 		for(int y = 0; y < CHUNK_SIZE; y++) {
-			//System.out.println(y);
 			System.arraycopy(easternChunks[y], CHUNK_SIZE, easternChunks[y], 0, activeBlocks.length-CHUNK_SIZE);
 		}
 		//shift southernChunks Left

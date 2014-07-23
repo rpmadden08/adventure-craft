@@ -63,9 +63,7 @@ public class BarrelTile extends CollisionTile {
 					  new int[]{5,3,5,4,3,3}, 
 					  1, 
 					  3);
-		//System.out.println(items[0].id);
 		for(int a=0; a<items.length;a++) {
-			//System.out.println(items[a].stackSize);
 			Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 			Item item = ITEM_HASH.get(items[a].id).createNew();
 			Game.collectibleController.add(items[a].id, items[a].sprite, collectibleRect, items[a].stackSize, item.maxUses);

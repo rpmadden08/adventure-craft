@@ -19,8 +19,8 @@ public class Bee extends Mob {
 	public Bee(MobController mobController, int x, int y) {
 		super(mobController);
 		attack = 2; //2
-		hP = 500;
-		maxHP = 500; //6
+		hP = 6;
+		maxHP = 6; //6
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
@@ -67,7 +67,9 @@ public class Bee extends Mob {
 	public void updateAI() {
 			super.updateAI();
 				checkForFleeingCampfire();
-				if(isInRangeOfCampfire) {
+				if(knockBackTime > 0) {
+					stop();
+				} else if(isInRangeOfCampfire) {
 					fleeRect(campFireRect, this.absRect);
 				} else if(isChasing) {
 					runningSpeed = 0.06f;
@@ -78,9 +80,9 @@ public class Bee extends Mob {
 					runningSpeed = 0f;
 					checkSpeed();
 					//moveInRandomDirection(30);
-					//moveInRandomDirection360(100);
-					isChasing = true;
-					chaseHero(Game.hero.absRect, this.absRect);
+					moveInRandomDirection360(100);
+//					isChasing = true;
+//					chaseHero(Game.hero.absRect, this.absRect);
 				}	
 		
 	}

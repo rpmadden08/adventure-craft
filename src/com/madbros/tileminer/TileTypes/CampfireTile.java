@@ -34,8 +34,6 @@ public class CampfireTile extends LightTile {
 		Rect detectRect = new Rect(cRect.x - ((int)lightSize /2), cRect.y - ((int)lightSize/2), cRect.w +((int)lightSize), cRect.h +((int)lightSize));
 		
 		for(int a = 0; a < Game.mobController.mobs.size(); a++) {
-//			System.out.println(Game.mobController.mobs.get(a).absRect.x+","+Game.mobController.mobs.get(a).absRect.x);
-//			System.out.println("CAMPFIRE:  "+cRect.x+","+cRect.y);
 			if(Game.mobController.mobs.get(a).isInRangeOfCampfire == false) {
 				if(Game.mobController.mobs.get(a).absRect.detectCollision(detectRect)) {
 					Game.mobController.mobs.get(a).isInRangeOfCampfire = true;

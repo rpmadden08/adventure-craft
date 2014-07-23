@@ -73,8 +73,6 @@ public class CauldronTile extends CollisionTile {
 			sprites = Sprites.cauldronAnimation;
 			if(timeCheck <= 0) {
 				timeCheck = 30; //Resets the half a second loop...
-//				System.out.println("furnaceFuel Left: "+furnaceFuel);
-//				System.out.println("furnaceBuildTime Left: "+furnaceBuildTime);
 				cauldronFuel = cauldronFuel - 1;
 				if(isCraftableItem()) {
 					cauldronBuildTime = cauldronBuildTime - 1;

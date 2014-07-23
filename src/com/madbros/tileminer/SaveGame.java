@@ -27,8 +27,6 @@ public class SaveGame {
 		saveData.spawnX = Game.level.masterSpawnX;
 		saveData.spawnY = Game.level.masterSpawnY;
 		saveData.currentLevel = Game.currentLevel;
-		//System.out.println("SavedOffset: "+Game.level.offsetX+"-"+Game.level.offsetY);
-		//System.out.println("SavedSpawn: "+Game.level.spawnX+"-"+Game.level.spawnY);
 		
 		saveData.hP = Game.hero.hP;
 		saveData.maxHP = Game.hero.maxHP;
@@ -227,7 +225,6 @@ public class SaveGame {
 	
 	public void saveCurrentLevel() {
 		CurrentLevelData currentLevelData = new CurrentLevelData();
-		System.out.println("Saving:  "+Game.collectibleController.collectibles.size());
 		for(int x = 0; x < Game.collectibleController.collectibles.size(); x++) {
 			Collectible c = Game.collectibleController.collectibles.get(x);
 			currentLevelData.collectibleItemIds[x] = c.item.id;

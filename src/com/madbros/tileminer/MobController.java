@@ -74,9 +74,6 @@ public class MobController {
 		int x = rand.nextInt(CHUNK_SIZE * 3)+ CHUNK_SIZE;
 		int y = rand.nextInt(CHUNK_SIZE * 3)+ CHUNK_SIZE;
 		
-		
-		
-		//System.out.println(Game.level.activeBlocks[0][0].absRect.x);
 		RectInt lvABAbsRect = Game.level.activeBlocks[0][0].absRect.getRectInt();
 		int absX = x* TILE_SIZE + lvABAbsRect.x;
 		int absY = y* TILE_SIZE + lvABAbsRect.y;
@@ -85,10 +82,9 @@ public class MobController {
 		//if(x > CHUNK_SIZE*2 && x< CHUNK_SIZE *3+1 && y > CHUNK_SIZE*2 && y< CHUNK_SIZE *3+1 ) {
 		int topTile = Game.level.activeBlocks[x][y].getTopTile().id;
 		int topTerrainTile = Game.level.activeBlocks[x][y].getTopTerrainTile().id;
-		//System.out.println(topTile);
 		Block[] tileArea = getTileArea(x,y);
-		int num = rand.nextInt(1);//150 
-		if(num <10  && mobs.size() < 1) { //10
+		int num = rand.nextInt(150);//150 
+		if(num <10  && mobs.size() < 10) { //10
 			if(possibleSpawnPoint.detectCollision(heroRect)) {
 			//    ***************IF THE WORLD IS DARK	
 			} else if(isDark(possibleSpawnPoint)){
@@ -119,9 +115,9 @@ public class MobController {
 						if(mobs.size() < 5 && num == 0) {
 							int num2 = rand.nextInt(5);
 							if(num2 == 0) {
-								mobs.add(new Cow(this, x, y));  //Should be bee
+								mobs.add(new Bee(this, x, y));  //Should be bee
 							} else if(canLargeMobSpawn(x,y)) {
-								mobs.add(new Cow(this, x, y));  //Should be cow
+								mobs.add(new Bee(this, x, y));  //Should be cow
 							}
 						}
 					}

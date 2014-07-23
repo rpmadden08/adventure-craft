@@ -203,7 +203,6 @@ public class Overworld extends Level{
 					}
 	//				if(chunkGenerator.chunkObjectLayer[s][t] == CHEST) { //BARREL
 	//					//block.layers[OBJECT_LAYER] = new ChestTile();
-	//					//System.out.println(Game.locOfSavedGame);
 	//					int absXNew = absX / TILE_SIZE;
 	//					int absYNew = absY / TILE_SIZE;
 	//					File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + absXNew + "-" + absYNew + ".sv");

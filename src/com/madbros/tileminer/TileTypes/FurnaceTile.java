@@ -63,8 +63,6 @@ public class FurnaceTile extends CollisionTile {
 	@Override
 	public void update(int x, int y) {
 	
-//		System.out.println("FUEL:  "+furnaceFuel);
-//		System.out.println("MAX FUEL:  "+furnaceMaxFuel);
 		if(this.furnaceIsBurning == false && isCraftableItem()) {
 			fuelSlot[0].checkFuel(this, furnaceSlots, craftedSlot);
 		}
@@ -72,8 +70,6 @@ public class FurnaceTile extends CollisionTile {
 			sprites = Sprites.furnaceAnimation;
 			if(timeCheck <= 0) {
 				timeCheck = 30; //Resets the half a second loop...
-//				System.out.println("furnaceFuel Left: "+furnaceFuel);
-//				System.out.println("furnaceBuildTime Left: "+furnaceBuildTime);
 				furnaceFuel = furnaceFuel - 1;
 				if(isCraftableItem()) {
 					furnaceBuildTime = furnaceBuildTime - 1;
@@ -91,7 +87,6 @@ public class FurnaceTile extends CollisionTile {
 						
 						//craftedSlot[0].item.stackSize = 0;						
 					} else {
-						//System.out.println(furnaceIsBurning);
 						craftedSlot[0].item.stackSize ++;
 					}
 					

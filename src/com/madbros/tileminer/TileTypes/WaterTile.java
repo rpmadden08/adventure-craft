@@ -21,12 +21,13 @@ public class WaterTile extends CollisionTile {
 		id = WATER;
 		autoTileID = id;
 		isDiggable = false;
+		isCollidable = true;
 		//sprites = Sprites.waterSprites;
 		sprites = Sprites.spriteCollections.get(Sprites.WATER_NEW);
 		is32 = false;
 	}
 	
-	public void heroDidCollide(Actor actor, int dir, int move, Rect charCRect, Rect tileRect) {
+	public void heroDidCollide(Actor actor, int dir, double move, Rect charCRect, Rect tileRect) {
 		if(actor != Game.hero) {
 			super.heroDidCollide(actor, dir, move, charCRect, tileRect);
 		} 
@@ -50,7 +51,6 @@ public class WaterTile extends CollisionTile {
 	}
 	
 	public void update(int x, int y) {
-		//System.out.println("YESSS");
 		Random rand = new Random();
 		Block[] b = new Block[] {Game.level.activeBlocks[x+1][y],Game.level.activeBlocks[x-1][y],Game.level.activeBlocks[x][y+1],Game.level.activeBlocks[x][y-1]};
 		for(int a = 0; a<b.length;a++) {

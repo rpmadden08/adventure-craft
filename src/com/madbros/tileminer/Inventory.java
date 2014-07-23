@@ -209,7 +209,6 @@ public class Inventory {
 					stackSize = stackSize - invBar[i].item.stackSize;
 					invBar[i].item.stackSize = 0;
 					invBar[i].item = ITEM_HASH.get(EMPTY).createNew();
-					//System.out.println(stackSize);
 				} else {
 					invBar[i].item.stackSize = invBar[i].item.stackSize - stackSize;
 					stackSize = 0;
@@ -226,7 +225,6 @@ public class Inventory {
 					stackSize = stackSize - invBag[i].item.stackSize;
 					invBag[i].item.stackSize = 0;
 					invBag[i].item = ITEM_HASH.get(EMPTY).createNew();
-					//System.out.println(stackSize);
 				} else {
 					invBag[i].item.stackSize = invBag[i].item.stackSize - stackSize;
 					stackSize = 0;

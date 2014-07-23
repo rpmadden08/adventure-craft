@@ -23,10 +23,8 @@ public class SlownessApplied extends AppliedStatusEffect{
 		
 	}
 	public void applySlownessEffect(Actor actor) {
-		//System.out.println("Slowness Applied...  Uses Left:  "+usesLeft);
 		actor.timedStatusEffects[SLOWNESS] = new SlownessMob();
 		actor.slownessSpeed = SlownessMob.speedAmount;
-		//System.out.println(SlownessMob.speedAmount);
 		actor.checkSpeed();
 		
 		

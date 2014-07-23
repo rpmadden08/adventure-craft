@@ -184,10 +184,8 @@ public class ChunkGenerator {
 		List<Integer> oreCheckY = new ArrayList<Integer>();
 		oreX.add(x); oreY.add(y);
 		oreCheckX.add(x); oreCheckY.add(y);
-		//System.out.println((int) oreX.get(0));
 		while(oreX.size() < oreAmount) {
 			//Add possible ores or possible ores array...
-			//System.out.println(oreX.size());
 			int totalOres = oreX.size();
 			for(int a = 0; a < totalOres; a++) {
 				
@@ -291,9 +289,7 @@ public class ChunkGenerator {
 		}
 		//Place the ores
 		int totalOres = oreX.size();
-		//System.out.println(totalOres);
 		for(int a = 0; a < totalOres; a++) {
-			//System.out.println(oreX.indexOf(a)+" - "+oreY.indexOf(a));
 			//if(oreX.get(a) > -1 && oreY.get(a) > -1 && oreX.get(a) < 36 && oreY.get(a) < 36) {
 			for(int b = 0; b < possibleBiomes.length; b++){
 				if(chunkGroundLayer[oreX.get(a)][oreY.get(a)] == possibleBiomes[b]) {
@@ -316,8 +312,6 @@ public class ChunkGenerator {
 				int oreAmount = rand.nextInt(7) + 3;
 				oreGenerator(oreAmount,m,n, DIRT_MOUNTAIN_COAL_BOTTOM, 1, new int[] {2});
 			} else if(chunkObjectLayer[m][n] == 1000) {
-				//System.out.println("CHECK");
-				//System.out.println(m);
 				oreGenerator(22,m,n,BARREL, 1, new int[] {4});
 			} else if(chunkObjectLayer[m][n] == TIN_MARK) {
 				float seed = chunkNoiseElevation[m][n] * 1000000000;

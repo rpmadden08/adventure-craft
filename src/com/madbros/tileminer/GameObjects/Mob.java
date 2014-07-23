@@ -66,7 +66,6 @@ public class Mob extends Actor {
 	
 	public void takeDamage(int damage) {
 		//Get Harming Potion increase
-		//System.out.println("DAMAGE: "+damage);
 		damage = Game.hero.appliedStatusEffects[1].getHarmingDamageIncrease(damage);
 		if(Game.hero.appliedStatusEffects[2].canApplyEffect(this)) {
 			Game.hero.appliedStatusEffects[2].applySlownessEffect(this);
@@ -91,7 +90,6 @@ public class Mob extends Actor {
 
 				mobController.remove(this);
 			} else {
-				//System.out.println(item.hitSound);
 				item.playHitSound();
 			}
 		}
@@ -122,7 +120,6 @@ public class Mob extends Actor {
 		} else {
 			dir360 = dir360+180;
 		}
-		//System.out.println(dir360);
 		
 		isKnockingUp = false;
 		isKnockingDown = false;
@@ -152,22 +149,18 @@ public class Mob extends Actor {
 		if(dir360 > 180 && dir360 < 360) {
 			isKnockingUp = true;
 			isKnockingDown = false;
-			//System.out.println("up");
 		}
 		if(dir360 > 0 && dir360 < 180) {
 			isKnockingDown = true;
 			isKnockingUp = false;
-			//System.out.println("down");
 		}
 		if(dir360 > 90 && dir360 < 270) {
 			isKnockingLeft = true;
 			isKnockingRight = false;
-			//System.out.println("left");
 		}
 		if(dir360 > 270 || dir360 < 90) {
 			isKnockingRight = true;
 			isKnockingLeft = false;
-			//System.out.println("right");
 		}
 		//0 = left, 90 = up etc....	
 	}
@@ -183,7 +176,6 @@ public class Mob extends Actor {
 		}
 		//Check if the mob has stepped out of bounds
 		if(knockBackTime > 0) {
-			//System.out.println("IS KNOCKING BACK");
 //			coolDownTime = coolDownTime -1;
 			checkSpeed();
 			moveKnockBack(Time.getDelta());
@@ -253,7 +245,6 @@ public class Mob extends Actor {
 		
 		//float maxSpeed = moveSpeed;
 		//float maxSpeed = currentSpeed;
-		//System.out.println(currentSpeed);
 		stop();
 		
 		if(dir360 > 180 && dir360 < 360) {
@@ -402,11 +393,15 @@ public class Mob extends Actor {
 			stop();
 			if(number == 0) {
 				moveUp();
+				dir360 = 275;
 			} else if(number == 1) {
+				dir360 = 180;
 				moveLeft();
 			} else if(number == 2) {
+				dir360 = 0;
 				moveRight();
 			} else if(number == 3) {
+				dir360 = 90;
 				moveDown();
 			} else if(number == 4) {}
 		}
@@ -424,24 +419,32 @@ public class Mob extends Actor {
 			stop();
 			if(number == 0) {
 				moveUp();
+				dir360 = 275;
 			} else if(number == 1) {
 				moveLeft();
+				dir360 = 180;
 			} else if(number == 2) {
 				moveRight();
+				dir360 = 0;
 			} else if(number == 3) {
 				moveDown();
+				dir360 = 90;
 			} else if(number == 4) {
 				moveUp();
 				moveLeft();
+				dir360 = 225;
 			} else if(number == 5) {
 				moveUp();
 				moveRight();
+				dir360 = 320;
 			} else if(number == 6) {
 				moveDown();
 				moveLeft();
+				dir360 = 135;
 			} else if(number == 7) {
 				moveDown();
 				moveRight();
+				dir360 = 45;
 			} else if(number == 8) {}
 		}
 		framesNum++;
@@ -456,24 +459,19 @@ public class Mob extends Actor {
 			Random rand = new Random();
 			dir360 = rand.nextInt(360);
 			//dir360 = 35;
-			//System.out.println(dir360);
 			stop();
 			
 			if(dir360 > 180 && dir360 < 360) {
 				moveUp();
-				System.out.println("up");
 			}
 			if(dir360 > 0 && dir360 < 180) {
 				moveDown();
-				System.out.println("down");
 			}
 			if(dir360 > 90 && dir360 < 270) {
 				moveLeft();
-				System.out.println("left");
 			}
 			if(dir360 > 270 || dir360 < 90) {
 				moveRight();
-				System.out.println("right");
 			}
 			
 		}

@@ -17,10 +17,7 @@ public class Speed extends TimedStatusEffect{
 	}
 	
 	public void update(Actor actor) {
-//		System.out.println("TIME: "+ Time.getTime());
-//		System.out.println("timeTriggered+potioneffecttime:  "+timeTriggered+ potionEffectTime);
 		if(Time.getTime() >= timeTriggered+ potionEffectTime) {
-			//System.out.println("Potion time is up!");
 			actor.speedSpeed = 0f;
 			actor.checkSpeed();
 			

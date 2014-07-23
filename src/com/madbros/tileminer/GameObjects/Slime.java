@@ -68,7 +68,6 @@ public class Slime extends Mob {
 			checkSpeed();
 			moveInRandomDirection(100);
 		}
-		//System.out.println(moveSpeed);
 		
 	}
 	

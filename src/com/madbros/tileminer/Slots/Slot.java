@@ -82,7 +82,6 @@ public class Slot {
 	}
 	
 	public void handleLeftClickCrafting(Inventory inv, int[] craftableList, int[] possiblyCraftableList) {
-		//System.out.println("Need to code what happens when clicked!");
 		if(this.item.id == EMPTY) {
 			inv.craftingMenu.currentPage = 0;
 			inv.craftingMenu.currentCraftableList = craftableList;
@@ -231,7 +230,6 @@ public class Slot {
 				if(furnace.furnaceIsBurning == false) {
 					checkFuel(furnace, invCrafting, invCrafted);
 				}
-				//System.out.println("DID IT!");
 				//furnace.furnaceBuildTime = 10;
 				return;
 			} else {

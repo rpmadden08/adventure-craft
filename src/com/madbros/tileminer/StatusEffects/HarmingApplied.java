@@ -16,7 +16,6 @@ public class HarmingApplied extends AppliedStatusEffect{
 		if(usesLeft <=0) {
 			Game.hero.eraseAppliedStatusEffect(this.id);
 		}
-		//System.out.println("USES LEFT = "+usesLeft);
 		return (int)(0.5 * damage) +damage;
 	}
 }

@@ -32,8 +32,8 @@ public class Cow extends Mob {
 		moveSpeed = 0.03f; //0.03
 		sprite.changeFrameTimes(150);
 		deathParticles = "cowDeath.p";
-		hP = 500;
-		maxHP = 500; //10
+		hP = 10;
+		maxHP = 10; //10
 	}
 
 	@Override
@@ -66,28 +66,33 @@ public class Cow extends Mob {
 	}
 
 	public void updateAI() {
-//			super.updateAI();
-//			moveInRandomDirection4(300);
+			super.updateAI();
+			if(knockBackTime > 0) {
+				stop();
+			} else {
+			moveInRandomDirection4(300);
+			}
+			
 		
-		super.updateAI();
-		checkForFleeingCampfire();
-		if(knockBackTime > 0) { 
-			stop();
-		} else if(isInRangeOfCampfire) {
-			fleeRect(campFireRect, this.absRect);
-		} else if(isChasing) {
-			runningSpeed = 0.06f;
-			checkSpeed();
-			checkForChasing();
-			chaseHero(Game.hero.absRect, this.absRect);
-		}else{
-			runningSpeed = 0f;
-			checkSpeed();
-			//moveInRandomDirection(30);
-			//moveInRandomDirection360(100);
-			isChasing = true;
-			chaseHero(Game.hero.absRect, this.absRect);
-		}	
+//		super.updateAI();
+//		checkForFleeingCampfire();
+//		if(knockBackTime > 0) { 
+//			stop();
+//		} else if(isInRangeOfCampfire) {
+//			fleeRect(campFireRect, this.absRect);
+//		} else if(isChasing) {
+//			runningSpeed = 0.06f;
+//			checkSpeed();
+//			checkForChasing();
+//			chaseHero(Game.hero.absRect, this.absRect);
+//		}else{
+//			runningSpeed = 0f;
+//			checkSpeed();
+//			//moveInRandomDirection(30);
+//			//moveInRandomDirection360(100);
+//			isChasing = true;
+//			chaseHero(Game.hero.absRect, this.absRect);
+//		}	
 			
 		
 	}

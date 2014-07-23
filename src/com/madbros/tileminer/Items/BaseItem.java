@@ -18,7 +18,6 @@ import static com.madbros.tileminer.Constants.Z_CHARACTER;
 import com.madbros.tileminer.Block;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Sprites.Sprites;
-import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Rect;
 import com.madbros.tileminer.Utils.RectInt;
 public abstract class BaseItem extends ToolItem {

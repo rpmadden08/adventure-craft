@@ -50,7 +50,6 @@ public class MainMenu extends Menu{
 		    	return new File(dir, name).isDirectory();
 		    }
 		});
-//		System.out.println
 		if(listOfFiles != null && listOfFiles.length >9) {
 			isNewGameAvailable = false;
 			menuButtons[0].disableButton();

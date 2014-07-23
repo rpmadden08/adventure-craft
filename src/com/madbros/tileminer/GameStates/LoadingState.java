@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Sprites.Sprites;
-import com.madbros.tileminer.Utils.Rect;
 import com.madbros.tileminer.Utils.RectInt;
 
 public class LoadingState extends GameState{
