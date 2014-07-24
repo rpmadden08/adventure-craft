@@ -5,6 +5,8 @@ import java.util.Random;
 import com.madbros.tileminer.Block;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.GameObjects.Actor;
+import com.madbros.tileminer.GameObjects.Bee;
+import com.madbros.tileminer.GameObjects.Mob;
 import com.madbros.tileminer.Sprites.*;
 import com.madbros.tileminer.Utils.Margin;
 import com.madbros.tileminer.Utils.Rect;
@@ -21,14 +23,14 @@ public class WaterTile extends CollisionTile {
 		id = WATER;
 		autoTileID = id;
 		isDiggable = false;
-		isCollidable = true;
+		//isCollidable = true;
 		//sprites = Sprites.waterSprites;
 		sprites = Sprites.spriteCollections.get(Sprites.WATER_NEW);
 		is32 = false;
 	}
 	
 	public void heroDidCollide(Actor actor, int dir, double move, Rect charCRect, Rect tileRect) {
-		if(actor != Game.hero) {
+		if(actor instanceof Mob && !(actor instanceof Bee)) {
 			super.heroDidCollide(actor, dir, move, charCRect, tileRect);
 		} 
 	}

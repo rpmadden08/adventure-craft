@@ -66,20 +66,19 @@ public class Mob extends Actor {
 	
 	public void takeDamage(int damage) {
 		//Get Harming Potion increase
-		damage = Game.hero.appliedStatusEffects[1].getHarmingDamageIncrease(damage);
-		if(Game.hero.appliedStatusEffects[2].canApplyEffect(this)) {
-			Game.hero.appliedStatusEffects[2].applySlownessEffect(this);
-		}
-		
-//		Game.hero.eP = Game.hero.eP - 0.1;
-		Item equippedWeapon = Game.inventory.invBar[Game.inventory.itemSelected].item;
-		equippedWeapon.calculateUsage();
-		if(knockBackTime <=0) {
+		if(knockBackTime <=0 && !Game.hero.hitByThisSwing(this)) {
+			Game.hero.mobsHitByCurrentSwing.add(this);
+			damage = Game.hero.appliedStatusEffects[1].getHarmingDamageIncrease(damage);
+			if(Game.hero.appliedStatusEffects[2].canApplyEffect(this)) {
+				Game.hero.appliedStatusEffects[2].applySlownessEffect(this);
+			}
+			Item equippedWeapon = Game.inventory.invBar[Game.inventory.itemSelected].item;
+			equippedWeapon.calculateUsage();
 			hP = hP - damage;
 			Item item = ITEM_HASH.get(Game.inventory.invBar[Game.inventory.itemSelected].item.id).createNew();
 			
 			//knockBackTime = item.knockBack; //30
-			knockBackTime = 60;
+			knockBackTime = getKnockBackTime(equippedWeapon.knockBackPower);
 
 			if(hP <= 0) {
 				deathDrop();
@@ -174,26 +173,27 @@ public class Mob extends Actor {
 		for(int i =0; i < timedStatusEffects.length; i++) {
 			timedStatusEffects[i].update(this);
 		}
-		//Check if the mob has stepped out of bounds
+		//Check if the mob has stepped out of bound		
+		
 		if(knockBackTime > 0) {
-//			coolDownTime = coolDownTime -1;
-			checkSpeed();
-			moveKnockBack(Time.getDelta());
 			knockBackTime = knockBackTime - 1;
-			
-			
-			if(knockBackTime < 1) {
-				isKnockingLeft = false;
-				isKnockingDown = false;
-				isKnockingRight = false;
-				isKnockingUp = false;
+			if(knockBackTime > 0) {
+				checkSpeed();
+				moveKnockBack(Time.getDelta());
 			}
+			
 		} else if(isMoving() && !isAttacking) {
 			//currentSpeed = moveSpeed;
 			checkSpeed();
 			move(Time.getDelta());
 		} else if(isAttacking) {
 			
+		}
+		if(knockBackTime < 1) {
+			isKnockingLeft = false;
+			isKnockingDown = false;
+			isKnockingRight = false;
+			isKnockingUp = false;
 		}
 	}
 	

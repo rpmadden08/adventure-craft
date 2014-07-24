@@ -2,6 +2,8 @@ package com.madbros.tileminer.GameObjects;
 
 import static com.madbros.tileminer.Constants.*;
 
+import java.util.ArrayList;
+
 import org.lwjgl.input.Keyboard;
 
 import com.madbros.tileminer.Block;
@@ -27,7 +29,7 @@ public class Actor extends GameObject {
 	
 	public float currentSpeed;
 	public float knockBackSpeed;
-	public float knockBackResistance=0;
+	public int knockBackResistance=0;
 	//public float coolDownTime=0;
 	public float moveSpeed;
 	public float runningSpeed;
@@ -69,6 +71,7 @@ public class Actor extends GameObject {
 	public boolean startWeaponAnimation = false;
 	public String hitSound;
 	public String deathSound;
+	public ArrayList<Mob> mobsHitByCurrentSwing = new ArrayList<Mob>();
 	
 	public Actor() {
 		for(int i = 0; i < appliedStatusEffects.length; i++) {
@@ -81,6 +84,16 @@ public class Actor extends GameObject {
 	}
 	
 	/************************** Movement **************************/
+	
+	public boolean hitByThisSwing(Mob mobBeingHit) {
+		for(int i = 0; i < Game.hero.mobsHitByCurrentSwing.size(); i++) {
+			Mob mob = Game.hero.mobsHitByCurrentSwing.get(i);
+			if(mobBeingHit == mob) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public boolean isMoving() {
 		return (isMovingDown || isMovingUp || isMovingLeft || isMovingRight);
 	}
@@ -91,7 +104,7 @@ public class Actor extends GameObject {
 			baseSpeed = moveSpeed + runningSpeed - swimSpeed;
 			currentSpeed = baseSpeed - (baseSpeed * slownessSpeed) + (baseSpeed * speedSpeed)-(baseSpeed*hungerSpeed);
 		} else {
-			currentSpeed = knockBackSpeed - knockBackResistance;
+			currentSpeed = knockBackSpeed;
 		}
 	}
 	
@@ -165,6 +178,15 @@ public class Actor extends GameObject {
 		else if(!isMovingLeft) sprite.changeAnimationTo(STAND_RIGHT);
 		isMovingRight = false;
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) moveLeft();
+	}
+	
+	public int getKnockBackTime(int knockBackAttack) {
+		int finalKnockBack = knockBackAttack - knockBackResistance;
+		if(finalKnockBack < 1) {
+			finalKnockBack = 0;
+		}
+		return finalKnockBack;
+		
 	}
 	
 	/************************** Collision Detection **************************/

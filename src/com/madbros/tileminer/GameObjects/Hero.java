@@ -2,6 +2,8 @@ package com.madbros.tileminer.GameObjects;
 
 import static com.madbros.tileminer.Constants.*;
 
+import java.util.ArrayList;
+
 import org.lwjgl.input.Keyboard;
 
 import com.madbros.tileminer.Block;
@@ -358,6 +360,9 @@ public class Hero extends Actor {
 				}
 				if(attackButtonReleased == true || attackItem.isRepeatable == false) {
 					if(hasAttacked == true) {
+						
+					//Reset arraylist of already attacked Mobs...
+					
 						startWeaponAnimation = false;
 						stop();
 						int t = sprite.getCurrentAnimation();
@@ -416,7 +421,7 @@ public class Hero extends Actor {
 	public void attack(WeaponItem item) {
 		if(attackButtonReleased == true && !isSwimming) {
 			attackButtonReleased = false;
-		
+			mobsHitByCurrentSwing.clear();
 			hasAttacked = false;
 			isAttacking = true;
 			//attackItem = item;

@@ -410,7 +410,6 @@ public class MapTest {
 
   private void test(Module module) {
     ModuleMap map = module.getModuleMap();
-    // System.out.println(map);
     Joise j = new Joise(map);
     LCG lcg = new LCG();
     lcg.setSeedTime();
@@ -426,7 +425,6 @@ public class MapTest {
     module.setSeedName("externalSeed");
 
     ModuleMap map = module.getModuleMap();
-    // System.out.println(map);
     Joise j = new Joise(map);
     LCG lcg = new LCG();
     lcg.setSeedTime();
