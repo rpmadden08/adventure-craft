@@ -127,8 +127,8 @@ public class Collectible extends GameObject{
 		double moveY = 0;
 		
 		
-		double newX = ((int) absRect.x) + 1 * Math.cos(Math.toRadians(degrees));
-		double newY = ((int) absRect.y) + 1 * Math.sin(Math.toRadians(degrees));
+		double newX = ((int) absRect.x) + 100 * Math.cos(Math.toRadians(degrees));
+		double newY = ((int) absRect.y) + 100 * Math.sin(Math.toRadians(degrees));
 		
 		double vX = newX - absRect.x;
 		double vY = newY - absRect.y;

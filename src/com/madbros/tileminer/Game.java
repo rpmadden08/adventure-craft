@@ -44,7 +44,7 @@ public class Game implements ApplicationListener {
 
 	
 	//public static long rgenseed = System.currentTimeMillis();
-	public static long rgenseed = 15;
+	public static long rgenseed = 7;
 		//1  (Water + Islands)  
 		//4  (All Water)
 		//7  (Grassland) 
@@ -216,10 +216,10 @@ public class Game implements ApplicationListener {
 	public static void fullscreenToggle() {
 		if(!Gdx.graphics.isFullscreen()) {
 			Gdx.graphics.setDisplayMode(Game.currentScreenSizeX, Game.currentScreenSizeY, true);
-			Game.soundController.create("sounds/openMenu.wav", 1f);
+			//Game.soundController.create("sounds/openMenu.wav", 1f);
 		} else {
 			Gdx.graphics.setDisplayMode(Game.currentScreenSizeX, Game.currentScreenSizeY, false);
-			Game.soundController.create("sounds/closeMenu.wav", 1f);
+			//Game.soundController.create("sounds/closeMenu.wav", 1f);
 		}
 		
 	}

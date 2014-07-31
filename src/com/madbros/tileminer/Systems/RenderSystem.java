@@ -188,7 +188,7 @@ public class RenderSystem {
 		int height = heroAbsRect.h / 2+6;
 		
 		if(hero.isDead == false) {
-			if(hero.knockBackTime > 0) {
+			if(hero.isKnockingBack) {
 				Color highlightColor = new Color(0.7f, 0.7f, 0.7f, 1.0f);
 				hero.sprite.setColor(highlightColor);
 				hero.sprite.draw(x, y, Z_CHARACTER);
@@ -500,16 +500,16 @@ public class RenderSystem {
 			int y = mobAbsRect.y - startY;
 			//int width = mob.absRect.w / 2;
 			//int height = mob.absRect.h / 2;
-			if(mob.knockBackTime < 1) {
+			if(Time.getTime() -mob.invincibleTime > 666.666 ) {
 				mob.sprite.draw(x, y, Z_CHARACTER);
 			} else {
-				mob.sprite.setAnimColor(new Color(1f,1f,1f,0.5f));
+				mob.sprite.setAnimColor(new Color(1f,1f,1f,0.2f));
 				mob.sprite.draw(x, y, Z_CHARACTER);
 				mob.sprite.setAnimColor(Color.WHITE);
 			}
 //			Rect test = new Rect(mob.absRect, mob.margin);
 //			//Sprites.pixel.draw(x, y);
-//			Sprites.pixel.draw(x+64,y+64, Z_CHARACTER, 1, 1);
+			
 			renderMobCollisionRects(mob, x, y);
 			if(mob.hP != mob.maxHP) renderMobHealth(mob);
 			
@@ -1086,10 +1086,10 @@ public class RenderSystem {
 //				}
 //			}
 			
-//			Sprites.pixel.setColor(1f, 0f,0f,0.7f);
-//			//Sprites.pixel.draw(new Rect(new Rect(x, y, CHARACTER_SIZE, CHARACTER_SIZE), h.margin), Z_CHARACTER);
-//			Sprites.pixel.draw(new Rect(x + h.margin.left, y+ h.margin.top, h.absRect.w-h.margin.right-h.margin.left, h.absRect.h- h.margin.bottom- h.margin.top), Z_CHARACTER);
-//			Sprites.pixel.setColor(Color.WHITE);
+			Sprites.pixel.setColor(1f, 0f,0f,0.7f);
+			//Sprites.pixel.draw(new Rect(new Rect(x, y, CHARACTER_SIZE, CHARACTER_SIZE), h.margin), Z_CHARACTER);
+			Sprites.pixel.draw(new Rect(x + h.margin.left, y+ h.margin.top, h.absRect.w-h.margin.right-h.margin.left, h.absRect.h- h.margin.bottom- h.margin.top), Z_CHARACTER);
+			Sprites.pixel.setColor(Color.WHITE);
 		}
 	}
 	

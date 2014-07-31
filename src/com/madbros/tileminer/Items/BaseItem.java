@@ -38,10 +38,15 @@ public abstract class BaseItem extends ToolItem {
 		isInUse = false;
 		
 		
-		cRectU = new Rect (15,14,41,16);
-		cRectD = new Rect (15,54,41,16);
-		cRectL = new Rect (-4,20,16,41);
-		cRectR = new Rect (52,20,16,41);
+//		cRectU = new Rect (15,14,41,16);
+//		cRectD = new Rect (15,54,41,16);
+//		cRectL = new Rect (-4,20,16,41);
+//		cRectR = new Rect (52,20,16,41);
+		
+		cRectU = new Rect (0,-6,82,32);
+		cRectD = new Rect (0,54,82,32);
+		cRectL = new Rect (-22,0,32,82);
+		cRectR = new Rect (46,0,32,82);
 	}
 	
 	public void calculateUsage() {

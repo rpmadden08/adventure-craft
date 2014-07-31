@@ -16,7 +16,6 @@ public class Cow extends Mob {
 	int length = 0;
 	int framesNum = 0;
 	MobController mobController;
-	//Rect detectRect;
 	
 	public Cow(MobController mobController, int x, int y) {
 		super(mobController);
@@ -24,24 +23,21 @@ public class Cow extends Mob {
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE)-20,
 				(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE)-40,
-				  128, 128);
+				  128, 128); //128,128
 		detectRange = 100;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.COW));
 		margin = new Margin(36, 36, 40, 18);
-		currentSpeed = 0.03f; 
 		moveSpeed = 0.03f; //0.03
 		sprite.changeFrameTimes(150);
 		deathParticles = "cowDeath.p";
-		hP = 10;
-		maxHP = 10; //10
+		hP = 20;
+		maxHP = 20; //10
+		isChasing = false;
+		knockBackResistance = .80f;
 	}
 
 	@Override
 	public void deathDrop() {
-
-		//Rect collectibleRect = new Rect(absRect.x+(absRect.w/2), absRect.y+(absRect.h/2), 16, 16);
-//		Item item = ITEM_HASH.get(LEATHER).createNew();
-//		Game.collectibleController.add(LEATHER, Sprites.sprites.get(Sprites.LEATHER), collectibleRect, 1, item.maxUses);
 		Random rand = new Random();
 		int num = rand.nextInt(3);
 		for(int a = 0; a< num; a++) {
@@ -56,45 +52,16 @@ public class Cow extends Mob {
 			Game.collectibleController.add(LEATHER, Sprites.sprites.get(Sprites.LEATHER), collectibleRect, 1, item.maxUses);
 		}
 	}
-	
-	@Override
-	public void didCollide() {
-//		if(!Game.hero.isDead) {
-//			Game.hero.takeDamage(attack);
-//			Game.hero.knockBack(this);
-//		}
-	}
 
 	public void updateAI() {
-			super.updateAI();
-			if(knockBackTime > 0) {
-				stop();
-			} else {
-			moveInRandomDirection4(300);
-			}
-			
-		
-//		super.updateAI();
-//		checkForFleeingCampfire();
-//		if(knockBackTime > 0) { 
-//			stop();
-//		} else if(isInRangeOfCampfire) {
-//			fleeRect(campFireRect, this.absRect);
-//		} else if(isChasing) {
-//			runningSpeed = 0.06f;
-//			checkSpeed();
-//			checkForChasing();
-//			chaseHero(Game.hero.absRect, this.absRect);
-//		}else{
-//			runningSpeed = 0f;
-//			checkSpeed();
-//			//moveInRandomDirection(30);
-//			//moveInRandomDirection360(100);
-//			isChasing = true;
-//			chaseHero(Game.hero.absRect, this.absRect);
-//		}	
-			
-		
+		super.updateAI();
+		if(isKnockingBack) {
+			stop();
+		} else {
+			runningSpeed = 0f;
+			checkSpeed();
+			moveInRandomDirection4(100);
+		}
 	}
 	
 	public void xMove(int moveX) {

@@ -31,6 +31,8 @@ public class Worm extends Mob {
 		margin = new Margin(7, 6, 0, 0);
 		moveSpeed = 0.03f;
 		deathParticles = "wormDeath.p";
+		isChasing = false;
+		knockBackResistance = .50f;
 	}
 
 //	public void startAttacking() {
@@ -51,7 +53,7 @@ public class Worm extends Mob {
 	@Override
 	public void didCollide() {
 		//mobController.remove(this);
-		if(!Game.hero.isDead) {
+		if(Game.hero.isHittable()) {
 			Game.hero.takeDamage(attack);
 			Game.hero.knockBack(this);
 		}
@@ -67,13 +69,15 @@ public class Worm extends Mob {
 		super.updateAI();
 		checkForChasing();
 		checkForFleeingCampfire();
-		if(isInRangeOfCampfire) {
+		if(isKnockingBack) {
+			stop();
+		} else if(isInRangeOfCampfire) {
 			fleeRect(campFireRect, this.absRect);
 		} else if(isChasing) {
 			checkForChasing();
 			chaseHero(Game.hero.absRect, this.absRect);
 		}else{
-			moveInRandomDirection(300);
+			moveInRandomDirection4(300);
 		}	
 	}
 	

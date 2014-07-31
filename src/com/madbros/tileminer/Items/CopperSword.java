@@ -22,6 +22,7 @@ public class CopperSword extends Sword {
 		attackPower = 12;
 		maxUses = 200;
 		uses = 200;
+		knockBackPower = 0.4f;
 	}
 	
 	@Override

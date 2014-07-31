@@ -19,12 +19,11 @@ public class Slime extends Mob {
 	public Slime(MobController mobController, int x, int y) {
 		super(mobController);
 		attack = 5;
-		hP = 10;
-		maxHP = 10;
+		hP = 20;
+		maxHP = 20;
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
-		//detectRect = new Rect(absRect.x - 100, absRect.y - 100, absRect.w +200, absRect.h +200);
 		detectRange = 100;
 		chaseRange = 200;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.SLIME));
@@ -32,6 +31,8 @@ public class Slime extends Mob {
 		moveSpeed = 0.03f;
 		deathParticles = "slimeDeath.p";
 		sprite.changeFrameTimes(200);
+		isChasing = false;
+		knockBackResistance = 0.35f;
 		
 	}
 	
@@ -45,28 +46,29 @@ public class Slime extends Mob {
 	@Override
 	public void didCollide() {
 		//mobController.remove(this);
-		if(!Game.hero.isDead) {
+		if(Game.hero.isHittable()) {
 			Game.hero.takeDamage(attack);
 			Game.hero.knockBack(this);
 		}
 	}
 	
 	public void updateAI() {
-		
 		super.updateAI();	
 		checkForChasing();
 		checkForFleeingCampfire();
-		if(isInRangeOfCampfire) {
+		if(isKnockingBack) {
+			stop();
+		} else if(isInRangeOfCampfire) {
 			fleeRect(campFireRect, this.absRect);
 		} else if(isChasing) {
 			runningSpeed = 0.06f;
 			checkSpeed();
-			checkForChasing();
+			//checkForChasing();
 			chaseHero(Game.hero.absRect, this.absRect);
 		}else{
 			runningSpeed = 0f;
 			checkSpeed();
-			moveInRandomDirection(100);
+			moveInRandomDirection360(100);
 		}
 		
 	}

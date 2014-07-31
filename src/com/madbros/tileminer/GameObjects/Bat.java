@@ -31,6 +31,8 @@ public class Bat extends Mob {
 		margin = new Margin(0, 0, 4, 6);
 		currentSpeed = 0.1f;
 		moveSpeed = 0.05f; //0.05 f
+		isChasing = false;
+		knockBackResistance = .20f;
 		
 	}
 
@@ -52,7 +54,7 @@ public class Bat extends Mob {
 	@Override
 	public void didCollide() {
 		//mobController.remove(this);
-		if(!Game.hero.isDead) {
+		if(Game.hero.isHittable()) {
 			Game.hero.takeDamage(attack);
 			Game.hero.knockBack(this);
 		}
@@ -61,7 +63,9 @@ public class Bat extends Mob {
 	public void updateAI() {
 		checkForChasing();
 		checkForFleeingCampfire();
-		if(isInRangeOfCampfire) {
+		if(isKnockingBack) {
+			stop();
+		} else if(isInRangeOfCampfire) {
 			fleeRect(campFireRect, this.absRect);
 		} else if(isChasing){
 			runningSpeed = 0.09f;

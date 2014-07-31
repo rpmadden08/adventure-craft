@@ -47,7 +47,7 @@ public abstract class Item {
 	public int fuelAmount = 0;
 	public boolean isInactive = false;
 	public boolean isInUse = false;
-	public int knockBackPower = 10;
+	public float knockBackPower = 0.1f;
 	
 	public void calculateUsage() {
 		isInUse = false;

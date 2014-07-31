@@ -7,6 +7,7 @@ import com.madbros.tileminer.Game;
 import com.madbros.tileminer.GameObjects.Actor;
 import com.madbros.tileminer.GameObjects.Bee;
 import com.madbros.tileminer.GameObjects.Mob;
+import com.madbros.tileminer.GameObjects.QueenBee;
 import com.madbros.tileminer.Sprites.*;
 import com.madbros.tileminer.Utils.Margin;
 import com.madbros.tileminer.Utils.Rect;
@@ -30,7 +31,7 @@ public class WaterTile extends CollisionTile {
 	}
 	
 	public void heroDidCollide(Actor actor, int dir, double move, Rect charCRect, Rect tileRect) {
-		if(actor instanceof Mob && !(actor instanceof Bee)) {
+		if(actor instanceof Mob && !(actor instanceof Bee) && !(actor instanceof QueenBee)) {
 			super.heroDidCollide(actor, dir, move, charCRect, tileRect);
 		} 
 	}

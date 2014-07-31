@@ -23,6 +23,7 @@ public class WoodenSword extends Sword {
 		itemPower = 2;
 		maxUses = 15;
 		uses = 15;
+		knockBackPower = 0.1f;
 	}
 	
 	@Override

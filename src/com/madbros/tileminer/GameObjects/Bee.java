@@ -19,8 +19,8 @@ public class Bee extends Mob {
 	public Bee(MobController mobController, int x, int y) {
 		super(mobController);
 		attack = 2; //2
-		hP = 500;
-		maxHP = 500; //6
+		hP = 16;
+		maxHP = 16; //6
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
@@ -33,7 +33,8 @@ public class Bee extends Mob {
 		currentSpeed = 0f;
 		deathParticles = "beeDeath.p";
 		isChasing = false;
-		knockBackResistance = 5;
+		knockBackResistance = 0f;
+		//knockBackSpeed = 0.06f;
 	}
 
 //	public void startAttacking() {
@@ -59,7 +60,7 @@ public class Bee extends Mob {
 	@Override
 	public void didCollide() {
 		//mobController.remove(this);
-		if(!Game.hero.isDead) {
+		if(Game.hero.isHittable()) {
 			Game.hero.takeDamage(attack);
 			Game.hero.knockBack(this);
 		}
@@ -68,7 +69,7 @@ public class Bee extends Mob {
 	public void updateAI() {
 			super.updateAI();
 				checkForFleeingCampfire();
-				if(knockBackTime > 0) {
+				if(isKnockingBack) {
 					stop();
 				} else if(isInRangeOfCampfire) {
 					fleeRect(campFireRect, this.absRect);
@@ -77,7 +78,7 @@ public class Bee extends Mob {
 					checkSpeed();
 					checkForChasing();
 					chaseHero(Game.hero.absRect, this.absRect);
-				}else{
+				} else {
 					runningSpeed = 0f;
 					checkSpeed();
 					moveInRandomDirection360(100);

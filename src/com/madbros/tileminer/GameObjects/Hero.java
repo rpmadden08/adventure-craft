@@ -2,8 +2,6 @@ package com.madbros.tileminer.GameObjects;
 
 import static com.madbros.tileminer.Constants.*;
 
-import java.util.ArrayList;
-
 import org.lwjgl.input.Keyboard;
 
 import com.madbros.tileminer.Block;
@@ -41,7 +39,7 @@ public class Hero extends Actor {
 		swimmingSprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.HUMAN_SWIMMING));
 		
 		margin = new Margin(17, 17, 33, 1);
-		moveSpeed = 0.19f; //0.095
+		moveSpeed = 0.095f; //0.095
 		currentSpeed = 0f; 
 		knockBackSpeed = 0.3f;
 		hitSound = "sounds/pain.wav";
@@ -87,22 +85,33 @@ public class Hero extends Actor {
 	public void checkCollisions() {};
 	
 	public void takeDamage(int damage) {
-		damage = damage - armor;
+		if(Time.getTime() -invincibleTime > 666.666 ) {
 		
-		if(damage<1) {damage = 1;}
-		if(knockBackTime <= 0 && isKnockingBack()) {
-			if(hP - damage < 0) {
-				hP = 0;
-				
-				armorUsage();
-			} else {
-				eP = eP - 0.1;
-				hP = hP - damage;
-				Game.soundController.create(hitSound, 1);
-				armorUsage();
-				knockBackTime = 10;
-			}
+			damage = damage - armor;
 			
+			if(damage<1) {damage = 1;}
+				if(hP - damage < 0) {
+					hP = 0;
+					
+					armorUsage();
+				} else {
+					eP = eP - 0.1;
+					hP = hP - damage;
+					Game.soundController.create(hitSound, 1);
+					armorUsage();
+					knockBackTime = Time.getTime();
+				}
+				
+			//}
+			invincibleTime = Time.getTime();
+		}
+	}
+	
+	public boolean isHittable() {
+		if(!isDead && !isSwimming) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 	
@@ -131,44 +140,7 @@ public class Hero extends Actor {
 	}
 	
 	public void knockBack(Mob mob) {
-//		double p1x = (double) absRect.x+ (absRect.w /2);
-//		double p1y = (double) absRect.y+ (absRect.h/2);
-//		double p2x = (double) mob.absRect.x +(mob.absRect.w /2);
-//		double p2y = (double) mob.absRect.y +(mob.absRect.h /2);
-//		double xDiff = p2x - p1x;
-//		double yDiff = p2y - p1y;
-//		double degrees = Math.atan2(yDiff,  xDiff);
-//		degrees = degrees * 180 /(int) Math.PI;
-//		if(degrees < 0) {
-//			degrees += 360;
-//		}
-//		
-//		isKnockingUp = false;
-//		isKnockingDown = false;
-//		isKnockingLeft = false;
-//		isKnockingRight = false;
-//		
-//		if(degrees < 112.5 && degrees >= 67.5) {
-//			isKnockingUp = true;
-//		} else if(degrees < 22.5 || degrees >= 337.5) {
-//			isKnockingLeft = true;
-//		} else if(degrees < 202.5 && degrees >= 157.5) {
-//			isKnockingRight = true;
-//		} else if(degrees < 292.5 && degrees >= 247.5) {
-//			isKnockingDown = true;
-//		} else if(degrees < 67.5 && degrees >= 22.5) {
-//			isKnockingUp = true;
-//			isKnockingLeft = true;
-//		} else if(degrees < 157.5 && degrees >= 112.5) {
-//			isKnockingUp = true;
-//			isKnockingRight = true;
-//		} else if(degrees < 247.5 && degrees >= 202.5) {
-//			isKnockingDown = true;
-//			isKnockingRight = true;
-//		} else if(degrees < 337.5 && degrees >= 292.5) {
-//			isKnockingDown = true;
-//			isKnockingLeft = true;
-//		} 
+
 		//0 = left, 90 = up etc....
 		double p1x = absRect.x + (absRect.w/2);
 		double p1y = absRect.y + (absRect.h/2);
@@ -192,27 +164,7 @@ public class Hero extends Actor {
 		isKnockingDown = false;
 		isKnockingLeft = false;
 		isKnockingRight = false;
-//		if(degrees < 112.5 && degrees >= 67.5) {
-//			isKnockingUp = true;
-//		} else if(degrees < 22.5 || degrees >= 337.5) {
-//			isKnockingLeft = true;
-//		} else if(degrees < 202.5 && degrees >= 157.5) {
-//			isKnockingRight = true;
-//		} else if(degrees < 292.5 && degrees >= 247.5) {
-//			isKnockingDown = true;
-//		} else if(degrees < 67.5 && degrees >= 22.5) {
-//			isKnockingUp = true;
-//			isKnockingLeft = true;
-//		} else if(degrees < 157.5 && degrees >= 112.5) {
-//			isKnockingUp = true;
-//			isKnockingRight = true;
-//		} else if(degrees < 247.5 && degrees >= 202.5) {
-//			isKnockingDown = true;
-//			isKnockingRight = true;
-//		} else if(degrees < 337.5 && degrees >= 292.5) {
-//			isKnockingDown = true;
-//			isKnockingLeft = true;
-//		} 
+		
 		if(dir360 > 180 && dir360 < 360) {
 			isKnockingUp = true;
 			isKnockingDown = false;
@@ -293,7 +245,16 @@ public class Hero extends Actor {
 	@Override
 	public void update() {
 		super.update();
+		isKnockingBack = checkKnockBack();
+		if(!isKnockingBack) {
+			isKnockingLeft = false;
+			isKnockingDown = false;
+			isKnockingRight = false;
+			isKnockingUp = false;
+		}
 		//getCollisionBlocks();
+
+		
 		isSwimming = checkSwimming();
 		if(isSwimming) {
 			if(eP > 0) {
@@ -328,19 +289,10 @@ public class Hero extends Actor {
 				deathWait ++;
 			}
 		} else if (isDead == true) {
-			
-		} else if(knockBackTime > 0) {
-			knockBackTime = knockBackTime - 1;
-			if(knockBackTime > 0) {
+
+		} else if(isKnockingBack) {
 				checkSpeed();
 				moveKnockBack(Time.getDelta());
-			}
-			if(knockBackTime == 1) {
-				isKnockingLeft = false;
-				isKnockingDown = false;
-				isKnockingRight = false;
-				isKnockingUp = false;
-			}
 		} else if(isMoving() && !isAttacking) {
 			if(eP > 0) {
 				eP = eP - 0.0005;
@@ -351,16 +303,19 @@ public class Hero extends Actor {
 		} else if(isAttacking) {
 
 			//ATTACK
-			sprite.changeFrameTimes(50);
+			sprite.changeFrameTimes(50); //50
 			startWeaponAnimation = true;
 			int currentFrame = sprite.getCurrentAnimationFrame();
 			if(currentFrame == 0) {
+				
 				if(Game.inventory.invBar[Game.inventory.itemSelected].item.id != attackItem.id) { //If the item is destroyed for some reason it should stop attacking... 
 					attackItem = (WeaponItem) Game.inventory.invBar[Game.inventory.itemSelected].item;
 				}
 				if(attackButtonReleased == true || attackItem.isRepeatable == false) {
+
+					
 					if(hasAttacked == true) {
-						
+						mobsHitByCurrentSwing.clear();
 					//Reset arraylist of already attacked Mobs...
 					
 						startWeaponAnimation = false;
@@ -421,7 +376,6 @@ public class Hero extends Actor {
 	public void attack(WeaponItem item) {
 		if(attackButtonReleased == true && !isSwimming) {
 			attackButtonReleased = false;
-			mobsHitByCurrentSwing.clear();
 			hasAttacked = false;
 			isAttacking = true;
 			//attackItem = item;

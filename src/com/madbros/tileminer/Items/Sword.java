@@ -20,6 +20,7 @@ public class Sword extends WeaponItem {
 		weaponOffsetY = 0;
 		cRectFinal = new Rect (0,0,0,0);
 		sound = "sounds/swordSwing1.wav";
+		knockBackPower = 11;
 		
 		cRectU = new Rect (0,-6,82,32);
 		cRectD = new Rect (0,54,82,32);

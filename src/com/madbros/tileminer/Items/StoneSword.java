@@ -22,6 +22,7 @@ public class StoneSword extends Sword {
 		attackPower = 6;
 		maxUses = 40;
 		uses = 40;
+		knockBackPower = 0.2f;
 	}
 	
 	@Override

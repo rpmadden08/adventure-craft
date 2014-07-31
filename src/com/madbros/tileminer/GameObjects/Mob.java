@@ -31,6 +31,7 @@ public class Mob extends Actor {
 	//public float maxSpeed;
 	public boolean isFleeing = false;
 	public String deathParticles = "death.p";
+	public boolean isAngry = false;
 	
 	
 	
@@ -66,7 +67,7 @@ public class Mob extends Actor {
 	
 	public void takeDamage(int damage) {
 		//Get Harming Potion increase
-		if(knockBackTime <=0 && !Game.hero.hitByThisSwing(this)) {
+		if(Time.getTime() -invincibleTime > 175  && !Game.hero.hitByThisSwing(this)) {
 			Game.hero.mobsHitByCurrentSwing.add(this);
 			damage = Game.hero.appliedStatusEffects[1].getHarmingDamageIncrease(damage);
 			if(Game.hero.appliedStatusEffects[2].canApplyEffect(this)) {
@@ -76,9 +77,8 @@ public class Mob extends Actor {
 			equippedWeapon.calculateUsage();
 			hP = hP - damage;
 			Item item = ITEM_HASH.get(Game.inventory.invBar[Game.inventory.itemSelected].item.id).createNew();
-			
-			//knockBackTime = item.knockBack; //30
-			knockBackTime = getKnockBackTime(equippedWeapon.knockBackPower);
+		
+			knockBackTime = Time.getTime();
 
 			if(hP <= 0) {
 				deathDrop();
@@ -91,7 +91,13 @@ public class Mob extends Actor {
 			} else {
 				item.playHitSound();
 			}
+			invincibleTime = Time.getTime();
 		}
+		//}
+	}
+	
+	public float getKnockBackSpeed(Item item) {
+		return item.knockBackPower- (item.knockBackPower * knockBackResistance);
 	}
 	
 	public void deathParticle() {
@@ -109,10 +115,12 @@ public class Mob extends Actor {
 		double xDiff = p2x - p1x;
 		double yDiff = p2y - p1y;
 		double degrees = Math.atan2(yDiff,  xDiff);
-		degrees = degrees * 180 /(int) Math.PI;
-		if(degrees < 0) {
-			degrees += 360;
-		}
+		degrees = degrees * 180 /Math.PI;
+		isKnockingBack = true;
+//		if(degrees < 0) {
+//			degrees += 360;
+//		}
+		
 		dir360 = (int)degrees;
 		if(dir360 >= 180) {
 			dir360 = dir360-180;
@@ -124,27 +132,7 @@ public class Mob extends Actor {
 		isKnockingDown = false;
 		isKnockingLeft = false;
 		isKnockingRight = false;
-//		if(degrees < 112.5 && degrees >= 67.5) {
-//			isKnockingUp = true;
-//		} else if(degrees < 22.5 || degrees >= 337.5) {
-//			isKnockingLeft = true;
-//		} else if(degrees < 202.5 && degrees >= 157.5) {
-//			isKnockingRight = true;
-//		} else if(degrees < 292.5 && degrees >= 247.5) {
-//			isKnockingDown = true;
-//		} else if(degrees < 67.5 && degrees >= 22.5) {
-//			isKnockingUp = true;
-//			isKnockingLeft = true;
-//		} else if(degrees < 157.5 && degrees >= 112.5) {
-//			isKnockingUp = true;
-//			isKnockingRight = true;
-//		} else if(degrees < 247.5 && degrees >= 202.5) {
-//			isKnockingDown = true;
-//			isKnockingRight = true;
-//		} else if(degrees < 337.5 && degrees >= 292.5) {
-//			isKnockingDown = true;
-//			isKnockingLeft = true;
-//		} 
+
 		if(dir360 > 180 && dir360 < 360) {
 			isKnockingUp = true;
 			isKnockingDown = false;
@@ -170,17 +158,15 @@ public class Mob extends Actor {
 	}
 	
 	public void update() {
+		isKnockingBack = checkKnockBack();
 		for(int i =0; i < timedStatusEffects.length; i++) {
 			timedStatusEffects[i].update(this);
 		}
-		//Check if the mob has stepped out of bound		
 		
-		if(knockBackTime > 0) {
-			knockBackTime = knockBackTime - 1;
-			if(knockBackTime > 0) {
-				checkSpeed();
-				moveKnockBack(Time.getDelta());
-			}
+		//Check if the mob has stepped out of bound	
+		if(isKnockingBack) {
+			checkSpeed();
+			moveKnockBack(Time.getDelta());
 			
 		} else if(isMoving() && !isAttacking) {
 			//currentSpeed = moveSpeed;
@@ -189,12 +175,12 @@ public class Mob extends Actor {
 		} else if(isAttacking) {
 			
 		}
-		if(knockBackTime < 1) {
+		if(!isKnockingBack) {
 			isKnockingLeft = false;
 			isKnockingDown = false;
 			isKnockingRight = false;
 			isKnockingUp = false;
-		}
+		} 
 	}
 	
 	@Override
@@ -209,13 +195,13 @@ public class Mob extends Actor {
 			Rect charCRect = new Rect(Game.hero.absRect, Game.hero.margin);
 			Rect cRect = new Rect(absRect, margin);
 			
-			if(cRect.detectCollision(charCRect) && Game.hero.knockBackTime <=0) {
+			if(cRect.detectCollision(charCRect) && Game.hero.isKnockingBack == false) {
 				didCollide();
 			}
 			if(Game.hero.isAttacking ) {
 				Rect wRect = new Rect(Game.hero.absRect.x+ Game.hero.attackItem.cRectFinal.x, Game.hero.absRect.y + Game.hero.attackItem.cRectFinal.y, Game.hero.attackItem.cRectFinal.w,Game.hero.attackItem.cRectFinal.h);
 	
-				if(cRect.detectCollision(wRect)&& knockBackTime <= 0) {
+				if(cRect.detectCollision(wRect)&& !isKnockingBack) {
 					didGetHit();
 				}
 			}
@@ -225,7 +211,7 @@ public class Mob extends Actor {
 	
 	@Override
 	public void didGetHit() {
-		if(knockBackTime <= 0 && !isKnockingBack()) {
+		if(!isKnockingBack) {
 			takeDamage(Game.hero.attackItem.attackPower);
 			knockBack(Game.hero);
 		}
@@ -245,58 +231,26 @@ public class Mob extends Actor {
 		
 		//float maxSpeed = moveSpeed;
 		//float maxSpeed = currentSpeed;
-		stop();
+	//	isMovingDown = false; isMovingUp = false; isMovingLeft = false; isMovingRight = false;
 		
 		if(dir360 > 180 && dir360 < 360) {
 			moveUp();
+			isMovingDown = false;
 		}
 		if(dir360 > 0 && dir360 < 180) {
 			moveDown();
+			isMovingUp = false;
 		}
 		if(dir360 > 90 && dir360 < 270) {
 			moveLeft();
+			isMovingRight = false;
+			
 		}
 		if(dir360 > 270 || dir360 < 90) {
 			moveRight();
+			isMovingLeft = false;
 		}
-		
-//		if(speedX > maxSpeed && speedY > maxSpeed) {
-//			moveRight();
-//			moveDown();
-//		} else if(speedX > maxSpeed && speedY < -maxSpeed) {
-//			moveRight();
-//			moveUp();
-//		} else if(speedX < -maxSpeed && speedY < -maxSpeed) {
-//			moveLeft();
-//			moveUp();
-//		} else if(speedX < -maxSpeed && speedY > maxSpeed) {
-//			moveLeft();
-//			moveDown();
-//		} else if(speedX > maxSpeed) {
-//			moveRight();
-//			if(isMovingUp || isMovingDown) {
-//				stopUp();
-//				stopDown();
-//			}
-//		} else if(speedX < -maxSpeed) {
-//			moveLeft();
-//			if(isMovingUp || isMovingDown) {
-//				stopUp();
-//				stopDown();
-//			}
-//		} else if(speedY > maxSpeed) {
-//			moveDown();
-//			if(isMovingLeft || isMovingRight) {
-//				stopLeft();
-//				stopRight();
-//			}
-//		} else if(speedY < -maxSpeed) {
-//			moveUp();
-//			if(isMovingLeft || isMovingRight) {
-//				stopLeft();
-//				stopRight();
-//			}
-//		}
+
 	}
 	
 	public void fleeRect(Rect rect, Rect mob) {
@@ -358,6 +312,7 @@ public class Mob extends Actor {
 			
 		} else {
 			isChasing = false;
+			isAngry = false;
 		}
 	}
 	

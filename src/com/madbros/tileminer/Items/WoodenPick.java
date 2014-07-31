@@ -17,8 +17,8 @@ public class WoodenPick extends Pick {
 		isRepeatable = true;
 		craftCost = new int[]{PLANK, STICK};
 		craftCostAmount = new int[]{3, 2};
-		maxUses = 15;// 15
-		uses = 1;
+		maxUses = 150;// 15
+		uses = 150;
 		
 	}
 	

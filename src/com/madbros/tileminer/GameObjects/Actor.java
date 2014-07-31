@@ -8,7 +8,9 @@ import org.lwjgl.input.Keyboard;
 
 import com.madbros.tileminer.Block;
 import com.madbros.tileminer.Game;
+import com.madbros.tileminer.Time;
 import com.madbros.tileminer.Items.Clothing;
+import com.madbros.tileminer.Items.Item;
 import com.madbros.tileminer.Items.WeaponItem;
 import com.madbros.tileminer.Sprites.CompoundAnimatedSprite;
 import com.madbros.tileminer.StatusEffects.AppliedStatusEffect;
@@ -27,9 +29,10 @@ public class Actor extends GameObject {
 	public Rect sRect = new Rect(Game.getCenterScreenX() - CHARACTER_SIZE/2, Game.getCenterScreenY() - CHARACTER_SIZE/2, CHARACTER_SIZE, CHARACTER_SIZE);
 	public Margin margin = new Margin();
 	
+	public boolean isKnockingBack = false;
 	public float currentSpeed;
 	public float knockBackSpeed;
-	public int knockBackResistance=0;
+	public float knockBackResistance=1.0f;
 	//public float coolDownTime=0;
 	public float moveSpeed;
 	public float runningSpeed;
@@ -38,6 +41,7 @@ public class Actor extends GameObject {
 	public float hungerSpeed = 0;
 	public float swimSpeed = 0;
 	public Block[] collisionDetectionBlocks;
+	public long invincibleTime = 0;
 	
 	boolean isMovingLeft = false, isMovingRight = false, isMovingUp = false, isMovingDown = false;
 	boolean isKnockingLeft = false, isKnockingRight = false, isKnockingUp = false, isKnockingDown = false;
@@ -56,7 +60,7 @@ public class Actor extends GameObject {
 	
 	//public boolean test = false;
 	
-	public int knockBackTime = 0;
+	public long knockBackTime = 0;
 	public boolean hasAttacked = true;
 	public WeaponItem attackItem;
 	
@@ -85,6 +89,15 @@ public class Actor extends GameObject {
 	
 	/************************** Movement **************************/
 	
+	public boolean checkKnockBack() {
+		if(Time.getTime() -knockBackTime > 150 ) {
+			return false;
+		} else  {
+			return true;
+		}
+	}
+	
+	
 	public boolean hitByThisSwing(Mob mobBeingHit) {
 		for(int i = 0; i < Game.hero.mobsHitByCurrentSwing.size(); i++) {
 			Mob mob = Game.hero.mobsHitByCurrentSwing.get(i);
@@ -100,12 +113,17 @@ public class Actor extends GameObject {
 	
 	public void checkSpeed() {
 		float baseSpeed;
-		if(knockBackTime <=0) {
+		if(!isKnockingBack) {	
 			baseSpeed = moveSpeed + runningSpeed - swimSpeed;
 			currentSpeed = baseSpeed - (baseSpeed * slownessSpeed) + (baseSpeed * speedSpeed)-(baseSpeed*hungerSpeed);
 		} else {
-			currentSpeed = knockBackSpeed;
+			Item item = ITEM_HASH.get(Game.inventory.invBar[Game.inventory.itemSelected].item.id).createNew();
+			currentSpeed = getKnockBackSpeed(item);
 		}
+	}
+	
+	public float getKnockBackSpeed(Item item) {
+		return knockBackSpeed;
 	}
 	
 	public void moveUp() {
@@ -124,14 +142,6 @@ public class Actor extends GameObject {
 		if(!isMoving() || isMovingRight) sprite.changeAnimationTo(WALK_LEFT);
 		isMovingLeft = true;
 		isMovingRight = false;
-	}
-	
-	public boolean isKnockingBack() {
-		if(!isKnockingLeft && !isKnockingRight && !isKnockingDown && !isKnockingUp) {
-			return false;
-		} else {
-			return true;
-		}
 	}
 	
 	public void moveRight() {
@@ -180,14 +190,6 @@ public class Actor extends GameObject {
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) moveLeft();
 	}
 	
-	public int getKnockBackTime(int knockBackAttack) {
-		int finalKnockBack = knockBackAttack - knockBackResistance;
-		if(finalKnockBack < 1) {
-			finalKnockBack = 0;
-		}
-		return finalKnockBack;
-		
-	}
 	
 	/************************** Collision Detection **************************/
 	public void getCollisionBlocks() {
@@ -237,7 +239,8 @@ public class Actor extends GameObject {
 						if(isVerticalMovement) {
 							
 							if(charCRect.detectCollision(collisionDetectionBlocks[i].collisionTile.cRect)) {
-								if(knockBackTime <= 0) { /*need this for Knockback Collision*/ 
+								/*need this for Knockback Collision*/ 
+								if(!isKnockingBack) {
 									if(isMovingDown) {
 										dir = DOWN;
 									} else if(isMovingUp) {
@@ -256,7 +259,8 @@ public class Actor extends GameObject {
 							}
 						} else {
 							if(charCRect.detectCollision(collisionDetectionBlocks[i].collisionTile.cRect)) {
-								if(knockBackTime <= 0) { /*need this for Knockback Collision*/ 
+								/*need this for Knockback Collision*/ 
+								if(!isKnockingBack) {	
 									if(isMovingLeft) {
 										dir = LEFT;
 									} else if(isMovingRight) {

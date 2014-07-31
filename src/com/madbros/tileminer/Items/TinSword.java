@@ -22,6 +22,7 @@ public class TinSword extends Sword {
 		attackPower = 9;
 		maxUses = 100;
 		uses = 100;
+		knockBackPower = 0.3f;
 	}
 	
 	@Override
