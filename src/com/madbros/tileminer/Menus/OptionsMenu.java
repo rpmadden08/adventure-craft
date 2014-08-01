@@ -33,7 +33,8 @@ public class OptionsMenu extends Menu {
 	
 	public OptionsMenu(SpriteBatch batch) {
 		super(batch);
-		changeResolution();
+		refreshMenu();
+//		changeResolution();
 		
 	}
 
@@ -78,8 +79,8 @@ public class OptionsMenu extends Menu {
 		Rect r7 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+40, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		Rect r5 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+80, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		Rect r6 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+120, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
-		Rect r1 = new Rect(r3.x-40, MAIN_MENU_STARTY+12, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
-		Rect r2 = new Rect(r3.x2()+40, MAIN_MENU_STARTY+12, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+		Rect r1 = new Rect(r3.x-60, MAIN_MENU_STARTY+12, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+		Rect r2 = new Rect(r3.x2()+60, MAIN_MENU_STARTY+12, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		
 		
 		String sound;
@@ -141,7 +142,7 @@ public class OptionsMenu extends Menu {
 		    	) {
 		    		isStretched = " ";
 		    	} else {
-		    		isStretched = "(STRETCHED)";
+		    		isStretched = " (S)";
 		    	}
 		
 		
