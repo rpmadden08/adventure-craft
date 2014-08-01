@@ -18,7 +18,7 @@ public class TallGrassCTile extends TallGrassATile {
 		id = TALL_GRASS_C_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
-		isDiggable = true;
+		isDiggable = false;
 		isAutoTileable = false;
 		autoTile = 0;
 		isBreakable = true;
@@ -33,19 +33,5 @@ public class TallGrassCTile extends TallGrassATile {
 	
 	public Tile createNew() {
 		return new TallGrassCTile();
-	}
-	
-	public void deleteMe(int x, int y, Block[][] activeBlocks) {
-		Block b = activeBlocks[x][y];
-		b.layers[OBJECT_LAYER] = new NoTile();
-		b.collisionTile = null;
-
-		
-		
-		//FIXME this should drop something other than tall grass
-		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Item item = ITEM_HASH.get(TALL_GRASS_A).createNew();
-		Game.collectibleController.add(TALL_GRASS_A, Sprites.sprites.get(Sprites.TALL_GRASS_A_ITEM), collectibleRect, 1, item.maxUses);
-		
 	}
 }

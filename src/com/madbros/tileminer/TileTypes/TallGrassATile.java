@@ -2,11 +2,16 @@ package com.madbros.tileminer.TileTypes;
 
 import static com.madbros.tileminer.Constants.*;
 
+import java.util.Random;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.openal.Wav.Sound;
 import com.madbros.tileminer.*;
 import com.madbros.tileminer.Items.Item;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
 import com.madbros.tileminer.Utils.Rect;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class TallGrassATile extends CollisionTile {
 	
@@ -18,13 +23,14 @@ public class TallGrassATile extends CollisionTile {
 		id = TALL_GRASS_A_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
-		isDiggable = true;
+		isDiggable = false;
 		isAutoTileable = false;
 		autoTile = 0;
 		isBreakable = true;
 		currentHp = 1;
 		maxHp = 1;
 		isCollidable = false;
+		particleEffect = "grassChunks.p";
 	}
 	
 	@Override
@@ -44,6 +50,8 @@ public class TallGrassATile extends CollisionTile {
 			if(cRect.detectCollision(wRect)) {
 				deleteMe(x,y, Game.level.activeBlocks);
 			}
+			//RectInt hBAbsRect = Game.level.highlightedBlock.absRect.getRectInt();
+			
 		}
 	}
 	
@@ -51,13 +59,29 @@ public class TallGrassATile extends CollisionTile {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
 		b.collisionTile = null;
-
+		RectInt hBAbsRect = b.absRect.getRectInt();
+		Game.particleEffectController.add(particleEffect, 
+				hBAbsRect.x +(TILE_SIZE/2), hBAbsRect.y + (TILE_SIZE/2));
+		Sound test = (Sound) Gdx.audio.newSound(Gdx.files.internal("sounds/grassSlash.wav"));
+		boolean isSoundAlreadyPlaying = false;
+		for(int a = 0; a < Game.soundController.sounds.size(); a++) {
+			Sound sound = Game.soundController.sounds.get(a);
+			if(sound.duration() == test.duration()) {
+				isSoundAlreadyPlaying = true;
+			}
+		}
+		if(isSoundAlreadyPlaying == false) {
+			Game.soundController.create("sounds/grassSlash.wav", 0.2f);
+		}
 		
+		Random rand = new Random();
+		int num = rand.nextInt(10);//150 
 		
-		//FIXME this should drop something other than tall grass
-		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Item item = ITEM_HASH.get(TALL_GRASS_A).createNew();
-		Game.collectibleController.add(TALL_GRASS_A, Sprites.sprites.get(Sprites.TALL_GRASS_A_ITEM), collectibleRect, 1, item.maxUses);
+		if(num == 0) {
+			Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+			Item item = ITEM_HASH.get(TALL_GRASS_A).createNew();
+			Game.collectibleController.add(TALL_GRASS_A, Sprites.sprites.get(Sprites.TALL_GRASS_A_ITEM), collectibleRect, 1, item.maxUses);
+		}
 		
 	}
 }

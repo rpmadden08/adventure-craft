@@ -41,7 +41,7 @@ public class TallGrassA extends BlockItem32 {
 	}
 	
 	public void highlightItem(Block block, int x, int y) {
-		if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id && block.layers[GRASS_LAYER].autoTile == 4) {
+		if(Helpers.arrayDoesContainInt(placeableTileIds, block.getTopTerrainTile().id) && AIR == block.layers[OBJECT_LAYER].id) {
 
 			//sprite.setColor(HIGHLIGHT_COLOR);
 			sprite.draw(x, y, Z_CHARACTER);
