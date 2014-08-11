@@ -30,7 +30,7 @@ public class Sword extends WeaponItem {
 	
 	@Override
 	public void useLeft() {
-		if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
+		if(!Game.hero.isAttacking && Game.hero.attackButtonReleased && Game.hero.isSwimming == false) {
 			
 			Game.hero.attack(this);
 			Game.soundController.create(sound, 0.5f);

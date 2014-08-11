@@ -44,7 +44,7 @@ public class Game implements ApplicationListener {
 
 	
 	//public static long rgenseed = System.currentTimeMillis();
-	public static long rgenseed = 7;
+	public static long rgenseed = 4;
 		//1  (Water + Islands)  
 		//4  (All Water)
 		//7  (Grassland) 
@@ -153,12 +153,10 @@ public class Game implements ApplicationListener {
 		if(gameMainMenu.menuIsActive) {
 			gameMainMenu.menuIsActive = false;
 			currentState = new MainState();
-			Game.soundController.create("sounds/closeMenu.wav", 1f);
 		} else {
 			gameMainMenu = new GameMainMenu(batch);
 			gameMainMenu.menuIsActive = true;
 			currentState = new GameMainMenuState();
-			Game.soundController.create("sounds/openMenu.wav", 1f);
 		}	
 		
 	}

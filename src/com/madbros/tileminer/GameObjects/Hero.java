@@ -223,16 +223,18 @@ public class Hero extends Actor {
 	
 	public boolean checkSwimming() {
 		Rect charCRect = new Rect(absRect, this.margin);
-		for(int a = 0; a < collisionDetectionBlocks.length; a++) {
-			if(collisionDetectionBlocks[a] != null) {
-				if(collisionDetectionBlocks[a].isCollidable()) {
-					
-					if(charCRect.detectCollision(collisionDetectionBlocks[a].collisionTile.cRect)) {
-						if(collisionDetectionBlocks[a].layers[WATER_LAYER].id == WATER) {
-							if(!isSwimming) {
-								Game.soundController.create("sounds/splash.wav", 0.5f);
+		if(!isAttacking) {
+			for(int a = 0; a < collisionDetectionBlocks.length; a++) {
+				if(collisionDetectionBlocks[a] != null) {
+					if(collisionDetectionBlocks[a].isCollidable()) {
+						
+						if(charCRect.detectCollision(collisionDetectionBlocks[a].collisionTile.cRect)) {
+							if(collisionDetectionBlocks[a].layers[WATER_LAYER].id == WATER) {
+								if(!isSwimming) {
+									Game.soundController.create("sounds/splash.wav", 0.5f);
+								}
+								return true;
 							}
-							return true;
 						}
 					}
 				}
@@ -256,7 +258,7 @@ public class Hero extends Actor {
 
 		
 		isSwimming = checkSwimming();
-		if(isSwimming) {
+		if(isSwimming && !isAttacking) {
 			if(eP > 0) {
 				eP = eP - 0.0010;
 			}

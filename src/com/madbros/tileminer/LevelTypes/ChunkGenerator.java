@@ -50,7 +50,7 @@ public class ChunkGenerator {
     		    			} else if(getRandom(0.55, m, n)){ 
         		    			return BARREL; 
     		    			} else if(getRandom(2, m, n)){ 
-            		    			return RED_FLOWERS_TILE; 
+            		    		return RED_FLOWERS_TILE; 
     		    			} else if(getRandom(6, m, n)){ 
         		    			return GRASS_MARK; 
     		    			} else {
@@ -60,11 +60,13 @@ public class ChunkGenerator {
 	    		//Forest
     		}else if(chunkGroundLayer[m][n] == 5){
 					
-	    			if(getRandom(20.0, m, n)) { //20.0
+	    			if(getRandom(15.0, m, n)) { //20.0
 	    				return TREE;
-	    			} else if(getRandom(20.05, m, n)){ 
+	    			} else if(getRandom(15.05, m, n)){ 
 		    			return BARREL; 
-	    			}else {
+	    			} else if(getRandom(19.05, m, n)){ 
+		    			return GRASS_MARK; 
+	    			} else {
 	    				return AIR;
 	    			}
     			
@@ -330,7 +332,7 @@ public class ChunkGenerator {
 			    long seed2 = (long) seed;
 				Random rand = new Random(seed2); 
 				int oreAmount = rand.nextInt(7) + 3;
-				oreGenerator(oreAmount,m,n, TALL_GRASS_A_TILE, 1, new int[] {4});
+				oreGenerator(oreAmount,m,n, TALL_GRASS_A_TILE, 1, new int[] {4,5});
 			} 
 		}
 	}
