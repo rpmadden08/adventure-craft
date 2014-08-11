@@ -3,7 +3,6 @@ package com.madbros.tileminer.Items;
 
 
 import static com.madbros.tileminer.Constants.*;
-
 import com.madbros.tileminer.Sprites.Sprites;
 
 public class WoodenPick extends Pick {
@@ -28,6 +27,10 @@ public class WoodenPick extends Pick {
 	}
 	
 //	public void useLeft() {
+//		
+//		super.useLeft();
+//	
+//	}
 //		
 ////		Tile topTile = Game.level.highlightedBlock.getTopTile();
 //		

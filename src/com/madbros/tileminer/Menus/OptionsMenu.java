@@ -63,7 +63,7 @@ public class OptionsMenu extends Menu {
 		ButtonFunction cancel = new ButtonFunction() { public void invoke() { cancel(); } };
 		ButtonFunction toggleSound = new ButtonFunction() { public void invoke() { toggleSound(); } };
 
-		ButtonFunction toggleMusic = new ButtonFunction() { public void invoke() { toggleMusic(); } };
+		//ButtonFunction toggleMusic = new ButtonFunction() { public void invoke() { toggleMusic(); } };
 		ButtonFunction fullscreenToggle = new ButtonFunction() { public void invoke() { Game.fullscreenToggle(); } };
 		
 		resolution = Game.currentScreenSizeX+"x"+Game.currentScreenSizeY+isStretched;
@@ -78,13 +78,13 @@ public class OptionsMenu extends Menu {
 		Rect r4 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		Rect r7 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+40, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		Rect r5 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+80, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
-		Rect r6 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+120, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+		//Rect r6 = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY+120, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		Rect r1 = new Rect(r3.x-60, MAIN_MENU_STARTY+12, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		Rect r2 = new Rect(r3.x2()+60, MAIN_MENU_STARTY+12, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		
 		
 		String sound;
-		String music;
+		//String music;
 		if(Game.isSoundOn) {sound = "On";} else {sound = "Off";}
 		//if(Game.isMusicOn) {music = "On";} else {music = "Off";}
 		
@@ -96,7 +96,7 @@ public class OptionsMenu extends Menu {
 		//WITHOUT MUSIC
 		String[] strings = {"<",">", "Back", resolution, "Sound is "+sound, "Toggle Fullscreen"};
 		ButtonFunction[] functions = {leftResolution, rightResolution, cancel, rightResolution, toggleSound, fullscreenToggle};
-		Rect[] r = {r1, r2, r3, r4, r5,r7};
+		Rect[] r = {r1, r2, r3, r4, r5, r7};
 		
 		menuButtons = new UIButton[functions.length];
 		for(int i = 0; i < functions.length; i++) {

@@ -2,9 +2,8 @@ package com.madbros.tileminer.Menus;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.io.IOException;
 
-import org.apache.commons.io.FileUtils;
+//import org.apache.commons.io.FileUtils;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -15,6 +14,7 @@ import com.madbros.tileminer.GameStates.LoadingState;
 import com.madbros.tileminer.GameStates.MainMenuState;
 import com.madbros.tileminer.UI.*;
 import com.madbros.tileminer.Utils.ButtonFunction;
+import com.madbros.tileminer.Utils.Helpers;
 import com.madbros.tileminer.Utils.Rect;
 import com.madbros.tileminer.Utils.RectInt;
 
@@ -134,17 +134,12 @@ public class LoadGameMenu extends Menu {
 	
 	public void delete() {
 		if(currentlySelectedButton != null) {
-			//listOfFiles[currentlySelectedButton.iD].delete();
-			try {
-				FileUtils.deleteDirectory(listOfFiles[currentlySelectedButton.iD]);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
+			Helpers.deleteDirectory(listOfFiles[currentlySelectedButton.iD]);
+			
 			currentlySelectedButton = null;
 		}
 		setupMenu(batch);
-		//refreshMenu();
 		
 		
 	}

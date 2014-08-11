@@ -31,16 +31,16 @@ public class GameOptionsMenu extends GameMainMenu {
 		Rect r = new Rect(Game.currentScreenSizeX - DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY, DEBUG_MENU_SIZEX, DEBUG_MENU_SIZEY);
 		
 		ButtonFunction toggleSound = new ButtonFunction() { public void invoke() { toggleSound(); } };
-		ButtonFunction toggleMusic = new ButtonFunction() { public void invoke() { toggleMusic(); } };
+	//	ButtonFunction toggleMusic = new ButtonFunction() { public void invoke() { toggleMusic(); } };
 		ButtonFunction cancel = new ButtonFunction() { public void invoke() { cancel(); } };
 		ButtonFunction fullscreenToggle = new ButtonFunction() { public void invoke() { Game.fullscreenToggle(); } };
 
 
 		String sound;
-		String music;
+		//String music;
 		if(Game.isSoundOn) {sound = "On";} else {sound = "Off";}
-		if(Game.isMusicOn) {music = "On";} else {music = "Off";}
-		String s1, s2, s3, s4;
+		//if(Game.isMusicOn) {music = "On";} else {music = "Off";}
+		String s1, s3, s4;
 		s1 = "Sound is "+sound;
 		//s2 = "Music is "+music;
 		s3 = "Back";

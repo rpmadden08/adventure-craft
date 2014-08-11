@@ -7,6 +7,7 @@ import java.io.FilenameFilter;
 
 import org.lwjgl.opengl.Display;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.GameStates.MainMenuState;
@@ -28,13 +29,14 @@ public class MainMenu extends Menu{
 		ButtonFunction newGame = new ButtonFunction() { public void invoke() { newGame(); } };
 		ButtonFunction loadGame = new ButtonFunction() { public void invoke() { loadGame(); } };
 		ButtonFunction options = new ButtonFunction() { public void invoke() { options(); } };
+		ButtonFunction credits = new ButtonFunction() { public void invoke() { credits(); } };
 		ButtonFunction quitGame = new ButtonFunction() { public void invoke() { quitGame(); } };
 		
 		Rect r = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		int marginY = 10;
-		String[] strings = {"New Game", "Load Game", "Options", "Quit"};
+		String[] strings = {"New Game", "Load Game", "Options", "Credits", "Quit"};
 		
-		ButtonFunction[] functions = {newGame, loadGame, options, quitGame};
+		ButtonFunction[] functions = {newGame, loadGame, options, credits, quitGame};
 		
 		menuButtons = new TextUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {
@@ -91,6 +93,10 @@ public class MainMenu extends Menu{
 	private void options() {
 		MainMenuState.options(Game.batch);
 		
+	}
+	
+	private void credits() {
+		Gdx.net.openURI("https://play.google.com/store/apps/details?id=com.shagunstudios.racinggame");
 	}
 	
 	public void quitGame() {
