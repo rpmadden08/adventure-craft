@@ -385,6 +385,8 @@ public class Inventory {
 	public void open(Hero hero) {
 		formerHeroAnimation = hero.sprite.getCurrentAnimation();
 		hero.sprite.changeAnimationTo(STAND_DOWN);
+
+		Game.timeSpentInPreviousSaves =Time.getGameTime();
 	}
 	
 	public void close(Hero hero) {

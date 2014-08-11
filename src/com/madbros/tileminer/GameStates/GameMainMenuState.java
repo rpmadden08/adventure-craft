@@ -38,6 +38,7 @@ public class GameMainMenuState extends MainState {
 			Game.renderSystem.renderText(Game.inventory, Game.batch);
 			Game.gameMainMenu.render();
 			Game.gameMainMenu.renderText();
+			if(Game.debugger.isDebugging) Game.debugger.renderText(Game.hero.absRect, Game.batch);
 //			Game.renderSystem.renderInventory(Game.hero, Game.inventory);
 			
 			//Game.renderSystem.renderArmorSlots(Game.hero, Game.inventory);

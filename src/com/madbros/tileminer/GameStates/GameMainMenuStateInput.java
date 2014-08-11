@@ -26,6 +26,7 @@ public class GameMainMenuStateInput extends MainStateInput {
 		//super.keyDown(key);
 		switch(key) {
 		case Keys.ESCAPE: Game.toggleMainMenu(); break;
+		case Keys.M: Game.debugger.toggle(); break;
 		}
 
 		//additionalKeyDown(key);

@@ -86,11 +86,18 @@ public class OptionsMenu extends Menu {
 		String sound;
 		String music;
 		if(Game.isSoundOn) {sound = "On";} else {sound = "Off";}
-		if(Game.isMusicOn) {music = "On";} else {music = "Off";}
-		String[] strings = {"<",">", "Back", resolution, "Sound is "+sound,  "Music is "+music, "Toggle Fullscreen"};
-		ButtonFunction[] functions = {leftResolution, rightResolution, cancel, rightResolution, toggleSound, toggleMusic, fullscreenToggle};
-		Rect[] r = {r1, r2, r3, r4, r5, r6, r7};
+		//if(Game.isMusicOn) {music = "On";} else {music = "Off";}
+		
+		//WITH MUSIC
+//		String[] strings = {"<",">", "Back", resolution, "Sound is "+sound,  "Music is "+music, "Toggle Fullscreen"};
+//		ButtonFunction[] functions = {leftResolution, rightResolution, cancel, rightResolution, toggleSound, toggleMusic, fullscreenToggle};
+//		Rect[] r = {r1, r2, r3, r4, r5, r6, r7};
 
+		//WITHOUT MUSIC
+		String[] strings = {"<",">", "Back", resolution, "Sound is "+sound, "Toggle Fullscreen"};
+		ButtonFunction[] functions = {leftResolution, rightResolution, cancel, rightResolution, toggleSound, fullscreenToggle};
+		Rect[] r = {r1, r2, r3, r4, r5,r7};
+		
 		menuButtons = new UIButton[functions.length];
 		for(int i = 0; i < functions.length; i++) {
 			RectInt rect = r[i].getRectInt();

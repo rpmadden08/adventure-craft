@@ -7,7 +7,8 @@ import static com.madbros.tileminer.Constants.*;
 
 public class MusicController {
 	public int musicSelection = 0;
-	public Music music = Gdx.audio.newMusic(Gdx.files.internal("music/swimming.mp3"));
+	public Music music = Gdx.audio.newMusic(Gdx.files.internal("music/blank.mp3"));
+	//public Music music = null;
 	
 	public MusicController() {
 		

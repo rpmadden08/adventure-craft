@@ -56,7 +56,7 @@ public class Game implements ApplicationListener {
 	public static int replaceableX = 0;
 	public static int replaceableY = 0;
 	public static boolean isSoundOn = true;
-	public static boolean isMusicOn = true;
+	public static boolean isMusicOn = false;
 	public static GameState currentState;
 	public static String locOfSavedGame = null;
 	public static String gameFileName = null;
@@ -129,6 +129,7 @@ public class Game implements ApplicationListener {
 			inventory.heldItem.stackSize = 0;
 			inventory.heldItem = new NoItem();
 		}
+		Game.gameStartTime = Time.getTime();
 		
 	}
 	
@@ -153,7 +154,10 @@ public class Game implements ApplicationListener {
 		if(gameMainMenu.menuIsActive) {
 			gameMainMenu.menuIsActive = false;
 			currentState = new MainState();
+			
 		} else {
+			Game.timeSpentInPreviousSaves =Time.getGameTime();
+			
 			gameMainMenu = new GameMainMenu(batch);
 			gameMainMenu.menuIsActive = true;
 			currentState = new GameMainMenuState();

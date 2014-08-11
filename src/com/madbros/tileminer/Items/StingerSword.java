@@ -3,12 +3,10 @@ package com.madbros.tileminer.Items;
 
 //import com.badlogic.gdx.backends.openal.Wav.Sound;
 import static com.madbros.tileminer.Constants.*;
-
-import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Rect;
 
-public class StingerSword extends WeaponItem {
+public class StingerSword extends Sword {
 	public StingerSword() {
 		id = STINGER_SWORD;
 		name = "Stinger Sword";
@@ -22,15 +20,12 @@ public class StingerSword extends WeaponItem {
 		sound = "sounds/swordSwing1.wav";
 		craftCost = new int[]{};
 		craftCostAmount = new int[]{};
-	}
-	
-	@Override
-	public void useLeft() {
-		if(!Game.hero.isAttacking && Game.hero.attackButtonReleased) {
-			
-			Game.hero.attack(this);
-			Game.soundController.create(sound, 1);
-		}
+		
+		
+		attackPower = 15;
+		maxUses = 200;
+		uses = 200;
+		knockBackPower = 0.4f;
 	}
 	
 	@Override
