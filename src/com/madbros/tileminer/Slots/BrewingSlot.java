@@ -30,6 +30,12 @@ public class BrewingSlot extends CraftingSlot{
 				Item removedItem = ITEM_HASH.get(this.item.craftCost[x]).createNew();
 				Game.inventory.remove(removedItem, this.item.craftCostAmount[x]);
 			}
+			if(this.item.areIngredientsInInventory()) {
+				this.isInactive = false;
+			} else {
+				this.isInactive = true;
+			}
+			
 			if(isSoundLooping == false) {
 			Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 			}

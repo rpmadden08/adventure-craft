@@ -18,6 +18,7 @@ public class CampfireTile extends LightTile {
 		sprites = Sprites.campfireAnimation;
 		autoTile = 0;
 		isAutoTileable = false;
+		isCollidable = true;
 		isBreakable = true;
 		currentHp = 1;
 		maxHp = 1;
@@ -30,7 +31,7 @@ public class CampfireTile extends LightTile {
 	}
 	
 	public void update(int x,int y) {
-		cRect = new Rect(absX *TILE_SIZE, absY*TILE_SIZE, 32,32);
+		//cRect = new Rect(absX *TILE_SIZE, absY*TILE_SIZE, 32,32);
 		Rect detectRect = new Rect(cRect.x - ((int)lightSize /2), cRect.y - ((int)lightSize/2), cRect.w +((int)lightSize), cRect.h +((int)lightSize));
 		
 		for(int a = 0; a < Game.mobController.mobs.size(); a++) {

@@ -96,7 +96,7 @@ public class MainMenu extends Menu{
 	}
 	
 	private void credits() {
-		Gdx.net.openURI("https://play.google.com/store/apps/details?id=com.shagunstudios.racinggame");
+		Gdx.net.openURI("http://www.tileminer.org/credits/");
 	}
 	
 	public void quitGame() {

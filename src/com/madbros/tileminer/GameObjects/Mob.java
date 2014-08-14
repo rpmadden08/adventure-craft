@@ -259,45 +259,73 @@ public class Mob extends Actor {
 		float speedX = (rect2.x+(rect2.w/2)) - (mob2.x+(mob2.w/2));
 		float speedY = (rect2.y+(rect2.h/2)) - (mob2.y +(mob2.h/2));
 		
-		float maxSpeed = moveSpeed;
 		
-		if(speedX > maxSpeed && speedY > maxSpeed) {
-			moveLeft();
-			moveUp();
-		} else if(speedX > maxSpeed && speedY < -maxSpeed) {
-			moveLeft();
-			moveDown();
-		} else if(speedX < -maxSpeed && speedY < -maxSpeed) {
-			moveRight();
-			moveDown();
-		} else if(speedX < -maxSpeed && speedY > maxSpeed) {
-			moveRight();
-			moveUp();
-		} else if(speedX > maxSpeed) {
-			moveLeft();
-			if(isMovingUp || isMovingDown) {
-				stopUp();
-				stopDown();
-			}
-		} else if(speedX < -maxSpeed) {
-			moveRight();
-			if(isMovingUp || isMovingDown) {
-				stopUp();
-				stopDown();
-			}
-		} else if(speedY > maxSpeed) {
-			moveUp();
-			if(isMovingLeft || isMovingRight) {
-				stopLeft();
-				stopRight();
-			}
-		} else if(speedY < -maxSpeed) {
-			moveDown();
-			if(isMovingLeft || isMovingRight) {
-				stopLeft();
-				stopRight();
-			}
+		dir360 = (int) (Math.atan2(speedY, speedX) * 180 / Math.PI);
+		dir360 = dir360 -180;
+		if(dir360< 0) {
+			dir360+=360;
 		}
+		
+		//float maxSpeed = moveSpeed;
+		//float maxSpeed = currentSpeed;
+	//	isMovingDown = false; isMovingUp = false; isMovingLeft = false; isMovingRight = false;
+		
+		if(dir360 > 180 && dir360 < 360) {
+			moveUp();
+			isMovingDown = false;
+		}
+		if(dir360 > 0 && dir360 < 180) {
+			moveDown();
+			isMovingUp = false;
+		}
+		if(dir360 > 90 && dir360 < 270) {
+			moveLeft();
+			isMovingRight = false;
+			
+		}
+		if(dir360 > 270 || dir360 < 90) {
+			moveRight();
+			isMovingLeft = false;
+		}
+//		float maxSpeed = moveSpeed;
+//		
+//		if(speedX > maxSpeed && speedY > maxSpeed) {
+//			moveLeft();
+//			moveUp();
+//		} else if(speedX > maxSpeed && speedY < -maxSpeed) {
+//			moveLeft();
+//			moveDown();
+//		} else if(speedX < -maxSpeed && speedY < -maxSpeed) {
+//			moveRight();
+//			moveDown();
+//		} else if(speedX < -maxSpeed && speedY > maxSpeed) {
+//			moveRight();
+//			moveUp();
+//		} else if(speedX > maxSpeed) {
+//			moveLeft();
+//			if(isMovingUp || isMovingDown) {
+//				stopUp();
+//				stopDown();
+//			}
+//		} else if(speedX < -maxSpeed) {
+//			moveRight();
+//			if(isMovingUp || isMovingDown) {
+//				stopUp();
+//				stopDown();
+//			}
+//		} else if(speedY > maxSpeed) {
+//			moveUp();
+//			if(isMovingLeft || isMovingRight) {
+//				stopLeft();
+//				stopRight();
+//			}
+//		} else if(speedY < -maxSpeed) {
+//			moveDown();
+//			if(isMovingLeft || isMovingRight) {
+//				stopLeft();
+//				stopRight();
+//			}
+//		}
 	}
 	
 	public void checkForChasing() {

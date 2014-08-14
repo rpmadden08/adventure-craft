@@ -34,6 +34,11 @@ public class BurningSlot extends CraftingSlot{
 			if(isSoundLooping = false) {
 				Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 			}
+			if(this.item.areIngredientsInInventory()) {
+				this.isInactive = false;
+			} else {
+				this.isInactive = true;
+			}
 			
 		}
 	}
@@ -49,6 +54,7 @@ public class BurningSlot extends CraftingSlot{
 				}
 			}
 		}
+		
 		Game.soundController.create("sounds/clickSelect.wav", 0.5f);
 		isSoundLooping = false;
 	}
