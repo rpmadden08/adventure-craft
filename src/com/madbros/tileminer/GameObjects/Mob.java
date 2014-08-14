@@ -359,6 +359,7 @@ public class Mob extends Actor {
 		Rect detectRect2 = new Rect(campFireRect.x - (500 /2), campFireRect.y - (500/2), campFireRect.w +(500), campFireRect.h +(500));
 		if(detectRect2.detectCollision(absRect)) {
 			isInRangeOfCampfire = true;
+			isChasing = false;
 			//stop();
 		} else {
 			isInRangeOfCampfire = false;

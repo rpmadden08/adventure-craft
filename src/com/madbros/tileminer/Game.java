@@ -464,8 +464,10 @@ public class Game implements ApplicationListener {
 						RectInt chunkRect2 = level.chunkRect.getRectInt();
 						int x = absRectHero.x/TILE_SIZE;
 						int y = absRectHero.y/TILE_SIZE;
-						int bX = x - (chunkRect2.x * CHUNK_SIZE)+1;
-						int bY = y - (chunkRect2.y * CHUNK_SIZE)+1;
+						//int bX = x - (chunkRect2.x * CHUNK_SIZE)+1;
+						//int bY = y - (chunkRect2.y * CHUNK_SIZE)+1;
+						int bX = x - (chunkRect2.x * CHUNK_SIZE);
+						int bY = y - (chunkRect2.y * CHUNK_SIZE);
 						//TODO check for coal copper and tin as well...
 							if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
 								Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);
