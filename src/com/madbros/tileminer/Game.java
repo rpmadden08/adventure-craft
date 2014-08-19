@@ -1,8 +1,12 @@
 package com.madbros.tileminer;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
+import org.apache.commons.io.IOUtils;
+import org.json.simple.parser.JSONParser;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -575,12 +579,57 @@ public class Game implements ApplicationListener {
 		
 
 		
-		final String vertexShader = new FileHandle("data/vertexShader.glsl").readString();
-		final String defaultPixelShader = new FileHandle("data/defaultPixelShader.glsl").readString();
-		final String ambientPixelShader = new FileHandle("data/ambientPixelShader.glsl").readString();
-		final String lightPixelShader =  new FileHandle("data/lightPixelShader.glsl").readString();
-		final String finalPixelShader =  new FileHandle("data/pixelShader.glsl").readString();
-		
+//		final String vertexShader = new FileHandle("data/vertexShader.glsl").readString();
+//		final String defaultPixelShader = new FileHandle("data/defaultPixelShader.glsl").readString();
+//		final String ambientPixelShader = new FileHandle("data/ambientPixelShader.glsl").readString();
+//		final String lightPixelShader =  new FileHandle("data/lightPixelShader.glsl").readString();
+//		final String finalPixelShader =  new FileHandle("data/pixelShader.glsl").readString();
+//		InputStream is = JSONParser.class.getResourceAsStream("/res/"+atlasStringArray[r]);
+        InputStream s1 = getClass().getResourceAsStream("/data/vertexShader.glsl");
+        InputStream s2 = getClass().getResourceAsStream("/data/defaultPixelShader.glsl");
+        InputStream s3 = getClass().getResourceAsStream("/data/ambientPixelShader.glsl");
+        InputStream s4 = getClass().getResourceAsStream("/data/lightPixelShader.glsl");
+        InputStream s5 = getClass().getResourceAsStream("/data/pixelShader.glsl");
+        
+        String vertexShader = "";
+        String defaultPixelShader = "";
+        String ambientPixelShader = "";
+        String lightPixelShader = "";
+        String finalPixelShader = "";
+//        final String defaultPixelShader = new FileHandle("data/defaultPixelShader.glsl").readString();
+//		final String ambientPixelShader = new FileHandle("data/ambientPixelShader.glsl").readString();
+//		final String lightPixelShader =  new FileHandle("data/lightPixelShader.glsl").readString();
+//		final String finalPixelShader =  new FileHandle("data/pixelShader.glsl").readString();
+        
+		try {
+			vertexShader = IOUtils.toString(this.getClass().getResourceAsStream("/data/vertexShader.glsl"));
+			defaultPixelShader = IOUtils.toString(this.getClass().getResourceAsStream("/data/defaultPixelShader.glsl"));
+			ambientPixelShader = IOUtils.toString(this.getClass().getResourceAsStream("/data/ambientPixelShader.glsl"));
+			lightPixelShader = IOUtils.toString(this.getClass().getResourceAsStream("/data/lightPixelShader.glsl"));
+			finalPixelShader = IOUtils.toString(this.getClass().getResourceAsStream("/data/pixelShader.glsl"));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+       // final String vertexShader = new FileHandle(s1).readString();
+//		final String defaultPixelShader = new FileHandle("data/defaultPixelShader.glsl").readString();
+//		final String ambientPixelShader = new FileHandle("data/ambientPixelShader.glsl").readString();
+//		final String lightPixelShader =  new FileHandle("data/lightPixelShader.glsl").readString();
+//		final String finalPixelShader =  new FileHandle("data/pixelShader.glsl").readString();
+        
+//		final String vertexShader = s1;
+//		final String defaultPixelShader = s2.toString();
+//		final String ambientPixelShader = s3.toString();
+//		final String lightPixelShader = s4.toString();
+//		final String finalPixelShader = s5.toString();
+//		
+//		final String defaultPixelShader = new FileHandle(getClass().getResource("/data/defaultPixelShader.glsl").getFile()).readString();
+//		final String ambientPixelShader = new FileHandle(getClass().getResource("/data/ambientPixelShader.glsl").getFile()).readString();
+//		final String lightPixelShader =  new FileHandle(getClass().getResource("/data/lightPixelShader.glsl").getFile()).readString();
+//		final String finalPixelShader =  new FileHandle(getClass().getResource("/data/pixelShader.glsl").getFile()).readString();
+//		
 		ShaderProgram.pedantic = false;
 		defaultShader = new ShaderProgram(vertexShader, defaultPixelShader);
 		ambientShader = new ShaderProgram(vertexShader, ambientPixelShader);

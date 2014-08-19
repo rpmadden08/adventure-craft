@@ -2,11 +2,24 @@ package com.madbros.tileminer.Sprites;
 
 //import java.awt.Font;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 //import java.io.InputStream;
 import java.util.HashMap;
+
+//import net.sf.json.JSONObject
+
+
+import org.apache.commons.io.IOUtils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+import org.apache.commons.io.IOUtils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -21,6 +34,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 
 import com.madbros.tileminer.Game;
+import com.madbros.tileminer.ResourceLoader;
 
 import static com.madbros.tileminer.Constants.*;
 
@@ -825,10 +839,25 @@ public class Sprites {
 				
 		
 				try {
-					JSONParser parser = new JSONParser();
-					Object f = parser.parse(new FileReader("res/"+atlasStringArray[r]));
-					JSONObject obj = (JSONObject) f;
 					
+					JSONParser parser = new JSONParser();
+//					//JSONParser.class.getResourceAsStream(name)
+//					//Object f = parser.parse(new FileReader("res/"+atlasStringArray[r]));
+//					//System.out.println(getClass().getResource("/resources/res/"+atlasStringArray[r]).getFile());
+//					File test = new File(this.getClass().getResource("/res/"+atlasStringArray[r]).getFile());
+//					Object f = parser.parse(new FileReader(test));
+//				//	File file = new File(getClass().getResource("/res/"+atlasStringArray[r]));
+//					//Object f = parser.parse(ResourceLoader.load("/res/"+atlasStringArray[r]));
+//					JSONObject obj = (JSONObject) f;
+					InputStream is = JSONParser.class.getResourceAsStream("/res/"+atlasStringArray[r]);
+					//String test = IOUtils.toString(is);
+					//System.out.println(test);
+					//File fileTest = new File(test);
+					//Object fileTest = IOUtils.toString(is);
+					Object f = parser.parse(IOUtils.toString(is));
+					JSONObject obj = (JSONObject) f;
+				//(JSONObject) JSONSerializer.toJSON( jsonTxt );
+ //					
 					for(String name : nameArrays[r]) {
 						JSONObject sprite = (JSONObject) obj.get(name);
 						if(sprite.get("type").equals("single")) {
@@ -882,8 +911,9 @@ public class Sprites {
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (ParseException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				} 
 			}
 			waterSprites = new AnimatedSprite[13];
 			for(int i = 0; i < waterSprites.length; i++) {
