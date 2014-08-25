@@ -106,7 +106,7 @@ public abstract class BaseItem extends ToolItem {
 			}
 			Game.soundController.create(sound, 0.2f);
 			RectInt hBAbsRect = Game.level.highlightedBlock.absRect.getRectInt();
-			Game.particleEffectController.add("Chunks.p", 
+			Game.particleEffectController.add("chunks.p", 
 					hBAbsRect.x +(TILE_SIZE/2), hBAbsRect.y + (TILE_SIZE/2));
 
 		} else if(Game.level.tileBeingAttacked.isDiggable) {

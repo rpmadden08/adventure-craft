@@ -2,18 +2,15 @@ package com.madbros.tileminer;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
-import org.json.simple.parser.JSONParser;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -121,7 +118,32 @@ public class Game implements ApplicationListener {
 	public static float ambientIntensity2 = 0.05f; //0.05
 	public static Vector3 ambientColor2 = new Vector3(0.3f, 0.3f, 0.7f); //0.3f, 0.3f, 0.7f
 	
+	private String workingDirectory;
+	//here, we assign the name of the OS, according to Java, to a variable...
+	private String OS = (System.getProperty("os.name")).toUpperCase();
+	
 /*#########################################################*/
+	public Game() {
+		super();
+		//if it is some version of Windows
+		if (OS.contains("WIN"))
+		{
+		    //it is simply the location of the "AppData" folder
+		    workingDirectory = System.getenv("AppData");
+		}
+		//Otherwise, we assume Linux or Mac
+		else
+		{
+		    //in either case, we would start in the user's home directory
+		    workingDirectory = System.getProperty("user.home");
+		    //if we are on a Mac, we are not done, we look for "Application Support"
+		    workingDirectory += "/Library/Application Support";
+		}
+		File f = new File(workingDirectory+"/TileMiner/");
+		if(!f.exists()) f.mkdir();
+		workingDirectory += "/TileMiner/saves/";
+		SAVE_LOC = workingDirectory;
+	}
 	public static void closeInventory() {
 		currentState = new MainState();
 		hero.stop();
@@ -381,8 +403,10 @@ public class Game implements ApplicationListener {
 						
 						if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
 							if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].id != STAIRS_UP_TILE && Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].id != STAIRS_DOWN_TILE) {
+								if(Game.hero.absRect.detectCollision(Game.level.activeBlocks[bX][bY].absRect)) {
 								Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);
 								Game.level.activeBlocks[bX][bY].deleteObjectTile();
+								}
 							}
 						} else if(Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].id == WATER) {
 							Game.level.activeBlocks[bX][bY].layers[WATER_LAYER] = new NoTile();
@@ -470,12 +494,16 @@ public class Game implements ApplicationListener {
 						int y = absRectHero.y/TILE_SIZE;
 						//int bX = x - (chunkRect2.x * CHUNK_SIZE)+1;
 						//int bY = y - (chunkRect2.y * CHUNK_SIZE)+1;
-						int bX = x - (chunkRect2.x * CHUNK_SIZE);
-						int bY = y - (chunkRect2.y * CHUNK_SIZE);
-						//TODO check for coal copper and tin as well...
+						int bX = x - (chunkRect2.x * CHUNK_SIZE)+1;
+						int bY = y - (chunkRect2.y * CHUNK_SIZE)+1;
+						//TODO check for coal copper and tin as well..
+							Rect heroRect = new Rect(Game.hero.absRect, Game.hero.margin);
 							if(Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].isCollidable) {
-								Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);
-								Game.level.activeBlocks[bX][bY].deleteObjectTile();
+								//System.out.println("HER): "+Game.hero.absRect.x+","+Game.hero.absRect.y);
+								if(heroRect.detectCollision(Game.level.activeBlocks[bX][bY].collisionTile.cRect)) {
+									Game.level.activeBlocks[bX][bY].layers[OBJECT_LAYER].deleteMe(bX, bY, level.activeBlocks);
+									Game.level.activeBlocks[bX][bY].deleteObjectTile();
+								}
 							} else if(Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].id == WATER) {
 								Game.level.activeBlocks[bX][bY].layers[WATER_LAYER] = new NoTile();
 								Game.level.activeBlocks[bX][bY].layers[WATER_LAYER].deleteMe(bX, bY, level.activeBlocks);
@@ -585,11 +613,6 @@ public class Game implements ApplicationListener {
 //		final String lightPixelShader =  new FileHandle("data/lightPixelShader.glsl").readString();
 //		final String finalPixelShader =  new FileHandle("data/pixelShader.glsl").readString();
 //		InputStream is = JSONParser.class.getResourceAsStream("/res/"+atlasStringArray[r]);
-        InputStream s1 = getClass().getResourceAsStream("/data/vertexShader.glsl");
-        InputStream s2 = getClass().getResourceAsStream("/data/defaultPixelShader.glsl");
-        InputStream s3 = getClass().getResourceAsStream("/data/ambientPixelShader.glsl");
-        InputStream s4 = getClass().getResourceAsStream("/data/lightPixelShader.glsl");
-        InputStream s5 = getClass().getResourceAsStream("/data/pixelShader.glsl");
         
         String vertexShader = "";
         String defaultPixelShader = "";

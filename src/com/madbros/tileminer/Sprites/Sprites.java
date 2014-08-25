@@ -2,9 +2,7 @@ package com.madbros.tileminer.Sprites;
 
 //import java.awt.Font;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 //import java.io.InputStream;
@@ -12,12 +10,6 @@ import java.util.HashMap;
 
 //import net.sf.json.JSONObject
 
-
-import org.apache.commons.io.IOUtils;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
 
@@ -34,7 +26,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 
 import com.madbros.tileminer.Game;
-import com.madbros.tileminer.ResourceLoader;
 
 import static com.madbros.tileminer.Constants.*;
 
@@ -243,6 +234,7 @@ public class Sprites {
 	public static final String STONE_MOUNTAIN_CLUMP = "stoneMountainClump";
 	public static final String STONE = "stone";
 	public static final String BREAD = "bread";
+	public static final String WOOD_WALL = "woodWallItem";
 	
 	
 	
@@ -255,6 +247,9 @@ public class Sprites {
 	public static final String HOLE_NEW = "holeNew";
 	public static final String WATER_NEW = "waterNew";
 	public static final String SAND_NEW = "sandNew";
+	public static final String WOOD_WALL_BOTTOM = "bottomWoodWall";
+	public static final String WOOD_WALL_MIDDLE = "middleWoodWall";
+	public static final String WOOD_WALL_TOP = "topWoodWall";
 	public static final String DIRT_MOUNTAIN_BOTTOM_NEW = "dirtMountainBottomNew";
 	public static final String DIRT_MOUNTAIN_MIDDLE_NEW = "dirtMountainMiddleNew";
 	public static final String DIRT_MOUNTAIN_TOP_NEW = "dirtMountainTopNew";
@@ -320,6 +315,7 @@ public class Sprites {
 	public static final String STAIRS_UP_TILE = "stairsUpTile";
 	public static final String STAIRS_DOWN_TILE = "stairsDownTile";
 	public static final String FIRE_PIT_TILE = "firePitTile";
+	public static final String WALL_BORDER = "wallBorder";
 	
 	
 	
@@ -829,8 +825,8 @@ public class Sprites {
 					RED_BUTTON_PUSHED, RIGHT_ARROW, SELECTOR, SLOT_BORDER, TAB_SELECTED, TAB_UNSELECTED, HEART_CONTAINER,
 					X_ICON, EMPTY_BUCKET, WATER_BUCKET, MM_BUTTON_LEFT, MM_BUTTON_LEFT_HOVER,MM_BUTTON_LEFT_PUSHED,
 					MM_BUTTON_MIDDLE, MM_BUTTON_MIDDLE_HOVER, MM_BUTTON_MIDDLE_PUSHED, MM_BUTTON_RIGHT,MM_BUTTON_RIGHT_HOVER,
-					MM_BUTTON_RIGHT_PUSHED, EP_ITEM, HEART_CONTAINER_TILE,
-					
+					MM_BUTTON_RIGHT_PUSHED, EP_ITEM, HEART_CONTAINER_TILE, WOOD_WALL, 
+					WOOD_WALL_BOTTOM, WOOD_WALL_MIDDLE, WOOD_WALL_TOP, WALL_BORDER,
 			};
 			
 			String[] lightNames = {LIGHT, CAMPFIRE_LIGHT};

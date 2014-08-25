@@ -26,7 +26,7 @@ public class Constants {
 	public static final int PIXEL_MIN = 0;
 	public static final int PIXEL_MAX = 32;
 	
-	public static final String SAVE_LOC = "saves/";
+	public static String SAVE_LOC = "saves/";
 	public static final String CHUNKS_FOLDER = "chunks/";
 	public static final String CHESTS_FOLDER = "chests/";
 	public static final String FURNACES_FOLDER = "furnaces/";
@@ -215,6 +215,10 @@ public class Constants {
 	public static final int DIRT_MOUNTAIN_TIN_MIDDLE = 71;
 	public static final int BEEHIVE_TILE = 72;
 	public static final int HEART_CONTAINER_TILE = 73;
+	public static final int WOOD_WALL_BOTTOM_TILE = 74;
+	public static final int WOOD_WALL_MIDDLE_TILE = 75;
+	public static final int WOOD_WALL_TOP_TILE = 76;
+	public static final int WALL_BORDER = 77;
 	
 	
 	
@@ -452,6 +456,7 @@ public class Constants {
 	public static final int LIFE_VIAL = 136;
 	public static final int ENERGY_VIAL = 137;
 	public static final int HEART_CONTAINER= 138;
+	public static final int WOOD_WALL = 139;
 	
 	
 	
@@ -686,6 +691,7 @@ public class Constants {
 		ITEM_HASH.put(LIFE_VIAL, new LifeVial());
 		ITEM_HASH.put(ENERGY_VIAL, new EnergyVial());
 		ITEM_HASH.put(HEART_CONTAINER, new HeartContainer());
+		ITEM_HASH.put(WOOD_WALL, new WoodWall());
 		
 		
 		
@@ -759,6 +765,10 @@ public class Constants {
 		TILE_HASH.put(STAIRS_DOWN_TILE, new StairsDownTile());
 		
 		TILE_HASH.put(HEART_CONTAINER_TILE, new HeartContainerTile());
+		TILE_HASH.put(WOOD_WALL_BOTTOM_TILE, new WoodWallBottomTile());
+		TILE_HASH.put(WOOD_WALL_MIDDLE_TILE, new WoodWallMiddleTile());
+		TILE_HASH.put(WOOD_WALL_TOP_TILE, new WoodWallTopTile());
+		TILE_HASH.put(WALL_BORDER, new WallBorderTile());
 			
 //		if(blocks[x-1][y-1].layers[i].autoTileID == block.layers[i].autoTileID) topLeft = 1;
 //		if(blocks[x][y-1].layers[i].autoTileID == block.layers[i].autoTileID) top = 2;
