@@ -90,7 +90,7 @@ public abstract class BaseItem extends ToolItem {
 				
 				Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
 				
-				
+				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-3);
 				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-2);
 				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-1);
 				Game.level.autoTileHighlightedBlock();

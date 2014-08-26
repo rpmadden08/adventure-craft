@@ -234,7 +234,9 @@ public class Sprites {
 	public static final String STONE_MOUNTAIN_CLUMP = "stoneMountainClump";
 	public static final String STONE = "stone";
 	public static final String BREAD = "bread";
+//	public static final String WOOD_WALL = "woodWallItem";
 	public static final String WOOD_WALL = "woodWallItem";
+	public static final String ROOF = "roofItem";
 	
 	
 	
@@ -316,6 +318,7 @@ public class Sprites {
 	public static final String STAIRS_DOWN_TILE = "stairsDownTile";
 	public static final String FIRE_PIT_TILE = "firePitTile";
 	public static final String WALL_BORDER = "wallBorder";
+	public static final String ROOF_TILE = "roofTile";
 	
 	
 	
@@ -826,7 +829,7 @@ public class Sprites {
 					X_ICON, EMPTY_BUCKET, WATER_BUCKET, MM_BUTTON_LEFT, MM_BUTTON_LEFT_HOVER,MM_BUTTON_LEFT_PUSHED,
 					MM_BUTTON_MIDDLE, MM_BUTTON_MIDDLE_HOVER, MM_BUTTON_MIDDLE_PUSHED, MM_BUTTON_RIGHT,MM_BUTTON_RIGHT_HOVER,
 					MM_BUTTON_RIGHT_PUSHED, EP_ITEM, HEART_CONTAINER_TILE, WOOD_WALL, 
-					WOOD_WALL_BOTTOM, WOOD_WALL_MIDDLE, WOOD_WALL_TOP, WALL_BORDER,
+					WOOD_WALL_BOTTOM, WOOD_WALL_MIDDLE, WOOD_WALL_TOP, WALL_BORDER, ROOF_TILE, ROOF,
 			};
 			
 			String[] lightNames = {LIGHT, CAMPFIRE_LIGHT};

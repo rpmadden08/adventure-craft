@@ -105,8 +105,8 @@ public class Inventory {
 		invBar[0].item.stackSize = 1;
 		invBar[1].item = new WoodWall();
 		invBar[1].item.stackSize = 99;
-//		invBar[2].item = new Tin();
-//		invBar[2].item.stackSize = 4;
+		invBar[2].item = new Roof();
+		invBar[2].item.stackSize = 99;
 //		invBar[3].item = new CopperSword();
 //		invBar[3].item.stackSize = 1;
 //		invBar[4].item = new WoodenSword();

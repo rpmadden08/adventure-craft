@@ -61,6 +61,7 @@ public class WoodWallBottomTile extends CollisionTile {
 		activeBlocks[x][y].layers[OBJECT_LAYER] = new NoTile();
 		activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new NoTile();
 		activeBlocks[x][y-2].layers[ABOVE_LAYER_2] = new NoTile();
+		activeBlocks[x][y-3].layers[ABOVE_LAYER_3].deleteMe(x, y-3, activeBlocks);
 		activeBlocks[x][y-3].layers[ABOVE_LAYER_3] = new NoTile();
 		activeBlocks[x][y].collisionTile = null;
 		

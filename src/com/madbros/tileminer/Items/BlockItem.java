@@ -31,6 +31,7 @@ public abstract class BlockItem extends StackableItem{
 				int y = hB.getY(Game.level.activeBlocks);
 				//Game.level.activeBlocks[x][y-2].layers[ABOVE_LAYER_1] = new DirtMountainTopTile();
 				Game.level.autoTileBlock(x, y-2);
+				Game.level.autoTileBlock(x, y-3);
 			}
 		//}
 	}

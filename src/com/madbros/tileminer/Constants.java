@@ -219,6 +219,8 @@ public class Constants {
 	public static final int WOOD_WALL_MIDDLE_TILE = 75;
 	public static final int WOOD_WALL_TOP_TILE = 76;
 	public static final int WALL_BORDER = 77;
+	public static final int ROOF_TILE = 78;
+	
 	
 	
 	
@@ -457,6 +459,7 @@ public class Constants {
 	public static final int ENERGY_VIAL = 137;
 	public static final int HEART_CONTAINER= 138;
 	public static final int WOOD_WALL = 139;
+	public static final int ROOF = 140;
 	
 	
 	
@@ -692,6 +695,7 @@ public class Constants {
 		ITEM_HASH.put(ENERGY_VIAL, new EnergyVial());
 		ITEM_HASH.put(HEART_CONTAINER, new HeartContainer());
 		ITEM_HASH.put(WOOD_WALL, new WoodWall());
+		ITEM_HASH.put(ROOF, new Roof());
 		
 		
 		
@@ -769,6 +773,7 @@ public class Constants {
 		TILE_HASH.put(WOOD_WALL_MIDDLE_TILE, new WoodWallMiddleTile());
 		TILE_HASH.put(WOOD_WALL_TOP_TILE, new WoodWallTopTile());
 		TILE_HASH.put(WALL_BORDER, new WallBorderTile());
+		TILE_HASH.put(ROOF_TILE, new RoofTile());
 			
 //		if(blocks[x-1][y-1].layers[i].autoTileID == block.layers[i].autoTileID) topLeft = 1;
 //		if(blocks[x][y-1].layers[i].autoTileID == block.layers[i].autoTileID) top = 2;
