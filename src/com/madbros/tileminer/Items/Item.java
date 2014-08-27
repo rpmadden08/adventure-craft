@@ -229,7 +229,7 @@ public abstract class Item {
 		return false;
 	}
 	
-	public boolean isCollidingWithActor(Block b) {
+	public static boolean isCollidingWithActor(Block b) {
 		Rect heroCRect = new Rect(Game.hero.absRect, Game.hero.margin);
 		if(heroCRect.detectCollision(b.layers[0].cRect)) {
 			return true;

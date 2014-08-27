@@ -220,6 +220,8 @@ public class Constants {
 	public static final int WOOD_WALL_TOP_TILE = 76;
 	public static final int WALL_BORDER = 77;
 	public static final int ROOF_TILE = 78;
+	public static final int WOOD_DOOR_BOTTOM_TILE = 79;
+	public static final int WOOD_DOOR_TOP_TILE = 80;
 	
 	
 	
@@ -460,6 +462,7 @@ public class Constants {
 	public static final int HEART_CONTAINER= 138;
 	public static final int WOOD_WALL = 139;
 	public static final int ROOF = 140;
+	public static final int WOODEN_DOOR = 141;
 	
 	
 	
@@ -696,6 +699,7 @@ public class Constants {
 		ITEM_HASH.put(HEART_CONTAINER, new HeartContainer());
 		ITEM_HASH.put(WOOD_WALL, new WoodWall());
 		ITEM_HASH.put(ROOF, new Roof());
+		ITEM_HASH.put(WOODEN_DOOR, new WoodenDoor());
 		
 		
 		
@@ -774,6 +778,8 @@ public class Constants {
 		TILE_HASH.put(WOOD_WALL_TOP_TILE, new WoodWallTopTile());
 		TILE_HASH.put(WALL_BORDER, new WallBorderTile());
 		TILE_HASH.put(ROOF_TILE, new RoofTile());
+		TILE_HASH.put(WOOD_DOOR_BOTTOM_TILE, new WoodenDoorBottomTile());
+		TILE_HASH.put(WOOD_DOOR_TOP_TILE, new WoodenDoorTopTile());
 			
 //		if(blocks[x-1][y-1].layers[i].autoTileID == block.layers[i].autoTileID) topLeft = 1;
 //		if(blocks[x][y-1].layers[i].autoTileID == block.layers[i].autoTileID) top = 2;

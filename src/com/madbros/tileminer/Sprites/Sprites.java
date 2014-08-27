@@ -85,7 +85,7 @@ public class Sprites {
 	
 	
 	
-	//singles
+	//ITEMS
 	public static final String DARK_DIRT = "darkDirtSingle";
 	public static final String COLLISION_DETECTION = "collisionDetection";
 	public static final String INVENTORY_MENU_SELECTOR = "inventoryMenuSelector";
@@ -237,11 +237,12 @@ public class Sprites {
 //	public static final String WOOD_WALL = "woodWallItem";
 	public static final String WOOD_WALL = "woodWallItem";
 	public static final String ROOF = "roofItem";
+	public static final String WOODEN_DOOR = "woodDoorItem";
 	
 	
 	
 	
-	//static collections
+	//TILES
 	public static final String DESERT = "desert";
 	public static final String GRASS = "grass";
 	public static final String GRASS_NEW = "grassNew";
@@ -319,6 +320,9 @@ public class Sprites {
 	public static final String FIRE_PIT_TILE = "firePitTile";
 	public static final String WALL_BORDER = "wallBorder";
 	public static final String ROOF_TILE = "roofTile";
+	public static final String WOODEN_DOOR_BOTTOM_TILE = "woodDoorBottom";
+	public static final String WOODEN_DOOR_TOP_TILE = "woodDoorTop";
+	public static final String WOODEN_DOOR_BOTTOM_OPEN_TILE = "woodDoorBottomOpen";
 	
 	
 	
@@ -829,7 +833,8 @@ public class Sprites {
 					X_ICON, EMPTY_BUCKET, WATER_BUCKET, MM_BUTTON_LEFT, MM_BUTTON_LEFT_HOVER,MM_BUTTON_LEFT_PUSHED,
 					MM_BUTTON_MIDDLE, MM_BUTTON_MIDDLE_HOVER, MM_BUTTON_MIDDLE_PUSHED, MM_BUTTON_RIGHT,MM_BUTTON_RIGHT_HOVER,
 					MM_BUTTON_RIGHT_PUSHED, EP_ITEM, HEART_CONTAINER_TILE, WOOD_WALL, 
-					WOOD_WALL_BOTTOM, WOOD_WALL_MIDDLE, WOOD_WALL_TOP, WALL_BORDER, ROOF_TILE, ROOF,
+					WOOD_WALL_BOTTOM, WOOD_WALL_MIDDLE, WOOD_WALL_TOP, WALL_BORDER, ROOF_TILE, ROOF, WOODEN_DOOR, WOODEN_DOOR_BOTTOM_TILE,
+					WOODEN_DOOR_TOP_TILE, WOODEN_DOOR_BOTTOM_OPEN_TILE,
 			};
 			
 			String[] lightNames = {LIGHT, CAMPFIRE_LIGHT};

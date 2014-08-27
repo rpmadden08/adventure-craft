@@ -41,7 +41,7 @@ public class Roof extends BlockItem {
 				Game.level.autoTileHighlightedBlock();
 			}
 		} else {
-			super.useRight();
+			useRight();
 		}
 	}
 	
