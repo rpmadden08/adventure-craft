@@ -1,15 +1,11 @@
 package com.madbros.tileminer.TileTypes;
 
 import static com.madbros.tileminer.Constants.*;
-
-import com.madbros.tileminer.Block;
 import com.madbros.tileminer.Game;
-import com.madbros.tileminer.Items.Item;
 import com.madbros.tileminer.Sprites.*;
-import com.madbros.tileminer.Utils.Rect;
 
-public class RoofTile extends Tile {
-	public RoofTile() {
+public class RoofBaseTile extends Tile {
+	public RoofBaseTile() {
 		maxHp = 1;
 		currentHp = 1;
 		layer = ABOVE_LAYER_4;
@@ -69,7 +65,7 @@ public class RoofTile extends Tile {
 	}
 	
 	public Tile createNew() {
-		return new RoofTile();
+		return new RoofBaseTile();
 	}
 	
 //	public void update(int x, int y) {
@@ -96,13 +92,5 @@ public class RoofTile extends Tile {
 				Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_4].isTransparent = true;
 				Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_4].isVisible = false;
 		} 
-	}
-	
-	public void deleteMe(int x, int y, Block[][] activeBlocks) {
-		activeBlocks[x][y].layers[ABOVE_LAYER_4] = new WallBorderTile();
-		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Item item = ITEM_HASH.get(ROOF).createNew();
-		Game.collectibleController.add(ROOF, Sprites.sprites.get(Sprites.ROOF), collectibleRect, 1, item.maxUses);
-		
 	}
 }

@@ -9,9 +9,9 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
 import com.madbros.tileminer.Utils.Rect;
 
-public class WoodenFloorTile extends FloorTile {
+public class FloorTile extends CollisionTile {
 
-	public WoodenFloorTile() {
+	public FloorTile() {
 		super();
 		//lightSize = 500;
 		id = WOOD_FLOOR_TILE;
@@ -32,7 +32,7 @@ public class WoodenFloorTile extends FloorTile {
 	
 	@Override
 	public Tile createNew() {
-		return new WoodenFloorTile();
+		return new FloorTile();
 	}
 	
 	@Override
@@ -40,8 +40,20 @@ public class WoodenFloorTile extends FloorTile {
 		sprites[currentSpriteId].draw(x, y, z);
 	}
 	
+	public void update(int x, int y) {
+		if(Item.isCollidingWithActor(Game.level.activeBlocks[x][y])) {
+			Game.level.currentCollisionHousing = this.housingNumber;
+		}
+		if(Game.level.currentCollisionHousing == this.housingNumber) {
+			Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_1].isTransparent = true;
+			Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_2].isTransparent = true;
+			Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_3].isTransparent = true;
+		} 
+	}
+	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
-		super.deleteMe(x, y, activeBlocks);
+		Block b = activeBlocks[x][y];
+		b.layers[GRASS_LAYER] = new NoTile();
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(WOODEN_FLOOR).createNew();
 		Game.collectibleController.add(WOODEN_FLOOR, Sprites.sprites.get(Sprites.WOODEN_FLOOR), collectibleRect, 1, item.maxUses);
