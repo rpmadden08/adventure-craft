@@ -25,7 +25,13 @@ public class WoodenDoorTopTile extends CollisionTile {
 	
 	@Override
 	public void render(int x, int y) {
-		sprites[currentSpriteId].draw(x, y, z);
+		if(isTransparent) {
+			sprites[currentSpriteId].setColor(1,1,1,0.3f);
+			sprites[currentSpriteId].draw(x, y, z);
+		} else {
+			sprites[currentSpriteId].setColor(1,1,1,1);
+			sprites[currentSpriteId].draw(x, y, z);
+		}
 	}
 	
 	public Tile createNew() {

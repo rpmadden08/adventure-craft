@@ -731,6 +731,16 @@ public class Game implements ApplicationListener {
 		currentState.resize(width, height);
 	}
 
+	
+	public static void houseNumberUp() {
+		level.currentHousing = level.currentHousing +1;
+	}
+	
+	public static void houseNumberDown() {
+		if(level.currentHousing >1) {
+			level.currentHousing = level.currentHousing -1;
+		}
+	}
 	public static void zoomIn() {
 		camera.zoom -= 0.1f;
 		camera.update();

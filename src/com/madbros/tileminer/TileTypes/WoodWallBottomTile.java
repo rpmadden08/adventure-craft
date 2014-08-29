@@ -19,10 +19,10 @@ public class WoodWallBottomTile extends CollisionTile {
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
 		isDiggable = false;
-		isPickable = true;
+		isChoppable = true;
 		is32 = true;
-		maxHp = 20;
-		currentHp = 20;
+		maxHp = 15;
+		currentHp = 15;
 		particleEffect = "mountainChunks.p";
 	}
 	
@@ -64,10 +64,13 @@ public class WoodWallBottomTile extends CollisionTile {
 		activeBlocks[x][y-3].layers[ABOVE_LAYER_3].deleteMe(x, y-3, activeBlocks);
 		activeBlocks[x][y-3].layers[ABOVE_LAYER_3] = new NoTile();
 		activeBlocks[x][y].collisionTile = null;
-		
-				Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-				Item item = ITEM_HASH.get(WOOD_WALL).createNew();
-				Game.collectibleController.add(WOOD_WALL, Sprites.sprites.get(Sprites.WOOD_WALL), collectibleRect, 1, item.maxUses);
+		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+		Item item = ITEM_HASH.get(WOOD_WALL).createNew();
+		Game.collectibleController.add(WOOD_WALL, Sprites.sprites.get(Sprites.WOOD_WALL), collectibleRect, 1, item.maxUses);
+		Game.level.autoTileBlock(x, y);
+		Game.level.autoTileBlock(x, y-1);
+		Game.level.autoTileBlock(x, y-2);
+		Game.level.autoTileBlock(x, y-3);
 			
 	}
 	

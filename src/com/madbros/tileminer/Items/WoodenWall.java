@@ -8,20 +8,22 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class WoodWall extends BlockItem {
-	public WoodWall() {
+public class WoodenWall extends BlockItem {
+	public WoodenWall() {
 		id = WOOD_WALL;
 		name = "Wooden Wall";
 		tileId = WOOD_WALL_BOTTOM_TILE;
 		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS, SAND};
-		craftCost = new int[]{};
-		craftCostAmount = new int[]{};
 		sprite = Sprites.sprites.get(Sprites.WOOD_WALL);
+		numberProducedByCrafting = 1;
+		craftCost = new int[]{PLANK};
+		craftCostAmount = new int[]{8};
+		maxStackSize = 99;
 	}
 	
 	@Override
-	public WoodWall createNew() {
-		return new WoodWall();
+	public WoodenWall createNew() {
+		return new WoodenWall();
 	}
 	
 	@Override

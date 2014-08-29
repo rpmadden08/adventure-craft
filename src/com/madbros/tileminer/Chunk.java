@@ -6,6 +6,7 @@ public class Chunk {
 	public int[][][] ids = new int[CHUNK_SIZE][CHUNK_SIZE][23];
 	public int[][][] currentTextures = new int[CHUNK_SIZE][CHUNK_SIZE][23];
 	public long[][][] timeCreated = new long[CHUNK_SIZE][CHUNK_SIZE][23];
+	public int[][][] housingNumbers = new int[CHUNK_SIZE][CHUNK_SIZE][23];
 	
 	public int[][] furnaceInts;
 	public boolean[][] furnaceBooleans;

@@ -48,6 +48,8 @@ public abstract class Tile {
 	public int bottomRightAutoTile = 0;
 	public int bottomLeftAutoTile = 0;
 	public String particleEffect = "chunks.p";
+	public int housingNumber = 0;
+	public Boolean isTransparent = false;
 	
 //	public Tile() {
 //		

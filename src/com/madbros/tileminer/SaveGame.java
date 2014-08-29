@@ -106,6 +106,7 @@ public class SaveGame {
 		int[][][] ids = new int[chunk.length][chunk.length][chunk[0][0].layers.length];
 		int[][][] currentTextures = new int[chunk.length][chunk.length][chunk[0][0].layers.length];
 		long[][][] timeCreated = new long [chunk.length][chunk.length][chunk[0][0].layers.length];
+		int[][][] housingNumbers = new int[chunk.length][chunk.length][chunk[0][0].layers.length];
 		ArrayList<int[]> furnaceListInt = new ArrayList<int[]>();
 		ArrayList<boolean[]> furnaceListBoolean = new ArrayList<boolean[]>();
 		int[][] furnaceInts;
@@ -126,6 +127,7 @@ public class SaveGame {
 				for(int i = 0; i < chunk[x][y].layers.length; i++) {
 					ids[x][y][i] = chunk[x][y].layers[i].id;
 					currentTextures[x][y][i] = chunk[x][y].layers[i].currentSpriteId;
+					housingNumbers[x][y][i] = chunk[x][y].layers[i].housingNumber;
 					timeCreated[x][y][i] = chunk[x][y].layers[i].timeCreated;
 					if(chunk[x][y].layers[i].id == FURNACE_TILE) {
 						FurnaceTile furnace = (FurnaceTile) chunk[x][y].layers[i];
@@ -198,6 +200,7 @@ public class SaveGame {
 		
 		chunkData.ids = ids;
 		chunkData.currentTextures = currentTextures;
+		chunkData.housingNumbers = housingNumbers;
 		chunkData.timeCreated = timeCreated;
 		chunkData.absX = absX;
 		chunkData.absY = absY;

@@ -86,8 +86,8 @@ public class MainStateInput extends BasicInput {
 		case Keys.NUM_8: Game.inventory.changeSelectedItemTo(key); break;
 		case Keys.NUM_9: Game.inventory.changeSelectedItemTo(key); break;
 		case Keys.NUM_0: Game.inventory.changeSelectedItemTo(key); break;
-		case Keys.MINUS: Game.zoomOut(); break;
-		case Keys.EQUALS: Game.zoomIn(); break;
+		case Keys.MINUS: Game.houseNumberDown(); break;
+		case Keys.EQUALS: Game.houseNumberUp(); break;
 		}
 
 		additionalKeyDown(key);

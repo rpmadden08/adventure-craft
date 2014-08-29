@@ -103,14 +103,14 @@ public class Inventory {
 //		
 		invBar[0].item = new WoodenPick();
 		invBar[0].item.stackSize = 1;
-		invBar[1].item = new WoodWall();
+		invBar[1].item = new WoodenWall();
 		invBar[1].item.stackSize = 99;
 		invBar[2].item = new Roof();
 		invBar[2].item.stackSize = 99;
 		invBar[3].item = new WoodenDoor();
-		invBar[3].item.stackSize = 1;
-//		invBar[4].item = new WoodenSword();
-//		invBar[4].item.stackSize = 1;
+		invBar[3].item.stackSize = 99;
+		invBar[4].item = new WoodenFloor();
+		invBar[4].item.stackSize = 99;
 //		invBar[5].item = new Steak();
 //		invBar[5].item.stackSize = 99;
 //		invBar[6].item = new HealthPotion();

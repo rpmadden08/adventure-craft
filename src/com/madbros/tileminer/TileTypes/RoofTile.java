@@ -2,8 +2,6 @@ package com.madbros.tileminer.TileTypes;
 
 import static com.madbros.tileminer.Constants.*;
 
-import java.util.Random;
-
 import com.madbros.tileminer.Block;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Items.Item;
@@ -14,7 +12,7 @@ public class RoofTile extends Tile {
 	public RoofTile() {
 		maxHp = 1;
 		currentHp = 1;
-		layer = ABOVE_LAYER_3;
+		layer = ABOVE_LAYER_4;
 		z = Z_GRASS;
 		isCollidable = false;
 		currentSpriteId = 0;
@@ -35,16 +33,39 @@ public class RoofTile extends Tile {
 		int size = TILE_SIZE/2;
 
 		//This one if statement often increases render time by about 300-400 ms.
+		
 		if(topLeftAutoTile == MIDDLE_TILE && topRightAutoTile == MIDDLE_TILE &&
 		   bottomLeftAutoTile == MIDDLE_TILE && bottomRightAutoTile == MIDDLE_TILE) {
-			sprites[MIDDLE_TILE].draw(x, y, z);
+			if(isTransparent) {
+				sprites[MIDDLE_TILE].setColor(1,1,1,0.3f);
+				sprites[MIDDLE_TILE].draw(x, y, z);
+			} else {
+				sprites[MIDDLE_TILE].setColor(1,1,1,1f);
+				sprites[MIDDLE_TILE].draw(x, y, z);
+			}
 		} else {
 			//sprites[topLeftAutoTile].draw(x, y, z, size, size);
-			sprites[topLeftAutoTile].draw(x, y, z);
-			sprites[topRightAutoTile].draw(x+size, y, z);
-			sprites[bottomLeftAutoTile].draw(x, y+size, z);
-			sprites[bottomRightAutoTile].draw(x+size, y+size, z);
+			if(isTransparent) {
+				sprites[topLeftAutoTile].setColor(1,1,1,0.3f);
+				sprites[topRightAutoTile].setColor(1,1,1,0.3f);
+				sprites[bottomLeftAutoTile].setColor(1,1,1,0.3f);
+				sprites[bottomRightAutoTile].setColor(1,1,1,0.3f);
+				sprites[topLeftAutoTile].draw(x, y, z);
+				sprites[topRightAutoTile].draw(x+size, y, z);
+				sprites[bottomLeftAutoTile].draw(x, y+size, z);
+				sprites[bottomRightAutoTile].draw(x+size, y+size, z);
+			} else {
+				sprites[topLeftAutoTile].setColor(1,1,1,1f);
+				sprites[topRightAutoTile].setColor(1,1,1,1f);
+				sprites[bottomLeftAutoTile].setColor(1,1,1,1f);
+				sprites[bottomRightAutoTile].setColor(1,1,1,1f);
+				sprites[topLeftAutoTile].draw(x, y, z);
+				sprites[topRightAutoTile].draw(x+size, y, z);
+				sprites[bottomLeftAutoTile].draw(x, y+size, z);
+				sprites[bottomRightAutoTile].draw(x+size, y+size, z);
+			}
 		}
+		isVisible = true;
 	}
 	
 	public Tile createNew() {
@@ -69,9 +90,16 @@ public class RoofTile extends Tile {
 //		}
 //		
 //	}
+	public void update(int x, int y) {
+		if(Game.level.currentCollisionHousing == this.housingNumber) {
+			//TODO check if item currently selected is a roof item.  If it is, then make it transparent.  Otherwise invisible
+				Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_4].isTransparent = true;
+				Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_4].isVisible = false;
+		} 
+	}
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
-		activeBlocks[x][y].layers[ABOVE_LAYER_3] = new WallBorderTile();
+		activeBlocks[x][y].layers[ABOVE_LAYER_4] = new WallBorderTile();
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(ROOF).createNew();
 		Game.collectibleController.add(ROOF, Sprites.sprites.get(Sprites.ROOF), collectibleRect, 1, item.maxUses);

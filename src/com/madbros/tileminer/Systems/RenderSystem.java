@@ -149,8 +149,12 @@ public class RenderSystem {
 				} else {
 					renderTiles[i].render(x, y);
 				}
+				
 				//if(renderTiles[i].isLightSource) lightTiles.add(block);
 			}
+			renderTiles[i].isTransparent = false;
+			renderTiles[i].isVisible = true;
+			
 		}
 		
 		

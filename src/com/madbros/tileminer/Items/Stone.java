@@ -14,7 +14,7 @@ public class Stone extends CraftItem {
 		numberProducedByCrafting = 1;
 		craftCost = new int[]{};
 		craftCostAmount = new int[]{};
-		itemsPossiblyCraftable = new int[]{FURNACE, STAIRS_DOWN, STAIRS_UP, STONE_AXE, STONE_HOE, STONE_PICK, STONE_SHOVEL, STONE_SWORD};
+		itemsPossiblyCraftable = new int[]{FURNACE, ROOF,STAIRS_DOWN, STAIRS_UP, STONE_AXE, STONE_HOE, STONE_PICK, STONE_SHOVEL, STONE_SWORD};
 	}
 	
 	@Override

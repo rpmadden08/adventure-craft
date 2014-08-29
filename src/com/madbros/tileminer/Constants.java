@@ -222,6 +222,7 @@ public class Constants {
 	public static final int ROOF_TILE = 78;
 	public static final int WOOD_DOOR_BOTTOM_TILE = 79;
 	public static final int WOOD_DOOR_TOP_TILE = 80;
+	public static final int WOOD_FLOOR_TILE = 81;
 	
 	
 	
@@ -463,6 +464,7 @@ public class Constants {
 	public static final int WOOD_WALL = 139;
 	public static final int ROOF = 140;
 	public static final int WOODEN_DOOR = 141;
+	public static final int WOODEN_FLOOR = 142;
 	
 	
 	
@@ -576,7 +578,6 @@ public class Constants {
 		ITEM_HASH.put(LEATHER_BOOTS, new LeatherBoots());
 		ITEM_HASH.put(IRON_LEGGINGS, new IronLeggings());
 		ITEM_HASH.put(LEATHER_LEGGINGS, new LeatherLeggings());
-		
 		ITEM_HASH.put(TIN_HELMET, new TinHelmet());
 		ITEM_HASH.put(COPPER_HELMET, new CopperHelmet());
 		ITEM_HASH.put(TIN_ARMOR, new TinArmor());
@@ -586,12 +587,10 @@ public class Constants {
 		ITEM_HASH.put(TIN_LEGGINGS, new TinLeggings());
 		ITEM_HASH.put(COPPER_LEGGINGS, new CopperLeggings());
 		ITEM_HASH.put(STICK, new Stick());
-		
 		ITEM_HASH.put(STAIRS_UP, new StairsUp());
 		ITEM_HASH.put(STAIRS_DOWN, new StairsDown());
 		ITEM_HASH.put(FIRE_PIT, new FirePit());
 		ITEM_HASH.put(FIRE_STARTER, new FireStarter());
-		
 		ITEM_HASH.put(CAMPFIRE_ITEM, new Campfire());
 		ITEM_HASH.put(BAT_WING, new BatWing());
 		ITEM_HASH.put(SEED_POTATO, new SeedPotato());
@@ -641,51 +640,42 @@ public class Constants {
 		ITEM_HASH.put(EYEBALL, new Eyeball());
 		ITEM_HASH.put(IMP_HORN, new ImpHorn());
 		ITEM_HASH.put(LEATHER, new Leather());
-		
 		ITEM_HASH.put(HEALTH_POTION, new HealthPotion());
 		ITEM_HASH.put(SPEED_POTION, new SpeedPotion());
 		ITEM_HASH.put(SLOWNESS_POTION, new SlownessPotion());
 		ITEM_HASH.put(HARMING_POTION, new HarmingPotion());
-		
 		ITEM_HASH.put(WOODEN_AXE, new WoodenAxe());
 		ITEM_HASH.put(WOODEN_HOE, new WoodenHoe());
 		ITEM_HASH.put(WOODEN_PICK, new WoodenPick());
 		ITEM_HASH.put(WOODEN_SHOVEL, new WoodenShovel());
 		ITEM_HASH.put(WOODEN_SWORD, new WoodenSword());
-		
 		ITEM_HASH.put(STONE_AXE, new StoneAxe());
 		ITEM_HASH.put(STONE_HOE, new StoneHoe());
 		ITEM_HASH.put(STONE_PICK, new StonePick());
 		ITEM_HASH.put(STONE_SHOVEL, new StoneShovel());
 		ITEM_HASH.put(STONE_SWORD, new StoneSword());
-		
 		ITEM_HASH.put(TIN_AXE, new TinAxe());
 		ITEM_HASH.put(TIN_HOE, new TinHoe());
 		ITEM_HASH.put(TIN_PICK, new TinPick());
 		ITEM_HASH.put(TIN_SHOVEL, new TinShovel());
 		ITEM_HASH.put(TIN_SWORD, new TinSword());
-		
 		ITEM_HASH.put(COPPER_AXE, new CopperAxe());
 		ITEM_HASH.put(COPPER_HOE, new CopperHoe());
 		ITEM_HASH.put(COPPER_PICK, new CopperPick());
 		ITEM_HASH.put(COPPER_SHOVEL, new CopperShovel());
 		ITEM_HASH.put(COPPER_SWORD, new CopperSword());
-		
 		ITEM_HASH.put(IRON_AXE, new IronAxe());
 		ITEM_HASH.put(IRON_HOE, new IronHoe());
 		ITEM_HASH.put(IRON_PICK, new IronPick());
 		ITEM_HASH.put(IRON_SHOVEL, new IronShovel());
 		ITEM_HASH.put(IRON_SWORD, new IronSword());
-		
 		ITEM_HASH.put(STEAK, new Steak());
 		ITEM_HASH.put(COOKED_STEAK, new CookedSteak());
 		ITEM_HASH.put(HONEY, new Honey());
 		ITEM_HASH.put(SLIME_BALL, new SlimeBall());
 		ITEM_HASH.put(WORM_GUTS, new WormGuts());
 		ITEM_HASH.put(STINGER_SWORD, new StingerSword());
-		
 		ITEM_HASH.put(GLASS_BOTTLE, new GlassBottle());
-		
 		ITEM_HASH.put(DIRT_MOUNTAIN_CLUMP, new DirtMountainClump());
 		ITEM_HASH.put(STONE_MOUNTAIN_CLUMP, new StoneMountainClump());
 		ITEM_HASH.put(STONE, new Stone());
@@ -693,14 +683,13 @@ public class Constants {
 		ITEM_HASH.put(BEEHIVE, new Beehive());
 		ITEM_HASH.put(WATER_BUCKET, new WaterBucket());
 		ITEM_HASH.put(EMPTY_BUCKET, new EmptyBucket());
-		
 		ITEM_HASH.put(LIFE_VIAL, new LifeVial());
 		ITEM_HASH.put(ENERGY_VIAL, new EnergyVial());
 		ITEM_HASH.put(HEART_CONTAINER, new HeartContainer());
-		ITEM_HASH.put(WOOD_WALL, new WoodWall());
+		ITEM_HASH.put(WOOD_WALL, new WoodenWall());
 		ITEM_HASH.put(ROOF, new Roof());
 		ITEM_HASH.put(WOODEN_DOOR, new WoodenDoor());
-		
+		ITEM_HASH.put(WOODEN_FLOOR, new WoodenFloor());
 		
 		
 		TILE_HASH.put(GRASS, new GrassTile());
@@ -754,13 +743,11 @@ public class Constants {
 		TILE_HASH.put(TALL_GRASS_A_TILE, new TallGrassATile());
 		TILE_HASH.put(TALL_GRASS_B_TILE, new TallGrassBTile());
 		TILE_HASH.put(TALL_GRASS_C_TILE, new TallGrassCTile());
-		
 		TILE_HASH.put(RED_MUSHROOM_TILE, new RedMushroomTile());
 		TILE_HASH.put(BROWN_MUSHROOM_TILE, new BrownMushroomTile());
 		TILE_HASH.put(RED_FLOWERS_TILE, new RedFlowersTile());
 		TILE_HASH.put(YELLOW_FLOWERS_TILE, new YellowFlowersTile());
 		TILE_HASH.put(TORCH_TILE, new TorchTile());
-		
 		TILE_HASH.put(WHEAT_TILE, new WheatTile());
 		TILE_HASH.put(TOMATO_TILE, new TomatoTile());
 		TILE_HASH.put(CORN_TILE, new CornTile());
@@ -771,7 +758,6 @@ public class Constants {
 		TILE_HASH.put(BEEHIVE_TILE, new BeehiveTile());
 		TILE_HASH.put(STAIRS_UP_TILE, new StairsUpTile());
 		TILE_HASH.put(STAIRS_DOWN_TILE, new StairsDownTile());
-		
 		TILE_HASH.put(HEART_CONTAINER_TILE, new HeartContainerTile());
 		TILE_HASH.put(WOOD_WALL_BOTTOM_TILE, new WoodWallBottomTile());
 		TILE_HASH.put(WOOD_WALL_MIDDLE_TILE, new WoodWallMiddleTile());
@@ -780,6 +766,7 @@ public class Constants {
 		TILE_HASH.put(ROOF_TILE, new RoofTile());
 		TILE_HASH.put(WOOD_DOOR_BOTTOM_TILE, new WoodenDoorBottomTile());
 		TILE_HASH.put(WOOD_DOOR_TOP_TILE, new WoodenDoorTopTile());
+		TILE_HASH.put(WOOD_FLOOR_TILE, new WoodenFloorTile());
 			
 //		if(blocks[x-1][y-1].layers[i].autoTileID == block.layers[i].autoTileID) topLeft = 1;
 //		if(blocks[x][y-1].layers[i].autoTileID == block.layers[i].autoTileID) top = 2;

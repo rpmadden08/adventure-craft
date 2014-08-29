@@ -42,7 +42,7 @@ public class Sprites {
 	
 	public static final String HUMAN_BASE = "1";
 	
-	
+	//GUI
 	public static final String CURSOR = "cursor";
 	public static final String EMPTY_BAR_MIDDLE = "emptyBarMiddle";
 	public static final String ENERGY_BAR_MIDDLE = "energyBarMiddle";
@@ -72,7 +72,6 @@ public class Sprites {
 	public static final String HEART_CONTAINER = "heartContainer";
 	public static final String HEART_CONTAINER_TILE = "heartContainerTile";
 	public static final String X_ICON = "x";
-	
 	public static final String MM_BUTTON_LEFT = "mMButtonLeft";
 	public static final String MM_BUTTON_LEFT_HOVER = "mMButtonLeftHover";
 	public static final String MM_BUTTON_LEFT_PUSHED = "mMButtonLeftPushed";
@@ -82,8 +81,6 @@ public class Sprites {
 	public static final String MM_BUTTON_RIGHT = "mMButtonRight";
 	public static final String MM_BUTTON_RIGHT_HOVER = "mMButtonRightHover";
 	public static final String MM_BUTTON_RIGHT_PUSHED = "mMButtonRightPushed";
-	
-	
 	
 	//ITEMS
 	public static final String DARK_DIRT = "darkDirtSingle";
@@ -97,7 +94,6 @@ public class Sprites {
 	public static final String HEALTH_BAR_EDGE = "healthBarEdge";
 	public static final String MON_HEALTH_EDGE = "monHealthEdge";
 	public static final String TILLED_SOIL = "tilledSoil";
-	
 	public static final String PIXEL = "pixel";
 	public static final String SAPLING = "sapling";
 	public static final String SEED_POTATO = "potatoPlant0";
@@ -116,7 +112,6 @@ public class Sprites {
 	public static final String PLATE_TORSO_ITEM = "plateTorsoItem";
 	public static final String PLATE_LEGS_ITEM = "plateLegsItem";
 	public static final String PLATE_FEET_ITEM = "plateFeetItem";
-	
 	public static final String LEATHER_HELMET_ITEM = "leatherHatItem";
 	public static final String LEATHER_TORSO_ITEM = "leatherTorsoItem";
 	public static final String LEATHER_LEGS_ITEM = "leatherLeggingsItem";
@@ -129,7 +124,6 @@ public class Sprites {
 	public static final String COPPER_TORSO_ITEM = "copperTorsoItem";
 	public static final String COPPER_LEGS_ITEM = "copperLeggingsItem";
 	public static final String COPPER_FEET_ITEM = "copperFeetItem";
-	
 	public static final String BAT = "bat";
 	public static final String BEE = "bee";
 	public static final String BEE_MINI = "beeMini";
@@ -186,23 +180,19 @@ public class Sprites {
 	public static final String LEATHER= "leather";
 	public static final String BEEHIVE= "beehive";
 	public static final String EMPTY_BUCKET= "emptyBucket";
-
 	public static final String WATER_BUCKET= "waterBucket";
 	public static final String BEEHIVE_TILE= "beehiveTile";
-	
 	public static final String STEAK= "rawSteak";
 	public static final String COOKED_STEAK= "cookedSteak";
 	public static final String HONEY= "honey";
 	public static final String SLIME_BALL= "slimeItem";
 	public static final String WORM_GUTS= "wormGuts";
 	public static final String STINGER_SWORD= "stingerSword";
-	
 	public static final String HEALTH_POTION= "healthPotion";
 	public static final String SPEED_POTION= "speedPotion";
 	public static final String SLOWNESS_POTION= "slownessPotion";
 	public static final String HARMING_POTION= "harmingPotion";
 	public static final String GLASS_BOTTLE= "glassBottle";
-	
 	public static final String WOODEN_AXE= "woodenAxe";
 	public static final String WOODEN_HOE= "woodenHoe";
 	public static final String WOODEN_PICK= "woodenPick";
@@ -234,15 +224,16 @@ public class Sprites {
 	public static final String STONE_MOUNTAIN_CLUMP = "stoneMountainClump";
 	public static final String STONE = "stone";
 	public static final String BREAD = "bread";
-//	public static final String WOOD_WALL = "woodWallItem";
 	public static final String WOOD_WALL = "woodWallItem";
 	public static final String ROOF = "roofItem";
 	public static final String WOODEN_DOOR = "woodDoorItem";
+	public static final String WOODEN_FLOOR = "woodFloor0";
 	
 	
 	
 	
 	//TILES
+	public static final String WOODEN_FLOOR_TILE = "woodFloor";
 	public static final String DESERT = "desert";
 	public static final String GRASS = "grass";
 	public static final String GRASS_NEW = "grassNew";
@@ -323,6 +314,7 @@ public class Sprites {
 	public static final String WOODEN_DOOR_BOTTOM_TILE = "woodDoorBottom";
 	public static final String WOODEN_DOOR_TOP_TILE = "woodDoorTop";
 	public static final String WOODEN_DOOR_BOTTOM_OPEN_TILE = "woodDoorBottomOpen";
+	public static final String WOODEN_DOOR_TOP_OPEN_TILE = "woodDoorTopOpen";
 	
 	
 	
@@ -834,7 +826,8 @@ public class Sprites {
 					MM_BUTTON_MIDDLE, MM_BUTTON_MIDDLE_HOVER, MM_BUTTON_MIDDLE_PUSHED, MM_BUTTON_RIGHT,MM_BUTTON_RIGHT_HOVER,
 					MM_BUTTON_RIGHT_PUSHED, EP_ITEM, HEART_CONTAINER_TILE, WOOD_WALL, 
 					WOOD_WALL_BOTTOM, WOOD_WALL_MIDDLE, WOOD_WALL_TOP, WALL_BORDER, ROOF_TILE, ROOF, WOODEN_DOOR, WOODEN_DOOR_BOTTOM_TILE,
-					WOODEN_DOOR_TOP_TILE, WOODEN_DOOR_BOTTOM_OPEN_TILE,
+					WOODEN_DOOR_TOP_TILE, WOODEN_DOOR_BOTTOM_OPEN_TILE, WOODEN_FLOOR_TILE, WOODEN_FLOOR, WOODEN_DOOR_TOP_OPEN_TILE,
+					
 			};
 			
 			String[] lightNames = {LIGHT, CAMPFIRE_LIGHT};

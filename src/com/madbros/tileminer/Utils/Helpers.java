@@ -83,6 +83,7 @@ public class Helpers {
 				for(int i = 0; i < 23; i++) {
 					int id = chunk.ids[x][y][i];	
 					t[i] = TILE_HASH.get(id).createNew();
+					t[i].housingNumber = chunk.housingNumbers[x][y][i];
 					t[i].currentSpriteId = chunk.currentTextures[x][y][i];
 					t[i].timeCreated = chunk.timeCreated[x][y][i];
 					if(chunk.ids[x][y][i] == FURNACE_TILE) {

@@ -16,6 +16,10 @@ public class Roof extends BlockItem {
 		placeableTileIds = new int[]{WALL_BORDER};
 		itemsPossiblyCraftable = new int[]{};
 		sprite = Sprites.sprites.get(Sprites.ROOF);
+		numberProducedByCrafting = 4;
+		craftCost = new int[]{PLANK, STONE};
+		craftCostAmount = new int[]{8,1};
+		maxStackSize = 99;
 	}
 	
 	@Override
@@ -25,39 +29,37 @@ public class Roof extends BlockItem {
 	
 	public void useLeft() {
 		Block hB = Game.level.highlightedBlock;
-		if(hB.layers[ABOVE_LAYER_3].id == ROOF_TILE && isInRange == true) {
+		if(hB.layers[ABOVE_LAYER_4].id == ROOF_TILE && isInRange == true) {
 			
 			
-			hB.layers[ABOVE_LAYER_3].currentHp -= attackPower;
-			if(hB.layers[ABOVE_LAYER_3].currentHp < 1) {
+			hB.layers[ABOVE_LAYER_4].currentHp -= attackPower;
+			if(hB.layers[ABOVE_LAYER_4].currentHp < 1) {
 				//.deleteObjectTile();
-				hB.layers[ABOVE_LAYER_3].deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
+				hB.layers[ABOVE_LAYER_4].deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
 				if(Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].layers[ABOVE_LAYER_2].id == AIR) {
-					hB.layers[ABOVE_LAYER_3] = new NoTile();
+					hB.layers[ABOVE_LAYER_4] = new NoTile();
 				}
 				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-3);
 				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-2);
 				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-1);
 				Game.level.autoTileHighlightedBlock();
 			}
-		} else {
-			useRight();
-		}
+		} 
 	}
 	
 	public void impact() {
 		Block hB = Game.level.highlightedBlock;
-		if(hB.layers[ABOVE_LAYER_3].id == ROOF_TILE) {
-			hB.layers[ABOVE_LAYER_3].currentHp -= attackPower;
-			if(hB.layers[ABOVE_LAYER_3].currentHp < 1) {
+		if(hB.layers[ABOVE_LAYER_4].id == ROOF_TILE) {
+			hB.layers[ABOVE_LAYER_4].currentHp -= attackPower;
+			if(hB.layers[ABOVE_LAYER_4].currentHp < 1) {
 				//Game.level.highlightedBlock.deleteObjectTile();
 				//Game.level.highlightedBlock.collisionTile = null;
 //				Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY-1].deleteTile(ABOVE_LAYER_1);
 //				Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY-2].deleteTile(ABOVE_LAYER_2);
 				
-				hB.layers[ABOVE_LAYER_3].deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
+				hB.layers[ABOVE_LAYER_4].deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
 				if(Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].layers[ABOVE_LAYER_2].id == AIR) {
-					hB.layers[ABOVE_LAYER_3] = new NoTile();
+					hB.layers[ABOVE_LAYER_4] = new NoTile();
 				}
 				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-3);
 				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-2);
@@ -74,7 +76,7 @@ public class Roof extends BlockItem {
 			Tile tile = TILE_HASH.get(tileId).createNew();
 			Block hB = Game.level.highlightedBlock;
 			if(Helpers.arrayDoesContainInt(placeableTileIds, hB.layers[ABOVE_LAYER_3].id) || isNextToRoofTile()) {
-				if(hB.layers[ABOVE_LAYER_3].id != this.tileId) {
+				if(hB.layers[ABOVE_LAYER_4].id != this.tileId) {
 					placeTile(hB, tile);
 					stackSize -= 1;
 					Game.inventory.deleteItemIfNecessary();
@@ -92,16 +94,16 @@ public class Roof extends BlockItem {
 	public Boolean isNextToRoofTile() {
 		int x = Game.level.highlightedBlockX;
 		int y = Game.level.highlightedBlockY;
-		if(Game.level.activeBlocks[x-1][y].layers[ABOVE_LAYER_3].id == ROOF_TILE) {
+		if(Game.level.activeBlocks[x-1][y].layers[ABOVE_LAYER_4].id == ROOF_TILE) {
 			return true;
 		}
-		if(Game.level.activeBlocks[x+1][y].layers[ABOVE_LAYER_3].id == ROOF_TILE) {
+		if(Game.level.activeBlocks[x+1][y].layers[ABOVE_LAYER_4].id == ROOF_TILE) {
 			return true;
 		}
-		if(Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_3].id == ROOF_TILE) {
+		if(Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_4].id == ROOF_TILE) {
 			return true;
 		}
-		if(Game.level.activeBlocks[x][y+1].layers[ABOVE_LAYER_3].id == ROOF_TILE) {
+		if(Game.level.activeBlocks[x][y+1].layers[ABOVE_LAYER_4].id == ROOF_TILE) {
 			return true;
 		}
 		return false;
@@ -109,10 +111,15 @@ public class Roof extends BlockItem {
 	
 	@Override
 	public void placeTile(Block hB, Tile tile) {
-		hB.layers[ABOVE_LAYER_3] = tile;
+		hB.layers[ABOVE_LAYER_4] = tile;
+		hB.layers[ABOVE_LAYER_4].housingNumber = Game.level.currentHousing;
 	}
 	
 	public void highlightItem(Block block, int x, int y) {
+		String houseNumber = "House #" +Game.level.currentHousing;
+		String UIText = "(-/+)";
+		Sprites.font.draw(Game.batch, houseNumber, 4, 108);
+		Sprites.font.draw(Game.batch, UIText, 18, 108-Sprites.font.getLineHeight());
 		if(Helpers.arrayDoesContainInt(placeableTileIds, block.layers[ABOVE_LAYER_3].id)|| isNextToRoofTile()) { 
 //			int i = block.getX(Game.level.activeBlocks); 
 //			int j = block.getY(Game.level.activeBlocks);

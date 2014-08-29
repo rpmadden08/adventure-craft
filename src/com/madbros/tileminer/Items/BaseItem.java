@@ -188,8 +188,9 @@ public abstract class BaseItem extends ToolItem {
 			}
 		} else if(Game.level.tileBeingAttacked.isChoppable && Game.level.activeBlocks[block.getX(Game.level.activeBlocks)][block.getY(Game.level.activeBlocks)].layers[OBJECT_LAYER].id != AIR) {
 			Game.level.tileBeingAttacked.highlightEntireObject(block.getX(Game.level.activeBlocks),block.getY(Game.level.activeBlocks), x, y);
-		}
+		} 
 	}
+	
 	
 	public void playHitSound() {
 		Game.soundController.create(hitSound, 0.5f);

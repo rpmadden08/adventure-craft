@@ -29,6 +29,9 @@ public class Level {
 	public Cell[][] cells;
 	public Cell[] potentialCollisionCells;	//resets to empty every frame and includes only cells that something has moved in
 	
+	public int currentHousing = 1;
+	public int currentCollisionHousing = 0;
+	
 	public Block[][] activeBlocks;
 	public Block[][] currentChunk;
 	
@@ -370,6 +373,7 @@ public class Level {
 	
 	public void update() {
 		Time.checkTime();
+		currentCollisionHousing = 0;
 		Rect renderRect = Helpers.getRenderRect(Game.hero, activeBlocks[0][0]);
 		Point offsetPoint = Helpers.getOffsetPoint(Game.hero, activeBlocks[0][0]);
 		if(Game.currentState.type == State.MAIN) highlightBlock(renderRect, offsetPoint);
@@ -403,6 +407,14 @@ public class Level {
 				//activeBlocks[x][y].layers[TREE_RIGHT_0].update(x, y);
 				activeBlocks[x][y].layers[TREE_LEFT_2].update(x, y);
 				activeBlocks[x][y].layers[TREE_RIGHT_2].update(x, y);
+			}
+		}
+		if(currentCollisionHousing >0) {
+			for(int x = renderRect2.x; x < renderRect2.x2(); x++) {
+				for(int y = renderRect2.y; y < renderRect2.y2(); y++) {
+					activeBlocks[x][y].layers[GRASS_LAYER].update(x, y);	
+					activeBlocks[x][y].layers[ABOVE_LAYER_4].update(x, y);
+				}
 			}
 		}
 		

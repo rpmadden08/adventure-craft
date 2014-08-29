@@ -26,8 +26,20 @@ public class WoodWallTopTile extends CollisionTile {
 		if(topLeftAutoTile == MIDDLE_TILE && topRightAutoTile == MIDDLE_TILE &&
 		   bottomLeftAutoTile == MIDDLE_TILE && bottomRightAutoTile == MIDDLE_TILE) {
 			sprites[MIDDLE_TILE].draw(x, y, z);
+		} else if(isTransparent) {
+			sprites[topLeftAutoTile].setColor(1,1,1,0.3f);
+			sprites[topRightAutoTile].setColor(1,1,1,0.3f);
+			sprites[bottomLeftAutoTile].setColor(1,1,1,0.3f);
+			sprites[bottomRightAutoTile].setColor(1,1,1,0.3f);
+			sprites[topLeftAutoTile].draw(x, y, z);
+			sprites[topRightAutoTile].draw(x+size, y, z);
+			sprites[bottomLeftAutoTile].draw(x, y+size, z);
+			sprites[bottomRightAutoTile].draw(x+size, y+size, z);
 		} else {
-			//sprites[topLeftAutoTile].draw(x, y, z, size, size);
+			sprites[topLeftAutoTile].setColor(1,1,1,1f);
+			sprites[topRightAutoTile].setColor(1,1,1,1f);
+			sprites[bottomLeftAutoTile].setColor(1,1,1,1f);
+			sprites[bottomRightAutoTile].setColor(1,1,1,1f);
 			sprites[topLeftAutoTile].draw(x, y, z);
 			sprites[topRightAutoTile].draw(x+size, y, z);
 			sprites[bottomLeftAutoTile].draw(x, y+size, z);
