@@ -7,7 +7,6 @@ import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Items.Item;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
-import com.madbros.tileminer.Utils.Rect;
 
 public class FloorTile extends CollisionTile {
 
@@ -54,8 +53,5 @@ public class FloorTile extends CollisionTile {
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		Block b = activeBlocks[x][y];
 		b.layers[GRASS_LAYER] = new NoTile();
-		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Item item = ITEM_HASH.get(WOODEN_FLOOR).createNew();
-		Game.collectibleController.add(WOODEN_FLOOR, Sprites.sprites.get(Sprites.WOODEN_FLOOR), collectibleRect, 1, item.maxUses);
 	}
 }

@@ -8,8 +8,10 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class WoodenWall extends BlockItem {
-	public WoodenWall() {
+public class Wall extends BlockItem {
+	int tile2Id = WOOD_WALL_BOTTOM_TILE;
+	int tile3Id = WOOD_WALL_BOTTOM_TILE;
+	public Wall() {
 		id = WOOD_WALL;
 		name = "Wooden Wall";
 		tileId = WOOD_WALL_BOTTOM_TILE;
@@ -22,8 +24,8 @@ public class WoodenWall extends BlockItem {
 	}
 	
 	@Override
-	public WoodenWall createNew() {
-		return new WoodenWall();
+	public Wall createNew() {
+		return new Wall();
 	}
 	
 	@Override
@@ -33,8 +35,8 @@ public class WoodenWall extends BlockItem {
 		Game.level.hasPlacedItemOnClick = true;
 		int x = hB.getX(Game.level.activeBlocks);
 		int y = hB.getY(Game.level.activeBlocks);
-		Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new WoodWallMiddleTile();
-		Game.level.activeBlocks[x][y-2].layers[ABOVE_LAYER_2] = new WoodWallTopTile();
+		Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = TILE_HASH.get(tile2Id).createNew();
+		Game.level.activeBlocks[x][y-2].layers[ABOVE_LAYER_2] = TILE_HASH.get(tile3Id).createNew();
 		Game.level.activeBlocks[x][y-3].layers[ABOVE_LAYER_3] = new WallBorderTile();
 		
 	}
@@ -70,7 +72,7 @@ public void highlightItem(Block block, int x, int y) {
 			
 			//Block block2 = Game.level.activeBlocks[i][j-1];
 			
-			tile = TILE_HASH.get(WOOD_WALL_MIDDLE_TILE);
+			tile = TILE_HASH.get(tile2Id);
 			tile.sprites[0].setColor(HIGHLIGHT_COLOR);
 			tile.sprites[0].draw(x, y-32, Z_CHARACTER);
 			tile.sprites[0].setColor(Color.WHITE);
@@ -92,7 +94,7 @@ public void highlightItem(Block block, int x, int y) {
 			
 			//block2 = Game.level.activeBlocks[i][j-2];
 			
-			tile = TILE_HASH.get(WOOD_WALL_TOP_TILE);
+			tile = TILE_HASH.get(tile3Id);
 			tile.sprites[0].setColor(HIGHLIGHT_COLOR);
 			tile.sprites[0].draw(x, y-64, Z_CHARACTER);
 			tile.sprites[0].setColor(Color.WHITE);
