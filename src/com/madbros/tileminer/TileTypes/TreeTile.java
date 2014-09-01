@@ -29,6 +29,7 @@ public class TreeTile extends CollisionTile {
 		isAutoTileable = false;
 		autoTile = 0;
 		particleEffect = "treeChunks.p";
+		sound = "sounds/axeChop.wav";
 	}
 	
 	@Override

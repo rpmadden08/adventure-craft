@@ -23,7 +23,7 @@ public abstract class Tile {
 	public boolean isVisible = true;
 	public boolean isCollidable = false;
 	public boolean isPickable = false;
-	public boolean isDiggable = true;
+	public boolean isDiggable = false;
 	public boolean isChoppable = false;
 	public boolean isTillable = false;
 	public boolean isBreakable = false; //This is for items breakable by hand
@@ -48,6 +48,8 @@ public abstract class Tile {
 	public int bottomRightAutoTile = 0;
 	public int bottomLeftAutoTile = 0;
 	public String particleEffect = "chunks.p";
+	public String sound = "sounds/pickSound.wav";
+	public String breakingSound = null;
 	public int housingNumber = 0;
 	public Boolean isTransparent = false;
 	

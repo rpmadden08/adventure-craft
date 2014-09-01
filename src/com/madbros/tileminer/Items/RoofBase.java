@@ -94,16 +94,16 @@ public class RoofBase extends BlockItem {
 	public Boolean isNextToRoofTile() {
 		int x = Game.level.highlightedBlockX;
 		int y = Game.level.highlightedBlockY;
-		if(RoofBase.class.isAssignableFrom(Game.level.activeBlocks[x-1][y].layers[ABOVE_LAYER_4].getClass())) {
+		if(RoofBaseTile.class.isAssignableFrom(Game.level.activeBlocks[x-1][y].layers[ABOVE_LAYER_4].getClass())) {
 			return true;
 		}
-		if(RoofBase.class.isAssignableFrom(Game.level.activeBlocks[x+1][y].layers[ABOVE_LAYER_4].getClass())) {
+		if(RoofBaseTile.class.isAssignableFrom(Game.level.activeBlocks[x+1][y].layers[ABOVE_LAYER_4].getClass())) {
 			return true;
 		}
-		if(RoofBase.class.isAssignableFrom(Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_4].getClass())) {
+		if(RoofBaseTile.class.isAssignableFrom(Game.level.activeBlocks[x][y-1].layers[ABOVE_LAYER_4].getClass())) {
 			return true;
 		}
-		if(RoofBase.class.isAssignableFrom(Game.level.activeBlocks[x][y+1].layers[ABOVE_LAYER_4].getClass())) {
+		if(RoofBaseTile.class.isAssignableFrom(Game.level.activeBlocks[x][y+1].layers[ABOVE_LAYER_4].getClass())) {
 			return true;
 		}
 		return false;

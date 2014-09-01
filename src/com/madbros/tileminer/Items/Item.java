@@ -24,6 +24,8 @@ public abstract class Item {
 	public int[] itemsPossiblyBurnable = {};
 	public int[] itemsPossiblyBrewable = {};
 	public int[] craftCost = {};
+	public int swingSpeed = 30;
+	public int swingRemaining = swingSpeed;
 	public int[] craftCostAmount =new int[]{1};
 	public boolean is32 = true;
 	public float originX = 2;
@@ -39,7 +41,7 @@ public abstract class Item {
 	public String sound;
 	public String hitSound = "sounds/swordImpact.wav";
 	public int attackPower = 1;
-	public int itemPower = 1;
+	//public int itemPower = 1;
 	public int maxUses = 0;
 	public int uses = 0;
 	public boolean isUseable = false;
@@ -48,9 +50,12 @@ public abstract class Item {
 	public boolean isInactive = false;
 	public boolean isInUse = false;
 	public float knockBackPower = 0.1f;
+	public int pickPower = 1;
+	public int shovelPower = 1;
+	public int axePower = 1;
 	
 	public void calculateUsage() {
-		isInUse = false;
+		//isInUse = false;
 		Game.hero.eP = Game.hero.eP - 0.1;
 		uses = uses -1;
 		if(uses <= 0) {
@@ -86,6 +91,42 @@ public abstract class Item {
 	
 	public void render(int x, int y) {
 		sprite.draw(x-ITEM_SIZE/2, y-ITEM_SIZE/2, Z_INV_ITEMS);
+	}
+	
+	public void rechargeSwing() {
+		if(swingRemaining >0) {
+			swingRemaining = swingRemaining -1;
+		}
+	}
+	
+	public int itemPower() {
+		//int damage = 0;
+		if(Game.level.tileBeingAttacked.isPickable) {
+			if(!BaseItem.class.isAssignableFrom(this.getClass())) {
+				if(!Pick.class.isAssignableFrom(this.getClass())) {
+					Game.notificationController.addAlert("A pick would be more effective.");
+				}
+			}
+			return pickPower;
+		}
+		if(Game.level.tileBeingAttacked.isDiggable) {
+			if(!BaseItem.class.isAssignableFrom(this.getClass())) {
+				if(!Shovel.class.isAssignableFrom(this.getClass())) {
+					Game.notificationController.addAlert("A shovel would be more effective.");
+				}
+			}
+			return shovelPower;
+		}
+		if(Game.level.tileBeingAttacked.isChoppable) {
+			if(!BaseItem.class.isAssignableFrom(this.getClass())) {
+				if(!Axe.class.isAssignableFrom(this.getClass())) {
+					Game.notificationController.addAlert("An axe would be more effective.");
+				}
+			}
+			return axePower;
+		}
+		return 1;
+		
 	}
 	
 	public void getTopTile() {
@@ -206,7 +247,9 @@ public abstract class Item {
 	}
 	
 	public void checkIsInRange() {
-		useRight();
+		if(isInRange == true) {
+			useRight();
+		}
 	}
 	
 	public boolean isPlacementCollidingWithHero(Block b, int layer) {

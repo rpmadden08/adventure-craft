@@ -13,7 +13,7 @@ public class StonePick extends Pick {
 		sprite = Sprites.sprites.get(Sprites.STONE_PICK);
 		swingSprite = sprite;
 		attackPower = 3;
-		itemPower = 5;
+		pickPower = 5;
 		isRepeatable = true;
 		craftCost = new int[]{STONE, STICK};
 		craftCostAmount = new int[]{2, 3};

@@ -39,14 +39,6 @@ public class GameMainMenuState extends MainState {
 			Game.gameMainMenu.render();
 			Game.gameMainMenu.renderText();
 			if(Game.debugger.isDebugging) Game.debugger.renderText(Game.hero.absRect, Game.batch);
-//			Game.renderSystem.renderInventory(Game.hero, Game.inventory);
-			
-			//Game.renderSystem.renderArmorSlots(Game.hero, Game.inventory);
-			//Game.renderSystem.renderInventoryText(Game.inventory, Game.batch);
-			//Game.renderSystem.renderCraftingText(Game.inventory, Game.batch);
-			//Game.inventory.craftingMenu.render();
-			//Game.renderSystem.renderCrafting(Game.inventory);
-			//Game.renderSystem.renderHeldItem(Game.inventory);
 		Game.batch.end();
 	}
 }

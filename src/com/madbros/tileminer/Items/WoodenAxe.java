@@ -11,7 +11,7 @@ public class WoodenAxe extends Axe {
 		sprite = Sprites.sprites.get(Sprites.WOODEN_AXE);
 		swingSprite = sprite;
 		attackPower = 2;
-		itemPower = 2;
+		axePower = 2;
 		is32 = true;
 		isInUse = false;
 		sound = "sounds/axeChop.wav";

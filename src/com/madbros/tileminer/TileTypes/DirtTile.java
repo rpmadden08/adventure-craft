@@ -22,6 +22,8 @@ public class DirtTile extends Tile {
 		isTillable = true;
 		is32 = true;
 		particleEffect = "dirtChunks.p";
+		sound = "sounds/shovelDig.wav";
+		isDiggable = true;
 	}
 	
 	public void render(int x, int y) {

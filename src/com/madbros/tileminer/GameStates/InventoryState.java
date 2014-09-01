@@ -40,9 +40,10 @@ public class InventoryState extends MainState {
 			
 			Game.renderSystem.renderArmorSlots(Game.hero, Game.inventory);
 			Game.renderSystem.renderInventoryText(Game.inventory, Game.batch);
-			Game.renderSystem.renderCraftingText(Game.inventory, Game.batch);
+			
 			Game.inventory.craftingMenu.render();
 			Game.renderSystem.renderCrafting(Game.inventory);
+			Game.renderSystem.renderCraftingText(Game.inventory, Game.batch);
 			Game.renderSystem.renderHeldItem(Game.inventory);
 		Game.batch.end();
 	}

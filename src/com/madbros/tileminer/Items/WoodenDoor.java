@@ -9,7 +9,7 @@ public class WoodenDoor extends Door {
 		name = "Wooden Door";
 		tileId = WOOD_DOOR_BOTTOM_TILE;
 		tile2Id = WOOD_DOOR_TOP_TILE;
-		placeableTileIds = new int[]{WOOD_FLOOR_TILE};
+		//placeableTileIds = new int[]{WOOD_FLOOR_TILE};
 		sprite = Sprites.sprites.get(Sprites.WOODEN_DOOR);
 		workSpaceNeeded = new int[]{BARE_HANDS_WORKSPACE,TABLE_WORKSPACE};
 		numberProducedByCrafting = 1;

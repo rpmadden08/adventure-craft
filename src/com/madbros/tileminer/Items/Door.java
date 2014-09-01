@@ -18,7 +18,7 @@ public class Door extends BlockItem32 {
 		id = WOODEN_DOOR;
 		name = "Wooden Door";
 		tileId = WOOD_DOOR_BOTTOM_TILE;
-		placeableTileIds = new int[]{WOOD_FLOOR_TILE};
+		placeableTileIds = new int[]{WOOD_FLOOR_TILE, SAND, GRASS, DIRT};
 		sprite = Sprites.sprites.get(Sprites.WOODEN_DOOR);
 		workSpaceNeeded = new int[]{BARE_HANDS_WORKSPACE,TABLE_WORKSPACE};
 		numberProducedByCrafting = 1;
@@ -39,7 +39,7 @@ public class Door extends BlockItem32 {
 		//if(isInRange == true) {
 			Tile tile = TILE_HASH.get(tileId).createNew();
 			Block hB = Game.level.highlightedBlock;
-			if(Helpers.arrayDoesContainInt(placeableTileIds, hB.layers[GRASS_LAYER].id) && AIR == hB.layers[OBJECT_LAYER].id && isPlaceable(hB)) {
+			if(Helpers.arrayDoesContainInt(placeableTileIds, hB.getTopTerrainTile().id) && AIR == hB.layers[OBJECT_LAYER].id && isPlaceable(hB)) {
 //				if(hB.layers[ABOVE_LAYER_3].id != this.tileId && hB.layers[ABOVE_LAYER_3].isMiddleTile) {
 					placeTile(hB, tile);
 					stackSize -= 1;
@@ -73,9 +73,16 @@ public class Door extends BlockItem32 {
 		int y2 = block.getY(Game.level.activeBlocks);
 		if(WallBottomTile.class.isAssignableFrom(Game.level.activeBlocks[x2-1][y2].layers[OBJECT_LAYER].getClass()) &&
 				WallBottomTile.class.isAssignableFrom(Game.level.activeBlocks[x2+1][y2].layers[OBJECT_LAYER].getClass())) {
-			return true;
-		} else 
+			if(Game.level.activeBlocks[x2-1][y2].layers[OBJECT_LAYER].id == Game.level.activeBlocks[x2+1][y2].layers[OBJECT_LAYER].id) {
+				return true;
+			} else {
+				Game.notificationController.addAlert("Doors must be placed between two walls of the same type.");
+				return false;
+			}
+		} else {
+			Game.notificationController.addAlert("Doors must be placed between two walls of the same type.");
 			return false;
+		}
 	}
 
 	@Override

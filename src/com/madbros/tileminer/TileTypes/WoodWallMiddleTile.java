@@ -15,8 +15,7 @@ public class WoodWallMiddleTile extends CollisionTile {
 		autoTileID = id;
 		layer = ABOVE_LAYER_1;
 		z = Z_ABOVE_LAYER;
-		isDiggable = false;
-		isPickable = true;
+		isChoppable = true;
 	}
 	
 	public void render(int x, int y) {

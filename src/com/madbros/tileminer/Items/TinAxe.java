@@ -11,7 +11,7 @@ public class TinAxe extends Axe {
 		sprite = Sprites.sprites.get(Sprites.TIN_AXE);
 		swingSprite = sprite;
 		attackPower = 4;
-		itemPower = 4;
+		axePower = 4;
 		is32 = true;
 		isInUse = false;
 		sound = "sounds/axeChop.wav";

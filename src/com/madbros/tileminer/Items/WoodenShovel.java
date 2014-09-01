@@ -13,7 +13,7 @@ public class WoodenShovel extends Shovel {
 		sprite = Sprites.sprites.get(Sprites.WOODEN_SHOVEL);
 		swingSprite = sprite;
 		attackPower = 4;
-		itemPower = 4;
+		shovelPower = 4;
 		isRepeatable = true;
 		craftCost = new int[]{PLANK, STICK};
 		craftCostAmount = new int[]{1, 2};

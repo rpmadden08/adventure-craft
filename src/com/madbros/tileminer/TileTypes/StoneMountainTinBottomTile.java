@@ -21,6 +21,7 @@ public class StoneMountainTinBottomTile extends CollisionTile {
 		isDiggable = false;
 		isPickable = true;
 		is32 = false;
+		sound = "sounds/pickSound.wav";
 	}
 	
 	public void render(int x, int y, int layer) {

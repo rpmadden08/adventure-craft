@@ -24,8 +24,8 @@ public class GrassTile extends Tile {
 		isTillable = true;
 		is32 = false;
 		particleEffect = "grassChunks.p";
-		
-
+		sound = "sounds/shovelDig.wav";
+		isDiggable = true;
 	}
 
 	public void render(int x, int y) {

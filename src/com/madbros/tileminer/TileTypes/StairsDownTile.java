@@ -30,6 +30,7 @@ public class StairsDownTile extends CollisionTile {
 		isBreakable = false;
 		currentHp = 30;
 		maxHp = 30;
+		sound = "sounds/pickSound.wav";
 		//isCollidable = false;
 		
 	}

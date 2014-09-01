@@ -19,7 +19,6 @@ public class RoofTile extends RoofBaseTile {
 		sprites = Sprites.spriteCollections.get(Sprites.ROOF_TILE);
 		id = ROOF_TILE;
 		autoTileID = id;
-		isTillable = true;
 		isBreakable = true;
 		is32 = false;
 		particleEffect = "grassChunks.p";

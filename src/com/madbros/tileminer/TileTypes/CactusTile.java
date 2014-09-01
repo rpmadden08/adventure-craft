@@ -27,6 +27,7 @@ public class CactusTile extends CollisionTile {
 		isAutoTileable = false;
 		autoTile = 0;
 		particleEffect = "cactusChunks.p";
+		sound = "sounds/axeChop.wav";
 	}
 	
 	@Override

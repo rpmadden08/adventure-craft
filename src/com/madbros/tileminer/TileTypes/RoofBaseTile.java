@@ -1,7 +1,9 @@
 package com.madbros.tileminer.TileTypes;
 
 import static com.madbros.tileminer.Constants.*;
+
 import com.madbros.tileminer.Game;
+import com.madbros.tileminer.Items.RoofBase;
 import com.madbros.tileminer.Sprites.*;
 
 public class RoofBaseTile extends Tile {
@@ -15,7 +17,6 @@ public class RoofBaseTile extends Tile {
 		sprites = Sprites.spriteCollections.get(Sprites.ROOF_TILE);
 		id = ROOF_TILE;
 		autoTileID = id;
-		isTillable = true;
 		isBreakable = true;
 		is32 = false;
 		particleEffect = "grassChunks.p";
@@ -27,20 +28,6 @@ public class RoofBaseTile extends Tile {
 
 	public void render(int x, int y) {
 		int size = TILE_SIZE/2;
-
-		//This one if statement often increases render time by about 300-400 ms.
-		
-		if(topLeftAutoTile == MIDDLE_TILE && topRightAutoTile == MIDDLE_TILE &&
-		   bottomLeftAutoTile == MIDDLE_TILE && bottomRightAutoTile == MIDDLE_TILE) {
-			if(isTransparent) {
-				sprites[MIDDLE_TILE].setColor(1,1,1,0.3f);
-				sprites[MIDDLE_TILE].draw(x, y, z);
-			} else {
-				sprites[MIDDLE_TILE].setColor(1,1,1,1f);
-				sprites[MIDDLE_TILE].draw(x, y, z);
-			}
-		} else {
-			//sprites[topLeftAutoTile].draw(x, y, z, size, size);
 			if(isTransparent) {
 				sprites[topLeftAutoTile].setColor(1,1,1,0.3f);
 				sprites[topRightAutoTile].setColor(1,1,1,0.3f);
@@ -60,7 +47,6 @@ public class RoofBaseTile extends Tile {
 				sprites[bottomLeftAutoTile].draw(x, y+size, z);
 				sprites[bottomRightAutoTile].draw(x+size, y+size, z);
 			}
-		}
 		isVisible = true;
 	}
 	
@@ -89,8 +75,13 @@ public class RoofBaseTile extends Tile {
 	public void update(int x, int y) {
 		if(Game.level.currentCollisionHousing == this.housingNumber) {
 			//TODO check if item currently selected is a roof item.  If it is, then make it transparent.  Otherwise invisible
+			if(RoofBase.class.isAssignableFrom(Game.inventory.invBar[Game.inventory.itemSelected].item.getClass())) {
+				Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_4].isTransparent = true;
+				Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_4].isVisible = true;
+			} else {
 				Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_4].isTransparent = true;
 				Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_4].isVisible = false;
+			}
 		} 
 	}
 }

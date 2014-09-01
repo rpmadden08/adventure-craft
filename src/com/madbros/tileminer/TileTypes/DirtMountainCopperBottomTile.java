@@ -27,6 +27,8 @@ public class DirtMountainCopperBottomTile extends CollisionTile {
 		maxHp = 20;
 		currentHp = 20;
 		particleEffect = "mountainChunks.p";
+		sound = "sounds/pickSound.wav";
+		breakingSound = "sounds/stoneRubble.wav";
 	}
 	
 	public void render(int x, int y) {
@@ -62,7 +64,7 @@ public class DirtMountainCopperBottomTile extends CollisionTile {
 	
 	public boolean isToolStrongEnough(Item tool) {
 		Item tempItem = new TinPick();
-		if(tool.itemPower >= tempItem.itemPower) {
+		if(tool.pickPower >= tempItem.pickPower) {
 			return true;
 		} else {
 			Game.notificationController.addAlert("Tool not strong enough!");

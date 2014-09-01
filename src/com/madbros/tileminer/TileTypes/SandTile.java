@@ -21,6 +21,8 @@ public class SandTile extends Tile {
 		autoTileID = id;
 		is32 = false;
 		particleEffect = "sandChunks.p";
+		sound = "sounds/shovelDig.wav";
+		isDiggable = true;
 	}
 	
 	public void render(int x, int y) {

@@ -28,6 +28,7 @@ public class WoodenDoorBottomTile extends DoorBottomTile {
 		maxHp = 15;
 		isUseable = true;
 		autoTileID = WOOD_WALL_BOTTOM_TILE;
+		sound = "sounds/axeChop.wav";
 		
 	}
 	

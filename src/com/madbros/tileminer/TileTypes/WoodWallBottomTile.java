@@ -24,6 +24,7 @@ public class WoodWallBottomTile extends WallBottomTile {
 		maxHp = 15;
 		currentHp = 15;
 		particleEffect = "mountainChunks.p";
+		sound = "sounds/axeChop.wav";
 	}
 	
 	

@@ -22,6 +22,7 @@ public class WallBottomTile extends CollisionTile {
 		maxHp = 15;
 		currentHp = 15;
 		particleEffect = "mountainChunks.p";
+		sound = "sounds/axeChop.wav";
 	}
 	
 	public void render(int x, int y) {

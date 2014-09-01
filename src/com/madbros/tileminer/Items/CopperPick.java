@@ -13,7 +13,7 @@ public class CopperPick extends Pick {
 		sprite = Sprites.sprites.get(Sprites.COPPER_PICK);
 		swingSprite = sprite;
 		attackPower = 5;
-		itemPower = 10;
+		pickPower = 10;
 		isRepeatable = true;
 		craftCost = new int[]{COPPER_BAR, STICK};
 		craftCostAmount = new int[]{3, 2};

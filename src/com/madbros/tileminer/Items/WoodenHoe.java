@@ -13,7 +13,6 @@ public class WoodenHoe extends Hoe {
 		sprite = Sprites.sprites.get(Sprites.WOODEN_HOE);
 		swingSprite = sprite;
 		attackPower = 2;
-		itemPower = 4;
 		isRepeatable = true;
 		craftCost = new int[]{PLANK, STICK};
 		craftCostAmount = new int[]{2, 2};

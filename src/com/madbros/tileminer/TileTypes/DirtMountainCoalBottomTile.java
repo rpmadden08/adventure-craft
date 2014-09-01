@@ -26,6 +26,8 @@ public class DirtMountainCoalBottomTile extends CollisionTile {
 		maxHp = 20;
 		currentHp = 20;
 		particleEffect = "mountainChunks.p";
+		sound = "sounds/pickSound.wav";
+		breakingSound = "sounds/stoneRubble.wav";
 	}
 	
 	public void render(int x, int y) {

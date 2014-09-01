@@ -13,7 +13,7 @@ public class TinShovel extends Shovel {
 		swingSprite = sprite;
 		sprite = Sprites.sprites.get(Sprites.TIN_SHOVEL);
 		attackPower = 4;
-		itemPower = 7;
+		shovelPower = 7;
 		isRepeatable = true;
 		craftCost = new int[]{TIN_BAR, STICK};
 		craftCostAmount = new int[]{1, 2};

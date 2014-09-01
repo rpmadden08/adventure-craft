@@ -20,14 +20,12 @@ public class WoodenFloorTile extends FloorTile {
 		isAutoTileable = false;
 		isBreakable = false;
 		isChoppable = true;
-		//isChoppable = true;
 		currentHp = 10;
 		maxHp = 10;
 		currentSpriteId = 0;
 		margin = new Margin(2, 0, 8, 0);
 		layer = GRASS_LAYER;
-		isPickable = false;
-		isDiggable = false;
+		sound = "sounds/axeChop.wav";
 	}
 	
 	@Override

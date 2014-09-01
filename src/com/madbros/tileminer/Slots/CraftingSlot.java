@@ -106,11 +106,11 @@ public class CraftingSlot extends Slot{
 				slotSprite.draw(504,slotYCoord, Z_INV_SLOTS);
 				slotSprite.setColor(Color.WHITE);
 				recipeItem.render(recipeSlotRect);
-				recipeItem.renderFont(recipeSlotRect2.x2()-INV_SLOT_SIZE/2,recipeSlotRect2.y2()-INV_SLOT_SIZE/2, Game.batch);
+				
 				Sprites.arial10.draw(Game.batch, recipeItem.name, recipeSlotRect2.x+ 44, recipeSlotRect2.y+ 12);
 				recipeItem.sprite.setColor(Color.WHITE);
 				Sprites.arial10.setColor(Color.WHITE);
-				
+				recipeItem.renderFont(recipeSlotRect2.x2()-INV_SLOT_SIZE/2,recipeSlotRect2.y2()-INV_SLOT_SIZE/2, Game.batch);
 				slotYCoord = slotYCoord + 42;
 				
 			}

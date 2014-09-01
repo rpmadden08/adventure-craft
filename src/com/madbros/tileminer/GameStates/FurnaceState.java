@@ -39,8 +39,9 @@ public class FurnaceState extends MainState {
 			Game.inventory.craftingMenu.render();
 			
 			Game.renderSystem.renderInventoryText(Game.inventory, Game.batch);
-			Game.renderSystem.renderCraftingText(Game.inventory, Game.batch);
+			
 			Game.renderSystem.renderCrafting(Game.inventory);
+			Game.renderSystem.renderCraftingText(Game.inventory, Game.batch);
 			Game.renderSystem.renderHeldItem(Game.inventory);
 		Game.batch.end();
 	}

@@ -11,7 +11,6 @@ public class StoneHoe extends Hoe {
 		sprite = Sprites.sprites.get(Sprites.STONE_HOE);
 		swingSprite = sprite;
 		attackPower = 3;
-		itemPower = 5;
 		isRepeatable = true;
 		craftCost = new int[]{STONE, STICK};
 		craftCostAmount = new int[]{2, 2};

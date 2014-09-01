@@ -103,14 +103,14 @@ public class Inventory {
 //		
 		invBar[0].item = new WoodenPick();
 		invBar[0].item.stackSize = 1;
-		invBar[1].item = new WoodenWall();
-		invBar[1].item.stackSize = 99;
-		invBar[2].item = new Roof();
-		invBar[2].item.stackSize = 99;
-		invBar[3].item = new WoodenDoor();
-		invBar[3].item.stackSize = 99;
-		invBar[4].item = new WoodenFloor();
-		invBar[4].item.stackSize = 99;
+//		invBar[1].item = new CopperAxe();
+//		invBar[1].item.stackSize = 1;
+//		invBar[2].item = new CopperHoe();
+//		invBar[2].item.stackSize = 1;
+//		invBar[3].item = new CopperShovel();
+//		invBar[3].item.stackSize = 1;
+//		invBar[4].item = new WoodenFloor();
+//		invBar[4].item.stackSize = 99;
 //		invBar[5].item = new Steak();
 //		invBar[5].item.stackSize = 99;
 //		invBar[6].item = new HealthPotion();
@@ -342,17 +342,21 @@ public class Inventory {
 	public void update() {
 		if(isUsingLeftItem) invBar[itemSelected].item.useLeft();
 		if(isUsingRightItem) invBar[itemSelected].item.checkIsInRange();
-		
+		if(!this.invBar[this.itemSelected].item.isInUse) {
+			this.invBar[this.itemSelected].item.rechargeSwing();
+		}
 	}
 	
 	public void useItem(int button) {
 		if(button == Input.Buttons.LEFT) isUsingLeftItem = true;
 		if(button == Input.Buttons.RIGHT) isUsingRightItem = true;
+		this.invBar[this.itemSelected].item.isInUse = true;
 	}
 	
 	public void stopUsingItem(int button) {
 		if(button == Input.Buttons.LEFT) isUsingLeftItem = false;
 		if(button == Input.Buttons.RIGHT) isUsingRightItem = false;
+		this.invBar[this.itemSelected].item.isInUse = false;
 	}
 	
 	public void mouseWheelDidIncrement() {
