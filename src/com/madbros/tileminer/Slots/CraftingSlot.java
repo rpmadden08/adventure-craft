@@ -155,9 +155,11 @@ public class CraftingSlot extends Slot{
 					return;
 				} else {
 					handleLeftClick(inv);
+					isSoundLooping = true;
 				}
 			}
 		}
+		isSoundLooping = false;
 	}
 	public void handleLeftClick(Inventory inv) {
 		if(this.item.id == EMPTY || this.isInactive == true) {
@@ -183,7 +185,9 @@ public class CraftingSlot extends Slot{
 			} else {
 				this.isInactive = true;
 			}
-			Game.soundController.create("sounds/clickSelect.wav", 0.5f);
+			if(!isSoundLooping) {
+				Game.soundController.create("sounds/clickSelect.wav", 0.5f);
+			}
 			//Game.inventory.add(this.item, this.item.stackSize, this.item.maxUses);
 		}
 	}

@@ -38,7 +38,7 @@ public class FloorTile extends CollisionTile {
 	}
 	
 	public void update(int x, int y) {
-		if(Item.isCollidingWithActor(Game.level.activeBlocks[x][y])) {
+		if(Item.isCollidingWithActor(Game.level.activeBlocks[x][y], GRASS_LAYER)) {
 			Game.level.currentCollisionHousing = this.housingNumber;
 		}
 		if(Game.level.currentCollisionHousing == this.housingNumber) {

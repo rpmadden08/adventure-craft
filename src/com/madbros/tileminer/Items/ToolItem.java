@@ -34,7 +34,7 @@ public abstract class ToolItem extends WeaponItem {
 	public void useLeft() {
 		if(Game.hero.isSwimming == false) {
 			
-			if(Game.level.highlightedBlock != null && !isCollidingWithActor(Game.level.highlightedBlock)) {
+			if(Game.level.highlightedBlock != null && !isCollidingWithActor(Game.level.highlightedBlock, Game.level.tileBeingAttacked.layer)) {
 				if(Game.level.tileBeingAttacked.isPickable || Game.level.tileBeingAttacked.isDiggable || Game.level.tileBeingAttacked.isChoppable) {
 					if(isInRange == true && Game.level.tileBeingAttacked.isToolStrongEnough(this)) {
 						swing();
@@ -89,6 +89,7 @@ public abstract class ToolItem extends WeaponItem {
 
 		} else if(Game.level.tileBeingAttacked.isDiggable) {
 			Game.level.tileBeingAttacked.currentHp -= itemPower();
+			Game.soundController.create("sounds/shovelDig.wav", 0.2f);
 			if(Game.level.tileBeingAttacked.layer == OBJECT_LAYER) {
 				Game.level.tileBeingAttacked.deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
 				calculateUsage();

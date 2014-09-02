@@ -272,15 +272,15 @@ public abstract class Item {
 		return false;
 	}
 	
-	public static boolean isCollidingWithActor(Block b) {
+	public static boolean isCollidingWithActor(Block b, int tileLayer) {
 		Rect heroCRect = new Rect(Game.hero.absRect, Game.hero.margin);
-		if(heroCRect.detectCollision(b.layers[0].cRect)) {
+		if(heroCRect.detectCollision(b.layers[tileLayer].cRect)) {
 			return true;
 		} else {
 			for(int i = 0; i < Game.mobController.mobs.size(); i++) {
 				Mob mob = Game.mobController.mobs.get(i);
 				Rect mobCRect = new Rect(mob.absRect, mob.margin);
-				if(mobCRect.detectCollision(b.layers[0].cRect)) {
+				if(mobCRect.detectCollision(b.layers[tileLayer].cRect)) {
 					return true;
 				}
 			}

@@ -69,7 +69,7 @@ public class DoorBottomTile extends CollisionTile {
 	
 	public void rightClicked() {
 		if(Game.currentState.type == State.MAIN && Game.level.hasPlacedItemOnClick == false) {
-			if(!Item.isCollidingWithActor(Game.level.highlightedBlock)) {
+			if(!Item.isCollidingWithActor(Game.level.highlightedBlock, OBJECT_LAYER)) {
 				toggleOpenClose();			
 				Game.level.hasPlacedItemOnClick = true;
 			}
