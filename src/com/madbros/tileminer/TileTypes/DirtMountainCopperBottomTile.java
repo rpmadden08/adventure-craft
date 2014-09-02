@@ -67,7 +67,7 @@ public class DirtMountainCopperBottomTile extends CollisionTile {
 		if(tool.pickPower >= tempItem.pickPower) {
 			return true;
 		} else {
-			Game.notificationController.addAlert("Tool not strong enough!");
+			Game.notificationController.addAlert("Needs at least a Tin Pickaxe");
 			return false;
 		}
 	}

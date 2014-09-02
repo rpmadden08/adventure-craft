@@ -86,8 +86,8 @@ public class CauldronTile extends CollisionTile {
 				} else if(cauldronBuildTime <= 0 && isCraftableItem()) { 
 					cauldronBuildTime = 10;
 					if(craftedSlot[0].item.id == 0) {
-						craftedSlot[0].item = ITEM_HASH.get(cauldronSlots[0].item.id);
-						//craftedSlot[0].item.stackSize = 1;
+						craftedSlot[0].item = ITEM_HASH.get(cauldronSlots[0].item.id).createNew();
+						craftedSlot[0].item.stackSize = 1;
 					} else {
 						craftedSlot[0].item.stackSize ++;
 								//craftedSlot[0].item.stackSize + 1;
@@ -145,17 +145,19 @@ public class CauldronTile extends CollisionTile {
 	}
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
+		this.cauldronSlots[0].deleteQueue2();
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
 		b.collisionTile = null;
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(CAULDRON).createNew();
 		Game.collectibleController.add(CAULDRON, Sprites.sprites.get(Sprites.CAULDRON_SINGLE), collectibleRect, 1, item.maxUses);
-		for(int i = 0; i < cauldronSlots.length; i++) {
-			if(cauldronSlots[i].item.id != 0) {
+		
+		for(int i = 0; i < fuelSlot.length; i++) {
+			if(fuelSlot[i].item.id != 0) {
 				Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-				item = ITEM_HASH.get(cauldronSlots[i].item.id).createNew();
-				Game.collectibleController.add(cauldronSlots[i].item.id, cauldronSlots[i].item.sprite, collectibleRect2, cauldronSlots[i].item.stackSize, item.maxUses);
+				item = ITEM_HASH.get(fuelSlot[i].item.id).createNew();
+				Game.collectibleController.add(fuelSlot[i].item.id, fuelSlot[i].item.sprite, collectibleRect2, fuelSlot[i].item.stackSize, item.maxUses);
 			}
 		}
 		if(craftedSlot[0].item.id != 0) {

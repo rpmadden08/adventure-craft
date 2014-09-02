@@ -16,7 +16,7 @@ public class FirePit extends BlockItem32 {
 		tileId = FIRE_PIT_TILE;
 		craftCost = new int[]{STICK, LOG};
 		craftCostAmount = new int[]{10, 2};
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS, SAND};
+		placeableTileIds = OBJECT_PLACEABLE_TILE_IDS;
 		sprite = Sprites.sprites.get(Sprites.FIRE_PIT);
 		workSpaceNeeded = new int[]{BARE_HANDS_WORKSPACE,TABLE_WORKSPACE};
 	}

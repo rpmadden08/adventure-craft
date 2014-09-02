@@ -1,11 +1,8 @@
 package com.madbros.tileminer.Items;
 
 import static com.madbros.tileminer.Constants.*;
-
-import com.madbros.tileminer.*;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Rect;
-import com.madbros.tileminer.Utils.RectInt;
 
 public class Axe extends ToolItem {
 	public Axe() {

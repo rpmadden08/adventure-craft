@@ -14,14 +14,28 @@ public class ChestState extends MainState {
 	
 	@Override
 	protected void updateStates() {
-		Game.animationSystem.updateInventory(Game.hero, Game.inventory, Game.mobController);
-//		Game.hero.update();
-//		Game.mobController.update();
-//		Game.level.update();
-//		Game.debugger.update();
+		dt = Gdx.graphics.getRawDeltaTime();
+		Game.zAngle += dt * Game.zSpeed;
+		while(Game.zAngle > Game.PI2)
+			Game.zAngle -= Game.PI2;
+		Game.animationSystem.updateMain(Game.hero, Game.mobController);	//a list of mobs will also be passed to this system
+		input.mouseMoved(Gdx.input.getX(), Gdx.input.getY());
+		
+		Game.mobController.update();
 		Game.soundController.update();
+		Game.musicController.update();
+		Game.collectibleController.update();
+		Game.notificationController.update();
+		Game.particleEffectController.update();
+		Game.level.update();
+		Game.debugger.update();
+		Game.hero.update();
+		
+		if(Game.hero.isDead == true && Game.hero.deathWait >59) {
+			return;
+		}
+		Game.animationSystem.updateInventory(Game.hero, Game.inventory, Game.mobController);
 		Game.inventory.craftingMenu.refreshCraftSlots(Game.inventory.craftingMenu.currentCraftableList);
-		Time.checkTime();
 	}
 	
 	@Override

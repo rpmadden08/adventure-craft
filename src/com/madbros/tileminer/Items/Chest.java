@@ -18,7 +18,7 @@ public class Chest extends BlockItem32 {
 		id = CHEST;
 		name = "Chest";
 		tileId = CHEST_TILE;
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS,DARK_GRASS, SAND};
+		placeableTileIds = OBJECT_PLACEABLE_TILE_IDS;
 		sprite = Sprites.sprites.get(Sprites.CHEST_ITEM);
 		maxStackSize = 99;
 		numberProducedByCrafting = 1;

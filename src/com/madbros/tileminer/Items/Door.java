@@ -18,7 +18,7 @@ public class Door extends BlockItem32 {
 		id = WOODEN_DOOR;
 		name = "Wooden Door";
 		tileId = WOOD_DOOR_BOTTOM_TILE;
-		placeableTileIds = new int[]{WOOD_FLOOR_TILE, SAND, GRASS, DIRT};
+		placeableTileIds = OBJECT_PLACEABLE_TILE_IDS;
 		sprite = Sprites.sprites.get(Sprites.WOODEN_DOOR);
 		workSpaceNeeded = new int[]{BARE_HANDS_WORKSPACE,TABLE_WORKSPACE};
 		numberProducedByCrafting = 1;

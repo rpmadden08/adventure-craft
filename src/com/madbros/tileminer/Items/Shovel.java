@@ -9,7 +9,6 @@ import com.madbros.tileminer.*;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Rect;
-import com.madbros.tileminer.Utils.RectInt;
 
 public class Shovel extends ToolItem {
 	public Shovel() {

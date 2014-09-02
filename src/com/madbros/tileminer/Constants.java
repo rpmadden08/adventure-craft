@@ -34,6 +34,8 @@ public class Constants {
 	public static final String UNDERGROUND_1_FOLDER = "underground1/";
 	
 	
+	
+	
 	public static final Color HIGHLIGHT_COLOR = new Color(0.8f,0.8f,0.8f,0.6f);
 	
 	//character constants
@@ -223,6 +225,10 @@ public class Constants {
 	public static final int WOOD_DOOR_BOTTOM_TILE = 79;
 	public static final int WOOD_DOOR_TOP_TILE = 80;
 	public static final int WOOD_FLOOR_TILE = 81;
+	
+	
+	
+	public static final int[] OBJECT_PLACEABLE_TILE_IDS = new int[]{DIRT, GRASS, DARK_GRASS, SAND, WOOD_FLOOR_TILE};
 	
 	
 	

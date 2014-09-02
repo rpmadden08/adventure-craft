@@ -16,7 +16,7 @@ public class StoneMountain extends BlockItem {
 		craftCost = new int[]{STONE_MOUNTAIN_CLUMP};
 		craftCostAmount = new int[]{};
 		itemsPossiblyCraftable = new int[]{};
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS};
+		placeableTileIds = new int[]{DIRT, GRASS, DARK_GRASS};
 		sprite = Sprites.sprites.get(Sprites.STONE_MOUNTAIN_ITEM);
 	}
 	

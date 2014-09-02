@@ -24,7 +24,7 @@ public class Slime extends Mob {
 		this.mobController = mobController;
 		absRect = new Rect((x*TILE_SIZE) + (Game.level.chunkRect.x * CHUNK_SIZE*TILE_SIZE),(y*TILE_SIZE)+(Game.level.chunkRect.y *CHUNK_SIZE*TILE_SIZE),
 				  32, 32);
-		detectRange = 100;
+		detectRange = 200;
 		chaseRange = 200;
 		sprite = new CompoundAnimatedSprite(Sprites.animatedSprites.get(Sprites.SLIME));
 		margin = new Margin(1, 1, 1, 0);

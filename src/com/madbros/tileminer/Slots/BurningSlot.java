@@ -2,7 +2,6 @@ package com.madbros.tileminer.Slots;
 
 import static com.madbros.tileminer.Constants.*;
 
-
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Inventory;
 import com.madbros.tileminer.Items.Item;

@@ -16,7 +16,7 @@ public class StonePick extends Pick {
 		pickPower = 5;
 		isRepeatable = true;
 		craftCost = new int[]{STONE, STICK};
-		craftCostAmount = new int[]{2, 3};
+		craftCostAmount = new int[]{3, 2};
 		maxUses = 40;
 		uses = 40;
 	}

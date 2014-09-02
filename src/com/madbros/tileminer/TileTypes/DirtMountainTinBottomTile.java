@@ -67,7 +67,7 @@ public class DirtMountainTinBottomTile extends CollisionTile {
 			return true;
 		} else {
 
-			Game.notificationController.addAlert("Tool not strong enough!");
+			Game.notificationController.addAlert("Needs at least a Stone Pickaxe");
 			return false;
 		}
 	}

@@ -52,11 +52,21 @@ public class Cow extends Mob {
 			Game.collectibleController.add(LEATHER, Sprites.sprites.get(Sprites.LEATHER), collectibleRect, 1, item.maxUses);
 		}
 	}
+	
+	public void takeDamage(int damage) {
+		super.takeDamage(damage);
+		checkForFleeing();
+	}
 
 	public void updateAI() {
 		super.updateAI();
+		
 		if(isKnockingBack) {
 			stop();
+		} else if(isFleeing) {
+			runningSpeed = 0.03f;
+			fleeRect(new Rect(Game.hero.absRect.x-200+(Game.hero.absRect.w/2), Game.hero.absRect.y-200+(Game.hero.absRect.h/2), 400,400), this.absRect);
+			checkForFleeing();
 		} else {
 			runningSpeed = 0f;
 			checkSpeed();

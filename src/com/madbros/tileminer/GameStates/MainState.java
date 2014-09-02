@@ -60,10 +60,10 @@ public class MainState extends GameState {
 		Game.debugger.update();
 		Game.hero.update();
 		
-		
 		if(Game.hero.isDead == true && Game.hero.deathWait >59) {
 			return;
 		}
+		
 	}
 		
 	@Override

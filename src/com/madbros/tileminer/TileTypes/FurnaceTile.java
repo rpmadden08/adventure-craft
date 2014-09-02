@@ -62,7 +62,6 @@ public class FurnaceTile extends CollisionTile {
 	
 	@Override
 	public void update(int x, int y) {
-	
 		if(this.furnaceIsBurning == false && isCraftableItem()) {
 			fuelSlot[0].checkFuel(this, furnaceSlots, craftedSlot);
 		}
@@ -82,12 +81,11 @@ public class FurnaceTile extends CollisionTile {
 					
 				} else if(furnaceBuildTime <= 0 && isCraftableItem()) {
 					furnaceBuildTime = 10;
-					if(craftedSlot[0].item.id == 0) {
-						craftedSlot[0].item = ITEM_HASH.get(furnaceSlots[0].item.id);
-						
-						//craftedSlot[0].item.stackSize = 0;						
+					if(craftedSlot[0].item.id == EMPTY) {
+						craftedSlot[0].item = ITEM_HASH.get(furnaceSlots[0].item.id).createNew();
+						craftedSlot[0].item.stackSize = 1;						
 					} else {
-						craftedSlot[0].item.stackSize ++;
+						craftedSlot[0].item.stackSize +=1;
 					}
 					
 					furnaceSlots[0].item.stackSize = furnaceSlots[0].item.stackSize - 1;
@@ -140,6 +138,7 @@ public class FurnaceTile extends CollisionTile {
 	}
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
+		this.furnaceSlots[0].deleteQueue2();
 		Block b = activeBlocks[x][y];
 		b.collisionTile = null;
 		Block b2 = activeBlocks[x][y-1];
@@ -150,11 +149,11 @@ public class FurnaceTile extends CollisionTile {
 		Item item = ITEM_HASH.get(FURNACE).createNew();
 		Game.collectibleController.add(FURNACE, Sprites.sprites.get(Sprites.FURNACE_SINGLE), collectibleRect, 1, item.maxUses);
 		
-		for(int i = 0; i < furnaceSlots.length; i++) {
-			if(furnaceSlots[i].item.id != 0) {
+		for(int i = 0; i < fuelSlot.length; i++) {
+			if(fuelSlot[i].item.id != 0) {
 				Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 				item = ITEM_HASH.get(furnaceSlots[i].item.id).createNew();
-				Game.collectibleController.add(furnaceSlots[i].item.id, furnaceSlots[i].item.sprite, collectibleRect2, furnaceSlots[0].item.stackSize, item.maxUses);
+				Game.collectibleController.add(fuelSlot[i].item.id, fuelSlot[i].item.sprite, collectibleRect2, fuelSlot[0].item.stackSize, item.maxUses);
 			}
 		}
 		if(craftedSlot[0].item.id != 0) {

@@ -16,7 +16,7 @@ public class Cauldron extends BlockItem32 {
 		id = CAULDRON;
 		tileId = CAULDRON_TILE;
 		name = "Cauldron";
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS, SAND};
+		placeableTileIds = OBJECT_PLACEABLE_TILE_IDS;
 		sprite = Sprites.sprites.get(Sprites.CAULDRON_SINGLE);
 		maxStackSize = 99;
 		numberProducedByCrafting = 1;

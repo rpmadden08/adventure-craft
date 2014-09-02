@@ -16,7 +16,7 @@ public class Beehive extends BlockItem32 {
 		id = BEEHIVE;
 		tileId = BEEHIVE_TILE;
 		name = "Beehive";
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, DARK_GRASS, GRASS, SAND};
+		placeableTileIds = OBJECT_PLACEABLE_TILE_IDS;
 		sprite = Sprites.sprites.get(Sprites.BEEHIVE);
 		maxStackSize = 1;
 		numberProducedByCrafting = 1;

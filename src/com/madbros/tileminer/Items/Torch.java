@@ -14,7 +14,7 @@ public class Torch extends BlockItem32 {
 		id = TORCH;
 		name = "Torch";
 		tileId = TORCH_TILE;
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS, SAND};
+		placeableTileIds = OBJECT_PLACEABLE_TILE_IDS;
 		sprite = Sprites.sprites.get(Sprites.TORCH);
 		craftCost = new int[]{STICK, COAL_ITEM};
 		craftCostAmount = new int[]{1, 1};

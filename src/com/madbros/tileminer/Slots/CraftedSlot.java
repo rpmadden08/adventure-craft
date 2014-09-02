@@ -45,10 +45,19 @@ public class CraftedSlot extends Slot{
 			craftingSlots = inv.invCrafting;
 		}
 		if(inv.heldItem.id == EMPTY) {
-			swapItems(inv);
-			removeRecipeItemsFromCraftingSlots(inv.heldItem.craftCost, craftingSlots);
-			craftAnotherItemIfPossible(craftingSlots, inv.invCrafted);
+			//swapItems(inv);
+			
+			
+//			FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
+//			furnaceTile.craftedSlot = new CraftedSlot[1];
+			//removeRecipeItemsFromCraftingSlots(inv.heldItem.craftCost, craftingSlots);
+			//craftAnotherItemIfPossible(craftingSlots, inv.invCrafted);
 			Game.soundController.create("sounds/clickSelect.wav", 0.5f);
+			inv.heldItem = ITEM_HASH.get(item.id).createNew();
+			inv.heldItem.stackSize = item.stackSize;
+			item = new NoItem();
+			//item.stackSize = 0;
+			
 		} else if (inv.heldItem.id == this.item.id) {
 			int total = inv.heldItem.stackSize + this.item.stackSize;
 			if(total <= inv.heldItem.maxStackSize) {

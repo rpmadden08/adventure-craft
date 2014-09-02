@@ -9,7 +9,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
 
 public class FloorTile extends CollisionTile {
-
+	public Boolean numberVisible = false;
 	public FloorTile() {
 		super();
 		//lightSize = 500;
@@ -35,11 +35,20 @@ public class FloorTile extends CollisionTile {
 	@Override
 	public void render(int x, int y) {
 		sprites[currentSpriteId].draw(x, y, z);
+		if(numberVisible == true) {
+			Sprites.arial24.draw(Game.batch, ""+housingNumber, x*TILE_SIZE, y*TILE_SIZE);
+		}
 	}
 	
 	public void update(int x, int y) {
 		if(Item.isCollidingWithActor(Game.level.activeBlocks[x][y], GRASS_LAYER)) {
 			Game.level.currentCollisionHousing = this.housingNumber;
+		}
+		//If a housing item is selected then display the house number on the tile...
+		if(Game.inventory.invBar[Game.inventory.itemSelected].item.id == WOODEN_FLOOR) {
+			numberVisible = true;
+		} else {
+			numberVisible = false;
 		}
 		if(Game.level.currentCollisionHousing == this.housingNumber) {
 			Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_1].isTransparent = true;

@@ -722,6 +722,7 @@ public class RenderSystem {
 	}
 	
 	public void renderFurnace(Inventory inv) {
+		
 		FurnaceTile furnace = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];
 		//FurnaceTopTile furnaceTop = (FurnaceTopTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY-1].layers[ABOVE_LAYER_1];
 		if(furnace.furnaceIsBurning) {

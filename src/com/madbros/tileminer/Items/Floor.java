@@ -39,6 +39,8 @@ public class Floor extends BlockItem32 {
 		hB.layers[GRASS_LAYER] = tile;
 		Game.level.autoTileHighlightedBlock();
 		hB.layers[GRASS_LAYER].housingNumber = Game.level.currentHousing;
+		hB.layers[GRASS_LAYER].cRect.x = hB.getAbsX()* TILE_SIZE;
+		hB.layers[GRASS_LAYER].cRect.y = hB.getAbsY()* TILE_SIZE;
 	}
 	
 	public void highlightItem(Block block, int x, int y) {

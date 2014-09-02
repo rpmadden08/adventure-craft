@@ -155,7 +155,7 @@ public class Game implements ApplicationListener {
 			inventory.heldItem.stackSize = 0;
 			inventory.heldItem = new NoItem();
 		}
-		Game.gameStartTime = Time.getTime();
+		//Game.gameStartTime = Time.getTime();
 		
 	}
 	

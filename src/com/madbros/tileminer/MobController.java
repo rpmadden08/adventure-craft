@@ -83,8 +83,8 @@ public class MobController {
 		int topTile = Game.level.activeBlocks[x][y].getTopTile().id;
 		int topTerrainTile = Game.level.activeBlocks[x][y].getTopTerrainTile().id;
 		Block[] tileArea = getTileArea(x,y);
-		int num = rand.nextInt(150);//150 
-		if(num <10  && mobs.size() < 10) { //10
+		int num = rand.nextInt(150);//150
+		if(num <10  && mobs.size() < 10) { //10 and 10
 			if(possibleSpawnPoint.detectCollision(heroRect)) {
 			//    ***************IF THE WORLD IS DARK	
 			} else if(isDark(possibleSpawnPoint)){
@@ -112,7 +112,7 @@ public class MobController {
 				// **************** IF THE WORLD IS LIGHT
 				if(Game.currentLevel == OVERWORLD_FOLDER) {
 					if(topTile == GRASS) {
-						if(mobs.size() < 5 && num == 0) {
+						if(mobs.size() < 5 && num ==0) {  //5 and == 0
 							int num2 = rand.nextInt(5);
 							if(num2 == 0) {
 								mobs.add(new Bee(this, x, y));  //Should be bee

@@ -13,7 +13,7 @@ public class Campfire extends BlockItem32 {
 		id = CAMPFIRE_ITEM;
 		name = "Campfire";
 		tileId = CAMPFIRE;
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS};
+		placeableTileIds = OBJECT_PLACEABLE_TILE_IDS;
 		sprite = Sprites.sprites.get(Sprites.CAMPFIRE_SINGLE);
 	}
 	

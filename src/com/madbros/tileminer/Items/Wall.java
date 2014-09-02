@@ -15,7 +15,7 @@ public class Wall extends BlockItem {
 		id = WOOD_WALL;
 		name = "Wooden Wall";
 		tileId = WOOD_WALL_BOTTOM_TILE;
-		placeableTileIds = new int[]{DIRT, DARK_DIRT, GRASS, DARK_GRASS, SAND};
+		placeableTileIds = OBJECT_PLACEABLE_TILE_IDS;
 		sprite = Sprites.sprites.get(Sprites.WOOD_WALL);
 		numberProducedByCrafting = 1;
 		craftCost = new int[]{PLANK};

@@ -103,14 +103,14 @@ public class Inventory {
 //		
 		invBar[0].item = new WoodenPick();
 		invBar[0].item.stackSize = 1;
-//		invBar[1].item = new CopperAxe();
-//		invBar[1].item.stackSize = 1;
-//		invBar[2].item = new CopperHoe();
-//		invBar[2].item.stackSize = 1;
-//		invBar[3].item = new CopperShovel();
-//		invBar[3].item.stackSize = 1;
-//		invBar[4].item = new WoodenFloor();
-//		invBar[4].item.stackSize = 99;
+		invBar[1].item = new WoodenSword();
+		invBar[1].item.stackSize = 1;
+		invBar[2].item = new Furnace();
+		invBar[2].item.stackSize = 1;
+		invBar[3].item = new Tin();
+		invBar[3].item.stackSize = 99;
+		invBar[4].item = new Coal();
+		invBar[4].item.stackSize = 99;
 //		invBar[5].item = new Steak();
 //		invBar[5].item.stackSize = 99;
 //		invBar[6].item = new HealthPotion();
@@ -390,7 +390,7 @@ public class Inventory {
 		formerHeroAnimation = hero.sprite.getCurrentAnimation();
 		hero.sprite.changeAnimationTo(STAND_DOWN);
 
-		Game.timeSpentInPreviousSaves =Time.getGameTime();
+		//Game.timeSpentInPreviousSaves =Time.getGameTime();
 	}
 	
 	public void close(Hero hero) {
