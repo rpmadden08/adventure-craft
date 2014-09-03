@@ -42,7 +42,7 @@ public class FurnaceTile extends CollisionTile {
 		super();
 		currentSpriteId = 0;
 		sprites = Sprites.furnaceStatic;
-		margin = new Margin(0, 0, 0, 5);
+		margin = new Margin(5, 5, 0, 0);
 		id = FURNACE_TILE;
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;

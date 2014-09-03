@@ -731,19 +731,19 @@ public class RenderSystem {
 			sprite2.updateFrame();
 			//int cA = sprite2[0].getCurrentAnimation();
 			sprite2.sprites[sprite2.currentFrame].setColor(1.0f,1.0f,1.0f,0.3f);
-			sprite2.sprites[sprite2.currentFrame].draw(567,505,0f,(int)(sprite2.sprites[sprite2.currentFrame].getWidth()*3.125), (int)(sprite2.sprites[sprite2.currentFrame].getHeight()* 3.125));
+			sprite2.sprites[sprite2.currentFrame].draw(567,490,0f,(int)(sprite2.sprites[sprite2.currentFrame].getWidth()*3.125), (int)(sprite2.sprites[sprite2.currentFrame].getHeight()* 3.125));
 			sprite2.sprites[sprite2.currentFrame].setColor(1.0f,1.0f,1.0f,1f);
 		} else {
 			Sprite sprite2 = Sprites.sprites.get(Sprites.FURNACE_SINGLE);
 			sprite2.setColor(1.0f,1.0f,1.0f,0.3f);
-			sprite2.draw(567,505,0f,(int)(sprite2.getWidth()*3.125), (int)(sprite2.getHeight()* 3.125));
+			sprite2.draw(567,490,0f,(int)(sprite2.getWidth()*3.125), (int)(sprite2.getHeight()* 3.125));
 			sprite2.setColor(1.0f,1.0f,1.0f,1f);
 		}
 		
 		
 		Sprite[] sprite = Sprites.spriteCollections.get(Sprites.FURNACE_TOP);
 		sprite[0].setColor(1.0f,1.0f,1.0f,0.3f);
-		sprite[0].draw(567,433,0f,(int)(sprite[0].getWidth()*3.125), (int)(sprite[0].getHeight()* 3.125));
+		sprite[0].draw(567,429,0f,(int)(sprite[0].getWidth()*3.125), (int)(sprite[0].getHeight()* 3.125));
 		sprite[0].setColor(Color.WHITE);
 		
 		FurnaceTile furnaceTile = (FurnaceTile) Game.level.activeBlocks[inv.currentInvActiveBlockX][inv.currentInvActiveBlockY].layers[OBJECT_LAYER];

@@ -19,7 +19,7 @@ public class Furnace extends BlockItem32 {
 		name = "Furnace";
 		tileId = FURNACE_TILE;
 		placeableTileIds = OBJECT_PLACEABLE_TILE_IDS;
-		sprite = Sprites.sprites.get(Sprites.FURNACE_SINGLE);
+		sprite = Sprites.sprites.get(Sprites.FURNACE_ITEM);
 		maxStackSize = 99;
 		numberProducedByCrafting = 1;
 		craftCost = new int[]{STONE};

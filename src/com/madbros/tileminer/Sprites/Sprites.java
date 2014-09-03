@@ -275,9 +275,10 @@ public class Sprites {
 	public static final String INVENTORY_MENU = "inventoryMenu";
 	public static final String CAMPFIRE_SINGLE = "campfire0";
 	public static final String FURNACE_SINGLE = "furnace0";
+	public static final String FURNACE_ITEM = "furnaceItem0";
 	public static final String CAULDRON = "cauldron";
 	public static final String CAULDRON_SINGLE = "cauldronStatic";
-	public static final String FURNACE_TOP = "furnaceTopTile";
+	public static final String FURNACE_TOP = "furnaceTop";
 	
 	public static final String SAPLING_COLLECTION = "saplingCollection";
 	public static final String SNOW = "snow";
@@ -827,6 +828,7 @@ public class Sprites {
 					MM_BUTTON_RIGHT_PUSHED, EP_ITEM, HEART_CONTAINER_TILE, WOOD_WALL, 
 					WOOD_WALL_BOTTOM, WOOD_WALL_MIDDLE, WOOD_WALL_TOP, WALL_BORDER, ROOF_TILE, ROOF, WOODEN_DOOR, WOODEN_DOOR_BOTTOM_TILE,
 					WOODEN_DOOR_TOP_TILE, WOODEN_DOOR_BOTTOM_OPEN_TILE, WOODEN_FLOOR_TILE, WOODEN_FLOOR, WOODEN_DOOR_TOP_OPEN_TILE,
+					FURNACE_ITEM,
 					
 			};
 			

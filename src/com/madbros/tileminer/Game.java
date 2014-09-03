@@ -182,7 +182,7 @@ public class Game implements ApplicationListener {
 			currentState = new MainState();
 			
 		} else {
-			Game.timeSpentInPreviousSaves =Time.getGameTime();
+			//Game.timeSpentInPreviousSaves =Time.getGameTime();
 			
 			gameMainMenu = new GameMainMenu(batch);
 			gameMainMenu.menuIsActive = true;
