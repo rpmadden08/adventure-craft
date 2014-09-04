@@ -29,42 +29,45 @@ public class RoofBase extends BlockItem {
 	
 	public void useLeft() {
 		Block hB = Game.level.highlightedBlock;
-		if(RoofBaseTile.class.isAssignableFrom(hB.layers[ABOVE_LAYER_4].getClass()) && isInRange == true) {
-			System.out.println("YEST");
-			hB.layers[ABOVE_LAYER_4].currentHp -= attackPower;
-			if(hB.layers[ABOVE_LAYER_4].currentHp < 1) {
-				//.deleteObjectTile();
-				hB.layers[ABOVE_LAYER_4].deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
-				//if(Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].layers[ABOVE_LAYER_2].id == AIR) {
-					hB.layers[ABOVE_LAYER_4] = new NoTile();
-				//}
-				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-3);
-				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-2);
-				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-1);
-				Game.level.autoTileHighlightedBlock();
-			}
-		} 
+		if(isInRange == true) {
+			if(RoofBaseTile.class.isAssignableFrom(hB.layers[ABOVE_LAYER_4].getClass())) {
+				hB.layers[ABOVE_LAYER_4].currentHp -= attackPower;
+				if(hB.layers[ABOVE_LAYER_4].currentHp < 1) {
+					//.deleteObjectTile();
+					hB.layers[ABOVE_LAYER_4].deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
+					//if(Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].layers[ABOVE_LAYER_2].id == AIR) {
+						hB.layers[ABOVE_LAYER_4] = new NoTile();
+					//}
+					Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-3);
+					Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-2);
+					Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-1);
+					Game.level.autoTileHighlightedBlock();
+				}
+			} 
+		}
 	}
 	
 	public void impact() {
 		Block hB = Game.level.highlightedBlock;
-		if(RoofBaseTile.class.isAssignableFrom(hB.layers[ABOVE_LAYER_4].getClass()) && isInRange == true) {
-			hB.layers[ABOVE_LAYER_4].currentHp -= attackPower;
-			if(hB.layers[ABOVE_LAYER_4].currentHp < 1) {
-				//Game.level.highlightedBlock.deleteObjectTile();
-				//Game.level.highlightedBlock.collisionTile = null;
-//				Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY-1].deleteTile(ABOVE_LAYER_1);
-//				Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY-2].deleteTile(ABOVE_LAYER_2);
-				
-				hB.layers[ABOVE_LAYER_4].deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
-				if(Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].layers[ABOVE_LAYER_2].id == AIR) {
-					hB.layers[ABOVE_LAYER_4] = new NoTile();
+		if(isInRange == true) {
+			if(RoofBaseTile.class.isAssignableFrom(hB.layers[ABOVE_LAYER_4].getClass())) {
+				hB.layers[ABOVE_LAYER_4].currentHp -= attackPower;
+				if(hB.layers[ABOVE_LAYER_4].currentHp < 1) {
+					//Game.level.highlightedBlock.deleteObjectTile();
+					//Game.level.highlightedBlock.collisionTile = null;
+	//				Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY-1].deleteTile(ABOVE_LAYER_1);
+	//				Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY-2].deleteTile(ABOVE_LAYER_2);
+					
+					hB.layers[ABOVE_LAYER_4].deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
+					if(Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].layers[ABOVE_LAYER_2].id == AIR) {
+						hB.layers[ABOVE_LAYER_4] = new NoTile();
+					}
+					Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-3);
+					Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-2);
+					Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-1);
+					Game.level.autoTileHighlightedBlock();
+					calculateUsage();
 				}
-				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-3);
-				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-2);
-				Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-1);
-				Game.level.autoTileHighlightedBlock();
-				calculateUsage();
 			}
 		}
 	}
