@@ -342,7 +342,7 @@ public class Inventory {
 	public void update() {
 		if(isUsingLeftItem) invBar[itemSelected].item.useLeft();
 		if(isUsingRightItem) invBar[itemSelected].item.checkIsInRange();
-		if(!this.invBar[this.itemSelected].item.isInUse) {
+		if(!this.invBar[this.itemSelected].item.isInUse && isUsingLeftItem == false) {
 			this.invBar[this.itemSelected].item.rechargeSwing();
 		}
 	}
@@ -354,32 +354,47 @@ public class Inventory {
 	}
 	
 	public void stopUsingItem(int button) {
-		if(button == Input.Buttons.LEFT) isUsingLeftItem = false;
+		if(button == Input.Buttons.LEFT) isUsingLeftItem = false;		
 		if(button == Input.Buttons.RIGHT) isUsingRightItem = false;
 		this.invBar[this.itemSelected].item.isInUse = false;
 	}
 	
 	public void mouseWheelDidIncrement() {
-		if(itemSelected < invBar.length - 1) itemSelected += 1;
-		else itemSelected = 0;
+		if(canChangeCurrentlySelected()) {
+			if(itemSelected < invBar.length - 1) itemSelected += 1;
+			else itemSelected = 0;
+		}
 	}
 	
 	public void mouseWheelDidDecrement() {
-		if(itemSelected > 0) itemSelected -= 1;
-		else itemSelected = invBar.length - 1;
+		if(canChangeCurrentlySelected()) {
+	
+			if(itemSelected > 0) itemSelected -= 1;
+			else itemSelected = invBar.length - 1;
+		}
+	}
+	
+	public Boolean canChangeCurrentlySelected() {
+		if(isUsingLeftItem == true || isUsingRightItem == true) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	public void changeSelectedItemTo(int key) {
-		if(key == Keys.NUM_1) itemSelected = 0;
-		else if(key == Keys.NUM_2) itemSelected = 1;
-		else if(key == Keys.NUM_3) itemSelected = 2;
-		else if(key == Keys.NUM_4) itemSelected = 3;
-		else if(key == Keys.NUM_5) itemSelected = 4;
-		else if(key == Keys.NUM_6) itemSelected = 5;
-		else if(key == Keys.NUM_7) itemSelected = 6;
-		else if(key == Keys.NUM_8) itemSelected = 7;
-		else if(key == Keys.NUM_9) itemSelected = 8;
-		else if(key == Keys.NUM_0) itemSelected = 9;
+		if(canChangeCurrentlySelected()) {
+			if(key == Keys.NUM_1) itemSelected = 0;
+			else if(key == Keys.NUM_2) itemSelected = 1;
+			else if(key == Keys.NUM_3) itemSelected = 2;
+			else if(key == Keys.NUM_4) itemSelected = 3;
+			else if(key == Keys.NUM_5) itemSelected = 4;
+			else if(key == Keys.NUM_6) itemSelected = 5;
+			else if(key == Keys.NUM_7) itemSelected = 6;
+			else if(key == Keys.NUM_8) itemSelected = 7;
+			else if(key == Keys.NUM_9) itemSelected = 8;
+			else if(key == Keys.NUM_0) itemSelected = 9;
+		}
 	}
 	
 	public void deleteItemIfNecessary() {
