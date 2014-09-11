@@ -15,6 +15,7 @@ public class SpeedPotion extends PotionItem {
 		sprite = Sprites.sprites.get(Sprites.SPEED_POTION);
 		craftCost = new int[]{CACTUS_SEED, BAT_WING, GLASS_BOTTLE};
 		craftCostAmount = new int[]{1,1,1}; 
+		workSpaceNeeded = new int[]{CAULDRON_WORKSPACE};
 		
 	}
 	@Override

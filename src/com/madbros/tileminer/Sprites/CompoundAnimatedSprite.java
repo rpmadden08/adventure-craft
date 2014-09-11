@@ -77,6 +77,15 @@ public class CompoundAnimatedSprite extends CompoundSprite {
 		}
 	}
 	
+	public Boolean hasClothingItemAlready(AnimatedSprite clothingItemSprite) {
+		for(AnimatedSprite sprite : sprites) {
+			if(clothingItemSprite == sprite) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void setCurrentFrame(int frame) {
 		for(AnimatedSprite sprite : sprites) {
 			sprite.setCurrentFrame(frame);

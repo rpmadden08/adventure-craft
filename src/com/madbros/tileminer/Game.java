@@ -44,8 +44,8 @@ public class Game implements ApplicationListener {
 	public static double oceanTally, mountainTally, desertTally, grasslandTally, forestTally, jungleTally, swampTally, taigaTally, tundraTally = 0;
 
 	
-	public static long rgenseed = System.currentTimeMillis();
-	//public static long rgenseed = 4;
+	//public static long rgenseed = System.currentTimeMillis();
+	public static long rgenseed = 35;
 		//1  (Water + Islands)  
 		//4  (All Water)
 		//7  (Grassland) 

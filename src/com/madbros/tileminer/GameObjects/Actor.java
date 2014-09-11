@@ -423,20 +423,15 @@ public class Actor extends GameObject {
 	}
 	
 	public void addClothingItem(Clothing clothingItem) {
-		sprite.addSprite(clothingItem.animatedSprite);
-		sprite.sort();
-		sprite.changeAnimationTo(STAND_DOWN);
-		if(clothingItem.slotType == HELMET_SLOT) {
-			swimmingSprite.addSprite(clothingItem.animatedSprite);
-			swimmingSprite.sort();
+		if(!Game.hero.sprite.hasClothingItemAlready(clothingItem.animatedSprite)) {
+			sprite.addSprite(clothingItem.animatedSprite);
+			sprite.sort();
+			sprite.changeAnimationTo(STAND_DOWN);
+			if(clothingItem.slotType == HELMET_SLOT) {
+				swimmingSprite.addSprite(clothingItem.animatedSprite);
+				swimmingSprite.sort();
+			}
 		}
-//		sprite.resetFrames();
-//		swimmingSprite.resetFrames();
-//		sprite.changeFrameTimes(80);
-//		swimmingSprite.changeFrameTimes(80);
-		//swimmingSprite.changeAnimationTo(STAND_DOWN);
-		//sprite.changeAnimationTo(WALK_DOWN);
-		//increase armor rating and add special effects
 	}
 	
 	

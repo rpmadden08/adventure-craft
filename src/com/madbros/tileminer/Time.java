@@ -60,7 +60,7 @@ public class Time {
 	public static long getMinutes() {
 		long currentTime = getTotalSeconds();
 		
-		long timeNow = currentTime / 60+8;  //The + 8 makes the time start at 8:00
+		long timeNow = currentTime / 60 +8;  //The + 8 makes the time start at 8:00
 		timeNow = timeNow % 24;
 		if (timeNow == 0)  {
 			timeNow = 24;

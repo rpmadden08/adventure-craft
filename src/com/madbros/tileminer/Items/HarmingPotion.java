@@ -15,6 +15,7 @@ public class HarmingPotion extends PotionItem {
 		sprite = Sprites.sprites.get(Sprites.HARMING_POTION);
 		craftCost = new int[]{WORM_GUTS, PEPPER, GLASS_BOTTLE};
 		craftCostAmount = new int[]{1,1,1}; 
+		workSpaceNeeded = new int[]{CAULDRON_WORKSPACE};
 		
 	}
 	@Override

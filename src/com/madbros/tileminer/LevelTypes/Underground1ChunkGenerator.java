@@ -82,9 +82,9 @@ public class Underground1ChunkGenerator extends ChunkGenerator{
     		}else if(chunkGroundLayer[m][n] == 11) {
  		    			if(getRandom(0.2, m, n)){
      		    			return BARREL; 	
- 		    			} else if(getRandom(0.25, m, n)){ //0.3
+ 		    			} else if(getRandom(0.4, m, n)){ //0.25
      		    			return CHEST; 		
- 		    			}else if(getRandom(0.28, m, n)){ //0.3
+ 		    			}else if(getRandom(0.6, m, n)){ //0.3
      		    			return HEART_CONTAINER; 		
  		    			}else {
  		    				return AIR;

@@ -62,6 +62,7 @@ public class StairsDownTile extends CollisionTile {
 				//Game.hero = null;
 				
 				Game.level.teleportHero(Game.replaceableX, Game.replaceableY);
+				//Game.hero.stop();
 				return false;
 			}
 			return true;

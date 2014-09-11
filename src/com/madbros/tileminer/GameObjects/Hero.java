@@ -280,9 +280,9 @@ public class Hero extends Actor {
 			Game.inventory.dropAll();
 			isDead = true;
 			if(deathWait > 60) {
-				//Game.saveGame.saveGame();
-				//Game.level.saveCurrentChunks(); 
-				//Game.saveGame.saveCurrentLevel();
+				Game.saveGame.saveGame();
+				Game.saveGame.saveCurrentLevel();
+				Game.level.saveCurrentChunks();
 				Game.currentState = new LoadingState(Game.batch);
 				Game.hero = new Hero();
 				Game.level.respawn(Game.level.masterSpawnX/TILE_SIZE+1, Game.level.masterSpawnY/TILE_SIZE+1, Game.level.spawnLevel);
