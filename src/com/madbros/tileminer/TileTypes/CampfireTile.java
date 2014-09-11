@@ -20,9 +20,21 @@ public class CampfireTile extends LightTile {
 		isAutoTileable = false;
 		isCollidable = true;
 		isBreakable = true;
+		isUseable = true;
 		currentHp = 1;
 		maxHp = 1;
 		margin = new Margin(2, 0, 1, 1);
+	}
+	
+	@Override
+	public void rightClicked() {
+//		if(Game.inventory.invBar[Game.inventory.itemSelected].item.id == WATER_BUCKET && Game.level.hasPlacedItemOnClick == false) {
+//			//TODO add dousing sound effect!
+//			Block b = activeBlocks[x][y];
+//			b.layers[OBJECT_LAYER] = new NoTile();
+////			Game.inventory.currentWorkSpace = TABLE_WORKSPACE;
+////			Game.toggleInventoryState();
+//		}
 	}
 	
 	@Override
@@ -54,7 +66,7 @@ public class CampfireTile extends LightTile {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
-		Item item = ITEM_HASH.get(CAMPFIRE).createNew();
-		Game.collectibleController.add(CAMPFIRE, Sprites.sprites.get(Sprites.CAMPFIRE_SINGLE), collectibleRect, 1, item.maxUses);
+		Item item = ITEM_HASH.get(FIRE_PIT).createNew();
+		Game.collectibleController.add(FIRE_PIT, Sprites.sprites.get(Sprites.FIRE_PIT), collectibleRect, 1, item.maxUses);
 	}
 }
