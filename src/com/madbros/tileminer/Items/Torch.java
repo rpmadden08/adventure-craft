@@ -19,6 +19,7 @@ public class Torch extends BlockItem32 {
 		craftCost = new int[]{STICK, COAL_ITEM};
 		craftCostAmount = new int[]{1, 1};
 		workSpaceNeeded = new int[]{BARE_HANDS_WORKSPACE,TABLE_WORKSPACE};
+//		isCollidable = false;
 	}
 	
 	@Override
@@ -29,7 +30,7 @@ public class Torch extends BlockItem32 {
 	@Override
 	public void placeTile(Block hB, Tile tile) {
 		hB.layers[OBJECT_LAYER] = tile;
-		hB.setCollisionTile((CollisionTile)tile);
+		//hB.setCollisionTile((CollisionTile)tile);
 	}
 
 	@Override

@@ -103,7 +103,7 @@ public class Inventory {
 //		
 		invBar[0].item = new WoodenPick();
 		invBar[0].item.stackSize = 1;
-		invBar[1].item = new Stick();
+		invBar[1].item = new Torch();
 		invBar[1].item.stackSize = 99;
 		invBar[2].item = new Plank();
 		invBar[2].item.stackSize = 99;
