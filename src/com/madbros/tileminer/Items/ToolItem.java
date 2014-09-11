@@ -28,6 +28,8 @@ public abstract class ToolItem extends WeaponItem {
 	public ToolItem() {
 		super();
 		isRepeatable = true;
+		maxStackSize = 1;
+		stackSize = 1;
 		
 	}
 	@Override

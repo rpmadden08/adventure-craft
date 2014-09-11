@@ -12,14 +12,16 @@ public class ChestSlot extends Slot{
 	}
 	
 	public void handleLeftClickShiftChest(Inventory inv) {
-		if(inv.isSlotAvailable(this.item, inv.invBar)) {
-			inv.addItemToSlotArray(this.item, inv.invBar);
-			inv.removeSlot(this);
-			Game.soundController.create("sounds/clickSelect.wav", 0.5f);
-		} else if(inv.isSlotAvailable(this.item, inv.invBag)) {
-			inv.addItemToSlotArray(this.item, inv.invBag);
-			inv.removeSlot(this);
-			Game.soundController.create("sounds/clickSelect.wav", 0.5f);
+		if(this.item.id != 0) {
+			if(inv.isSlotAvailable(this.item, inv.invBar)) {
+				inv.addItemToSlotArray(this.item, inv.invBar);
+				inv.removeSlot(this);
+				Game.soundController.create("sounds/clickSelect.wav", 0.5f);
+			} else if(inv.isSlotAvailable(this.item, inv.invBag)) {
+				inv.addItemToSlotArray(this.item, inv.invBag);
+				inv.removeSlot(this);
+				Game.soundController.create("sounds/clickSelect.wav", 0.5f);
+			}
 		}
 	}
 }

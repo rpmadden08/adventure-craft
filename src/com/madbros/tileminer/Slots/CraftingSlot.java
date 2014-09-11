@@ -170,7 +170,7 @@ public class CraftingSlot extends Slot{
 				inv.heldItem.stackSize = this.item.stackSize;
 				inv.heldItem.maxUses = this.item.maxUses;
 				needToRemoveItem = true;
-			} else if (inv.heldItem.id == this.item.id) {
+			} else if (inv.heldItem.id == this.item.id && this.item.stackSize < this.item.maxStackSize) {
 				inv.heldItem.stackSize = inv.heldItem.stackSize + this.item.stackSize;
 				needToRemoveItem = true;
 			}
