@@ -545,6 +545,19 @@ public class RenderSystem {
 	}
 	
 	public void renderHud(Inventory inv) {
+		if(Game.isDemo) {
+			Sprites.arial24.setColor(1f,0,0,1f);
+			int timeLeft = Time.getDemoTimeRemaining();
+			if(timeLeft <0) {
+				Sprites.arial24.setColor(1,1,1,1);
+				Sprites.arial24.draw(Game.batch, "Thank you for trying the Tile Miner demo!", Game.currentScreenSizeX/2- 200, 0);
+			} else if(timeLeft > 60) {
+				Sprites.arial24.draw(Game.batch, "Game demo will end in "+timeLeft/60+ " minutes", Game.currentScreenSizeX/2- 200, 0);
+			} else {
+				Sprites.arial24.draw(Game.batch, "Game demo will end in "+timeLeft+ " seconds", Game.currentScreenSizeX/2- 200, 0);
+			}
+			Sprites.arial24.setColor(1,1,1,1);
+		}
 		Sprites.invBar.draw(0,0,0, Sprites.invBar.getWidth(), Sprites.invBar.getHeight());
 		for(int i=0;i < inv.invBar.length; i++) {			
 			inv.invBar[i].render();

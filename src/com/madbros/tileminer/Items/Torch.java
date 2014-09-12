@@ -5,7 +5,6 @@ import static com.madbros.tileminer.Constants.*;
 import com.badlogic.gdx.graphics.Color;
 import com.madbros.tileminer.Block;
 import com.madbros.tileminer.Sprites.Sprites;
-import com.madbros.tileminer.TileTypes.CollisionTile;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Helpers;
 

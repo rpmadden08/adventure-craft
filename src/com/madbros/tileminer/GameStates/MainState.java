@@ -4,12 +4,15 @@ package com.madbros.tileminer.GameStates;
 
 import static com.madbros.tileminer.Constants.*;
 
+
+
 //import com.alcovegames.fireshader.Game.ShaderSelection;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.madbros.tileminer.*;
+import com.madbros.tileminer.Menus.DemoMenu;
 
 public class MainState extends GameState {
 	public MainState() {
@@ -62,6 +65,18 @@ public class MainState extends GameState {
 		
 		if(Game.hero.isDead == true && Game.hero.deathWait >59) {
 			return;
+		}
+		if(Game.isDemo) {
+			//long timeSpentInGame = (long) ((Time.getTime() - Game.gameStartTime + Game.timeSpentInPreviousSaves)/1000);
+			if(Time.getDemoTimeRemaining() < 1) {
+				Game.demoMenu = new DemoMenu(Game.batch);
+				Game.demoMenu.menuIsActive = true;
+				Game.currentState = new DemoMenuState();
+//				Gdx.net.openURI("http://tileminer.itch.io/tile-miner");
+//				Game.quit();
+//				Display.destroy();
+//				System.exit(0);
+			}
 		}
 		
 	}

@@ -7,6 +7,7 @@ import java.io.File;
 import com.madbros.tileminer.Block;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Items.Item;
+import com.madbros.tileminer.Slots.ChestSlot;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
 import com.madbros.tileminer.Utils.Rect;
@@ -63,7 +64,7 @@ public class ChestTile extends CollisionTile {
 		File f = new File(Game.locOfSavedGame + CHESTS_FOLDER + x + "-" + y + ".sv");
 		if(f.exists()) {
 			Game.saveGame.loadChest(x, y);
-		f.delete();
+			f.delete();
 		}
 		
 		
@@ -76,6 +77,14 @@ public class ChestTile extends CollisionTile {
 				Rect collectibleRect2 = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 				item = ITEM_HASH.get(Game.inventory.invChest[i].item.id).createNew();
 				Game.collectibleController.add(Game.inventory.invChest[i].item.id, Game.inventory.invChest[i].item.sprite, collectibleRect2, Game.inventory.invChest[i].item.stackSize, item.maxUses);
+			}
+		}
+		int k = 0;
+		for(int x2 = 0; x2 < INV_LENGTH; x2++) {
+			for(int y2 = 0; y2 < INV_HEIGHT; y2++) {
+				Game.inventory.invChest[k] = new ChestSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y2,
+						INV_CRAFTING_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x2);
+				k++;
 			}
 		}
 		

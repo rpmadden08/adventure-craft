@@ -26,6 +26,7 @@ public class MainStateInput extends BasicInput {
 		Game.inventory.stopUsingItem(button);
 		if(Game.debugMenu.menuIsActive) Game.debugMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		if(Game.gameMainMenu.menuIsActive) Game.gameMainMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
+		if(Game.demoMenu.menuIsActive) Game.demoMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		Game.hero.attackButtonReleased = true;
 		Game.level.hasPlacedItemOnClick = false;
 		
@@ -37,6 +38,7 @@ public class MainStateInput extends BasicInput {
 		super.touchDown(x, y, pointer, button);
 		if(Game.debugMenu.menuIsActive) Game.debugMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		if(Game.gameMainMenu.menuIsActive) Game.gameMainMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
+		if(Game.demoMenu.menuIsActive) Game.demoMenu.handleMouseInput(mouseLeftDown, mouseLeftUp);
 		additionalMouseDown();
 		if(clickedAButton == false) {
 			
@@ -52,6 +54,7 @@ public class MainStateInput extends BasicInput {
 		super.mouseMoved(x, y);
 		if(Game.debugMenu.menuIsActive) Game.debugMenu.handleMouseMove(x, y);
 		if(Game.gameMainMenu.menuIsActive) Game.gameMainMenu.handleMouseMove(x, y);
+		if(Game.demoMenu.menuIsActive) Game.demoMenu.handleMouseMove(x, y);
 		additionalMouseMove();
 		return false;
 	}

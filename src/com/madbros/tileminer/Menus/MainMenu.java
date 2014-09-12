@@ -27,16 +27,23 @@ public class MainMenu extends Menu{
 	@Override
 	public void setupMenu(SpriteBatch batch) {
 		ButtonFunction newGame = new ButtonFunction() { public void invoke() { newGame(); } };
+		String loadGameString = "Load Game";
 		ButtonFunction loadGame = new ButtonFunction() { public void invoke() { loadGame(); } };
+		if(Game.isDemo) {
+			loadGame = new ButtonFunction() { public void invoke() { buyNow(); } };
+			loadGameString = "BUY NOW";
+		} 
+		//ButtonFunction loadGame = new ButtonFunction() { public void invoke() { loadGame(); } };
+		
 		ButtonFunction options = new ButtonFunction() { public void invoke() { options(); } };
 		ButtonFunction credits = new ButtonFunction() { public void invoke() { credits(); } };
 		ButtonFunction quitGame = new ButtonFunction() { public void invoke() { quitGame(); } };
 		
 		Rect r = new Rect(MAIN_MENU_STARTX, MAIN_MENU_STARTY, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
 		int marginY = 10;
-		String[] strings = {"New Game", "Load Game", "Options", "Credits", "Quit"};
 		
-		ButtonFunction[] functions = {newGame, loadGame, options, credits, quitGame};
+			String[] strings = {"New Game", loadGameString, "Options", "Credits", "Quit"};
+			ButtonFunction[] functions = {newGame, loadGame, options, credits, quitGame};
 		
 		menuButtons = new TextUIButton[functions.length];
 		for(int i = 0; i < menuButtons.length; i++) {
@@ -88,6 +95,9 @@ public class MainMenu extends Menu{
 	
 	private void loadGame() {
 		MainMenuState.loadGame(Game.batch);
+	}
+	private void buyNow() {
+		Gdx.net.openURI("http://tileminer.itch.io/tile-miner");
 	}
 	
 	private void options() {

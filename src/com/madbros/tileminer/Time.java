@@ -76,6 +76,13 @@ public class Time {
 		}
 		return "" + timeNow;
 	}
+	public static int getTimeSpentInGame() {
+		return (int) ((Time.getTime() - Game.gameStartTime + Game.timeSpentInPreviousSaves)/1000);
+	}
+	
+	public static int getDemoTimeRemaining() {
+		return 1440- getTimeSpentInGame(); //1440 = 24 minutes (24 game hours)
+	}
 	
 	public static void checkTime() {
 		long seconds = getMilliseconds();

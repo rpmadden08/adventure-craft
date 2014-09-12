@@ -44,15 +44,15 @@ public class Game implements ApplicationListener {
 	public static double oceanTally, mountainTally, desertTally, grasslandTally, forestTally, jungleTally, swampTally, taigaTally, tundraTally = 0;
 
 	
-	//public static long rgenseed = System.currentTimeMillis();
-	public static long rgenseed = 35;
+	public static long rgenseed = System.currentTimeMillis();
+//	public static long rgenseed = 35;
 		//1  (Water + Islands)  
 		//4  (All Water)
 		//7  (Grassland) 
 		//20 (Desert)
 		//15 (Mountain)
 		//40 (Forest)
-	
+	public static boolean isDemo = true;
 	public static boolean spawnSet = false;
 	public static int replaceableX = 0;
 	public static int replaceableY = 0;
@@ -66,6 +66,7 @@ public class Game implements ApplicationListener {
 	public static SpriteBatch particleBatch;
 	public static Debugger debugger;
 	public static GameMainMenu gameMainMenu;
+	public static DemoMenu demoMenu;
 	public static DebugMenu debugMenu;
 	public static Level level;
 	public static Hero hero;
@@ -595,6 +596,7 @@ public class Game implements ApplicationListener {
 		debugger = new Debugger();
 		debugMenu = new DebugMenu(batch);
 		gameMainMenu = new GameMainMenu(batch);
+		demoMenu = new DemoMenu(batch);
 		
 		//Set mouse cursor 
 		Pixmap pm = new Pixmap(Gdx.files.internal("data/cursor.png"));
