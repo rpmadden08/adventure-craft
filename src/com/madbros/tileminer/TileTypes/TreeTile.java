@@ -53,6 +53,7 @@ public class TreeTile extends CollisionTile {
 		for(int i = 0; i < 9; i++) {
 			b = activeBlocks[xs[i]][ys[i]];
 			b.layers[tileLayer[i]] = new NoTile(); 
+			b.layers[tileLayer[i]].setCollisionRect(b.absRect);
 			//b.layers[tileLayer[i]].currentSpriteId = i;
 			//b.layers[tileLayer[i]].z = Z_ABOVE_LAYER;
 		}

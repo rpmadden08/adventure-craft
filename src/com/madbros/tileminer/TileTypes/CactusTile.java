@@ -49,6 +49,7 @@ public class CactusTile extends CollisionTile {
 		for(int i = 0; i < 9; i++) {
 			b = activeBlocks[xs[i]][ys[i]];
 			b.layers[tileLayer[i]] = new NoTile(); 
+			b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
 		}
 		activeBlocks[x][y].collisionTile = null;
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);

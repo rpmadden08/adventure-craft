@@ -73,6 +73,7 @@ public class WheatTile extends CollisionTile {
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
+		b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
 		activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new NoTile();
 		b.collisionTile = null;
 		Random rnd = new Random();

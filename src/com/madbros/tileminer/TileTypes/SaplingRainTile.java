@@ -3,8 +3,10 @@ package com.madbros.tileminer.TileTypes;
 import static com.madbros.tileminer.Constants.*;
 
 import com.madbros.tileminer.*;
+import com.madbros.tileminer.Items.Item;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
+import com.madbros.tileminer.Utils.Rect;
 
 public class SaplingRainTile extends CollisionTile {
 	
@@ -35,6 +37,7 @@ public class SaplingRainTile extends CollisionTile {
 		if(Time.getGameTime() - timeCreated > 10000) {// 3000
 			Block b = Game.level.activeBlocks[x][y];
 			b.layers[OBJECT_LAYER] = new NoTile();
+			b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
 			b.setCollisionTile(new TreeLeafRainTile());
 			int[] xs = {x-1, x-1, x-1, x, x, x, x, x+1,x+1, x+1};
 			int[] ys = {y-3, y-2, y-1, y-3, y-2, y-1, y, y-3, y-2, y-1};
@@ -47,5 +50,14 @@ public class SaplingRainTile extends CollisionTile {
 				b.layers[tileLayer[i]].z = Z_ABOVE_LAYER;
 			}
 		}
+	}
+	public void deleteMe(int x, int y, Block[][] activeBlocks) {
+		Block b = activeBlocks[x][y];
+		b.layers[OBJECT_LAYER] = new NoTile();
+		b.collisionTile = null;
+		
+		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+		Item item = ITEM_HASH.get(SAPLING_ITEM).createNew();
+		Game.collectibleController.add(SAPLING_ITEM, Sprites.sprites.get(Sprites.SAPLING), collectibleRect, 1,item.maxUses);
 	}
 }

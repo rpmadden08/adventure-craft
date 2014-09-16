@@ -143,6 +143,7 @@ public class FurnaceTile extends CollisionTile {
 		b.collisionTile = null;
 		Block b2 = activeBlocks[x][y-1];
 		b.layers[OBJECT_LAYER] = new NoTile();
+		b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
 		b2.layers[ABOVE_LAYER_1] = new NoTile();
 		
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);

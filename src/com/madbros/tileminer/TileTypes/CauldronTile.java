@@ -148,6 +148,7 @@ public class CauldronTile extends CollisionTile {
 		this.cauldronSlots[0].deleteQueue2();
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
+		b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
 		b.collisionTile = null;
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(CAULDRON).createNew();

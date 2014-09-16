@@ -70,6 +70,7 @@ public class GrassTile extends Tile {
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		activeBlocks[x][y].layers[GRASS_LAYER] = new NoTile();
+		activeBlocks[x][y].layers[OBJECT_LAYER].setCollisionRect(activeBlocks[x][y].absRect);
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(GRASS_SEED).createNew();
 		Game.collectibleController.add(GRASS_SEED, Sprites.sprites.get(Sprites.GRASS_ITEM), collectibleRect, 1, item.maxUses);

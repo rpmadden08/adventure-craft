@@ -46,7 +46,9 @@ public class SandTile extends Tile {
 	}
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
-		Game.level.highlightedBlock.layers[GRASS_LAYER] = new NoTile();
+		Block b = Game.level.highlightedBlock;
+		b.layers[GRASS_LAYER] = new NoTile();
+		b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
 		
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(SAND_CLUMP).createNew();

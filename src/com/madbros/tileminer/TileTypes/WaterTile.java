@@ -71,7 +71,9 @@ public class WaterTile extends CollisionTile {
 		
 	}
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
-		activeBlocks[x][y].layers[WATER_LAYER] = new NoTile();
+		Block b = activeBlocks[x][y];
+		b.layers[WATER_LAYER] = new NoTile();
+		b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
 	}
 	
 	public Tile createNew() {

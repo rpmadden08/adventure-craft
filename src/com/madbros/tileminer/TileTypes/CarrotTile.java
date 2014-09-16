@@ -66,6 +66,7 @@ public class CarrotTile extends CollisionTile {
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
+		b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
 		b.collisionTile = null;
 		Random rnd = new Random();
 		int dropAmount1 = rnd.nextInt(2)+1;

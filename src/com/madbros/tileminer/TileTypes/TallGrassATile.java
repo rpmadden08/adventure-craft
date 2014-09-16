@@ -59,6 +59,7 @@ public class TallGrassATile extends CollisionTile {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
 		b.collisionTile = null;
+		b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
 		RectInt hBAbsRect = b.absRect.getRectInt();
 		Game.particleEffectController.add(particleEffect, 
 				hBAbsRect.x +(TILE_SIZE/2), hBAbsRect.y + (TILE_SIZE/2));

@@ -63,6 +63,7 @@ public class DirtMountainBottomTile extends CollisionTile {
 
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		activeBlocks[x][y].layers[OBJECT_LAYER] = new NoTile();
+		activeBlocks[x][y].layers[OBJECT_LAYER].setCollisionRect(activeBlocks[x][y].absRect);
 		activeBlocks[x][y-1].layers[ABOVE_LAYER_1] = new NoTile();
 		activeBlocks[x][y-2].layers[ABOVE_LAYER_2] = new NoTile();
 		activeBlocks[x][y].collisionTile = null;

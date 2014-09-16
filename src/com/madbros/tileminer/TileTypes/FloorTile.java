@@ -60,5 +60,6 @@ public class FloorTile extends CollisionTile {
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
 		Block b = activeBlocks[x][y];
 		b.layers[GRASS_LAYER] = new NoTile();
+		b.layers[GRASS_LAYER].setCollisionRect(b.absRect);
 	}
 }

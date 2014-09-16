@@ -4,8 +4,10 @@ import static com.madbros.tileminer.Constants.*;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.madbros.tileminer.*;
+import com.madbros.tileminer.Items.Item;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
+import com.madbros.tileminer.Utils.Rect;
 
 public class CactusSaplingTile extends CollisionTile {
 	public int growthTime;
@@ -18,9 +20,12 @@ public class CactusSaplingTile extends CollisionTile {
 		layer = OBJECT_LAYER;
 		z = Z_OBJECT;
 		isDiggable = false;
+		isBreakable = true;
 		isAutoTileable = false;
 		autoTile = 0;
 		growthTime = setGrowthTime();
+		maxHp = 1;
+		currentHp = 1;
 	}
 	
 	@Override
@@ -53,5 +58,15 @@ public class CactusSaplingTile extends CollisionTile {
 				b.layers[tileLayer[i]].z = Z_ABOVE_LAYER;
 			}
 		}
+	}
+	public void deleteMe(int x, int y, Block[][] activeBlocks) {
+		Block b = activeBlocks[x][y];
+		b.layers[OBJECT_LAYER] = new NoTile();
+		b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
+		b.collisionTile = null;
+		
+		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
+		Item item = ITEM_HASH.get(CACTUS_SEED).createNew();
+		Game.collectibleController.add(CACTUS_SEED, Sprites.sprites.get(Sprites.CACTUS_SAPLING), collectibleRect, 1,item.maxUses);
 	}
 }

@@ -101,6 +101,7 @@ public class StairsUpTile extends CollisionTile {
 	public void deleteMeStairs(int x, int y, Block[][] activeBlocks) {
 		Block b = activeBlocks[x][y];
 		b.layers[OBJECT_LAYER] = new NoTile();
+		b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
 		b.collisionTile = null;
 	}
 }

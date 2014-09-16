@@ -38,6 +38,7 @@ public class TorchTile extends LightTile {
 		b.collisionTile = null;
 		b.layers[OBJECT_LAYER].isLightSource = false;
 		b.layers[OBJECT_LAYER] = new NoTile();
+		b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
 		
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(TORCH).createNew();

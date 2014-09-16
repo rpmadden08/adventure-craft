@@ -50,6 +50,7 @@ public class HeartContainerTile extends CollisionTile {
 		Block b = activeBlocks[x][y];
 		//Block b2 = activeBlocks[x][y-1];
 		b.collisionTile = null;
+		b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
 		b.layers[OBJECT_LAYER] = new NoTile();
 		//b2.layers[ABOVE_LAYER_1] = new NoTile();
 		

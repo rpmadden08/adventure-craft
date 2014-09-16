@@ -44,6 +44,7 @@ public class BeehiveTile extends CollisionTile {
 			Game.mobController.mobs.add(new QueenBee(Game.mobController, x, y));
 			Block b = Game.level.activeBlocks[x][y];
 			b.layers[OBJECT_LAYER] = new NoTile();
+			b.layers[OBJECT_LAYER].setCollisionRect(b.absRect);
 			b.collisionTile = null;
 			
 //			
