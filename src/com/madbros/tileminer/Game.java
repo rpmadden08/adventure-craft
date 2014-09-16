@@ -24,6 +24,7 @@ import com.madbros.tileminer.GameStates.*;
 import com.madbros.tileminer.Items.*;
 import com.madbros.tileminer.LevelTypes.*;
 import com.madbros.tileminer.Menus.*;
+import com.madbros.tileminer.Slots.ChestSlot;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Systems.AnimationSystem;
 import com.madbros.tileminer.Systems.CollisionDetectionSystem;
@@ -52,7 +53,7 @@ public class Game implements ApplicationListener {
 		//20 (Desert)
 		//15 (Mountain)
 		//40 (Forest)
-	public static boolean isDemo = true;
+	public static boolean isDemo = false;
 	public static boolean spawnSet = false;
 	public static int replaceableX = 0;
 	public static int replaceableY = 0;
@@ -233,6 +234,14 @@ public class Game implements ApplicationListener {
 			
 			closeInventory();
 			Game.soundController.create("sounds/closeMenu.wav", 1f);
+			int k = 0;
+			for(int x2 = 0; x2 < INV_LENGTH; x2++) {
+				for(int y2 = 0; y2 < INV_HEIGHT; y2++) {
+					Game.inventory.invChest[k] = new ChestSlot(INV_CRAFTING_RECT.x + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * y2,
+							INV_CRAFTING_RECT.y + (INV_SLOT_SIZE + INV_SLOT_MARGIN.right) * x2);
+					k++;
+				}
+			}
 		} else {
 			currentState = new ChestState();
 			hero.stop();

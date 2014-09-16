@@ -2,7 +2,7 @@ package com.madbros.tileminer.TileTypes;
 
 import static com.madbros.tileminer.Constants.*;
 
-public class NoTile extends Tile {
+public class NoTile extends CollisionTile {
 	public NoTile() {
 		super();
 		currentSpriteId = 0;
@@ -13,6 +13,7 @@ public class NoTile extends Tile {
 		isDiggable = false;
 		id = AIR;
 		isAutoTileable = false;
+		//setCollisionRect(absRect);
 	}
 	
 	@Override

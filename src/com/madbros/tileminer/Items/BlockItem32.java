@@ -20,6 +20,7 @@ public abstract class BlockItem32 extends StackableItem{
 		//if(isInRange) {
 			Tile tile = TILE_HASH.get(tileId).createNew();
 			Block hB = Game.level.highlightedBlock;
+			
 			if(Helpers.arrayDoesContainInt(placeableTileIds, hB.getTopTerrainTile().id) && AIR == hB.layers[OBJECT_LAYER].id && !isPlacementCollidingWithHero(hB, tile.layer)&& !isPlacementCollidingWithMob(hB, tile.layer)) {
 				placeTile(hB, tile);
 				Game.soundController.create("sounds/blockPlacement.wav", 1f);

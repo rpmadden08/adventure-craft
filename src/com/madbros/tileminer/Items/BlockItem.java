@@ -22,6 +22,7 @@ public abstract class BlockItem extends StackableItem{
 		//if(isInRange == true) {
 			Tile tile = TILE_HASH.get(tileId).createNew();
 			Block hB = Game.level.highlightedBlock;
+			System.out.println(hB.layers[tile.layer].cRect.x+"-"+hB.layers[tile.layer].cRect.y);
 			if(Helpers.arrayDoesContainInt(placeableTileIds, hB.getTopTerrainTile().id) && AIR == hB.layers[OBJECT_LAYER].id && !isPlacementCollidingWithHero(hB, tile.layer)) {
 				placeTile(hB, tile);
 				stackSize -= 1;
