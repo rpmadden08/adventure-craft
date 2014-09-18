@@ -11,7 +11,7 @@ import com.madbros.tileminer.TileTypes.CollisionTile;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class TableItem extends BlockItem32 {
+public class TableItem extends TileItem {
 	public TableItem() {
 		id = TABLE;
 		tileId = TABLE_TILE;
@@ -26,7 +26,7 @@ public class TableItem extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new TableItem();
 	}
 	

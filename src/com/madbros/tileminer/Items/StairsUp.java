@@ -9,7 +9,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class StairsUp extends BlockItem32 {
+public class StairsUp extends TileItem {
 	public StairsUp() {
 		id = STAIRS_UP;
 		name = "Stairs Up";
@@ -21,7 +21,7 @@ public class StairsUp extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new StairsUp();
 	}
 	

@@ -8,9 +8,9 @@ import com.madbros.tileminer.Block;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Time;
 import com.madbros.tileminer.GameStates.LoadingState;
-import com.madbros.tileminer.Items.Clothing;
+import com.madbros.tileminer.Items.Item;
 import com.madbros.tileminer.Items.NoItem;
-import com.madbros.tileminer.Items.WeaponItem;
+import com.madbros.tileminer.Items.Clothing.Clothing;
 import com.madbros.tileminer.Sprites.CompoundAnimatedSprite;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
@@ -311,7 +311,7 @@ public class Hero extends Actor {
 			if(currentFrame == 0) {
 				
 				if(Game.inventory.invBar[Game.inventory.itemSelected].item.id != attackItem.id) { //If the item is destroyed for some reason it should stop attacking... 
-					attackItem = (WeaponItem) Game.inventory.invBar[Game.inventory.itemSelected].item;
+					attackItem = (Item) Game.inventory.invBar[Game.inventory.itemSelected].item;
 				}
 				if(attackButtonReleased == true || attackItem.isRepeatable == false) {
 
@@ -375,14 +375,14 @@ public class Hero extends Actor {
 		
 	}
 	
-	public void attack(WeaponItem item) {
+	public void attack(Item item) {
 		if(attackButtonReleased == true && !isSwimming) {
 			attackButtonReleased = false;
 			hasAttacked = false;
 			isAttacking = true;
 			//attackItem = item;
 			int iD = item.id;
-			attackItem = (WeaponItem) ITEM_HASH.get(iD).createNew();
+			attackItem = (Item) ITEM_HASH.get(iD).createNew();
 			//attackTime = 24;
 			sprite.changeFrameTimes(attackItem.swingSpeed);
 			

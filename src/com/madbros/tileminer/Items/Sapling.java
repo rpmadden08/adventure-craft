@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class Sapling extends BlockItem32 {
+public class Sapling extends TileItem {
 	public Sapling() {
 		id = SAPLING_ITEM;
 		tileId = SAPLING;
@@ -26,7 +26,7 @@ public class Sapling extends BlockItem32 {
 	
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new Sapling();
 	}
 

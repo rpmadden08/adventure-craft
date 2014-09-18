@@ -10,7 +10,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class TallGrassA extends BlockItem32 {
+public class TallGrassA extends TileItem {
 	public TallGrassA() {
 		id = TALL_GRASS_A;
 		tileId = TALL_GRASS_A_TILE;
@@ -20,7 +20,7 @@ public class TallGrassA extends BlockItem32 {
 		
 	}
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new TallGrassA();
 	}
 

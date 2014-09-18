@@ -11,6 +11,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.GameStates.MainMenuState;
+import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.UI.*;
 import com.madbros.tileminer.Utils.ButtonFunction;
 import com.madbros.tileminer.Utils.Rect;
@@ -119,5 +120,7 @@ public class MainMenu extends Menu{
 	public void render() {
 		super.render();
 		super.renderSplashScreen();
+		Sprites.font.draw(Game.batch, Game.version, 2, Game.currentScreenSizeY-18);
+		//Sprites.ar
 	}
 }

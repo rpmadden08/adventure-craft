@@ -9,7 +9,7 @@ import com.madbros.tileminer.TileTypes.CollisionTile;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class FirePit extends BlockItem32 {
+public class FirePit extends TileItem {
 	public FirePit() {
 		id = FIRE_PIT;
 		name = "Fire Pit";
@@ -22,7 +22,7 @@ public class FirePit extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new FirePit();
 	}
 

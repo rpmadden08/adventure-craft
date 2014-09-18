@@ -10,7 +10,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class Floor extends BlockItem32 {
+public class Floor extends TileItem {
 	public Floor() {
 		id = WOODEN_FLOOR;
 		tileId = WOOD_FLOOR_TILE;
@@ -24,7 +24,7 @@ public class Floor extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new Floor();
 	}
 	

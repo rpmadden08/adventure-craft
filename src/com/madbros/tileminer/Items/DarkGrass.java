@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class DarkGrass extends BlockItem {
+public class DarkGrass extends AutoTileItem {
 	public DarkGrass() {
 		id = DARK_GRASS_ITEM;
 		name = "Swamp Grass Seed";

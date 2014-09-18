@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class PepperSprout extends BlockItem32 {
+public class PepperSprout extends TileItem {
 	public PepperSprout() {
 		id = PEPPER_SPROUT;
 		tileId = PEPPER_TILE;
@@ -19,7 +19,7 @@ public class PepperSprout extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new PepperSprout();
 	}
 

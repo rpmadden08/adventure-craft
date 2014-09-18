@@ -13,7 +13,7 @@ import com.madbros.tileminer.TileTypes.FurnaceTopTile;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class Furnace extends BlockItem32 {
+public class Furnace extends TileItem {
 	public Furnace() {
 		id = FURNACE;
 		name = "Furnace";
@@ -28,7 +28,7 @@ public class Furnace extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new Furnace();
 	}
 	

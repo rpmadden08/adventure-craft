@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class CarrotSprout extends BlockItem32 {
+public class CarrotSprout extends TileItem {
 	public CarrotSprout() {
 		id = CARROT_SPROUT;
 		tileId = CARROT_TILE;
@@ -19,7 +19,7 @@ public class CarrotSprout extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new CarrotSprout();
 	}
 

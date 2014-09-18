@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class Wall extends BlockItem {
+public class Wall extends AutoTileItem {
 	int tile2Id = WOOD_WALL_BOTTOM_TILE;
 	int tile3Id = WOOD_WALL_BOTTOM_TILE;
 	public Wall() {

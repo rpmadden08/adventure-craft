@@ -11,7 +11,7 @@ import com.madbros.tileminer.TileTypes.NoTile;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class StairsDown extends BlockItem32 {
+public class StairsDown extends TileItem {
 	public StairsDown() {
 		id = STAIRS_DOWN;
 		name = "Stairs Down";
@@ -25,7 +25,7 @@ public class StairsDown extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new StairsDown();
 	}
 

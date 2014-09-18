@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class Snow extends BlockItem {
+public class Snow extends AutoTileItem {
 	public Snow() {
 		id = SNOW_ITEM;
 		tileId = SNOW;

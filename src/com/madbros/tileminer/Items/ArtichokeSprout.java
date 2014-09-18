@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class ArtichokeSprout extends BlockItem32 {
+public class ArtichokeSprout extends TileItem {
 	public ArtichokeSprout() {
 		id = ARTICHOKE_SPROUT;
 		tileId = ARTICHOKE_TILE;
@@ -19,7 +19,7 @@ public class ArtichokeSprout extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new ArtichokeSprout();
 	}
 

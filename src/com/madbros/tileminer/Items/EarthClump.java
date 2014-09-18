@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.*;
 
-public class EarthClump extends BlockItem {
+public class EarthClump extends AutoTileItem {
 	public EarthClump() {
 		id = EARTH_CLUMP;
 		name = "Dirt";

@@ -18,7 +18,7 @@ public class WoodenFloor extends Floor {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new WoodenFloor();
 	}
 }

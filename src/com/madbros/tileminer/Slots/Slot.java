@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.madbros.tileminer.*;
 import com.madbros.tileminer.Constants.State;
 import com.madbros.tileminer.Items.*;
+import com.madbros.tileminer.Items.Clothing.Clothing;
 import com.madbros.tileminer.Sprites.*;
 import com.madbros.tileminer.TileTypes.CauldronTile;
 import com.madbros.tileminer.TileTypes.FurnaceTile;

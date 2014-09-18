@@ -21,7 +21,7 @@ import com.madbros.tileminer.Utils.RectInt;
 
 
 
-public abstract class ToolItem extends WeaponItem {
+public abstract class ToolItem extends Item {
 	
 	
 	

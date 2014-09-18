@@ -36,15 +36,8 @@ import com.madbros.tileminer.Utils.RectInt;
 import static com.madbros.tileminer.Constants.*;
 
 public class Game implements ApplicationListener {
-	public static int renderWidth = (int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN;
-	public static int renderHeight = (int)Math.ceil(Game.currentScreenSizeY * 1.0 / TILE_SIZE) + RENDER_MARGIN;
-	public static int pixelModifier = 1;
-	public static int currentScreenSizeX = INITIAL_WINDOW_WIDTH;
-	public static int currentScreenSizeY = INITIAL_WINDOW_HEIGHT;
-	
-	public static double oceanTally, mountainTally, desertTally, grasslandTally, forestTally, jungleTally, swampTally, taigaTally, tundraTally = 0;
-
-	
+	public static String version = "Version 0.1.5.1";
+	public static boolean isDemo = false;
 	public static long rgenseed = System.currentTimeMillis();
 //	public static long rgenseed = 35;
 		//1  (Water + Islands)  
@@ -53,7 +46,13 @@ public class Game implements ApplicationListener {
 		//20 (Desert)
 		//15 (Mountain)
 		//40 (Forest)
-	public static boolean isDemo = false;
+	
+	public static int renderWidth = (int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN;
+	public static int renderHeight = (int)Math.ceil(Game.currentScreenSizeY * 1.0 / TILE_SIZE) + RENDER_MARGIN;
+	public static int pixelModifier = 1;
+	public static int currentScreenSizeX = INITIAL_WINDOW_WIDTH;
+	public static int currentScreenSizeY = INITIAL_WINDOW_HEIGHT;
+	public static double oceanTally, mountainTally, desertTally, grasslandTally, forestTally, jungleTally, swampTally, taigaTally, tundraTally = 0;	
 	public static boolean spawnSet = false;
 	public static int replaceableX = 0;
 	public static int replaceableY = 0;

@@ -3,7 +3,7 @@ package com.madbros.tileminer.Items;
 
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Rect;
-public class NoItem extends BaseItem {
+public class NoItem extends StackableItem {
 	public int[] craftCost = {};
 	public int[] craftCostAmount = new int[]{0};
 	

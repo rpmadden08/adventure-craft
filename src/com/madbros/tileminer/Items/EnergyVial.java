@@ -3,6 +3,7 @@ package com.madbros.tileminer.Items;
 import static com.madbros.tileminer.Constants.*;
 
 import com.madbros.tileminer.Game;
+import com.madbros.tileminer.Items.Food.FoodItem;
 import com.madbros.tileminer.Sprites.Sprites;
 
 public class EnergyVial extends FoodItem {

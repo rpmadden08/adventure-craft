@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class SeedPotato extends BlockItem32 {
+public class SeedPotato extends TileItem {
 	public SeedPotato() {
 		id = SEED_POTATO;
 		tileId = POTATO_TILE;
@@ -19,7 +19,7 @@ public class SeedPotato extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new SeedPotato();
 	}
 

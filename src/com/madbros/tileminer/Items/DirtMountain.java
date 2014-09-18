@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class DirtMountain extends BlockItem {
+public class DirtMountain extends AutoTileItem {
 	public DirtMountain() {
 		id = DIRT_MOUNTAIN_ITEM;
 		name = "Dirt Mountain";

@@ -10,7 +10,7 @@ import com.madbros.tileminer.TileTypes.CampfireTile;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class FireStarter extends BlockItem32 {
+public class FireStarter extends TileItem {
 	public FireStarter() {
 		id = FIRE_STARTER;
 		name = "Fire Starter";

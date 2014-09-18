@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class GrassSeed extends BlockItem {
+public class GrassSeed extends AutoTileItem {
 	public GrassSeed() {
 		id = GRASS_SEED;
 		name = "Grass Seed";

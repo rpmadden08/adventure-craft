@@ -9,9 +9,8 @@ import org.lwjgl.input.Keyboard;
 import com.madbros.tileminer.Block;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Time;
-import com.madbros.tileminer.Items.Clothing;
 import com.madbros.tileminer.Items.Item;
-import com.madbros.tileminer.Items.WeaponItem;
+import com.madbros.tileminer.Items.Clothing.Clothing;
 import com.madbros.tileminer.Sprites.CompoundAnimatedSprite;
 import com.madbros.tileminer.StatusEffects.AppliedStatusEffect;
 import com.madbros.tileminer.StatusEffects.TimedStatusEffect;
@@ -62,7 +61,7 @@ public class Actor extends GameObject {
 	
 	public long knockBackTime = 0;
 	public boolean hasAttacked = true;
-	public WeaponItem attackItem;
+	public Item attackItem;
 	
 	public int[][] weaponXArray;
 	public int[][] weaponYArray;

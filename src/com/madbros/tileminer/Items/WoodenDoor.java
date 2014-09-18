@@ -1,6 +1,7 @@
 package com.madbros.tileminer.Items;
 
 import static com.madbros.tileminer.Constants.*;
+
 import com.madbros.tileminer.Sprites.Sprites;
 
 public class WoodenDoor extends Door {
@@ -21,7 +22,7 @@ public class WoodenDoor extends Door {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new WoodenDoor();
 	}
 	

@@ -6,7 +6,7 @@ import com.madbros.tileminer.*;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 
-public class EmptyBucket extends BlockItem {
+public class EmptyBucket extends AutoTileItem {
 	public EmptyBucket() {
 		id = EMPTY_BUCKET;
 		name = "Bucket";

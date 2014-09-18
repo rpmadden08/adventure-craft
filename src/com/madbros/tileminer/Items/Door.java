@@ -12,7 +12,7 @@ import com.madbros.tileminer.TileTypes.WallBorderTile;
 import com.madbros.tileminer.TileTypes.WallBottomTile;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class Door extends BlockItem32 {
+public class Door extends TileItem {
 	int tile2Id = WOOD_DOOR_TOP_TILE;
 	public Door() {
 		id = WOODEN_DOOR;
@@ -30,7 +30,7 @@ public class Door extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new Door();
 	}
 	

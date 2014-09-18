@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class CactusSeed extends BlockItem32 {
+public class CactusSeed extends TileItem {
 	public CactusSeed() {
 		id = CACTUS_SEED;
 		tileId = CACTUS_SAPLING;
@@ -20,7 +20,7 @@ public class CactusSeed extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new CactusSeed();
 	}
 

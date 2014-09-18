@@ -11,7 +11,7 @@ import com.madbros.tileminer.TileTypes.CollisionTile;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class Beehive extends BlockItem32 {
+public class Beehive extends TileItem {
 	public Beehive() {
 		id = BEEHIVE;
 		tileId = BEEHIVE_TILE;
@@ -25,7 +25,7 @@ public class Beehive extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new Beehive();
 	}
 	

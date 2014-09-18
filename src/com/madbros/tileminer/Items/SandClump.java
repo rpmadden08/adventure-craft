@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class SandClump extends BlockItem {
+public class SandClump extends AutoTileItem {
 	public SandClump() {
 		id = SAND_CLUMP;
 		tileId = SAND;

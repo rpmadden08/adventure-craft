@@ -4,8 +4,8 @@ import static com.madbros.tileminer.Constants.*;
 
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.Inventory;
-import com.madbros.tileminer.Items.Clothing;
 import com.madbros.tileminer.Items.NoItem;
+import com.madbros.tileminer.Items.Clothing.Clothing;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Sprites.StaticSprite;
 import com.madbros.tileminer.Utils.RectInt;

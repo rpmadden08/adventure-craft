@@ -26,6 +26,7 @@ public class CraftingSlot extends Slot{
 		craftAnotherItemIfPossible(invCrafting, invCrafted);
 	}
 	public void handleLeftClickCrafting(Inventory inv) {
+		System.out.println("TEST");
 	}
 	
 	public void render() {

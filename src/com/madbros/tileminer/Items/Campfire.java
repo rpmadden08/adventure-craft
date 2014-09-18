@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class Campfire extends BlockItem32 {
+public class Campfire extends TileItem {
 	public Campfire() {
 		id = CAMPFIRE_ITEM;
 		name = "Campfire";
@@ -18,7 +18,7 @@ public class Campfire extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new Campfire();
 	}
 

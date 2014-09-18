@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class ZucchiniSprout extends BlockItem32 {
+public class ZucchiniSprout extends TileItem {
 	public ZucchiniSprout() {
 		id = ZUCCHINI_SPROUT;
 		tileId = ZUCCHINI_TILE;
@@ -19,7 +19,7 @@ public class ZucchiniSprout extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new ZucchiniSprout();
 	}
 

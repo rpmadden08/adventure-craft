@@ -6,7 +6,7 @@ import java.util.Random;
 
 import com.madbros.tileminer.*;
 import com.madbros.tileminer.Items.Item;
-import com.madbros.tileminer.Items.TinPick;
+import com.madbros.tileminer.Items.Tools.TinPick;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Utils.Margin;
 import com.madbros.tileminer.Utils.Rect;

@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class WheatSprout extends BlockItem32 {
+public class WheatSprout extends TileItem {
 	public WheatSprout() {
 		id = WHEAT_SPROUT;
 		tileId = WHEAT_TILE;
@@ -19,7 +19,7 @@ public class WheatSprout extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new WheatSprout();
 	}
 

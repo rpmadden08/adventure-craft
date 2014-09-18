@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.madbros.tileminer.Block;
 import com.madbros.tileminer.Game;
 import com.madbros.tileminer.GameObjects.Mob;
+import com.madbros.tileminer.Items.Tools.Axe;
+import com.madbros.tileminer.Items.Tools.Pick;
+import com.madbros.tileminer.Items.Tools.Shovel;
 import com.madbros.tileminer.Slots.*;
 import com.madbros.tileminer.Sprites.*;
 import com.madbros.tileminer.TileTypes.Tile;
@@ -25,6 +28,7 @@ public abstract class Item {
 	public int[] itemsPossiblyBrewable = {};
 	public int[] craftCost = {};
 	public int swingSpeed = 30;
+	public boolean isRepeatable = false;
 	public int swingRemaining = swingSpeed;
 	public int[] craftCostAmount =new int[]{1};
 	public boolean is32 = true;
@@ -102,7 +106,7 @@ public abstract class Item {
 	public int itemPower() {
 		//int damage = 0;
 		if(Game.level.tileBeingAttacked.isPickable) {
-			if(!BaseItem.class.isAssignableFrom(this.getClass())) {
+			if(!StackableItem.class.isAssignableFrom(this.getClass())) {
 				if(!Pick.class.isAssignableFrom(this.getClass())) {
 					Game.notificationController.addAlert("A pick would be more effective.");
 				}
@@ -110,7 +114,7 @@ public abstract class Item {
 			return pickPower;
 		}
 		if(Game.level.tileBeingAttacked.isDiggable) {
-			if(!BaseItem.class.isAssignableFrom(this.getClass())) {
+			if(!StackableItem.class.isAssignableFrom(this.getClass())) {
 				if(!Shovel.class.isAssignableFrom(this.getClass())) {
 					Game.notificationController.addAlert("A shovel would be more effective.");
 				}
@@ -118,7 +122,7 @@ public abstract class Item {
 			return shovelPower;
 		}
 		if(Game.level.tileBeingAttacked.isChoppable) {
-			if(!BaseItem.class.isAssignableFrom(this.getClass())) {
+			if(!StackableItem.class.isAssignableFrom(this.getClass())) {
 				if(!Axe.class.isAssignableFrom(this.getClass())) {
 					Game.notificationController.addAlert("An axe would be more effective.");
 				}

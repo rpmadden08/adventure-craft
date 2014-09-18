@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.*;
 
-public class WaterBucket extends BlockItem {
+public class WaterBucket extends AutoTileItem {
 	public WaterBucket() {
 		id = WATER_BUCKET;
 		name = "Bucket of Water";

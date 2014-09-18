@@ -13,7 +13,7 @@ import com.madbros.tileminer.TileTypes.CollisionTile;
 import com.madbros.tileminer.TileTypes.Tile;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class Chest extends BlockItem32 {
+public class Chest extends TileItem {
 	public Chest() {
 		id = CHEST;
 		name = "Chest";
@@ -27,7 +27,7 @@ public class Chest extends BlockItem32 {
 	}
 	
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new Chest();
 	}
 	

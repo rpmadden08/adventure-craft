@@ -8,7 +8,7 @@ import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.TileTypes.*;
 import com.madbros.tileminer.Utils.Helpers;
 
-public class RedMushroom extends BlockItem32 {
+public class RedMushroom extends TileItem {
 	public RedMushroom() {
 		id = RED_MUSHROOM;
 		tileId = RED_MUSHROOM_TILE;
@@ -19,7 +19,7 @@ public class RedMushroom extends BlockItem32 {
 	}
 
 	@Override
-	public BlockItem32 createNew() {
+	public TileItem createNew() {
 		return new RedMushroom();
 	}
 
