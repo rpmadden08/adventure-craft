@@ -28,7 +28,7 @@ public class CraftingMenu {
 	};
 	
 	public int[] burnableList = {
-			COPPER_BAR, COOKED_STEAK, TIN_BAR
+			COPPER_BAR, COOKED_STEAK,GLASS_BOTTLE, TIN_BAR, 
 	};
 	
 	public int[] currentCraftableList = craftableList;
