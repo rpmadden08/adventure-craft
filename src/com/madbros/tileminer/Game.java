@@ -26,12 +26,10 @@ import com.madbros.tileminer.LevelTypes.*;
 import com.madbros.tileminer.Menus.*;
 import com.madbros.tileminer.Slots.ChestSlot;
 import com.madbros.tileminer.Sprites.Sprites;
-import com.madbros.tileminer.Sprites.StaticSprite;
 import com.madbros.tileminer.Systems.AnimationSystem;
 import com.madbros.tileminer.Systems.CollisionDetectionSystem;
 import com.madbros.tileminer.Systems.RenderSystem;
 import com.madbros.tileminer.TileTypes.NoTile;
-import com.madbros.tileminer.UI.UIButton;
 import com.madbros.tileminer.Utils.Rect;
 import com.madbros.tileminer.Utils.RectInt;
 

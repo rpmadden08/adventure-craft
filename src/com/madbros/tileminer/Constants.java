@@ -821,6 +821,7 @@ public class Constants {
 		TILE_HASH.put(ZUCCHINI_TILE, new ZucchiniTile());
 		TILE_HASH.put(CARROT_TILE, new CarrotTile());
 		TILE_HASH.put(PEPPER_TILE, new PepperTile());
+		TILE_HASH.put(PEPPER_TOP, new PepperTopTile());
 		TILE_HASH.put(ARTICHOKE_TILE, new ArtichokeTile());
 		TILE_HASH.put(BEEHIVE_TILE, new BeehiveTile());
 		TILE_HASH.put(STAIRS_UP_TILE, new StairsUpTile());

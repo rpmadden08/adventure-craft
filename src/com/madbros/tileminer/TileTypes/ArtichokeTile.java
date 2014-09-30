@@ -28,6 +28,7 @@ public class ArtichokeTile extends CollisionTile {
 		isBreakable = true;
 		growthTime = setGrowthTime();
 		maxHp = 1;
+		currentHp = 1;
 	}
 	
 	@Override

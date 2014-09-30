@@ -105,12 +105,12 @@ public class Inventory {
 //		
 		invBar[0].item = new WoodenPick();
 		invBar[0].item.stackSize = 1;
-//		invBar[1].item = new Furnace();
-//		invBar[1].item.stackSize = 1;
-		invBar[2].item = new WoodenWall();
-		invBar[2].item.stackSize = 99;
-		invBar[3].item = new Roof();
-		invBar[3].item.stackSize =99;
+//		invBar[1].item = new PepperSprout();
+//		invBar[1].item.stackSize = 99;
+//		invBar[2].item = new CopperHoe();
+//		invBar[2].item.stackSize = 1;
+//		invBar[3].item = new Roof();
+//		invBar[3].item.stackSize =99;
 //		invBar[4].item = new CopperBoots();
 //		invBar[4].item.stackSize = 16;
 //		invBar[5].item = new CopperAxe();

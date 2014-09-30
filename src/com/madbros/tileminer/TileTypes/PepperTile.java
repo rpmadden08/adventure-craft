@@ -27,6 +27,8 @@ public class PepperTile extends CollisionTile {
 		autoTile = 0;
 		isBreakable = true;
 		growthTime = setGrowthTime();
+		maxHp = 1;
+		currentHp = 1;
 	}
 	
 	@Override
@@ -41,7 +43,7 @@ public class PepperTile extends CollisionTile {
 	private int setGrowthTime() {
 		
 		//return MathUtils.random(180000, 300000); //Every 1000 is 1 second.  180000 is 3 minutes.
-		return MathUtils.random(3000, 7000); //Every 1000 is 1 second.  180000 is 3 minutes.
+		return MathUtils.random(1000, 2000); //Every 1000 is 1 second.  180000 is 3 minutes.
 		
 	}
 	
@@ -74,7 +76,7 @@ public class PepperTile extends CollisionTile {
 		Random rnd = new Random();
 		int dropAmount1 = rnd.nextInt(2)+1;
 		int dropAmount2 = rnd.nextInt(1)+1;
-		if(currentSpriteId == 3) {
+		if(currentSpriteId == 5) {
 			for(int i = dropAmount1; i >-1 ; i--) {
 				Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 				Item item = ITEM_HASH.get(PEPPER_SPROUT).createNew();
