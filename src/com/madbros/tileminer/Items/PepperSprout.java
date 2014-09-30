@@ -26,6 +26,7 @@ public class PepperSprout extends TileItem {
 	@Override
 	public void placeTile(Block hB, Tile tile) {
 		hB.layers[OBJECT_LAYER] = tile;
+		hB.setCollisionTile((CollisionTile)tile);
 	}
 	
 	public void highlightItem(Block block, int x, int y) {
