@@ -284,6 +284,7 @@ public class Constants {
 	public static final int WOOD_DOOR_BOTTOM_TILE = 79;
 	public static final int WOOD_DOOR_TOP_TILE = 80;
 	public static final int WOOD_FLOOR_TILE = 81;
+	public static final int WHEAT_TILE_TOP = 82;
 	
 	
 	
@@ -814,6 +815,7 @@ public class Constants {
 		TILE_HASH.put(YELLOW_FLOWERS_TILE, new YellowFlowersTile());
 		TILE_HASH.put(TORCH_TILE, new TorchTile());
 		TILE_HASH.put(WHEAT_TILE, new WheatTile());
+		TILE_HASH.put(WHEAT_TOP, new WheatTopTile());
 		TILE_HASH.put(TOMATO_TILE, new TomatoTile());
 		TILE_HASH.put(CORN_TILE, new CornTile());
 		TILE_HASH.put(ZUCCHINI_TILE, new ZucchiniTile());

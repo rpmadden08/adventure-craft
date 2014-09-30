@@ -26,17 +26,19 @@ import com.madbros.tileminer.LevelTypes.*;
 import com.madbros.tileminer.Menus.*;
 import com.madbros.tileminer.Slots.ChestSlot;
 import com.madbros.tileminer.Sprites.Sprites;
+import com.madbros.tileminer.Sprites.StaticSprite;
 import com.madbros.tileminer.Systems.AnimationSystem;
 import com.madbros.tileminer.Systems.CollisionDetectionSystem;
 import com.madbros.tileminer.Systems.RenderSystem;
 import com.madbros.tileminer.TileTypes.NoTile;
+import com.madbros.tileminer.UI.UIButton;
 import com.madbros.tileminer.Utils.Rect;
 import com.madbros.tileminer.Utils.RectInt;
 
 import static com.madbros.tileminer.Constants.*;
 
 public class Game implements ApplicationListener {
-	public static String version = "Version 0.1.5.1";
+	public static String version = "Version 0.1.5.4";
 	public static boolean isDemo = false;
 	public static long rgenseed = System.currentTimeMillis();
 //	public static long rgenseed = 35;
@@ -145,6 +147,7 @@ public class Game implements ApplicationListener {
 		workingDirectory += "/TileMiner/saves/";
 		SAVE_LOC = workingDirectory;
 	}
+	
 	public static void closeInventory() {
 		currentState = new MainState();
 		hero.stop();

@@ -31,6 +31,7 @@ public class RoofTile extends RoofBaseTile {
 	}
 	
 	public void deleteMe(int x, int y, Block[][] activeBlocks) {
+		Game.level.activeBlocks[x][y].layers[ABOVE_LAYER_4] = new NoTile();
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(ROOF).createNew();
 		Game.collectibleController.add(ROOF, Sprites.sprites.get(Sprites.ROOF), collectibleRect, 1, item.maxUses);

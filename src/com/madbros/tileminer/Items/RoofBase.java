@@ -36,7 +36,7 @@ public class RoofBase extends AutoTileItem {
 					//.deleteObjectTile();
 					hB.layers[ABOVE_LAYER_4].deleteMe(Game.level.highlightedBlockX, Game.level.highlightedBlockY, Game.level.activeBlocks);
 					//if(Game.level.activeBlocks[Game.level.highlightedBlockX][Game.level.highlightedBlockY+1].layers[ABOVE_LAYER_2].id == AIR) {
-						hB.layers[ABOVE_LAYER_4] = new NoTile();
+					//hB.layers[ABOVE_LAYER_4] = new NoTile();
 					//}
 					Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-3);
 					Game.level.autoTileBlock(Game.level.highlightedBlockX, Game.level.highlightedBlockY-2);
