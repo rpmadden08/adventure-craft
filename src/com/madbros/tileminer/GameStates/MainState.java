@@ -4,15 +4,15 @@ package com.madbros.tileminer.GameStates;
 
 import static com.madbros.tileminer.Constants.*;
 
-
-
 //import com.alcovegames.fireshader.Game.ShaderSelection;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.madbros.tileminer.*;
+import com.madbros.tileminer.GameObjects.HeroMP;
 import com.madbros.tileminer.Menus.DemoMenu;
+import com.madbros.tileminer.Utils.RectInt;
 
 public class MainState extends GameState {
 	public MainState() {
@@ -97,6 +97,17 @@ public class MainState extends GameState {
 
 			Game.renderSystem.renderWorld(Game.level);
 			Game.renderSystem.renderHero(Game.hero, Game.getCenterScreenX() - CHARACTER_SIZE/2, Game.getCenterScreenY() - CHARACTER_SIZE/2);
+			
+			for(HeroMP hero : Game.heroController.heros) {
+				if(hero.username.equalsIgnoreCase(Game.hero.username)) {
+				} else {
+					RectInt gameHeroAbsRect = Game.hero.absRect.getRectInt();
+					RectInt heroAbsRect = hero.absRect.getRectInt();
+					int xDiff = gameHeroAbsRect.x- heroAbsRect.x;
+					int yDiff = gameHeroAbsRect.y- heroAbsRect.y;
+					Game.renderSystem.renderHero(hero, Game.getCenterScreenX() - CHARACTER_SIZE/2-xDiff, Game.getCenterScreenY() - CHARACTER_SIZE/2-yDiff);
+				}
+			}
 			Game.renderSystem.renderMobs(Game.mobController);
 			Game.renderSystem.renderParticle(Game.particleEffectController);
 			

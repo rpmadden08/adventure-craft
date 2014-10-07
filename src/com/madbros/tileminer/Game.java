@@ -1,8 +1,11 @@
 package com.madbros.tileminer;
 
+import java.awt.Frame;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import org.apache.commons.io.IOUtils;
 import org.lwjgl.LWJGLException;
@@ -24,6 +27,8 @@ import com.madbros.tileminer.GameStates.*;
 import com.madbros.tileminer.Items.*;
 import com.madbros.tileminer.LevelTypes.*;
 import com.madbros.tileminer.Menus.*;
+import com.madbros.tileminer.Packets.Packet00Login;
+import com.madbros.tileminer.Packets.Packet01Disconnect;
 import com.madbros.tileminer.Slots.ChestSlot;
 import com.madbros.tileminer.Sprites.Sprites;
 import com.madbros.tileminer.Systems.AnimationSystem;
@@ -32,6 +37,8 @@ import com.madbros.tileminer.Systems.RenderSystem;
 import com.madbros.tileminer.TileTypes.NoTile;
 import com.madbros.tileminer.Utils.Rect;
 import com.madbros.tileminer.Utils.RectInt;
+import com.madbros.tileminer.net.GameClient;
+import com.madbros.tileminer.net.GameServer;
 
 import static com.madbros.tileminer.Constants.*;
 
@@ -46,7 +53,11 @@ public class Game implements ApplicationListener {
 		//20 (Desert)
 		//15 (Mountain)
 		//40 (Forest)
+	private static GameClient socketClient;
+	private static GameServer socketServer;
 	
+	
+	public static Frame frame = new Frame();
 	public static int renderWidth = (int)Math.ceil(Game.currentScreenSizeX * 1.0 / TILE_SIZE) + RENDER_MARGIN;
 	public static int renderHeight = (int)Math.ceil(Game.currentScreenSizeY * 1.0 / TILE_SIZE) + RENDER_MARGIN;
 	public static int pixelModifier = 1;
@@ -69,6 +80,7 @@ public class Game implements ApplicationListener {
 	public static DemoMenu demoMenu;
 	public static DebugMenu debugMenu;
 	public static Level level;
+	public static HeroController heroController;
 	public static Hero hero;
 	public static MobController mobController;
 	public static SoundController soundController;
@@ -302,7 +314,15 @@ public class Game implements ApplicationListener {
 		//make other folders...
 		//level = new Level();
 		createNewLevel();
-		hero = new Hero();
+		Packet00Login loginPacket = new Packet00Login(JOptionPane.showInputDialog(frame, "Please enter a username"));
+		hero = new HeroMP(loginPacket.getUsername(), null, -1);
+		heroController = new HeroController();
+		if(socketServer!= null) {
+			socketServer.addConnection((HeroMP)hero, loginPacket);
+		}
+		loginPacket.writeData(socketClient);
+		
+		//heroController.heros.add(new HeroMP());
 		mobController = new MobController();
 		soundController = new SoundController();
 		collectibleController = new CollectibleController();
@@ -315,6 +335,10 @@ public class Game implements ApplicationListener {
 		animationSystem = new AnimationSystem();
 		
 		collisionDetectionSystem = new CollisionDetectionSystem();
+		//socketClient.sendData("ping".getBytes());
+		
+		
+		
 //		level.loadGame();
 //		isNewGame = false;
 		
@@ -525,6 +549,7 @@ public class Game implements ApplicationListener {
 			}
 		}).start();	
 		
+		
 	}
 	
 	public static int getCenterScreenX() {
@@ -564,7 +589,18 @@ public class Game implements ApplicationListener {
 	
 	@Override
 	public void create() {
+		//Boolean isServerOn = false;
+		
+		if(JOptionPane.showConfirmDialog(frame, "Do you want to run the server?")== 0) {
+			socketServer = new GameServer(this);
+			socketServer.start();
+		}
+		
 
+		socketClient = new GameClient(this, "localhost");
+		socketClient.start();
+	
+		
 		ArrayList<DisplayMode> resolutions = getResolutions();
 
 		gameStartTime = Time.getTime();
@@ -708,6 +744,9 @@ public class Game implements ApplicationListener {
 			
 			musicController.music.dispose();
 		}
+		Packet01Disconnect packet = new Packet01Disconnect(hero.username);
+		packet.writeData(socketClient);
+		
 		batch.dispose();
 		if(fbo != null && level != null) {
 			finalShader.dispose();
@@ -716,7 +755,7 @@ public class Game implements ApplicationListener {
 			defaultShader.dispose();
 			light.dispose();
 			fbo.dispose();
-			}
+		}
 	}
 
 	@Override
