@@ -21,9 +21,8 @@ public class Hero extends Actor {
 	public boolean isDead = false;
 	public int deathWait = 0;
 	public boolean isSwimming = false;
-	public String username = null;
 
-	public Hero(String username) {
+	public Hero() {
 		super();
 		//STATS
 		maxHP = 25;
@@ -32,7 +31,6 @@ public class Hero extends Actor {
 		mP = maxMP;
 		maxEP = 25;
 		eP = maxEP;
-		this.username = username;
 		
 		
 		absRect = new Rect(Game.level.spawnX, Game.level.spawnY,
@@ -286,7 +284,7 @@ public class Hero extends Actor {
 				Game.saveGame.saveCurrentLevel();
 				Game.level.saveCurrentChunks();
 				Game.currentState = new LoadingState(Game.batch);
-				Game.hero = new Hero(Game.hero.username);
+				Game.hero = new Hero();
 				Game.level.respawn(Game.level.masterSpawnX/TILE_SIZE+1, Game.level.masterSpawnY/TILE_SIZE+1, Game.level.spawnLevel);
 				//Game.currentState = new MainState();
 			} else {
