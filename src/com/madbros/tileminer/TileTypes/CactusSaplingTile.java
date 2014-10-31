@@ -67,6 +67,6 @@ public class CactusSaplingTile extends CollisionTile {
 		
 		Rect collectibleRect = new Rect(activeBlocks[x][y].absRect.x, activeBlocks[x][y].absRect.y, 32, 32);
 		Item item = ITEM_HASH.get(CACTUS_SEED).createNew();
-		Game.collectibleController.add(CACTUS_SEED, Sprites.sprites.get(Sprites.CACTUS_SAPLING), collectibleRect, 1,item.maxUses);
+		Game.collectibleController.add(CACTUS_SEED, Sprites.sprites.get(Sprites.CACTUS_ITEM), collectibleRect, 1,item.maxUses);
 	}
 }
